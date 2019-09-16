@@ -6,18 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Tag: 滑动窗口 | HMF的博客</title>
+  <title>删除排序数组中的重复项II | HMF的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="华中科技大学17级">
-<meta property="og:type" content="website">
-<meta property="og:title" content="HMF的博客">
-<meta property="og:url" content="http://yoursite.com/tags/滑动窗口/index.html">
+  <meta name="description" content="来源Leetcode第80题删除排序数组中的重复项II &amp;lt;给定一个排序数组，你需要在原地删除重复出现的元素，使得每个元素最多出现两次，返回移除后数组的新长度。&amp;lt;不要使用额外的数组空间，你必须在原地修改输入数组并在使用 O(1) 额外空间的条件下完成。&amp;lt;&amp;lt;示例 1:">
+<meta name="keywords" content="Leetcode,双指针">
+<meta property="og:type" content="article">
+<meta property="og:title" content="删除排序数组中的重复项II">
+<meta property="og:url" content="http://yoursite.com/2019/09/16/删除排序数组中的重复项II/index.html">
 <meta property="og:site_name" content="HMF的博客">
-<meta property="og:description" content="华中科技大学17级">
+<meta property="og:description" content="来源Leetcode第80题删除排序数组中的重复项II &amp;lt;给定一个排序数组，你需要在原地删除重复出现的元素，使得每个元素最多出现两次，返回移除后数组的新长度。&amp;lt;不要使用额外的数组空间，你必须在原地修改输入数组并在使用 O(1) 额外空间的条件下完成。&amp;lt;&amp;lt;示例 1:">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-09-16T15:40:01.415Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="HMF的博客">
-<meta name="twitter:description" content="华中科技大学17级">
+<meta name="twitter:title" content="删除排序数组中的重复项II">
+<meta name="twitter:description" content="来源Leetcode第80题删除排序数组中的重复项II &amp;lt;给定一个排序数组，你需要在原地删除重复出现的元素，使得每个元素最多出现两次，返回移除后数组的新长度。&amp;lt;不要使用额外的数组空间，你必须在原地修改输入数组并在使用 O(1) 额外空间的条件下完成。&amp;lt;&amp;lt;示例 1:">
   
     <link rel="alternative" href="/atom.xml" title="HMF的博客" type="application/atom+xml">
   
@@ -139,36 +141,80 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-删除排序数组中的重复项II" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/09/11/无重复字符的最长子串/" class="archive-article-date">
-  	<time datetime="2019-09-11T13:30:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-11</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/09/11/无重复字符的最长子串/">无重复字符的最长子串</a>
+    <h1 class="article-title" itemprop="name">
+      删除排序数组中的重复项II
     </h1>
   
 
-        <div class="article-info info-on-right">
+        
+        <a href="/2019/09/16/删除排序数组中的重复项II/" class="archive-article-date">
+  	<time datetime="2019-09-16T12:20:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-16</time>
+</a>
+		
+		
+          <div style="margin-top:10px;">
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-keyboard-o"></i>
+        <span class="post-meta-item-text">  字数统计: </span>
+        <span class="post-count">541字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+        <i class="fa fa-hourglass-half"></i>
+        <span class="post-meta-item-text">  阅读时长: </span>
+        <span class="post-count">2分</span>
+      </span>
+    </span>
+</div>
+
           
+		  
+        
+		
+		
+		
+          <span class="archive-article-date">
+              阅读量 <span id="busuanzi_value_page_pv"></span>
+          </span>
+        
+
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>来源Leetcode第80题删除排序数组中的重复项II</p>
+<p>&lt;给定一个排序数组，你需要在原地删除重复出现的元素，使得每个元素最多出现两次，返回移除后数组的新长度。<br>&lt;不要使用额外的数组空间，你必须在原地修改输入数组并在使用 O(1) 额外空间的条件下完成。<br>&lt;<br>&lt;示例 1:</p>
+<blockquote>
+<a id="more"></a>
+
+<p>给定 nums = [1,1,1,2,2,3],<br>函数应返回新长度 length = 5, 并且原数组的前五个元素被修改为 1, 1, 2, 2, 3 。<br>你不需要考虑数组中超出新长度后面的元素。</p>
+</blockquote>
+<p>第一反应是新建一个表，按顺序记录下排序数组中对应数字出现的次数，但是发现题目要求空间负责度为O(1)，那么则可以简化一下思路，采用两个指针，一个记录当前要修改部位，一个保持向后遍历数组，当有两个连续的数字重复的时候就要进行判断，先保存当前val，然后再复制两个重复的元素，接着指针i开始跳过多余的重复元素即可。<br>代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">removeDuplicates</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> m = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length;) &#123;</span><br><span class="line">        <span class="keyword">if</span> (i &lt; nums.length - <span class="number">1</span> &amp;&amp; nums[i] == nums[i + <span class="number">1</span>]) &#123;</span><br><span class="line">            <span class="keyword">int</span> val = nums[i];  <span class="comment">//记录当前值</span></span><br><span class="line">            nums[m++] = nums[i++]; <span class="comment">//对数组进行两次操作</span></span><br><span class="line">            nums[m++] = nums[i++];</span><br><span class="line">            <span class="keyword">while</span> (i &lt; nums.length &amp;&amp; nums[i] == val) <span class="comment">//如果2个数之后的数据元素仍与之前相等就跳过</span></span><br><span class="line">                i++;</span><br><span class="line">        &#125; <span class="keyword">else</span></span><br><span class="line">            nums[m++] = nums[i++];  <span class="comment">//最后两个元素无所谓从不重复，直接复制就完事了</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> m;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在附上一个评论区比较秀的代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">removeDuplicates</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> n : nums)</span><br><span class="line">            <span class="keyword">if</span> (i &lt; <span class="number">2</span> || n &gt; nums[i-<span class="number">2</span>])</span><br><span class="line">                nums[i++] = n;</span><br><span class="line">        <span class="keyword">return</span> i;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>当i&lt;2时，前两项直接复制就好，从第三项开始，如果数组里的n&gt;nums[i-2],说明当前元素和前面复制的不等，拓展开来复制前K个重复的数字就可以把i-2替换成i-K。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -178,25 +224,134 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">滑动窗口</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">双指针</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2019/09/16/删除排序数组中的重复项II/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2019/09/15/回文数/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">回文数</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
+
+  
+  
+      <div id="gitalk-container"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.js"></script>
+
+<script>
+var gitalk = new Gitalk({
+  clientID: '0635d0bc6ad58e628693',
+  clientSecret: 'a02a3a1ab4874ccb117251539125fe3a1a4d43da',
+  repo: 'blogtalk',
+  owner: 'Yorxika',
+  admin: ['Yorxika'],
+  id: md5(window.location.pathname),
+  distractionFreeMode: true
+})
+
+gitalk.render('gitalk-container')
+</script>
+
+  
+
 
 
           </div>
@@ -250,9 +405,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
