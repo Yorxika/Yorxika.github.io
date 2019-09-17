@@ -6,18 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Tag: 动态规划 | HMF的博客</title>
+  <title>盛最多的水 | HMF的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="华中科技大学17级">
-<meta property="og:type" content="website">
-<meta property="og:title" content="HMF的博客">
-<meta property="og:url" content="http://yoursite.com/tags/动态规划/index.html">
+  <meta name="description" content="来源Leetcode第11题盛最多的水  给定 n 个非负整数 a1，a2，…，an，每个数代表坐标中的一个点 (i, ai) 。在坐标内画 n 条垂直线，垂直线 i 的两个端点分别为 (i, ai) 和 (i, 0)。找出其中的两条线，使得它们与 x 轴共同构成的容器可以容纳最多的水。说明：你不能倾斜容器，且 n 的值至少为 2。示例:">
+<meta name="keywords" content="Leetcode,双指针">
+<meta property="og:type" content="article">
+<meta property="og:title" content="盛最多的水">
+<meta property="og:url" content="http://yoursite.com/2019/09/17/盛最多的水/index.html">
 <meta property="og:site_name" content="HMF的博客">
-<meta property="og:description" content="华中科技大学17级">
+<meta property="og:description" content="来源Leetcode第11题盛最多的水  给定 n 个非负整数 a1，a2，…，an，每个数代表坐标中的一个点 (i, ai) 。在坐标内画 n 条垂直线，垂直线 i 的两个端点分别为 (i, ai) 和 (i, 0)。找出其中的两条线，使得它们与 x 轴共同构成的容器可以容纳最多的水。说明：你不能倾斜容器，且 n 的值至少为 2。示例:">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-09-17T11:56:30.718Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="HMF的博客">
-<meta name="twitter:description" content="华中科技大学17级">
+<meta name="twitter:title" content="盛最多的水">
+<meta name="twitter:description" content="来源Leetcode第11题盛最多的水  给定 n 个非负整数 a1，a2，…，an，每个数代表坐标中的一个点 (i, ai) 。在坐标内画 n 条垂直线，垂直线 i 的两个端点分别为 (i, ai) 和 (i, 0)。找出其中的两条线，使得它们与 x 轴共同构成的容器可以容纳最多的水。说明：你不能倾斜容器，且 n 的值至少为 2。示例:">
   
     <link rel="alternative" href="/atom.xml" title="HMF的博客" type="application/atom+xml">
   
@@ -139,36 +141,75 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-盛最多的水" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/09/17/正则表达式匹配/" class="archive-article-date">
-  	<time datetime="2019-09-17T09:27:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-17</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/09/17/正则表达式匹配/">正则表达式匹配</a>
+    <h1 class="article-title" itemprop="name">
+      盛最多的水
     </h1>
   
 
-        <div class="article-info info-on-right">
+        
+        <a href="/2019/09/17/盛最多的水/" class="archive-article-date">
+  	<time datetime="2019-09-17T11:50:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-17</time>
+</a>
+		
+		
+          <div style="margin-top:10px;">
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-keyboard-o"></i>
+        <span class="post-meta-item-text">  字数统计: </span>
+        <span class="post-count">291字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+        <i class="fa fa-hourglass-half"></i>
+        <span class="post-meta-item-text">  阅读时长: </span>
+        <span class="post-count">1分</span>
+      </span>
+    </span>
+</div>
+
           
+		  
+        
+		
+		
+		
+          <span class="archive-article-date">
+              阅读量 <span id="busuanzi_value_page_pv"></span>
+          </span>
+        
+
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>来源Leetcode第11题盛最多的水</p>
+<blockquote>
+<p>给定 n 个非负整数 a1，a2，…，an，每个数代表坐标中的一个点 (i, ai) 。在坐标内画 n 条垂直线，垂直线 i 的两个端点分别为 (i, ai) 和 (i, 0)。找出其中的两条线，使得它们与 x 轴共同构成的容器可以容纳最多的水。<br>说明：你不能倾斜容器，且 n 的值至少为 2。<br>示例:</p>
+<blockquote>
+<a id="more"></a>
+<p>输入: [1,8,6,2,5,4,8,3,7]<br>输出: 49</p>
+</blockquote>
+</blockquote>
+<p>用暴力法遍历时遇到了TLE的问题，重新考虑题目，不妨将两个指针设置在头和尾，取头尾指针中较小的*两指针之间的距离得到其之间的面积，因为面积是以较小的指针高度为准，所以移动较小的指针即可，直到两指针相遇。<br>严谨证明链接：<a href="https://leetcode-cn.com/problems/container-with-most-water/solution/shuang-zhi-zhen-fa-zheng-que-xing-zheng-ming-by-r3/" target="_blank" rel="noopener">双指针法正确性证明</a><br>代码如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">maxArea</span><span class="params">(<span class="keyword">int</span>* height, <span class="keyword">int</span> heightSize)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> maxsize = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> start = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> end = heightSize<span class="number">-1</span>;</span><br><span class="line">    <span class="keyword">int</span> temp;</span><br><span class="line">    <span class="keyword">for</span>(;start!=end;)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(height[start]&lt;height[end])</span><br><span class="line">        &#123;</span><br><span class="line">            temp = (end - start)*(height[start]);</span><br><span class="line">            start++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            temp = (end - start)*(height[end]);</span><br><span class="line">            end--;</span><br><span class="line">        &#125;</span><br><span class="line">        maxsize = (maxsize &gt; temp?maxsize:temp);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> maxsize;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -178,79 +219,134 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">动态规划</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">回溯</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">双指针</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2019/09/17/盛最多的水/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/09/13/最长回文串/" class="archive-article-date">
-  	<time datetime="2019-09-13T08:03:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-13</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2019/09/17/正则表达式匹配/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">正则表达式匹配</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/09/13/最长回文串/">最长回文子串</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Leetcode</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">回文</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">动态规划</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">拓展中心</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
   
 
-    
+  
+
+  
+  
+      <div id="gitalk-container"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.js"></script>
+
+<script>
+var gitalk = new Gitalk({
+  clientID: '0635d0bc6ad58e628693',
+  clientSecret: 'a02a3a1ab4874ccb117251539125fe3a1a4d43da',
+  repo: 'blogtalk',
+  owner: 'Yorxika',
+  admin: ['Yorxika'],
+  id: md5(window.location.pathname),
+  distractionFreeMode: true
+})
+
+gitalk.render('gitalk-container')
+</script>
+
+  
+
 
 
           </div>
@@ -304,9 +400,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
