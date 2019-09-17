@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="HMF的博客">
 <meta property="og:description" content="来源Leetcode第11题盛最多的水  给定 n 个非负整数 a1，a2，…，an，每个数代表坐标中的一个点 (i, ai) 。在坐标内画 n 条垂直线，垂直线 i 的两个端点分别为 (i, ai) 和 (i, 0)。找出其中的两条线，使得它们与 x 轴共同构成的容器可以容纳最多的水。说明：你不能倾斜容器，且 n 的值至少为 2。示例:">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-09-17T11:56:30.718Z">
+<meta property="og:updated_time" content="2019-09-17T14:14:50.047Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="盛最多的水">
 <meta name="twitter:description" content="来源Leetcode第11题盛最多的水  给定 n 个非负整数 a1，a2，…，an，每个数代表坐标中的一个点 (i, ai) 。在坐标内画 n 条垂直线，垂直线 i 的两个端点分别为 (i, ai) 和 (i, 0)。找出其中的两条线，使得它们与 x 轴共同构成的容器可以容纳最多的水。说明：你不能倾斜容器，且 n 的值至少为 2。示例:">
@@ -196,10 +196,8 @@
         <p>来源Leetcode第11题盛最多的水</p>
 <blockquote>
 <p>给定 n 个非负整数 a1，a2，…，an，每个数代表坐标中的一个点 (i, ai) 。在坐标内画 n 条垂直线，垂直线 i 的两个端点分别为 (i, ai) 和 (i, 0)。找出其中的两条线，使得它们与 x 轴共同构成的容器可以容纳最多的水。<br>说明：你不能倾斜容器，且 n 的值至少为 2。<br>示例:</p>
-<blockquote>
 <a id="more"></a>
 <p>输入: [1,8,6,2,5,4,8,3,7]<br>输出: 49</p>
-</blockquote>
 </blockquote>
 <p>用暴力法遍历时遇到了TLE的问题，重新考虑题目，不妨将两个指针设置在头和尾，取头尾指针中较小的*两指针之间的距离得到其之间的面积，因为面积是以较小的指针高度为准，所以移动较小的指针即可，直到两指针相遇。<br>严谨证明链接：<a href="https://leetcode-cn.com/problems/container-with-most-water/solution/shuang-zhi-zhen-fa-zheng-que-xing-zheng-ming-by-r3/" target="_blank" rel="noopener">双指针法正确性证明</a><br>代码如下：</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">maxArea</span><span class="params">(<span class="keyword">int</span>* height, <span class="keyword">int</span> heightSize)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> maxsize = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> start = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> end = heightSize<span class="number">-1</span>;</span><br><span class="line">    <span class="keyword">int</span> temp;</span><br><span class="line">    <span class="keyword">for</span>(;start!=end;)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(height[start]&lt;height[end])</span><br><span class="line">        &#123;</span><br><span class="line">            temp = (end - start)*(height[start]);</span><br><span class="line">            start++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            temp = (end - start)*(height[end]);</span><br><span class="line">            end--;</span><br><span class="line">        &#125;</span><br><span class="line">        maxsize = (maxsize &gt; temp?maxsize:temp);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> maxsize;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -470,15 +468,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Leetcode</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">HASH</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -490,15 +488,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">二分</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">公选课</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">思辨与创新</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">二分</a>
               </li>
              
               <li class="article-tag-list-item">
