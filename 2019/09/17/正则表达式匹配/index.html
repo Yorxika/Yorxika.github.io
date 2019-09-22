@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>正则表达式匹配 | HMF的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="来源Leetcode第10题正则表达式匹配  给你一个字符串 s 和一个字符规律 p，请你来实现一个支持’.’和’*‘的正则表达式匹配。‘.’匹配任意单个字符‘‘匹配零个或多个前面的那一个元素所谓匹配，是要* 涵盖整个字符串s的，而 不是部分字符串s**。">
-<meta name="keywords" content="Leetcode,动态规划,回溯">
+  <meta name="description" content="来源Leetcode第10题正则表达式匹配  给你一个字符串 s 和一个字符规律 p，请你来实现一个支持’.’和’*‘的正则表达式匹配。‘.’匹配任意单个字符‘*‘匹配零个或多个前面的那一个元素所谓匹配，是要** 涵盖整个字符串s的，而 不是部分字符串s **。">
+<meta name="keywords" content="Leetcode,回溯,动态规划">
 <meta property="og:type" content="article">
 <meta property="og:title" content="正则表达式匹配">
 <meta property="og:url" content="http://yoursite.com/2019/09/17/正则表达式匹配/index.html">
 <meta property="og:site_name" content="HMF的博客">
-<meta property="og:description" content="来源Leetcode第10题正则表达式匹配  给你一个字符串 s 和一个字符规律 p，请你来实现一个支持’.’和’*‘的正则表达式匹配。‘.’匹配任意单个字符‘‘匹配零个或多个前面的那一个元素所谓匹配，是要* 涵盖整个字符串s的，而 不是部分字符串s**。">
+<meta property="og:description" content="来源Leetcode第10题正则表达式匹配  给你一个字符串 s 和一个字符规律 p，请你来实现一个支持’.’和’*‘的正则表达式匹配。‘.’匹配任意单个字符‘*‘匹配零个或多个前面的那一个元素所谓匹配，是要** 涵盖整个字符串s的，而 不是部分字符串s **。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-09-17T11:17:05.747Z">
+<meta property="og:updated_time" content="2019-09-22T12:43:39.104Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="正则表达式匹配">
-<meta name="twitter:description" content="来源Leetcode第10题正则表达式匹配  给你一个字符串 s 和一个字符规律 p，请你来实现一个支持’.’和’*‘的正则表达式匹配。‘.’匹配任意单个字符‘‘匹配零个或多个前面的那一个元素所谓匹配，是要* 涵盖整个字符串s的，而 不是部分字符串s**。">
+<meta name="twitter:description" content="来源Leetcode第10题正则表达式匹配  给你一个字符串 s 和一个字符规律 p，请你来实现一个支持’.’和’*‘的正则表达式匹配。‘.’匹配任意单个字符‘*‘匹配零个或多个前面的那一个元素所谓匹配，是要** 涵盖整个字符串s的，而 不是部分字符串s **。">
   
     <link rel="alternative" href="/atom.xml" title="HMF的博客" type="application/atom+xml">
   
@@ -54,7 +54,7 @@
 		  <h1 class="header-author"><a href="/">HMF</a></h1>
 		</hgroup>
 		
-		<p class="header-subtitle">All of these thoughts runnin&#39; through my head,all of these voices inside my head</p>
+		<p class="header-subtitle">All of these thoughts runnin&#39; through my head</p>
 		
 
 		<nav class="header-menu">
@@ -106,7 +106,7 @@
 			  <h1 class="header-author js-header-author">HMF</h1>
 			</hgroup>
 			
-			<p class="header-subtitle"><i class="icon icon-quo-left"></i>All of these thoughts runnin&#39; through my head,all of these voices inside my head<i class="icon icon-quo-right"></i></p>
+			<p class="header-subtitle"><i class="icon icon-quo-left"></i>All of these thoughts runnin&#39; through my head<i class="icon icon-quo-right"></i></p>
 			
 			
 			
@@ -195,7 +195,7 @@
       
         <p>来源Leetcode第10题正则表达式匹配</p>
 <blockquote>
-<p>给你一个字符串 s 和一个字符规律 p，请你来实现一个支持’.’和’*‘的正则表达式匹配。<br>‘.’匹配任意单个字符<br>‘<em>‘匹配零个或多个前面的那一个元素<br>所谓匹配，是要*</em> 涵盖整个字符串s<strong>的，而</strong> 不是部分字符串s**。</p>
+<p>给你一个字符串 s 和一个字符规律 p，请你来实现一个支持’.’和’*‘的正则表达式匹配。<br>‘.’匹配任意单个字符<br>‘*‘匹配零个或多个前面的那一个元素<br>所谓匹配，是要** 涵盖整个字符串s<strong>的，而</strong> 不是部分字符串s **。</p>
 <a id="more"></a>
 <p>说明:<br>s 可能为空，且只包含从 a-z 的小写字母。<br>p 可能为空，且只包含从 a-z 的小写字母，以及字符 ‘.’和’*‘。<br>示例 4:</p>
 <p>输入:<br>s = “aab”<br>p = “c*a*b”<br>输出: true<br>解释: 因为’*‘表示零个或多个，这里’c’为 0 个, ‘a’ 被重复一次。因此可以匹配字符串 “aab”。</p>
@@ -209,6 +209,11 @@
 
 
       
+
+
+
+  <div class="declare" hidden="hidden"></div>
+
 
       
     </div>
@@ -224,11 +229,11 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">动态规划</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">回溯</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">回溯</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">动态规划</a>
         		</li>
       		
 		</ul>
@@ -408,6 +413,9 @@ gitalk.render('gitalk-container')
             </span>
     
     
+	<!--页面点击小红心-->
+<script type="text/javascript" src="/love.js"></script>
+
       	</div>
     </div>
   </div>
@@ -488,6 +496,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Leetcode</a>
               </li>
              
@@ -496,19 +508,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">双指针</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">回文</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">二分</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -520,15 +520,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">贪心</a>
+                <a href="javascript:void(0)" class="js-tag color3">二分</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">滑动窗口</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">分治</a>
+                <a href="javascript:void(0)" class="js-tag color3">回溯</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -536,11 +532,27 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">回文</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">滑动窗口</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">组成原理</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">贪心</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">拓展中心</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">回溯</a>
+                <a href="javascript:void(0)" class="js-tag color3">分治</a>
               </li>
             
             <div class="clearfix"></div>
