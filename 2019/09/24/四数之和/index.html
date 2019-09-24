@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="HMF的博客">
 <meta property="og:description" content="来源Leetcode第18题四数之和  给定一个包含 n 个整数的数组 nums 和一个目标值 target，判断 nums 中是否存在四个元素 a，b，c 和 d ，使得 a + b + c + d 的值与 target 相等？找出所有满足条件且不重复的四元组。注意：答案中不可以包含重复的四元组。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-09-24T16:04:54.288Z">
+<meta property="og:updated_time" content="2019-09-24T16:06:13.135Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="四数之和">
 <meta name="twitter:description" content="来源Leetcode第18题四数之和  给定一个包含 n 个整数的数组 nums 和一个目标值 target，判断 nums 中是否存在四个元素 a，b，c 和 d ，使得 a + b + c + d 的值与 target 相等？找出所有满足条件且不重复的四元组。注意：答案中不可以包含重复的四元组。">
@@ -196,10 +196,8 @@
         <p>来源Leetcode第18题四数之和</p>
 <blockquote>
 <p>给定一个包含 n 个整数的数组 nums 和一个目标值 target，判断 nums 中是否存在四个元素 a，b，c 和 d ，使得 a + b + c + d 的值与 target 相等？找出所有满足条件且不重复的四元组。<br>注意：<br>答案中不可以包含重复的四元组。</p>
-<blockquote>
 <a id="more"></a>
 <p>示例：<br>给定数组 nums = [1, 0, -1, 0, -2, 2]，和 target = 0。<br>满足要求的四元组集合为：<br>[<br> [-1,  0, 0, 1],<br> [-2, -1, 1, 2],<br> [-2,  0, 0, 2]<br>]</p>
-</blockquote>
 </blockquote>
 <p>这题思路其实和之前的三数之和是一样的，但是由于我自己逻辑不够完善，导致了卡在这题很久。<br>同样是采用双指针，先固定2个数，在对剩下2层进行遍历操作检查sum是否和target相等。<br>在最外层遍历时，受到了三数之和这题的影响，判断了第一层if nums[s] &gt; target ,then break;<br>这其实是没有必要的，因为有<strong>负数</strong>的存在，当有负数时，连续几个负数相加会越来越小，从而满足target。<br>其次，在第二层遍历时，同样的，if nums[j] &gt; target,then break;<br>这也是没必要的，原因同上。<br>最后附上完成代码如下：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> List&lt;List&lt;Integer&gt;&gt; fourSum(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> target) &#123;</span><br><span class="line">        List&lt;List&lt;Integer&gt;&gt; ans = <span class="keyword">new</span> ArrayList();</span><br><span class="line">        <span class="keyword">int</span> len = nums.length;</span><br><span class="line">        <span class="keyword">if</span>(nums == <span class="keyword">null</span> || len &lt; <span class="number">4</span>) <span class="keyword">return</span> ans;</span><br><span class="line">        Arrays.sort(nums); <span class="comment">// 排序</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len - <span class="number">3</span>; i++) &#123;</span><br><span class="line">            <span class="comment">//if(nums[i] &gt; target) break; // 如果当前数字大于target，则4数之和一定大于target，所以结束循环</span></span><br><span class="line">            <span class="keyword">if</span>(i &gt; <span class="number">0</span> &amp;&amp; nums[i] == nums[i-<span class="number">1</span>]) <span class="keyword">continue</span>; <span class="comment">// 去重</span></span><br><span class="line">            <span class="keyword">if</span>((nums[i] + nums[i+<span class="number">1</span>] + nums[i+<span class="number">2</span>] + nums[i+<span class="number">3</span>])&gt;target)</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">if</span>((nums[i]+nums[len-<span class="number">1</span>]+nums[len-<span class="number">2</span>]+nums[len-<span class="number">3</span>])&lt;target)</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = i + <span class="number">1</span>;j&lt;len - <span class="number">2</span>;j++)</span><br><span class="line">            &#123;</span><br><span class="line">                 <span class="keyword">if</span>(j &gt; i+<span class="number">1</span> &amp;&amp; nums[j] == nums[j-<span class="number">1</span>]) <span class="keyword">continue</span>; <span class="comment">// 去重</span></span><br><span class="line">                <span class="comment">//if(nums[j] &gt; target) break; // 如果当前数字大于target，则4数之和一定大于target，所以结束循环</span></span><br><span class="line">                <span class="comment">//if(nums[i] + nums[j] &gt; target) break;</span></span><br><span class="line">                <span class="keyword">if</span>((nums[i] + nums[j] + nums[len - <span class="number">1</span>] + nums[len - <span class="number">2</span>]) &lt; target) <span class="comment">//最大4个数字组合都小于target，进入下一个数字的循环</span></span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            <span class="keyword">if</span>((nums[i] + nums[j] + nums[j+<span class="number">1</span>] + nums[j+<span class="number">2</span>])&gt;target)</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">int</span> L = j+<span class="number">1</span>;</span><br><span class="line">            <span class="keyword">int</span> R = len-<span class="number">1</span>;</span><br><span class="line">           </span><br><span class="line">            <span class="keyword">while</span>(L &lt; R)&#123;</span><br><span class="line">                <span class="keyword">int</span> sum = nums[i] + nums[j] + nums[L] + nums[R];</span><br><span class="line">                <span class="keyword">if</span>(sum == target)&#123;</span><br><span class="line">                    ans.add(Arrays.asList(nums[i],nums[j],nums[L],nums[R]));</span><br><span class="line">                    <span class="keyword">while</span> (L&lt;R &amp;&amp; nums[L] == nums[L+<span class="number">1</span>]) L++; <span class="comment">// 去重</span></span><br><span class="line">                    <span class="keyword">while</span> (L&lt;R &amp;&amp; nums[R] == nums[R-<span class="number">1</span>]) R--; <span class="comment">// 去重</span></span><br><span class="line">                    L++;</span><br><span class="line">                    R--;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span> (sum &lt; target) </span><br><span class="line">               <span class="keyword">while</span>(L&lt;R&amp;&amp;nums[L]==nums[++L]);</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span> (sum &gt; target) </span><br><span class="line">                <span class="keyword">while</span>(L&lt;R&amp;&amp;nums[R]==nums[--R]);</span><br><span class="line">            &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;        </span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -500,6 +498,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">HASH</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">双指针</a>
               </li>
              
@@ -512,15 +514,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">HASH</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">思辨与创新</a>
+                <a href="javascript:void(0)" class="js-tag color3">回文</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">二分</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">思辨与创新</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -532,11 +534,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">回文</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">回溯</a>
+                <a href="javascript:void(0)" class="js-tag color3">分治</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -548,11 +546,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">组成原理</a>
+                <a href="javascript:void(0)" class="js-tag color3">回溯</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">分治</a>
+                <a href="javascript:void(0)" class="js-tag color5">组成原理</a>
               </li>
             
             <div class="clearfix"></div>
