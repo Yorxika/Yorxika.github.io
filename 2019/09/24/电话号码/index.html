@@ -6,20 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yorxika.github.io">
-  <title>组原笔记 | HMF的博客</title>
+  <title>电话号码的字母组合 | HMF的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="华中科技大学17级">
-<meta name="keywords" content="组成原理">
+  <meta name="description" content="来源Leetcode第17题电话号码字母组合  给定一个仅包含数字 2-9 的字符串，返回所有它能表示的字母组合。给出数字到字母的映射如下（与电话按键相同）。注意 1 不对应任何字母。   示例:">
+<meta name="keywords" content="Leetcode,回溯">
 <meta property="og:type" content="article">
-<meta property="og:title" content="组原笔记">
-<meta property="og:url" content="http://yorxika.github.io/2019/09/22/组原笔记/index.html">
+<meta property="og:title" content="电话号码的字母组合">
+<meta property="og:url" content="http://yorxika.github.io/2019/09/24/电话号码/index.html">
 <meta property="og:site_name" content="HMF的博客">
-<meta property="og:description" content="华中科技大学17级">
+<meta property="og:description" content="来源Leetcode第17题电话号码字母组合  给定一个仅包含数字 2-9 的字符串，返回所有它能表示的字母组合。给出数字到字母的映射如下（与电话按键相同）。注意 1 不对应任何字母。   示例:">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-09-24T03:40:51.667Z">
+<meta property="og:updated_time" content="2019-09-24T14:39:29.567Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="组原笔记">
-<meta name="twitter:description" content="华中科技大学17级">
+<meta name="twitter:title" content="电话号码的字母组合">
+<meta name="twitter:description" content="来源Leetcode第17题电话号码字母组合  给定一个仅包含数字 2-9 的字符串，返回所有它能表示的字母组合。给出数字到字母的映射如下（与电话按键相同）。注意 1 不对应任何字母。   示例:">
   
     <link rel="alternative" href="/atom.xml" title="HMF的博客" type="application/atom+xml">
   
@@ -141,20 +141,20 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-组原笔记" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-电话号码" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      组原笔记
+      电话号码的字母组合
     </h1>
   
 
         
-        <a href="/2019/09/22/组原笔记/" class="archive-article-date">
-  	<time datetime="2019-09-22T12:44:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-22</time>
+        <a href="/2019/09/24/电话号码/" class="archive-article-date">
+  	<time datetime="2019-09-24T14:27:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-24</time>
 </a>
 		
 		
@@ -163,7 +163,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
         <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">0字</span>
+        <span class="post-count">624字</span>
       </span>
     </span>
 
@@ -172,7 +172,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-hourglass-half"></i>
         <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">1分</span>
+        <span class="post-count">2分</span>
       </span>
     </span>
 </div>
@@ -193,7 +193,21 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <p>来源Leetcode第17题电话号码字母组合</p>
+<blockquote>
+<p>给定一个仅包含数字 2-9 的字符串，返回所有它能表示的字母组合。<br>给出数字到字母的映射如下（与电话按键相同）。注意 1 不对应任何字母。</p>
+</blockquote>
+<blockquote>
+<p>示例:</p>
+<a id="more"></a>
+<p>输入：”23”<br>输出：[“ad”, “ae”, “af”, “bd”, “be”, “bf”, “cd”, “ce”, “cf”].</p>
+</blockquote>
+<p>想了一下还是逐个数字生成组合，人后根据生成的组合再组合生成对应的代码但是这样的代码量有点问题，现在明明也做了些题，但是代码、算法意识什么的基本还是没有，唉。</p>
+<p>官方题解的描述是一个树，通过回溯穷举所有可能情况来找到所有解的算法，如果一个候选解最后被发现并不是可行解，回溯算法会舍弃它，并在前面的一些步骤做出一些修改，并重新尝试找到可行解。<br>给出如下回溯函数 backtrack(combination, next_digits) ，它将一个目前已经产生的组合 combination 和接下来准备要输入的数字 next_digits 作为参数。<br>如果没有更多的数字需要被输入，那意味着当前的组合已经产生好了。<br>如果还有数字需要被输入：<br>遍历下一个数字所对应的所有映射的字母。<br>将当前的字母添加到组合最后，也就是 combination = combination + letter 。<br>重复这个过程，输入剩下的数字： backtrack(combination + letter, next_digits[1:]) 。</p>
+<p>代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">  Map&lt;String, String&gt; phone = <span class="keyword">new</span> HashMap&lt;String, String&gt;() &#123;&#123;</span><br><span class="line">    put(<span class="string">"2"</span>, <span class="string">"abc"</span>);</span><br><span class="line">    put(<span class="string">"3"</span>, <span class="string">"def"</span>);</span><br><span class="line">    put(<span class="string">"4"</span>, <span class="string">"ghi"</span>);</span><br><span class="line">    put(<span class="string">"5"</span>, <span class="string">"jkl"</span>);</span><br><span class="line">    put(<span class="string">"6"</span>, <span class="string">"mno"</span>);</span><br><span class="line">    put(<span class="string">"7"</span>, <span class="string">"pqrs"</span>);</span><br><span class="line">    put(<span class="string">"8"</span>, <span class="string">"tuv"</span>);</span><br><span class="line">    put(<span class="string">"9"</span>, <span class="string">"wxyz"</span>);</span><br><span class="line">  &#125;&#125;;  <span class="comment">//生成哈希图，对应着8个数字按键与字母的组合</span></span><br><span class="line"></span><br><span class="line">  List&lt;String&gt; output = <span class="keyword">new</span> ArrayList&lt;String&gt;();<span class="comment">//返回的List 包含若干个组合字符串</span></span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">backtrack</span><span class="params">(String combination, String next_digits)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 如果没有数字需要继续匹配组合了</span></span><br><span class="line">    <span class="keyword">if</span> (next_digits.length() == <span class="number">0</span>) &#123;</span><br><span class="line">      output.add(combination);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 还有数字要生成对应的字母组合</span></span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="comment">// 循环遍历地图里当前字母所对应的字符串里的所有字母</span></span><br><span class="line">      String digit = next_digits.substring(<span class="number">0</span>, <span class="number">1</span>);</span><br><span class="line">      String letters = phone.get(digit);</span><br><span class="line">      <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; letters.length(); i++) &#123;</span><br><span class="line">        String letter = phone.get(digit).substring(i, i + <span class="number">1</span>);</span><br><span class="line">        <span class="comment">// 将当前字母加入组合，并且将数字串减1开始下一层的回溯</span></span><br><span class="line">        backtrack(combination + letter, next_digits.substring(<span class="number">1</span>));</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> List&lt;String&gt; <span class="title">letterCombinations</span><span class="params">(String digits)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (digits.length() != <span class="number">0</span>)</span><br><span class="line">      backtrack(<span class="string">""</span>, digits);</span><br><span class="line">    <span class="keyword">return</span> output;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
       
 
 
@@ -211,7 +225,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">组成原理</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Leetcode</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">回溯</a>
         		</li>
       		
 		</ul>
@@ -267,7 +285,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yorxika.github.io/2019/09/22/组原笔记/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yorxika.github.io/2019/09/24/电话号码/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -281,18 +299,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2019/09/23/三数之和/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2019/09/24/四数之和/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          三数之和
+          四数之和
         
       </div>
     </a>
   
   
-    <a href="/2019/09/18/最长公共前缀/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">最长公共前缀</div>
+    <a href="/2019/09/24/中国古典诗词中的品格与修养/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">中国古典诗词中的品格与修养</div>
       <i class="icon-circle-right"></i>
     </a>
   
