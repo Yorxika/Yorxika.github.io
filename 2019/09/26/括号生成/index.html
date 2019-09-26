@@ -6,20 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yorxika.github.io">
-  <title>三数之和 | HMF的博客</title>
+  <title>括号生成 | HMF的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="来源Leetcode第15题三数之和  给定一个包含 n 个整数的数组 nums，判断 nums 中是否存在三个元素 a，b，c ，使得 a + b + c = 0 ？找出所有满足条件且不重复的三元组。注意：答案中不可以包含重复的三元组。例如, 给定数组 nums = [-1, 0, 1, 2, -1, -4]，满足要求的三元组集合为：[">
-<meta name="keywords" content="Leetcode,双指针">
+  <meta name="description" content="来源Leetcode第22题括号生成  给出 n 代表生成括号的对数，请你写出一个函数，使其能够生成所有可能的并且有效的括号组合。 例如，给出 n = 3，生成结果为：">
+<meta name="keywords" content="Leetcode,回溯,动态规划">
 <meta property="og:type" content="article">
-<meta property="og:title" content="三数之和">
-<meta property="og:url" content="http://yorxika.github.io/2019/09/23/三数之和/index.html">
+<meta property="og:title" content="括号生成">
+<meta property="og:url" content="http://yorxika.github.io/2019/09/26/括号生成/index.html">
 <meta property="og:site_name" content="HMF的博客">
-<meta property="og:description" content="来源Leetcode第15题三数之和  给定一个包含 n 个整数的数组 nums，判断 nums 中是否存在三个元素 a，b，c ，使得 a + b + c = 0 ？找出所有满足条件且不重复的三元组。注意：答案中不可以包含重复的三元组。例如, 给定数组 nums = [-1, 0, 1, 2, -1, -4]，满足要求的三元组集合为：[">
+<meta property="og:description" content="来源Leetcode第22题括号生成  给出 n 代表生成括号的对数，请你写出一个函数，使其能够生成所有可能的并且有效的括号组合。 例如，给出 n = 3，生成结果为：">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-09-23T13:39:09.411Z">
+<meta property="og:updated_time" content="2019-09-26T16:51:52.656Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="三数之和">
-<meta name="twitter:description" content="来源Leetcode第15题三数之和  给定一个包含 n 个整数的数组 nums，判断 nums 中是否存在三个元素 a，b，c ，使得 a + b + c = 0 ？找出所有满足条件且不重复的三元组。注意：答案中不可以包含重复的三元组。例如, 给定数组 nums = [-1, 0, 1, 2, -1, -4]，满足要求的三元组集合为：[">
+<meta name="twitter:title" content="括号生成">
+<meta name="twitter:description" content="来源Leetcode第22题括号生成  给出 n 代表生成括号的对数，请你写出一个函数，使其能够生成所有可能的并且有效的括号组合。 例如，给出 n = 3，生成结果为：">
   
     <link rel="alternative" href="/atom.xml" title="HMF的博客" type="application/atom+xml">
   
@@ -141,20 +141,20 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-三数之和" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-括号生成" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      三数之和
+      括号生成
     </h1>
   
 
         
-        <a href="/2019/09/23/三数之和/" class="archive-article-date">
-  	<time datetime="2019-09-23T12:44:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-23</time>
+        <a href="/2019/09/26/括号生成/" class="archive-article-date">
+  	<time datetime="2019-09-26T15:57:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-26</time>
 </a>
 		
 		
@@ -163,7 +163,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
         <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">487字</span>
+        <span class="post-count">1.7k字</span>
       </span>
     </span>
 
@@ -172,7 +172,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-hourglass-half"></i>
         <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">2分</span>
+        <span class="post-count">7分</span>
       </span>
     </span>
 </div>
@@ -193,26 +193,90 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>来源Leetcode第15题三数之和</p>
+        <p>来源Leetcode第22题括号生成</p>
 <blockquote>
-<p>给定一个包含 n 个整数的数组 nums，判断 nums 中是否存在三个元素 a，b，c ，使得 a + b + c = 0 ？找出所有满足条件且不重复的三元组。<br>注意：答案中不可以包含重复的三元组。<br>例如, 给定数组 nums = [-1, 0, 1, 2, -1, -4]，<br>满足要求的三元组集合为：<br>[</p>
+<p>给出 n 代表生成括号的对数，请你写出一个函数，使其能够生成所有可能的并且有效的括号组合。</p>
+<p>例如，给出 n = 3，生成结果为：</p>
 <a id="more"></a>
-<p> [-1, 0, 1],<br> [-1, -1, 2]<br>]</p>
+<p>[<br> “((()))”,<br> “(()())”,<br> “(())()”,<br> “()(())”,<br> “()()()”<br>]</p>
 </blockquote>
-<p>简述下思路吧，采用三重循环遍历，但是这样时间复杂度先不提，就实现方式而言，C语言提供的malloc确实可以一直malloc下去，就是空间不是连续的，没有实现，查看解答发现先排序后可以减少很多工作量，排序后将首指针记为i,j=i+1,k=numsSize-1,判断三数之和是否为0，是的话就添加进结果集。</p>
+<p>其实可以把这道题看作是一道完全二叉树的题目，根结点为’(‘,树的最长路径为2n,那么只需当当前路径长度小于输入的n值时即可增加’(‘和’)’。<br>采用两个变量open、close分别标记’(‘和’)’的数量，那么满足以下两个条件即可进入更深一层递归：</p>
 <ul>
-<li>如果nums[i]大于0,则三数之和必然无法等于0，结束循环</li>
-<li>如果nums[i] == nums[i-1],数字重复,会导致结果重复，跳过</li>
-<li>如果sum == 0,nums[j] == nums[j+1],则会导致结果重复，跳过,j++</li>
-<li>如果sum == 0,nums[k] == nums[k-1],则会导致重复，跳过，k–</li>
+<li>当open &lt; n 时，说明当前增加的’(‘还没到达上限，仍可继续增加</li>
+<li>当close &lt; opne时，说明此时的’)’数量小于’(‘数量，可以增加’)’的数量以达到配对’(‘</li>
 </ul>
 <p>代码如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> List&lt;List&lt;Integer&gt;&gt; threeSum(<span class="keyword">int</span>[] nums) &#123;</span><br><span class="line">        List&lt;List&lt;Integer&gt;&gt; ans = <span class="keyword">new</span> ArrayList();</span><br><span class="line">        <span class="keyword">int</span> len = nums.length;</span><br><span class="line">        <span class="keyword">if</span>(nums == <span class="keyword">null</span> || len &lt; <span class="number">3</span>) <span class="keyword">return</span> ans;</span><br><span class="line">        Arrays.sort(nums); <span class="comment">// 排序</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len ; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span>(nums[i] &gt; <span class="number">0</span>) <span class="keyword">break</span>; <span class="comment">// 如果当前数字大于0，则三数之和一定大于0，所以结束循环</span></span><br><span class="line">            <span class="keyword">if</span>(i &gt; <span class="number">0</span> &amp;&amp; nums[i] == nums[i-<span class="number">1</span>]) <span class="keyword">continue</span>; <span class="comment">// 去重</span></span><br><span class="line">            <span class="keyword">int</span> L = i+<span class="number">1</span>;</span><br><span class="line">            <span class="keyword">int</span> R = len-<span class="number">1</span>;</span><br><span class="line">            <span class="keyword">while</span>(L &lt; R)&#123;</span><br><span class="line">                <span class="keyword">int</span> sum = nums[i] + nums[L] + nums[R];</span><br><span class="line">                <span class="keyword">if</span>(sum == <span class="number">0</span>)&#123;</span><br><span class="line">                    ans.add(Arrays.asList(nums[i],nums[L],nums[R]));</span><br><span class="line">                    <span class="keyword">while</span> (L&lt;R &amp;&amp; nums[L] == nums[L+<span class="number">1</span>]) L++; <span class="comment">// 去重</span></span><br><span class="line">                    <span class="keyword">while</span> (L&lt;R &amp;&amp; nums[R] == nums[R-<span class="number">1</span>]) R--; <span class="comment">// 去重</span></span><br><span class="line">                    L++;</span><br><span class="line">                    R--;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span> (sum &lt; <span class="number">0</span>) L++;</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span> (sum &gt; <span class="number">0</span>) R--;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;        </span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> List&lt;String&gt; <span class="title">generateParenthesis</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        List&lt;String&gt; ans = <span class="keyword">new</span> ArrayList();</span><br><span class="line">        backtrack(ans, <span class="string">""</span>, <span class="number">0</span>, <span class="number">0</span>, n);</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">backtrack</span><span class="params">(List&lt;String&gt; ans, String cur, <span class="keyword">int</span> open, <span class="keyword">int</span> close, <span class="keyword">int</span> max)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (cur.length() == max * <span class="number">2</span>) &#123;</span><br><span class="line">            ans.add(cur);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (open &lt; max)</span><br><span class="line">            backtrack(ans, cur+<span class="string">"("</span>, open+<span class="number">1</span>, close, max);</span><br><span class="line">        <span class="keyword">if</span> (close &lt; open)</span><br><span class="line">            backtrack(ans, cur+<span class="string">")"</span>, open, close+<span class="number">1</span>, max);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>来自于题解里的另一种解法：</p>
+<blockquote>
+<p>当我们清楚所有 i&lt;n 时括号的可能生成排列后，对与 i=n 的情况，我们考虑整个括号排列中最左边的括号。<br>它一定是一个左括号，那么它可以和它对应的右括号组成一组完整的括号 “( )”，我们认为这一组是相比 n-1 增加进来的括号。</p>
+</blockquote>
+<blockquote>
+<p>那么，剩下 n-1 组括号有可能在哪呢？</p>
+</blockquote>
+<blockquote>
+<p><strong>[这里是重点，请着重理解]</strong></p>
+</blockquote>
+<blockquote>
+<p>剩下的括号要么在这一组新增的括号内部，要么在这一组新增括号的外部（右侧）。</p>
+</blockquote>
+<blockquote>
+<p>既然知道了 i&lt;n 的情况，那我们就可以对所有情况进行遍历：</p>
+</blockquote>
+<blockquote>
+<p><strong>“(“ + [i=p时所有括号的排列组合] + “)” + [i=q时所有括号的排列组合]</strong></p>
+</blockquote>
+<blockquote>
+<p>其中 p + q = n-1，且 p q 均为非负整数。</p>
+</blockquote>
+<blockquote>
+<p>事实上，当上述 p 从 0 取到 n-1，q 从 n-1 取到 0 后，所有情况就遍历完了。</p>
+</blockquote>
+<blockquote>
+<p>注：上述遍历是没有重复情况出现的，即当 (p1,q1)≠(p2,q2) 时，按上述方式取的括号组合一定不同。</p>
+</blockquote>
+<blockquote>
+<p>简单来说，在求N个括号的排列组合时，把第N种情况（也就是N个括号排列组合）视为单独拿一个括号E出来，剩下的N-1个括号分为两部分，P个括号和Q个括号，P+Q=N-1，然后这两部分分别处于括号E内和括号E的右边，各自进行括号的排列组合。由于我们是一步步计算得到N个括号的情况的，所以小于等于N-1个括号的排列组合方式我们是已知的（用合适的数据结构存储，方便后续调用，且在存储时可利用特定数据结构实现题目某些要求，如排序，去重等），且P+Q=N-1，P和Q是小于等于N-1的，所以我们能直接得到P个和Q个括号的情况，进而得到N个括号的结果！</p>
+</blockquote>
+<blockquote>
+<p>这个解法的算法思想很巧妙，这个算法主要的基点就是将排列组合的情况分为了括号内和括号外这两种情况，且仅存在两种情况！至于为什么，原因在于楼主的算法的前提是单独拿出来的括号E的左边在N个括号所有排列组合情况中都是处于最左边，所以不存在括号位于括号E的左边的情况。因此，N-1个括号（拿出了括号E）仅可能分布于括号E内和括号E外，分为两种子情况讨论！(其实可以证明形如 “()A” 是会有和 “A()” 重复部分的)  这种思想还可以应用于其他类似的题的求解中，即怎样合理高效的利用前面步骤的计算结果得出当前步骤结果，从而得出最终结果。</p>
+</blockquote>
+<p>代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> List&lt;String&gt; <span class="title">generateParenthesis</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">		LinkedList&lt;LinkedList&lt;String&gt;&gt; result = <span class="keyword">new</span> LinkedList&lt;LinkedList&lt;String&gt;&gt;();</span><br><span class="line">		<span class="keyword">if</span> (n == <span class="number">0</span>)</span><br><span class="line">			<span class="keyword">return</span> result.get(<span class="number">0</span>);</span><br><span class="line">		LinkedList&lt;String&gt; list0 = <span class="keyword">new</span> LinkedList&lt;String&gt;();</span><br><span class="line">		list0.add(<span class="string">""</span>);</span><br><span class="line">		result.add(list0);</span><br><span class="line">		LinkedList&lt;String&gt; list1 = <span class="keyword">new</span> LinkedList&lt;String&gt;();</span><br><span class="line">		list1.add(<span class="string">"()"</span>);</span><br><span class="line">		result.add(list1);</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= n; i++) &#123;</span><br><span class="line">			LinkedList&lt;String&gt; temp = <span class="keyword">new</span> LinkedList&lt;String&gt;();</span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; i; j++) &#123;</span><br><span class="line">				List&lt;String&gt; str1 = result.get(j);</span><br><span class="line">				List&lt;String&gt; str2 = result.get(i - <span class="number">1</span> - j);</span><br><span class="line">				<span class="keyword">for</span> (String s1 : str1) &#123;</span><br><span class="line">					<span class="keyword">for</span> (String s2 : str2) &#123;</span><br><span class="line">						String el = <span class="string">"("</span> + s1 + <span class="string">")"</span> + s2;</span><br><span class="line">						temp.add(el);</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;</span><br><span class="line"></span><br><span class="line">			&#125;</span><br><span class="line">			result.add(temp);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> result.get(n);</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+
+<p>来自题解的另一种解法，看不懂，困了，摸了</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">tatal</span><span class="params">(<span class="keyword">int</span> num[], <span class="keyword">int</span> t)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> result = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; t; i++)</span><br><span class="line">            result += num[i];</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">inline</span> <span class="keyword">bool</span> <span class="title">equal</span><span class="params">(<span class="keyword">int</span> num[], <span class="keyword">int</span> t)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; t; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(num[i] != <span class="number">1</span>)</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">inline</span> <span class="built_in">string</span> <span class="title">once</span><span class="params">(<span class="keyword">int</span> num[], <span class="keyword">int</span> t)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="built_in">string</span> temp;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; t; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            temp += <span class="string">'('</span>;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; num[i]; j++)</span><br><span class="line">            &#123;</span><br><span class="line">                temp += <span class="string">')'</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> temp;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt; generateParenthesis(<span class="keyword">int</span> n)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt; result;</span><br><span class="line">        <span class="keyword">if</span>(n &lt;= <span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">string</span> temp0 = <span class="string">""</span>;</span><br><span class="line">            result.push_back(temp0);</span><br><span class="line">            <span class="keyword">return</span> result;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> *num = <span class="keyword">new</span> <span class="keyword">int</span>[n];</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++)</span><br><span class="line">            num[i] = <span class="number">0</span>;</span><br><span class="line">        num[n<span class="number">-1</span>] = n;</span><br><span class="line">        <span class="keyword">if</span>(n &gt;= <span class="number">1</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">string</span> temp0 = once(num, n);</span><br><span class="line">            result.push_back(temp0);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(n &lt; <span class="number">2</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">delete</span> [] num;</span><br><span class="line">            <span class="keyword">return</span> result;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span>(<span class="literal">true</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(num[n<span class="number">-1</span>] &gt; <span class="number">1</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                num[n<span class="number">-1</span>]--;</span><br><span class="line">                num[n<span class="number">-2</span>]++;</span><br><span class="line">                <span class="built_in">string</span> temp0 = once(num, n);</span><br><span class="line">                result.push_back(temp0);</span><br><span class="line">                <span class="keyword">if</span>(equal(num, n))</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                <span class="keyword">else</span></span><br><span class="line">                    <span class="keyword">continue</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i = n - <span class="number">2</span>; i &gt;= <span class="number">0</span>; i--)</span><br><span class="line">            &#123;</span><br><span class="line">                num[i] += <span class="number">1</span>;</span><br><span class="line">                <span class="keyword">if</span>((num[i] &gt; i + <span class="number">1</span>)||(tatal(num,i+<span class="number">1</span>) &gt; i + <span class="number">1</span>))</span><br><span class="line">                &#123;</span><br><span class="line">                    num[i] = <span class="number">0</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span></span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            num[n<span class="number">-1</span>] = n - tatal(num,n<span class="number">-2</span>);</span><br><span class="line">            <span class="built_in">string</span> temp1 = once(num, n);</span><br><span class="line">            result.push_back(temp1);</span><br><span class="line">            <span class="keyword">if</span>(equal(num, n))</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">delete</span> [] num;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>来自于官方解答的闭合数，其实和动态规划是差不多的，也摸了，明天再看了。</p>
+<blockquote>
+<p>方法三：闭合数<br><strong>思路</strong></p>
+<p>为了枚举某些内容，我们通常希望将其表示为更容易计算的不相交子集的总和。</p>
+<p>考虑有效括号序列 S 的 闭包数：至少存在 index &gt;= 0，使得 S[0], S[1], …, S[2*index+1]是有效的。 显然，每个括号序列都有一个唯一的闭包号。 我们可以尝试单独列举它们。</p>
+<p><strong>算法</strong></p>
+<p>对于每个闭合数 c，我们知道起始和结束括号必定位于索引 0 和 2<em>c + 1。然后两者间的 2</em>c 个元素一定是有效序列，其余元素一定是有效序列。</p>
+</blockquote>
+<p>代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> List&lt;String&gt; <span class="title">generateParenthesis</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        List&lt;String&gt; ans = <span class="keyword">new</span> ArrayList();</span><br><span class="line">        <span class="keyword">if</span> (n == <span class="number">0</span>) &#123;</span><br><span class="line">            ans.add(<span class="string">""</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> c = <span class="number">0</span>; c &lt; n; ++c)</span><br><span class="line">                <span class="keyword">for</span> (String left: generateParenthesis(c))</span><br><span class="line">                    <span class="keyword">for</span> (String right: generateParenthesis(n-<span class="number">1</span>-c))</span><br><span class="line">                        ans.add(<span class="string">"("</span> + left + <span class="string">")"</span> + right);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
 
 
 
-  <div class="declare" hidden="hidden"></div>
+  <div class="declare">
+    <strong>本文作者：</strong>
+    
+      HMF
+    
+    <br>
+    <strong>本文链接：</strong>
+    http://yorxika.github.io/2019/09/26/括号生成/
+    <br>
+    <strong>版权声明：</strong>
+    本作品采用
+    <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a>
+    进行许可。转载请注明出处！
+    
+  </div>
 
 
       
@@ -229,7 +293,11 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">双指针</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">回溯</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">动态规划</a>
         		</li>
       		
 		</ul>
@@ -285,7 +353,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yorxika.github.io/2019/09/23/三数之和/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yorxika.github.io/2019/09/26/括号生成/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -299,18 +367,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2019/09/23/最接近的三数之和/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          最接近的三数之和
-        
-      </div>
-    </a>
   
-  
-    <a href="/2019/09/22/组原笔记/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">组原笔记</div>
+    <a href="/2019/09/25/有效的括号/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">有效的括号</div>
       <i class="icon-circle-right"></i>
     </a>
   
