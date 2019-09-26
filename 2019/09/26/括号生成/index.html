@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="HMF的博客">
 <meta property="og:description" content="来源Leetcode第22题括号生成  给出 n 代表生成括号的对数，请你写出一个函数，使其能够生成所有可能的并且有效的括号组合。 例如，给出 n = 3，生成结果为：">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-09-26T16:51:52.656Z">
+<meta property="og:updated_time" content="2019-09-26T16:56:02.649Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="括号生成">
 <meta name="twitter:description" content="来源Leetcode第22题括号生成  给出 n 代表生成括号的对数，请你写出一个函数，使其能够生成所有可能的并且有效的括号组合。 例如，给出 n = 3，生成结果为：">
@@ -211,29 +211,13 @@
 <p>来自于题解里的另一种解法：</p>
 <blockquote>
 <p>当我们清楚所有 i&lt;n 时括号的可能生成排列后，对与 i=n 的情况，我们考虑整个括号排列中最左边的括号。<br>它一定是一个左括号，那么它可以和它对应的右括号组成一组完整的括号 “( )”，我们认为这一组是相比 n-1 增加进来的括号。</p>
-</blockquote>
-<blockquote>
 <p>那么，剩下 n-1 组括号有可能在哪呢？</p>
-</blockquote>
-<blockquote>
 <p><strong>[这里是重点，请着重理解]</strong></p>
-</blockquote>
-<blockquote>
 <p>剩下的括号要么在这一组新增的括号内部，要么在这一组新增括号的外部（右侧）。</p>
-</blockquote>
-<blockquote>
 <p>既然知道了 i&lt;n 的情况，那我们就可以对所有情况进行遍历：</p>
-</blockquote>
-<blockquote>
 <p><strong>“(“ + [i=p时所有括号的排列组合] + “)” + [i=q时所有括号的排列组合]</strong></p>
-</blockquote>
-<blockquote>
 <p>其中 p + q = n-1，且 p q 均为非负整数。</p>
-</blockquote>
-<blockquote>
 <p>事实上，当上述 p 从 0 取到 n-1，q 从 n-1 取到 0 后，所有情况就遍历完了。</p>
-</blockquote>
-<blockquote>
 <p>注：上述遍历是没有重复情况出现的，即当 (p1,q1)≠(p2,q2) 时，按上述方式取的括号组合一定不同。</p>
 </blockquote>
 <blockquote>
