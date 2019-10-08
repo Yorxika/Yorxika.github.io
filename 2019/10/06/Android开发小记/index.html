@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="http://yorxika.github.io">
   <title>Android开发小记 | HMF的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="做了几天的软工作业，今天终于磨出了点东西了虽然我负责的是比较水的出题模块，但是这块分的太细了啊啊啊啊啊啊啊啊啊！！！！！！！！我巴不得每一个类型写一个方法出来最后记一下今天遇到的几个坑  空指针异常 空栈异常 除数为0异常  空指针异常的出错代码为： 1234567StatOfType E = new StatOfType();for (int i = 0; i &amp;lt; 47; i++) &amp;#1">
+  <meta name="description" content="做了几天的软工作业，今天终于磨出了点东西了虽然我负责的是比较水的出题模块，但是这块分的太细了啊啊啊啊啊啊啊啊啊！！！！！！！！我巴不得每一个类型写一个方法出来最后记一下今天遇到的几个坑">
 <meta name="keywords" content="杂谈,Android">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android开发小记">
 <meta property="og:url" content="http://yorxika.github.io/2019/10/06/Android开发小记/index.html">
 <meta property="og:site_name" content="HMF的博客">
-<meta property="og:description" content="做了几天的软工作业，今天终于磨出了点东西了虽然我负责的是比较水的出题模块，但是这块分的太细了啊啊啊啊啊啊啊啊啊！！！！！！！！我巴不得每一个类型写一个方法出来最后记一下今天遇到的几个坑  空指针异常 空栈异常 除数为0异常  空指针异常的出错代码为： 1234567StatOfType E = new StatOfType();for (int i = 0; i &amp;lt; 47; i++) &amp;#1">
+<meta property="og:description" content="做了几天的软工作业，今天终于磨出了点东西了虽然我负责的是比较水的出题模块，但是这块分的太细了啊啊啊啊啊啊啊啊啊！！！！！！！！我巴不得每一个类型写一个方法出来最后记一下今天遇到的几个坑">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-10-05T16:29:11.779Z">
+<meta property="og:updated_time" content="2019-10-07T13:29:05.248Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android开发小记">
-<meta name="twitter:description" content="做了几天的软工作业，今天终于磨出了点东西了虽然我负责的是比较水的出题模块，但是这块分的太细了啊啊啊啊啊啊啊啊啊！！！！！！！！我巴不得每一个类型写一个方法出来最后记一下今天遇到的几个坑  空指针异常 空栈异常 除数为0异常  空指针异常的出错代码为： 1234567StatOfType E = new StatOfType();for (int i = 0; i &amp;lt; 47; i++) &amp;#1">
+<meta name="twitter:description" content="做了几天的软工作业，今天终于磨出了点东西了虽然我负责的是比较水的出题模块，但是这块分的太细了啊啊啊啊啊啊啊啊啊！！！！！！！！我巴不得每一个类型写一个方法出来最后记一下今天遇到的几个坑">
   
     <link rel="alternative" href="/atom.xml" title="HMF的博客" type="application/atom+xml">
   
@@ -84,6 +84,8 @@
 				
 					<a class="github" target="_blank" href="https://github.com/Yorxika/" title="github"><i class="icon-github"></i></a>
 		        
+					<a class="mail" target="_blank" href="/774123033@qq.com" title="mail"><i class="icon-mail"></i></a>
+		        
 			</div>
 		</nav>
 	</header>		
@@ -118,6 +120,8 @@
 				<div class="social">
 					
 						<a class="github" target="_blank" href="https://github.com/Yorxika/" title="github"><i class="icon-github"></i></a>
+			        
+						<a class="mail" target="_blank" href="/774123033@qq.com" title="mail"><i class="icon-mail"></i></a>
 			        
 				</div>
 			</nav>
@@ -163,7 +167,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
         <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">340字</span>
+        <span class="post-count">422字</span>
       </span>
     </span>
 
@@ -194,11 +198,14 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>做了几天的软工作业，今天终于磨出了点东西了<br>虽然我负责的是比较水的出题模块，但是这块分的太细了啊啊啊啊啊啊啊啊啊！！！！！！！！<br>我巴不得每一个类型写一个方法出来<br>最后记一下今天遇到的几个坑</p>
+<blockquote>
+<a id="more"></a>
 <ul>
 <li>空指针异常</li>
 <li>空栈异常</li>
 <li>除数为0异常</li>
 </ul>
+</blockquote>
 <p>空指针异常的出错代码为：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">StatOfType E = <span class="keyword">new</span> StatOfType();</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">47</span>; i++) &#123;</span><br><span class="line">            </span><br><span class="line">            E.setNum(<span class="number">10</span>);</span><br><span class="line">            E.setTypeId(i+<span class="number">1</span>);</span><br><span class="line">            typeList.add(E);</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
 
@@ -206,17 +213,31 @@
 <p>空栈异常的出错代码为：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">aAns = (<span class="keyword">int</span>)CalExpression.executeExpression(aProblem);</span><br></pre></td></tr></table></figure>
 
-<p>原因暂时还没找到</p>
+<p>原因是因为 aProblem 的 Num1 没有增加String.Valueof()，这个方法，导致计算时出现了空栈异常。</p>
 <p>除法异常的出错代码为：</p>
-<pre><code class="Java"></code></pre>
-<p>除法异常明明都能生成是0的随机数，你竟然给我报异常！！！</p>
-<p>我的腰啊，每天都坐在电脑前。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> Integer <span class="title">GetRandomNum</span><span class="params">(<span class="keyword">int</span> min,<span class="keyword">int</span> max)</span></span>&#123;</span><br><span class="line">        Random random = <span class="keyword">new</span> Random();</span><br><span class="line">        <span class="comment">//return random.nextInt(max) % (max - min + 1) + min;</span></span><br><span class="line">        <span class="keyword">return</span> random.nextInt(max - min + <span class="number">1</span>) + min;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>除法异常出错的原因在于注释的那一句 <code>Javareturn random.nextInt(max) % (max - min + 1) + min;</code><br>max - min +1 存在可能为0的情况？但也不对，emmm反正就是这个改了就可以了<br>Random的nextInt()这个函数里对参数有要求&gt;=0。</p>
 
       
 
 
 
-  <div class="declare" hidden="hidden"></div>
+  <div class="declare">
+    <strong>本文作者：</strong>
+    
+      HMF
+    
+    <br>
+    <strong>本文链接：</strong>
+    http://yorxika.github.io/2019/10/06/Android开发小记/
+    <br>
+    <strong>版权声明：</strong>
+    本作品采用
+    <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a>
+    进行许可。转载请注明出处！
+    
+  </div>
 
 
       
@@ -302,6 +323,15 @@
 
   
 <nav id="article-nav">
+  
+    <a href="/2019/10/07/移除元素/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          移除元素
+        
+      </div>
+    </a>
   
   
     <a href="/2019/09/30/删除排序数组中的重复项/" id="article-nav-older" class="article-nav-link-wrap">
@@ -503,6 +533,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">HASH</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">公选课</a>
               </li>
              
@@ -512,10 +546,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">双指针</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">HASH</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -539,15 +569,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">分治</a>
+                <a href="javascript:void(0)" class="js-tag color5">动态规划</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">拓展中心</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">回溯</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">动态规划</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -556,6 +586,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">组成原理</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">分治</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -568,10 +602,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">贪心分治</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">拓展中心</a>
               </li>
             
             <div class="clearfix"></div>

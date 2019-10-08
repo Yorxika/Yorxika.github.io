@@ -6,20 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yorxika.github.io">
-  <title>有效的括号 | HMF的博客</title>
+  <title>移除元素 | HMF的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="来源Leetcode第20题有效的括号  给定一个只包括 ‘(‘，’)’，’{‘，’}’，’[‘，’]’ 的字符串，判断字符串是否有效。有效字符串需满足： 左括号必须用相同类型的右括号闭合。左括号必须以正确的顺序闭合。">
-<meta name="keywords" content="Leetcode,栈">
+  <meta name="description" content="来源Leetcode第27题移除元素  给定一个数组 nums 和一个值 val，你需要原地移除所有数值等于 val 的元素，返回移除后数组的新长度。不要使用额外的数组空间，你必须在原地修改输入数组并在使用 O(1) 额外空间的条件下完成。">
+<meta name="keywords" content="Leetcode,双指针">
 <meta property="og:type" content="article">
-<meta property="og:title" content="有效的括号">
-<meta property="og:url" content="http://yorxika.github.io/2019/09/25/有效的括号/index.html">
+<meta property="og:title" content="移除元素">
+<meta property="og:url" content="http://yorxika.github.io/2019/10/07/移除元素/index.html">
 <meta property="og:site_name" content="HMF的博客">
-<meta property="og:description" content="来源Leetcode第20题有效的括号  给定一个只包括 ‘(‘，’)’，’{‘，’}’，’[‘，’]’ 的字符串，判断字符串是否有效。有效字符串需满足： 左括号必须用相同类型的右括号闭合。左括号必须以正确的顺序闭合。">
+<meta property="og:description" content="来源Leetcode第27题移除元素  给定一个数组 nums 和一个值 val，你需要原地移除所有数值等于 val 的元素，返回移除后数组的新长度。不要使用额外的数组空间，你必须在原地修改输入数组并在使用 O(1) 额外空间的条件下完成。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-09-25T15:52:55.644Z">
+<meta property="og:updated_time" content="2019-10-08T09:24:32.309Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="有效的括号">
-<meta name="twitter:description" content="来源Leetcode第20题有效的括号  给定一个只包括 ‘(‘，’)’，’{‘，’}’，’[‘，’]’ 的字符串，判断字符串是否有效。有效字符串需满足： 左括号必须用相同类型的右括号闭合。左括号必须以正确的顺序闭合。">
+<meta name="twitter:title" content="移除元素">
+<meta name="twitter:description" content="来源Leetcode第27题移除元素  给定一个数组 nums 和一个值 val，你需要原地移除所有数值等于 val 的元素，返回移除后数组的新长度。不要使用额外的数组空间，你必须在原地修改输入数组并在使用 O(1) 额外空间的条件下完成。">
   
     <link rel="alternative" href="/atom.xml" title="HMF的博客" type="application/atom+xml">
   
@@ -145,20 +145,20 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-有效的括号" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-移除元素" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      有效的括号
+      移除元素
     </h1>
   
 
         
-        <a href="/2019/09/25/有效的括号/" class="archive-article-date">
-  	<time datetime="2019-09-25T15:07:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-25</time>
+        <a href="/2019/10/07/移除元素/" class="archive-article-date">
+  	<time datetime="2019-10-07T13:59:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-07</time>
 </a>
 		
 		
@@ -167,7 +167,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
         <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">459字</span>
+        <span class="post-count">499字</span>
       </span>
     </span>
 
@@ -197,24 +197,45 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>来源Leetcode第20题有效的括号</p>
+        <p>来源Leetcode第27题移除元素</p>
 <blockquote>
-<p>给定一个只包括 ‘(‘，’)’，’{‘，’}’，’[‘，’]’ 的字符串，判断字符串是否有效。<br>有效字符串需满足：</p>
-<p>左括号必须用相同类型的右括号闭合。<br>左括号必须以<strong>正确的顺序</strong>闭合。</p>
+<p>给定一个数组 nums 和一个值 val，你需要原地移除所有数值等于 val 的元素，返回移除后数组的新长度。<br>不要使用额外的数组空间，你必须在原地修改输入数组并在使用 O(1) 额外空间的条件下完成。</p>
 <a id="more"></a>
-<p>注意空字符串可被认为是有效字符串。</p>
-<p>示例 1:<br>输入: “()”<br>输出: true</p>
+<p>元素的顺序可以改变。你不需要考虑数组中超出新长度后面的元素。</p>
+<p>示例 1:</p>
+<p>给定 nums = [3,2,2,3], val = 3,</p>
+<p>函数应该返回新的长度 2, 并且 nums 中的前两个元素均为 2。<br>你不需要考虑数组中超出新长度后面的元素。</p>
 </blockquote>
-<p>这题一看到就知道和表达式匹配里的括号规则一样是要考虑括号的顺序的，方法是用栈来实现，但是由于玩了会魂3(但其实什么也没玩到，灰心哥下次我必在火鸡场杀了你)，导致偷懒直接标记括号数量来匹配，完全忽略了另一个要求正确的顺序，导致AC不了。<br><strong>正确的顺序</strong>这样只能够通过栈来实现了。<br>代码如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isValid</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 空字符串</span></span><br><span class="line">        <span class="keyword">if</span> (s.length() == <span class="number">0</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        <span class="comment">// 排除奇数长度(位运算)</span></span><br><span class="line">        <span class="keyword">if</span> ((s.length() &amp; <span class="number">1</span>) == <span class="number">1</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 栈元素个数</span></span><br><span class="line">        <span class="keyword">int</span> index = <span class="number">0</span>;</span><br><span class="line">        <span class="comment">// 栈</span></span><br><span class="line">        <span class="keyword">char</span>[] stack = <span class="keyword">new</span> <span class="keyword">char</span>[s.length()];</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; s.length(); i++) &#123;</span><br><span class="line">            <span class="keyword">switch</span> (s.charAt(i)) &#123;</span><br><span class="line">                <span class="keyword">case</span> <span class="string">'('</span>:</span><br><span class="line">                <span class="keyword">case</span> <span class="string">'['</span>:</span><br><span class="line">                <span class="keyword">case</span> <span class="string">'&#123;'</span>:</span><br><span class="line">                    <span class="comment">// 进栈</span></span><br><span class="line">                    stack[index++] = s.charAt(i); </span><br><span class="line">                    <span class="keyword">continue</span>;</span><br><span class="line">                <span class="keyword">case</span> <span class="string">')'</span>:</span><br><span class="line">                    <span class="keyword">if</span> (index == <span class="number">0</span> || stack[--index] != <span class="string">'('</span>)</span><br><span class="line">                        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">                    <span class="comment">// stack[--index] == '(' ，才会contniue</span></span><br><span class="line">                    <span class="comment">// --index：相当于满足的元素出栈</span></span><br><span class="line">                    <span class="keyword">continue</span>;</span><br><span class="line">                <span class="keyword">case</span> <span class="string">']'</span>:</span><br><span class="line">                    <span class="keyword">if</span> (index == <span class="number">0</span> || stack[--index] != <span class="string">'['</span>)</span><br><span class="line">                        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">                    <span class="keyword">continue</span>;</span><br><span class="line">                <span class="keyword">case</span> <span class="string">'&#125;'</span>:</span><br><span class="line">                    <span class="keyword">if</span> (index == <span class="number">0</span> || stack[--index] != <span class="string">'&#123;'</span>)</span><br><span class="line">                        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">                    <span class="keyword">continue</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> index == <span class="number">0</span>; <span class="comment">// 判断栈是否为空</span></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>拿到这题的时候第一想法就是头尾双指针，但是不知道这样写为什么会出问题，太蔡了，一时找不到问题出错点。后面重写时又出问题了，TLE,T T，也没搞懂为什么会超时，太难了，明明是和之前删除重复元素差不多的写法。<br>先附上AC的代码吧：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">removeElement</span><span class="params">(<span class="keyword">int</span>* nums, <span class="keyword">int</span> numsSize, <span class="keyword">int</span> val)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; numsSize ; j++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (nums[j] != val) &#123;</span><br><span class="line">            nums[i] = nums[j];</span><br><span class="line">            i++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> i;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>C语言版本：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">isValid</span><span class="params">(<span class="keyword">char</span> * s)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (s == <span class="literal">NULL</span> || s[<span class="number">0</span>] == <span class="string">'\0'</span>) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">char</span> <span class="built_in">stack</span>[<span class="number">10240</span>]; <span class="keyword">int</span> top =<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; s[i]; ++i) &#123;</span><br><span class="line">        <span class="keyword">if</span> (s[i] == <span class="string">'('</span> || s[i] == <span class="string">'['</span> || s[i] == <span class="string">'&#123;'</span>) <span class="built_in">stack</span>[top++] = s[i];</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> ((--top) &lt; <span class="number">0</span>)                      <span class="keyword">return</span> <span class="literal">false</span>;<span class="comment">//先减减，让top指向栈顶元素</span></span><br><span class="line">            <span class="keyword">if</span> (s[i] == <span class="string">')'</span> &amp;&amp; <span class="built_in">stack</span>[top] != <span class="string">'('</span>) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            <span class="keyword">if</span> (s[i] == <span class="string">']'</span> &amp;&amp; <span class="built_in">stack</span>[top] != <span class="string">'['</span>) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            <span class="keyword">if</span> (s[i] == <span class="string">'&#125;'</span> &amp;&amp; <span class="built_in">stack</span>[top] != <span class="string">'&#123;'</span>) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> (top ? <span class="literal">false</span> : <span class="literal">true</span>);<span class="comment">//防止“【”这种类似情况</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>至于自己写问题的代码，先附上吧：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">removeElement</span><span class="params">(<span class="keyword">int</span>* nums, <span class="keyword">int</span> numsSize, <span class="keyword">int</span> val)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(numsSize == <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> j = numsSize - <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span>(i &lt; j)&#123;</span><br><span class="line">        <span class="keyword">while</span>(nums[i] != val &amp;&amp; i &lt; j)&#123;</span><br><span class="line">        i++;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">"i = %d  nums[%d] = %d \n"</span>,i,i,nums[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 从左向右找到等于 val 的位置</span></span><br><span class="line">        <span class="keyword">while</span>(nums[j] == val &amp;&amp; i &lt; j)&#123;</span><br><span class="line">        j--;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 从右向左找到不等于 val 的位置</span></span><br><span class="line">        nums[i] = nums[j];</span><br><span class="line">        j--;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//此时i == j ,但是不知道nums[i] 的值是否等于val</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"i = %d\n"</span>,i);</span><br><span class="line">    <span class="keyword">return</span> i + nums[i] != val;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> nums[<span class="number">4</span>];</span><br><span class="line">    nums[<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">    nums[<span class="number">1</span>] = <span class="number">2</span>;</span><br><span class="line">    nums[<span class="number">2</span>] = <span class="number">3</span>;</span><br><span class="line">    nums[<span class="number">3</span>] = <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">int</span> k = removeElement(nums,<span class="number">4</span>,<span class="number">2</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"k = %d\n"</span>,k);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>执行完成，耗时：4 ms<br>i = 1  nums[1] = 2<br>i = 1<br>k = 1</p>
+</blockquote>
+<p>有点迷，这结果。</p>
+
       
 
 
 
-  <div class="declare" hidden="hidden"></div>
+  <div class="declare">
+    <strong>本文作者：</strong>
+    
+      HMF
+    
+    <br>
+    <strong>本文链接：</strong>
+    http://yorxika.github.io/2019/10/07/移除元素/
+    <br>
+    <strong>版权声明：</strong>
+    本作品采用
+    <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a>
+    进行许可。转载请注明出处！
+    
+  </div>
 
 
       
@@ -231,7 +252,7 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">栈</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">双指针</a>
         		</li>
       		
 		</ul>
@@ -287,7 +308,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yorxika.github.io/2019/09/25/有效的括号/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yorxika.github.io/2019/10/07/移除元素/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -301,18 +322,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2019/09/26/括号生成/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          括号生成
-        
-      </div>
-    </a>
   
-  
-    <a href="/2019/09/25/倒数第N个结点/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">删除链表倒数第N个结点</div>
+    <a href="/2019/10/06/Android开发小记/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Android开发小记</div>
       <i class="icon-circle-right"></i>
     </a>
   

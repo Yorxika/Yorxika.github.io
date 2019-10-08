@@ -82,6 +82,8 @@
 				
 					<a class="github" target="_blank" href="https://github.com/Yorxika/" title="github"><i class="icon-github"></i></a>
 		        
+					<a class="mail" target="_blank" href="/774123033@qq.com" title="mail"><i class="icon-mail"></i></a>
+		        
 			</div>
 		</nav>
 	</header>		
@@ -117,6 +119,8 @@
 					
 						<a class="github" target="_blank" href="https://github.com/Yorxika/" title="github"><i class="icon-github"></i></a>
 			        
+						<a class="mail" target="_blank" href="/774123033@qq.com" title="mail"><i class="icon-mail"></i></a>
+			        
 				</div>
 			</nav>
 
@@ -141,6 +145,119 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-移除元素" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/10/07/移除元素/">移除元素</a>
+    </h1>
+  
+
+        
+        <a href="/2019/10/07/移除元素/" class="archive-article-date">
+  	<time datetime="2019-10-07T13:59:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-07</time>
+</a>
+		
+		
+          <div style="margin-top:10px;">
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-keyboard-o"></i>
+        <span class="post-meta-item-text">  字数统计: </span>
+        <span class="post-count">499字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+        <i class="fa fa-hourglass-half"></i>
+        <span class="post-meta-item-text">  阅读时长: </span>
+        <span class="post-count">2分</span>
+      </span>
+    </span>
+</div>
+
+          
+		  
+        
+		
+		
+		
+
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>来源Leetcode第27题移除元素</p>
+<blockquote>
+<p>给定一个数组 nums 和一个值 val，你需要原地移除所有数值等于 val 的元素，返回移除后数组的新长度。<br>不要使用额外的数组空间，你必须在原地修改输入数组并在使用 O(1) 额外空间的条件下完成。</p></blockquote>
+        
+      
+
+
+
+  <div class="declare" hidden="hidden"></div>
+
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Leetcode</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">双指针</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/10/07/移除元素/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Android开发小记" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -163,7 +280,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
         <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">340字</span>
+        <span class="post-count">422字</span>
       </span>
     </span>
 
@@ -190,24 +307,8 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>做了几天的软工作业，今天终于磨出了点东西了<br>虽然我负责的是比较水的出题模块，但是这块分的太细了啊啊啊啊啊啊啊啊啊！！！！！！！！<br>我巴不得每一个类型写一个方法出来<br>最后记一下今天遇到的几个坑</p>
-<ul>
-<li>空指针异常</li>
-<li>空栈异常</li>
-<li>除数为0异常</li>
-</ul>
-<p>空指针异常的出错代码为：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">StatOfType E = <span class="keyword">new</span> StatOfType();</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">47</span>; i++) &#123;</span><br><span class="line">            </span><br><span class="line">            E.setNum(<span class="number">10</span>);</span><br><span class="line">            E.setTypeId(i+<span class="number">1</span>);</span><br><span class="line">            typeList.add(E);</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
-
-<p>折磨了我一个下午之后，终于经过坤滨的提示找到了问题所在。<br>由于对象E是在循环外实例的，导致List里其实共享的是最后一个对象E的地址，于是List 在作为参数传参时，输出的都是最后一次修改的结果。<br>其次，由于对象E(StatOfType)类型初始时设置的id是0，这样在传参时，子函数在调用LitePal的find方法时会出错，返回一个空的List，所以也会导致空指针异常。</p>
-<p>空栈异常的出错代码为：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">aAns = (<span class="keyword">int</span>)CalExpression.executeExpression(aProblem);</span><br></pre></td></tr></table></figure>
-
-<p>原因暂时还没找到</p>
-<p>除法异常的出错代码为：</p>
-<pre><code class="Java"></code></pre>
-<p>除法异常明明都能生成是0的随机数，你竟然给我报异常！！！</p>
-<p>我的腰啊，每天都坐在电脑前。</p>
-
+<blockquote></blockquote>
+        
       
 
 
@@ -698,11 +799,11 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">回溯</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">动态规划</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">动态规划</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">回溯</a>
         		</li>
       		
 		</ul>
@@ -974,119 +1075,6 @@
 
 
   
-    <article id="post-四数之和" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/09/24/四数之和/">四数之和</a>
-    </h1>
-  
-
-        
-        <a href="/2019/09/24/四数之和/" class="archive-article-date">
-  	<time datetime="2019-09-24T15:57:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-24</time>
-</a>
-		
-		
-          <div style="margin-top:10px;">
-    <span class="post-time">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-keyboard-o"></i>
-        <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">663字</span>
-      </span>
-    </span>
-
-    <span class="post-time">
-      &nbsp; | &nbsp;
-      <span class="post-meta-item-icon">
-        <i class="fa fa-hourglass-half"></i>
-        <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">3分</span>
-      </span>
-    </span>
-</div>
-
-          
-		  
-        
-		
-		
-		
-
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>来源Leetcode第18题四数之和</p>
-<blockquote>
-<p>给定一个包含 n 个整数的数组 nums 和一个目标值 target，判断 nums 中是否存在四个元素 a，b，c 和 d ，使得 a + b + c + d 的值与 target 相等？找出所有满足条件且不重复的四元组。<br>注意：<br>答案中不可以包含重复的四元组。</p></blockquote>
-        
-      
-
-
-
-  <div class="declare" hidden="hidden"></div>
-
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Leetcode</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">双指针</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/09/24/四数之和/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -1234,6 +1222,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">HASH</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">公选课</a>
               </li>
              
@@ -1243,10 +1235,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">双指针</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">HASH</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1270,15 +1258,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">分治</a>
+                <a href="javascript:void(0)" class="js-tag color5">动态规划</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">拓展中心</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">回溯</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">动态规划</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1287,6 +1275,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">组成原理</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">分治</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1299,10 +1291,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">贪心分治</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">拓展中心</a>
               </li>
             
             <div class="clearfix"></div>
