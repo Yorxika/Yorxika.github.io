@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="HMF的博客">
 <meta property="og:description" content="来源Leetcode第27题移除元素  给定一个数组 nums 和一个值 val，你需要原地移除所有数值等于 val 的元素，返回移除后数组的新长度。不要使用额外的数组空间，你必须在原地修改输入数组并在使用 O(1) 额外空间的条件下完成。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-10-08T09:24:32.309Z">
+<meta property="og:updated_time" content="2019-10-20T07:23:31.902Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="移除元素">
 <meta name="twitter:description" content="来源Leetcode第27题移除元素  给定一个数组 nums 和一个值 val，你需要原地移除所有数值等于 val 的元素，返回移除后数组的新长度。不要使用额外的数组空间，你必须在原地修改输入数组并在使用 O(1) 额外空间的条件下完成。">
@@ -87,6 +87,13 @@
 					<a class="mail" target="_blank" href="/774123033@qq.com" title="mail"><i class="icon-mail"></i></a>
 		        
 			</div>
+			
+			 <!--音乐播放插件-->
+    <div style="margin-top:30px;">
+        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=240 height=52 src="//music.163.com/outchain/player?type=2&id=509038&auto=0&height=32"></iframe>
+    </div>
+</nav>
+
 		</nav>
 	</header>		
 </div>
@@ -167,7 +174,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
         <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">499字</span>
+        <span class="post-count">539字</span>
       </span>
     </span>
 
@@ -216,6 +223,10 @@
 <p>执行完成，耗时：4 ms<br>i = 1  nums[1] = 2<br>i = 1<br>k = 1</p>
 </blockquote>
 <p>有点迷，这结果。</p>
+<p>找到结果了，优先级的问题， != 的优先级比 ‘+’ 低，修改成了  return i + (nums[i] != val); 就过了</p>
+<p>正确的应该是:</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">return</span> i + (nums[i] != val);</span><br></pre></td></tr></table></figure>
+
 
       
 
@@ -321,6 +332,15 @@
 
   
 <nav id="article-nav">
+  
+    <a href="/2019/10/20/DSIII的BGM/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          DARK SOULS III的BGM
+        
+      </div>
+    </a>
   
   
     <a href="/2019/10/06/Android开发小记/" id="article-nav-older" class="article-nav-link-wrap">
@@ -518,11 +538,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">链表</a>
+                <a href="javascript:void(0)" class="js-tag color5">HASH</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">HASH</a>
+                <a href="javascript:void(0)" class="js-tag color3">音乐</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">游戏</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">双指针</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">链表</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -534,7 +566,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">双指针</a>
+                <a href="javascript:void(0)" class="js-tag color3">回文</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -546,15 +578,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">回文</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">滑动窗口</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">贪心</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">回溯</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -562,11 +590,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">拓展中心</a>
+                <a href="javascript:void(0)" class="js-tag color5">滑动窗口</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">回溯</a>
+                <a href="javascript:void(0)" class="js-tag color3">分治</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">拓展中心</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -575,10 +607,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">组成原理</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">分治</a>
               </li>
              
               <li class="article-tag-list-item">
