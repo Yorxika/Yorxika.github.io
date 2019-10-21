@@ -6,20 +6,18 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yorxika.github.io">
-  <title>无重复字符的最长子串 | HMF的博客</title>
+  <title>Tag: 数学 | HMF的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="来源：Leetcode第三题无重复字符的最长子串  给定一个字符串，请你找出其中不含有重复字符的 最长子串 的长度。 示例 1:">
-<meta name="keywords" content="Leetcode,滑动窗口">
-<meta property="og:type" content="article">
-<meta property="og:title" content="无重复字符的最长子串">
-<meta property="og:url" content="http://yorxika.github.io/2019/09/11/无重复字符的最长子串/index.html">
+  <meta name="description" content="华中科技大学17级">
+<meta property="og:type" content="website">
+<meta property="og:title" content="HMF的博客">
+<meta property="og:url" content="http://yorxika.github.io/tags/数学/index.html">
 <meta property="og:site_name" content="HMF的博客">
-<meta property="og:description" content="来源：Leetcode第三题无重复字符的最长子串  给定一个字符串，请你找出其中不含有重复字符的 最长子串 的长度。 示例 1:">
+<meta property="og:description" content="华中科技大学17级">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-09-12T03:16:45.039Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="无重复字符的最长子串">
-<meta name="twitter:description" content="来源：Leetcode第三题无重复字符的最长子串  给定一个字符串，请你找出其中不含有重复字符的 最长子串 的长度。 示例 1:">
+<meta name="twitter:title" content="HMF的博客">
+<meta name="twitter:description" content="华中科技大学17级">
   
     <link rel="alternative" href="/atom.xml" title="HMF的博客" type="application/atom+xml">
   
@@ -152,86 +150,36 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-无重复字符的最长子串" class="article article-type-post " itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
+            
   
-    <h1 class="article-title" itemprop="name">
-      无重复字符的最长子串
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2019" class="archive-year">2019</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2019/10/21/两数相除/" class="archive-article-date">
+  	<time datetime="2019-10-21T14:06:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-21</time>
+</a>
+        </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2019/10/21/两数相除/">两数相除</a>
     </h1>
   
 
-        
-        <a href="/2019/09/11/无重复字符的最长子串/" class="archive-article-date">
-  	<time datetime="2019-09-11T13:30:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-11</time>
-</a>
-		
-		
-          <div style="margin-top:10px;">
-    <span class="post-time">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-keyboard-o"></i>
-        <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">747字</span>
-      </span>
-    </span>
-
-    <span class="post-time">
-      &nbsp; | &nbsp;
-      <span class="post-meta-item-icon">
-        <i class="fa fa-hourglass-half"></i>
-        <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">2分</span>
-      </span>
-    </span>
-</div>
-
+        <div class="article-info info-on-right">
           
-		  
-        
-		
-		
-		
-          <span class="archive-article-date">
-              阅读量 <span id="busuanzi_value_page_pv"></span>
-          </span>
-        
-
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>来源：Leetcode第三题无重复字符的最长子串</p>
-<blockquote>
-<p>给定一个字符串，请你找出其中不含有重复字符的 最长子串 的长度。</p>
-<p>示例 1:</p>
-<a id="more"></a>
-<p>输入: “abcabcbb”<br>输出: 3<br>解释: 因为无重复字符的最长子串是 “abc”，所以其长度为 3。</p>
-</blockquote>
-<p>同第一题一样习惯了暴力遍历，没有对时空复杂度上做过多的优化，官方解答没多少是C的，于是先找到了一个个人认为还不错的C的解答。<br>思路：同样是两层遍历，但是如果当剩下要遍历字符串的长度小于已求出的最长无重复子串时就没必要继续遍历了，其次，在内层循环遍历时，如果前面几位都不包含当前字符，则继续遍历，如果包含，就退出循环，计算下一个子串，采用的是滑动窗口的思想，遇到重复，左边i持续向右，直到不在重复，右边j再继续遍历字符串。C语言代码如下：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* 字符串s前len位是否包含字符c</span></span><br><span class="line"><span class="comment">* return 0：不包含 1：包含</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">contains</span><span class="params">(<span class="keyword">char</span> *s, <span class="keyword">char</span> c, <span class="keyword">int</span> len)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(s[i] != <span class="literal">NULL</span> &amp;&amp; i &lt; len) &#123;</span><br><span class="line">        <span class="keyword">if</span>(s[i] == c)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        i++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">lengthOfLongestSubstring</span><span class="params">(<span class="keyword">char</span>* s)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> len = <span class="built_in">strlen</span>(s);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> j = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">int</span> maxLen = <span class="number">0</span>;</span><br><span class="line">    <span class="comment">// 如果从i位开始的字符串到末尾的长度小于最大字符串的长度，则不需要继续计算</span></span><br><span class="line">    <span class="keyword">while</span>(s[i] != <span class="literal">NULL</span> &amp;&amp; (len - i &gt; maxLen)) &#123;</span><br><span class="line">        <span class="keyword">while</span>(s[j] != <span class="literal">NULL</span> &amp;&amp; (contains( &amp;s[i], s[j], j - i) == <span class="number">0</span>)) &#123;</span><br><span class="line">            <span class="comment">// 遍历子串，如果前面几位都不包含当前的字符，则继续遍历；如果包含，则退出循环，计算下一个子串</span></span><br><span class="line">            <span class="comment">// 如果之前计算过的子串，则不继续计算</span></span><br><span class="line">            <span class="comment">// 例如，abcdabcd，当计算以首位开始的子串最长长度为abcd的字符串，因为bcd是abcd的子串，则不需要重复计算</span></span><br><span class="line">            <span class="comment">// 计算以b开头的子串时，直接判断上一次遍历j=4，即a是否属于bcd</span></span><br><span class="line">            j++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(j - i &gt; maxLen) &#123;</span><br><span class="line">            maxLen = j - i;</span><br><span class="line">        &#125;</span><br><span class="line">        i++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> maxLen;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>官方解答有滑动窗口的进一步优化：</p>
-<blockquote>
-<p>上述的方法最多需要执行 2n 个步骤。事实上，它可以被进一步优化为仅需要 n 个步骤。我们可以定义字符到索引的映射，而不是使用集合来判断一个字符是否存在。 当我们找到重复的字符时，我们可以立即跳过该窗口。<br>也就是说，如果 s[j]在 [i, j)范围内有与 j’重复的字符，我们不需要逐渐增加i。我们可以直接跳过 [i，j’]范围内的所有元素，并将i变为j’ + 1。</p>
-</blockquote>
-<p>但是为什么按照官方优化的方法，将左指针改成了j’ + 1之后反而在Leetcode上的运行时间会增加了呢？</p>
-
-      
-
-
-
-  <div class="declare" hidden="hidden"></div>
-
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -241,143 +189,29 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">滑动窗口</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">数学</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">移位</a>
         		</li>
       		
 		</ul>
 	</div>
 
-      
+          
 
-      
-
-      
-        
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
         </div>
-      </div>
-    </span>
-  </div>
-</div>
-
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yorxika.github.io/2019/09/11/无重复字符的最长子串/" alt="微信分享二维码">
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
-      
-      <div class="clearfix"></div>
-    </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-  
-<nav id="article-nav">
-  
-    <a href="/2019/09/12/寻找中位数/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          寻找中位数
-        
-      </div>
-    </a>
   
   
-    <a href="/2019/09/11/思辨与创新/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">思辨与创新</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-  
-  
+    </div></section>
   
 
-  
-
-  
-
-  
-  
-      <div id="gitalk-container"></div>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
-<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
-<script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.js"></script>
-
-<script>
-var gitalk = new Gitalk({
-  clientID: '0635d0bc6ad58e628693',
-  clientSecret: 'a02a3a1ab4874ccb117251539125fe3a1a4d43da',
-  repo: 'blogtalk',
-  owner: 'Yorxika',
-  admin: ['Yorxika'],
-  id: md5(window.location.pathname),
-  distractionFreeMode: true
-})
-
-gitalk.render('gitalk-container')
-</script>
-
-  
-
+    
 
 
           </div>
@@ -434,9 +268,9 @@ gitalk.render('gitalk-container')
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: true,
+		isPost: false,
 		isArchive: false,
-		isTag: false,
+		isTag: true,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,

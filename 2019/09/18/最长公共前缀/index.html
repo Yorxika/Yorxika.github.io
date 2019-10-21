@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="HMF的博客">
 <meta property="og:description" content="来源Leetcode第14题最长公共前缀  编写一个函数来查找字符串数组中的最长公共前缀。如果不存在公共前缀，返回空字符串 “”。 示例 1:">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-09-18T15:31:34.211Z">
+<meta property="og:updated_time" content="2019-10-21T11:20:41.608Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="最长公共前缀">
 <meta name="twitter:description" content="来源Leetcode第14题最长公共前缀  编写一个函数来查找字符串数组中的最长公共前缀。如果不存在公共前缀，返回空字符串 “”。 示例 1:">
@@ -174,7 +174,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
         <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">517字</span>
+        <span class="post-count">522字</span>
       </span>
     </span>
 
@@ -218,7 +218,7 @@
 <p>当然也可以横向扫描，找到第一字符串与第二字符串之间的最长公共前缀，记为LCP(1,2)，之后再比较LCP(1,2)与第三个字符串之间的最长公共前缀，以此类推，由于没学Java，代码看的不是很懂。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">longestCommonPrefix</span><span class="params">(String[] strs)</span> </span>&#123;</span><br><span class="line">   <span class="keyword">if</span> (strs.length == <span class="number">0</span>) <span class="keyword">return</span> <span class="string">""</span>;</span><br><span class="line">   String prefix = strs[<span class="number">0</span>];</span><br><span class="line">   <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; strs.length; i++)</span><br><span class="line">       <span class="keyword">while</span> (strs[i].indexOf(prefix) != <span class="number">0</span>) &#123;</span><br><span class="line">           prefix = prefix.substring(<span class="number">0</span>, prefix.length() - <span class="number">1</span>);</span><br><span class="line">           <span class="keyword">if</span> (prefix.isEmpty()) <span class="keyword">return</span> <span class="string">""</span>;</span><br><span class="line">       &#125;        </span><br><span class="line">   <span class="keyword">return</span> prefix;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>注意到LCP(S1<del>Sn) = LCP(LCP(LCP(S1</del>Sk),LCP(Sk+1<del>Sn)),因而我们可以将原问题LCP(Si</del>Sj)分解成LCP(Si<del>Smid)与LCP(Smid+</del>Sj),其中mid=i+j/2,用子问题的解构造原问题的解。<br>代码如下：</p>
+<p>注意到LCP(S1~Sn) = LCP(LCP(LCP(S1~Sk),LCP(Sk+1~Sn)),因而我们可以将原问题LCP(Si~Sj)分解成LCP(Si~Smid)与LCP(Smid+~Sj),其中mid=i+j/2,用子问题的解构造原问题的解。<br>代码如下：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">longestCommonPrefix</span><span class="params">(String[] strs)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (strs == <span class="keyword">null</span> || strs.length == <span class="number">0</span>) <span class="keyword">return</span> <span class="string">""</span>;    </span><br><span class="line">        <span class="keyword">return</span> longestCommonPrefix(strs, <span class="number">0</span> , strs.length - <span class="number">1</span>);<span class="comment">//初始化,将原问题分解为2个小问题,分别求LCPleft与LCPright</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> String <span class="title">longestCommonPrefix</span><span class="params">(String[] strs, <span class="keyword">int</span> l, <span class="keyword">int</span> r)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (l == r) &#123; <span class="comment">//左右相等，要么是到了中间，要么是只传入了一个字符串</span></span><br><span class="line">        <span class="keyword">return</span> strs[l];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">int</span> mid = (l + r)/<span class="number">2</span>;</span><br><span class="line">        String lcpLeft =   longestCommonPrefix(strs, l , mid);</span><br><span class="line">        String lcpRight =  longestCommonPrefix(strs, mid + <span class="number">1</span>,r);</span><br><span class="line">        <span class="keyword">return</span> commonPrefix(lcpLeft, lcpRight); <span class="comment">//求左右两个LCP</span></span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">String <span class="title">commonPrefix</span><span class="params">(String left,String right)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> min = Math.min(left.length(), right.length());   <span class="comment">//先确定最小字符串长度    </span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; min; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> ( left.charAt(i) != right.charAt(i) )</span><br><span class="line">            <span class="keyword">return</span> left.substring(<span class="number">0</span>, i); <span class="comment">//找到的公共前缀</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> left.substring(<span class="number">0</span>, min); </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
@@ -530,6 +530,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">数学</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">移位</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">公选课</a>
               </li>
              
@@ -546,7 +554,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">思辨与创新</a>
+                <a href="javascript:void(0)" class="js-tag color3">贪心</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -555,10 +563,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">动态规划</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">贪心</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -599,6 +603,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">贪心分治</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">思辨与创新</a>
               </li>
             
             <div class="clearfix"></div>

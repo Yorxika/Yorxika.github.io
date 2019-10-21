@@ -6,20 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yorxika.github.io">
-  <title>无重复字符的最长子串 | HMF的博客</title>
+  <title>两数相除 | HMF的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="来源：Leetcode第三题无重复字符的最长子串  给定一个字符串，请你找出其中不含有重复字符的 最长子串 的长度。 示例 1:">
-<meta name="keywords" content="Leetcode,滑动窗口">
+  <meta name="description" content="来源Leetcode第29题两数相除  给定两个整数，被除数 dividend 和除数 divisor。将两数相除，要求不使用乘法、除法和 mod 运算符。 返回被除数 dividend 除以除数 divisor 得到的商。 示例 1:">
+<meta name="keywords" content="Leetcode,数学,移位">
 <meta property="og:type" content="article">
-<meta property="og:title" content="无重复字符的最长子串">
-<meta property="og:url" content="http://yorxika.github.io/2019/09/11/无重复字符的最长子串/index.html">
+<meta property="og:title" content="两数相除">
+<meta property="og:url" content="http://yorxika.github.io/2019/10/21/两数相除/index.html">
 <meta property="og:site_name" content="HMF的博客">
-<meta property="og:description" content="来源：Leetcode第三题无重复字符的最长子串  给定一个字符串，请你找出其中不含有重复字符的 最长子串 的长度。 示例 1:">
+<meta property="og:description" content="来源Leetcode第29题两数相除  给定两个整数，被除数 dividend 和除数 divisor。将两数相除，要求不使用乘法、除法和 mod 运算符。 返回被除数 dividend 除以除数 divisor 得到的商。 示例 1:">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-09-12T03:16:45.039Z">
+<meta property="og:updated_time" content="2019-10-21T15:06:49.727Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="无重复字符的最长子串">
-<meta name="twitter:description" content="来源：Leetcode第三题无重复字符的最长子串  给定一个字符串，请你找出其中不含有重复字符的 最长子串 的长度。 示例 1:">
+<meta name="twitter:title" content="两数相除">
+<meta name="twitter:description" content="来源Leetcode第29题两数相除  给定两个整数，被除数 dividend 和除数 divisor。将两数相除，要求不使用乘法、除法和 mod 运算符。 返回被除数 dividend 除以除数 divisor 得到的商。 示例 1:">
   
     <link rel="alternative" href="/atom.xml" title="HMF的博客" type="application/atom+xml">
   
@@ -152,20 +152,20 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-无重复字符的最长子串" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-两数相除" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      无重复字符的最长子串
+      两数相除
     </h1>
   
 
         
-        <a href="/2019/09/11/无重复字符的最长子串/" class="archive-article-date">
-  	<time datetime="2019-09-11T13:30:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-11</time>
+        <a href="/2019/10/21/两数相除/" class="archive-article-date">
+  	<time datetime="2019-10-21T14:06:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-21</time>
 </a>
 		
 		
@@ -174,7 +174,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
         <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">747字</span>
+        <span class="post-count">851字</span>
       </span>
     </span>
 
@@ -183,7 +183,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-hourglass-half"></i>
         <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">2分</span>
+        <span class="post-count">4分</span>
       </span>
     </span>
 </div>
@@ -204,27 +204,45 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>来源：Leetcode第三题无重复字符的最长子串</p>
+        <p>来源Leetcode第29题两数相除</p>
 <blockquote>
-<p>给定一个字符串，请你找出其中不含有重复字符的 最长子串 的长度。</p>
+<p>给定两个整数，被除数 dividend 和除数 divisor。将两数相除，要求不使用乘法、除法和 mod 运算符。</p>
+<p>返回被除数 dividend 除以除数 divisor 得到的商。</p>
 <p>示例 1:</p>
 <a id="more"></a>
-<p>输入: “abcabcbb”<br>输出: 3<br>解释: 因为无重复字符的最长子串是 “abc”，所以其长度为 3。</p>
+<p>输入: dividend = 10, divisor = 3<br>输出: 3</p>
+<p>说明:</p>
+<ul>
+<li>被除数和除数均为 32 位有符号整数。</li>
+<li>除数不为 0。</li>
+<li>假设我们的环境只能存储 32 位有符号整数，其数值范围是 [−2^31,  2^31 − 1]。本题中，如果除法结果溢出，则返回 2^31 − 1。</li>
+</ul>
 </blockquote>
-<p>同第一题一样习惯了暴力遍历，没有对时空复杂度上做过多的优化，官方解答没多少是C的，于是先找到了一个个人认为还不错的C的解答。<br>思路：同样是两层遍历，但是如果当剩下要遍历字符串的长度小于已求出的最长无重复子串时就没必要继续遍历了，其次，在内层循环遍历时，如果前面几位都不包含当前字符，则继续遍历，如果包含，就退出循环，计算下一个子串，采用的是滑动窗口的思想，遇到重复，左边i持续向右，直到不在重复，右边j再继续遍历字符串。C语言代码如下：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* 字符串s前len位是否包含字符c</span></span><br><span class="line"><span class="comment">* return 0：不包含 1：包含</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">contains</span><span class="params">(<span class="keyword">char</span> *s, <span class="keyword">char</span> c, <span class="keyword">int</span> len)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(s[i] != <span class="literal">NULL</span> &amp;&amp; i &lt; len) &#123;</span><br><span class="line">        <span class="keyword">if</span>(s[i] == c)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        i++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">lengthOfLongestSubstring</span><span class="params">(<span class="keyword">char</span>* s)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> len = <span class="built_in">strlen</span>(s);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> j = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">int</span> maxLen = <span class="number">0</span>;</span><br><span class="line">    <span class="comment">// 如果从i位开始的字符串到末尾的长度小于最大字符串的长度，则不需要继续计算</span></span><br><span class="line">    <span class="keyword">while</span>(s[i] != <span class="literal">NULL</span> &amp;&amp; (len - i &gt; maxLen)) &#123;</span><br><span class="line">        <span class="keyword">while</span>(s[j] != <span class="literal">NULL</span> &amp;&amp; (contains( &amp;s[i], s[j], j - i) == <span class="number">0</span>)) &#123;</span><br><span class="line">            <span class="comment">// 遍历子串，如果前面几位都不包含当前的字符，则继续遍历；如果包含，则退出循环，计算下一个子串</span></span><br><span class="line">            <span class="comment">// 如果之前计算过的子串，则不继续计算</span></span><br><span class="line">            <span class="comment">// 例如，abcdabcd，当计算以首位开始的子串最长长度为abcd的字符串，因为bcd是abcd的子串，则不需要重复计算</span></span><br><span class="line">            <span class="comment">// 计算以b开头的子串时，直接判断上一次遍历j=4，即a是否属于bcd</span></span><br><span class="line">            j++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(j - i &gt; maxLen) &#123;</span><br><span class="line">            maxLen = j - i;</span><br><span class="line">        &#125;</span><br><span class="line">        i++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> maxLen;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>除法的话，第一思路是移位。<br>对形如B(10)= 2^n + 2^n-1 + …… + 2^0<br>但是如果不是2^n的话，那么单靠移位操作是完成不了的。<br>考虑实际上计算机的除法是模二除法，可参考组原课本的 <strong>基于不恢复余数的补码除法</strong>。</p>
+<p>这代码目前AC不了，因为还没考虑到各种边界值，例如被除数为-2147483648;除数为：-2147483648；或者为+1,-1等等情况。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">getBits</span><span class="params">(<span class="keyword">int</span> num)</span></span>&#123;</span><br><span class="line">    <span class="comment">//获取操作数的位长</span></span><br><span class="line">    <span class="keyword">int</span> numLen = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(num)&#123;</span><br><span class="line">        numLen++;</span><br><span class="line">        num = num&gt;&gt;<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> numLen;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">getBit</span><span class="params">(<span class="keyword">int</span> num,<span class="keyword">int</span> pos)</span></span>&#123;</span><br><span class="line">    <span class="comment">//获取从右到左的第pos位置的值1/0</span></span><br><span class="line">    pos = pos<span class="number">-1</span>;</span><br><span class="line">    <span class="keyword">int</span> index = <span class="number">1</span>&lt;&lt;pos;</span><br><span class="line">    <span class="keyword">if</span>((num&amp;index)&gt;&gt;pos)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">divide</span><span class="params">(<span class="keyword">int</span> dividend, <span class="keyword">int</span> divisor)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> divide = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">int</span> dividend2 = dividend;</span><br><span class="line">	</span><br><span class="line">    <span class="keyword">int</span> minus = (dividend &gt;&gt; <span class="number">31</span>) ^ (divisor &gt;&gt; <span class="number">31</span>);  <span class="comment">//取符号位判断是否同号或异号</span></span><br><span class="line">    <span class="keyword">bool</span> minValue = <span class="literal">false</span>;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">if</span>(dividend == <span class="number">-2147483648</span> &amp;&amp; divisor == <span class="number">-1</span>) <span class="keyword">return</span> <span class="number">2147483647</span>;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">if</span>(dividend == <span class="number">-2147483648</span> &amp;&amp; divisor == <span class="number">1</span>) <span class="keyword">return</span> <span class="number">-2147483648</span>;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">if</span>(dividend &lt; divisor)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">if</span>(dividend==<span class="number">-2147483648</span>)&#123;</span><br><span class="line">        minValue = <span class="literal">true</span>;</span><br><span class="line">        dividend = dividend<span class="number">-1</span>;  <span class="comment">//转成了2147483647</span></span><br><span class="line">        &#125;</span><br><span class="line">		</span><br><span class="line">    <span class="keyword">if</span>(divisor==<span class="number">-2147483648</span>)&#123;</span><br><span class="line">        <span class="keyword">if</span>(minValue)<span class="comment">//被除数与除数相同</span></span><br><span class="line">                <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">		</span><br><span class="line">    <span class="keyword">if</span>(dividend &lt; <span class="number">0</span>||divisor &lt; <span class="number">0</span>)&#123;</span><br><span class="line">        <span class="keyword">if</span>(dividend &lt; <span class="number">0</span> &amp;&amp; divisor &lt; <span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            dividend = -dividend;</span><br><span class="line">            divisor = -divisor;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            dividend = dividend&lt;<span class="number">0</span>?-dividend:dividend;</span><br><span class="line">            divisor = divisor&lt;<span class="number">0</span>?-divisor:divisor;</span><br><span class="line">            minus = <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">	</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(divisor==<span class="number">1</span>)&#123;</span><br><span class="line">        <span class="keyword">if</span>(minus)&#123;</span><br><span class="line">            <span class="keyword">if</span>(minValue)<span class="comment">//被除数为最大值</span></span><br><span class="line">                <span class="keyword">return</span> <span class="number">-2147183648</span>;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                <span class="keyword">return</span> dividend2;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            <span class="keyword">return</span> dividend2;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> index = getBits(dividend);</span><br><span class="line">    <span class="keyword">while</span>(index&gt;<span class="number">0</span>)&#123;</span><br><span class="line">        <span class="keyword">int</span> val = getBit(dividend,index--);</span><br><span class="line">        divide = (divide&lt;&lt;<span class="number">1</span>)+val;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(divide&lt;divisor)</span><br><span class="line">            res = res&lt;&lt;<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">            res = (res&lt;&lt;<span class="number">1</span>)+<span class="number">1</span>;</span><br><span class="line">            divide = divide-divisor;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(minValue&amp;&amp;(divide+<span class="number">1</span>)&gt;=divisor)&#123;</span><br><span class="line">        res++;</span><br><span class="line">        divide = divide+<span class="number">1</span>-divisor;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(minus)&#123;</span><br><span class="line">         <span class="keyword">return</span> -res;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>官方解答有滑动窗口的进一步优化：</p>
-<blockquote>
-<p>上述的方法最多需要执行 2n 个步骤。事实上，它可以被进一步优化为仅需要 n 个步骤。我们可以定义字符到索引的映射，而不是使用集合来判断一个字符是否存在。 当我们找到重复的字符时，我们可以立即跳过该窗口。<br>也就是说，如果 s[j]在 [i, j)范围内有与 j’重复的字符，我们不需要逐渐增加i。我们可以直接跳过 [i，j’]范围内的所有元素，并将i变为j’ + 1。</p>
-</blockquote>
-<p>但是为什么按照官方优化的方法，将左指针改成了j’ + 1之后反而在Leetcode上的运行时间会增加了呢？</p>
-
+<p>停电了，这题我写了2个小时了，估计是在判断-2147483648出了点问题，明天有空把这一块重写下。<br>最后附上AC了的代码:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">divide</span><span class="params">(<span class="keyword">int</span> dividend, <span class="keyword">int</span> divisor)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(dividend == -<span class="number">2147483648</span> &amp;&amp; divisor == -<span class="number">1</span>) <span class="keyword">return</span> <span class="number">2147483647</span>;</span><br><span class="line">        <span class="keyword">int</span> flag = (dividend &gt;&gt; <span class="number">31</span>) ^ (divisor &gt;&gt; <span class="number">31</span>);  <span class="comment">//取符号位判断是否同号</span></span><br><span class="line">        <span class="keyword">int</span> result = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">if</span>((dividend &gt;&gt; <span class="number">31</span>) == <span class="number">0</span>) dividend = -dividend;  <span class="comment">//用负数进行除法运算</span></span><br><span class="line">        <span class="keyword">if</span>((divisor &gt;&gt; <span class="number">31</span>) == <span class="number">0</span>) divisor = -divisor;</span><br><span class="line">        <span class="keyword">while</span>(dividend &lt;= divisor)&#123; <span class="comment">//被除数在负数情况下比除数小，即在正数情况下比除数大</span></span><br><span class="line">        <span class="comment">//执行除法(减法运算)，直到被除数和除数相等或者小于除数</span></span><br><span class="line">            <span class="keyword">int</span> i = -<span class="number">1</span>;  </span><br><span class="line">            <span class="keyword">int</span> temp = divisor;</span><br><span class="line">            <span class="keyword">while</span>(dividend &lt;= (temp &lt;&lt; <span class="number">1</span>))&#123;  <span class="comment">// 被除数小于(除数 * 2)</span></span><br><span class="line">            <span class="keyword">if</span>(temp &lt;= (Integer.MIN_VALUE &gt;&gt; <span class="number">1</span>))&#123;  <span class="comment">//负除数小于0xC0000000 ，即产生了溢出</span></span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            i = i &lt;&lt; <span class="number">1</span>;  <span class="comment">//结果*2</span></span><br><span class="line">            temp = temp &lt;&lt; <span class="number">1</span>; <span class="comment">//除数*2 以毕竟被除数</span></span><br><span class="line">            &#125;</span><br><span class="line">            dividend = dividend - temp;  <span class="comment">//被除数减去(除数*2^n)</span></span><br><span class="line">            result += i;  <span class="comment">//结果加上2^n</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(flag == <span class="number">0</span>)&#123;</span><br><span class="line">            <span class="comment">//符号相同，则会可能产生除法溢出</span></span><br><span class="line">            <span class="keyword">if</span>(result &lt;= Integer.MIN_VALUE) <span class="keyword">return</span> Integer.MAX_VALUE;</span><br><span class="line">            result = -result;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
 
 
 
-  <div class="declare" hidden="hidden"></div>
+  <div class="declare">
+    <strong>本文作者：</strong>
+    
+      HMF
+    
+    <br>
+    <strong>本文链接：</strong>
+    http://yorxika.github.io/2019/10/21/两数相除/
+    <br>
+    <strong>版权声明：</strong>
+    本作品采用
+    <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a>
+    进行许可。转载请注明出处！
+    
+  </div>
 
 
       
@@ -241,7 +259,11 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">滑动窗口</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">数学</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">移位</a>
         		</li>
       		
 		</ul>
@@ -297,7 +319,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yorxika.github.io/2019/09/11/无重复字符的最长子串/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yorxika.github.io/2019/10/21/两数相除/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -311,18 +333,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2019/09/12/寻找中位数/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          寻找中位数
-        
-      </div>
-    </a>
   
-  
-    <a href="/2019/09/11/思辨与创新/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">思辨与创新</div>
+    <a href="/2019/10/20/实现strstr/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">实现strstr()</div>
       <i class="icon-circle-right"></i>
     </a>
   
