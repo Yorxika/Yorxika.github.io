@@ -6,20 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yorxika.github.io">
-  <title>最接近的三数之和 | HMF的博客</title>
+  <title>缺失的第一个正数 | HMF的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="来源Leetcode第16题最接近的三数之和  给定一个包括 n 个整数的数组 nums 和 一个目标值 target。找出 nums 中的三个整数，使得它们的和与 target 最接近。返回这三个数的和。假定每组输入只存在唯一答案。 例如，给定数组 nums = [-1，2，1，-4], 和 target = 1.">
-<meta name="keywords" content="Leetcode,双指针">
+  <meta name="description" content="来源Leetcode第41题缺失的第一个正数  给定一个未排序的整数数组，找出其中没有出现的最小的正整数。 示例 2:">
+<meta name="keywords" content="Leetcode,数组,桶排序">
 <meta property="og:type" content="article">
-<meta property="og:title" content="最接近的三数之和">
-<meta property="og:url" content="http://yorxika.github.io/2019/09/23/最接近的三数之和/index.html">
+<meta property="og:title" content="缺失的第一个正数">
+<meta property="og:url" content="http://yorxika.github.io/2019/10/26/缺失的第一个正数/index.html">
 <meta property="og:site_name" content="HMF的博客">
-<meta property="og:description" content="来源Leetcode第16题最接近的三数之和  给定一个包括 n 个整数的数组 nums 和 一个目标值 target。找出 nums 中的三个整数，使得它们的和与 target 最接近。返回这三个数的和。假定每组输入只存在唯一答案。 例如，给定数组 nums = [-1，2，1，-4], 和 target = 1.">
+<meta property="og:description" content="来源Leetcode第41题缺失的第一个正数  给定一个未排序的整数数组，找出其中没有出现的最小的正整数。 示例 2:">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-09-24T14:39:29.564Z">
+<meta property="og:updated_time" content="2019-10-26T15:43:49.024Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="最接近的三数之和">
-<meta name="twitter:description" content="来源Leetcode第16题最接近的三数之和  给定一个包括 n 个整数的数组 nums 和 一个目标值 target。找出 nums 中的三个整数，使得它们的和与 target 最接近。返回这三个数的和。假定每组输入只存在唯一答案。 例如，给定数组 nums = [-1，2，1，-4], 和 target = 1.">
+<meta name="twitter:title" content="缺失的第一个正数">
+<meta name="twitter:description" content="来源Leetcode第41题缺失的第一个正数  给定一个未排序的整数数组，找出其中没有出现的最小的正整数。 示例 2:">
   
     <link rel="alternative" href="/atom.xml" title="HMF的博客" type="application/atom+xml">
   
@@ -152,20 +152,20 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-最接近的三数之和" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-缺失的第一个正数" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      最接近的三数之和
+      缺失的第一个正数
     </h1>
   
 
         
-        <a href="/2019/09/23/最接近的三数之和/" class="archive-article-date">
-  	<time datetime="2019-09-23T13:38:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-23</time>
+        <a href="/2019/10/26/缺失的第一个正数/" class="archive-article-date">
+  	<time datetime="2019-10-26T15:23:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-26</time>
 </a>
 		
 		
@@ -174,7 +174,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
         <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">581字</span>
+        <span class="post-count">834字</span>
       </span>
     </span>
 
@@ -183,7 +183,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-hourglass-half"></i>
         <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">2分</span>
+        <span class="post-count">3分</span>
       </span>
     </span>
 </div>
@@ -204,32 +204,59 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>来源Leetcode第16题最接近的三数之和</p>
+        <p>来源Leetcode第41题缺失的第一个正数</p>
 <blockquote>
-<p>给定一个包括 n 个整数的数组 nums 和 一个目标值 target。找出 nums 中的三个整数，使得它们的和与 target 最接近。返回这三个数的和。假定每组输入只存在唯一答案。</p>
-<p>例如，给定数组 nums = [-1，2，1，-4], 和 target = 1.</p>
+<p>给定一个未排序的整数数组，找出其中没有出现的最小的正整数。</p>
+<p>示例 2:</p>
 <a id="more"></a>
+<p>输入: [3,4,-1,1]<br>输出: 2</p>
 </blockquote>
-<p>思路与上一题类似，但是我在做题的时候掉进了nums[i] == target这个坑，加之与坤滨一席话，让我久久没有从坑里出来。<br>思路来自题解</p>
+<p>emmm，这题做的时候思路混乱了，而且这题的题解很怪，先看官方的题解吧。</p>
+<p>来自题解的算法：</p>
+<blockquote>
+<p>算法</p>
 <ul>
-<li>1.排序</li>
-<li>2.在数组 nums 中，进行遍历，每遍历一个值利用其下标k，形成一个固定值 nums[k]<br>两个指针， 左边起点为 left = k + 1 ，右边终点 right = nums.length - 1 处</li>
-<li>3.因为数组已经排序，故在 [left, right]区间内，最大值 rangeMax = nums[k] + nums[right] + nums[right - 1],</li>
-<li>4.最小值为 rangeMin = nums[k] + nums[left] + nums[left + 1];</li>
-<li>5.如果最大值比target还大，或者最小值比target还小，则整个区间就没必要循环下去了。</li>
-<li>6.如果不是，就是正常的双指针找法。</li>
-<li>7.根据 sum = nums[left] + nums[right] + nums[k] 的结果，判断 sum 与目标 target 的距离，如果更近则更新结果 min</li>
-<li>8.同时判断 sum 与 target 的大小关系，因为数组有序，如果 sum &gt; target 则 right–，如果 sum &lt; target 则 right++，如果 sum == target 直接返回结果</li>
+<li>检查 1 是否存在于数组中。如果没有，则已经完成，1 即为答案。</li>
+<li>如果 nums = [1]，答案即为 2 。</li>
+<li>将负数，零，和大于 n(定义 n 为数组nums的长度) 的数替换为 1 。</li>
+<li>遍历数组。当读到数字 a 时，替换第 a 个元素的符号。</li>
+<li>注意重复元素：只能改变一次符号。由于没有下标 n ，使用下标 0 的元素保存是否存在数字 n。</li>
+<li>再次遍历数组。返回第一个正数元素的下标。</li>
+<li>如果 nums[0] &gt; 0，则返回 n 。</li>
+<li>如果之前的步骤中没有发现 nums 中有正数元素，则返回n + 1。</li>
 </ul>
+</blockquote>
+<p>总的来说，就是用数组自身来检查所求的最小正数。</p>
 <p>代码如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">threeSumClosest</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> target)</span> </span>&#123;</span><br><span class="line">        Arrays.sort(nums);</span><br><span class="line">        <span class="keyword">int</span> result = Integer.MAX_VALUE, left, right, min = Integer.MAX_VALUE;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> k = <span class="number">0</span>; k &lt; nums.length - <span class="number">2</span>; k++) &#123;</span><br><span class="line">            left = k + <span class="number">1</span>;</span><br><span class="line">            right = nums.length - <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 区间[left,right]内,和最小的值</span></span><br><span class="line">            <span class="keyword">int</span> rangeMin = nums[k] + nums[left] + nums[left + <span class="number">1</span>];</span><br><span class="line">            <span class="comment">// 区间[left,right]内,和最大的值</span></span><br><span class="line">            <span class="keyword">int</span> rangeMax = nums[k] + nums[right] + nums[right - <span class="number">1</span>];</span><br><span class="line">            <span class="keyword">if</span> (rangeMin &gt; target) &#123;</span><br><span class="line">                <span class="comment">// 区间最小值比目标大, 没必要寻找区间其他值的和了</span></span><br><span class="line">                <span class="keyword">if</span> (rangeMin - target &lt; min) &#123;</span><br><span class="line">                    min = rangeMin - target;</span><br><span class="line">                    result = rangeMin;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (rangeMax &lt; target) &#123;</span><br><span class="line">                <span class="comment">// 区间最大的值比目标还要小,也没必要寻找区间其他值的和了</span></span><br><span class="line">                <span class="keyword">if</span> (target - rangeMax &lt; min) &#123;</span><br><span class="line">                    min = target - rangeMax;</span><br><span class="line">                    result = rangeMax;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">while</span> (left &lt; right) &#123;</span><br><span class="line">                    <span class="keyword">int</span> sum = nums[left] + nums[right] + nums[k];</span><br><span class="line">                    <span class="keyword">if</span> (sum &lt; target) &#123;</span><br><span class="line">                        left++;</span><br><span class="line">                    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (sum &gt; target) &#123;</span><br><span class="line">                        right--;</span><br><span class="line">                    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                        <span class="keyword">return</span> sum;</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">if</span> (Math.abs(sum - target) &lt; min) &#123;</span><br><span class="line">                        result = sum;</span><br><span class="line">                        min = Math.abs(sum - target);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">firstMissingPositive</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n = nums.length;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 基本情况</span></span><br><span class="line">    <span class="keyword">int</span> contains = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++)</span><br><span class="line">      <span class="keyword">if</span> (nums[i] == <span class="number">1</span>) &#123;</span><br><span class="line">        contains++;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (contains == <span class="number">0</span>)</span><br><span class="line">      <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// nums = [1]</span></span><br><span class="line">    <span class="keyword">if</span> (n == <span class="number">1</span>)</span><br><span class="line">      <span class="keyword">return</span> <span class="number">2</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 用 1 替换负数，0，</span></span><br><span class="line">    <span class="comment">// 和大于 n 的数</span></span><br><span class="line">    <span class="comment">// 在转换以后，nums 只会包含</span></span><br><span class="line">    <span class="comment">// 正数</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++)</span><br><span class="line">      <span class="keyword">if</span> ((nums[i] &lt;= <span class="number">0</span>) || (nums[i] &gt; n))</span><br><span class="line">        nums[i] = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 使用索引和数字符号作为检查器</span></span><br><span class="line">    <span class="comment">// 例如，如果 nums[1] 是负数表示在数组中出现了数字 `1`</span></span><br><span class="line">    <span class="comment">// 如果 nums[2] 是正数 表示数字 2 没有出现</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">      <span class="keyword">int</span> a = Math.abs(nums[i]);</span><br><span class="line">      <span class="comment">// 如果发现了一个数字 a - 改变第 a 个元素的符号</span></span><br><span class="line">      <span class="comment">// 注意重复元素只需操作一次</span></span><br><span class="line">      <span class="keyword">if</span> (a == n)</span><br><span class="line">        nums[<span class="number">0</span>] = - Math.abs(nums[<span class="number">0</span>]);</span><br><span class="line">      <span class="keyword">else</span></span><br><span class="line">        nums[a] = - Math.abs(nums[a]);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 现在第一个正数的下标</span></span><br><span class="line">    <span class="comment">// 就是第一个缺失的数</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; n; i++) &#123;</span><br><span class="line">      <span class="keyword">if</span> (nums[i] &gt; <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> i;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (nums[<span class="number">0</span>] &gt; <span class="number">0</span>)</span><br><span class="line">      <span class="keyword">return</span> n;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> n + <span class="number">1</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-
+<p>让我们来看另一个解法：利用桶排序<br>同样是利用数组自身作为一个索引表，在做这道题的时候，我们可以明确一个事实：</p>
+<ul>
+<li>所要找的最小正数在1 - nums.length 之间</li>
+<li>否则所要找的最小正数是nums.length + 1</li>
+</ul>
+<p>利用这两个事实，我们可以将数组里的正数nums[i] 放在num[nums[i] - 1] 的位置上<br>之后遍历数组，如果nums[i] != i + 1,返回 i + 1 即可<br>否则返回 nums.length + 1</p>
+<p>代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">firstMissingPositive</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> len = nums.length;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len; i++) &#123;</span><br><span class="line">            <span class="keyword">while</span> (nums[i] &gt; <span class="number">0</span> &amp;&amp; nums[i] &lt;= len &amp;&amp; nums[nums[i] - <span class="number">1</span>] != nums[i]) &#123;</span><br><span class="line">                <span class="comment">// 满足在指定范围内、并且没有放在正确的位置上，才交换</span></span><br><span class="line">                <span class="comment">// 例如：数值 3 应该放在索引 2 的位置上</span></span><br><span class="line">                swap(nums, nums[i] - <span class="number">1</span>, i);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// [1, -1, 3, 4]</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (nums[i] != i + <span class="number">1</span>) &#123;</span><br><span class="line">                <span class="keyword">return</span> i + <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 都正确则返回数组长度 + 1</span></span><br><span class="line">        <span class="keyword">return</span> len + <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">swap</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> index1, <span class="keyword">int</span> index2)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (index1 == index2) &#123;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> temp = nums[index1];</span><br><span class="line">        nums[index1] = nums[index2];</span><br><span class="line">        nums[index2] = temp;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
 
 
 
-  <div class="declare" hidden="hidden"></div>
+  <div class="declare">
+    <strong>本文作者：</strong>
+    
+      HMF
+    
+    <br>
+    <strong>本文链接：</strong>
+    http://yorxika.github.io/2019/10/26/缺失的第一个正数/
+    <br>
+    <strong>版权声明：</strong>
+    本作品采用
+    <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a>
+    进行许可。转载请注明出处！
+    
+  </div>
 
 
       
@@ -246,7 +273,11 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">双指针</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">数组</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">桶排序</a>
         		</li>
       		
 		</ul>
@@ -302,7 +333,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yorxika.github.io/2019/09/23/最接近的三数之和/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yorxika.github.io/2019/10/26/缺失的第一个正数/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -316,18 +347,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2019/09/24/中国古典诗词中的品格与修养/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          中国古典诗词中的品格与修养
-        
-      </div>
-    </a>
   
-  
-    <a href="/2019/09/23/三数之和/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">三数之和</div>
+    <a href="/2019/10/26/组合总和/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">组合总和</div>
       <i class="icon-circle-right"></i>
     </a>
   
