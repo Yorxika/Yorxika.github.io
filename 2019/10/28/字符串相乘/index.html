@@ -6,20 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yorxika.github.io">
-  <title>组原笔记 | HMF的博客</title>
+  <title>字符串相乘 | HMF的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="华中科技大学17级">
-<meta name="keywords" content="组成原理">
+  <meta name="description" content="来源Leetcode第43题字符串相乘  给定两个以字符串形式表示的非负整数 num1 和 num2，返回 num1 和 num2 的乘积，它们的乘积也表示为字符串形式。 示例 2:">
+<meta name="keywords" content="Leetcode,字符串">
 <meta property="og:type" content="article">
-<meta property="og:title" content="组原笔记">
-<meta property="og:url" content="http://yorxika.github.io/2019/09/22/组原笔记/index.html">
+<meta property="og:title" content="字符串相乘">
+<meta property="og:url" content="http://yorxika.github.io/2019/10/28/字符串相乘/index.html">
 <meta property="og:site_name" content="HMF的博客">
-<meta property="og:description" content="华中科技大学17级">
+<meta property="og:description" content="来源Leetcode第43题字符串相乘  给定两个以字符串形式表示的非负整数 num1 和 num2，返回 num1 和 num2 的乘积，它们的乘积也表示为字符串形式。 示例 2:">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-09-24T03:40:51.667Z">
+<meta property="og:image" content="https://pic.leetcode-cn.com/171cad48cd0c14f565f2a0e5aa5ccb130e4562906ee10a84289f12e4460fe164-image.png">
+<meta property="og:updated_time" content="2019-10-28T12:41:30.871Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="组原笔记">
-<meta name="twitter:description" content="华中科技大学17级">
+<meta name="twitter:title" content="字符串相乘">
+<meta name="twitter:description" content="来源Leetcode第43题字符串相乘  给定两个以字符串形式表示的非负整数 num1 和 num2，返回 num1 和 num2 的乘积，它们的乘积也表示为字符串形式。 示例 2:">
+<meta name="twitter:image" content="https://pic.leetcode-cn.com/171cad48cd0c14f565f2a0e5aa5ccb130e4562906ee10a84289f12e4460fe164-image.png">
   
     <link rel="alternative" href="/atom.xml" title="HMF的博客" type="application/atom+xml">
   
@@ -152,20 +154,20 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-组原笔记" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-字符串相乘" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      组原笔记
+      字符串相乘
     </h1>
   
 
         
-        <a href="/2019/09/22/组原笔记/" class="archive-article-date">
-  	<time datetime="2019-09-22T12:44:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-22</time>
+        <a href="/2019/10/28/字符串相乘/" class="archive-article-date">
+  	<time datetime="2019-10-28T12:17:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-28</time>
 </a>
 		
 		
@@ -174,7 +176,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
         <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">0字</span>
+        <span class="post-count">441字</span>
       </span>
     </span>
 
@@ -204,12 +206,52 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <p>来源Leetcode第43题字符串相乘</p>
+<blockquote>
+<p>给定两个以字符串形式表示的非负整数 num1 和 num2，返回 num1 和 num2 的乘积，它们的乘积也表示为字符串形式。</p>
+<p>示例 2:</p>
+<a id="more"></a>
+<p>输入: num1 = “123”, num2 = “456”<br>输出: “56088”<br>说明：</p>
+<ul>
+<li>num1 和 num2 的长度小于110。</li>
+<li>num1 和 num2 只包含数字 0-9。</li>
+<li>num1 和 num2 均不以零开头，除非是数字 0 本身。</li>
+<li>不能使用任何标准库的大数类型（比如 BigInteger）或直接将输入转换为整数来处理。</li>
+</ul>
+</blockquote>
+<p>这题我傻了没见过这么奇葩的，上一题不给除，这一题不给乘，是在下输了，直接看答案吧。</p>
+<p>思路如下(来自题解)：</p>
+<ul>
+<li>乘数 num1 位数为 M，被乘数 num2 位数为 N， num1 x num2 结果 res 最大总位数为 M+N</li>
+<li>num1[i] x num2[j] 的结果为 tmp(位数为两位，”0x”,”xy”的形式)，其第一位位于 res[i+j]，第二位位于 res[i+j+1]。</li>
+</ul>
+<p>如下图：</p>
+<div align="center">
+<img width="700" src="https://pic.leetcode-cn.com/171cad48cd0c14f565f2a0e5aa5ccb130e4562906ee10a84289f12e4460fe164-image.png">
+</div>
+
+
+<p>代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">multiply</span><span class="params">(String num1, String num2)</span> </span>&#123;</span><br><span class="line">	<span class="comment">//特殊情况，乘数为0返回0</span></span><br><span class="line">        <span class="keyword">if</span> (num1.equals(<span class="string">"0"</span>) || num2.equals(<span class="string">"0"</span>)) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">"0"</span>;</span><br><span class="line">        &#125;</span><br><span class="line">		</span><br><span class="line">        <span class="keyword">int</span>[] res = <span class="keyword">new</span> <span class="keyword">int</span>[num1.length() + num2.length()];</span><br><span class="line">		</span><br><span class="line">		<span class="comment">//要注意到写进来的数字是地位在高地址</span></span><br><span class="line">		<span class="comment">//所以要从长度length-1 位开始，对应的位置是个位</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = num1.length() - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">		<span class="comment">//先取num1的第i位与num2相乘</span></span><br><span class="line">            <span class="keyword">int</span> n1 = num1.charAt(i) - <span class="string">'0'</span>;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = num2.length() - <span class="number">1</span>; j &gt;= <span class="number">0</span>; j--) &#123;</span><br><span class="line">                <span class="keyword">int</span> n2 = num2.charAt(j) - <span class="string">'0'</span>;</span><br><span class="line">				<span class="comment">//求一次乘法运算的和</span></span><br><span class="line">                <span class="keyword">int</span> sum = (res[i + j + <span class="number">1</span>] + n1 * n2);</span><br><span class="line">				<span class="comment">//低位取余</span></span><br><span class="line">                res[i + j + <span class="number">1</span>] = sum % <span class="number">10</span>;</span><br><span class="line">				<span class="comment">//高位进1</span></span><br><span class="line">                res[i + j] += sum / <span class="number">10</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        StringBuilder result = <span class="keyword">new</span> StringBuilder();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; res.length; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (i == <span class="number">0</span> &amp;&amp; res[i] == <span class="number">0</span>) <span class="keyword">continue</span>;</span><br><span class="line">            result.append(res[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> result.toString();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
 
 
 
-  <div class="declare" hidden="hidden"></div>
+  <div class="declare">
+    <strong>本文作者：</strong>
+    
+      HMF
+    
+    <br>
+    <strong>本文链接：</strong>
+    http://yorxika.github.io/2019/10/28/字符串相乘/
+    <br>
+    <strong>版权声明：</strong>
+    本作品采用
+    <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a>
+    进行许可。转载请注明出处！
+    
+  </div>
 
 
       
@@ -222,7 +264,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">组成原理</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Leetcode</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">字符串</a>
         		</li>
       		
 		</ul>
@@ -278,7 +324,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yorxika.github.io/2019/09/22/组原笔记/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yorxika.github.io/2019/10/28/字符串相乘/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -292,18 +338,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2019/09/23/三数之和/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2019/10/28/全排列/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          三数之和
+          全排列
         
       </div>
     </a>
   
   
-    <a href="/2019/09/18/最长公共前缀/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">最长公共前缀</div>
+    <a href="/2019/10/26/缺失的第一个正数/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">缺失的第一个正数</div>
       <i class="icon-circle-right"></i>
     </a>
   

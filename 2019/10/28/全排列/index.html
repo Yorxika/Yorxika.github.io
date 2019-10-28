@@ -6,20 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yorxika.github.io">
-  <title>组原笔记 | HMF的博客</title>
+  <title>全排列 | HMF的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="华中科技大学17级">
-<meta name="keywords" content="组成原理">
+  <meta name="description" content="来源Leetcode第46题全排列 要求生成给定数组的全排列，可采用回溯。">
+<meta name="keywords" content="Leetcode,回溯">
 <meta property="og:type" content="article">
-<meta property="og:title" content="组原笔记">
-<meta property="og:url" content="http://yorxika.github.io/2019/09/22/组原笔记/index.html">
+<meta property="og:title" content="全排列">
+<meta property="og:url" content="http://yorxika.github.io/2019/10/28/全排列/index.html">
 <meta property="og:site_name" content="HMF的博客">
-<meta property="og:description" content="华中科技大学17级">
+<meta property="og:description" content="来源Leetcode第46题全排列 要求生成给定数组的全排列，可采用回溯。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-09-24T03:40:51.667Z">
+<meta property="og:updated_time" content="2019-10-28T15:50:42.804Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="组原笔记">
-<meta name="twitter:description" content="华中科技大学17级">
+<meta name="twitter:title" content="全排列">
+<meta name="twitter:description" content="来源Leetcode第46题全排列 要求生成给定数组的全排列，可采用回溯。">
   
     <link rel="alternative" href="/atom.xml" title="HMF的博客" type="application/atom+xml">
   
@@ -152,20 +152,20 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-组原笔记" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-全排列" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      组原笔记
+      全排列
     </h1>
   
 
         
-        <a href="/2019/09/22/组原笔记/" class="archive-article-date">
-  	<time datetime="2019-09-22T12:44:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-22</time>
+        <a href="/2019/10/28/全排列/" class="archive-article-date">
+  	<time datetime="2019-10-28T15:30:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-28</time>
 </a>
 		
 		
@@ -174,7 +174,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
         <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">0字</span>
+        <span class="post-count">278字</span>
       </span>
     </span>
 
@@ -204,12 +204,30 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <p>来源Leetcode第46题全排列</p>
+<p>要求生成给定数组的全排列，可采用回溯。</p>
+<a id="more"></a>
+<p>代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    List&lt;List&lt;Integer&gt;&gt; ans = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">    <span class="keyword">public</span> List&lt;List&lt;Integer&gt;&gt; permute(<span class="keyword">int</span>[] nums) &#123;</span><br><span class="line">        nextPer(nums,<span class="number">0</span>);</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">        <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">nextPer</span><span class="params">(<span class="keyword">int</span>[] arr,<span class="keyword">int</span> start)</span></span>&#123;</span><br><span class="line">            <span class="comment">//当start==arr.length-1时，说明子序列的长度为1，就不用再往下分子序列了</span></span><br><span class="line">            <span class="keyword">if</span>(start==arr.length-<span class="number">1</span>)&#123;</span><br><span class="line">                List&lt;Integer&gt; temp_ans = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">                <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span> ; i &lt; arr.length ; i++)&#123;</span><br><span class="line">                    temp_ans.add(arr[i]);</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="comment">//System.out.println(temp_ans);</span></span><br><span class="line">                ans.add(temp_ans);</span><br><span class="line">				<span class="keyword">return</span> ;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i=start;i&lt;arr.length;i++)&#123;</span><br><span class="line">                <span class="comment">//start代表的是每一个子序列的第一个位置，我们每一层递归的任务都只有一个：</span></span><br><span class="line">                <span class="comment">//枚举该层子序列第一个位置可以取的值</span></span><br><span class="line">                <span class="keyword">int</span> temp=arr[start];</span><br><span class="line">                arr[start]=arr[i];</span><br><span class="line">                arr[i]=temp;</span><br><span class="line"></span><br><span class="line">                <span class="comment">//该层递归的子序列第一个位置已经确定了，所以又可以往下再分</span></span><br><span class="line">                nextPer(arr,start+<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">                <span class="comment">//把第该层子序列第一个位置的值换成另外一个值，所以要交换回来</span></span><br><span class="line">                temp=arr[start];</span><br><span class="line">                arr[start]=arr[i];</span><br><span class="line">                arr[i]=temp;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
 
 
 
-  <div class="declare" hidden="hidden"></div>
+  <div class="declare">
+    <strong>本文作者：</strong>
+    
+      HMF
+    
+    <br>
+    <strong>本文链接：</strong>
+    http://yorxika.github.io/2019/10/28/全排列/
+    <br>
+    <strong>版权声明：</strong>
+    本作品采用
+    <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a>
+    进行许可。转载请注明出处！
+    
+  </div>
 
 
       
@@ -222,7 +240,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">组成原理</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Leetcode</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">回溯</a>
         		</li>
       		
 		</ul>
@@ -278,7 +300,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yorxika.github.io/2019/09/22/组原笔记/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yorxika.github.io/2019/10/28/全排列/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -292,18 +314,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2019/09/23/三数之和/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          三数之和
-        
-      </div>
-    </a>
   
-  
-    <a href="/2019/09/18/最长公共前缀/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">最长公共前缀</div>
+    <a href="/2019/10/28/字符串相乘/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">字符串相乘</div>
       <i class="icon-circle-right"></i>
     </a>
   
