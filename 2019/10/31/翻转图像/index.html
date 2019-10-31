@@ -6,20 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yorxika.github.io">
-  <title>正则表达式匹配 | HMF的博客</title>
+  <title>翻转图像 | HMF的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="来源Leetcode第10题正则表达式匹配  给你一个字符串 s 和一个字符规律 p，请你来实现一个支持’.’和’*‘的正则表达式匹配。‘.’匹配任意单个字符‘*‘匹配零个或多个前面的那一个元素所谓匹配，是要** 涵盖整个字符串s的，而 不是部分字符串s **。">
-<meta name="keywords" content="Leetcode,回溯,动态规划">
+  <meta name="description" content="来源Leetcode第48题旋转图像  给定一个 n × n 的二维矩阵表示一个图像。 将图像顺时针旋转 90 度。 说明：">
+<meta name="keywords" content="Leetcode,数组">
 <meta property="og:type" content="article">
-<meta property="og:title" content="正则表达式匹配">
-<meta property="og:url" content="http://yorxika.github.io/2019/09/17/正则表达式匹配/index.html">
+<meta property="og:title" content="翻转图像">
+<meta property="og:url" content="http://yorxika.github.io/2019/10/31/翻转图像/index.html">
 <meta property="og:site_name" content="HMF的博客">
-<meta property="og:description" content="来源Leetcode第10题正则表达式匹配  给你一个字符串 s 和一个字符规律 p，请你来实现一个支持’.’和’*‘的正则表达式匹配。‘.’匹配任意单个字符‘*‘匹配零个或多个前面的那一个元素所谓匹配，是要** 涵盖整个字符串s的，而 不是部分字符串s **。">
+<meta property="og:description" content="来源Leetcode第48题旋转图像  给定一个 n × n 的二维矩阵表示一个图像。 将图像顺时针旋转 90 度。 说明：">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-09-22T12:43:39.104Z">
+<meta property="og:updated_time" content="2019-10-31T11:28:26.158Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="正则表达式匹配">
-<meta name="twitter:description" content="来源Leetcode第10题正则表达式匹配  给你一个字符串 s 和一个字符规律 p，请你来实现一个支持’.’和’*‘的正则表达式匹配。‘.’匹配任意单个字符‘*‘匹配零个或多个前面的那一个元素所谓匹配，是要** 涵盖整个字符串s的，而 不是部分字符串s **。">
+<meta name="twitter:title" content="翻转图像">
+<meta name="twitter:description" content="来源Leetcode第48题旋转图像  给定一个 n × n 的二维矩阵表示一个图像。 将图像顺时针旋转 90 度。 说明：">
   
     <link rel="alternative" href="/atom.xml" title="HMF的博客" type="application/atom+xml">
   
@@ -152,20 +152,20 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-正则表达式匹配" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-翻转图像" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      正则表达式匹配
+      翻转图像
     </h1>
   
 
         
-        <a href="/2019/09/17/正则表达式匹配/" class="archive-article-date">
-  	<time datetime="2019-09-17T09:27:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-17</time>
+        <a href="/2019/10/31/翻转图像/" class="archive-article-date">
+  	<time datetime="2019-10-31T10:56:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-31</time>
 </a>
 		
 		
@@ -174,7 +174,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
         <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">888字</span>
+        <span class="post-count">929字</span>
       </span>
     </span>
 
@@ -183,7 +183,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-hourglass-half"></i>
         <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">3分</span>
+        <span class="post-count">4分</span>
       </span>
     </span>
 </div>
@@ -204,21 +204,23 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>来源Leetcode第10题正则表达式匹配</p>
+        <p>来源Leetcode第48题旋转图像</p>
 <blockquote>
-<p>给你一个字符串 s 和一个字符规律 p，请你来实现一个支持’.’和’*‘的正则表达式匹配。<br>‘.’匹配任意单个字符<br>‘*‘匹配零个或多个前面的那一个元素<br>所谓匹配，是要** 涵盖整个字符串s<strong>的，而</strong> 不是部分字符串s **。</p>
-<a id="more"></a>
-<p>说明:<br>s 可能为空，且只包含从 a-z 的小写字母。<br>p 可能为空，且只包含从 a-z 的小写字母，以及字符 ‘.’和’*‘。<br>示例 4:</p>
-<p>输入:<br>s = “aab”<br>p = “c*a*b”<br>输出: true<br>解释: 因为’*‘表示零个或多个，这里’c’为 0 个, ‘a’ 被重复一次。因此可以匹配字符串 “aab”。</p>
+<p>给定一个 n × n 的二维矩阵表示一个图像。</p>
+<p>将图像顺时针旋转 90 度。</p>
+<p>说明：<a id="more"></a></p>
+<p>你必须在<strong>原地</strong>旋转图像，这意味着你需要直接修改输入的二维矩阵。请不要使用另一个矩阵来旋转图像</p>
+<p>示例 1:</p>
+<p>给定 matrix =<br>[<br>  [1,2,3],<br>  [4,5,6],<br>  [7,8,9]<br>],</p>
+<p>原地旋转输入矩阵，使其变为:<br>[<br>  [7,4,1],<br>  [8,5,2],<br>  [9,6,3]<br>]</p>
 </blockquote>
-<p>采用递归的思想，当前层匹配了就可以匹配下一层。当遇到字符’.’时可以认为直接匹配进入下一层，当遇到字符’*‘时要考虑字符’*‘前一个字符出现的次数是0次还是多次，所以在递归的时候有两个方向的递归，一个是认为前一个字符出现0次，所以直接从模式串p的第3个字符开始匹配，一个是认为出现多次，因而需要模式串第一个字符与匹配串第一个字符匹配，在来匹配匹配串后续字符。<br>代码如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isMatch</span><span class="params">(String text, String pattern)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (pattern.isEmpty()) <span class="keyword">return</span> text.isEmpty();  <span class="comment">//对应空串</span></span><br><span class="line">        <span class="keyword">boolean</span> first_match = (!text.isEmpty() &amp;&amp;</span><br><span class="line">                               (pattern.charAt(<span class="number">0</span>) == text.charAt(<span class="number">0</span>) || pattern.charAt(<span class="number">0</span>) == <span class="string">'.'</span>));  <span class="comment">//非空且第一个字符对应相等，或者p的一个字符为‘.’</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (pattern.length() &gt;= <span class="number">2</span> &amp;&amp; pattern.charAt(<span class="number">1</span>) == <span class="string">'*'</span>)&#123; <span class="comment">//p的长度为2 且第二个字符为'*'的话</span></span><br><span class="line">            <span class="keyword">return</span> (isMatch(text, pattern.substring(<span class="number">2</span>)) ||  <span class="comment">//看P第三个字符是否与s的字符匹配，可以参考例4，s=aab,p=c*a*b，因为*表示0个或多个，这里S有0个c，a被重复一次，所以是可以匹配的</span></span><br><span class="line">                    (first_match &amp;&amp; isMatch(text.substring(<span class="number">1</span>), pattern))); <span class="comment">//或者是第一个字符匹配，查看s的后续字符是否重复</span></span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> first_match &amp;&amp; isMatch(text.substring(<span class="number">1</span>), pattern.substring(<span class="number">1</span>)); <span class="comment">//进行下一个字符的匹配</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这题没什么思路，规律没找到。<br>看了题解之后知道可以通过上下翻转一次，在通过对角线翻转一次即可完成。</p>
+<p>代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">rotate</span><span class="params">(<span class="keyword">int</span>[][] matrix)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> n = matrix.length;</span><br><span class="line">		<span class="comment">//上下翻转</span></span><br><span class="line">		<span class="comment">// n/2代表矩阵的中间线，以实现对折翻转</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n / <span class="number">2</span>; i ++)&#123;</span><br><span class="line">		<span class="comment">//保存欲翻转的当前行</span></span><br><span class="line">            <span class="keyword">int</span>[] tmp = matrix[i];</span><br><span class="line">		<span class="comment">//整行翻转</span></span><br><span class="line">            matrix[i] = matrix[n - i - <span class="number">1</span>];</span><br><span class="line">            matrix[n - i - <span class="number">1</span>] = tmp;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 对角翻转</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i ++)&#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j= i + <span class="number">1</span>; j &lt; n; j++)&#123;</span><br><span class="line">                <span class="keyword">int</span> tmp = matrix[i][j];</span><br><span class="line">                matrix[i][j] = matrix[j][i];</span><br><span class="line">                matrix[j][i] = tmp;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>可以看到回溯的话时空复杂度相当的高，因为题目拥有最优子结构，一个自然的想法是将中间结果保存起来。我们通过用dp[i,j]表示text[i:]和pattern[j:]是否能匹配，即用户dp[i][j]表示s的前i个能否被p的前j的匹配。<br>考虑转移方程：<br>1.p[j] == s[i] -&gt; dp[i][j] = dp[i-1][j-1]<br>2.if p[j] == ‘.‘ -&gt; dp[i][j] = dp[i-1][j-1]<br>3.if p[j] = ‘*‘ -&gt;<br>if p[j-1] != s[i] -&gt; dp[i][j] = dp[i][j-2]  //对应示例4，’*‘前的字符出现了0次<br>if p[j-1] == s[i] || p[j-1] == ‘.‘ -&gt; dp[i][j] = dp[i-1][j] || dp[i][j] = dp[i][j-1] || dp[i][j] = dp[i][j-2] //分别对应着若干个字符匹配、单个字符匹配、没有字符匹配<br>代码如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isMatch</span><span class="params">(String s, String p)</span> </span>&#123;</span><br><span class="line">       <span class="keyword">int</span> ls = s.length(), lp = p.length();</span><br><span class="line">        <span class="keyword">boolean</span>[][] dp = <span class="keyword">new</span> <span class="keyword">boolean</span>[ls + <span class="number">1</span>][lp + <span class="number">1</span>];</span><br><span class="line">        dp[<span class="number">0</span>][<span class="number">0</span>] = <span class="keyword">true</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">2</span>; j &lt;= lp; j++)</span><br><span class="line">            dp[<span class="number">0</span>][j] = dp[<span class="number">0</span>][j - <span class="number">2</span>] &amp;&amp; p.charAt(j - <span class="number">1</span>) == <span class="string">'*'</span>;  <span class="comment">//初始化第一列</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= ls; i++) &#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= lp; j++) &#123;</span><br><span class="line">                <span class="keyword">if</span>(p.charAt(j-<span class="number">1</span>) == <span class="string">'*'</span>)</span><br><span class="line">                    dp[i][j] = dp[i][j - <span class="number">2</span>] || dp[i - <span class="number">1</span>][j] &amp;&amp; </span><br><span class="line">                        (s.charAt(i-<span class="number">1</span>) == p.charAt(j - <span class="number">2</span>) || p.charAt(j - <span class="number">2</span>) == <span class="string">'.'</span>);</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span>(s.charAt(i-<span class="number">1</span>) == p.charAt(j-<span class="number">1</span>) || p.charAt(j-<span class="number">1</span>) == <span class="string">'.'</span>) </span><br><span class="line">                    dp[i][j] = dp[i - <span class="number">1</span>][j - <span class="number">1</span>];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> dp[ls][lp];</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
+<p>当然这题规律找出来了就是简单的四数交换，感谢<a href="https://leetcode-cn.com/problems/rotate-image/solution/xuan-zhuan-tu-xiang-ti-jie-by-mu-yi-wei-lan/" target="_blank" rel="noopener">木苡微澜的题解</a></p>
+<p>代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*将举证旋转90度的方法：</span></span><br><span class="line"><span class="comment">	 * 矩阵例子：</span></span><br><span class="line"><span class="comment">	  [ 5, 1, 9, 11],</span></span><br><span class="line"><span class="comment">	  [ 2, 4, 8, 10],</span></span><br><span class="line"><span class="comment">	  [13, 3, 6,  7],</span></span><br><span class="line"><span class="comment">	  [15,14,12, 16]</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> length = matrix.length;<span class="comment">// 给定的矩阵的边长</span></span><br><span class="line"><span class="keyword">int</span> lengthend = matrix.length;<span class="comment">// 每一圈中分好的块的末尾元素的行或者列的下标（具体圈具体分析）</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* 由外而内，逐个圈进行旋转 */</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> r = <span class="number">0</span>; r &lt;= (length - <span class="number">1</span>) / <span class="number">2</span>; r++) &#123;</span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">        * 创建一个临时数组作为中转站，存放每一个块的数据，注意由外而内每一个圈的块的元素数量不同，</span></span><br><span class="line"><span class="comment">        * 故临时数组长度不一样，用数理逻辑推出长度公式：length-2*r-1</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">    <span class="keyword">int</span>[] temp = <span class="keyword">new</span> <span class="keyword">int</span>[length-<span class="number">2</span>*r-<span class="number">1</span>];</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/*举例：（外圈情况）把第一个块元素放进临时数组temp中</span></span><br><span class="line"><span class="comment">        [ 5, 1, 9,  ], ==&gt; temp[]</span></span><br><span class="line"><span class="comment">        [           ],</span></span><br><span class="line"><span class="comment">        [           ],</span></span><br><span class="line"><span class="comment">        [           ]                    </span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; temp.length; i++) &#123; <span class="comment">// 这个i是临时数组的下标</span></span><br><span class="line">        temp[i] = matrix[r][i + r];</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/*举例：（外圈情况）块[2,13,15]换到[5,1,9]的位置</span></span><br><span class="line"><span class="comment">        [ 5, 1, 9,  ],</span></span><br><span class="line"><span class="comment">        [ 2,        ],</span></span><br><span class="line"><span class="comment">        [13,        ],</span></span><br><span class="line"><span class="comment">        [15,        ]                     </span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span> + r; i &lt; lengthend; i++) &#123;</span><br><span class="line">        matrix[r][length - <span class="number">1</span> - i] = matrix[i][r];</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/*举例：（外圈情况）块[14,12,16]换到[2,13,15]的位置</span></span><br><span class="line"><span class="comment">        [           ],</span></span><br><span class="line"><span class="comment">        [ 2,        ],</span></span><br><span class="line"><span class="comment">        [13,        ],</span></span><br><span class="line"><span class="comment">        [15,14,12,16]                      </span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span> + r; i &lt; lengthend; i++) &#123;</span><br><span class="line">        matrix[i][r] = matrix[length - <span class="number">1</span> - r][i];</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/*举例：（外圈情况）块[11,10,7]换到[14,12,16]的位置</span></span><br><span class="line"><span class="comment">        [        ,11],</span></span><br><span class="line"><span class="comment">        [        ,10],</span></span><br><span class="line"><span class="comment">        [        , 7],</span></span><br><span class="line"><span class="comment">        [  ,14,12,16]                       </span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span> + r; i &lt; lengthend; i++) &#123;</span><br><span class="line">        matrix[length - <span class="number">1</span> - r][i] = matrix[length - <span class="number">1</span> - i][length - <span class="number">1</span> - r];</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/*举例：（外圈情况）把临时数组temp中的元素放进第一个块中</span></span><br><span class="line"><span class="comment">        * </span></span><br><span class="line"><span class="comment">        temp[] ==&gt; [            ],</span></span><br><span class="line"><span class="comment">                    [            ],</span></span><br><span class="line"><span class="comment">                    [            ],</span></span><br><span class="line"><span class="comment">                    [            ]            </span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= temp.length; i++) &#123;</span><br><span class="line">        matrix[length - i - <span class="number">1</span> - r][length - <span class="number">1</span> - r] = temp[temp.length - i];</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/*进入下一圈之前，这一圈中分好的块的末尾元素的行或者列的下标缩小一位*/</span></span><br><span class="line">    lengthend -= <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//将这几个循环写在一起就是这样</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">rotate</span><span class="params">(<span class="keyword">int</span>[][] matrix)</span> </span>&#123;</span><br><span class="line">	<span class="comment">//由外而内，逐个圈进行旋转</span></span><br><span class="line">        <span class="keyword">int</span> len = matrix.length &gt;&gt; <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; len; j++) &#123;</span><br><span class="line">		<span class="comment">//定义由外而内每一个圈的块的元素数量</span></span><br><span class="line">            <span class="keyword">int</span> lengthend = matrix.length - <span class="number">1</span> - <span class="number">2</span> * j;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; lengthend; i++) &#123;</span><br><span class="line">		<span class="comment">//然后开始4个数4个数的交换</span></span><br><span class="line">		<span class="comment">//第一轮的4个数是4个角的数</span></span><br><span class="line">		<span class="comment">//然后在往右移，以此类推</span></span><br><span class="line">                <span class="keyword">int</span> temp = matrix[j][i + j];</span><br><span class="line">                matrix[j][i + j] = matrix[matrix.length - <span class="number">1</span> - j - i][j];</span><br><span class="line">                matrix[matrix.length - <span class="number">1</span> - j - i][j] =  matrix[matrix.length - <span class="number">1</span> - j][matrix.length - <span class="number">1</span> - j - i];</span><br><span class="line">                matrix[matrix.length - <span class="number">1</span> - j][matrix.length - <span class="number">1</span> - j - i] = matrix[j + i][matrix.length - <span class="number">1</span> - j];</span><br><span class="line">                matrix[j + i][matrix.length - <span class="number">1</span> - j] = temp;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
       
 
 
@@ -240,11 +242,7 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">回溯</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">动态规划</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">数组</a>
         		</li>
       		
 		</ul>
@@ -300,7 +298,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yorxika.github.io/2019/09/17/正则表达式匹配/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yorxika.github.io/2019/10/31/翻转图像/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -314,18 +312,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2019/09/17/盛最多的水/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          盛最多的水
-        
-      </div>
-    </a>
   
-  
-    <a href="/2019/09/16/删除排序数组中的重复项II/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">删除排序数组中的重复项II</div>
+    <a href="/2019/10/30/相同的树/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">相同的树</div>
       <i class="icon-circle-right"></i>
     </a>
   
