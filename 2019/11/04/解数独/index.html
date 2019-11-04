@@ -6,18 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yorxika.github.io">
-  <title>Tag: 游戏 | HMF的博客</title>
+  <title>解数独 | HMF的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="华中科技大学17级">
-<meta property="og:type" content="website">
-<meta property="og:title" content="HMF的博客">
-<meta property="og:url" content="http://yorxika.github.io/tags/游戏/index.html">
+  <meta name="description" content="来源Leetcode第37题解数独 回溯法算法 现在准备好写回溯函数了backtrack(row = 0, col = 0)。  从最左上角的方格开始 row = 0, col = 0。直到到达一个空方格。  从1 到 9 迭代循环数组，尝试放置数字 d 进入 (row, col) 的格子。  如果数字 d 还没有出现在当前行，列和子方块中：  将 d 放入 (row, col) 格子中。  记录">
+<meta name="keywords" content="Leetcode,回溯">
+<meta property="og:type" content="article">
+<meta property="og:title" content="解数独">
+<meta property="og:url" content="http://yorxika.github.io/2019/11/04/解数独/index.html">
 <meta property="og:site_name" content="HMF的博客">
-<meta property="og:description" content="华中科技大学17级">
+<meta property="og:description" content="来源Leetcode第37题解数独 回溯法算法 现在准备好写回溯函数了backtrack(row = 0, col = 0)。  从最左上角的方格开始 row = 0, col = 0。直到到达一个空方格。  从1 到 9 迭代循环数组，尝试放置数字 d 进入 (row, col) 的格子。  如果数字 d 还没有出现在当前行，列和子方块中：  将 d 放入 (row, col) 格子中。  记录">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-11-04T15:16:18.477Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="HMF的博客">
-<meta name="twitter:description" content="华中科技大学17级">
+<meta name="twitter:title" content="解数独">
+<meta name="twitter:description" content="来源Leetcode第37题解数独 回溯法算法 现在准备好写回溯函数了backtrack(row = 0, col = 0)。  从最左上角的方格开始 row = 0, col = 0。直到到达一个空方格。  从1 到 9 迭代循环数组，尝试放置数字 d 进入 (row, col) 的格子。  如果数字 d 还没有出现在当前行，列和子方块中：  将 d 放入 (row, col) 格子中。  记录">
   
     <link rel="alternative" href="/atom.xml" title="HMF的博客" type="application/atom+xml">
   
@@ -150,68 +152,244 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-解数独" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/10/20/DSIII的BGM/" class="archive-article-date">
-  	<time datetime="2019-10-20T07:27:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-20</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/10/20/DSIII的BGM/">DARK SOULS III的BGM</a>
+    <h1 class="article-title" itemprop="name">
+      解数独
     </h1>
   
 
-        <div class="article-info info-on-right">
+        
+        <a href="/2019/11/04/解数独/" class="archive-article-date">
+  	<time datetime="2019-11-04T14:19:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-04</time>
+</a>
+		
+		
+          <div style="margin-top:10px;">
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-keyboard-o"></i>
+        <span class="post-meta-item-text">  字数统计: </span>
+        <span class="post-count">1.7k字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+        <i class="fa fa-hourglass-half"></i>
+        <span class="post-meta-item-text">  阅读时长: </span>
+        <span class="post-count">8分</span>
+      </span>
+    </span>
+</div>
+
           
+		  
+        
+		
+		
+		
+          <span class="archive-article-date">
+              阅读量 <span id="busuanzi_value_page_pv"></span>
+          </span>
+        
+
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>来源Leetcode第37题解数独</p>
+<h5 id="回溯法"><a href="#回溯法" class="headerlink" title="回溯法"></a>回溯法</h5><p><strong><a href="https://leetcode-cn.com/problems/sudoku-solver/solution/jie-shu-du-by-leetcode/" target="_blank" rel="noopener">算法</a></strong></p>
+<p>现在准备好写回溯函数了<br>backtrack(row = 0, col = 0)。</p>
+<ul>
+<li><p>从最左上角的方格开始 row = 0, col = 0。直到到达一个空方格。</p>
+</li>
+<li><p>从1 到 9 迭代循环数组，尝试放置数字 d 进入 (row, col) 的格子。</p>
+<ul>
+<li><p>如果数字 d 还没有出现在当前行，列和子方块中：</p>
+</li>
+<li><p>将 d 放入 (row, col) 格子中。</p>
+</li>
+<li><p>记录下 d 已经出现在当前行，列和子方块中。</p>
+</li>
+<li><p>如果这是最后一个格子row == 8, col == 8 ：</p>
+<ul>
+<li>意味着已经找出了数独的解。</li>
+</ul>
+</li>
+<li><p>否则</p>
+<ul>
+<li>放置接下来的数字。</li>
+</ul>
+</li>
+<li><p>如果数独的解还没找到：将最后的数从 (row, col) 移除。</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br></pre></td><td class="code"><pre><span class="line">    <span class="comment">// box size</span></span><br><span class="line">    <span class="keyword">int</span> n = <span class="number">3</span>;</span><br><span class="line">    <span class="comment">// row size</span></span><br><span class="line">    <span class="keyword">int</span> N = n * n;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> [][] rows = <span class="keyword">new</span> <span class="keyword">int</span>[N][N + <span class="number">1</span>];</span><br><span class="line">    <span class="keyword">int</span> [][] columns = <span class="keyword">new</span> <span class="keyword">int</span>[N][N + <span class="number">1</span>];</span><br><span class="line">    <span class="keyword">int</span> [][] boxes = <span class="keyword">new</span> <span class="keyword">int</span>[N][N + <span class="number">1</span>];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">char</span>[][] board;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">boolean</span> sudokuSolved = <span class="keyword">false</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">couldPlace</span><span class="params">(<span class="keyword">int</span> d, <span class="keyword">int</span> row, <span class="keyword">int</span> col)</span> </span>&#123;</span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">    Check if one could place a number d in (row, col) cell</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">        <span class="keyword">int</span> idx = (row / n ) * n + col / n;</span><br><span class="line">        <span class="keyword">return</span> rows[row][d] + columns[col][d] + boxes[idx][d] == <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">placeNumber</span><span class="params">(<span class="keyword">int</span> d, <span class="keyword">int</span> row, <span class="keyword">int</span> col)</span> </span>&#123;</span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">    Place a number d in (row, col) cell</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">        <span class="keyword">int</span> idx = (row / n ) * n + col / n;</span><br><span class="line"></span><br><span class="line">        rows[row][d]++;</span><br><span class="line">        columns[col][d]++;</span><br><span class="line">        boxes[idx][d]++;</span><br><span class="line">        board[row][col] = (<span class="keyword">char</span>)(d + <span class="string">'0'</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">removeNumber</span><span class="params">(<span class="keyword">int</span> d, <span class="keyword">int</span> row, <span class="keyword">int</span> col)</span> </span>&#123;</span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">    Remove a number which didn't lead to a solution</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">        <span class="keyword">int</span> idx = (row / n ) * n + col / n;</span><br><span class="line">        rows[row][d]--;</span><br><span class="line">        columns[col][d]--;</span><br><span class="line">        boxes[idx][d]--;</span><br><span class="line">        board[row][col] = <span class="string">'.'</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">placeNextNumbers</span><span class="params">(<span class="keyword">int</span> row, <span class="keyword">int</span> col)</span> </span>&#123;</span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">    Call backtrack function in recursion</span></span><br><span class="line"><span class="comment">    to continue to place numbers</span></span><br><span class="line"><span class="comment">    till the moment we have a solution</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">        <span class="comment">// if we're in the last cell</span></span><br><span class="line">        <span class="comment">// that means we have the solution</span></span><br><span class="line">        <span class="keyword">if</span> ((col == N - <span class="number">1</span>) &amp;&amp; (row == N - <span class="number">1</span>)) &#123;</span><br><span class="line">            sudokuSolved = <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// if not yet</span></span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="comment">// if we're in the end of the row</span></span><br><span class="line">            <span class="comment">// go to the next row</span></span><br><span class="line">            <span class="keyword">if</span> (col == N - <span class="number">1</span>) backtrack(row + <span class="number">1</span>, <span class="number">0</span>);</span><br><span class="line">                <span class="comment">// go to the next column</span></span><br><span class="line">            <span class="keyword">else</span> backtrack(row, col + <span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">backtrack</span><span class="params">(<span class="keyword">int</span> row, <span class="keyword">int</span> col)</span> </span>&#123;</span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">    Backtracking</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">        <span class="comment">// if the cell is empty</span></span><br><span class="line">        <span class="keyword">if</span> (board[row][col] == <span class="string">'.'</span>) &#123;</span><br><span class="line">            <span class="comment">// iterate over all numbers from 1 to 9</span></span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> d = <span class="number">1</span>; d &lt; <span class="number">10</span>; d++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (couldPlace(d, row, col)) &#123;</span><br><span class="line">                    placeNumber(d, row, col);</span><br><span class="line">                    placeNextNumbers(row, col);</span><br><span class="line">                    <span class="comment">// if sudoku is solved, there is no need to backtrack</span></span><br><span class="line">                    <span class="comment">// since the single unique solution is promised</span></span><br><span class="line">                    <span class="keyword">if</span> (!sudokuSolved) removeNumber(d, row, col);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> placeNextNumbers(row, col);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">solveSudoku</span><span class="params">(<span class="keyword">char</span>[][] board)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.board = board;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// init rows, columns and boxes</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; N; i++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; N; j++) &#123;</span><br><span class="line">                <span class="keyword">char</span> num = board[i][j];</span><br><span class="line">                <span class="keyword">if</span> (num != <span class="string">'.'</span>) &#123;</span><br><span class="line">                    <span class="keyword">int</span> d = Character.getNumericValue(num);</span><br><span class="line">                    placeNumber(d, i, j);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        backtrack(<span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">    &#125;</span><br><span class="line">	</span><br><span class="line"><span class="comment">//Type 2</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">solveSudoku</span><span class="params">(<span class="keyword">char</span>[][] board)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 三个布尔数组 表明 行, 列, 还有 3*3 的方格的数字是否被使用过</span></span><br><span class="line">        <span class="keyword">boolean</span>[][] rowUsed = <span class="keyword">new</span> <span class="keyword">boolean</span>[<span class="number">9</span>][<span class="number">10</span>];</span><br><span class="line">        <span class="keyword">boolean</span>[][] colUsed = <span class="keyword">new</span> <span class="keyword">boolean</span>[<span class="number">9</span>][<span class="number">10</span>];</span><br><span class="line">        <span class="keyword">boolean</span>[][][] boxUsed = <span class="keyword">new</span> <span class="keyword">boolean</span>[<span class="number">3</span>][<span class="number">3</span>][<span class="number">10</span>];</span><br><span class="line">        <span class="comment">// 初始化</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> row = <span class="number">0</span>; row &lt; board.length; row++)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> col = <span class="number">0</span>; col &lt; board[<span class="number">0</span>].length; col++) &#123;</span><br><span class="line">                <span class="keyword">int</span> num = board[row][col] - <span class="string">'0'</span>;</span><br><span class="line">                <span class="keyword">if</span>(<span class="number">1</span> &lt;= num &amp;&amp; num &lt;= <span class="number">9</span>)&#123;</span><br><span class="line">                    rowUsed[row][num] = <span class="keyword">true</span>;</span><br><span class="line">                    colUsed[col][num] = <span class="keyword">true</span>;</span><br><span class="line">                    boxUsed[row/<span class="number">3</span>][col/<span class="number">3</span>][num] = <span class="keyword">true</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 递归尝试填充数组 </span></span><br><span class="line">        recusiveSolveSudoku(board, rowUsed, colUsed, boxUsed, <span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">boolean</span> <span class="title">recusiveSolveSudoku</span><span class="params">(<span class="keyword">char</span>[][]board, <span class="keyword">boolean</span>[][]rowUsed, <span class="keyword">boolean</span>[][]colUsed, <span class="keyword">boolean</span>[][][]boxUsed, <span class="keyword">int</span> row, <span class="keyword">int</span> col)</span></span>&#123;</span><br><span class="line">        <span class="comment">// 边界校验, 如果已经填充完成, 返回true, 表示一切结束</span></span><br><span class="line">        <span class="keyword">if</span>(col == board[<span class="number">0</span>].length)&#123;</span><br><span class="line">            col = <span class="number">0</span>;</span><br><span class="line">            row++;</span><br><span class="line">            <span class="keyword">if</span>(row == board.length)&#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 是空则尝试填充, 否则跳过继续尝试填充下一个位置</span></span><br><span class="line">        <span class="keyword">if</span>(board[row][col] == <span class="string">'.'</span>) &#123;</span><br><span class="line">            <span class="comment">// 尝试填充1~9</span></span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> num = <span class="number">1</span>; num &lt;= <span class="number">9</span>; num++)&#123;</span><br><span class="line">			<span class="comment">//确保当前位置不会冲突</span></span><br><span class="line">                <span class="keyword">boolean</span> canUsed = !(rowUsed[row][num] || colUsed[col][num] || boxUsed[row/<span class="number">3</span>][col/<span class="number">3</span>][num]);</span><br><span class="line">                <span class="keyword">if</span>(canUsed)&#123;</span><br><span class="line">                    rowUsed[row][num] = <span class="keyword">true</span>;</span><br><span class="line">                    colUsed[col][num] = <span class="keyword">true</span>;</span><br><span class="line">                    boxUsed[row/<span class="number">3</span>][col/<span class="number">3</span>][num] = <span class="keyword">true</span>;</span><br><span class="line">                    </span><br><span class="line">                    board[row][col] = (<span class="keyword">char</span>)(<span class="string">'0'</span> + num);</span><br><span class="line">                    <span class="keyword">if</span>(recusiveSolveSudoku(board, rowUsed, colUsed, boxUsed, row, col + <span class="number">1</span>))&#123;</span><br><span class="line">                        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">					</span><br><span class="line">					<span class="comment">//填充失败，那么我们需要回溯。将原来尝试填充的地方改回来。</span></span><br><span class="line">                    board[row][col] = <span class="string">'.'</span>;</span><br><span class="line">                    </span><br><span class="line">                    rowUsed[row][num] = <span class="keyword">false</span>;</span><br><span class="line">                    colUsed[col][num] = <span class="keyword">false</span>;</span><br><span class="line">                    boxUsed[row/<span class="number">3</span>][col/<span class="number">3</span>][num] = <span class="keyword">false</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> recusiveSolveSudoku(board, rowUsed, colUsed, boxUsed, row, col + <span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="剪枝"><a href="#剪枝" class="headerlink" title="剪枝"></a>剪枝</h5><p>搜索+剪枝的方法其实是有在上学期的课设时做了的，但是emm完全忘了，挖个坑，有空填了</p>
+<p>代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br></pre></td><td class="code"><pre><span class="line">剪枝条件:我们应该选择的格子（<span class="string">'.'</span>）在一行、一列和一个九宫格中可选数字最少的格子开始填数字。</span><br><span class="line"></span><br><span class="line">对于每行、每列和每个<span class="number">9</span>宫格都可以用一个<span class="number">9</span>位的<span class="number">2</span>进制数字来标识该行（列，<span class="number">9</span>宫格）那些数字可以填。</span><br><span class="line">    用<span class="number">1</span>表示可填<span class="number">0</span>表示不可填</span><br><span class="line">    如例题中第一行 ：[<span class="string">"5"</span>,<span class="string">"3"</span>,<span class="string">"."</span>,<span class="string">"."</span>,<span class="string">"7"</span>,<span class="string">"."</span>,<span class="string">"."</span>,<span class="string">"."</span>,<span class="string">"."</span>]</span><br><span class="line">    第一行中 有数字 <span class="number">5</span> <span class="number">3</span> <span class="number">7</span></span><br><span class="line">                    下标    <span class="number">8</span>  <span class="number">7</span>  <span class="number">6</span>  <span class="number">5</span>  <span class="number">4</span>  <span class="number">3</span>  <span class="number">2</span>  <span class="number">1</span>  <span class="number">0</span></span><br><span class="line">                二进制数    <span class="number">0</span>  <span class="number">0</span>  <span class="number">1</span>  <span class="number">0</span>  <span class="number">1</span>  <span class="number">0</span>  <span class="number">1</span>  <span class="number">0</span>  <span class="number">0</span></span><br><span class="line">    一共有<span class="number">9</span>行所以用<span class="number">9</span>个<span class="keyword">int</span>表示行row[<span class="number">9</span>],同理<span class="number">9</span>列col[<span class="number">9</span>],<span class="number">9</span>个<span class="number">9</span>宫格cell[<span class="number">3</span>][<span class="number">3</span>]</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="keyword">final</span> <span class="keyword">int</span> N = <span class="number">9</span>;</span><br><span class="line">    <span class="keyword">int</span>[] row = <span class="keyword">new</span> <span class="keyword">int</span> [N], col = <span class="keyword">new</span> <span class="keyword">int</span> [N];</span><br><span class="line">    <span class="comment">//ones数组表示0~2^9 - 1的整数中二进制表示中1的个数:如ones[7] = 3 ones[8] = 1</span></span><br><span class="line">    <span class="comment">//map数组表示2的整数次幂中二进制1所在位置（从0开始） 如 map[1] = 0,map[2] = 1, map[4] = 2</span></span><br><span class="line">    <span class="keyword">int</span>[] ones = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">1</span> &lt;&lt; N], map = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">1</span> &lt;&lt; N];</span><br><span class="line">    <span class="keyword">int</span>[][] cell = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">3</span>][<span class="number">3</span>]; </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">solveSudoku</span><span class="params">(<span class="keyword">char</span>[][] board)</span> </span>&#123;</span><br><span class="line">        init();</span><br><span class="line">        <span class="keyword">int</span> cnt = fill_state(board);</span><br><span class="line">        dfs(cnt, board);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; N; i++) row[i] = col[i] = (<span class="number">1</span> &lt;&lt; N) - <span class="number">1</span>; </span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">3</span>; i++)</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; <span class="number">3</span>; j++)</span><br><span class="line">                cell[i][j] = (<span class="number">1</span> &lt;&lt; N) - <span class="number">1</span>;</span><br><span class="line">        <span class="comment">//以上2个循环把数组的数初始化为二进制表示8个1，即一开始所以格子都可填</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; N; i++) map[<span class="number">1</span> &lt;&lt; i] = i;</span><br><span class="line">        <span class="comment">//统计0~2^9 - 1的整数中二进制表示中1的个数</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">1</span> &lt;&lt; N; i++)&#123;</span><br><span class="line">            <span class="keyword">int</span> n = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = i; j != <span class="number">0</span>; j ^= lowBit(j)) n++;</span><br><span class="line">            ones[i] = n;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">fill_state</span><span class="params">(<span class="keyword">char</span>[][] board)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> cnt = <span class="number">0</span>;    <span class="comment">//统计board数组空格('.')的个数</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; N; i++)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; N; j++)&#123;</span><br><span class="line">                <span class="keyword">if</span>(board[i][j] != <span class="string">'.'</span>)&#123;</span><br><span class="line">                    <span class="keyword">int</span> t = board[i][j] - <span class="string">'1'</span>;</span><br><span class="line">                    <span class="comment">//数独中 i,j位置为数组，修改row col cell数组中状态</span></span><br><span class="line">                    change_state(i, j, t);  </span><br><span class="line">                &#125;<span class="keyword">else</span> cnt++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> cnt;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">boolean</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> cnt, <span class="keyword">char</span>[][] board)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(cnt == <span class="number">0</span>) <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        <span class="keyword">int</span> min = <span class="number">10</span>, x = <span class="number">0</span>, y = <span class="number">0</span>;</span><br><span class="line">        <span class="comment">//剪枝，即找出当前所以空格可填数字个数最少的位置 记为x y</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; N; i++)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; N; j++)&#123;</span><br><span class="line">                <span class="keyword">if</span>(board[i][j] == <span class="string">'.'</span>)&#123;</span><br><span class="line">                    <span class="keyword">int</span> k = ones[get(i, j)];</span><br><span class="line">                    <span class="keyword">if</span>(k &lt; min)&#123;</span><br><span class="line">                        min = k;</span><br><span class="line">                        x = i;</span><br><span class="line">                        y = j;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//遍历当前 x y所以可选数字</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = get(x, y); i != <span class="number">0</span>; i ^= lowBit(i))&#123;</span><br><span class="line">            <span class="keyword">int</span> t = map[lowBit(i)];</span><br><span class="line">            </span><br><span class="line">            change_state(x, y, t);</span><br><span class="line">            board[x][y] = (<span class="keyword">char</span>)(<span class="string">'1'</span> + t);</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">if</span>(dfs(cnt - <span class="number">1</span>, board)) <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">            </span><br><span class="line">            <span class="comment">//恢复现场</span></span><br><span class="line">            change_state(x, y, t);</span><br><span class="line">            board[x][y] = <span class="string">'.'</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">change_state</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y, <span class="keyword">int</span> t)</span></span>&#123;</span><br><span class="line">        row[x] ^= <span class="number">1</span> &lt;&lt; t;</span><br><span class="line">        col[y] ^= <span class="number">1</span> &lt;&lt; t;</span><br><span class="line">        cell[x / <span class="number">3</span>][y / <span class="number">3</span>] ^= <span class="number">1</span> &lt;&lt; t;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">get</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> row[x] &amp; col[y] &amp; cell[x / <span class="number">3</span>][y / <span class="number">3</span>];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">lowBit</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> -x &amp; x;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+
+
+
+  <div class="declare" hidden="hidden"></div>
+
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">杂谈</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Leetcode</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">音乐</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">游戏</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">回溯</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yorxika.github.io/2019/11/04/解数独/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2019/11/03/字母异位词分组/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">字母异位词分组</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
+
+  
+  
+      <div id="gitalk-container"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.js"></script>
+
+<script>
+var gitalk = new Gitalk({
+  clientID: '0635d0bc6ad58e628693',
+  clientSecret: 'a02a3a1ab4874ccb117251539125fe3a1a4d43da',
+  repo: 'blogtalk',
+  owner: 'Yorxika',
+  admin: ['Yorxika'],
+  id: md5(window.location.pathname),
+  distractionFreeMode: true
+})
+
+gitalk.render('gitalk-container')
+</script>
+
+  
+
 
 
           </div>
@@ -268,9 +446,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: true,
 		toc_hide_index: true,
