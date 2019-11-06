@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="http://yorxika.github.io">
   <title>相同的树 | HMF的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="来源Leetcode第100题相同的树  给定两个二叉树，编写一个函数来检验它们是否相同。 如果两个树在结构上相同，并且节点具有相同的值，则认为它们是相同的。  最简单的比较根节点然后递归比较左子树和右子树，没有什么好说的。">
+  <meta name="description" content="来源Leetcode第100题相同的树  给定两个二叉树，编写一个函数来检验它们是否相同。 如果两个树在结构上相同，并且节点具有相同的值，则认为它们是相同的。  递归最简单的比较根节点然后递归比较左子树和右子树，没有什么好说的。">
 <meta name="keywords" content="Leetcode,递归,树">
 <meta property="og:type" content="article">
 <meta property="og:title" content="相同的树">
 <meta property="og:url" content="http://yorxika.github.io/2019/10/30/相同的树/index.html">
 <meta property="og:site_name" content="HMF的博客">
-<meta property="og:description" content="来源Leetcode第100题相同的树  给定两个二叉树，编写一个函数来检验它们是否相同。 如果两个树在结构上相同，并且节点具有相同的值，则认为它们是相同的。  最简单的比较根节点然后递归比较左子树和右子树，没有什么好说的。">
+<meta property="og:description" content="来源Leetcode第100题相同的树  给定两个二叉树，编写一个函数来检验它们是否相同。 如果两个树在结构上相同，并且节点具有相同的值，则认为它们是相同的。  递归最简单的比较根节点然后递归比较左子树和右子树，没有什么好说的。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-10-30T15:46:09.626Z">
+<meta property="og:updated_time" content="2019-11-06T16:31:07.398Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="相同的树">
-<meta name="twitter:description" content="来源Leetcode第100题相同的树  给定两个二叉树，编写一个函数来检验它们是否相同。 如果两个树在结构上相同，并且节点具有相同的值，则认为它们是相同的。  最简单的比较根节点然后递归比较左子树和右子树，没有什么好说的。">
+<meta name="twitter:description" content="来源Leetcode第100题相同的树  给定两个二叉树，编写一个函数来检验它们是否相同。 如果两个树在结构上相同，并且节点具有相同的值，则认为它们是相同的。  递归最简单的比较根节点然后递归比较左子树和右子树，没有什么好说的。">
   
     <link rel="alternative" href="/atom.xml" title="HMF的博客" type="application/atom+xml">
   
@@ -188,7 +188,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
         <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">423字</span>
+        <span class="post-count">429字</span>
       </span>
     </span>
 
@@ -223,10 +223,10 @@
 <p>给定两个二叉树，编写一个函数来检验它们是否相同。</p>
 <p>如果两个树在结构上相同，并且节点具有相同的值，则认为它们是相同的。</p>
 </blockquote>
-<p>最简单的比较根节点然后递归比较左子树和右子树，没有什么好说的。<a id="more"></a></p>
+<h4 id="递归"><a href="#递归" class="headerlink" title="递归"></a>递归</h4><p>最简单的比较根节点然后递归比较左子树和右子树，没有什么好说的。<a id="more"></a></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"> * public class TreeNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     TreeNode left;</span></span><br><span class="line"><span class="comment"> *     TreeNode right;</span></span><br><span class="line"><span class="comment"> *     TreeNode(int x) &#123; val = x; &#125;</span></span><br><span class="line"><span class="comment"> * &#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isSameTree</span><span class="params">(TreeNode p, TreeNode q)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 如果两个根节点都为空，那肯定是相等的</span></span><br><span class="line">    <span class="keyword">if</span> (p == <span class="keyword">null</span> &amp;&amp; q == <span class="keyword">null</span>) <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    <span class="comment">// 有一个不为空，那就不等了</span></span><br><span class="line">    <span class="keyword">if</span> (q == <span class="keyword">null</span> || p == <span class="keyword">null</span>) <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">	<span class="comment">// 都不为空，比较值</span></span><br><span class="line">	<span class="comment">//然后开始递归比较左右子树</span></span><br><span class="line">    <span class="keyword">if</span> (p.val != q.val) <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    <span class="keyword">return</span> isSameTree(p.right, q.right) &amp;&amp;</span><br><span class="line">            isSameTree(p.left, q.left);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>本来后面是想用两个栈写的，但是笔记本电池续航尿崩了，先看看题解里是怎么写的吧。</p>
+<h4 id="双向队列"><a href="#双向队列" class="headerlink" title="双向队列"></a>双向队列</h4><p>本来后面是想用两个栈写的，但是笔记本电池续航尿崩了，先看看题解里是怎么写的吧。</p>
 <p>题解采用了<strong>双向队列</strong>，并不是栈，emm</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"> * public class TreeNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     TreeNode left;</span></span><br><span class="line"><span class="comment"> *     TreeNode right;</span></span><br><span class="line"><span class="comment"> *     TreeNode(int x) &#123; val = x; &#125;</span></span><br><span class="line"><span class="comment"> * &#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isSameTree</span><span class="params">(TreeNode p, TreeNode q)</span> </span>&#123;</span><br><span class="line">        Deque&lt;TreeNode&gt; stack1 = <span class="keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line">        Deque&lt;TreeNode&gt; stack2 = <span class="keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line">		</span><br><span class="line">		<span class="comment">//根节点入栈(队列)</span></span><br><span class="line">        stack1.push(p);</span><br><span class="line">        stack2.push(q);</span><br><span class="line">        <span class="keyword">while</span> (!stack1.isEmpty() &amp;&amp; !stack2.isEmpty()) &#123;</span><br><span class="line">		</span><br><span class="line">		    <span class="comment">//栈顶元素出栈</span></span><br><span class="line">            TreeNode a = stack1.pop();</span><br><span class="line">            TreeNode b = stack2.pop();</span><br><span class="line">			<span class="comment">//比较出栈元素</span></span><br><span class="line">            <span class="keyword">if</span> (a == <span class="keyword">null</span> &amp;&amp; b == <span class="keyword">null</span>) <span class="keyword">continue</span>;</span><br><span class="line">            <span class="keyword">if</span> (a != <span class="keyword">null</span> &amp;&amp; b != <span class="keyword">null</span> &amp;&amp; a.val == b.val) &#123;</span><br><span class="line">			<span class="comment">//值相等或者都为空将左右子树入栈</span></span><br><span class="line">                stack1.push(a.left);</span><br><span class="line">                stack1.push(a.right);</span><br><span class="line">                stack2.push(b.left);</span><br><span class="line">                stack2.push(b.right);</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> stack1.isEmpty() &amp;&amp; stack2.isEmpty();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
@@ -376,7 +376,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    目录，不存在的
+                    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#递归"><span class="toc-number">1.</span> <span class="toc-text">递归</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#双向队列"><span class="toc-number">2.</span> <span class="toc-text">双向队列</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -585,14 +585,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">双指针</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">链表</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">数学</a>
               </li>
              
@@ -601,11 +593,27 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">双指针</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">公选课</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">诗词</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">链表</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">树</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">栈</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -637,11 +645,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">滑动窗口</a>
+                <a href="javascript:void(0)" class="js-tag color3">分治</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">分治</a>
+                <a href="javascript:void(0)" class="js-tag color5">滑动窗口</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -649,15 +657,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">栈</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">哈希表</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">树</a>
               </li>
              
               <li class="article-tag-list-item">

@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="HMF的博客">
 <meta property="og:description" content="来源Leetcode第48题旋转图像  给定一个 n × n 的二维矩阵表示一个图像。 将图像顺时针旋转 90 度。 说明：">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-11-05T13:34:28.661Z">
+<meta property="og:updated_time" content="2019-11-06T16:25:44.843Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="翻转图像">
 <meta name="twitter:description" content="来源Leetcode第48题旋转图像  给定一个 n × n 的二维矩阵表示一个图像。 将图像顺时针旋转 90 度。 说明：">
@@ -188,7 +188,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
         <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">929字</span>
+        <span class="post-count">937字</span>
       </span>
     </span>
 
@@ -228,11 +228,11 @@
 <p>给定 matrix =<br>[<br>  [1,2,3],<br>  [4,5,6],<br>  [7,8,9]<br>],</p>
 <p>原地旋转输入矩阵，使其变为:<br>[<br>  [7,4,1],<br>  [8,5,2],<br>  [9,6,3]<br>]</p>
 </blockquote>
-<p>这题没什么思路，规律没找到。<br>看了题解之后知道可以通过上下翻转一次，在通过对角线翻转一次即可完成。</p>
+<h4 id="两次翻转"><a href="#两次翻转" class="headerlink" title="两次翻转"></a>两次翻转</h4><p>这题没什么思路，规律没找到。<br>看了题解之后知道可以通过上下翻转一次，在通过对角线翻转一次即可完成。</p>
 <p>代码如下：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">rotate</span><span class="params">(<span class="keyword">int</span>[][] matrix)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> n = matrix.length;</span><br><span class="line">		<span class="comment">//上下翻转</span></span><br><span class="line">		<span class="comment">// n/2代表矩阵的中间线，以实现对折翻转</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n / <span class="number">2</span>; i ++)&#123;</span><br><span class="line">		<span class="comment">//保存欲翻转的当前行</span></span><br><span class="line">            <span class="keyword">int</span>[] tmp = matrix[i];</span><br><span class="line">		<span class="comment">//整行翻转</span></span><br><span class="line">            matrix[i] = matrix[n - i - <span class="number">1</span>];</span><br><span class="line">            matrix[n - i - <span class="number">1</span>] = tmp;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 对角翻转</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i ++)&#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j= i + <span class="number">1</span>; j &lt; n; j++)&#123;</span><br><span class="line">                <span class="keyword">int</span> tmp = matrix[i][j];</span><br><span class="line">                matrix[i][j] = matrix[j][i];</span><br><span class="line">                matrix[j][i] = tmp;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>当然这题规律找出来了就是简单的四数交换，感谢<a href="https://leetcode-cn.com/problems/rotate-image/solution/xuan-zhuan-tu-xiang-ti-jie-by-mu-yi-wei-lan/" target="_blank" rel="noopener">木苡微澜的题解</a></p>
+<h4 id="四数交换"><a href="#四数交换" class="headerlink" title="四数交换"></a>四数交换</h4><p>当然这题规律找出来了就是简单的四数交换，感谢<a href="https://leetcode-cn.com/problems/rotate-image/solution/xuan-zhuan-tu-xiang-ti-jie-by-mu-yi-wei-lan/" target="_blank" rel="noopener">木苡微澜的题解</a></p>
 <p>代码如下：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*将举证旋转90度的方法：</span></span><br><span class="line"><span class="comment">	 * 矩阵例子：</span></span><br><span class="line"><span class="comment">	  [ 5, 1, 9, 11],</span></span><br><span class="line"><span class="comment">	  [ 2, 4, 8, 10],</span></span><br><span class="line"><span class="comment">	  [13, 3, 6,  7],</span></span><br><span class="line"><span class="comment">	  [15,14,12, 16]</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> length = matrix.length;<span class="comment">// 给定的矩阵的边长</span></span><br><span class="line"><span class="keyword">int</span> lengthend = matrix.length;<span class="comment">// 每一圈中分好的块的末尾元素的行或者列的下标（具体圈具体分析）</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* 由外而内，逐个圈进行旋转 */</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> r = <span class="number">0</span>; r &lt;= (length - <span class="number">1</span>) / <span class="number">2</span>; r++) &#123;</span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">        * 创建一个临时数组作为中转站，存放每一个块的数据，注意由外而内每一个圈的块的元素数量不同，</span></span><br><span class="line"><span class="comment">        * 故临时数组长度不一样，用数理逻辑推出长度公式：length-2*r-1</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">    <span class="keyword">int</span>[] temp = <span class="keyword">new</span> <span class="keyword">int</span>[length-<span class="number">2</span>*r-<span class="number">1</span>];</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/*举例：（外圈情况）把第一个块元素放进临时数组temp中</span></span><br><span class="line"><span class="comment">        [ 5, 1, 9,  ], ==&gt; temp[]</span></span><br><span class="line"><span class="comment">        [           ],</span></span><br><span class="line"><span class="comment">        [           ],</span></span><br><span class="line"><span class="comment">        [           ]                    </span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; temp.length; i++) &#123; <span class="comment">// 这个i是临时数组的下标</span></span><br><span class="line">        temp[i] = matrix[r][i + r];</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/*举例：（外圈情况）块[2,13,15]换到[5,1,9]的位置</span></span><br><span class="line"><span class="comment">        [ 5, 1, 9,  ],</span></span><br><span class="line"><span class="comment">        [ 2,        ],</span></span><br><span class="line"><span class="comment">        [13,        ],</span></span><br><span class="line"><span class="comment">        [15,        ]                     </span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span> + r; i &lt; lengthend; i++) &#123;</span><br><span class="line">        matrix[r][length - <span class="number">1</span> - i] = matrix[i][r];</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/*举例：（外圈情况）块[14,12,16]换到[2,13,15]的位置</span></span><br><span class="line"><span class="comment">        [           ],</span></span><br><span class="line"><span class="comment">        [ 2,        ],</span></span><br><span class="line"><span class="comment">        [13,        ],</span></span><br><span class="line"><span class="comment">        [15,14,12,16]                      </span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span> + r; i &lt; lengthend; i++) &#123;</span><br><span class="line">        matrix[i][r] = matrix[length - <span class="number">1</span> - r][i];</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/*举例：（外圈情况）块[11,10,7]换到[14,12,16]的位置</span></span><br><span class="line"><span class="comment">        [        ,11],</span></span><br><span class="line"><span class="comment">        [        ,10],</span></span><br><span class="line"><span class="comment">        [        , 7],</span></span><br><span class="line"><span class="comment">        [  ,14,12,16]                       </span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span> + r; i &lt; lengthend; i++) &#123;</span><br><span class="line">        matrix[length - <span class="number">1</span> - r][i] = matrix[length - <span class="number">1</span> - i][length - <span class="number">1</span> - r];</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/*举例：（外圈情况）把临时数组temp中的元素放进第一个块中</span></span><br><span class="line"><span class="comment">        * </span></span><br><span class="line"><span class="comment">        temp[] ==&gt; [            ],</span></span><br><span class="line"><span class="comment">                    [            ],</span></span><br><span class="line"><span class="comment">                    [            ],</span></span><br><span class="line"><span class="comment">                    [            ]            </span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= temp.length; i++) &#123;</span><br><span class="line">        matrix[length - i - <span class="number">1</span> - r][length - <span class="number">1</span> - r] = temp[temp.length - i];</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/*进入下一圈之前，这一圈中分好的块的末尾元素的行或者列的下标缩小一位*/</span></span><br><span class="line">    lengthend -= <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//将这几个循环写在一起就是这样</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">rotate</span><span class="params">(<span class="keyword">int</span>[][] matrix)</span> </span>&#123;</span><br><span class="line">	<span class="comment">//由外而内，逐个圈进行旋转</span></span><br><span class="line">        <span class="keyword">int</span> len = matrix.length &gt;&gt; <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; len; j++) &#123;</span><br><span class="line">		<span class="comment">//定义由外而内每一个圈的块的元素数量</span></span><br><span class="line">            <span class="keyword">int</span> lengthend = matrix.length - <span class="number">1</span> - <span class="number">2</span> * j;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; lengthend; i++) &#123;</span><br><span class="line">		<span class="comment">//然后开始4个数4个数的交换</span></span><br><span class="line">		<span class="comment">//第一轮的4个数是4个角的数</span></span><br><span class="line">		<span class="comment">//然后在往右移，以此类推</span></span><br><span class="line">                <span class="keyword">int</span> temp = matrix[j][i + j];</span><br><span class="line">                matrix[j][i + j] = matrix[matrix.length - <span class="number">1</span> - j - i][j];</span><br><span class="line">                matrix[matrix.length - <span class="number">1</span> - j - i][j] =  matrix[matrix.length - <span class="number">1</span> - j][matrix.length - <span class="number">1</span> - j - i];</span><br><span class="line">                matrix[matrix.length - <span class="number">1</span> - j][matrix.length - <span class="number">1</span> - j - i] = matrix[j + i][matrix.length - <span class="number">1</span> - j];</span><br><span class="line">                matrix[j + i][matrix.length - <span class="number">1</span> - j] = temp;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
       
@@ -378,7 +378,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    目录，不存在的
+                    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#两次翻转"><span class="toc-number">1.</span> <span class="toc-text">两次翻转</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#四数交换"><span class="toc-number">2.</span> <span class="toc-text">四数交换</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -587,14 +587,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">双指针</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">链表</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">数学</a>
               </li>
              
@@ -603,11 +595,27 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">双指针</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">公选课</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">诗词</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">链表</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">树</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">栈</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -639,11 +647,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">滑动窗口</a>
+                <a href="javascript:void(0)" class="js-tag color3">分治</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">分治</a>
+                <a href="javascript:void(0)" class="js-tag color5">滑动窗口</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -651,15 +659,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">栈</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">哈希表</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">树</a>
               </li>
              
               <li class="article-tag-list-item">
