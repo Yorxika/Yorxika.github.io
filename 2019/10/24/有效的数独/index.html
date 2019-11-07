@@ -9,14 +9,14 @@
   <title>有效的数独 | HMF的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="来源Leetcode第36题有效的数独  判断一个 9x9 的数独是否有效。只需要根据以下规则，验证已经填入的数字是否有效即可。  数字 1-9 在每一行只能出现一次。 数字 1-9 在每一列只能出现一次。">
-<meta name="keywords" content="Leetcode,哈希表">
+<meta name="keywords" content="Leetcode,哈希">
 <meta property="og:type" content="article">
 <meta property="og:title" content="有效的数独">
 <meta property="og:url" content="http://yorxika.github.io/2019/10/24/有效的数独/index.html">
 <meta property="og:site_name" content="HMF的博客">
 <meta property="og:description" content="来源Leetcode第36题有效的数独  判断一个 9x9 的数独是否有效。只需要根据以下规则，验证已经填入的数字是否有效即可。  数字 1-9 在每一行只能出现一次。 数字 1-9 在每一列只能出现一次。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-10-24T15:09:46.120Z">
+<meta property="og:updated_time" content="2019-11-07T10:05:48.362Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="有效的数独">
 <meta name="twitter:description" content="来源Leetcode第36题有效的数独  判断一个 9x9 的数独是否有效。只需要根据以下规则，验证已经填入的数字是否有效即可。  数字 1-9 在每一行只能出现一次。 数字 1-9 在每一列只能出现一次。">
@@ -228,7 +228,7 @@
 </ul>
 <p>数独部分空格内已填入了数字，空白格用 ‘.’ 表示。</p>
 </blockquote>
-<p>看到这题我就想起了上学期的数据结构课设，<strong>基于DPLL的数独游戏求解程序</strong>，其实这题硬要写也是直接暴力遍历一遍就好了，而且暴力遍历的效率还挺高。。。</p>
+<h4 id="一次迭代"><a href="#一次迭代" class="headerlink" title="一次迭代"></a>一次迭代</h4><p>看到这题我就想起了上学期的数据结构课设，<strong>基于DPLL的数独游戏求解程序</strong>，其实这题硬要写也是直接暴力遍历一遍就好了，而且暴力遍历的效率还挺高。。。</p>
 <p>执行用时 :3 ms, 在所有 java 提交中击败了89.93%的用户<br>内存消耗 :43.2 MB, 在所有 java 提交中击败了76.35%的用户</p>
 <p>捂脸，就看看官方解答是怎么说的吧。</p>
 <p>官方题解用了<strong>一次迭代</strong>来解决问题。<br>首先定义子数独 <strong>box_index = (row/3)*3+ columns/3</strong> 将原本的数独棋盘划分为9个小数独<br>利用<strong>value -&gt; count</strong> 哈希映射来跟踪所有已经遇到的值，确保行/列/ 子数独中没有重复项。<br>接下来要做的工作：</p>
@@ -244,10 +244,10 @@
 <p>代码如下：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isValidSudoku</span><span class="params">(<span class="keyword">char</span>[][] board)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 初始化数据</span></span><br><span class="line">	<span class="comment">//初始化行</span></span><br><span class="line">    HashMap&lt;Integer, Integer&gt; [] rows = <span class="keyword">new</span> HashMap[<span class="number">9</span>];</span><br><span class="line">	<span class="comment">//初始化列</span></span><br><span class="line">    HashMap&lt;Integer, Integer&gt; [] columns = <span class="keyword">new</span> HashMap[<span class="number">9</span>];</span><br><span class="line">	<span class="comment">//初始化3*3九宫格</span></span><br><span class="line">    HashMap&lt;Integer, Integer&gt; [] boxes = <span class="keyword">new</span> HashMap[<span class="number">9</span>];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">9</span>; i++) &#123;</span><br><span class="line">      rows[i] = <span class="keyword">new</span> HashMap&lt;Integer, Integer&gt;();</span><br><span class="line">      columns[i] = <span class="keyword">new</span> HashMap&lt;Integer, Integer&gt;();</span><br><span class="line">      boxes[i] = <span class="keyword">new</span> HashMap&lt;Integer, Integer&gt;();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//遍历数独棋盘</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">9</span>; i++) &#123;</span><br><span class="line">      <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; <span class="number">9</span>; j++) &#123;</span><br><span class="line">        <span class="keyword">char</span> num = board[i][j];</span><br><span class="line">        <span class="keyword">if</span> (num != <span class="string">'.'</span>) &#123;</span><br><span class="line">		<span class="comment">//如果当前格子非空</span></span><br><span class="line">          <span class="keyword">int</span> n = (<span class="keyword">int</span>)num;</span><br><span class="line">          <span class="keyword">int</span> box_index = (i / <span class="number">3</span> ) * <span class="number">3</span> + j / <span class="number">3</span>;</span><br><span class="line"></span><br><span class="line">          <span class="comment">//将当前格子的数据放入hash表里</span></span><br><span class="line">		  <span class="comment">//key值为n,value值如果说当前格子的数字并没有在哈希表里出现过，那么就采用默认值0 然后+1，出现过就用n + 1；</span></span><br><span class="line">		  <span class="comment">//也就是说这里存放的该数字是出现的次数</span></span><br><span class="line">          rows[i].put(n, rows[i].getOrDefault(n, <span class="number">0</span>) + <span class="number">1</span>);</span><br><span class="line">          columns[j].put(n, columns[j].getOrDefault(n, <span class="number">0</span>) + <span class="number">1</span>);</span><br><span class="line">          boxes[box_index].put(n, boxes[box_index].getOrDefault(n, <span class="number">0</span>) + <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">          <span class="comment">// 如果冲突了，就返回false</span></span><br><span class="line">          <span class="keyword">if</span> (rows[i].get(n) &gt; <span class="number">1</span> || columns[j].get(n) &gt; <span class="number">1</span> || boxes[box_index].get(n) &gt; <span class="number">1</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>当然也有空间换时间的做法，用了3个9*9数组来标记情况<br>代码如下：</p>
+<h4 id="空间换时间"><a href="#空间换时间" class="headerlink" title="空间换时间"></a>空间换时间</h4><p>当然也有空间换时间的做法，用了3个9*9数组来标记情况<br>代码如下：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isValidSudoku</span><span class="params">(<span class="keyword">char</span>[][] board)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 记录某行，某位数字是否已经被摆放</span></span><br><span class="line">        <span class="keyword">boolean</span>[][] row = <span class="keyword">new</span> <span class="keyword">boolean</span>[<span class="number">9</span>][<span class="number">9</span>];</span><br><span class="line">        <span class="comment">// 记录某列，某位数字是否已经被摆放</span></span><br><span class="line">        <span class="keyword">boolean</span>[][] col = <span class="keyword">new</span> <span class="keyword">boolean</span>[<span class="number">9</span>][<span class="number">9</span>];</span><br><span class="line">        <span class="comment">// 记录某 3x3 宫格内，某位数字是否已经被摆放</span></span><br><span class="line">        <span class="keyword">boolean</span>[][] block = <span class="keyword">new</span> <span class="keyword">boolean</span>[<span class="number">9</span>][<span class="number">9</span>];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">9</span>; i++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; <span class="number">9</span>; j++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (board[i][j] != <span class="string">'.'</span>) &#123;</span><br><span class="line">                    <span class="keyword">int</span> num = board[i][j] - <span class="string">'1'</span>;</span><br><span class="line">                    <span class="keyword">int</span> blockIndex = i / <span class="number">3</span> * <span class="number">3</span> + j / <span class="number">3</span>;</span><br><span class="line">                    <span class="keyword">if</span> (row[i][num] || col[j][num] || block[blockIndex][num]) &#123;</span><br><span class="line">                        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">                    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                        row[i][num] = <span class="keyword">true</span>;</span><br><span class="line">                        col[j][num] = <span class="keyword">true</span>;</span><br><span class="line">                        block[blockIndex][num] = <span class="keyword">true</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 
-<p>最后一种解法是利用位运算<br>用10个bit位标记数据情况，哪位数字出现了并且当前位不为1，说明不冲突，那么当前位就标记为1，对于九宫格的处理同样也是用i/3*3+j/3将数独棋盘划分成了9个区域。<br>代码如下：</p>
+<h4 id="位运算"><a href="#位运算" class="headerlink" title="位运算"></a>位运算</h4><p>最后一种解法是利用位运算<br>用10个bit位标记数据情况，哪位数字出现了并且当前位不为1，说明不冲突，那么当前位就标记为1，对于九宫格的处理同样也是用i/3*3+j/3将数独棋盘划分成了9个区域。<br>代码如下：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isValidSudoku</span><span class="params">(<span class="keyword">char</span>[][] board)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span>[] rowCnt = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">9</span>];</span><br><span class="line">	<span class="keyword">int</span>[] colCnt = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">9</span>];</span><br><span class="line">	<span class="keyword">int</span>[] boxCnt = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">9</span>];</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">9</span>; i++) &#123;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; <span class="number">9</span>; j++) &#123;</span><br><span class="line">			<span class="keyword">if</span> (<span class="string">'.'</span> == board[i][j]) &#123;</span><br><span class="line">				<span class="keyword">continue</span>;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">int</span> num = board[i][j] - <span class="number">48</span>;</span><br><span class="line">			<span class="comment">// 处理行</span></span><br><span class="line">			<span class="keyword">if</span> ((rowCnt[i] &gt;&gt; num) % <span class="number">2</span> == <span class="number">1</span>) &#123;</span><br><span class="line">				<span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">			&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">				rowCnt[i] += <span class="number">1</span> &lt;&lt; num;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="comment">// 处理列</span></span><br><span class="line">			<span class="keyword">if</span> ((colCnt[j] &gt;&gt; num) % <span class="number">2</span> == <span class="number">1</span>) &#123;</span><br><span class="line">				<span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">			&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">				colCnt[j] += <span class="number">1</span> &lt;&lt; num;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="comment">// 处理框</span></span><br><span class="line">			<span class="keyword">int</span> boxNum = i / <span class="number">3</span> * <span class="number">3</span> + j / <span class="number">3</span>;</span><br><span class="line">			<span class="keyword">if</span> ((boxCnt[boxNum] &gt;&gt; num) % <span class="number">2</span> == <span class="number">1</span>) &#123;</span><br><span class="line">				<span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">			&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">				boxCnt[boxNum] += <span class="number">1</span> &lt;&lt; num;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
 
@@ -284,7 +284,7 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">哈希表</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">哈希</a>
         		</li>
       		
 		</ul>
@@ -392,7 +392,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    目录，不存在的
+                    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#一次迭代"><span class="toc-number">1.</span> <span class="toc-text">一次迭代</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#空间换时间"><span class="toc-number">2.</span> <span class="toc-text">空间换时间</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#位运算"><span class="toc-number">3.</span> <span class="toc-text">位运算</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -573,6 +573,14 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Leetcode</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">哈希</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
               </li>
              
@@ -581,11 +589,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Leetcode</a>
+                <a href="javascript:void(0)" class="js-tag color3">二分</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">HASH</a>
+                <a href="javascript:void(0)" class="js-tag color3">数学</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">双指针</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -597,19 +609,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">数组</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">数学</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">移位</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">双指针</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -625,6 +625,18 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">回溯</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">数组</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">字符串</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">树</a>
               </li>
              
@@ -633,31 +645,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">字符串</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">回溯</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">回文</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">哈希</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">二分</a>
+                <a href="javascript:void(0)" class="js-tag color3">贪心</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">动态规划</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">贪心</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -669,15 +665,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">拓展中心</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">哈希表</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">组成原理</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">拓展中心</a>
               </li>
              
               <li class="article-tag-list-item">
