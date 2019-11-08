@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="HMF的博客">
 <meta property="og:description" content="来源Leetcode第69题x的平方根  实现 int sqrt(int x) 函数。 计算并返回 x 的平方根，其中 x 是非负整数。 由于返回类型是整数，结果只保留整数的部分，小数部分将被舍去。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-11-07T13:02:05.308Z">
+<meta property="og:updated_time" content="2019-11-07T13:44:04.260Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="x的平方根">
 <meta name="twitter:description" content="来源Leetcode第69题x的平方根  实现 int sqrt(int x) 函数。 计算并返回 x 的平方根，其中 x 是非负整数。 由于返回类型是整数，结果只保留整数的部分，小数部分将被舍去。">
@@ -188,7 +188,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
         <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">530字</span>
+        <span class="post-count">528字</span>
       </span>
     </span>
 
@@ -226,7 +226,13 @@
 <p>示例 2:</p>
 <p>输入: 8<br>输出: 2</p>
 </blockquote>
-<h4 id="不正经解法"><a href="#不正经解法" class="headerlink" title="不正经解法"></a>不正经解法</h4><p>最简单的就直接调用Math.sqrt()就行了，但这很明显不符合题意。<br>代码就一句:<figure class="highlight java"><figcaption><span>return (int)Math.sqrt(x); ```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">#### 二分查找</span><br><span class="line"></span><br><span class="line">利用x/mid 来比较是否接近目标</span><br><span class="line"></span><br><span class="line">代码如下：</span><br><span class="line">```JAVA</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">mySqrt</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(x == <span class="number">0</span> || x == <span class="number">1</span>)    <span class="keyword">return</span> x;</span><br><span class="line">        <span class="keyword">int</span> l = <span class="number">0</span>;<span class="comment">//左边界</span></span><br><span class="line">        <span class="keyword">int</span> r = x;<span class="comment">//右边界</span></span><br><span class="line">        <span class="keyword">while</span> (l &lt;= r) &#123;</span><br><span class="line">            <span class="keyword">int</span> mid =  (r + l) / <span class="number">2</span>;</span><br><span class="line">            <span class="keyword">int</span> s = x / mid; <span class="comment">//用来判断mid大于目标还是小于目标，或等于目标</span></span><br><span class="line">            <span class="keyword">int</span> ss = x / (mid + <span class="number">1</span>);</span><br><span class="line">            <span class="keyword">if</span> (x / s == s) <span class="keyword">return</span> s; <span class="comment">//刚好是他的算术平方根</span></span><br><span class="line">            <span class="keyword">if</span> (s &gt; mid &amp;&amp; ss &lt; mid + <span class="number">1</span>) <span class="keyword">return</span> mid; <span class="comment">//例如6 在2的平方以及 3的平方之间  答案为2</span></span><br><span class="line">            <span class="keyword">if</span> (s &gt; mid) l = mid + <span class="number">1</span>; <span class="comment">//调整边界</span></span><br><span class="line">            <span class="keyword">if</span> (s &lt; mid) r = mid - <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="不正经解法"><a href="#不正经解法" class="headerlink" title="不正经解法"></a>不正经解法</h4><p>最简单的就直接调用Math.sqrt()就行了，但这很明显不符合题意。<br>代码就一句:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">return</span> (<span class="keyword">int</span>)Math.sqrt(x);</span><br></pre></td></tr></table></figure>
+
+<h4 id="二分查找"><a href="#二分查找" class="headerlink" title="二分查找"></a>二分查找</h4><p>利用x/mid 来比较是否接近目标</p>
+<p>代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">mySqrt</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(x == <span class="number">0</span> || x == <span class="number">1</span>)    <span class="keyword">return</span> x;</span><br><span class="line">    <span class="keyword">int</span> l = <span class="number">0</span>;<span class="comment">//左边界</span></span><br><span class="line">    <span class="keyword">int</span> r = x;<span class="comment">//右边界</span></span><br><span class="line">    <span class="keyword">while</span> (l &lt;= r) &#123;</span><br><span class="line">        <span class="keyword">int</span> mid =  (r + l) / <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">int</span> s = x / mid; <span class="comment">//用来判断mid大于目标还是小于目标，或等于目标</span></span><br><span class="line">        <span class="keyword">int</span> ss = x / (mid + <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">if</span> (x / s == s) <span class="keyword">return</span> s; <span class="comment">//刚好是他的算术平方根</span></span><br><span class="line">        <span class="keyword">if</span> (s &gt; mid &amp;&amp; ss &lt; mid + <span class="number">1</span>) <span class="keyword">return</span> mid; <span class="comment">//例如6 在2的平方以及 3的平方之间  答案为2</span></span><br><span class="line">        <span class="keyword">if</span> (s &gt; mid) l = mid + <span class="number">1</span>; <span class="comment">//调整边界</span></span><br><span class="line">        <span class="keyword">if</span> (s &lt; mid) r = mid - <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p>当然也有用<strong>double</strong>类型来提高精度的</p>
 <p>代码如下：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">mySqrt2</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">double</span> mid = (<span class="keyword">double</span>) x / <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">double</span> left = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">double</span> right = x;</span><br><span class="line">    <span class="keyword">while</span> ((<span class="keyword">int</span>)left &lt;(<span class="keyword">int</span>) right)&#123;</span><br><span class="line">        <span class="keyword">if</span>(mid * mid &gt; x)&#123;</span><br><span class="line">            right = mid;</span><br><span class="line">            mid = (<span class="keyword">double</span>) (left + right) / <span class="number">2</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">            left = mid;</span><br><span class="line">            mid = (<span class="keyword">double</span>) (left + right) / <span class="number">2</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> (<span class="keyword">int</span>)mid ;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -387,7 +393,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#不正经解法"><span class="toc-number">1.</span> <span class="toc-text">不正经解法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#牛顿迭代法"><span class="toc-number">2.</span> <span class="toc-text">牛顿迭代法</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#不正经解法"><span class="toc-number">1.</span> <span class="toc-text">不正经解法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#二分查找"><span class="toc-number">2.</span> <span class="toc-text">二分查找</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#牛顿迭代法"><span class="toc-number">3.</span> <span class="toc-text">牛顿迭代法</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -568,19 +574,15 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Leetcode</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">哈希</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Android</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Leetcode</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -592,10 +594,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">双指针</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">二分查找</a>
               </li>
              
@@ -604,7 +602,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">移位</a>
+                <a href="javascript:void(0)" class="js-tag color4">双指针</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">哈希</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -616,7 +618,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">移位</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">链表</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">字符串</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -625,10 +635,6 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">数组</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">字符串</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -648,7 +654,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">动态规划</a>
+                <a href="javascript:void(0)" class="js-tag color5">滑动窗口</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -656,15 +662,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">滑动窗口</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">组成原理</a>
+                <a href="javascript:void(0)" class="js-tag color5">动态规划</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">拓展中心</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">组成原理</a>
               </li>
              
               <li class="article-tag-list-item">
