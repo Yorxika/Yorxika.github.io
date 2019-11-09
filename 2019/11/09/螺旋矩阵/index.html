@@ -8,19 +8,19 @@
   <link rel="dns-prefetch" href="http://yorxika.github.io">
   <title>螺旋矩阵 | HMF的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="来源Leetcode第54题螺旋矩阵  给定一个包含 m x n 个元素的矩阵（m 行, n 列），请按照顺时针螺旋顺序，返回矩阵中的所有元素。 示例 1: 输入:[ [ 1, 2, 3 ], [ 4, 5, 6 ], [ 7, 8, 9 ]]输出: [1,2,3,6,9,8,7,4,5]  找规律从最外层向内部逐层遍历打印矩阵。 123456789101112131415161718192021">
+  <meta name="description" content="来源Leetcode第54题螺旋矩阵  给定一个包含 m x n 个元素的矩阵（m 行, n 列），请按照顺时针螺旋顺序，返回矩阵中的所有元素。 示例 1: 输入:">
 <meta name="keywords" content="Leetcode,数学,数组">
 <meta property="og:type" content="article">
 <meta property="og:title" content="螺旋矩阵">
 <meta property="og:url" content="http://yorxika.github.io/2019/11/09/螺旋矩阵/index.html">
 <meta property="og:site_name" content="HMF的博客">
-<meta property="og:description" content="来源Leetcode第54题螺旋矩阵  给定一个包含 m x n 个元素的矩阵（m 行, n 列），请按照顺时针螺旋顺序，返回矩阵中的所有元素。 示例 1: 输入:[ [ 1, 2, 3 ], [ 4, 5, 6 ], [ 7, 8, 9 ]]输出: [1,2,3,6,9,8,7,4,5]  找规律从最外层向内部逐层遍历打印矩阵。 123456789101112131415161718192021">
+<meta property="og:description" content="来源Leetcode第54题螺旋矩阵  给定一个包含 m x n 个元素的矩阵（m 行, n 列），请按照顺时针螺旋顺序，返回矩阵中的所有元素。 示例 1: 输入:">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="https://pic.leetcode-cn.com/21f4b738d3a221048ab021a8c663083b51c76a2d922c91019d6b5f514881688b-54_spiralmatrix.png">
-<meta property="og:updated_time" content="2019-11-09T08:34:46.912Z">
+<meta property="og:updated_time" content="2019-11-09T08:35:56.031Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="螺旋矩阵">
-<meta name="twitter:description" content="来源Leetcode第54题螺旋矩阵  给定一个包含 m x n 个元素的矩阵（m 行, n 列），请按照顺时针螺旋顺序，返回矩阵中的所有元素。 示例 1: 输入:[ [ 1, 2, 3 ], [ 4, 5, 6 ], [ 7, 8, 9 ]]输出: [1,2,3,6,9,8,7,4,5]  找规律从最外层向内部逐层遍历打印矩阵。 123456789101112131415161718192021">
+<meta name="twitter:description" content="来源Leetcode第54题螺旋矩阵  给定一个包含 m x n 个元素的矩阵（m 行, n 列），请按照顺时针螺旋顺序，返回矩阵中的所有元素。 示例 1: 输入:">
 <meta name="twitter:image" content="https://pic.leetcode-cn.com/21f4b738d3a221048ab021a8c663083b51c76a2d922c91019d6b5f514881688b-54_spiralmatrix.png">
   
     <link rel="alternative" href="/atom.xml" title="HMF的博客" type="application/atom+xml">
@@ -224,7 +224,7 @@
 <blockquote>
 <p>给定一个包含 m x n 个元素的矩阵（m 行, n 列），请按照顺时针螺旋顺序，返回矩阵中的所有元素。</p>
 <p>示例 1:</p>
-<p>输入:<br>[<br> [ 1, 2, 3 ],<br> [ 4, 5, 6 ],<br> [ 7, 8, 9 ]<br>]<br>输出: [1,2,3,6,9,8,7,4,5]</p>
+<p>输入:<a id="more"></a><br>[<br> [ 1, 2, 3 ],<br> [ 4, 5, 6 ],<br> [ 7, 8, 9 ]<br>]<br>输出: [1,2,3,6,9,8,7,4,5]</p>
 </blockquote>
 <h4 id="找规律"><a href="#找规律" class="headerlink" title="找规律"></a>找规律</h4><p>从最外层向内部逐层遍历打印矩阵。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> List&lt;Integer&gt; <span class="title">spiralOrder</span><span class="params">(<span class="keyword">int</span>[][] matrix)</span> </span>&#123;</span><br><span class="line">    List&lt;Integer&gt; ans = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">    <span class="keyword">if</span>(matrix == <span class="keyword">null</span> || matrix.length == <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    <span class="keyword">int</span> xLength = matrix.length; <span class="comment">//定义x方向长度 即行数</span></span><br><span class="line">    <span class="keyword">int</span> yLength = matrix[<span class="number">0</span>].length; <span class="comment">//定义y方向长度 即列数</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> level = <span class="number">0</span>; <span class="comment">// 初始化层数</span></span><br><span class="line">    <span class="keyword">int</span> TotalLevel = (Math.min(xLength,yLength) + <span class="number">1</span>) / <span class="number">2</span>;</span><br><span class="line">    <span class="comment">//初始化遍历总的层数</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (level &lt; TotalLevel)&#123;</span><br><span class="line">        <span class="comment">//对应着最上层向右的第一次遍历</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = level;j &lt; yLength - level;j++)&#123;</span><br><span class="line">            ans.add(matrix[level][j]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//对应着第二次遍历从右上往右下</span></span><br><span class="line">        <span class="comment">//这时候的起点注意行数 + 1</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = level + <span class="number">1</span> ; j &lt; xLength - level ; j++)</span><br><span class="line">            ans.add(matrix[j][yLength - <span class="number">1</span> - level]);</span><br><span class="line">        <span class="comment">//右下往左下如果这一层只有1行，那么第一个循环已经将该行打印了</span></span><br><span class="line">        <span class="comment">// 这里就不需要打印了，即 xLength - 1 - level != level</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = yLength - level - <span class="number">2</span>; j &gt;= level &amp;&amp; xLength - <span class="number">1</span> - level != level;j--)</span><br><span class="line">            ans.add(matrix[xLength - level - <span class="number">1</span>][j]);</span><br><span class="line">        <span class="comment">//从左下往左上,如果这一层只有1列，那么第2个循环已经将该列打印了，</span></span><br><span class="line">        <span class="comment">// 这里不需要打印，即yLength - 1 - level != level</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = xLength - level - <span class="number">2</span> ; j &gt;= level + <span class="number">1</span> &amp;&amp; yLength - <span class="number">1</span> - level != level ;j--)</span><br><span class="line">            ans.add(matrix[j][level]);</span><br><span class="line">        level ++ ;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -650,11 +650,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">滑动窗口</a>
+                <a href="javascript:void(0)" class="js-tag color3">分治</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">分治</a>
+                <a href="javascript:void(0)" class="js-tag color5">滑动窗口</a>
               </li>
              
               <li class="article-tag-list-item">
