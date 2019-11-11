@@ -6,18 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yorxika.github.io">
-  <title>Tag: 滑动窗口 | HMF的博客</title>
+  <title>搜索旋转排序数组II | HMF的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="华中科技大学17级">
-<meta property="og:type" content="website">
-<meta property="og:title" content="HMF的博客">
-<meta property="og:url" content="http://yorxika.github.io/tags/滑动窗口/index.html">
+  <meta name="description" content="来源Leetcode第81题搜索旋转排序数组II  假设按照升序排序的数组在预先未知的某个点上进行了旋转。 ( 例如，数组 [0,0,1,2,2,5,6] 可能变为 [2,5,6,0,0,1,2] )。 编写一个函数来判断给定的目标值是否存在于数组中。若存在返回 true，否则返回 false。 示例 1:">
+<meta name="keywords" content="Leetcode,二分,数组">
+<meta property="og:type" content="article">
+<meta property="og:title" content="搜索旋转排序数组II">
+<meta property="og:url" content="http://yorxika.github.io/2019/11/11/搜索旋转排序数组II/index.html">
 <meta property="og:site_name" content="HMF的博客">
-<meta property="og:description" content="华中科技大学17级">
+<meta property="og:description" content="来源Leetcode第81题搜索旋转排序数组II  假设按照升序排序的数组在预先未知的某个点上进行了旋转。 ( 例如，数组 [0,0,1,2,2,5,6] 可能变为 [2,5,6,0,0,1,2] )。 编写一个函数来判断给定的目标值是否存在于数组中。若存在返回 true，否则返回 false。 示例 1:">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-11-11T03:29:30.703Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="HMF的博客">
-<meta name="twitter:description" content="华中科技大学17级">
+<meta name="twitter:title" content="搜索旋转排序数组II">
+<meta name="twitter:description" content="来源Leetcode第81题搜索旋转排序数组II  假设按照升序排序的数组在预先未知的某个点上进行了旋转。 ( 例如，数组 [0,0,1,2,2,5,6] 可能变为 [2,5,6,0,0,1,2] )。 编写一个函数来判断给定的目标值是否存在于数组中。若存在返回 true，否则返回 false。 示例 1:">
   
     <link rel="alternative" href="/atom.xml" title="HMF的博客" type="application/atom+xml">
   
@@ -164,36 +166,100 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-搜索旋转排序数组II" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/09/11/无重复字符的最长子串/" class="archive-article-date">
-  	<time datetime="2019-09-11T13:30:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-11</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/09/11/无重复字符的最长子串/">无重复字符的最长子串</a>
+    <h1 class="article-title" itemprop="name">
+      搜索旋转排序数组II
     </h1>
   
 
-        <div class="article-info info-on-right">
+        
+        <a href="/2019/11/11/搜索旋转排序数组II/" class="archive-article-date">
+  	<time datetime="2019-11-11T02:43:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-11</time>
+</a>
+		
+		
+          <div style="margin-top:10px;">
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-keyboard-o"></i>
+        <span class="post-meta-item-text">  字数统计: </span>
+        <span class="post-count">811字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+        <i class="fa fa-hourglass-half"></i>
+        <span class="post-meta-item-text">  阅读时长: </span>
+        <span class="post-count">3分</span>
+      </span>
+    </span>
+</div>
+
           
+		  
+        
+		
+		
+		
+          <span class="archive-article-date">
+              阅读量 <span id="busuanzi_value_page_pv"></span>
+          </span>
+        
+
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>来源Leetcode第81题搜索旋转排序数组II</p>
+<blockquote>
+<p>假设按照升序排序的数组在预先未知的某个点上进行了旋转。</p>
+<p>( 例如，数组 [0,0,1,2,2,5,6] 可能变为 [2,5,6,0,0,1,2] )。</p>
+<p>编写一个函数来判断给定的目标值是否存在于数组中。若存在返回 true，否则返回 false。</p>
+<p>示例 1:<a id="more"></a></p>
+<p>输入: nums = [2,5,6,0,0,1,2], target = 0<br>输出: true</p>
+</blockquote>
+<h4 id="不正经解法"><a href="#不正经解法" class="headerlink" title="不正经解法"></a>不正经解法</h4><p>在做题的时候想到是不是可以用库函数来解决，想到String类里有方法indexOf(char)，但是在提交时失败了，因为所要查找的target可能是2位数及其以上，于是改用contains.(Integer.toString(target)) ,在倒数第二个测试用例时出错了。<br>经过排查发现，target是4764，而在nums里有-4764，转化为String之后调用contains自然而然的就会返回true了。<br>还是不死心，在Array类的方法里看到有Arrays.binarySearch这个函数，最终成功解决了，但是提交时用时才打败了23.52%的用户，按理而言时间复杂度不应该这么高才对。<br>代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Arrays.sort(nums);</span><br><span class="line"><span class="keyword">return</span> Arrays.binarySearch(nums,target) &gt; -<span class="number">1</span>;</span><br></pre></td></tr></table></figure>
+
+<h4 id="二分查找"><a href="#二分查找" class="headerlink" title="二分查找"></a>二分查找</h4><p>与33题不同的是，这题允许数据重复，因而当有重复数字，会存在A[mid] = A[end]的情况。此时右半序列A[mid-1 : end]可能是sorted，也可能并没有sorted，所以当A[mid] = A[end] != target时，无法排除一半的序列，而只能排除掉A[end]，搜寻A[start : end-1]</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">search</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> target)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> len = nums.length,left = <span class="number">0</span>,right = len - <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span> (left &lt;= right)&#123;</span><br><span class="line">        <span class="keyword">int</span> mid = (left + right) / <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">if</span>(nums[mid] == target) <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        <span class="keyword">if</span>(nums[mid] &lt; nums[right])&#123;</span><br><span class="line">            <span class="keyword">if</span>(nums[mid] &lt; target &amp;&amp; nums[right] &gt;= target)</span><br><span class="line">                left = mid + <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">else</span> right = mid - <span class="number">1</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span> (nums[mid] &gt; nums[right])&#123;</span><br><span class="line">            <span class="comment">//此时是在发生了旋转的区域</span></span><br><span class="line">            <span class="comment">//如果中间的数小于最右边的数，则右半段是有序的，</span></span><br><span class="line">            <span class="comment">//如果中间数大于最右边数，则左半段是有序的，</span></span><br><span class="line">            <span class="comment">//我们只要在有序的半段里用首尾两个数组来判断目标值是否在这一区域内，</span></span><br><span class="line">            <span class="comment">//这样就可以确定保留哪半边了，</span></span><br><span class="line">            <span class="keyword">if</span>(nums[left] &lt;= target &amp;&amp; nums[mid] &gt; target)</span><br><span class="line">                right = mid - <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">else</span> left = mid + <span class="number">1</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span> right-- ;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>按照题解的，稍微的改了一下</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">search</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> target)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> len = nums.length,left = <span class="number">0</span>,right = len - <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">if</span>(len == <span class="number">0</span>) <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    <span class="keyword">while</span> (left &lt;= right)&#123;</span><br><span class="line">        <span class="keyword">int</span> mid = (left + right) / <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">if</span>(nums[mid] == target) <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        <span class="keyword">if</span>(nums[mid] &lt; nums[right])&#123;</span><br><span class="line">            <span class="keyword">if</span>(nums[mid] &lt; target &amp;&amp; nums[right] &gt;= target)</span><br><span class="line">                left = mid + <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">else</span> right = mid - <span class="number">1</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span> (nums[mid] &gt; nums[right])&#123;</span><br><span class="line">            <span class="comment">//此时是在发生了旋转的区域</span></span><br><span class="line">            <span class="comment">//如果中间的数小于最右边的数，则右半段是有序的，</span></span><br><span class="line">            <span class="comment">//如果中间数大于最右边数，则左半段是有序的，</span></span><br><span class="line">            <span class="comment">//我们只要在有序的半段里用首尾两个数组来判断目标值是否在这一区域内，</span></span><br><span class="line">            <span class="comment">//这样就可以确定保留哪半边了，</span></span><br><span class="line">            <span class="keyword">if</span>(nums[left] &lt;= target &amp;&amp; nums[mid] &gt; target)</span><br><span class="line">                right = mid - <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">else</span> left = mid + <span class="number">1</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">if</span>(nums[left] == target)</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">            <span class="keyword">else</span> right-- ;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> nums[left] == target;</span><br><span class="line">    <span class="comment">//夹逼以后，还要判断一下，是不是 target</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+
+
+
+  <div class="declare">
+    <strong>本文作者：</strong>
+    
+      HMF
+    
+    <br>
+    <strong>本文链接：</strong>
+    http://yorxika.github.io/2019/11/11/搜索旋转排序数组II/
+    <br>
+    <strong>版权声明：</strong>
+    本作品采用
+    <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a>
+    进行许可。转载请注明出处！
+    
+  </div>
+
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -203,25 +269,151 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">滑动窗口</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">二分</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">数组</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yorxika.github.io/2019/11/11/搜索旋转排序数组II/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2019/11/10/跳跃游戏II/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">跳跃游戏II</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#不正经解法"><span class="toc-number">1.</span> <span class="toc-text">不正经解法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#二分查找"><span class="toc-number">2.</span> <span class="toc-text">二分查找</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
+        </div>
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
+
+  
+  
+      <div id="gitalk-container"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.js"></script>
+
+<script>
+var gitalk = new Gitalk({
+  clientID: '0635d0bc6ad58e628693',
+  clientSecret: 'a02a3a1ab4874ccb117251539125fe3a1a4d43da',
+  repo: 'blogtalk',
+  owner: 'Yorxika',
+  admin: ['Yorxika'],
+  id: md5(window.location.pathname),
+  distractionFreeMode: true
+})
+
+gitalk.render('gitalk-container')
+</script>
+
+  
+
 
 
           </div>
@@ -278,9 +470,9 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: true,
 		toc_hide_index: false,
