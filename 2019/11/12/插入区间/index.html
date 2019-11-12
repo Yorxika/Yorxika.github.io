@@ -6,20 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yorxika.github.io">
-  <title>简化路径 | HMF的博客</title>
+  <title>插入区间 | HMF的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="来源Leetcode第71题简化路径  以 Unix 风格给出一个文件的绝对路径，你需要简化它。或者换句话说，将其转换为规范路径。 在 Unix 风格的文件系统中，一个点（.）表示当前目录本身；此外，两个点 （..） 表示将目录切换到上一级（指向父目录）；两者都可以是复杂相对路径的组成部分。更多信息请参阅：Linux / Unix中的绝对路径 vs 相对路径">
-<meta name="keywords" content="Leetcode,栈,字符串">
+  <meta name="description" content="来源Leetcode第57题插入区间  给出一个无重叠的 ，按照区间起始端点排序的区间列表。 在列表中插入一个新的区间，你需要确保列表中的区间仍然有序且不重叠（如果有必要的话，可以合并区间）。">
+<meta name="keywords" content="Leetcode,数组,排序">
 <meta property="og:type" content="article">
-<meta property="og:title" content="简化路径">
-<meta property="og:url" content="http://yorxika.github.io/2019/11/07/简化路径/index.html">
+<meta property="og:title" content="插入区间">
+<meta property="og:url" content="http://yorxika.github.io/2019/11/12/插入区间/index.html">
 <meta property="og:site_name" content="HMF的博客">
-<meta property="og:description" content="来源Leetcode第71题简化路径  以 Unix 风格给出一个文件的绝对路径，你需要简化它。或者换句话说，将其转换为规范路径。 在 Unix 风格的文件系统中，一个点（.）表示当前目录本身；此外，两个点 （..） 表示将目录切换到上一级（指向父目录）；两者都可以是复杂相对路径的组成部分。更多信息请参阅：Linux / Unix中的绝对路径 vs 相对路径">
+<meta property="og:description" content="来源Leetcode第57题插入区间  给出一个无重叠的 ，按照区间起始端点排序的区间列表。 在列表中插入一个新的区间，你需要确保列表中的区间仍然有序且不重叠（如果有必要的话，可以合并区间）。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-11-07T13:17:12.021Z">
+<meta property="og:updated_time" content="2019-11-12T13:44:56.063Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="简化路径">
-<meta name="twitter:description" content="来源Leetcode第71题简化路径  以 Unix 风格给出一个文件的绝对路径，你需要简化它。或者换句话说，将其转换为规范路径。 在 Unix 风格的文件系统中，一个点（.）表示当前目录本身；此外，两个点 （..） 表示将目录切换到上一级（指向父目录）；两者都可以是复杂相对路径的组成部分。更多信息请参阅：Linux / Unix中的绝对路径 vs 相对路径">
+<meta name="twitter:title" content="插入区间">
+<meta name="twitter:description" content="来源Leetcode第57题插入区间  给出一个无重叠的 ，按照区间起始端点排序的区间列表。 在列表中插入一个新的区间，你需要确保列表中的区间仍然有序且不重叠（如果有必要的话，可以合并区间）。">
   
     <link rel="alternative" href="/atom.xml" title="HMF的博客" type="application/atom+xml">
   
@@ -166,20 +166,20 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-简化路径" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-插入区间" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      简化路径
+      插入区间
     </h1>
   
 
         
-        <a href="/2019/11/07/简化路径/" class="archive-article-date">
-  	<time datetime="2019-11-07T13:09:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-07</time>
+        <a href="/2019/11/12/插入区间/" class="archive-article-date">
+  	<time datetime="2019-11-12T12:59:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-12</time>
 </a>
 		
 		
@@ -188,7 +188,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
         <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">347字</span>
+        <span class="post-count">1.1k字</span>
       </span>
     </span>
 
@@ -197,7 +197,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-hourglass-half"></i>
         <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">1分</span>
+        <span class="post-count">5分</span>
       </span>
     </span>
 </div>
@@ -218,17 +218,38 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>来源Leetcode第71题简化路径</p>
+        <p>来源Leetcode第57题插入区间</p>
 <blockquote>
-<p>以 Unix 风格给出一个文件的绝对路径，你需要简化它。或者换句话说，将其转换为规范路径。</p>
-<p>在 Unix 风格的文件系统中，一个点（.）表示当前目录本身；此外，两个点 （..） 表示将目录切换到上一级（指向父目录）；两者都可以是复杂相对路径的组成部分。更多信息请参阅：Linux / Unix中的绝对路径 vs 相对路径 <a id="more"></a></p>
-<p>请注意，返回的规范路径必须始终以斜杠 / 开头，并且两个目录名之间必须只有一个斜杠 /。最后一个目录名（如果存在）不能以 / 结尾。此外，规范路径必须是表示绝对路径的最短字符串。</p>
-<p>示例 4：</p>
-<p>输入：”/a/./b/../../c/“<br>输出：”/c”</p>
+<p>给出一个无重叠的 ，按照区间起始端点排序的区间列表。</p>
+<p>在列表中插入一个新的区间，你需要确保列表中的区间仍然有序且不重叠（如果有必要的话，可以合并区间）。</p>
+<a id="more"></a>
+<p>示例 1:</p>
+<p>输入: intervals = [[1,3],[6,9]], newInterval = [2,5]<br>输出: [[1,5],[6,9]]</p>
 </blockquote>
-<h4 id="栈"><a href="#栈" class="headerlink" title="栈"></a>栈</h4><p>思路也简单，对输入字符串做一遍遍历,首先排除字符/，如果是路径文件夹名则入栈，如果是.. 且当前栈不为空则出栈。</p>
-<p>代码如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">simplifyPath</span><span class="params">(String path)</span> </span>&#123;</span><br><span class="line">    String[] s = path.split(<span class="string">"/"</span>);</span><br><span class="line">    Stack&lt;String&gt; stack = <span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; s.length; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (!stack.isEmpty() &amp;&amp; s[i].equals(<span class="string">".."</span>))</span><br><span class="line">            stack.pop();</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (!s[i].equals(<span class="string">""</span>) &amp;&amp; !s[i].equals(<span class="string">"."</span>) &amp;&amp; !s[i].equals(<span class="string">".."</span>))</span><br><span class="line">            stack.push(s[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (stack.isEmpty())</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"/"</span>;</span><br><span class="line"></span><br><span class="line">    StringBuilder ans = <span class="keyword">new</span> StringBuilder();</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; stack.size(); i++) &#123;</span><br><span class="line">        ans.append(<span class="string">"/"</span> + stack.get(i));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans.toString();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h4 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h4><p>同合并区间，就是要注意当intervals为空时，可以直接返回newInterval</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">int</span>[][] insert(<span class="keyword">int</span>[][] intervals, <span class="keyword">int</span>[] newInterval) &#123;</span><br><span class="line">    List&lt;<span class="keyword">int</span> []&gt; ans = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">    <span class="keyword">if</span>(intervals == <span class="keyword">null</span> || intervals.length == <span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        ans.add(newInterval);</span><br><span class="line">        <span class="keyword">return</span> ans.toArray(<span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">0</span>][]);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> [][] matrix = <span class="keyword">new</span> <span class="keyword">int</span>[intervals.length + <span class="number">1</span>][<span class="number">2</span>] ;</span><br><span class="line">    System.arraycopy(intervals,<span class="number">0</span>,matrix,<span class="number">0</span>,intervals.length);</span><br><span class="line">    matrix[intervals.length] = newInterval;</span><br><span class="line">    <span class="comment">//根据二维数组第一个数字大小按每一行整体排序</span></span><br><span class="line">    Arrays.sort(matrix, <span class="keyword">new</span> Comparator&lt;<span class="keyword">int</span>[]&gt;() &#123;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compare</span><span class="params">(<span class="keyword">int</span>[] ints, <span class="keyword">int</span>[] t1)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> ints[<span class="number">0</span>] - t1[<span class="number">0</span>] ;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="keyword">int</span> i = <span class="number">0</span> ;</span><br><span class="line">    <span class="keyword">while</span>(i &lt; matrix.length)&#123;</span><br><span class="line">        <span class="keyword">int</span> left = matrix[i][<span class="number">0</span>];</span><br><span class="line">        <span class="keyword">int</span> right = matrix[i][<span class="number">1</span>];</span><br><span class="line">        <span class="comment">//合并区间，判断right 是否比下一个区间的左值大</span></span><br><span class="line">        <span class="keyword">while</span>(i &lt; matrix.length  &amp;&amp; right&gt;= matrix[i][<span class="number">0</span>])&#123;</span><br><span class="line">            <span class="comment">//重新对right赋值</span></span><br><span class="line">            right = Math.max(right,matrix[i][<span class="number">1</span>]);</span><br><span class="line">            i++;</span><br><span class="line">        &#125;</span><br><span class="line">        ans.add(<span class="keyword">new</span> <span class="keyword">int</span>[] &#123;left,right&#125;);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans.toArray(<span class="keyword">new</span> <span class="keyword">int</span> [<span class="number">0</span>][]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="插入后合并"><a href="#插入后合并" class="headerlink" title="插入后合并"></a>插入后合并</h4><p>注意到初始数组是<strong>无重叠的 ，按照区间起始端点排序的</strong>，因而可以先找到要插入的地方，然后前后合并即可。<br>具体思路见注释。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//首先通过二分查找找到要插入的位置</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">midSearch</span><span class="params">(<span class="keyword">int</span>[][] intervals, <span class="keyword">int</span>[] newInterval)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> start = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> end = intervals.length;</span><br><span class="line">        <span class="keyword">int</span> mid;</span><br><span class="line">        <span class="keyword">while</span> (start&lt;end)&#123;</span><br><span class="line">            mid = (start+end)/<span class="number">2</span>;</span><br><span class="line">            <span class="keyword">if</span>(intervals[mid][<span class="number">0</span>]&lt;newInterval[<span class="number">0</span>])</span><br><span class="line">                start = mid+<span class="number">1</span>;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                end = mid;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> start;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span>[][] insert(<span class="keyword">int</span>[][] intervals, <span class="keyword">int</span>[] newInterval) &#123;</span><br><span class="line">        <span class="keyword">int</span> count = <span class="number">0</span>; <span class="comment">//计数，计算合并多少了个区间</span></span><br><span class="line">        <span class="keyword">int</span>[] buffer = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">2</span>];</span><br><span class="line">        buffer[<span class="number">0</span>] = newInterval[<span class="number">0</span>];</span><br><span class="line">        buffer[<span class="number">1</span>] = newInterval[<span class="number">1</span>];</span><br><span class="line">        <span class="keyword">int</span> place = midSearch(intervals,newInterval);<span class="comment">//找到插入位置</span></span><br><span class="line">		</span><br><span class="line">        <span class="comment">//向后合并</span></span><br><span class="line">        <span class="keyword">int</span> temp;</span><br><span class="line">        <span class="keyword">for</span>(temp = place;temp&lt;intervals.length;temp++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(buffer[<span class="number">1</span>]&lt;intervals[temp][<span class="number">0</span>])</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//这时候temp如果不和place相等，说明插入的区间的右值比后续若干区间的左值都大</span></span><br><span class="line">        <span class="comment">//这时候要更新新的区间右值</span></span><br><span class="line">        <span class="keyword">if</span>(temp!=place)&#123;</span><br><span class="line">            buffer[<span class="number">1</span>] = Math.max(intervals[temp-<span class="number">1</span>][<span class="number">1</span>],buffer[<span class="number">1</span>]);</span><br><span class="line">            count += temp - place;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//向前合并</span></span><br><span class="line">        <span class="keyword">if</span> (place!=<span class="number">0</span>)&#123;</span><br><span class="line">            <span class="comment">//如果插入点前一位置的右值比插入区间的左值大</span></span><br><span class="line">            <span class="keyword">if</span>(intervals[place-<span class="number">1</span>][<span class="number">1</span>]&gt;=buffer[<span class="number">0</span>])&#123;</span><br><span class="line">                <span class="comment">//那么更新合并区间的左值和右值</span></span><br><span class="line">                buffer[<span class="number">0</span>] = intervals[place-<span class="number">1</span>][<span class="number">0</span>];</span><br><span class="line">                buffer[<span class="number">1</span>] = Math.max(intervals[place-<span class="number">1</span>][<span class="number">1</span>],buffer[<span class="number">1</span>]);</span><br><span class="line">                <span class="comment">//同时插入点倒退，合并数+1；</span></span><br><span class="line">                place--;</span><br><span class="line">                count++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//储存结果</span></span><br><span class="line">        <span class="keyword">int</span> target;</span><br><span class="line">        <span class="keyword">int</span>[][] result = <span class="keyword">new</span> <span class="keyword">int</span>[intervals.length - count + <span class="number">1</span>][<span class="number">2</span>];</span><br><span class="line">        <span class="keyword">for</span>(target = <span class="number">0</span>;target&lt;place;target++)&#123;</span><br><span class="line">            result[target][<span class="number">0</span>] = intervals[target][<span class="number">0</span>];</span><br><span class="line">            result[target][<span class="number">1</span>] = intervals[target][<span class="number">1</span>];</span><br><span class="line">        &#125;</span><br><span class="line">        result[target][<span class="number">0</span>] = buffer[<span class="number">0</span>];</span><br><span class="line">        result[target][<span class="number">1</span>] = buffer[<span class="number">1</span>];</span><br><span class="line">        target++;</span><br><span class="line">        <span class="keyword">for</span>(;temp&lt;intervals.length;temp++,target++)&#123;</span><br><span class="line">            result[target][<span class="number">0</span>] = intervals[temp][<span class="number">0</span>];</span><br><span class="line">            result[target][<span class="number">1</span>] = intervals[temp][<span class="number">1</span>];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="常规思考"><a href="#常规思考" class="headerlink" title="常规思考"></a>常规思考</h4><p>来自<a href="https://leetcode-cn.com/problems/insert-interval/solution/chang-gui-si-kao-by-powcai/" target="_blank" rel="noopener">题解</a></p>
+<blockquote>
+<p>先考虑三种极端情况：</p>
+<ul>
+<li>intervals为空</li>
+<li>newInterval[1] &lt; intervals[0][0],直接插入第一个位置</li>
+<li>newInterval[0] &gt; intervals[-1][1],直接插入最后一个位置</li>
+</ul>
+<p>下面就要考虑重叠情况了</p>
+<p>我们目标就是找到和newInterval相关那几个区间.</p>
+<p>首先,左边,当newInterval[0] &gt; intervals[i][1]说明没有和该区间没有重叠部分,继续遍历下一个区间,比如intervals = [[1,3],[6,9]], newInterval = [2,5]</p>
+<p>然后,再看右边,这里有个情况,就是 当intervals[i][0] &gt; newInterval[1]说明newInterval没有和任何区间重合,比如intervals = [[1,3],[6,9]], newInterval = [4,5],直接插入即可.</p>
+<p>接下来我们要找右边重合区域,当while i &lt; n and newInterval[1] &gt;= intervals[i][0]说明有重叠部分,记录左边最大值!</p>
+<p>最后把数组拼接一下即可!</p>
+</blockquote>
+<p>代码如下:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span>[][] insert(<span class="keyword">int</span>[][] intervals, <span class="keyword">int</span>[] newInterval) &#123;</span><br><span class="line">       List&lt;<span class="keyword">int</span>[]&gt; res = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        <span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span> (i &lt; intervals.length &amp;&amp; newInterval[<span class="number">0</span>] &gt; intervals[i][<span class="number">1</span>]) &#123;</span><br><span class="line">            res.add(intervals[i]);</span><br><span class="line">            i++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span>[] tmp = <span class="keyword">new</span> <span class="keyword">int</span>[]&#123;newInterval[<span class="number">0</span>], newInterval[<span class="number">1</span>]&#125;;</span><br><span class="line">		<span class="comment">//合并右边</span></span><br><span class="line">        <span class="keyword">while</span> (i &lt; intervals.length &amp;&amp; newInterval[<span class="number">1</span>] &gt;= intervals[i][<span class="number">0</span>]) &#123;</span><br><span class="line">            tmp[<span class="number">0</span>] = Math.min(tmp[<span class="number">0</span>], intervals[i][<span class="number">0</span>]);</span><br><span class="line">            tmp[<span class="number">1</span>] = Math.max(tmp[<span class="number">1</span>], intervals[i][<span class="number">1</span>]);</span><br><span class="line">            i++;</span><br><span class="line">        &#125;</span><br><span class="line">        res.add(tmp);</span><br><span class="line">		<span class="comment">//添加剩余部分</span></span><br><span class="line">        <span class="keyword">while</span> (i &lt; intervals.length) &#123;</span><br><span class="line">            res.add(intervals[i]);</span><br><span class="line">            i++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res.toArray(<span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">0</span>][]); </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
 
 
@@ -240,7 +261,7 @@
     
     <br>
     <strong>本文链接：</strong>
-    http://yorxika.github.io/2019/11/07/简化路径/
+    http://yorxika.github.io/2019/11/12/插入区间/
     <br>
     <strong>版权声明：</strong>
     本作品采用
@@ -264,11 +285,11 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">栈</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">数组</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">字符串</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">排序</a>
         		</li>
       		
 		</ul>
@@ -324,7 +345,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yorxika.github.io/2019/11/07/简化路径/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yorxika.github.io/2019/11/12/插入区间/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -338,18 +359,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2019/11/08/第K个排列/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          第K个排列
-        
-      </div>
-    </a>
   
-  
-    <a href="/2019/11/07/x-的平方根/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">x的平方根</div>
+    <a href="/2019/11/12/螺旋矩阵II/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">螺旋矩阵II</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -376,7 +388,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#栈"><span class="toc-number">1.</span> <span class="toc-text">栈</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#排序"><span class="toc-number">1.</span> <span class="toc-text">排序</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#插入后合并"><span class="toc-number">2.</span> <span class="toc-text">插入后合并</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#常规思考"><span class="toc-number">3.</span> <span class="toc-text">常规思考</span></a></li></ol>
                     </div>
                 </span>
             </div>
