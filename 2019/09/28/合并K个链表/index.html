@@ -9,14 +9,14 @@
   <title>合并K个排序链表 | Nameless site</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="来源Leetcode第23题合并K个排序链表  合并 k 个排序链表，返回合并后的排序链表。请分析和描述算法的复杂度。 示例: 输入:">
-<meta name="keywords" content="Leetcode,链表,归并,优先队列,贪心分治">
+<meta name="keywords" content="Leetcode,链表,贪心,分治,归并,优先队列">
 <meta property="og:type" content="article">
 <meta property="og:title" content="合并K个排序链表">
 <meta property="og:url" content="http://yorxika.github.io/2019/09/28/合并K个链表/index.html">
 <meta property="og:site_name" content="Nameless site">
 <meta property="og:description" content="来源Leetcode第23题合并K个排序链表  合并 k 个排序链表，返回合并后的排序链表。请分析和描述算法的复杂度。 示例: 输入:">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-09-29T16:51:48.812Z">
+<meta property="og:updated_time" content="2019-11-18T13:10:59.904Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="合并K个排序链表">
 <meta name="twitter:description" content="来源Leetcode第23题合并K个排序链表  合并 k 个排序链表，返回合并后的排序链表。请分析和描述算法的复杂度。 示例: 输入:">
@@ -226,13 +226,13 @@
 <a id="more"></a>
 <p>[<br> 1-&gt;4-&gt;5,<br> 1-&gt;3-&gt;4,<br> 2-&gt;6<br>]<br>输出: 1-&gt;1-&gt;2-&gt;3-&gt;4-&gt;4-&gt;5-&gt;6</p>
 </blockquote>
-<p>这题其实之前做过简化版的，合并2个有序链表，这次合并K个，就可以采用K路归并的思路，两两合并有序链表。<br>代码如下：</p>
+<h4 id="归并"><a href="#归并" class="headerlink" title="归并"></a>归并</h4><p>这题其实之前做过简化版的，合并2个有序链表，这次合并K个，就可以采用K路归并的思路，两两合并有序链表。<br>代码如下：</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"> * struct ListNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     struct ListNode *next;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function">struct ListNode* <span class="title">mergeTwoLists</span><span class="params">(struct ListNode* l1, struct ListNode* l2)</span>  <span class="comment">//合并2个有序链表</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">ListNode</span>* <span class="title">l1</span>,*<span class="title">l2</span>,*<span class="title">head</span>,*<span class="title">n</span>;</span></span><br><span class="line">    l1=p1;</span><br><span class="line">    l2=p2;</span><br><span class="line">    <span class="keyword">if</span>(l1==<span class="literal">NULL</span>)<span class="keyword">return</span> l2;</span><br><span class="line">    <span class="keyword">if</span>(l2==<span class="literal">NULL</span>)<span class="keyword">return</span> l1;</span><br><span class="line">    <span class="keyword">if</span>(l1-&gt;val&lt;l2-&gt;val)</span><br><span class="line">    &#123;</span><br><span class="line">    head = l1;</span><br><span class="line">    n = head;</span><br><span class="line">    l1=l1-&gt;next;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">    head = l2;</span><br><span class="line">    n = head;</span><br><span class="line">    l2=l2-&gt;next;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span>(l1!=<span class="literal">NULL</span>&amp;&amp;l2!=<span class="literal">NULL</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(l1-&gt;val&lt;l2-&gt;val)</span><br><span class="line">        &#123;</span><br><span class="line">            head-&gt;next=l1;</span><br><span class="line">            l1=l1-&gt;next;</span><br><span class="line">            head = head -&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            head -&gt;next = l2;</span><br><span class="line">            l2=l2-&gt;next;</span><br><span class="line">            head = head -&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(l1 == <span class="literal">NULL</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        head -&gt; next = l2;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(l2 == <span class="literal">NULL</span>)</span><br><span class="line">    head -&gt; next = l1;</span><br><span class="line">    <span class="keyword">return</span> n;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">ListNode</span>* _<span class="title">mergeKLists</span>(<span class="title">struct</span> <span class="title">ListNode</span>** <span class="title">lists</span>, <span class="title">int</span> <span class="title">listsSize</span>)</span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="keyword">int</span> count;</span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">ListNode</span>* <span class="title">l1</span>, *<span class="title">l2</span>;</span></span><br><span class="line">	count = listsSize;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> (count == <span class="number">0</span>) &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">	&#125; <span class="keyword">else</span> <span class="keyword">if</span> (count == <span class="number">1</span>) &#123;</span><br><span class="line">		<span class="keyword">return</span> lists[<span class="number">0</span>];</span><br><span class="line">	&#125; <span class="keyword">else</span> <span class="keyword">if</span> (count == <span class="number">2</span>) &#123;</span><br><span class="line">		<span class="keyword">return</span> mergeTwoLists(lists[<span class="number">0</span>], lists[<span class="number">1</span>]);</span><br><span class="line">	&#125;</span><br><span class="line"> </span><br><span class="line">	l1 = _mergeKLists(&amp;lists[<span class="number">0</span>], (count+<span class="number">1</span>)/<span class="number">2</span>);</span><br><span class="line">	l2 = _mergeKLists(&amp;lists[(count+<span class="number">1</span>)/<span class="number">2</span>], count - (count+<span class="number">1</span>)/<span class="number">2</span>);</span><br><span class="line">  </span><br><span class="line">	<span class="keyword">return</span> mergeTwoLists(l1, l2);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">struct ListNode* <span class="title">mergeKLists</span><span class="params">(struct ListNode** lists, <span class="keyword">int</span> listsSize)</span></span></span><br><span class="line"><span class="function"></span>&#123;  </span><br><span class="line">	<span class="keyword">return</span> _mergeKLists(lists, listsSize);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <hr>
 <p>接下来我们来看看<a href="https://leetcode-cn.com/problems/merge-k-sorted-lists/solution/he-bing-kge-pai-xu-lian-biao-by-leetcode/" target="_blank" rel="noopener">官方解答</a></p>
 <hr>
-<h5 id="方法1：暴力"><a href="#方法1：暴力" class="headerlink" title="方法1：暴力"></a>方法1：暴力</h5><p><strong>想法 &amp; 算法</strong></p>
+<h4 id="方法1：暴力"><a href="#方法1：暴力" class="headerlink" title="方法1：暴力"></a>方法1：暴力</h4><p><strong>想法 &amp; 算法</strong></p>
 <ul>
 <li>遍历所有链表，将所有节点的值放到一个数组中。</li>
 <li>将这个数组排序，然后遍历所有元素得到正确顺序的值。</li>
@@ -257,7 +257,7 @@
 </ul>
 </li>
 </ul>
-<h5 id="方法2：逐一比较"><a href="#方法2：逐一比较" class="headerlink" title="方法2：逐一比较"></a>方法2：逐一比较</h5><p><strong>算法</strong></p>
+<h4 id="方法2：逐一比较"><a href="#方法2：逐一比较" class="headerlink" title="方法2：逐一比较"></a>方法2：逐一比较</h4><p><strong>算法</strong></p>
 <ul>
 <li>比较 k 个节点（每个链表的首节点），获得最小值的节点。</li>
 <li>将选中的节点接在最终有序链表的后面。</li>
@@ -281,7 +281,7 @@
 </li>
 </ul>
 <p>对比初始代码，可以发现时间复杂度明显提升，运行时间也由12ms提升到480ms。</p>
-<h5 id="方法3：用优先队列优化方法-2"><a href="#方法3：用优先队列优化方法-2" class="headerlink" title="方法3：用优先队列优化方法 2"></a>方法3：用优先队列优化方法 2</h5><p><strong>算法</strong></p>
+<h4 id="方法3：用优先队列优化方法-2"><a href="#方法3：用优先队列优化方法-2" class="headerlink" title="方法3：用优先队列优化方法 2"></a>方法3：用优先队列优化方法 2</h4><p><strong>算法</strong></p>
 <p>几乎与上述方法一样，除了将<strong>比较环节</strong>用 <strong>优先队列</strong>进行了优化。你可以参考<a href="https://baike.baidu.com/item/%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97/9354754?fr=aladdin" target="_blank" rel="noopener">这里</a> 获取更多信息。</p>
 <p>代码依旧是Python，摸了</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> Queue <span class="keyword">import</span> PriorityQueue</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">mergeKLists</span><span class="params">(self, lists)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        :type lists: List[ListNode]</span></span><br><span class="line"><span class="string">        :rtype: ListNode</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        head = point = ListNode(<span class="number">0</span>)</span><br><span class="line">        q = PriorityQueue()</span><br><span class="line">        <span class="keyword">for</span> l <span class="keyword">in</span> lists:</span><br><span class="line">            <span class="keyword">if</span> l:</span><br><span class="line">                q.put((l.val, l))</span><br><span class="line">        <span class="keyword">while</span> <span class="keyword">not</span> q.empty():</span><br><span class="line">            val, node = q.get()</span><br><span class="line">            point.next = ListNode(val)</span><br><span class="line">            point = point.next</span><br><span class="line">            node = node.next</span><br><span class="line">            <span class="keyword">if</span> node:</span><br><span class="line">                q.put((node.val, node))</span><br><span class="line">        <span class="keyword">return</span> head.next</span><br></pre></td></tr></table></figure>
@@ -312,7 +312,7 @@
 <p>最小索引堆实现：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> ListNode <span class="title">mergeKLists</span><span class="params">(ListNode[] lists)</span> </span>&#123;</span><br><span class="line">       <span class="keyword">int</span> len = <span class="number">0</span>;</span><br><span class="line">       <span class="keyword">if</span>((len=lists.length)==<span class="number">0</span> || lists == <span class="keyword">null</span>) <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">       ListNode preHead = <span class="keyword">new</span> ListNode(-<span class="number">1</span>);</span><br><span class="line">       ListNode preNode = preHead;</span><br><span class="line">       PriorityQueue&lt;ListNode&gt; queue = <span class="keyword">new</span> PriorityQueue&lt;&gt;(len, <span class="keyword">new</span> Comparator&lt;ListNode&gt;() &#123;</span><br><span class="line">           <span class="meta">@Override</span></span><br><span class="line">           <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compare</span><span class="params">(ListNode o1, ListNode o2)</span> </span>&#123;</span><br><span class="line">               <span class="keyword">return</span> o1.val - o2.val;</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;);</span><br><span class="line">       <span class="keyword">for</span> (ListNode node : lists) &#123;</span><br><span class="line">           <span class="keyword">if</span>(node!=<span class="keyword">null</span>) queue.add(node);</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">while</span>(!queue.isEmpty())&#123;</span><br><span class="line">           ListNode small = queue.poll();</span><br><span class="line">           preNode.next = small;</span><br><span class="line">           <span class="keyword">if</span>(small.next!=<span class="keyword">null</span>) queue.add(small.next); <span class="comment">//将最小值节点后面的节点添加到队里中</span></span><br><span class="line">           preNode = preNode.next;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">return</span> preHead.next;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
 
-<h5 id="方法4：逐一两两合并链表"><a href="#方法4：逐一两两合并链表" class="headerlink" title="方法4：逐一两两合并链表"></a>方法4：逐一两两合并链表</h5><p><strong>算法</strong></p>
+<h4 id="方法4：逐一两两合并链表"><a href="#方法4：逐一两两合并链表" class="headerlink" title="方法4：逐一两两合并链表"></a>方法4：逐一两两合并链表</h4><p><strong>算法</strong></p>
 <p>将合并 k 个链表的问题转化成合并 2 个链表 k-1 次</p>
 <p><strong>复杂度分析</strong></p>
 <ul>
@@ -329,7 +329,7 @@
 </li>
 </ul>
 <p>代码见最开始部分。</p>
-<h5 id="方法5：分治"><a href="#方法5：分治" class="headerlink" title="方法5：分治"></a>方法5：分治</h5><p>这个方法沿用了上面的解法，但是进行了较大的优化。我们不需要对大部分节点重复遍历多次。</p>
+<h4 id="方法5：分治"><a href="#方法5：分治" class="headerlink" title="方法5：分治"></a>方法5：分治</h4><p>这个方法沿用了上面的解法，但是进行了较大的优化。我们不需要对大部分节点重复遍历多次。</p>
 <pre><code>+ 将 k 个链表配对并将同一对中的链表合并。
 + 第一轮合并以后，k 个链表被合并成了 K/2个链表，平均长度为 2N/k，然后是k/4个链表，K/8个链表等等。
 + 重复这一过程，直到我们得到了最终的有序链表。</code></pre><p>因此，我们在每一次配对合并的过程中都会遍历几乎全部 N 个节点，并重复这一过程 log2K 次。</p>
@@ -393,15 +393,19 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">贪心</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">分治</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">归并</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">优先队列</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">贪心分治</a>
         		</li>
       		
 		</ul>
@@ -509,7 +513,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="#方法1：暴力"><span class="toc-number">1.</span> <span class="toc-text">方法1：暴力</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#方法2：逐一比较"><span class="toc-number">2.</span> <span class="toc-text">方法2：逐一比较</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#方法3：用优先队列优化方法-2"><span class="toc-number">3.</span> <span class="toc-text">方法3：用优先队列优化方法 2</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#方法4：逐一两两合并链表"><span class="toc-number">4.</span> <span class="toc-text">方法4：逐一两两合并链表</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#方法5：分治"><span class="toc-number">5.</span> <span class="toc-text">方法5：分治</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#归并"><span class="toc-number">1.</span> <span class="toc-text">归并</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#方法1：暴力"><span class="toc-number">2.</span> <span class="toc-text">方法1：暴力</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#方法2：逐一比较"><span class="toc-number">3.</span> <span class="toc-text">方法2：逐一比较</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#方法3：用优先队列优化方法-2"><span class="toc-number">4.</span> <span class="toc-text">方法3：用优先队列优化方法 2</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#方法4：逐一两两合并链表"><span class="toc-number">5.</span> <span class="toc-text">方法4：逐一两两合并链表</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#方法5：分治"><span class="toc-number">6.</span> <span class="toc-text">方法5：分治</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -706,6 +710,14 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">二分查找</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">递归</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">动态规划</a>
               </li>
              
@@ -722,19 +734,19 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">二分查找</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">递归</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">公选课</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">诗词</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">有限状态机</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">移位</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -746,15 +758,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">移位</a>
+                <a href="javascript:void(0)" class="js-tag color3">数组</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">字符串</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">双指针</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">数组</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -766,10 +778,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">字符串</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">回文</a>
               </li>
              
@@ -778,19 +786,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">滑动窗口</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">分治</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">组成原理</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">桶排序</a>
+                <a href="javascript:void(0)" class="js-tag color5">滑动窗口</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -798,7 +798,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">组成原理</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">剪枝</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">桶排序</a>
               </li>
              
               <li class="article-tag-list-item">
