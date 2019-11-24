@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="Nameless blog">
 <meta property="og:description" content="来自Leetcode第93题复原IP地址  给定一个只包含数字的字符串，复原它并返回所有可能的 IP 地址格式。 示例: 输入: “25525511135”输出: [“255.255.11.135”, “255.255.111.35”]">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-11-23T15:34:17.467Z">
+<meta property="og:updated_time" content="2019-11-23T17:11:45.205Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="复原IP地址">
 <meta name="twitter:description" content="来自Leetcode第93题复原IP地址  给定一个只包含数字的字符串，复原它并返回所有可能的 IP 地址格式。 示例: 输入: “25525511135”输出: [“255.255.11.135”, “255.255.111.35”]">
@@ -188,7 +188,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
         <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">226字</span>
+        <span class="post-count">690字</span>
       </span>
     </span>
 
@@ -197,7 +197,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-hourglass-half"></i>
         <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">1分</span>
+        <span class="post-count">3分</span>
       </span>
     </span>
 </div>
@@ -229,6 +229,32 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> List&lt;String&gt; <span class="title">restoreIpAddresses</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">    List&lt;String&gt; ret = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line"></span><br><span class="line">    StringBuilder ip = <span class="keyword">new</span> StringBuilder();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> a = <span class="number">1</span> ; a &lt; <span class="number">4</span> ; ++ a)</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> b = <span class="number">1</span> ; b &lt; <span class="number">4</span> ; ++ b)</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> c = <span class="number">1</span> ; c &lt; <span class="number">4</span> ; ++ c)</span><br><span class="line">                <span class="keyword">for</span>(<span class="keyword">int</span> d = <span class="number">1</span> ; d &lt; <span class="number">4</span> ; ++ d)</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="keyword">if</span>(a + b + c + d == s.length() )</span><br><span class="line">                    &#123;</span><br><span class="line">                        <span class="keyword">int</span> n1 = Integer.parseInt(s.substring(<span class="number">0</span>, a));</span><br><span class="line">                        <span class="keyword">int</span> n2 = Integer.parseInt(s.substring(a, a+b));</span><br><span class="line">                        <span class="keyword">int</span> n3 = Integer.parseInt(s.substring(a+b, a+b+c));</span><br><span class="line">                        <span class="keyword">int</span> n4 = Integer.parseInt(s.substring(a+b+c));</span><br><span class="line">                        <span class="keyword">if</span>(n1 &lt;= <span class="number">255</span> &amp;&amp; n2 &lt;= <span class="number">255</span> &amp;&amp; n3 &lt;= <span class="number">255</span> &amp;&amp; n4 &lt;= <span class="number">255</span>)</span><br><span class="line">                        &#123;</span><br><span class="line">                            ip.append(n1).append(<span class="string">'.'</span>).append(n2)</span><br><span class="line">                                    .append(<span class="string">'.'</span>).append(n3).append(<span class="string">'.'</span>).append(n4);</span><br><span class="line">                            <span class="keyword">if</span>(ip.length() == s.length() + <span class="number">3</span>) ret.add(ip.toString());</span><br><span class="line">                            ip.delete(<span class="number">0</span>, ip.length());</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">    <span class="keyword">return</span> ret;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h4 id="回溯"><a href="#回溯" class="headerlink" title="回溯"></a>回溯</h4><p>来自<a href="https://leetcode-cn.com/problems/restore-ip-addresses/solution/fu-yuan-ipdi-zhi-by-leetcode/" target="_blank" rel="noopener">题解</a></p>
+<ul>
+<li>遍历三个有效位置curr_pos 以放置点。<ul>
+<li>检查从上一个点到现在点中间的部分是否有效 :</li>
+<li>是 :<ul>
+<li>放置该点。</li>
+<li>检查全部 3个点是否放好:<ul>
+<li>是 :<ul>
+<li>将结果添加到输出列表中。</li>
+</ul>
+</li>
+<li>否 :<ul>
+<li>继续放下一个点 backtrack(curr_pos, dots - 1)。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>回溯，移除最后一个点。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> n;</span><br><span class="line"> String s;</span><br><span class="line"> LinkedList&lt;String&gt; segments = <span class="keyword">new</span> LinkedList&lt;String&gt;();</span><br><span class="line"> ArrayList&lt;String&gt; output = <span class="keyword">new</span> ArrayList&lt;String&gt;();</span><br><span class="line"></span><br><span class="line"> <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">valid</span><span class="params">(String segment)</span> </span>&#123;</span><br><span class="line">   <span class="comment">/*</span></span><br><span class="line"><span class="comment">   Check if the current segment is valid :</span></span><br><span class="line"><span class="comment">   1. less or equal to 255      </span></span><br><span class="line"><span class="comment">   2. the first character could be '0' </span></span><br><span class="line"><span class="comment">   only if the segment is equal to '0'</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">   <span class="keyword">int</span> m = segment.length();</span><br><span class="line">   <span class="keyword">if</span> (m &gt; <span class="number">3</span>)</span><br><span class="line">     <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">   <span class="keyword">return</span> (segment.charAt(<span class="number">0</span>) != <span class="string">'0'</span>) ? (Integer.valueOf(segment) &lt;= <span class="number">255</span>) : (m == <span class="number">1</span>);</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"> <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">update_output</span><span class="params">(<span class="keyword">int</span> curr_pos)</span> </span>&#123;</span><br><span class="line">   <span class="comment">/*</span></span><br><span class="line"><span class="comment">   Append the current list of segments </span></span><br><span class="line"><span class="comment">   to the list of solutions</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">   String segment = s.substring(curr_pos + <span class="number">1</span>, n);</span><br><span class="line">   <span class="keyword">if</span> (valid(segment)) &#123;</span><br><span class="line">     segments.add(segment);</span><br><span class="line">     output.add(String.join(<span class="string">"."</span>, segments));</span><br><span class="line">     segments.removeLast();</span><br><span class="line">   &#125;</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"> <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">backtrack</span><span class="params">(<span class="keyword">int</span> prev_pos, <span class="keyword">int</span> dots)</span> </span>&#123;</span><br><span class="line">   <span class="comment">/*</span></span><br><span class="line"><span class="comment">   prev_pos : the position of the previously placed dot</span></span><br><span class="line"><span class="comment">   dots : number of dots to place</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">   <span class="comment">// The current dot curr_pos could be placed </span></span><br><span class="line">   <span class="comment">// in a range from prev_pos + 1 to prev_pos + 4.</span></span><br><span class="line">   <span class="comment">// The dot couldn't be placed </span></span><br><span class="line">   <span class="comment">// after the last character in the string.</span></span><br><span class="line">   <span class="keyword">int</span> max_pos = Math.min(n - <span class="number">1</span>, prev_pos + <span class="number">4</span>);</span><br><span class="line">   <span class="keyword">for</span> (<span class="keyword">int</span> curr_pos = prev_pos + <span class="number">1</span>; curr_pos &lt; max_pos; curr_pos++) &#123;</span><br><span class="line">     String segment = s.substring(prev_pos + <span class="number">1</span>, curr_pos + <span class="number">1</span>);</span><br><span class="line">     <span class="keyword">if</span> (valid(segment)) &#123;</span><br><span class="line">       segments.add(segment);  <span class="comment">// place dot</span></span><br><span class="line">       <span class="keyword">if</span> (dots - <span class="number">1</span> == <span class="number">0</span>)      <span class="comment">// if all 3 dots are placed</span></span><br><span class="line">         update_output(curr_pos);  <span class="comment">// add the solution to output</span></span><br><span class="line">       <span class="keyword">else</span></span><br><span class="line">         backtrack(curr_pos, dots - <span class="number">1</span>);  <span class="comment">// continue to place dots</span></span><br><span class="line">       segments.removeLast();  <span class="comment">// remove the last placed dot </span></span><br><span class="line">     &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="摸"><a href="#摸" class="headerlink" title="摸"></a>摸</h4><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">public List&lt;String&gt; restoreIpAddresses(String s) &#123;</span><br><span class="line">    List&lt;String&gt; res = new ArrayList&lt;&gt;();</span><br><span class="line">    int n = s.<span class="built_in">length</span>();</span><br><span class="line">    backtrack(<span class="number">0</span>, <span class="string">""</span>, <span class="number">4</span>, s, res, n);</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">private void backtrack(int <span class="built_in">i</span>, String tmp, int flag, String s, List&lt;String&gt; res, int n) &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">i</span> == n &amp;&amp; flag == <span class="number">0</span>) &#123;</span><br><span class="line">        res.add(tmp.substring(<span class="number">0</span>, tmp.<span class="built_in">length</span>() - <span class="number">1</span>));</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (flag &lt; <span class="number">0</span>) <span class="keyword">return</span>;</span><br><span class="line">    <span class="keyword">for</span> (int <span class="built_in">j</span> = <span class="built_in">i</span>; <span class="built_in">j</span> &lt; <span class="built_in">i</span> + <span class="number">3</span>; <span class="built_in">j</span>++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">j</span> &lt; n) &#123;</span><br><span class="line">            <span class="keyword">if</span> (<span class="built_in">i</span> == <span class="built_in">j</span> &amp;&amp; s.charAt(<span class="built_in">j</span>) == <span class="string">'0'</span>) &#123;</span><br><span class="line">                backtrack(<span class="built_in">j</span> + <span class="number">1</span>, tmp + s.charAt(<span class="built_in">j</span>) + <span class="string">"."</span>, flag - <span class="number">1</span>, s, res, n);</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (Integer.parseInt(s.substring(<span class="built_in">i</span>, <span class="built_in">j</span> + <span class="number">1</span>)) &lt;= <span class="number">255</span>)</span><br><span class="line">                backtrack(<span class="built_in">j</span> + <span class="number">1</span>, tmp + s.substring(<span class="built_in">i</span>, <span class="built_in">j</span> + <span class="number">1</span>) + <span class="string">"."</span>, flag - <span class="number">1</span>, s, res, n);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 
       
 
@@ -335,6 +361,15 @@
   
 <nav id="article-nav">
   
+    <a href="/2019/11/24/对称二叉树/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          对称二叉树
+        
+      </div>
+    </a>
+  
   
     <a href="/2019/11/22/反转链表II/" id="article-nav-older" class="article-nav-link-wrap">
       <div class="article-nav-title">反转链表II</div>
@@ -364,7 +399,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#暴力"><span class="toc-number">1.</span> <span class="toc-text">暴力</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#回溯"><span class="toc-number">2.</span> <span class="toc-text">回溯</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#暴力"><span class="toc-number">1.</span> <span class="toc-text">暴力</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#回溯"><span class="toc-number">2.</span> <span class="toc-text">回溯</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#摸"><span class="toc-number">3.</span> <span class="toc-text">摸</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -569,7 +604,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">动态规划</a>
+                <a href="javascript:void(0)" class="js-tag color4">双指针</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -581,7 +616,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">双指针</a>
+                <a href="javascript:void(0)" class="js-tag color5">动态规划</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -593,15 +628,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">移位</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">公选课</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">诗词</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">移位</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -617,11 +652,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">字符串</a>
+                <a href="javascript:void(0)" class="js-tag color3">回溯</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">回溯</a>
+                <a href="javascript:void(0)" class="js-tag color4">字符串</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -665,11 +700,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">桶排序</a>
+                <a href="javascript:void(0)" class="js-tag color3">剪枝</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">剪枝</a>
+                <a href="javascript:void(0)" class="js-tag color4">桶排序</a>
               </li>
              
               <li class="article-tag-list-item">
