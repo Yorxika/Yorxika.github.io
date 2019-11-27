@@ -188,7 +188,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
         <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">598字</span>
+        <span class="post-count">1.7k字</span>
       </span>
     </span>
 
@@ -197,7 +197,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-hourglass-half"></i>
         <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">2分</span>
+        <span class="post-count">7分</span>
       </span>
     </span>
 </div>
@@ -214,15 +214,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="Socket套接字介绍"><a href="#Socket套接字介绍" class="headerlink" title="Socket套接字介绍"></a>Socket套接字介绍</h3><pre><code>网络应用程序是由通信进程对组成，每对互相通信的应用程序进程互相发送报文，他们之间的通信必须通过下面的网络来进行。为了将应用程序和底层的网络通信协议屏蔽开来，采用套接字（Socket）这样一个抽象概念来作为应用程序和底层网络之间的应用程序编程接口（API）。
-因为网络应用程序是进程之间的通信，为了唯一的标识通信对等方的通信进程，套接字必须包含2种信息：(1) 通信对等方的网络地址。(2) 通信对等方的进程号，通常叫端口号。
-就像Unix操作系统下有一套实现TCP/IP网络通信协议的开发接口：BSD Sockets一样，在Windows操作系统下，也提供了一套网络通信协议的开发接口，称为Windows Sockets或简称Winsock。
-Winsock 是通过动态链接库的方式提供给软件开发者，而且从Windows 95以后已经被集成到了Windows操作系统中。
-Winsock主要经历了2个版本：Winsock 1.1和Winsock 2.0。Winsock 2.0是Winsock 1.1的扩展，它向下完全兼容。
-Winsock同时包括了16位和32位的编程接口，16位的Windows Socket 2应用程序使用的动态链接库是WINSOCK.DLL，而32位的Windows Socket应用程序使用WSOCK32.DLL（Winsock 1.1版）和WS2_32.DLL（Winsock 2.0版）。另外，使用Winsock API时要包含头文件winsock.h（Winsock 1.1版）或winsock2.h（Winsock 2.0版）。</code></pre><h3 id="Socket套接字编程原理"><a href="#Socket套接字编程原理" class="headerlink" title="Socket套接字编程原理"></a>Socket套接字编程原理</h3><h4 id="Socket的2种类型"><a href="#Socket的2种类型" class="headerlink" title="Socket的2种类型"></a>Socket的2种类型</h4><pre><code>Socket是一个抽象概念，代表了通信双方的端点（Endpoint），通信双方通过Socket发送或接收数据。
-在Winsock里，用数据类型SOCKET作为Windows Sockets对象的句柄，就好像一个窗口的句柄HWND、一个打开的文件的文件指针一样。下面我们会看到，在Winsock API的许多函数里，都会用到SOCKET类型的参数。
-Socket有2种类型：</code></pre><p>    + 流类型（Stream Sockets）。<br>       流式套接字提供了一种可靠的、面向连接的数据传输方法，使用传输控制协议TCP。<br>    + 数据报类型（Datagram Sockets）。<br>       数据报套接字提供了一种不可靠的、非连接的数据包传输方式，使用用户数据报协议UDP。</p>
-
+        <h3 id="Socket套接字介绍"><a href="#Socket套接字介绍" class="headerlink" title="Socket套接字介绍"></a>Socket套接字介绍</h3><p>网络应用程序是由通信进程对组成，每对互相通信的应用程序进程互相发送报文，他们之间的通信必须通过下面的网络来进行。为了将应用程序和底层的网络通信协议屏蔽开来，采用套接字（Socket）这样一个抽象概念来作为应用程序和底层网络之间的应用程序编程接口（API）。</p>
+        
       
 
 
@@ -1262,6 +1255,10 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">双指针</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">二分</a>
               </li>
              
@@ -1270,19 +1267,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">双指针</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">动态规划</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">数组</a>
+                <a href="javascript:void(0)" class="js-tag color3">链表</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">链表</a>
+                <a href="javascript:void(0)" class="js-tag color3">数组</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1342,11 +1335,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">贪心</a>
+                <a href="javascript:void(0)" class="js-tag color5">滑动窗口</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">滑动窗口</a>
+                <a href="javascript:void(0)" class="js-tag color3">贪心</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1362,11 +1355,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">剪枝</a>
+                <a href="javascript:void(0)" class="js-tag color4">桶排序</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">桶排序</a>
+                <a href="javascript:void(0)" class="js-tag color3">剪枝</a>
               </li>
              
               <li class="article-tag-list-item">

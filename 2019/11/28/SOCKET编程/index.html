@@ -8,18 +8,21 @@
   <link rel="dns-prefetch" href="http://yorxika.github.io">
   <title>SOCKET编程 | Nameless blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Socket套接字介绍网络应用程序是由通信进程对组成，每对互相通信的应用程序进程互相发送报文，他们之间的通信必须通过下面的网络来进行。为了将应用程序和底层的网络通信协议屏蔽开来，采用套接字（Socket）这样一个抽象概念来作为应用程序和底层网络之间的应用程序编程接口（API）。 因为网络应用程序是进程之间的通信，为了唯一的标识通信对等方的通信进程，套接字必须包含2种信息：(1) 通信对等方的网络地">
+  <meta name="description" content="Socket套接字介绍网络应用程序是由通信进程对组成，每对互相通信的应用程序进程互相发送报文，他们之间的通信必须通过下面的网络来进行。为了将应用程序和底层的网络通信协议屏蔽开来，采用套接字（Socket）这样一个抽象概念来作为应用程序和底层网络之间的应用程序编程接口（API）。">
 <meta name="keywords" content="计算机网络">
 <meta property="og:type" content="article">
 <meta property="og:title" content="SOCKET编程">
 <meta property="og:url" content="http://yorxika.github.io/2019/11/28/SOCKET编程/index.html">
 <meta property="og:site_name" content="Nameless blog">
-<meta property="og:description" content="Socket套接字介绍网络应用程序是由通信进程对组成，每对互相通信的应用程序进程互相发送报文，他们之间的通信必须通过下面的网络来进行。为了将应用程序和底层的网络通信协议屏蔽开来，采用套接字（Socket）这样一个抽象概念来作为应用程序和底层网络之间的应用程序编程接口（API）。 因为网络应用程序是进程之间的通信，为了唯一的标识通信对等方的通信进程，套接字必须包含2种信息：(1) 通信对等方的网络地">
+<meta property="og:description" content="Socket套接字介绍网络应用程序是由通信进程对组成，每对互相通信的应用程序进程互相发送报文，他们之间的通信必须通过下面的网络来进行。为了将应用程序和底层的网络通信协议屏蔽开来，采用套接字（Socket）这样一个抽象概念来作为应用程序和底层网络之间的应用程序编程接口（API）。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-11-27T17:38:57.206Z">
+<meta property="og:image" content="http://yorxika.github.io/2019/11/28/SOCKET编程/1.jpg">
+<meta property="og:image" content="http://yorxika.github.io/2019/11/28/SOCKET编程/2.jpg">
+<meta property="og:updated_time" content="2019-11-27T17:57:25.877Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SOCKET编程">
-<meta name="twitter:description" content="Socket套接字介绍网络应用程序是由通信进程对组成，每对互相通信的应用程序进程互相发送报文，他们之间的通信必须通过下面的网络来进行。为了将应用程序和底层的网络通信协议屏蔽开来，采用套接字（Socket）这样一个抽象概念来作为应用程序和底层网络之间的应用程序编程接口（API）。 因为网络应用程序是进程之间的通信，为了唯一的标识通信对等方的通信进程，套接字必须包含2种信息：(1) 通信对等方的网络地">
+<meta name="twitter:description" content="Socket套接字介绍网络应用程序是由通信进程对组成，每对互相通信的应用程序进程互相发送报文，他们之间的通信必须通过下面的网络来进行。为了将应用程序和底层的网络通信协议屏蔽开来，采用套接字（Socket）这样一个抽象概念来作为应用程序和底层网络之间的应用程序编程接口（API）。">
+<meta name="twitter:image" content="http://yorxika.github.io/2019/11/28/SOCKET编程/1.jpg">
   
     <link rel="alternative" href="/atom.xml" title="Nameless blog" type="application/atom+xml">
   
@@ -188,7 +191,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
         <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">598字</span>
+        <span class="post-count">1.7k字</span>
       </span>
     </span>
 
@@ -197,7 +200,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-hourglass-half"></i>
         <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">2分</span>
+        <span class="post-count">7分</span>
       </span>
     </span>
 </div>
@@ -218,15 +221,32 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="Socket套接字介绍"><a href="#Socket套接字介绍" class="headerlink" title="Socket套接字介绍"></a>Socket套接字介绍</h3><pre><code>网络应用程序是由通信进程对组成，每对互相通信的应用程序进程互相发送报文，他们之间的通信必须通过下面的网络来进行。为了将应用程序和底层的网络通信协议屏蔽开来，采用套接字（Socket）这样一个抽象概念来作为应用程序和底层网络之间的应用程序编程接口（API）。
-因为网络应用程序是进程之间的通信，为了唯一的标识通信对等方的通信进程，套接字必须包含2种信息：(1) 通信对等方的网络地址。(2) 通信对等方的进程号，通常叫端口号。
-就像Unix操作系统下有一套实现TCP/IP网络通信协议的开发接口：BSD Sockets一样，在Windows操作系统下，也提供了一套网络通信协议的开发接口，称为Windows Sockets或简称Winsock。
-Winsock 是通过动态链接库的方式提供给软件开发者，而且从Windows 95以后已经被集成到了Windows操作系统中。
-Winsock主要经历了2个版本：Winsock 1.1和Winsock 2.0。Winsock 2.0是Winsock 1.1的扩展，它向下完全兼容。
-Winsock同时包括了16位和32位的编程接口，16位的Windows Socket 2应用程序使用的动态链接库是WINSOCK.DLL，而32位的Windows Socket应用程序使用WSOCK32.DLL（Winsock 1.1版）和WS2_32.DLL（Winsock 2.0版）。另外，使用Winsock API时要包含头文件winsock.h（Winsock 1.1版）或winsock2.h（Winsock 2.0版）。</code></pre><h3 id="Socket套接字编程原理"><a href="#Socket套接字编程原理" class="headerlink" title="Socket套接字编程原理"></a>Socket套接字编程原理</h3><h4 id="Socket的2种类型"><a href="#Socket的2种类型" class="headerlink" title="Socket的2种类型"></a>Socket的2种类型</h4><pre><code>Socket是一个抽象概念，代表了通信双方的端点（Endpoint），通信双方通过Socket发送或接收数据。
-在Winsock里，用数据类型SOCKET作为Windows Sockets对象的句柄，就好像一个窗口的句柄HWND、一个打开的文件的文件指针一样。下面我们会看到，在Winsock API的许多函数里，都会用到SOCKET类型的参数。
-Socket有2种类型：</code></pre><p>    + 流类型（Stream Sockets）。<br>       流式套接字提供了一种可靠的、面向连接的数据传输方法，使用传输控制协议TCP。<br>    + 数据报类型（Datagram Sockets）。<br>       数据报套接字提供了一种不可靠的、非连接的数据包传输方式，使用用户数据报协议UDP。</p>
+        <h3 id="Socket套接字介绍"><a href="#Socket套接字介绍" class="headerlink" title="Socket套接字介绍"></a>Socket套接字介绍</h3><p>网络应用程序是由通信进程对组成，每对互相通信的应用程序进程互相发送报文，他们之间的通信必须通过下面的网络来进行。为了将应用程序和底层的网络通信协议屏蔽开来，采用套接字（Socket）这样一个抽象概念来作为应用程序和底层网络之间的应用程序编程接口（API）。<a id="more"></a><br>因为网络应用程序是进程之间的通信，为了唯一的标识通信对等方的通信进程，套接字必须包含2种信息：(1) 通信对等方的网络地址。(2) 通信对等方的进程号，通常叫端口号。<br>就像Unix操作系统下有一套实现TCP/IP网络通信协议的开发接口：BSD Sockets一样，在Windows操作系统下，也提供了一套网络通信协议的开发接口，称为Windows Sockets或简称Winsock。<br>Winsock 是通过动态链接库的方式提供给软件开发者，而且从Windows 95以后已经被集成到了Windows操作系统中。<br>Winsock主要经历了2个版本：Winsock 1.1和Winsock 2.0。Winsock 2.0是Winsock 1.1的扩展，它向下完全兼容。<br>Winsock同时包括了16位和32位的编程接口，16位的Windows Socket 2应用程序使用的动态链接库是WINSOCK.DLL，而32位的Windows Socket应用程序使用WSOCK32.DLL（Winsock 1.1版）和WS2_32.DLL（Winsock 2.0版）。另外，使用Winsock API时要包含头文件winsock.h（Winsock 1.1版）或winsock2.h（Winsock 2.0版）。</p>
+<h3 id="Socket套接字编程原理"><a href="#Socket套接字编程原理" class="headerlink" title="Socket套接字编程原理"></a>Socket套接字编程原理</h3><h4 id="Socket的2种类型"><a href="#Socket的2种类型" class="headerlink" title="Socket的2种类型"></a>Socket的2种类型</h4><p>Socket是一个抽象概念，代表了通信双方的端点（Endpoint），通信双方通过Socket发送或接收数据。<br>在Winsock里，用数据类型SOCKET作为Windows Sockets对象的句柄，就好像一个窗口的句柄HWND、一个打开的文件的文件指针一样。下面我们会看到，在Winsock API的许多函数里，都会用到SOCKET类型的参数。<br>Socket有2种类型：</p>
+<ul>
+<li>流类型（Stream Sockets）。<br>流式套接字提供了一种可靠的、面向连接的数据传输方法，使用传输控制协议TCP。</li>
+<li>数据报类型（Datagram Sockets）。<br>数据报套接字提供了一种不可靠的、非连接的数据包传输方式，使用用户数据报协议UDP。</li>
+</ul>
+<h4 id="Socket-I-O的2种模式"><a href="#Socket-I-O的2种模式" class="headerlink" title="Socket I/O的2种模式"></a>Socket I/O的2种模式</h4><p>一个SOCKET句柄可以看成代表了一个I/O设备。在Windows Sockets里，有2种I/O模式：</p>
+<ul>
+<li>阻塞式I/O（blocking I/O）<br>在阻塞方式下，收发数据的函数在调用后一直要到传送完毕或者出错才能完成，在阻塞期间，除了等待网络操作的完成不能进行任何操作。阻塞式I/O是一个Winsock API函数的缺省行为。</li>
+<li>非阻塞式I/O（non-blocking I/O）<br>对于非阻塞方式，Winsock API函数被调用后立即返回；当网络操作完成后，由Winsock给应用程序发送消息（Socket Notifications）通知操作完成，这时应用程序可以根据发送的消息中的参数对消息做出响应。Winsock提供了2种异步接受数据的方法：一种方法是使用BSD类型的函数select（），另外一种方法是使用Winsock提供的专用函数WSAAsyncSelect（）。</li>
+</ul>
+<h4 id="使用数据报套接字"><a href="#使用数据报套接字" class="headerlink" title="使用数据报套接字"></a>使用数据报套接字</h4><p>首先，客户机和服务器都要创建一个数据报套接字。接着，服务器调用bind（）函数给套接字分配一个公认的端口。一旦服务器将公认的端口分配给了套接字，客户机和服务器都能使用sendto（）和revfron（）来传递数据报。通信完毕调用closesocket（）来关闭套接字。流程如图2.1所示：</p>
+<div align="center">
+<img width="600" src="/2019/11/28/SOCKET编程/1.jpg">
+</div>
 
+<h4 id="使用流式套接字"><a href="#使用流式套接字" class="headerlink" title="使用流式套接字"></a>使用流式套接字</h4><p>由于流式套接字使用的是基于连接的协议，所以你必须首先建立连接，而后才能从数据流中读出数据，而不是从一个数据报或一个记录中读出数据，其流程如图2.2所示。</p>
+<div align="center">
+<img width="600" src="/2019/11/28/SOCKET编程/2.jpg">
+</div>
+
+<h3 id="套接字部分库函数列表"><a href="#套接字部分库函数列表" class="headerlink" title="套接字部分库函数列表"></a>套接字部分库函数列表</h3><h4 id="WSAStartup（）"><a href="#WSAStartup（）" class="headerlink" title="WSAStartup（）"></a>WSAStartup（）</h4><p><strong>函数原型</strong><br>int WSAStartup (WORD wVersionRequested,  LPWSADATA  lpWSAData  );</p>
+<p><strong>参数</strong><br>wVersionRequested<br>&nbsp;&nbsp;&nbsp;&nbsp;[in] 表示欲使用的Windows Sockets API版本；这是个WORD类型的整数，高字节定义的是次版本号，低字节定义的是主版本号。<br>lpWSAData<br>&nbsp;&nbsp;&nbsp;&nbsp;[in] 指向WSAData资料的指针。WSAData是结构数据类型，描述了关于Windows Sockecs底层实现的相关信息。<br>&nbsp;&nbsp;&nbsp;&nbsp;<br><strong>返回值</strong><br>函数执行成功返回0，失败则返回如下错误代码：<br>&nbsp;&nbsp;&nbsp;&nbsp;WSASYSNOTREADY：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 底层网络子系统没有准备好。<br>&nbsp;&nbsp;&nbsp;&nbsp;WSAVERNOTSUPPORTED：Winsock版本信息号不支持。WSAEINPROGRESS：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 阻塞式Winsock1.1存在于进程中。<br>&nbsp;&nbsp;&nbsp;&nbsp;WSAEPROCLIM：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 已经达到Winsock使用量的上限。<br>&nbsp;&nbsp;&nbsp;&nbsp;WSAEFAULT：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; lpWSAData不是一个有效的指针。<br>&nbsp;&nbsp;&nbsp;&nbsp;<br><strong>函数功能</strong><br>这个函数是应用程序应该第一个调用的Winsock API函数，以完成一系列初始化的工作。</p>
+<p><strong>相关数据结构</strong><br>WSADATA的定义如下：<br>&nbsp;&nbsp;&nbsp;&nbsp;typedef struct WSAData {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WORD&nbsp;&nbsp;&nbsp;&nbsp;wVersion;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WORD &nbsp;&nbsp;&nbsp;&nbsp;wHighVersion;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;char&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;szDescription[WSADESCRIPTION_LEN+1];<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;char &nbsp;&nbsp;&nbsp;&nbsp;szSystemStatus[WSASYS_STATUS_LEN+1];<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;unsigned short&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;iMaxSockets;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;unsigned short&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;iMaxUdpDg;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;char FAR * &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lpVendorInfo;<br>} WSADATA, FAR * LPWSADATA;<br>其中，各结构成员的含义为:<br>wVersion<br>&nbsp;&nbsp;&nbsp;&nbsp;应用程序应该使用的Winsock版本号。<br>wHighVersion<br>&nbsp;&nbsp;&nbsp;&nbsp;DLL所支持的最高版本号。通常应该等于wVersion。<br>szDescription<br>&nbsp;&nbsp;&nbsp;&nbsp;以0结尾的ASCII字符串，关于Winsock底层实现的描述信息。<br>szSystemStatus<br>&nbsp;&nbsp;&nbsp;&nbsp;以0结尾的ASCII字符串，关于Winsock底层状态或者配置信息。<br>iMaxSockets<br>&nbsp;&nbsp;&nbsp;&nbsp;一个进程最多可使用的套接字数，仅用于Winsock1.1，Winsock 2.0应该忽略该成员。<br>iMaxUdpDg<br>&nbsp;&nbsp;&nbsp;&nbsp;最大的UDP报文大小，仅用于Winsock1.1，Winsock 2.0应该忽略该成员。对于Winsock 2.0，应该使用getsockopt函数取得SO_MAX_MSG_SIZE。<br>lpVendorInfo<br>&nbsp;&nbsp;&nbsp;&nbsp;Winsock开发厂商信息，仅用于Winsock1.1，Winsock 2.0应该忽略该成员。对于Winsock 2.0，应该使用getsockopt函数取得PVD_CONFIG。</p>
+<p>示例：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;winsock.h&gt;</span></span></span><br><span class="line"><span class="comment">//对于Winsock 2, include &lt;winsock2.h&gt;</span></span><br><span class="line"></span><br><span class="line">WSADATA  wsaData;</span><br><span class="line"><span class="keyword">int</span> nRc = WSAStartup(<span class="number">0x0101</span>, &amp; wsaData);		</span><br><span class="line"><span class="keyword">if</span>(nRc)</span><br><span class="line">&#123;</span><br><span class="line"><span class="comment">//Winsock初始化错误</span></span><br><span class="line"><span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span>(wsaData.wVersion != <span class="number">0x0101</span>)</span><br><span class="line">&#123;</span><br><span class="line"><span class="comment">//版本支持不够</span></span><br><span class="line"><span class="comment">//报告错误给用户，清除Winsock，返回</span></span><br><span class="line">WSACleanup();</span><br><span class="line"><span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
 
 
@@ -357,7 +377,7 @@ Socket有2种类型：</code></pre><p>    + 流类型（Stream Sockets）。<
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Socket套接字介绍"><span class="toc-number">1.</span> <span class="toc-text">Socket套接字介绍</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Socket套接字编程原理"><span class="toc-number">2.</span> <span class="toc-text">Socket套接字编程原理</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Socket的2种类型"><span class="toc-number">2.1.</span> <span class="toc-text">Socket的2种类型</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Socket套接字介绍"><span class="toc-number">1.</span> <span class="toc-text">Socket套接字介绍</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Socket套接字编程原理"><span class="toc-number">2.</span> <span class="toc-text">Socket套接字编程原理</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Socket的2种类型"><span class="toc-number">2.1.</span> <span class="toc-text">Socket的2种类型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Socket-I-O的2种模式"><span class="toc-number">2.2.</span> <span class="toc-text">Socket I/O的2种模式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#使用数据报套接字"><span class="toc-number">2.3.</span> <span class="toc-text">使用数据报套接字</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#使用流式套接字"><span class="toc-number">2.4.</span> <span class="toc-text">使用流式套接字</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#套接字部分库函数列表"><span class="toc-number">3.</span> <span class="toc-text">套接字部分库函数列表</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#WSAStartup（）"><span class="toc-number">3.1.</span> <span class="toc-text">WSAStartup（）</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -566,6 +586,10 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">双指针</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">二分</a>
               </li>
              
@@ -574,19 +598,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">双指针</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">动态规划</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">数组</a>
+                <a href="javascript:void(0)" class="js-tag color3">链表</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">链表</a>
+                <a href="javascript:void(0)" class="js-tag color3">数组</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -646,11 +666,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">贪心</a>
+                <a href="javascript:void(0)" class="js-tag color5">滑动窗口</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">滑动窗口</a>
+                <a href="javascript:void(0)" class="js-tag color3">贪心</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -666,11 +686,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">剪枝</a>
+                <a href="javascript:void(0)" class="js-tag color4">桶排序</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">桶排序</a>
+                <a href="javascript:void(0)" class="js-tag color3">剪枝</a>
               </li>
              
               <li class="article-tag-list-item">
