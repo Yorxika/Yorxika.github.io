@@ -18,7 +18,7 @@
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://yorxika.github.io/2019/11/28/SOCKET编程/1.jpg">
 <meta property="og:image" content="http://yorxika.github.io/2019/11/28/SOCKET编程/2.jpg">
-<meta property="og:updated_time" content="2019-11-27T17:57:25.877Z">
+<meta property="og:updated_time" content="2019-11-30T16:25:48.572Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SOCKET编程">
 <meta name="twitter:description" content="Socket套接字介绍网络应用程序是由通信进程对组成，每对互相通信的应用程序进程互相发送报文，他们之间的通信必须通过下面的网络来进行。为了将应用程序和底层的网络通信协议屏蔽开来，采用套接字（Socket）这样一个抽象概念来作为应用程序和底层网络之间的应用程序编程接口（API）。">
@@ -191,7 +191,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
         <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">1.7k字</span>
+        <span class="post-count">5.2k字</span>
       </span>
     </span>
 
@@ -200,7 +200,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-hourglass-half"></i>
         <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">7分</span>
+        <span class="post-count">21分</span>
       </span>
     </span>
 </div>
@@ -246,7 +246,77 @@
 <p><strong>参数</strong><br>wVersionRequested<br>&nbsp;&nbsp;&nbsp;&nbsp;[in] 表示欲使用的Windows Sockets API版本；这是个WORD类型的整数，高字节定义的是次版本号，低字节定义的是主版本号。<br>lpWSAData<br>&nbsp;&nbsp;&nbsp;&nbsp;[in] 指向WSAData资料的指针。WSAData是结构数据类型，描述了关于Windows Sockecs底层实现的相关信息。<br>&nbsp;&nbsp;&nbsp;&nbsp;<br><strong>返回值</strong><br>函数执行成功返回0，失败则返回如下错误代码：<br>&nbsp;&nbsp;&nbsp;&nbsp;WSASYSNOTREADY：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 底层网络子系统没有准备好。<br>&nbsp;&nbsp;&nbsp;&nbsp;WSAVERNOTSUPPORTED：Winsock版本信息号不支持。WSAEINPROGRESS：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 阻塞式Winsock1.1存在于进程中。<br>&nbsp;&nbsp;&nbsp;&nbsp;WSAEPROCLIM：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 已经达到Winsock使用量的上限。<br>&nbsp;&nbsp;&nbsp;&nbsp;WSAEFAULT：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; lpWSAData不是一个有效的指针。<br>&nbsp;&nbsp;&nbsp;&nbsp;<br><strong>函数功能</strong><br>这个函数是应用程序应该第一个调用的Winsock API函数，以完成一系列初始化的工作。</p>
 <p><strong>相关数据结构</strong><br>WSADATA的定义如下：<br>&nbsp;&nbsp;&nbsp;&nbsp;typedef struct WSAData {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WORD&nbsp;&nbsp;&nbsp;&nbsp;wVersion;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WORD &nbsp;&nbsp;&nbsp;&nbsp;wHighVersion;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;char&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;szDescription[WSADESCRIPTION_LEN+1];<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;char &nbsp;&nbsp;&nbsp;&nbsp;szSystemStatus[WSASYS_STATUS_LEN+1];<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;unsigned short&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;iMaxSockets;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;unsigned short&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;iMaxUdpDg;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;char FAR * &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lpVendorInfo;<br>} WSADATA, FAR * LPWSADATA;<br>其中，各结构成员的含义为:<br>wVersion<br>&nbsp;&nbsp;&nbsp;&nbsp;应用程序应该使用的Winsock版本号。<br>wHighVersion<br>&nbsp;&nbsp;&nbsp;&nbsp;DLL所支持的最高版本号。通常应该等于wVersion。<br>szDescription<br>&nbsp;&nbsp;&nbsp;&nbsp;以0结尾的ASCII字符串，关于Winsock底层实现的描述信息。<br>szSystemStatus<br>&nbsp;&nbsp;&nbsp;&nbsp;以0结尾的ASCII字符串，关于Winsock底层状态或者配置信息。<br>iMaxSockets<br>&nbsp;&nbsp;&nbsp;&nbsp;一个进程最多可使用的套接字数，仅用于Winsock1.1，Winsock 2.0应该忽略该成员。<br>iMaxUdpDg<br>&nbsp;&nbsp;&nbsp;&nbsp;最大的UDP报文大小，仅用于Winsock1.1，Winsock 2.0应该忽略该成员。对于Winsock 2.0，应该使用getsockopt函数取得SO_MAX_MSG_SIZE。<br>lpVendorInfo<br>&nbsp;&nbsp;&nbsp;&nbsp;Winsock开发厂商信息，仅用于Winsock1.1，Winsock 2.0应该忽略该成员。对于Winsock 2.0，应该使用getsockopt函数取得PVD_CONFIG。</p>
 <p>示例：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;winsock.h&gt;</span></span></span><br><span class="line"><span class="comment">//对于Winsock 2, include &lt;winsock2.h&gt;</span></span><br><span class="line"></span><br><span class="line">WSADATA  wsaData;</span><br><span class="line"><span class="keyword">int</span> nRc = WSAStartup(<span class="number">0x0101</span>, &amp; wsaData);		</span><br><span class="line"><span class="keyword">if</span>(nRc)</span><br><span class="line">&#123;</span><br><span class="line"><span class="comment">//Winsock初始化错误</span></span><br><span class="line"><span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span>(wsaData.wVersion != <span class="number">0x0101</span>)</span><br><span class="line">&#123;</span><br><span class="line"><span class="comment">//版本支持不够</span></span><br><span class="line"><span class="comment">//报告错误给用户，清除Winsock，返回</span></span><br><span class="line">WSACleanup();</span><br><span class="line"><span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;winsock.h&gt;</span></span></span><br><span class="line"><span class="comment">//对于Winsock 2, include &lt;winsock2.h&gt;</span></span><br><span class="line"></span><br><span class="line">WSADATA  wsaData;</span><br><span class="line"><span class="keyword">int</span> nRc = WSAStartup(<span class="number">0x0101</span>, &amp; wsaData);		</span><br><span class="line"><span class="keyword">if</span>(nRc)</span><br><span class="line">&#123;</span><br><span class="line"><span class="comment">//Winsock初始化错误</span></span><br><span class="line">&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;<span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span>(wsaData.wVersion != <span class="number">0x0101</span>)</span><br><span class="line">&#123;</span><br><span class="line"><span class="comment">//版本支持不够</span></span><br><span class="line"><span class="comment">//报告错误给用户，清除Winsock，返回</span></span><br><span class="line">&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;WSACleanup();</span><br><span class="line">&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;<span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="socket（）"><a href="#socket（）" class="headerlink" title="socket（）"></a>socket（）</h4><p><strong>函数原型</strong><br>SOCKET socket(int af, int type,    int protocol);</p>
+<p><strong>参数</strong><br>af<br>&nbsp;&nbsp;&nbsp;&nbsp;[in] 指定地址族（address family），一般填AF_INET（使用Internet地址）。<br>type<br>&nbsp;&nbsp;&nbsp;&nbsp;[in] 指定SOCKET的类型：SOCK_STREAM（流类型），SOCK_DGRAM（数据报类型）。<br>protocol<br>&nbsp;&nbsp;&nbsp;&nbsp;[in]    指定af参数指定的地址族所使用的具体一个协议。建议设为0，那么它就会根据地址格式和SOCKET类型，自动为你选择一个合适的协议。另外2个常用的值为：IPPROTO_UDP和IPPROTO_TCP。<br><strong>返回值</strong><br>函数执行成功返回一个新的SOCKET，失败则返回INVALID_SOCKET。这时可以调用WSAGetLastError函数取得具体的错误代码。<br><strong>函数功能</strong><br>所有的通信在建立之前都要创建一个SOCKET。</p>
+<p>示例代码:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;<span class="comment">//创建数据报socket</span></span><br><span class="line">&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;SCOKET udpSock = socket(AF_INET, </span><br><span class="line">&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;SOCK_DGRAM, IPPROTO_UDP);</span><br><span class="line">&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;<span class="comment">//创建流socket</span></span><br><span class="line">&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;SCOKET tcpSock = socket(AF_INET, </span><br><span class="line">&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;SOCK_STREAM, IPPROTO_TCP);</span><br></pre></td></tr></table></figure>
+
+<h4 id="bind（）"><a href="#bind（）" class="headerlink" title="bind（）"></a>bind（）</h4><p><strong>函数原型</strong><br>int bind(SOCKET s, const struct sockaddr FAR* name, int namelen);</p>
+<p><strong>参数</strong><br>s<br>&nbsp;&nbsp;&nbsp;&nbsp;[in] 一个需要绑定的SOCKET，例如用socket函数创建的SOCKET。<br>name<br>&nbsp;&nbsp;&nbsp;&nbsp;[in] 指向描述通信对象地址信息的结构体sockaddr的指针。在该结构体中可以指定地址族（一般为 AF_INET）、主机的地址和端口。通常把主机地址指定为INADDR_ANY（一个主机可能有多个网卡）。<br>namelen<br>&nbsp;&nbsp;&nbsp;&nbsp;[in]    name指针指向的结构体的长度。<br><strong>返回值</strong><br>函数执行成功返回0，失败则返回SOCKET_ERROR。这时可以调用WSAGetLastError函数取得具体的错误代码。<br><strong>函数功能</strong><br>成功地创建了一个SOCKET后，用bind函数将SOCKET和主机地址绑定。</p>
+<p><strong>相关数据结构</strong><br>struct sockaddr {<br>&nbsp;&nbsp;&nbsp;&nbsp;u_short         sa_family;<br>&nbsp;&nbsp;&nbsp;&nbsp;char         sa_data[14];<br>};<br>sa_family<br>地址族，比如AF_INET，2个字节大小。<br>sa_data<br>用来存放地址和端口，14个字节大小。<br>sockaddr结构是一个通用的结构（因为Winsock支持的协议族不只是TCP/IP）。对TCP/IP协议，用如下结构来定义地址和端口。<br>struct sockaddr_in {<br>&nbsp;&nbsp;&nbsp;&nbsp;short             sin_family;<br>&nbsp;&nbsp;&nbsp;&nbsp;u_short            sin_port;<br>&nbsp;&nbsp;&nbsp;&nbsp;struct  in_addr    sin_addr;<br>&nbsp;&nbsp;&nbsp;&nbsp;char             sin_zero[8];<br>};<br>sin_family<br>&nbsp;&nbsp;&nbsp;&nbsp;地址族，设为AF_INET。<br>sin_port<br>&nbsp;&nbsp;&nbsp;&nbsp;端口号。如果端口号为0，Winsock会自动为应用程序分配一个值在1024-5000间的一个端口号，所以客户端一般把sin_port设为0。<br>sin_addr<br>&nbsp;&nbsp;&nbsp;&nbsp;为in_addr结构类型，用来指定IP地址。通常把主机地址指定为INADDR_ANY（一个主机可能有多个网卡）。结构in_addr下面介绍。<br>sin_zero<br>&nbsp;&nbsp;&nbsp;&nbsp;8字节的数组，值全为0。这个8个字节用来填充结构sockaddr_in，使其大小等于结构sockaddr（16字节）。<br>结构in_addr用来指定IP地址，其定义为：<br>struct in_addr {<br>&nbsp;union {<br>&nbsp;&nbsp;&nbsp;&nbsp;struct { u_char s_b1,s_b2,s_b3,s_b4; } S_un_b;<br>&nbsp;&nbsp;&nbsp;&nbsp;struct { u_short s_w1,s_w2; } S_un_w;<br>&nbsp;&nbsp;&nbsp;&nbsp; u_long S_addr;<br>&nbsp;} S_un;<br>};<br>对于IP地址10.14.25.90，sockaddr_in结构中的sin_addr可以这样赋值：<br>sin_addr. S_un .S_un_b. s_b1 = 10;<br>sin_addr. S_un .S_un_b. s_b2 = 14;<br>sin_addr. S_un .S_un_b. s_b3 = 25;<br>sin_addr. S_un .S_un_b. s_b4 = 90;<br>或者<br>sin_addr. S_un . S_un_w. s_w1 = (14&lt;&lt;8)|10;<br>sin_addr. S_un . S_un_w. s_w2 = (90&lt;&lt;8)|25;<br>或者<br>sin_addr. S_un . S_addr = (90&lt;&lt;24)|(25&lt;&lt;16)|(14&lt;&lt;8)|10;<br>或者<br>sin_addr. S_un . S_addr = inet_addr(“10.14.25.90”);<br>这里的inet_addr函数可以将字符串形式的IP地址转换为unsigned long形式的值。</p>
+<p>示例代码：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">SOCKET sServSock;</span><br><span class="line">sockaddr_in addr;</span><br><span class="line"></span><br><span class="line"><span class="comment">//创建socket</span></span><br><span class="line">sServSock = socket(AF_INET, SOCK_STREAM, <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">addr.sin_family = AF_INET;</span><br><span class="line"></span><br><span class="line"><span class="comment">//htons和htonl函数把主机字节顺序转换为网络字节顺序，分别用于//短整型和长整型数据</span></span><br><span class="line">addr.sin_port = htons(<span class="number">5050</span>);	</span><br><span class="line">addr.sin_addr.S_un.S_addr = htonl(INADDR_ANY); </span><br><span class="line"></span><br><span class="line"><span class="comment">// LPSOCKADDR类型转换是必须的</span></span><br><span class="line"><span class="keyword">int</span> nRc = bind(sServSock, (LPSOCKADDR)&amp;addr, <span class="keyword">sizeof</span>(addr) );</span><br></pre></td></tr></table></figure>
+
+<h4 id="listen（）"><a href="#listen（）" class="headerlink" title="listen（）"></a>listen（）</h4><p><strong>函数原型</strong><br>int listen (SOCKET s,  int backlog);</p>
+<p><strong>参数</strong><br>s<br>&nbsp;&nbsp;&nbsp;&nbsp;[in] 一个已经绑定但未连接的SOCKET。<br>backlog<br>&nbsp;&nbsp;&nbsp;&nbsp;[in] 等待连接的队列的长度，可取SOMAXCONN。如果某个客户程序要求连接的时候，服务器已经与其他客户程序连接，则后来的连接请求会放在等待队列中，等待服务器空闲时再与之连接。当等待队列达到最大长度（backlog指定的值）时，再来的连接请求都将被拒绝。<br><strong>返回值</strong><br>函数执行成功返回0，失败则返回SOCKET_ERROR。这时可以调用WSAGetLastError函数取得具体的错误代码。<br><strong>函数功能</strong><br>对于服务器的程序，当申请到SOCKET,并将通信对象指定为INADDR_ANY之后，就应该等待一个客户机的程序来要求连接，listen函数就是把一个SOCKET设置为这个状态。</p>
+<h4 id="accept（）"><a href="#accept（）" class="headerlink" title="accept（）"></a>accept（）</h4><p><strong>函数原型</strong><br>SOCKET accept (SOCKET s, struct sockaddr FAR* addr,<br>int FAR* addrlen );</p>
+<p><strong>参数</strong><br>s<br>&nbsp;&nbsp;&nbsp;&nbsp;[in] 一个已经处于listen状态的SOCKET。<br>addr<br>&nbsp;&nbsp;&nbsp;&nbsp;[out] 指向sockaddr结构体的指针，里面包含了客户端的地址和端口。<br>addrlen<br>&nbsp;&nbsp;&nbsp;&nbsp;[out] int型指针，指向的内容为addr指针指向的结构体的长度。<br><strong>返回值</strong><br>如果函数执行成功，会建立并返回一个新的SOCKET来与对方通信，新建的SOCKET与原来的SOCKET（函数的第一个参数s）有相同的特性，包括端口号。原来的SOCKET继续等待其他的连接请求。而新生成的SOCKET才是与客户端通信的实际SOCKET。所以一般将参数中的SOCKET称作“监听”SOCKET，它只负责接受连接，不负责通话；而对于函数返回的SOCKET，把它称作“会话”SOCKET，它负责与客户端通话。<br>如果失败则返回INVALID_SOCKET。这时可以调用WSAGetLastError函数取得具体的错误代码。<br><strong>函数功能</strong><br>accept函数从等待连接的队列中取第一个连接请求，并且创建一个新的SOCKET来负责与客户端会话。</p>
+<p>示例代码：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">SOCKET sServSock;	<span class="comment">//服务器监听socket</span></span><br><span class="line">sockaddr_in addr;</span><br><span class="line"><span class="keyword">int</span> nSockErr;</span><br><span class="line"><span class="keyword">int</span> nNumConns = <span class="number">0</span>;	<span class="comment">//当前请求连接数</span></span><br><span class="line">SOCKET sConns[<span class="number">5</span>];	<span class="comment">//会话SOCKET数组</span></span><br><span class="line">sockaddr ConnAddrs[<span class="number">5</span>];<span class="comment">//请求连接的客户端地址</span></span><br><span class="line"><span class="keyword">int</span> nAddrLen;</span><br><span class="line"></span><br><span class="line"><span class="comment">//创建服务器监听socket</span></span><br><span class="line">sServSock = socket(AF_INET, SOCK_STREAM, <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">addr.sin_family = AF_INET;</span><br><span class="line">addr.sin_port = htons(<span class="number">5050</span>);</span><br><span class="line">addr.sin_addr.S_un.S_addr = htonl(INADDR_ANY);</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>( bind(sServSock,(LPSOCKADDR)&amp;addr,<span class="keyword">sizeof</span>(addr)) == </span><br><span class="line">			SOCKET_ERROR )</span><br><span class="line">&#123;</span><br><span class="line">nSockErr = WSAGetLastError();</span><br><span class="line"><span class="comment">//绑定出错处理</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//监听客户端请求连接</span></span><br><span class="line"><span class="keyword">if</span>( listen(sServSock, <span class="number">2</span>)  ==  SOCKET_ERROR)</span><br><span class="line">&#123;</span><br><span class="line">nSockErr = WSAGetLastError();</span><br><span class="line"><span class="comment">//出错处理</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span>( nNumConns &lt; <span class="number">5</span>)&#123;</span><br><span class="line"><span class="comment">//每当收到客户端连接请求，创建新的会话SOCKET，保存在/	//sConns数组中</span></span><br><span class="line"><span class="comment">//客户端地址保存在ConnAddrs数组中</span></span><br><span class="line">sConns[nNumConns] = accept(sServSock, </span><br><span class="line">ConnAddrs[nNumConns], &amp;nAddrLen);</span><br><span class="line"><span class="keyword">if</span>(sConns[nNumConns] == INVALID_SOCKET)</span><br><span class="line">&#123;</span><br><span class="line">	nSockErr = WSAGetLastError();</span><br><span class="line">	<span class="comment">//创建会话SOCKET出错处理</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="comment">//创建会话SOCKET成功，启动新的线程与客户端会话</span></span><br><span class="line">	StartNewHandlerThread(sConns[nNumConns]);</span><br><span class="line">	<span class="comment">//当前请求连接数+1</span></span><br><span class="line">	nNumConns ++;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="connect（）"><a href="#connect（）" class="headerlink" title="connect（）"></a>connect（）</h4><p><strong>函数原型</strong><br>int connect (SOCKET s, const struct sockaddr FAR* name,<br> int  namelen );</p>
+<p><strong>参数</strong><br>s<br>&nbsp;&nbsp;&nbsp;&nbsp;[in] 一个未连接SOCKET，一般是由socket函数建立的。<br>name<br>&nbsp;&nbsp;&nbsp;&nbsp;[in] 同bind函数。<br>namelen<br>&nbsp;&nbsp;&nbsp;&nbsp;[in] 同bind函数。<br><strong>返回值</strong><br>函数执行成功返回0，失败则返回SOCKET_ERROR。这时可以调用WSAGetLastError函数取得具体的错误代码。<br><strong>函数功能</strong><br>向对方主动提出连接请求。</p>
+<h4 id="send（）"><a href="#send（）" class="headerlink" title="send（）"></a>send（）</h4><p><strong>函数原型</strong><br>int send (SOCKET s, char * buf, int len ,int flags);<br>【参数】<br>s<br>&nbsp;&nbsp;&nbsp;&nbsp;[in] 一个已经连接的SOCKET。<br>buf<br>&nbsp;&nbsp;&nbsp;&nbsp;[in] 指向要传输的数据的缓冲区的指针。<br>len<br>&nbsp;&nbsp;&nbsp;&nbsp;[in] buf的长度。<br>flags<br>&nbsp;&nbsp;&nbsp;&nbsp;[in]指定函数调用的方式。一般取0。<br><strong>返回值</strong><br>函数执行成功返回发送的字节数（可能小于len），失败则返回SOCKET_ERROR。这时可以调用WSAGetLastError函数取得具体的错误代码。<br><strong>函数功能</strong><br>通过已经连接的SOCKET发送数据。</p>
+<h4 id="recv（）"><a href="#recv（）" class="headerlink" title="recv（）"></a>recv（）</h4><p><strong>函数原型</strong><br>int recv (SOCKET s, char * buf, int len ,int flags);</p>
+<p><strong>参数</strong><br>s<br>&nbsp;&nbsp;&nbsp;&nbsp;[in] 一个已经连接的SOCKET。<br>buf<br>&nbsp;&nbsp;&nbsp;&nbsp;[out] 指向接收数据的缓冲区的指针。<br>len<br>&nbsp;&nbsp;&nbsp;&nbsp;[in] buf的长度。<br>flags<br>&nbsp;&nbsp;&nbsp;&nbsp;[in]指定函数调用的方式。一般取0。<br><strong>返回值</strong><br>函数执行成功返回接收到数据的字节数。如果失败则返回SOCKET_ERROR。这时可以调用WSAGetLastError函数取得具体的错误代码。<br><strong>函数功能</strong><br>通过已经连接的SOCKET接收数据。当读到的数据字节少于规定接受的数目（len）时，就把数据全部接收，并返回实际接收到的字节数；当读到的数据多于规定的值时，在流方式下剩余的数据由下个recv读出，在数据报方式下多余的数据被丢弃。</p>
+<h4 id="sendto（）"><a href="#sendto（）" class="headerlink" title="sendto（）"></a>sendto（）</h4><p><strong>函数原型</strong><br>int sendto (SOCKET s, char * buf, int len ,int flags,<br>struct sockaddr_in * to, int tolen);</p>
+<p><strong>参数</strong><br>s<br>&nbsp;&nbsp;&nbsp;&nbsp;[in] 一个SOCKET(可能已连接)。<br>buf<br>&nbsp;&nbsp;&nbsp;&nbsp;[in] 指向要传输的数据的缓冲区的指针。<br>len<br>&nbsp;&nbsp;&nbsp;&nbsp;[in] buf的长度。<br>flags<br>&nbsp;&nbsp;&nbsp;&nbsp;[in] 指定函数调用的方式。一般取0。<br>to<br>&nbsp;&nbsp;&nbsp;&nbsp;[in] 指向目标地址结构体的指针。<br>tolen<br>&nbsp;&nbsp;&nbsp;&nbsp;[in] 目标地址结构体的长度。<br><strong>返回值</strong><br>函数执行成功返回发送的字节数（可能小于len），失败则返回SOCKET_ERROR。这时可以调用WSAGetLastError函数取得具体的错误代码。<br><strong>函数功能</strong><br>该函数一般用于通过无连接的SOCKET发送数据报文，报文的接受者由to参数指定。</p>
+<h4 id="recvfrom（）"><a href="#recvfrom（）" class="headerlink" title="recvfrom（）"></a>recvfrom（）</h4><p><strong>函数原型</strong><br>int recvfrom (SOCKET s, char * buf, int len ,int flags,<br>struct sockaddr_in * from, int * fromlen);<br><strong>参数</strong><br>s<br>&nbsp;&nbsp;&nbsp;&nbsp;[in] 一个已经绑定的SOCKET。<br>buf<br>&nbsp;&nbsp;&nbsp;&nbsp;[out] 指向接收数据的缓冲区的指针。<br>len<br>&nbsp;&nbsp;&nbsp;&nbsp;[in] buf的长度。<br>flags<br>&nbsp;&nbsp;&nbsp;&nbsp;[in] 指定函数调用的方式。一般取0。<br>from<br>&nbsp;&nbsp;&nbsp;&nbsp;[out] 指向源地址结构体的指针。<br>fromlen<br>&nbsp;&nbsp;&nbsp;&nbsp;[in/out] 源地址结构体的长度。<br><strong>返回值</strong><br>函数执行成功返回发送的字节数（可能小于len），失败则返回SOCKET_ERROR。这时可以调用WSAGetLastError函数取得具体的错误代码。<br><strong>函数功能</strong><br>该函数一般用于通过无连接的SOCKET接收数据报文，报文的发送者由from参数指定。</p>
+<h4 id="closesocket（）"><a href="#closesocket（）" class="headerlink" title="closesocket（）"></a>closesocket（）</h4><p><strong>函数原型</strong><br>int closesocket (SOCKET s,);</p>
+<p><strong>参数</strong><br>s<br>&nbsp;&nbsp;&nbsp;&nbsp;[in] 要关闭的SOCKET。<br><strong>返回值</strong><br>函数执行成功返回0，失败则返回SOCKET_ERROR。这时可以调用WSAGetLastError函数取得具体的错误代码。<br><strong>函数功能</strong><br>关闭指定的SOCKET。</p>
+<h3 id="Windows-Socket-2的扩展特性"><a href="#Windows-Socket-2的扩展特性" class="headerlink" title="Windows Socket 2的扩展特性"></a>Windows Socket 2的扩展特性</h3><h4 id="Winsock-2-0简介"><a href="#Winsock-2-0简介" class="headerlink" title="Winsock 2.0简介"></a>Winsock 2.0简介</h4><p>Winsock 1.1原先设计的时候把API限定在TCP/IP的范畴里，它不象Berkerly模型那样支持多种协议。而Winsock 2.0正规化了一些其它的协议（如ATM、IPX/SPX和DECNet协议）的API。<br>Winsock 2.0之所以能支持多种协议，是因为Winsock 2.0在Windows Sockets DLL和底层协议栈之间定义了一个SPI（Service Provider Interface）接口，这样，通过一个Windows Sockets DLL可以同时访问底层不同厂商的协议栈。<br>Winsock 2.0不仅允许多种协议栈的并存，而且从理论上讲，它还允许创造一个与网络协议无关的应用程序。Winsock 2.0可以基于服务的需要透明地选择协议，应用程序可以适用于不同的网络名和网络地址。<br>Winsock 2.0还扩展了它的API函数集，当然Winsock 2.0是向下兼容的，可以把Winsock 1.1的代码原封不动地用在Winsock 2.0中。</p>
+<h4 id="Winsock-2-0新特性"><a href="#Winsock-2-0新特性" class="headerlink" title="Winsock 2.0新特性"></a>Winsock 2.0新特性</h4><p>下面列出了一些Winsock 2.0的重要新特性：</p>
+<ul>
+<li>多重协议支持：SPI接口使得新的协议可以被支持。</li>
+<li>传输协议独立：根据服务提供不同的协议。</li>
+<li>多重命名空间：根据需要的服务和解析的主机名选择协议。</li>
+<li>分散和聚集：  从多个缓冲区接受和发送数据。</li>
+<li>重叠I/O和事件对象：增强吞吐量。</li>
+<li>服务质量（Qos）：协商和跟踪网络带宽。</li>
+<li>条件接受：可以选择性地决定是否接受连接。</li>
+<li>Socket共享：多个进程可以共享一个SOKCKET句柄。</li>
+</ul>
+<h4 id="Winsock-2-0新增函数"><a href="#Winsock-2-0新增函数" class="headerlink" title="Winsock 2.0新增函数"></a>Winsock 2.0新增函数</h4><p>下面列出了一些Winsock 2.0的重要新增函数：</p>
+<ul>
+<li>WSAAccept（）：accept（）函数的扩展版本，支持条件接受和套接字分组。</li>
+<li>WASCloseEvent（）：释放一个时间对象。</li>
+<li>WSAConnect（）：connect（）函数的扩展版本，支持连接数据交换和Qos规范。</li>
+<li>WSACreatEvent（）：创建一个事件对象。</li>
+<li>WSADuplicateSocket（）：为一个共享套接字创建一个新的套接字。</li>
+<li>WSAEnumNetworkEvents（）：检查是否有网络事件发生。</li>
+<li>WSAEnumProtocols（）：得到每个可用的协议的信息。</li>
+<li>WSAEventSelect（）：把一个网络事件和一个事件对象连接。</li>
+<li>WSAGetOverlappedResu（）：得到重叠操作的完成状态。</li>
+<li>WSAHtonl（）：htonl（）函数的扩展版本。</li>
+<li>WSAHtons（）：htons（）函数的扩展版本。</li>
+<li>WSAIoctl（）：ioctlsocket（）函数允许重叠操作的扩展版本。</li>
+<li>WSANtohl（）：ntohl（）函数的扩展版本。</li>
+<li>WSANtohs（）：ntohs（）函数的扩展版本。</li>
+<li>WSARecv（）：recv（）的扩展版本，支持分散/聚集/重叠I/O。</li>
+<li>WSARecvDisconnect（）：终止套接字的接受操作。</li>
+<li>WSARecvFrom（）：recvfrom（）的扩展版本，支持分散/聚集/重叠I/O。</li>
+<li>WSAResetEvent（）：重新初始化事件对象。</li>
+<li>WSASend（）：send（）的扩展版本，支持分散/聚集/重叠I/O。</li>
+<li>WSARecvDisconnect（）：终止套接字的接受操作。</li>
+<li>WSASendDisconnect（）：终止套接字的发送操作。</li>
+<li>WSASendTo（）：sendto（）的扩展版本，支持分散/聚集/重叠I/O。</li>
+<li>WSASetEvent（）：设置事件对象。</li>
+<li>WSASocket（）：socket（）函数的扩展版本。它以一个PROTOCOL_INFO结构作为输入参数，并且允许创建重叠套接字，还允许创建套接字组。</li>
+<li>WSAWaitForMultipleEvents（）：阻塞多个事件对象。<br>关于这些函数的具体细节，请查阅MSDN。 </li>
+</ul>
+
       
 
 
@@ -386,7 +456,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Socket套接字介绍"><span class="toc-number">1.</span> <span class="toc-text">Socket套接字介绍</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Socket套接字编程原理"><span class="toc-number">2.</span> <span class="toc-text">Socket套接字编程原理</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Socket的2种类型"><span class="toc-number">2.1.</span> <span class="toc-text">Socket的2种类型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Socket-I-O的2种模式"><span class="toc-number">2.2.</span> <span class="toc-text">Socket I/O的2种模式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#使用数据报套接字"><span class="toc-number">2.3.</span> <span class="toc-text">使用数据报套接字</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#使用流式套接字"><span class="toc-number">2.4.</span> <span class="toc-text">使用流式套接字</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#套接字部分库函数列表"><span class="toc-number">3.</span> <span class="toc-text">套接字部分库函数列表</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#WSAStartup（）"><span class="toc-number">3.1.</span> <span class="toc-text">WSAStartup（）</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Socket套接字介绍"><span class="toc-number">1.</span> <span class="toc-text">Socket套接字介绍</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Socket套接字编程原理"><span class="toc-number">2.</span> <span class="toc-text">Socket套接字编程原理</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Socket的2种类型"><span class="toc-number">2.1.</span> <span class="toc-text">Socket的2种类型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Socket-I-O的2种模式"><span class="toc-number">2.2.</span> <span class="toc-text">Socket I/O的2种模式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#使用数据报套接字"><span class="toc-number">2.3.</span> <span class="toc-text">使用数据报套接字</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#使用流式套接字"><span class="toc-number">2.4.</span> <span class="toc-text">使用流式套接字</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#套接字部分库函数列表"><span class="toc-number">3.</span> <span class="toc-text">套接字部分库函数列表</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#WSAStartup（）"><span class="toc-number">3.1.</span> <span class="toc-text">WSAStartup（）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#socket（）"><span class="toc-number">3.2.</span> <span class="toc-text">socket（）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#bind（）"><span class="toc-number">3.3.</span> <span class="toc-text">bind（）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#listen（）"><span class="toc-number">3.4.</span> <span class="toc-text">listen（）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#accept（）"><span class="toc-number">3.5.</span> <span class="toc-text">accept（）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#connect（）"><span class="toc-number">3.6.</span> <span class="toc-text">connect（）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#send（）"><span class="toc-number">3.7.</span> <span class="toc-text">send（）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#recv（）"><span class="toc-number">3.8.</span> <span class="toc-text">recv（）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#sendto（）"><span class="toc-number">3.9.</span> <span class="toc-text">sendto（）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#recvfrom（）"><span class="toc-number">3.10.</span> <span class="toc-text">recvfrom（）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#closesocket（）"><span class="toc-number">3.11.</span> <span class="toc-text">closesocket（）</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Windows-Socket-2的扩展特性"><span class="toc-number">4.</span> <span class="toc-text">Windows Socket 2的扩展特性</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Winsock-2-0简介"><span class="toc-number">4.1.</span> <span class="toc-text">Winsock 2.0简介</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Winsock-2-0新特性"><span class="toc-number">4.2.</span> <span class="toc-text">Winsock 2.0新特性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Winsock-2-0新增函数"><span class="toc-number">4.3.</span> <span class="toc-text">Winsock 2.0新增函数</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -567,19 +637,19 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Leetcode</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">哈希</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Android</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">计算机网络</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Leetcode</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -591,7 +661,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">哈希</a>
+                <a href="javascript:void(0)" class="js-tag color3">二分</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">数学</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">双指针</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -599,7 +677,19 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">数组</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">链表</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">哈希表</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">移位</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -611,19 +701,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">数学</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">移位</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">哈希表</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">二分</a>
+                <a href="javascript:void(0)" class="js-tag color1">有限状态机</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -631,11 +709,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">数组</a>
+                <a href="javascript:void(0)" class="js-tag color2">栈</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">双指针</a>
+                <a href="javascript:void(0)" class="js-tag color4">字符串</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -647,27 +725,23 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">有限状态机</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">栈</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">回溯</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">排序</a>
+                <a href="javascript:void(0)" class="js-tag color5">操作系统</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">字符串</a>
+                <a href="javascript:void(0)" class="js-tag color3">进程</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">位运算</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">排序</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -679,15 +753,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">滑动窗口</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">拓展中心</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">贪心</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">滑动窗口</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -695,7 +765,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">剪枝</a>
+                <a href="javascript:void(0)" class="js-tag color5">拓展中心</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -703,15 +773,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">剪枝</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">桶排序</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">操作系统</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">进程</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -728,6 +794,10 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Bash</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">计算机网络</a>
               </li>
              
               <li class="article-tag-list-item">
