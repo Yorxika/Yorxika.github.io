@@ -8,19 +8,20 @@
   <link rel="dns-prefetch" href="http://yorxika.github.io">
   <title>Linux进程的软中断和管道通信 | Nameless blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Linux进程管理命令——进程查看 ps命令：报告进程标识、用户、CPU时间消耗及其他属性  命令单独使用可以看到前台执行的进程；后台进程可以使用带参 数的ps命令（如ps -ax）  提供进程的一次性查看，结果不连续  结果数据很精确，但数据量庞大   top命令：显示CPU占用率为前几位的进程  动态显示，输出结果连续  消耗较多的系统资源   pstree命令：列出当前的进程，以及它们的树状">
+  <meta name="description" content="Linux进程管理命令——进程查看 ps命令：报告进程标识、用户、CPU时间消耗及其他属性  命令单独使用可以看到前台执行的进程；后台进程可以使用带参 数的ps命令（如ps -ax）">
 <meta name="keywords" content="进程,Linux">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Linux进程的软中断和管道通信">
 <meta property="og:url" content="http://yorxika.github.io/2019/12/02/进程的软中断和管道通信/index.html">
 <meta property="og:site_name" content="Nameless blog">
-<meta property="og:description" content="Linux进程管理命令——进程查看 ps命令：报告进程标识、用户、CPU时间消耗及其他属性  命令单独使用可以看到前台执行的进程；后台进程可以使用带参 数的ps命令（如ps -ax）  提供进程的一次性查看，结果不连续  结果数据很精确，但数据量庞大   top命令：显示CPU占用率为前几位的进程  动态显示，输出结果连续  消耗较多的系统资源   pstree命令：列出当前的进程，以及它们的树状">
+<meta property="og:description" content="Linux进程管理命令——进程查看 ps命令：报告进程标识、用户、CPU时间消耗及其他属性  命令单独使用可以看到前台执行的进程；后台进程可以使用带参 数的ps命令（如ps -ax）">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://yorxika.github.io/2019/12/02/进程的软中断和管道通信/1.jpg">
-<meta property="og:updated_time" content="2019-12-02T13:42:05.884Z">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/02/进程的软中断和管道通信/2.jpg">
+<meta property="og:updated_time" content="2019-12-03T12:06:30.552Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux进程的软中断和管道通信">
-<meta name="twitter:description" content="Linux进程管理命令——进程查看 ps命令：报告进程标识、用户、CPU时间消耗及其他属性  命令单独使用可以看到前台执行的进程；后台进程可以使用带参 数的ps命令（如ps -ax）  提供进程的一次性查看，结果不连续  结果数据很精确，但数据量庞大   top命令：显示CPU占用率为前几位的进程  动态显示，输出结果连续  消耗较多的系统资源   pstree命令：列出当前的进程，以及它们的树状">
+<meta name="twitter:description" content="Linux进程管理命令——进程查看 ps命令：报告进程标识、用户、CPU时间消耗及其他属性  命令单独使用可以看到前台执行的进程；后台进程可以使用带参 数的ps命令（如ps -ax）">
 <meta name="twitter:image" content="http://yorxika.github.io/2019/12/02/进程的软中断和管道通信/1.jpg">
   
     <link rel="alternative" href="/atom.xml" title="Nameless blog" type="application/atom+xml">
@@ -190,7 +191,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
         <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">4.1k字</span>
+        <span class="post-count">7.7k字</span>
       </span>
     </span>
 
@@ -199,7 +200,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-hourglass-half"></i>
         <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">14分</span>
+        <span class="post-count">28分</span>
       </span>
     </span>
 </div>
@@ -222,7 +223,7 @@
       
         <h3 id="Linux进程管理命令——进程查看"><a href="#Linux进程管理命令——进程查看" class="headerlink" title="Linux进程管理命令——进程查看"></a>Linux进程管理命令——进程查看</h3><ul>
 <li>ps命令：报告进程标识、用户、CPU时间消耗及其他属性 <ul>
-<li>命令单独使用可以看到前台执行的进程；后台进程可以使用带参 数的ps命令（如ps -ax） </li>
+<li>命令单独使用可以看到前台执行的进程；后台进程可以使用带参 数的ps命令（如ps -ax） <a id="more"></a></li>
 <li>提供进程的一次性查看，结果不连续 </li>
 <li>结果数据很精确，但数据量庞大</li>
 </ul>
@@ -336,8 +337,24 @@
 </ul>
 <h4 id="等待进程终止"><a href="#等待进程终止" class="headerlink" title="等待进程终止"></a>等待进程终止</h4><p>wait();    waitpid();</p>
 <ul>
-<li>① wait() 语法格式： pid=wait(stat_addr);<br> wait()函数使父进程暂停执行，直到它的一个子进程结束为止，该函数 的返回值是终止运行的子进程的PID。参数status所指向的变量存放子 进程的退出码，即从子进程的main函数返回的值或子进程中exit()函数 的参数。如果status不是一个空指针，状态信息将被写入它指向的变量。</li>
-<li>② waitpid() 语法格式：waitpid(pid_t pid,int * status,int options)<br> 用来等待子进程的结束，但它用于等待某个特定进程结束。<br> 参数pid指明要等待的子进程的PID，参数status的含义与wait()函数中的 status相同。</li>
+<li><p>① wait() 语法格式： pid=wait(stat_addr);<br> wait()函数使父进程暂停执行，直到它的一个子进程结束为止，该函数 的返回值是终止运行的子进程的PID。参数status所指向的变量存放子 进程的退出码，即从子进程的main函数返回的值或子进程中exit()函数 的参数。如果status不是一个空指针，状态信息将被写入它指向的变量。</p>
+</li>
+<li><p>② waitpid() 语法格式：waitpid(pid_t pid,int * status,int options)<br> 用来等待子进程的结束，但它用于等待某个特定进程结束。<br> 参数pid指明要等待的子进程的PID，参数status的含义与wait()函数中的 status相同。</p>
+<p> 如果在调用 waitpid()时子进程已经结束,则 waitpid()会立即返回子进程结束状态值。 子进程的结束状态值会由参数 status 返回,而子进程的进程识别码也会一起返回。如果不在意结束状态值,则参数 status 可以设成 NULL。参数 pid 为欲等待的子进程识别码.<br> 其他数值意义如下:</p>
+<ul>
+<li><p>pid&lt;-1 等待进程组识别码为 pid 绝对值的任何子进程。</p>
+</li>
+<li><p>pid=-1 等待任何子进程,相当于 wait()。</p>
+</li>
+<li><p>pid=0 等待进程组识别码与目前进程相同的任何子进程。</p>
+</li>
+<li><p>pid&gt;0 等待任何子进程识别码为 pid 的子进程。</p>
+</li>
+<li><p>参数options提供了一些额外的选项来控制waitpid，参数 option 可以为 0 或可以用”|”运算符把它们连接起来使用，比如：<code>ret=waitpid(-1,NULL,WNOHANG | WUNTRACED);</code><br>WNOHANG 若pid指定的子进程没有结束，则waitpid()函数返回0，不予以等待。若结束，则返回该子进程的ID。<br>WUNTRACED 若子进程进入暂停状态，则马上返回，但子进程的结束状态不予以理会。WIFSTOPPED(status)宏确定返回值是否对应与一个暂停子进程。</p>
+<p>子进程的结束状态返回后存于 status,底下有几个宏可判别结束情况:<br>WIFEXITED(status)如果若为正常结束子进程返回的状态，则为真；对于这种情况可执行WEXITSTATUS(status)，取子进程传给exit或_eixt的低8位。<br>WEXITSTATUS(status)取得子进程 exit()返回的结束代码,一般会先用 WIFEXITED 来判断是否正常结束才能使用此宏。<br>WIFSIGNALED(status)若为异常结束子进程返回的状态，则为真；对于这种情况可执行WTERMSIG(status)，取使子进程结束的信号编号。<br>WTERMSIG(status) 取得子进程因信号而中止的信号代码,一般会先用 WIFSIGNALED 来判断后才使用此宏。<br>WIFSTOPPED(status) 若为当前暂停子进程返回的状态，则为真；对于这种情况可执行WSTOPSIG(status)，取使子进程暂停的信号编号。<br>WSTOPSIG(status) 取得引发子进程暂停的信号代码,一般会先用 WIFSTOPPED 来判断后才使用此宏。<br>如果执行成功则返回子进程识别码(PID) ,如果有错误发生则返回<br>返回值-1。失败原因存于 errno 中。</p>
+</li>
+</ul>
+</li>
 </ul>
 <h3 id="进程的软中断通信"><a href="#进程的软中断通信" class="headerlink" title="进程的软中断通信"></a>进程的软中断通信</h3><h4 id="signal"><a href="#signal" class="headerlink" title="signal()"></a>signal()</h4><p><strong>表头文件</strong>#include&lt;signal.h&gt;</p>
 <p><strong>功能</strong>：设置某一信号的对应动作</p>
@@ -358,9 +375,275 @@
 <li>Kill命令。实际上是对Kill函数的一个包装</li>
 <li>软件中断。如当Alarm Clock超时（SIGURG），当Reader中止之后又向管道写数据（SIGPIPE），等等</li>
 </ul>
-<p>Signals:<br> Signal | Description<br>  :—: | :—:<br>SIGABRT | 由调用abort函数产生，进程非正常退出</p>
-<p>SIGALRM<br>用alarm函数设置的timer超时或setitimer函数设置的interval timer超时<br>SIGBUS<br>某种特定的硬件异常，通常由内存访问引起<br>SIGCANCEL<br>由Solaris Thread Library内部使用，通常不会使用<br>SIGCHLD<br>进程Terminate或Stop的时候，SIGCHLD会发送给它的父进程。缺省情况下该Signal会被忽略<br>SIGCONT<br>当被stop的进程恢复运行的时候，自动发送<br>SIGEMT<br>和实现相关的硬件异常<br>SIGFPE<br>数学相关的异常，如被0除，浮点溢出，等等<br>SIGFREEZE<br>Solaris专用，Hiberate或者Suspended时候发送<br>SIGHUP<br>发送给具有Terminal的Controlling Process，当terminal被disconnect时候发送<br>SIGILL<br>非法指令异常<br>SIGINFO<br>BSD signal。由Status Key产生，通常是CTRL+T。发送给所有Foreground Group的进程<br>SIGINT<br>由Interrupt Key产生，通常是CTRL+C或者DELETE。发送给所有ForeGround Group的进程<br>SIGIO<br>异步IO事件<br>SIGIOT<br>实现相关的硬件异常，一般对应SIGABRT<br>SIGKILL<br>无法处理和忽略。中止某个进程<br>SIGLWP<br>由Solaris Thread Libray内部使用<br>SIGPIPE<br>在reader中止之后写Pipe的时候发送<br>SIGPOLL<br>当某个事件发送给Pollable Device的时候发送<br>SIGPROF<br>Setitimer指定的Profiling Interval Timer所产生<br>SIGPWR<br>和系统相关。和UPS相关。<br>SIGQUIT<br>输入Quit Key的时候（CTRL+\）发送给所有Foreground Group的进程<br>SIGSEGV<br>非法内存访问<br>SIGSTKFLT<br>Linux专用，数学协处理器的栈异常<br>SIGSTOP<br>中止进程。无法处理和忽略。<br>SIGSYS<br>非法系统调用<br>SIGTERM<br>请求中止进程，kill命令缺省发送<br>SIGTHAW<br>Solaris专用，从Suspend恢复时候发送<br>SIGTRAP<br>实现相关的硬件异常。一般是调试异常<br>SIGTSTP<br>Suspend Key，一般是Ctrl+Z。发送给所有Foreground Group的进程<br>SIGTTIN<br>当Background Group的进程尝试读取Terminal的时候发送<br>SIGTTOU<br>当Background Group的进程尝试写Terminal的时候发送<br>SIGURG<br>当out-of-band data接收的时候可能发送<br>SIGUSR1<br>用户自定义signal 1<br>SIGUSR2<br>用户自定义signal 2<br>SIGVTALRM<br>setitimer函数设置的Virtual Interval Timer超时的时候<br>SIGWAITING<br>Solaris Thread Library内部实现专用<br>SIGWINCH<br>当Terminal的窗口大小改变的时候，发送给Foreground Group的所有进程<br>SIGXCPU<br>当CPU时间限制超时的时候<br>SIGXFSZ<br>进程超过文件大小限制<br>SIGXRES<br>Solaris专用，进程超过资源限制的时候发送</p>
+<p>Signals:</p>
+<table>
+<thead>
+<tr>
+<th align="center">Signal</th>
+<th align="center">Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">SIGABRT</td>
+<td align="center">由调用abort函数产生，进程非正常退出</td>
+</tr>
+<tr>
+<td align="center">SIGALRM</td>
+<td align="center">用alarm函数设置的timer超时或setitimer函数设置的interval timer超时</td>
+</tr>
+<tr>
+<td align="center">SIGBUS</td>
+<td align="center">某种特定的硬件异常，通常由内存访问引起</td>
+</tr>
+<tr>
+<td align="center">SIGCANCEL</td>
+<td align="center">由Solaris Thread Library内部使用，通常不会使用</td>
+</tr>
+<tr>
+<td align="center">SIGCHLD</td>
+<td align="center">进程Terminate或Stop的时候，SIGCHLD会发送给它的父进程。缺省情况下该Signal会被忽略</td>
+</tr>
+<tr>
+<td align="center">SIGCONT</td>
+<td align="center">当被stop的进程恢复运行的时候，自动发送</td>
+</tr>
+<tr>
+<td align="center">SIGEMT</td>
+<td align="center">和实现相关的硬件异常</td>
+</tr>
+<tr>
+<td align="center">SIGFPE</td>
+<td align="center">数学相关的异常，如被0除，浮点溢出，等等</td>
+</tr>
+<tr>
+<td align="center">SIGFREEZE</td>
+<td align="center">Solaris专用，Hiberate或者Suspended时候发送</td>
+</tr>
+<tr>
+<td align="center">SIGHUP</td>
+<td align="center">发送给具有Terminal的Controlling Process，当terminal被disconnect时候发送</td>
+</tr>
+<tr>
+<td align="center">SIGILL</td>
+<td align="center">非法指令异常</td>
+</tr>
+<tr>
+<td align="center">SIGINFO</td>
+<td align="center">BSD signal。由Status Key产生，通常是CTRL+T。发送给所有Foreground Group的进程</td>
+</tr>
+<tr>
+<td align="center">SIGINT</td>
+<td align="center">由Interrupt Key产生，通常是CTRL+C或者DELETE。发送给所有ForeGround Group的进程</td>
+</tr>
+<tr>
+<td align="center">SIGIO</td>
+<td align="center">异步IO事件</td>
+</tr>
+<tr>
+<td align="center">SIGIOT</td>
+<td align="center">实现相关的硬件异常，一般对应SIGABRT</td>
+</tr>
+<tr>
+<td align="center">SIGKILL</td>
+<td align="center">无法处理和忽略。中止某个进程</td>
+</tr>
+<tr>
+<td align="center">SIGLWP</td>
+<td align="center">由Solaris Thread Libray内部使用</td>
+</tr>
+<tr>
+<td align="center">SIGPIPE</td>
+<td align="center">在reader中止之后写Pipe的时候发送</td>
+</tr>
+<tr>
+<td align="center">SIGPOLL</td>
+<td align="center">当某个事件发送给Pollable Device的时候发送</td>
+</tr>
+<tr>
+<td align="center">SIGPROF</td>
+<td align="center">Setitimer指定的Profiling Interval Timer所产生</td>
+</tr>
+<tr>
+<td align="center">SIGPWR</td>
+<td align="center">和系统相关。和UPS相关。</td>
+</tr>
+<tr>
+<td align="center">SIGQUIT</td>
+<td align="center">输入Quit Key的时候（CTRL+\）发送给所有Foreground Group的进程</td>
+</tr>
+<tr>
+<td align="center">SIGSEGV</td>
+<td align="center">非法内存访问</td>
+</tr>
+<tr>
+<td align="center">SIGSTKFLT</td>
+<td align="center">Linux专用，数学协处理器的栈异常</td>
+</tr>
+<tr>
+<td align="center">SIGSTOP</td>
+<td align="center">中止进程。无法处理和忽略。</td>
+</tr>
+<tr>
+<td align="center">SIGSYS</td>
+<td align="center">非法系统调用</td>
+</tr>
+<tr>
+<td align="center">SIGTERM</td>
+<td align="center">请求中止进程，kill命令缺省发送</td>
+</tr>
+<tr>
+<td align="center">SIGTHAW</td>
+<td align="center">Solaris专用，从Suspend恢复时候发送</td>
+</tr>
+<tr>
+<td align="center">SIGTRAP</td>
+<td align="center">实现相关的硬件异常。一般是调试异常</td>
+</tr>
+<tr>
+<td align="center">SIGTSTP</td>
+<td align="center">Suspend Key，一般是Ctrl+Z。发送给所有Foreground Group的进程</td>
+</tr>
+<tr>
+<td align="center">SIGTTIN</td>
+<td align="center">当Background Group的进程尝试读取Terminal的时候发送</td>
+</tr>
+<tr>
+<td align="center">SIGTTOU</td>
+<td align="center">当Background Group的进程尝试写Terminal的时候发送</td>
+</tr>
+<tr>
+<td align="center">SIGURG</td>
+<td align="center">当out-of-band data接收的时候可能发送</td>
+</tr>
+<tr>
+<td align="center">SIGUSR1</td>
+<td align="center">用户自定义signal 1</td>
+</tr>
+<tr>
+<td align="center">SIGUSR2</td>
+<td align="center">用户自定义signal 2</td>
+</tr>
+<tr>
+<td align="center">SIGVTALRM</td>
+<td align="center">setitimer函数设置的Virtual Interval Timer超时的时候</td>
+</tr>
+<tr>
+<td align="center">SIGWAITING</td>
+<td align="center">Solaris Thread Library内部实现专用</td>
+</tr>
+<tr>
+<td align="center">SIGWINCH</td>
+<td align="center">当Terminal的窗口大小改变的时候，发送给Foreground Group的所有进程</td>
+</tr>
+<tr>
+<td align="center">SIGXCPU</td>
+<td align="center">当CPU时间限制超时的时候</td>
+</tr>
+<tr>
+<td align="center">SIGXFSZ</td>
+<td align="center">进程超过文件大小限制</td>
+</tr>
+<tr>
+<td align="center">SIGXRES</td>
+<td align="center">Solaris专用，进程超过资源限制的时候发送</td>
+</tr>
+</tbody></table>
+<p><strong>注意</strong></p>
+<ul>
+<li>不要使用低级的或者STDIO.H的IO函数</li>
+<li>不要使用对操作</li>
+<li>不要进行系统调用</li>
+<li>不是浮点信号的时候不要用longjmp</li>
+<li>signal函数是由ISO C定义的。因为ISO C不涉及多进程，进程组以及终端I/O等，所以他对信号的定义非常含糊，以至于对UNIX系统而言几乎毫无用处。</li>
+<li>备注：因为signal的语义与现实有关，所以最好使用sigaction函数替代本函数</li>
+</ul>
+<p>当某个信号出现时，系统有三种处理方式： </p>
+<ul>
+<li>忽略信号：大多数信号使用，但SIGKIL和SIGSTOP不能被忽略 </li>
+<li>捕捉信号：通知内核在某种信号发生时，调用一个用户函数 </li>
+<li>执行系统默认动作：异常终止(abort)、退出(exit)、忽略(ignore)、停 止(stop)或继续(continue)</li>
+</ul>
+<p>*<em>功能 *</em></p>
+<ul>
+<li>发送信号：发送进程把信号送到指定进程信号域的某一位上，如目标进程正在一个可被中断的优先级上睡眠，核心便将其唤醒 </li>
+<li>预置对信号的处理方式：进程处于核心态时，即使受到软中断也不予理睬；只有当它返回到用户态后，才处理软中断信号 </li>
+<li>收受信号的进程按事先规定完成对相应事件的处理</li>
+</ul>
+<h3 id="进程的软中断通信——函数的使用"><a href="#进程的软中断通信——函数的使用" class="headerlink" title="进程的软中断通信——函数的使用"></a>进程的软中断通信——函数的使用</h3><ul>
+<li><p>向一个进程或一组进程发送一个信号：int kill(pid, sig)<br> pid&gt;0时，核心将信号发送给进程pid<br> pid&lt;0时，核心将信号发送给与发送进程同组的所有进程<br> pid=-1时，核心将信号发送给所有用户标识符真正等于发送进程的有 效用户标识号的进程</p>
+</li>
+<li><p>预置信号接收后的处理方式：signal(sig, function)<br> function=1时，屏蔽该类信号<br> function=0时，收到sig信号后终止自己<br> function为非0、非1类整数时，执行用户设置的软中断处理程序</p>
+</li>
+</ul>
+<h3 id="Linux进程间通信—管道和有名管道"><a href="#Linux进程间通信—管道和有名管道" class="headerlink" title="Linux进程间通信—管道和有名管道"></a>Linux进程间通信—管道和有名管道</h3><ul>
+<li>管道用于具有亲缘关系进程间的通信<ul>
+<li>管道是半双工的，数据只能单向流动（双方通信需建立两个管道）</li>
+<li>管道只能用于父子进程或兄弟进程之间</li>
+<li>管道对于管道两端的进程而言就是一个文件，并单独构成一种文件 系统，存在于内存中</li>
+<li>写管道的内容添加在管道缓冲区的末尾，读管道则从缓冲区头部读 出</li>
+</ul>
+</li>
+<li>有名管道在普通管道具备功能基础上，通过给管道命名的 方法变成管道文件，允许无亲缘关系进程间通过访问管道 文件进行通信</li>
+</ul>
+<h4 id="无名管道的使用"><a href="#无名管道的使用" class="headerlink" title="无名管道的使用"></a>无名管道的使用</h4><ul>
+<li>int pipefd[2]; int pipe(pipefd); /*创建无名管道*/<br> pipefd[0]只能用于读;  pipe[1]只能用于写</li>
+</ul>
+<p>pipe函数定义中的fd参数是一个大小为2的一个数组类型的指针。该函数成功时返回0，并将一对打开的文件描述符值填入fd参数指向的数组。失败时返回 -1并设置errno。</p>
+<p>通过pipe函数创建的这两个文件描述符 fd[0] 和 fd[1] 分别构成管道的两端，往 fd[1] 写入的数据可以从 fd[0] 读出。并且 fd[1] 一端只能进行写操作，fd[0] 一端只能进行读操作，不能反过来使用。要实现双向数据传输，可以使用两个管道。</p>
+<p>默认情况下，这一对文件描述符都是阻塞的。此时，如果我们用read系统调用来读取一个空的管道，则read将被阻塞，知道管道内有数据可读；如果我们用write系统调用往一个满的管道中写数据，则write也将被阻塞，直到管道有足够的空闲空间可用(read读取数据后管道中将清除读走的数据)。当然，用户可自行将 fd[0] 和 fd[1] 设置为非阻塞的。</p>
+<p>如果管道的写端文件描述符 fd[1] 的引用计数减少至0，即没有任何进程需要往管道中写入数据，则对该管道的读端文件描述符 fd[0] 的read操作将返回0(管道内不存在数据的情况)，即读到了文件结束标记(EOF，End Of File)；反之，如果管道的读端文件描述符 fd[0] 的引用计数减少至0，即没有任何进程需要从管道读取数据，则针对该管道的写端文件描述符 fd[1] 的write操作将失败，并引发SIGPIPE信号(往读端被关闭的管道或socket连接中写数据)。</p>
+<p>管道内部传输的数据是字节流，这和TCP字节流的概念相同。但它们又存在细微的差别。应用层程序能往一个TCP连接中写入多少字节的数据，取决于对方接受窗口的大小和本端的拥塞窗口的大小。而管道的话本身拥有一个容量限制，它规定如果管道的写端应用程序不将管道中数据读走的话，该管道最多还能被写入多少字节的数据。管道容量的大小默认是65536字节。我们也可以使用fcntl函数来修改管道容量。</p>
+<div align="center">
+<img width="500" src="/2019/12/02/进程的软中断和管道通信/2.jpg">
+</div>
 
+<ol>
+<li><p>父进程调用pipe函数创建管道，得到两个文件描述符fd[0]、fd[1]指向管道的读端和写端。</p>
+</li>
+<li><p>父进程调用fork创建子进程，那么子进程也有两个文件描述符指向同一管道。</p>
+</li>
+<li><p>父进程关闭管道读端，子进程关闭管道写端。父进程可以向管道中写入数据，子进程将管道中的数据读出。由于管道是利用环形队列实现的，数据从写端流入管道，从读端流出，这样就实现了进程间通信。</p>
+</li>
+</ol>
+<ul>
+<li>将数据写入管道：write() <ul>
+<li>函数原型:<code>int write(int handle, void *buf, int nbyte)</code></li>
+<li>管道长度受到限制，管道满时写入操作将被阻塞，直到管道中的 数据被读取 </li>
+<li>fcntl()可将管道设置为非阻塞模式</li>
+</ul>
+</li>
+<li>从管道读取数据：read() <ul>
+<li>函数原型:<code>ssize_t read   (int fd, void *buf, size_t count);</code></li>
+<li>返回值：成功返回读取的字节数，出错返回-1并设置errno，如果在调read之前已到达文件末尾，则这次read返回0。</li>
+<li>参数：参数count是请求读取的字节数，读上来的数据保存在缓冲区buf中，同时文件的当前读写位置向后移。注意这个读写位置和使用C标准I/O库时的读写位置有可能不同，这个读写位置是记在内核中的，而使用C标准I/O库时的读写位置是用户空间I/O缓冲区中的位置。比如用fgetc读一个字节，fgetc有可能从内核中预读1024个字节到I/O缓冲区中，再返回第一个字节，这时该文件在内核中记录的读写位置是1024，而在FILE结构体中记录的读写位置是1。注意返回值类型是ssize_t，表示有符号的size_t，这样既可以返回正的字节数、0（表示到达文件末尾）也可以返回负值-1（表示出错）。<br>read函数返回时，返回值说明了buf中前多少个字节是刚读上来的。有些情况下，实际读到的字节数（返回值）会小于请求读的字节数count，例如：读常规文件时，在读到count个字节之前已到达文件末尾。例如，距文件末尾还有30个字节而请求读100个字节，则read返回30，下次read将返回0。</li>
+<li>当数据被读取后，数据将自动被管道清除 </li>
+<li>不能由一个进程向多个进程同时传递同一个数据 </li>
+<li>fcntl()可将管道读模式设置为非阻塞模式 </li>
+</ul>
+</li>
+<li>关闭管道：close()<ul>
+<li>函数原型:<code>int close(int fd);</code></li>
+<li>返回值：成功返回0，出错返回-1并设置errno</li>
+<li>参数fd是要关闭的文件描述符。需要说明的是，当一个进程终止时，内核对该进程所有尚未关闭的文件描述符调用close关闭，所以即使用户程序不调用close，在终止时内核也会自动关闭它打开的所有文件。但是对于一个长年累月运行的程序（比如网络服务器），打开的文件描述符一定要记得关闭，否则随着打开的文件越来越多，会占用大量文件描述符和系统资源。</li>
+<li>关闭读端口时，在管道上进行写操作的进程将收到SIGPIPE信号 </li>
+<li>关闭写端口时，进行读操作的read()函数将返回0</li>
+</ul>
+</li>
+</ul>
+<h4 id="管道通信的使用—命名管道的创建与读写"><a href="#管道通信的使用—命名管道的创建与读写" class="headerlink" title="管道通信的使用—命名管道的创建与读写"></a>管道通信的使用—命名管道的创建与读写</h4><ul>
+<li><p>创建命名管道： </p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">int mknod(const char *path, mode_t mod, dev_t dev)； </span><br><span class="line">int mkfifo(const char *path, mode_t mode)；</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>命名管道必须先调用open()将其打开 </p>
+<ul>
+<li>同时用读写方式(O_RDWR)打开时，一定不会导致阻塞 </li>
+<li>以只读方式(O_RDONLY)打开时，调用open()函数的进程将会被 阻塞直到有写方打开管道 </li>
+<li>以写方式(O_WRONLY)打开时，阻塞直到有读方打开管道</li>
+</ul>
+</li>
+</ul>
+<h3 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h3><p>实现进程简单控制和利用管道通信</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;  //exex、fork头文件</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;signal.h&gt;  //signal头文件</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/types.h&gt;  //wait头文件</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/wait.h&gt;  //wait头文件</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;  //exit头文件</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;pthread.h&gt; //mutex头文件</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt; </span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> pipefd[<span class="number">2</span>];   <span class="comment">/*创建无名管道,pipefd[0]只能用于读;  pipe[1]只能用于写*/</span></span><br><span class="line"><span class="keyword">int</span> child_1, child_2;  <span class="comment">//用于存储创建的子进程pid</span></span><br><span class="line"><span class="keyword">pthread_mutex_t</span> mutex;  <span class="comment">//进程互斥锁，避免抢占打印输出</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">kill_child1</span><span class="params">()</span> </span>&#123; <span class="comment">//父进程杀死子进程1</span></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"Child process 1 is killed by parent!\n"</span>);</span><br><span class="line">	close(pipefd[<span class="number">1</span>]);  <span class="comment">//关闭管道写端</span></span><br><span class="line">	<span class="built_in">exit</span>(<span class="number">0</span>);  <span class="comment">//子进程1退出</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">kill_child2</span><span class="params">()</span> </span>&#123; <span class="comment">//父进程杀死子进程2</span></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"Child process 2 is killed by parent!\n"</span>);</span><br><span class="line">	close(pipefd[<span class="number">0</span>]);  <span class="comment">//关闭管道读端</span></span><br><span class="line">	<span class="built_in">exit</span>(<span class="number">0</span>);  <span class="comment">//子进程2退出</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">kill_childprocess</span><span class="params">()</span> </span>&#123;  <span class="comment">//父进程捕捉到中断信号，用系统调用Kill()向两个子进 程发出信号</span></span><br><span class="line">	<span class="keyword">if</span> (kill(child_1, SIGUSR1) &lt; <span class="number">0</span>)</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"Kill child1 process error!\n"</span>);</span><br><span class="line">	<span class="keyword">if</span> (kill(child_2, SIGUSR1) &lt; <span class="number">0</span>)</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"Kill child2 process error!\n"</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> <span class="keyword">const</span>* argv[])</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">int</span> rtn; </span><br><span class="line">	pthread_mutex_init(&amp;mutex, <span class="literal">NULL</span>); <span class="comment">//初始化mutex</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">//创建管道 </span></span><br><span class="line">	<span class="keyword">if</span> (pipe(pipefd) == <span class="number">-1</span>) &#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"Create a nameless pipe error!\n"</span>);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//创建第一个子进程</span></span><br><span class="line">	<span class="keyword">switch</span> (child_1 = fork())</span><br><span class="line">	&#123;</span><br><span class="line">	<span class="keyword">case</span> - <span class="number">1</span>:</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"Create child process failed!\n"</span>);</span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line">	<span class="keyword">case</span> <span class="number">0</span>:</span><br><span class="line">		close(pipefd[<span class="number">0</span>]);  <span class="comment">//子进程1关闭读端</span></span><br><span class="line">		signal(SIGINT, SIG_IGN);  <span class="comment">//SIGINT:由Interrupt Key产生，通常是CTRL+C或者DELETE。</span></span><br><span class="line">													 <span class="comment">//发送给所有ForeGround Group的进程</span></span><br><span class="line">		signal(SIGUSR1, kill_child1);   <span class="comment">// 设置进程处理信号</span></span><br><span class="line"></span><br><span class="line">		<span class="keyword">int</span> i = <span class="number">1</span>;</span><br><span class="line">		<span class="keyword">while</span> (<span class="number">1</span>) &#123; <span class="comment">//死循环里每秒通过管道发送信号给子进程2</span></span><br><span class="line">			sleep(<span class="number">1</span>);</span><br><span class="line">			write(pipefd[<span class="number">1</span>], (<span class="keyword">void</span>*)&amp;i, <span class="keyword">sizeof</span>(<span class="keyword">int</span>));</span><br><span class="line">			pthread_mutex_lock(&amp;mutex);</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">"I have send you %d times!\n"</span>, i);</span><br><span class="line">			pthread_mutex_unlock(&amp;mutex);</span><br><span class="line">			i++;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line">	<span class="keyword">default</span>:</span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//创建第二个子进程</span></span><br><span class="line">	<span class="keyword">switch</span> (child_2 = fork())</span><br><span class="line">	&#123;</span><br><span class="line">	<span class="keyword">case</span> <span class="number">-1</span>:</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"Create child process failed!\n"</span>);</span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line">	<span class="keyword">case</span> <span class="number">0</span>:</span><br><span class="line">		close(pipefd[<span class="number">1</span>]);  <span class="comment">//子进程关闭写端</span></span><br><span class="line">		signal(SIGINT, SIG_IGN);  <span class="comment">//SIGINT:由Interrupt Key产生，通常是CTRL+C或者DELETE。</span></span><br><span class="line">											 <span class="comment">//发送给所有ForeGround Group的进程</span></span><br><span class="line">		signal(SIGUSR1, kill_child2);   <span class="comment">// 设置进程处理信号</span></span><br><span class="line"></span><br><span class="line">		<span class="keyword">int</span> i = <span class="number">1</span>;</span><br><span class="line">		<span class="keyword">while</span> (<span class="number">1</span>) &#123; <span class="comment">//死循环里每秒通过管道发送信号给子进程2</span></span><br><span class="line">			read(pipefd[<span class="number">0</span>], (<span class="keyword">void</span>*)&amp;i, <span class="keyword">sizeof</span>(<span class="keyword">int</span>));</span><br><span class="line">			pthread_mutex_lock(&amp;mutex);</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">"I have received your message %d times!\n"</span>, i);</span><br><span class="line">			pthread_mutex_unlock(&amp;mutex);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line">	<span class="keyword">default</span>:</span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	signal(SIGINT,kill_childprocess);  <span class="comment">//当捕捉到中断信号后</span></span><br><span class="line">	<span class="comment">//父进程用系统调用Kill()向两个子进 程发出信号</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">//等到两个子进程结束</span></span><br><span class="line">	waitpid(child_1, &amp;rtn, <span class="number">0</span>);</span><br><span class="line">	waitpid(child_2, &amp;rtn, <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 关闭管道</span></span><br><span class="line">	close(pipefd[<span class="number">0</span>]);</span><br><span class="line">	close(pipefd[<span class="number">1</span>]);</span><br><span class="line"></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"Parent Process is killed!\n"</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
 
 
@@ -466,6 +749,15 @@
   
 <nav id="article-nav">
   
+    <a href="/2019/12/02/打家劫舍/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          打家劫舍
+        
+      </div>
+    </a>
+  
   
     <a href="/2019/12/02/动态规划习题/" id="article-nav-older" class="article-nav-link-wrap">
       <div class="article-nav-title">动态规划习题</div>
@@ -495,7 +787,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Linux进程管理命令——进程查看"><span class="toc-number">1.</span> <span class="toc-text">Linux进程管理命令——进程查看</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Linux进程管理命令—进程终止"><span class="toc-number">2.</span> <span class="toc-text">Linux进程管理命令—进程终止</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Linux进程控制函数——进程创建"><span class="toc-number">3.</span> <span class="toc-text">Linux进程控制函数——进程创建</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#fork"><span class="toc-number">3.1.</span> <span class="toc-text">fork()</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#exec"><span class="toc-number">3.2.</span> <span class="toc-text">exec()</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Linux进程属性操作"><span class="toc-number">3.3.</span> <span class="toc-text">Linux进程属性操作</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#进程退出"><span class="toc-number">3.4.</span> <span class="toc-text">进程退出</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#等待进程终止"><span class="toc-number">3.5.</span> <span class="toc-text">等待进程终止</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#进程的软中断通信"><span class="toc-number">4.</span> <span class="toc-text">进程的软中断通信</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#signal"><span class="toc-number">4.1.</span> <span class="toc-text">signal()</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Linux进程管理命令——进程查看"><span class="toc-number">1.</span> <span class="toc-text">Linux进程管理命令——进程查看</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Linux进程管理命令—进程终止"><span class="toc-number">2.</span> <span class="toc-text">Linux进程管理命令—进程终止</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Linux进程控制函数——进程创建"><span class="toc-number">3.</span> <span class="toc-text">Linux进程控制函数——进程创建</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#fork"><span class="toc-number">3.1.</span> <span class="toc-text">fork()</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#exec"><span class="toc-number">3.2.</span> <span class="toc-text">exec()</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Linux进程属性操作"><span class="toc-number">3.3.</span> <span class="toc-text">Linux进程属性操作</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#进程退出"><span class="toc-number">3.4.</span> <span class="toc-text">进程退出</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#等待进程终止"><span class="toc-number">3.5.</span> <span class="toc-text">等待进程终止</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#进程的软中断通信"><span class="toc-number">4.</span> <span class="toc-text">进程的软中断通信</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#signal"><span class="toc-number">4.1.</span> <span class="toc-text">signal()</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#进程的软中断通信——函数的使用"><span class="toc-number">5.</span> <span class="toc-text">进程的软中断通信——函数的使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Linux进程间通信—管道和有名管道"><span class="toc-number">6.</span> <span class="toc-text">Linux进程间通信—管道和有名管道</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#无名管道的使用"><span class="toc-number">6.1.</span> <span class="toc-text">无名管道的使用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#管道通信的使用—命名管道的创建与读写"><span class="toc-number">6.2.</span> <span class="toc-text">管道通信的使用—命名管道的创建与读写</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#实例"><span class="toc-number">7.</span> <span class="toc-text">实例</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -676,27 +968,19 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Leetcode</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">cache</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">设计</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">哈希</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Android</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Leetcode</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">哈希</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -708,10 +992,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">双指针</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">二分</a>
               </li>
              
@@ -720,7 +1000,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">双指针</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">动态规划</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">数组</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -728,7 +1016,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">数组</a>
+                <a href="javascript:void(0)" class="js-tag color4">哈希表</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">移位</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -740,7 +1032,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">哈希表</a>
+                <a href="javascript:void(0)" class="js-tag color1">有限状态机</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -752,7 +1044,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">有限状态机</a>
+                <a href="javascript:void(0)" class="js-tag color4">字符串</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">位运算</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -768,10 +1064,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">字符串</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">操作系统</a>
               </li>
              
@@ -780,15 +1072,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">位运算</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">排序</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">移位</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -800,6 +1084,14 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">贪心</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">滑动窗口</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">分治</a>
               </li>
              
@@ -808,15 +1100,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">滑动窗口</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">贪心</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">组成原理</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">剪枝</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -824,7 +1112,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">剪枝</a>
+                <a href="javascript:void(0)" class="js-tag color1">cache</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">设计</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -844,15 +1136,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Bash</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">思辨与创新</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
