@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="Nameless blog">
 <meta property="og:description" content="来源Leetcode第155题最小栈  设计一个支持 push，pop，top 操作，并能在常数时间内检索到最小元素的栈。  push(x) – 将元素 x 推入栈中。 pop() – 删除栈顶的元素。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-12-05T15:47:48.813Z">
+<meta property="og:updated_time" content="2019-12-05T16:20:47.756Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="最小栈">
 <meta name="twitter:description" content="来源Leetcode第155题最小栈  设计一个支持 push，pop，top 操作，并能在常数时间内检索到最小元素的栈。  push(x) – 将元素 x 推入栈中。 pop() – 删除栈顶的元素。">
@@ -228,13 +228,9 @@
 <li>getMin() – 检索栈中的最小元素。</li>
 </ul>
 <p><strong>示例:</strong></p>
-<figure class="highlight pf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&gt; M<span class="keyword">in</span>Stack <span class="keyword">min</span>Stack = new M<span class="keyword">in</span>Stack();</span><br><span class="line">&gt; <span class="keyword">min</span>Stack.push(-<span class="number">2</span>);</span><br><span class="line">&gt; <span class="keyword">min</span>Stack.push(<span class="number">0</span>);</span><br><span class="line">&gt; <span class="keyword">min</span>Stack.push(-<span class="number">3</span>);</span><br><span class="line">&gt; <span class="keyword">min</span>Stack.getM<span class="keyword">in</span>();   --&gt; 返回 -<span class="number">3</span>.</span><br><span class="line">&gt; <span class="keyword">min</span>Stack.pop();</span><br><span class="line">&gt; <span class="keyword">min</span>Stack.top();      --&gt; 返回 <span class="number">0</span>.</span><br><span class="line">&gt; <span class="keyword">min</span>Stack.getM<span class="keyword">in</span>();   --&gt; 返回 -<span class="number">2</span>.</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight pf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&gt;  M<span class="keyword">in</span>Stack <span class="keyword">min</span>Stack = new M<span class="keyword">in</span>Stack();</span><br><span class="line">&gt;  <span class="keyword">min</span>Stack.push(-<span class="number">2</span>);</span><br><span class="line">&gt;  <span class="keyword">min</span>Stack.push(<span class="number">0</span>);</span><br><span class="line">&gt;  <span class="keyword">min</span>Stack.push(-<span class="number">3</span>);</span><br><span class="line">&gt;  <span class="keyword">min</span>Stack.getM<span class="keyword">in</span>();   --&gt; 返回 -<span class="number">3</span>.</span><br><span class="line">&gt;  <span class="keyword">min</span>Stack.pop();</span><br><span class="line">&gt;  <span class="keyword">min</span>Stack.top();      --&gt; 返回 <span class="number">0</span>.</span><br><span class="line">&gt;  <span class="keyword">min</span>Stack.getM<span class="keyword">in</span>();   --&gt; 返回 -<span class="number">2</span>.</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
 </blockquote>
-<hr>
-<h4 id="双栈"><a href="#双栈" class="headerlink" title="双栈"></a>双栈</h4><p>利用两个栈，一个数据栈，一个保存所有最小值栈实现。</p>
-<p>当最小值栈非空时，元素直接入栈，否则需要比较栈顶元素与入栈元素大小，如果小于等于，则入栈</p>
-<p>代码如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MinStack</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/** initialize your data structure here. */</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> Stack&lt;Integer&gt; stack;</span><br><span class="line">    <span class="keyword">private</span> Stack&lt;Integer&gt; miniStack;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MinStack</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        stack = <span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line">        miniStack = <span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">push</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">        stack.push(x);</span><br><span class="line">        <span class="keyword">if</span>(!miniStack.empty())&#123;</span><br><span class="line">            <span class="keyword">if</span>(x &lt;= miniStack.peek())&#123;</span><br><span class="line">                miniStack.push(x);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;<span class="keyword">else</span></span><br><span class="line">            miniStack.push(x);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">pop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> pop = stack.pop();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(pop == miniStack.peek())</span><br><span class="line">            miniStack.pop();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">top</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> stack.peek();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getMin</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> miniStack.peek();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+ <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">---</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#### 双栈</span><br><span class="line"></span><br><span class="line">利用两个栈，一个数据栈，一个保存所有最小值栈实现。</span><br><span class="line"></span><br><span class="line">当最小值栈非空时，元素直接入栈，否则需要比较栈顶元素与入栈元素大小，如果小于等于，则入栈</span><br><span class="line"></span><br><span class="line">代码如下：</span><br><span class="line"></span><br><span class="line">​```JAVA</span><br><span class="line">    class MinStack &#123;</span><br><span class="line"></span><br><span class="line">        /** initialize your data structure here. */</span><br><span class="line"></span><br><span class="line">        private Stack&lt;Integer&gt; stack;</span><br><span class="line">        private Stack&lt;Integer&gt; miniStack;</span><br><span class="line"></span><br><span class="line">        public MinStack() &#123;</span><br><span class="line">            stack = new Stack&lt;&gt;();</span><br><span class="line">            miniStack = new Stack&lt;&gt;();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        public void push(int x) &#123;</span><br><span class="line">            <span class="attribute">stack.push(x);</span></span><br><span class="line">            if(!miniStack.empty())&#123;</span><br><span class="line">                if(x &lt;= miniStack.peek())&#123;</span><br><span class="line">                    <span class="attribute">miniStack.push(x);</span></span><br><span class="line">                &#125;</span><br><span class="line">            &#125;else</span><br><span class="line">                <span class="attribute">miniStack.push(x);</span></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        public void pop() &#123;</span><br><span class="line">            int pop = stack.pop();</span><br><span class="line"></span><br><span class="line">            if(pop == miniStack.peek())</span><br><span class="line">                <span class="attribute">miniStack.pop();</span></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        public int top() &#123;</span><br><span class="line">            return stack.peek();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        public int getMin() &#123;</span><br><span class="line">            return miniStack.peek();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 
 <h4 id="单栈"><a href="#单栈" class="headerlink" title="单栈"></a>单栈</h4><p>当有更小的值来的时候，我们只需要把之前的最小值入栈，当前更小的值再入栈即可。当这个最小值要出栈的时候，下一个值便是之前的最小值了。</p>
 <p>例如：</p>
@@ -404,7 +400,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#双栈"><span class="toc-number">1.</span> <span class="toc-text">双栈</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#单栈"><span class="toc-number">2.</span> <span class="toc-text">单栈</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#差值栈"><span class="toc-number">3.</span> <span class="toc-text">差值栈</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#链表"><span class="toc-number">4.</span> <span class="toc-text">链表</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#单栈"><span class="toc-number">1.</span> <span class="toc-text">单栈</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#差值栈"><span class="toc-number">2.</span> <span class="toc-text">差值栈</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#链表"><span class="toc-number">3.</span> <span class="toc-text">链表</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -597,15 +593,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">哈希</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">二分查找</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">递归</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">哈希</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -617,19 +613,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">双指针</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">动态规划</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">数组</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">哈希表</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -637,7 +621,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">移位</a>
+                <a href="javascript:void(0)" class="js-tag color3">数组</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -649,7 +633,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">有限状态机</a>
+                <a href="javascript:void(0)" class="js-tag color4">双指针</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">哈希表</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -661,7 +649,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">位运算</a>
+                <a href="javascript:void(0)" class="js-tag color1">有限状态机</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">移位</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -674,6 +666,10 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">深度优先搜索</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">位运算</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -701,11 +697,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">滑动窗口</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">贪心</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">滑动窗口</a>
+                <a href="javascript:void(0)" class="js-tag color5">拓展中心</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -717,14 +717,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">拓展中心</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">组成原理</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">剪枝</a>
               </li>
              
@@ -733,7 +725,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">cache</a>
+                <a href="javascript:void(0)" class="js-tag color5">组成原理</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -742,6 +734,10 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">游戏</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">cache</a>
               </li>
              
               <li class="article-tag-list-item">
