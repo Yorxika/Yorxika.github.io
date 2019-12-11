@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="http://yorxika.github.io">
   <title>贪心算法习题 | Nameless blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="活动教室分配T16.1-4 活动教室分配(区间着色问题) 题目： 　　有一组活动，我们需要将它们安排到一些教室，任意活动都可以在任意教室进行。我们希望使用最少的教室完成所有活动。 　　设计一个高效的贪心算法求每个活动应该在哪个教室进行。 分析： 　　本题是对书中活动选择问题的一个扩展。在活动选择问题中，我们要求的是一个最大兼容活动集，也就是在所有时间内时间不重叠的最多的活动集合。 　　易知，这样一">
+  <meta name="description" content="活动教室分配T16.1-4 活动教室分配(区间着色问题) 题目： 　　有一组活动，我们需要将它们安排到一些教室，任意活动都可以在任意教室进行。我们希望使用最少的教室完成所有活动。 　　设计一个高效的贪心算法求每个活动应该在哪个教室进行。">
 <meta name="keywords" content="贪心">
 <meta property="og:type" content="article">
 <meta property="og:title" content="贪心算法习题">
 <meta property="og:url" content="http://yorxika.github.io/2019/12/09/贪心算法习题/index.html">
 <meta property="og:site_name" content="Nameless blog">
-<meta property="og:description" content="活动教室分配T16.1-4 活动教室分配(区间着色问题) 题目： 　　有一组活动，我们需要将它们安排到一些教室，任意活动都可以在任意教室进行。我们希望使用最少的教室完成所有活动。 　　设计一个高效的贪心算法求每个活动应该在哪个教室进行。 分析： 　　本题是对书中活动选择问题的一个扩展。在活动选择问题中，我们要求的是一个最大兼容活动集，也就是在所有时间内时间不重叠的最多的活动集合。 　　易知，这样一">
+<meta property="og:description" content="活动教室分配T16.1-4 活动教室分配(区间着色问题) 题目： 　　有一组活动，我们需要将它们安排到一些教室，任意活动都可以在任意教室进行。我们希望使用最少的教室完成所有活动。 　　设计一个高效的贪心算法求每个活动应该在哪个教室进行。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-12-09T08:56:27.965Z">
+<meta property="og:updated_time" content="2019-12-11T15:34:18.724Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="贪心算法习题">
-<meta name="twitter:description" content="活动教室分配T16.1-4 活动教室分配(区间着色问题) 题目： 　　有一组活动，我们需要将它们安排到一些教室，任意活动都可以在任意教室进行。我们希望使用最少的教室完成所有活动。 　　设计一个高效的贪心算法求每个活动应该在哪个教室进行。 分析： 　　本题是对书中活动选择问题的一个扩展。在活动选择问题中，我们要求的是一个最大兼容活动集，也就是在所有时间内时间不重叠的最多的活动集合。 　　易知，这样一">
+<meta name="twitter:description" content="活动教室分配T16.1-4 活动教室分配(区间着色问题) 题目： 　　有一组活动，我们需要将它们安排到一些教室，任意活动都可以在任意教室进行。我们希望使用最少的教室完成所有活动。 　　设计一个高效的贪心算法求每个活动应该在哪个教室进行。">
   
     <link rel="alternative" href="/atom.xml" title="Nameless blog" type="application/atom+xml">
   
@@ -221,7 +221,7 @@
         <h4 id="活动教室分配"><a href="#活动教室分配" class="headerlink" title="活动教室分配"></a>活动教室分配</h4><p>T16.1-4 活动教室分配(区间着色问题)</p>
 <p>题目：</p>
 <p>　　有一组活动，我们需要将它们安排到一些教室，任意活动都可以在任意教室进行。我们希望使用最少的教室完成所有活动。</p>
-<p>　　设计一个高效的贪心算法求每个活动应该在哪个教室进行。</p>
+<p>　　设计一个高效的贪心算法求每个活动应该在哪个教室进行。<a id="more"></a></p>
 <p>分析：</p>
 <p>　　本题是对书中活动选择问题的一个扩展。在活动选择问题中，我们要求的是一个最大兼容活动集，也就是在所有时间内时间不重叠的最多的活动集合。</p>
 <p>　　易知，这样一个活动集，就是一个教室最多能够举办的活动集。所以剩下的活动一定不能和该活动集内的活动在同一个教室举行。我们不断对剩下的活动使用贪心算法，需要多少次贪心能够选取完所有的活动，就最少需要几个教室。</p>
@@ -345,6 +345,15 @@
 
   
 <nav id="article-nav">
+  
+    <a href="/2019/12/11/多数元素/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          多数元素
+        
+      </div>
+    </a>
   
   
     <a href="/2019/12/07/乘积最大子序列/" id="article-nav-older" class="article-nav-link-wrap">
@@ -568,6 +577,14 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">哈希</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">数学</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">二分查找</a>
               </li>
              
@@ -576,15 +593,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">哈希</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">二分</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">数学</a>
+                <a href="javascript:void(0)" class="js-tag color4">双指针</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">数组</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -596,7 +613,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">数组</a>
+                <a href="javascript:void(0)" class="js-tag color4">哈希表</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">移位</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -608,11 +629,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">双指针</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">哈希表</a>
+                <a href="javascript:void(0)" class="js-tag color1">有限状态机</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -624,15 +641,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">有限状态机</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">移位</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">字符串</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">位运算</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -641,10 +654,6 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">深度优先搜索</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">位运算</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -672,15 +681,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">滑动窗口</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">贪心</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">拓展中心</a>
+                <a href="javascript:void(0)" class="js-tag color5">滑动窗口</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -692,15 +697,19 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">拓展中心</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">组成原理</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">剪枝</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">桶排序</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">组成原理</a>
               </li>
              
               <li class="article-tag-list-item">
