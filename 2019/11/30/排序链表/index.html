@@ -583,7 +583,7 @@
           
 
   
- <div id="gitalk-container"></div>
+  <div id="gitalk-container"></div>
  
   
 
@@ -906,18 +906,19 @@
 
   <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
   <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
-   <script type="text/javascript">
-        var gitalk = new Gitalk({
-          clientID: '',
-          clientSecret: '',
-          repo: 'blogtalk',
-          owner: '',
-          admin: [''],
-          id: location.pathname,
-          distractionFreeMode: 'true'
-        })
-        gitalk.render('gitalk-container')           
-       </script>
+  <div id="gitalk-container"></div>
+  <script type="text/javascript">
+    var gitalk = new Gitalk({
+      clientID: '0635d0bc6ad58e628693',
+      clientSecret: 'a02a3a1ab4874ccb117251539125fe3a1a4d43da',
+      repo: 'blogtalk',
+      owner: 'Yorxika',
+      admin: ['Yorxika'],
+      id: location.pathname,
+      distractionFreeMode: 'true'
+    })
+    gitalk.render('gitalk-container')
+  </script>
 
 
 
@@ -1258,9 +1259,6 @@
 
 
   
-  <script type="text/javascript" src="/js/src/js.cookie.js?v=5.1.4"></script>
-  <script type="text/javascript" src="/js/src/scroll-cookie.js?v=5.1.4"></script>
-
 
   
 

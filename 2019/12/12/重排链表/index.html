@@ -86,20 +86,20 @@
 
 
 
-<meta name="description" content="来自Leetcode第143题重排链表 给定一个单链表 L：L0→L1→…→L**n-1→Ln ，将其重新排列后变为： L0→Ln→L1→Ln-1→L2→L**n-2→… 你不能只是单纯的改变节点内部的值，而是需要实际的进行节点交换。">
+<meta name="description" content="来自Leetcode第143题重排链表 给定一个单链表 L：L0→L1→…→Ln-1→Ln ，将其重新排列后变为： L0→Ln→L1→Ln-1→L2→Ln-2→… 你不能只是单纯的改变节点内部的值，而是需要实际的进行节点交换。">
 <meta name="keywords" content="Leetcode,链表">
 <meta property="og:type" content="article">
 <meta property="og:title" content="重排链表">
 <meta property="og:url" content="http://yorxika.github.io/2019/12/12/重排链表/index.html">
 <meta property="og:site_name" content="Nameless blog">
-<meta property="og:description" content="来自Leetcode第143题重排链表 给定一个单链表 L：L0→L1→…→L**n-1→Ln ，将其重新排列后变为： L0→Ln→L1→Ln-1→L2→L**n-2→… 你不能只是单纯的改变节点内部的值，而是需要实际的进行节点交换。">
+<meta property="og:description" content="来自Leetcode第143题重排链表 给定一个单链表 L：L0→L1→…→Ln-1→Ln ，将其重新排列后变为： L0→Ln→L1→Ln-1→L2→Ln-2→… 你不能只是单纯的改变节点内部的值，而是需要实际的进行节点交换。">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="https://pic.leetcode-cn.com/cc05523815b2eb5baf80741809193cc5b17f29b6a6efe2c235007a036aff5625.jpg">
 <meta property="og:image" content="https://pic.leetcode-cn.com/0a9173afb9b7f62587f5132689ad5bceb98cd24f8f7a3d5f938ca2886d308892.jpg">
-<meta property="og:updated_time" content="2019-12-12T13:26:36.671Z">
+<meta property="og:updated_time" content="2019-12-12T13:39:53.660Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="重排链表">
-<meta name="twitter:description" content="来自Leetcode第143题重排链表 给定一个单链表 L：L0→L1→…→L**n-1→Ln ，将其重新排列后变为： L0→Ln→L1→Ln-1→L2→L**n-2→… 你不能只是单纯的改变节点内部的值，而是需要实际的进行节点交换。">
+<meta name="twitter:description" content="来自Leetcode第143题重排链表 给定一个单链表 L：L0→L1→…→Ln-1→Ln ，将其重新排列后变为： L0→Ln→L1→Ln-1→L2→Ln-2→… 你不能只是单纯的改变节点内部的值，而是需要实际的进行节点交换。">
 <meta name="twitter:image" content="https://pic.leetcode-cn.com/cc05523815b2eb5baf80741809193cc5b17f29b6a6efe2c235007a036aff5625.jpg">
 
 
@@ -340,7 +340,7 @@
               
                 <span class="post-meta-item-text">Post modified&#58;</span>
               
-              <time title="Post modified" itemprop="dateModified" datetime="2019-12-12T21:26:36+08:00">
+              <time title="Post modified" itemprop="dateModified" datetime="2019-12-12T21:39:53+08:00">
                 2019-12-12
               </time>
             
@@ -455,7 +455,7 @@
 
       
         <p>来自Leetcode第143题重排链表</p>
-<p>给定一个单链表 <em>L</em>：<em>L</em>0→<em>L</em>1→…→<em>L**n</em>-1→<em>L</em>n ，<br>将其重新排列后变为： <em>L</em>0→<em>L<strong>n<em>→</em>L<em>1→</em>L</strong>n</em>-1→<em>L</em>2→<em>L**n</em>-2→…</p>
+<p>给定一个单链表 <em>L</em>：<em>L</em>0→<em>L</em>1→…→<em>L</em>n-1→<em>L</em>n ，<br>将其重新排列后变为： <em>L</em>0→<em>L</em>n→<em>L</em>1→<em>L</em>n-1→<em>L</em>2→<em>L</em>n-2→…</p>
 <p>你不能只是单纯的改变节点内部的值，而是需要实际的进行节点交换。</p>
 <a id="more"></a>
 <p><strong>示例 1:</strong></p>
@@ -574,7 +574,7 @@
           
 
   
- <div id="gitalk-container"></div>
+  <div id="gitalk-container"></div>
  
   
 
@@ -897,18 +897,19 @@
 
   <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
   <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
-   <script type="text/javascript">
-        var gitalk = new Gitalk({
-          clientID: '',
-          clientSecret: '',
-          repo: 'blogtalk',
-          owner: '',
-          admin: [''],
-          id: location.pathname,
-          distractionFreeMode: 'true'
-        })
-        gitalk.render('gitalk-container')           
-       </script>
+  <div id="gitalk-container"></div>
+  <script type="text/javascript">
+    var gitalk = new Gitalk({
+      clientID: '0635d0bc6ad58e628693',
+      clientSecret: 'a02a3a1ab4874ccb117251539125fe3a1a4d43da',
+      repo: 'blogtalk',
+      owner: 'Yorxika',
+      admin: ['Yorxika'],
+      id: location.pathname,
+      distractionFreeMode: 'true'
+    })
+    gitalk.render('gitalk-container')
+  </script>
 
 
 
@@ -1249,9 +1250,6 @@
 
 
   
-  <script type="text/javascript" src="/js/src/js.cookie.js?v=5.1.4"></script>
-  <script type="text/javascript" src="/js/src/scroll-cookie.js?v=5.1.4"></script>
-
 
   
 
