@@ -6,6 +6,7 @@
     <content><![CDATA[<p>来自Leetcode第143题重排链表</p>
 <p>给定一个单链表 <em>L</em>：<em>L</em>0→<em>L</em>1→…→<em>L**n</em>-1→<em>L</em>n ，<br>将其重新排列后变为： <em>L</em>0→<em>L<strong>n<em>→</em>L<em>1→</em>L</strong>n</em>-1→<em>L</em>2→<em>L**n</em>-2→…</p>
 <p>你不能只是单纯的改变节点内部的值，而是需要实际的进行节点交换。</p>
+<a id="more"></a>
 <p><strong>示例 1:</strong></p>
 <figure class="highlight angelscript"><table><tr><td class="code"><pre><span class="line">给定链表 <span class="number">1</span>-&gt;<span class="number">2</span>-&gt;<span class="number">3</span>-&gt;<span class="number">4</span>, 重新排列为 <span class="number">1</span>-&gt;<span class="number">4</span>-&gt;<span class="number">2</span>-&gt;<span class="number">3.</span></span><br></pre></td></tr></table></figure>
 
