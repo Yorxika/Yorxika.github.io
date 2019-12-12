@@ -885,7 +885,11 @@ public Node(int _val,List&lt;Node&gt; _neighbors) {
 
   <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
   <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+  <script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.js"></script>
   <div id="gitalk-container"></div>
+  
+  
+  
   <script type="text/javascript">
     var gitalk = new Gitalk({
       clientID: '0635d0bc6ad58e628693',
@@ -893,7 +897,7 @@ public Node(int _val,List&lt;Node&gt; _neighbors) {
       repo: 'blogtalk',
       owner: 'Yorxika',
       admin: ['Yorxika'],
-      id: location.pathname,
+      id: md5(window.location.pathname),
       distractionFreeMode: 'true'
     })
     gitalk.render('gitalk-container')

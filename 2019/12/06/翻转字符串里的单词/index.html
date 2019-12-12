@@ -90,7 +90,7 @@
 <meta name="keywords" content="Leetcode,字符串">
 <meta property="og:type" content="article">
 <meta property="og:title" content="翻转字符串里的单词">
-<meta property="og:url" content="http://yorxika.github.io/2019/12/06/翻转字符串里的单次/index.html">
+<meta property="og:url" content="http://yorxika.github.io/2019/12/06/翻转字符串里的单词/index.html">
 <meta property="og:site_name" content="Nameless blog">
 <meta property="og:description" content="来源Leetcode第151题翻转字符串里的单词 给定一个字符串，逐个翻转字符串中的每个单词。">
 <meta property="og:locale" content="default">
@@ -127,7 +127,7 @@
 
 
 
-  <link rel="canonical" href="http://yorxika.github.io/2019/12/06/翻转字符串里的单次/">
+  <link rel="canonical" href="http://yorxika.github.io/2019/12/06/翻转字符串里的单词/">
 
 
 
@@ -292,7 +292,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yorxika.github.io/2019/12/06/翻转字符串里的单次/">
+    <link itemprop="mainEntityOfPage" href="http://yorxika.github.io/2019/12/06/翻转字符串里的单词/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="HMF">
@@ -490,7 +490,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>Post link:</strong>
-    <a href="http://yorxika.github.io/2019/12/06/翻转字符串里的单次/" title="翻转字符串里的单词">http://yorxika.github.io/2019/12/06/翻转字符串里的单次/</a>
+    <a href="http://yorxika.github.io/2019/12/06/翻转字符串里的单词/" title="翻转字符串里的单词">http://yorxika.github.io/2019/12/06/翻转字符串里的单词/</a>
   </li>
   <li class="post-copyright-license">
     <strong>Copyright Notice: </strong>
@@ -885,7 +885,11 @@
 
   <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
   <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+  <script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.js"></script>
   <div id="gitalk-container"></div>
+  
+  
+  
   <script type="text/javascript">
     var gitalk = new Gitalk({
       clientID: '0635d0bc6ad58e628693',
@@ -893,7 +897,7 @@
       repo: 'blogtalk',
       owner: 'Yorxika',
       admin: ['Yorxika'],
-      id: location.pathname,
+      id: md5(window.location.pathname),
       distractionFreeMode: 'true'
     })
     gitalk.render('gitalk-container')

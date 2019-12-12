@@ -228,7 +228,7 @@
   </entry>
   <entry>
     <title>翻转字符串里的单词</title>
-    <url>/2019/12/06/%E7%BF%BB%E8%BD%AC%E5%AD%97%E7%AC%A6%E4%B8%B2%E9%87%8C%E7%9A%84%E5%8D%95%E6%AC%A1/</url>
+    <url>/2019/12/06/%E7%BF%BB%E8%BD%AC%E5%AD%97%E7%AC%A6%E4%B8%B2%E9%87%8C%E7%9A%84%E5%8D%95%E8%AF%8D/</url>
     <content><![CDATA[<p>来源Leetcode第151题翻转字符串里的单词</p>
 <p>给定一个字符串，逐个翻转字符串中的每个单词。</p>
 <a id="more"></a>
