@@ -94,7 +94,7 @@
 <meta property="og:site_name" content="Nameless blog">
 <meta property="og:description" content="来自Leetcode第111题二叉树的最小深度 给定一个二叉树，找出其最小深度。 最小深度是从根节点到最近叶子节点的最短路径上的节点数量。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-12-13T15:41:57.894Z">
+<meta property="og:updated_time" content="2019-12-13T16:11:25.335Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="二叉树的最小深度">
 <meta name="twitter:description" content="来自Leetcode第111题二叉树的最小深度 给定一个二叉树，找出其最小深度。 最小深度是从根节点到最近叶子节点的最短路径上的节点数量。">
@@ -337,8 +337,8 @@
               
                 <span class="post-meta-item-text">Post modified&#58;</span>
               
-              <time title="Post modified" itemprop="dateModified" datetime="2019-12-13T23:41:57+08:00">
-                2019-12-13
+              <time title="Post modified" itemprop="dateModified" datetime="2019-12-14T00:11:25+08:00">
+                2019-12-14
               </time>
             
           </span>
@@ -414,7 +414,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  297
+                  545
                 </span>
               
 
@@ -430,7 +430,7 @@
                   <span class="post-meta-item-text">Reading time &asymp;</span>
                 
                 <span title="Reading time">
-                  1
+                  2
                 </span>
               
             </div>
@@ -465,8 +465,13 @@
 <h3 id="翻车现场"><a href="#翻车现场" class="headerlink" title="翻车现场"></a>翻车现场</h3><p>最开始以为是和最大深度那题差不多的，结果忽略了一种情况，即[1,2]这种根结点只有一个叶子结点的情况，这时最小深度应该是2，因为按题目定义根结点不能作为自己的叶结点，以下是初始代码</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">minDepth</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(root == <span class="keyword">null</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">int</span> left_height = minDepth(root.left);</span><br><span class="line">        <span class="keyword">int</span> right_height = minDepth(root.right);</span><br><span class="line">        <span class="keyword">return</span> Math.min(left_height,right_height) + <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h3 id="递归"><a href="#递归" class="headerlink" title="递归"></a>递归</h3><p>根据上面的分析，知道要在递归里做判断，判断是否是叶子结点</p>
+<h3 id="递归"><a href="#递归" class="headerlink" title="递归"></a>递归</h3><p>根据上面的分析，知道要在递归里做判断，判断是否是叶子结点,然后再进行递归</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">minDepth</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(root == <span class="keyword">null</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(root.left == <span class="keyword">null</span> &amp;&amp; root.right == <span class="keyword">null</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">int</span> minDepth = Integer.MAX_VALUE;</span><br><span class="line">    <span class="keyword">if</span>(root.left != <span class="keyword">null</span>)</span><br><span class="line">        minDepth = Math.min(minDepth,minDepth(root.left));</span><br><span class="line">    <span class="keyword">if</span>(root.right != <span class="keyword">null</span>)</span><br><span class="line">        minDepth = Math.min(minDepth,minDepth(root.right));</span><br><span class="line">    <span class="keyword">return</span> minDepth + <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="BFS迭代"><a href="#BFS迭代" class="headerlink" title="BFS迭代"></a>BFS迭代</h3><p>利用一个队列进行层次遍历，用一个 <code>level</code> 变量保存当前的深度,只要在 <code>for</code> 循环中判断当前是不是叶子节点，如果是的话，返回当前的 level 就可以了。此外要把<code>level</code>初始化改为<code>1</code>，因为如果只有一个根节点，它就是叶子节点，而在代码中，level 是在 <code>for</code>循环以后才<code>++</code>的，如果被提前结束的话，此时应该返回<code>1</code>。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">minDepth</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">    Queue&lt;TreeNode&gt; queue = <span class="keyword">new</span> LinkedList&lt;TreeNode&gt;();</span><br><span class="line">    List&lt;List&lt;Integer&gt;&gt; ans = <span class="keyword">new</span> LinkedList&lt;List&lt;Integer&gt;&gt;();</span><br><span class="line">    <span class="keyword">if</span>(root == <span class="keyword">null</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    queue.offer(root);</span><br><span class="line">    <span class="keyword">int</span> level = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span> (!queue.isEmpty())&#123;</span><br><span class="line">        <span class="keyword">int</span> levelNum = queue.size();  <span class="comment">//当前层元素个数</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span> ; i &lt; levelNum ; i++)&#123;</span><br><span class="line">            TreeNode tmp = queue.poll();  <span class="comment">//队列首元素出队</span></span><br><span class="line">            <span class="keyword">if</span>(tmp != <span class="keyword">null</span>) &#123;</span><br><span class="line">                <span class="keyword">if</span> (tmp.left == <span class="keyword">null</span> &amp;&amp; tmp.right == <span class="keyword">null</span>)</span><br><span class="line">                    <span class="keyword">return</span> level;</span><br><span class="line">                <span class="keyword">if</span> (tmp.left != <span class="keyword">null</span>)</span><br><span class="line">                    queue.offer(tmp.left);  <span class="comment">//节点入队尾</span></span><br><span class="line">                <span class="keyword">if</span>(tmp.right != <span class="keyword">null</span>)</span><br><span class="line">                    queue.offer(tmp.right);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        level ++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> level;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
       
     </div>
     
@@ -527,6 +532,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/12/14/I-Think-I-Need-a-Houseboat/" rel="prev" title="I Think I Need a Houseboat">
+                I Think I Need a Houseboat <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -608,7 +617,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">120</span>
+                  <span class="site-state-item-count">131</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -619,7 +628,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-count">22</span>
                   <span class="site-state-item-name">categories</span>
                 </a>
               </div>
@@ -630,7 +639,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">46</span>
+                  <span class="site-state-item-count">50</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
@@ -681,7 +690,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#翻车现场"><span class="nav-number">1.</span> <span class="nav-text">翻车现场</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#递归"><span class="nav-number">2.</span> <span class="nav-text">递归</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#翻车现场"><span class="nav-number">1.</span> <span class="nav-text">翻车现场</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#递归"><span class="nav-number">2.</span> <span class="nav-text">递归</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#BFS迭代"><span class="nav-number">3.</span> <span class="nav-text">BFS迭代</span></a></li></ol></div>
             
 
           </div>
