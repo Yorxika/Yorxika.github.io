@@ -1,6 +1,125 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>二叉树的右视图</title>
+    <url>/2019/12/19/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%8F%B3%E8%A7%86%E5%9B%BE/</url>
+    <content><![CDATA[<p>来源Leetcode第199题二叉树的右视图</p>
+<p>给定一棵二叉树，想象自己站在它的右侧，按照从顶部到底部的顺序，返回从右侧所能看到的节点值。</p>
+<a id="more"></a>
+<p><strong>示例:</strong></p>
+<figure class="highlight angelscript"><table><tr><td class="code"><pre><span class="line">输入: [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="literal">null</span>,<span class="number">5</span>,<span class="literal">null</span>,<span class="number">4</span>]</span><br><span class="line">输出: [<span class="number">1</span>, <span class="number">3</span>, <span class="number">4</span>]</span><br><span class="line">解释:</span><br><span class="line"></span><br><span class="line">   <span class="number">1</span>            &lt;---</span><br><span class="line"> /   \</span><br><span class="line"><span class="number">2</span>     <span class="number">3</span>         &lt;---</span><br><span class="line"> \     \</span><br><span class="line">  <span class="number">5</span>     <span class="number">4</span>       &lt;---</span><br></pre></td></tr></table></figure>
+
+<h3 id="错误的遍历"><a href="#错误的遍历" class="headerlink" title="错误的遍历"></a>错误的遍历</h3><p>第一次提交忽略了当右子树比左子树短的情况下，要对左子树进行遍历</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">List&lt;Integer&gt; ans = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line"><span class="function"><span class="keyword">public</span> List&lt;Integer&gt; <span class="title">rightSideView</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(root == <span class="keyword">null</span>)</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    helper(root);</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">helper</span><span class="params">(TreeNode root)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(root != <span class="keyword">null</span>)</span><br><span class="line">        ans.add(root.val);</span><br><span class="line">    <span class="keyword">if</span>(root.right != <span class="keyword">null</span>)</span><br><span class="line">        helper(root.right);</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(root.left != <span class="keyword">null</span>)</span><br><span class="line">        helper(root.left);</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="队列"><a href="#队列" class="headerlink" title="队列"></a>队列</h3><p>既然要考虑所有情况，那么就进行层序遍历，然后保留最后一个进队列的节点即可。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> List&lt;Integer&gt; <span class="title">rightSideView</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">    List&lt;Integer&gt; ans = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">    <span class="keyword">if</span>(root == <span class="keyword">null</span>)</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    Queue&lt;TreeNode&gt; queue = <span class="keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line">    queue.add(root);</span><br><span class="line">    <span class="keyword">while</span> (!queue.isEmpty())&#123;</span><br><span class="line">        <span class="keyword">int</span> len = queue.size();</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span> ; i &lt; len ; i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(i == len - <span class="number">1</span>)</span><br><span class="line">                ans.add(queue.peek().val);</span><br><span class="line">            TreeNode tmp = queue.remove();</span><br><span class="line">            <span class="keyword">if</span>(tmp.left != <span class="keyword">null</span>)</span><br><span class="line">                queue.add(tmp.left);</span><br><span class="line">            <span class="keyword">if</span>(tmp.right != <span class="keyword">null</span>)</span><br><span class="line">                queue.add(tmp.right);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="深度优先搜索"><a href="#深度优先搜索" class="headerlink" title="深度优先搜索"></a>深度优先搜索</h3><p>来源<a href="https://leetcode-cn.com/problems/binary-tree-right-side-view/solution/er-cha-shu-de-you-shi-tu-by-leetcode/" target="_blank" rel="noopener">题解</a></p>
+<p><strong>直觉</strong></p>
+<p>如果按正确的顺序访问每个节点，就可以有效地获得二叉树的右视图。</p>
+<p><strong>算法</strong></p>
+<p>上面提到的顺序之一可以由深度优先搜索定义。在深度优先搜索中，我们总是先访问右子树。这样就保证了当我们访问树的某个特定深度时，我们正在访问的节点总是该深度的最右侧节点。于是，可以存储在每个深度访问的第一个结点，一旦我们知道了树的层数，就可以得到最终的结果数组。</p>
+<p><img src="/2019/12/19/二叉树的右视图/80f65d954842dc68509b516d563f846d1f02a31d099027d5a94b49b465e6030c-image.png" alt="image.png"></p>
+<p>上图表示了问题的一个实例。红色结点自上而下组成答案，边缘以访问顺序标号。</p>
+<p>题解通过维护两个栈（一个深度栈，一个节点栈）栈以及一个HashMap来填充每层的右视图。通过左子树入栈在右子树入栈的顺序保证出栈时是右子树先出栈，在将其对应深度填到HashMap里，最后按照深度对Map做一次遍历即可。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">    <span class="function"><span class="keyword">public</span> List&lt;Integer&gt; <span class="title">rightSideView</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">        Map&lt;Integer, Integer&gt; rightmostValueAtDepth = <span class="keyword">new</span> HashMap&lt;Integer, Integer&gt;();</span><br><span class="line">        <span class="keyword">int</span> max_depth = -<span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">/* These two stacks are always synchronized, providing an implicit</span></span><br><span class="line"><span class="comment">         * association values with the same offset on each stack. */</span></span><br><span class="line">        Stack&lt;TreeNode&gt; nodeStack = <span class="keyword">new</span> Stack&lt;TreeNode&gt;();</span><br><span class="line">        Stack&lt;Integer&gt; depthStack = <span class="keyword">new</span> Stack&lt;Integer&gt;();</span><br><span class="line">        nodeStack.push(root);</span><br><span class="line">        depthStack.push(<span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> (!nodeStack.isEmpty()) &#123;</span><br><span class="line">            TreeNode node = nodeStack.pop();</span><br><span class="line">            <span class="keyword">int</span> depth = depthStack.pop();</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (node != <span class="keyword">null</span>) &#123;</span><br><span class="line">                max_depth = Math.max(max_depth, depth);</span><br><span class="line"></span><br><span class="line">                <span class="comment">/* The first node that we encounter at a particular depth contains</span></span><br><span class="line"><span class="comment">                * the correct value. */</span></span><br><span class="line">                <span class="keyword">if</span> (!rightmostValueAtDepth.containsKey(depth)) &#123;</span><br><span class="line">                    rightmostValueAtDepth.put(depth, node.val);</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                nodeStack.push(node.left);</span><br><span class="line">                nodeStack.push(node.right);</span><br><span class="line">                depthStack.push(depth+<span class="number">1</span>);</span><br><span class="line">                depthStack.push(depth+<span class="number">1</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">/* Construct the solution based on the values that we end up with at the</span></span><br><span class="line"><span class="comment">         * end. */</span></span><br><span class="line">        List&lt;Integer&gt; rightView = <span class="keyword">new</span> ArrayList&lt;Integer&gt;();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> depth = <span class="number">0</span>; depth &lt;= max_depth; depth++) &#123;</span><br><span class="line">            rightView.add(rightmostValueAtDepth.get(depth));</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> rightView;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="递归"><a href="#递归" class="headerlink" title="递归"></a>递归</h3><p>既然题解里用深度标明了每层的元素，那么我也应该可以在递归时多传一个参数，记作是当前节点的深度值，按照右左的顺序递归即可。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">List&lt;Integer&gt; ans = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line"><span class="function"><span class="keyword">public</span> List&lt;Integer&gt; <span class="title">rightSideView</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(root == <span class="keyword">null</span>)</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    helper(root,<span class="number">0</span>);</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">helper</span><span class="params">(TreeNode root,<span class="keyword">int</span> deepth)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(root == <span class="keyword">null</span>)</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    <span class="keyword">if</span>(deepth == ans.size())</span><br><span class="line">        ans.add(root.val);</span><br><span class="line">    <span class="keyword">if</span>(root.right != <span class="keyword">null</span>)</span><br><span class="line">        helper(root.right,deepth + <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">if</span>(root.left != <span class="keyword">null</span>)</span><br><span class="line">        helper(root.left,deepth + <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>算法</category>
+        <category>Leetcode</category>
+        <category>树</category>
+      </categories>
+      <tags>
+        <tag>Leetcode</tag>
+        <tag>树</tag>
+        <tag>广度优先搜索</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>求根到叶子节点数字之和</title>
+    <url>/2019/12/18/%E6%B1%82%E6%A0%B9%E5%88%B0%E5%8F%B6%E5%AD%90%E8%8A%82%E7%82%B9%E6%95%B0%E5%AD%97%E4%B9%8B%E5%92%8C/</url>
+    <content><![CDATA[<p>来源Leetcode第129题求根到叶子节点数字之和</p>
+<p>给定一个二叉树，它的每个结点都存放一个 <code>0-9</code> 的数字，每条从根到叶子节点的路径都代表一个数字。</p>
+<a id="more"></a>
+<p>例如，从根到叶子节点路径 <code>1-&gt;2-&gt;3</code> 代表数字 <code>123</code>。</p>
+<p>计算从根到叶子节点生成的所有数字之和。</p>
+<p><strong>说明:</strong> 叶子节点是指没有子节点的节点。</p>
+<p><strong>示例 1:</strong></p>
+<figure class="highlight angelscript"><table><tr><td class="code"><pre><span class="line">输入: [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</span><br><span class="line">    <span class="number">1</span></span><br><span class="line">   / \</span><br><span class="line">  <span class="number">2</span>   <span class="number">3</span></span><br><span class="line">输出: <span class="number">25</span></span><br><span class="line">解释:</span><br><span class="line">从根到叶子节点路径 <span class="number">1</span>-&gt;<span class="number">2</span> 代表数字 <span class="number">12.</span></span><br><span class="line">从根到叶子节点路径 <span class="number">1</span>-&gt;<span class="number">3</span> 代表数字 <span class="number">13.</span></span><br><span class="line">因此，数字总和 = <span class="number">12</span> + <span class="number">13</span> = <span class="number">25.</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="DFS"><a href="#DFS" class="headerlink" title="DFS"></a>DFS</h3><p>跟之前写的路径总和差不多，也是要注意DFS在返回时需要去掉最后一个加入的点</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">sumNumbers</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(root == <span class="keyword">null</span>)</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    helper(root,ans);</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">helper</span><span class="params">(TreeNode root,<span class="keyword">int</span> sum)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(root != <span class="keyword">null</span>)</span><br><span class="line">        sum = sum * <span class="number">10</span> + root.val;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    <span class="keyword">if</span>(root.left == <span class="keyword">null</span> &amp;&amp; root.right == <span class="keyword">null</span>)</span><br><span class="line">        ans += sum;</span><br><span class="line">    <span class="keyword">if</span>(root.left != <span class="keyword">null</span>)</span><br><span class="line">        helper(root.left,sum);</span><br><span class="line">    <span class="keyword">if</span>(root.right != <span class="keyword">null</span>)</span><br><span class="line">        helper(root.right,sum);</span><br><span class="line">    sum /= <span class="number">10</span>;</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="栈"><a href="#栈" class="headerlink" title="栈"></a>栈</h3><p>来源<a href="https://leetcode-cn.com/problems/sum-root-to-leaf-numbers/solution/3zhong-jie-fa-di-gui-xian-xu-fei-di-gui-xian-xu-ce/" target="_blank" rel="noopener">题解</a><br>通常还可以用 <code>stack</code> 的思路来解递归的题目。先序非递归的代码我们知道是用 <code>stack</code> 来保存遍历过的元素。而因为本题要记录到叶节点的数字，所以需要一个额外的 <code>stack</code> 来记录数字。每次出 <code>stack</code> 之后，如果是叶子节点，那么加和；如果不是，那么就看左右子树，入 <code>stack</code>。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">sumNumbers</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">       <span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line">       <span class="keyword">if</span> (root == <span class="keyword">null</span>) <span class="keyword">return</span> sum;</span><br><span class="line">       Stack&lt;TreeNode&gt; nodeStack = <span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line">       Stack&lt;Integer&gt; numStack = <span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line">       nodeStack.add(root);</span><br><span class="line">       numStack.add(<span class="number">0</span>);</span><br><span class="line">       <span class="keyword">while</span> (!nodeStack.isEmpty()) &#123;</span><br><span class="line">           TreeNode current = nodeStack.pop();</span><br><span class="line">           Integer currentNum = numStack.pop() * <span class="number">10</span> + current.val;</span><br><span class="line">           <span class="keyword">if</span> (current.left == <span class="keyword">null</span> &amp;&amp; current.right == <span class="keyword">null</span>) &#123;</span><br><span class="line">               sum += currentNum;</span><br><span class="line">           &#125;</span><br><span class="line">           <span class="keyword">if</span> (current.left != <span class="keyword">null</span>) &#123;</span><br><span class="line">               nodeStack.add(current.left);</span><br><span class="line">               numStack.add(currentNum);</span><br><span class="line">           &#125;</span><br><span class="line">           <span class="keyword">if</span> (current.right != <span class="keyword">null</span>) &#123;</span><br><span class="line">               nodeStack.add(current.right);</span><br><span class="line">               numStack.add(currentNum);</span><br><span class="line">           &#125;</span><br><span class="line">       &#125; </span><br><span class="line">       <span class="keyword">return</span> sum;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>算法</category>
+        <category>Leetcode</category>
+        <category>树</category>
+      </categories>
+      <tags>
+        <tag>Leetcode</tag>
+        <tag>树</tag>
+        <tag>深度优先搜索</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>复制带随机指针的链表</title>
+    <url>/2019/12/18/%E5%A4%8D%E5%88%B6%E5%B8%A6%E9%9A%8F%E6%9C%BA%E6%8C%87%E9%92%88%E7%9A%84%E9%93%BE%E8%A1%A8/</url>
+    <content><![CDATA[<p>来源Leetcode第138题复制带随机指针的链表</p>
+<p>给定一个链表，每个节点包含一个额外增加的随机指针，该指针可以指向链表中的任何节点或空节点。</p>
+<p>要求返回这个链表的<strong><a href="https://baike.baidu.com/item/深拷贝/22785317?fr=aladdin" target="_blank" rel="noopener">深拷贝</a></strong>。 <a id="more"></a></p>
+<p><strong>示例：</strong></p>
+<p><strong><img src="/2019/12/18/复制带随机指针的链表/1470150906153-2yxeznm.png" alt="img"></strong></p>
+<figure class="highlight dart"><table><tr><td class="code"><pre><span class="line">输入：</span><br><span class="line">&#123;<span class="string">"<span class="subst">$id</span>"</span>:<span class="string">"1"</span>,<span class="string">"next"</span>:&#123;<span class="string">"<span class="subst">$id</span>"</span>:<span class="string">"2"</span>,<span class="string">"next"</span>:<span class="keyword">null</span>,<span class="string">"random"</span>:&#123;<span class="string">"<span class="subst">$ref</span>"</span>:<span class="string">"2"</span>&#125;,<span class="string">"val"</span>:<span class="number">2</span>&#125;,<span class="string">"random"</span>:&#123;<span class="string">"<span class="subst">$ref</span>"</span>:<span class="string">"2"</span>&#125;,<span class="string">"val"</span>:<span class="number">1</span>&#125;</span><br><span class="line"></span><br><span class="line">解释：</span><br><span class="line">节点 <span class="number">1</span> 的值是 <span class="number">1</span>，它的下一个指针和随机指针都指向节点 <span class="number">2</span> 。</span><br><span class="line">节点 <span class="number">2</span> 的值是 <span class="number">2</span>，它的下一个指针指向 <span class="keyword">null</span>，随机指针指向它自己。</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ol>
+<li>你必须返回<strong>给定头的拷贝</strong>作为对克隆列表的引用。</li>
+</ol>
+<h3 id="哈希Map"><a href="#哈希Map" class="headerlink" title="哈希Map"></a>哈希Map</h3><p>利用一个哈希Map存储原链表结点和对应的拷贝结点，在原链表里遍历，但是要注意当原结点的随机结点为空时，不能将空结点及其拷贝放入哈希Map里。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> Node <span class="title">copyRandomList</span><span class="params">(Node head)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(head == <span class="keyword">null</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    Map&lt;Node,Node&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">    Node newHead = <span class="keyword">new</span> Node();</span><br><span class="line">    map.put(head,newHead);</span><br><span class="line">    Node p1 = newHead;</span><br><span class="line">    <span class="keyword">while</span> (head != <span class="keyword">null</span>) &#123;</span><br><span class="line">        p1.val = head.val;</span><br><span class="line">        <span class="comment">//p1.next = head.next;</span></span><br><span class="line">        <span class="keyword">if</span>(!map.containsKey(head.random) &amp;&amp; head.random != <span class="keyword">null</span>)&#123;</span><br><span class="line">            Node tmp = <span class="keyword">new</span> Node();</span><br><span class="line">            map.put(head.random,tmp);</span><br><span class="line">            p1.random = tmp;</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(head.random != <span class="keyword">null</span>)</span><br><span class="line">            p1.random = map.get(head.random);</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            p1.random = <span class="keyword">null</span>;</span><br><span class="line">        <span class="comment">//map.put(head,p1);</span></span><br><span class="line">        head = head.next;</span><br><span class="line">        <span class="keyword">if</span>(head == <span class="keyword">null</span>)</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">if</span>(!map.containsKey(head))&#123;</span><br><span class="line">            p1.next = <span class="keyword">new</span> Node();</span><br><span class="line">            map.put(head,p1.next);</span><br><span class="line">            p1 = p1.next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            p1.next = map.get(head);</span><br><span class="line">            p1 = p1.next;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> newHead;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="原结点后追加新结点"><a href="#原结点后追加新结点" class="headerlink" title="原结点后追加新结点"></a>原结点后追加新结点</h3><p> <code>HashMap</code> 额外需要 <code>O(n)</code> 的空间复杂度，现在考虑不需要额外空间的方法。</p>
+<p>主要参考了<a href="https://leetcode.com/problems/copy-list-with-random-pointer/discuss/43491/A-solution-with-constant-space-complexity-O(1)-and-linear-time-complexity-O(N)" target="_blank" rel="noopener">这里</a>。主要解决的问题就是我们生成节点以后，当更新它的 <code>random</code> 的时候，怎么找到之前生成的节点，前两种解法用了 <code>HashMap</code> 全部存起来，这里的话可以利用原来的链表的指针域。</p>
+<p>主要需要三步。</p>
+<ol>
+<li>生成所有的节点，并且分别插入到原有节点的后边</li>
+<li>更新插入节点的 <code>random</code></li>
+<li>将新旧节点分离开来</li>
+</ol>
+<p>一图胜千言，大家看一下下边的图吧。</p>
+<p><img src="https://pic.leetcode-cn.com/9bd4662fdbcb1e44f5ce208e29f3459d1adbf1e7ceb723e4bfc8ba2eff3bd186.jpg" alt="img"></p>
+<p>代码对应如下。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> Node <span class="title">copyRandomList</span><span class="params">(Node head)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (head == <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    Node l1 = head;</span><br><span class="line">    Node l2 = <span class="keyword">null</span>;</span><br><span class="line">    <span class="comment">//生成所有的节点，并且分别插入到原有节点的后边</span></span><br><span class="line">    <span class="keyword">while</span> (l1 != <span class="keyword">null</span>) &#123;</span><br><span class="line">        l2 = <span class="keyword">new</span> Node();</span><br><span class="line">        l2.val = l1.val;</span><br><span class="line">        l2.next = l1.next;</span><br><span class="line">        l1.next = l2;</span><br><span class="line">        l1 = l1.next.next;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//更新插入节点的 random</span></span><br><span class="line">    l1 = head;</span><br><span class="line">    <span class="keyword">while</span> (l1 != <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> (l1.random != <span class="keyword">null</span>) &#123;</span><br><span class="line">            l1.next.random = l1.random.next;</span><br><span class="line">        &#125;</span><br><span class="line">        l1 = l1.next.next;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    l1 = head;</span><br><span class="line">    Node l2_head = l1.next;</span><br><span class="line">    <span class="comment">//将新旧节点分离开来</span></span><br><span class="line">    <span class="keyword">while</span> (l1 != <span class="keyword">null</span>) &#123;</span><br><span class="line">        l2 = l1.next;</span><br><span class="line">        l1.next = l2.next;</span><br><span class="line">        <span class="keyword">if</span> (l2.next != <span class="keyword">null</span>) &#123;</span><br><span class="line">            l2.next = l2.next.next;</span><br><span class="line">        &#125;</span><br><span class="line">        l1 = l1.next;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> l2_head;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="利用random保存新结点"><a href="#利用random保存新结点" class="headerlink" title="利用random保存新结点"></a>利用random保存新结点</h3><p>不利用额外的空间复杂度还有一种思路，参考 <a href="https://leetcode.com/problems/copy-list-with-random-pointer/discuss/43497/2-clean-C%2B%2B-algorithms-without-using-extra-arrayhash-table.-Algorithms-are-explained-step-by-step." target="_blank" rel="noopener">这里</a>。</p>
+<p>上一个解法利用原链表的 <code>next</code> 域把新生成的节点保存了起来。类似的，我们还可以利用原链表的 <code>random</code> 域把新生成的节点保存起来。</p>
+<p>主要还是三个步骤。</p>
+<ol>
+<li>生成所有的节点，将它们保存到原链表的 <code>random</code> 域，同时利用新生成的节点的 <code>next</code> 域保存原链表的 <code>random</code>。</li>
+<li>更新新生成节点的 <code>random</code> 指针。</li>
+<li>恢复原链表的 <code>random</code> 指针，同时更新新生成节点的 <code>next</code> 指针。</li>
+</ol>
+<p>一图胜千言。</p>
+<p><img src="https://pic.leetcode-cn.com/9d18d01597f5ca7562c8dd3908082b13c27b989fcaebb37c163d6e7ced65f412.jpg" alt="img"></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> Node <span class="title">copyRandomList</span><span class="params">(Node head)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (head == <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    Node l1 = head;</span><br><span class="line">    Node l2 = <span class="keyword">null</span>;</span><br><span class="line">    <span class="comment">//生成所有的节点，讲它们保存到原链表的 random 域，</span></span><br><span class="line">    <span class="comment">//同时利用新生成的节点的 next 域保存原链表的 random。</span></span><br><span class="line">    <span class="keyword">while</span> (l1 != <span class="keyword">null</span>) &#123;</span><br><span class="line">        l2 = <span class="keyword">new</span> Node();</span><br><span class="line">        l2.val = l1.val;</span><br><span class="line">        l2.next = l1.random;</span><br><span class="line">        l1.random = l2;</span><br><span class="line">        l1 = l1.next;</span><br><span class="line">    &#125;</span><br><span class="line">    l1 = head;</span><br><span class="line">    <span class="comment">//更新新生成节点的 random 指针。</span></span><br><span class="line">    <span class="keyword">while</span> (l1 != <span class="keyword">null</span>) &#123;</span><br><span class="line">        l2 = l1.random;</span><br><span class="line">        l2.random = l2.next != <span class="keyword">null</span> ? l2.next.random : <span class="keyword">null</span>;</span><br><span class="line">        l1 = l1.next;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    l1 = head;</span><br><span class="line">    Node l2_head = l1.random;</span><br><span class="line">    <span class="comment">//恢复原链表的 random 指针，同时更新新生成节点的 next 指针。</span></span><br><span class="line">    <span class="keyword">while</span> (l1 != <span class="keyword">null</span>) &#123;</span><br><span class="line">        l2 = l1.random;</span><br><span class="line">        l1.random = l2.next;</span><br><span class="line">        l2.next = l1.next != <span class="keyword">null</span> ? l1.next.random : <span class="keyword">null</span>;</span><br><span class="line">        l1 = l1.next;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> l2_head;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>算法</category>
+        <category>Leetcode</category>
+        <category>链表</category>
+      </categories>
+      <tags>
+        <tag>Leetcode</tag>
+        <tag>链表</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>路径总和II</title>
     <url>/2019/12/17/%E8%B7%AF%E5%BE%84%E6%80%BB%E5%92%8CII/</url>
     <content><![CDATA[<p>来源Leetcode第113题路径总和II</p>
@@ -134,8 +253,8 @@
       </categories>
       <tags>
         <tag>Leetcode</tag>
-        <tag>栈</tag>
         <tag>深度优先搜索</tag>
+        <tag>栈</tag>
       </tags>
   </entry>
   <entry>
@@ -205,8 +324,8 @@
       </categories>
       <tags>
         <tag>POJ</tag>
-        <tag>二分</tag>
         <tag>哈希</tag>
+        <tag>二分</tag>
       </tags>
   </entry>
   <entry>
@@ -662,8 +781,8 @@
         <category>字符串</category>
       </categories>
       <tags>
-        <tag>Leetcode</tag>
         <tag>字符串</tag>
+        <tag>Leetcode</tag>
       </tags>
   </entry>
   <entry>
@@ -2411,8 +2530,8 @@ public Node(int _val,List&lt;Node&gt; _neighbors) {
         <category>字符串</category>
       </categories>
       <tags>
-        <tag>Leetcode</tag>
         <tag>字符串</tag>
+        <tag>Leetcode</tag>
         <tag>双指针</tag>
         <tag>回文</tag>
       </tags>
@@ -2450,8 +2569,8 @@ public Node(int _val,List&lt;Node&gt; _neighbors) {
       </categories>
       <tags>
         <tag>Leetcode</tag>
-        <tag>数学</tag>
         <tag>哈希</tag>
+        <tag>数学</tag>
         <tag>数组</tag>
       </tags>
   </entry>
@@ -3361,8 +3480,8 @@ public Node(int _val,List&lt;Node&gt; _neighbors) {
         <category>字符串</category>
       </categories>
       <tags>
-        <tag>Leetcode</tag>
         <tag>字符串</tag>
+        <tag>Leetcode</tag>
         <tag>栈</tag>
       </tags>
   </entry>
@@ -3468,8 +3587,8 @@ public Node(int _val,List&lt;Node&gt; _neighbors) {
         <category>字符串</category>
       </categories>
       <tags>
-        <tag>Leetcode</tag>
         <tag>字符串</tag>
+        <tag>Leetcode</tag>
       </tags>
   </entry>
   <entry>
@@ -3944,8 +4063,8 @@ public Node(int _val,List&lt;Node&gt; _neighbors) {
         <category>字符串</category>
       </categories>
       <tags>
-        <tag>Leetcode</tag>
         <tag>字符串</tag>
+        <tag>Leetcode</tag>
         <tag>动态规划</tag>
       </tags>
   </entry>
@@ -3985,8 +4104,8 @@ public Node(int _val,List&lt;Node&gt; _neighbors) {
         <category>字符串</category>
       </categories>
       <tags>
-        <tag>Leetcode</tag>
         <tag>字符串</tag>
+        <tag>Leetcode</tag>
       </tags>
   </entry>
   <entry>
@@ -5251,8 +5370,8 @@ public Node(int _val,List&lt;Node&gt; _neighbors) {
         <category>字符串</category>
       </categories>
       <tags>
-        <tag>Leetcode</tag>
         <tag>字符串</tag>
+        <tag>Leetcode</tag>
       </tags>
   </entry>
   <entry>
