@@ -1,6 +1,425 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>存储系统II</title>
+    <url>/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9FII/</url>
+    <content><![CDATA[<h2 id="多体交叉存储器"><a href="#多体交叉存储器" class="headerlink" title="多体交叉存储器"></a>多体交叉存储器</h2><a id="more"></a>
+<p><img src="/2019/12/24/存储系统II/image-20191224210559403.png" alt="image-20191224210559403"></p>
+<p><img src="/2019/12/24/存储系统II/image-20191224210607265.png" alt="image-20191224210607265"></p>
+<p><img src="/2019/12/24/存储系统II/image-20191224210614243.png" alt="image-20191224210614243"></p>
+<p><img src="/2019/12/24/存储系统II/image-20191224210623500.png" alt="image-20191224210623500"></p>
+<h2 id="Cache的基本原理"><a href="#Cache的基本原理" class="headerlink" title="Cache的基本原理"></a>Cache的基本原理</h2><p><img src="/2019/12/24/存储系统II/image-20191224212037889.png" alt="image-20191224212037889"></p>
+<p><img src="/2019/12/24/存储系统II/image-20191224212100127.png" alt="image-20191224212100127"></p>
+<p><img src="/2019/12/24/存储系统II/image-20191224212112439.png" alt="image-20191224212112439"></p>
+<p><img src="/2019/12/24/存储系统II/image-20191224212119403.png" alt="image-20191224212119403"></p>
+<h2 id="组相联存储器"><a href="#组相联存储器" class="headerlink" title="组相联存储器"></a>组相联存储器</h2><p><img src="/2019/12/24/存储系统II/image-20191224212557005.png" alt="image-20191224212557005"></p>
+<p><img src="/2019/12/24/存储系统II/image-20191224212604189.png" alt="image-20191224212604189"></p>
+<h2 id="Cache地址映射与变换方法"><a href="#Cache地址映射与变换方法" class="headerlink" title="Cache地址映射与变换方法"></a>Cache地址映射与变换方法</h2><h3 id="全相联"><a href="#全相联" class="headerlink" title="全相联"></a>全相联</h3><p><img src="/2019/12/24/存储系统II/image-20191224215252084.png" alt="image-20191224215252084"></p>
+<p><img src="/2019/12/24/存储系统II/image-20191224215303023.png" alt="image-20191224215303023"></p>
+<p><img src="/2019/12/24/存储系统II/image-20191224215314152.png" alt="image-20191224215314152"></p>
+<p>特点：</p>
+<ul>
+<li>Cache利用率高</li>
+<li>块冲突率低</li>
+<li>淘汰算法复杂<br>应用场合：小容量Cache</li>
+</ul>
+<h3 id="直接映射"><a href="#直接映射" class="headerlink" title="直接映射"></a>直接映射</h3><p><img src="/2019/12/24/存储系统II/image-20191224215413222.png" alt="image-20191224215413222"><img src="/2019/12/24/存储系统II/image-20191224215413308.png" alt="image-20191224215413308"></p>
+<p><img src="/2019/12/24/存储系统II/image-20191224215420100.png" alt="image-20191224215420100"></p>
+<p><img src="/2019/12/24/存储系统II/image-20191224215430954.png" alt="image-20191224215430954"></p>
+<p>特点：<br>特点：</p>
+<ul>
+<li>Cache利用率低</li>
+<li>块冲突率高</li>
+<li>淘汰算法简单<br>应用场合：大容量Cache</li>
+</ul>
+<h3 id="组相联"><a href="#组相联" class="headerlink" title="组相联"></a>组相联</h3><p><img src="/2019/12/24/存储系统II/image-20191224215513463.png" alt="image-20191224215513463"></p>
+<p><img src="/2019/12/24/存储系统II/image-20191224215520381.png" alt="image-20191224215520381"></p>
+<p><img src="/2019/12/24/存储系统II/image-20191224215526406.png" alt="image-20191224215526406"></p>
+<p><img src="/2019/12/24/存储系统II/image-20191224215532554.png" alt="image-20191224215532554"></p>
+<h2 id="替换算法"><a href="#替换算法" class="headerlink" title="替换算法"></a>替换算法</h2><h3 id="先进先出-（First-in-First-out）"><a href="#先进先出-（First-in-First-out）" class="headerlink" title="先进先出-（First in First out）"></a>先进先出-（First in First out）</h3><p><img src="/2019/12/24/存储系统II/image-20191224221407980.png" alt="image-20191224221407980"></p>
+<h3 id="最不经常使用法-LFU-（Least-Frequently-Used"><a href="#最不经常使用法-LFU-（Least-Frequently-Used" class="headerlink" title="最不经常使用法-LFU （Least Frequently Used )"></a>最不经常使用法-LFU （Least Frequently Used )</h3><p><img src="/2019/12/24/存储系统II/image-20191224221454348.png" alt="image-20191224221454348"></p>
+<h3 id="近期最少使用法—-LRU-Least-recently-used"><a href="#近期最少使用法—-LRU-Least-recently-used" class="headerlink" title="近期最少使用法— LRU(Least recently used )"></a>近期最少使用法— LRU(Least recently used )</h3><p><img src="/2019/12/24/存储系统II/image-20191224221523084.png" alt="image-20191224221523084"></p>
+<h2 id="Cache例题选讲"><a href="#Cache例题选讲" class="headerlink" title="Cache例题选讲"></a>Cache例题选讲</h2><p>假定主存和Cache之间采用直接映射方式，块大小为16B。Cache数据区容量 为64KB，主存地址为32位，按字节编址，数据字长32位。要求 1)给出直接映射方式下主存地址划分 2)完成Cache访问的硬件实现 3)计算Cache容量<br>解：1)由题目条件知：<br>数据块大小16B  -&gt;   块内偏移地址4位；<br>Cache数据区容量为64KB -&gt;  64KB/16B = 4096行Cache）；-&gt; Index字段12位<br>Tag字段的位数为 32- 12 - 4 =16位（Tag）<br>由第一问的解答可知：Tag 为16 bit<br>由题目条件及Cache的工作原理知： Cache每行数据存储体容量为 16<em>8 = 128 bit<br>Cache 每行的总存储容量为： 1+ 16 + 128 = 145 bit<br>Cache 总容量为：4096 \</em>（1+16 +128）= 580Kbit<br><img src="/2019/12/24/存储系统II/image-20191224224643640.png" alt="image-20191224224643640"></p>
+<p>设某机内存容量为16MB,Cache的容量16KB,每块8个字,每个字32位.设计一个四 路组相联映射(即Cache内每组包含4个字块)的Cache组织方式。<br>1）求满足组相联映射的主存地址字段中各字段的位数<br>2)设Cache的初态为空,CPU从主存第0号单元开始连续访问100个字(主存一次读出一 个字),重复此次序读8次,求存储访问的命中率<br>3)若Cache的速度是主存速度的6倍,求存储系统访问加速比</p>
+<p><img src="/2019/12/24/存储系统II/image-20191224224843910.png" alt="image-20191224224843910"></p>
+<p><img src="/2019/12/24/存储系统II/image-20191224224850389.png" alt="image-20191224224850389"><br>3）设Cache的存取周期为t，则主存存取周期为6t<br>直接从内存读取所有数据所需时间为: Tnc = 800*6t = 4800t<br>通过Cache访问800个数据的时间为: Tc = 13*6t +(800-13)*t = 865t<br>存储系统访问的加速比 S = Tnc/Tc =( 4800t/865t) = 5.5</p>
+<h2 id="虚拟存储器"><a href="#虚拟存储器" class="headerlink" title="虚拟存储器"></a>虚拟存储器</h2><ul>
+<li>处于主存 –辅存存储层次</li>
+<li>解决主存容量不足的问题，为程序设计者提供比主存空间大的编程空间</li>
+<li>分类：页式虚拟存储器、段式虚拟存储器 、段页式虚拟存储器</li>
+</ul>
+<p>采用MMU(Memory Management Unit):管理虚拟存储器与物理存储器<br>采用页表来判断CPU要访问的内容是否在主存，并与MMU配合实现 逻辑地址与物理地址之间的转换？</p>
+<p><img src="/2019/12/24/存储系统II/image-20191224231716146.png" alt="image-20191224231716146"></p>
+<p><img src="/2019/12/24/存储系统II/image-20191224231728581.png" alt="image-20191224231728581"></p>
+<p><img src="/2019/12/24/存储系统II/image-20191224231739198.png" alt="image-20191224231739198"></p>
+<p><img src="/2019/12/24/存储系统II/image-20191224232305422.png" alt="image-20191224232305422"></p>
+<h2 id="TLB-Translation-Lookaside-Buffer"><a href="#TLB-Translation-Lookaside-Buffer" class="headerlink" title="TLB (Translation Lookaside Buffer)"></a>TLB (Translation Lookaside Buffer)</h2><p>虚实地址转换过程中存在的问题</p>
+<p><img src="/2019/12/24/存储系统II/image-20191224233435375.png" alt="image-20191224233435375"></p>
+<p><img src="/2019/12/24/存储系统II/image-20191224233447289.png" alt="image-20191224233447289"></p>
+<h3 id="TLB工作原理"><a href="#TLB工作原理" class="headerlink" title="TLB工作原理"></a>TLB工作原理</h3><ul>
+<li><p>根据局部性原理，增加一个小容量、高速存储部件存放当前访问页表地址变换条 目，该存储部件称为TLB(Translation Lookaside Buffer:地址转换后备缓冲器)。</p>
+</li>
+<li><p>TLB类似页表，也是PTE的集合。为实现对TLB的快速访问，类似于Cache中的映射方法， 对来自于CPU的虚页号进行逻辑划分，得到相应的标记和索引字段。</p>
+</li>
+</ul>
+<p><img src="/2019/12/24/存储系统II/image-20191224233533276.png" alt="image-20191224233533276"></p>
+<p><img src="/2019/12/24/存储系统II/image-20191224233543726.png" alt="image-20191224233543726"></p>
+<p><img src="/2019/12/24/存储系统II/image-20191224233559705.png" alt="image-20191224233559705"></p>
+<h2 id="RAID"><a href="#RAID" class="headerlink" title="RAID"></a>RAID</h2><p>Redundant Arrays of Independent Disks：独立磁盘冗余阵列<br>核心技术：</p>
+<ul>
+<li>将数据条带化后的存放在不同磁盘上，通过多磁盘的并行操作提高磁 盘系统的读写速率；</li>
+<li>使用基于异或运算为基础的校验技术恢复损坏的数据</li>
+</ul>
+<p><img src="/2019/12/24/存储系统II/image-20191224235157669.png" alt="image-20191224235157669"></p>
+<p><img src="/2019/12/24/存储系统II/image-20191224235206899.png" alt="image-20191224235206899"></p>
+<p><img src="/2019/12/24/存储系统II/image-20191224235212960.png" alt="image-20191224235212960"></p>
+<p><img src="/2019/12/24/存储系统II/image-20191224235218656.png" alt="image-20191224235218656"></p>
+<p><img src="/2019/12/24/存储系统II/image-20191224235224206.png" alt="image-20191224235224206"></p>
+<p><img src="/2019/12/24/存储系统II/image-20191224235229473.png" alt="image-20191224235229473"></p>
+<p><img src="/2019/12/24/存储系统II/image-20191224235234864.png" alt="image-20191224235234864"></p>
+<p><img src="/2019/12/24/存储系统II/image-20191224235241651.png" alt="image-20191224235241651"></p>
+<h2 id="习题"><a href="#习题" class="headerlink" title="习题"></a>习题</h2><p>以下关于虚拟存储管理地址转换的叙述中错误的是（<strong>C</strong>）<br>A.MMU在地址转换过程中要访问页表项<br>B.地址转换过程中可能会发生“缺页”<br>C.一般来说，逻辑地址比物理地址的位数少<br>D.地址转换是指把逻辑地址转换为物理地址</p>
+<p>假定主存按字节编址，cache共有64行，采用4路组相联映射方式，主存块大小为32字节，所有编号都从0开始。问主存第3000号单元所在主存块对应的cache组号是<strong>13</strong></p>
+<p>主存第3000号单元，一个主存块为32字节，故有3000/32 = 93余24，因此在第94块上，又因为编号从0开始，因此在编号为93的块中，因为 Cache有64行，一组有4行，因此 C =16 组，所以i =93mod16 = 13</p>
+<p>下列关于CaChe的说法中，错误的是（ <strong>C</strong>    ）<br>A.CaChe行大小与主存块大小一致<br>B.<strong>分离CaChe(也称哈佛结构)是指存放指令的CaChe与存放数据CaChe分开设置</strong><br>C.读操作也要考虑CaChe与主存的一致性问题<br>D.CaChe对程序员透明</p>
+<p>下列关于命中组合的情况中，一次访存过程中可能发生的是(<strong>acd</strong>)。</p>
+<p>A．TLB未命中，CaChe命中，Page未命中<br>B．TLB未命中，CaChe未命中，Page命中<br>C．TLB命中，CaChe命中，Page未命中<br>D．TLB命中，CaChe未命中，Page未命中</p>
+<p>因此，TLB命中，页表一定命中；TLB不命中，页表可能命中可能不命中；页表命中，TLB可能命中也可能不命中；页表不命中，TLB一定不命中。<br>TLB和页表命中与否与Cache无关。</p>
+<p>虚拟存储器中， 程序执行过程中实现虚拟地址到物理地址映射部件（系统）是 <strong>操作系统和MMU配合完成</strong></p>
+<p>相联存储器是按(<strong>内容指定方式</strong> )进行寻址的存储器。</p>
+<p>关于cache存储器，下面的叙述中正确的是 (<strong>D</strong>) 。</p>
+<p>A．cache存储器是内存中的一个特定区域<br>B．cache存储器的存取速度介于内存和磁盘之间<br>C．cache存储器中存放的内容是内存的备份<br>D．<strong>cache存储器存放正在处理的部分指令和数据</strong>/</p>
+<p>一个组相联高速缓存由64个字块组成，每个字块有256字节，分为8组，主存有4096个字块。请问：<br>1）主存地址有多少位<br>2）请写出主存地址的格式。</p>
+<p>解答：<br>1）主存容量为4096块*256字=2^20字，故主存地址为20位<br>Cache容量为64块*256字<br>共有4096/8 = 512 = 2^9个组群<br>即2^20=2^9 * 2^3 * 2^8<br>2）Cache3，字块为256字节=2^8，所以主存地址的格式为：</p>
+<p><img src="/2019/12/24/存储系统II/view.jfif" alt="cache练习及答案"></p>
+<p>在请求分页存储管理方案中，若某用户空间为16个页面，页长1KB，现有页表如下，则逻辑地址102B（H）所对应的物理地址为（<strong>082BH</strong> ）。<br>页号    块号<br>0    1<br>1    5<br>2    3<br>3    7<br>4    2</p>
+<p>16个页面，2的4次方=16，可知页号部分占4位，页长为1k，2的10次方=1k，页面大小（偏移）占10位<br>102B（H）十六进制表示法，B=11，所以102B（H）=0001 0000 0010 1011<br>页内地址为：00 0010 1011<br>页号为：0100=4.查表可知页号4对应的块号为2，<br>物理地址=物理块号*物理块号大小+页面位移<br>页号=（int）（逻辑地址/页面大小）<br>页面位移=逻辑地址%页面大小=0001 0000 0010 1011%100 0000 0000=0010 1011<br>所以逻辑地址102B（H）所对应的物理地址=2*1k +0010 1011=1000 0010 1011<br>转化为16进制082B（H） </p>
+<p>计算机主存容量8MB，分为4096个主存块，cache有64KB，请问若按照采用直接映射方式。<br>1)cache有多少字块？<br>2)Cache的字块内地址为多少位<br>3)Cache的字块地址为多少位<br>4)请写出该主存的地址格式<br>5）若按照全相联映射方式请写出该主存的地址格式</p>
+<p>解答：<br>1）每字块大小为8MB/4096= 2KB ,cache有64KB，cache块的大小与主存的块大小一样，都为2KB，所以有64KB/2KB=32个块<br>2）Cache的字块与主存的字块一样大小都为2KB=211B，所以cache的字块内地址为11位3）Cache有32块=25，所以Cache的字块地址为5位<br>4）主存容量23<br><img src="/2019/12/24/存储系统II/view-1577207603980.jfif" alt="cache练习及答案"><br>5<br><img src="/2019/12/24/存储系统II/view-1577207604012.jfif" alt="cache练习及答案"></p>
+]]></content>
+      <categories>
+        <category>学习笔记</category>
+        <category>计算机组成原理</category>
+      </categories>
+      <tags>
+        <tag>组成原理</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>存储系统I</title>
+    <url>/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/</url>
+    <content><![CDATA[<h2 id="存储系统层次结构"><a href="#存储系统层次结构" class="headerlink" title="存储系统层次结构"></a>存储系统层次结构</h2><a id="more"></a>
+<p><img src="/2019/12/24/存储系统一/image-20191224143340664.png" alt="image-20191224143340664"></p>
+<p>主存容量不足的原因：</p>
+<ul>
+<li>存在制约主存容量的技术因素</li>
+<li>应用对主存的需求不断扩大</li>
+</ul>
+<p><img src="/2019/12/24/存储系统一/image-20191224143440462.png" alt="image-20191224143440462"></p>
+<p><img src="/2019/12/24/存储系统一/image-20191224143507659.png" alt="image-20191224143507659"></p>
+<p><img src="/2019/12/24/存储系统一/image-20191224143515906.png" alt="image-20191224143515906"></p>
+<h2 id="主存中的数据组织"><a href="#主存中的数据组织" class="headerlink" title="主存中的数据组织"></a>主存中的数据组织</h2><p>存储字长：</p>
+<ul>
+<li>主存的一个存储单元所包含的二进制位数；</li>
+<li>目前大多数计算机的主存按字节编址，存储字长也不断加大,如16位字长、 32位字长和64位字长；</li>
+<li>ISA设计时要考虑的两个问题：<ul>
+<li>a)如何根据字节地址读取一个32位的字？ </li>
+<li>b)一个字能否存放在主存的任何字节边界？ - 字的存放问题 - 字的边界对齐问题</li>
+</ul>
+</li>
+</ul>
+<p><img src="/2019/12/24/存储系统一/image-20191224151529700.png" alt="image-20191224151529700"></p>
+<p><img src="/2019/12/24/存储系统一/image-20191224151536995.png" alt="image-20191224151536995"></p>
+<p>边界对齐与存储地址的关系（以32位为例）</p>
+<ul>
+<li>双字长数据边界对齐的起始地址的最末三位为000(8字节整数倍；</li>
+<li>单字长边界对齐的起始地址的末二位为00(4字节整数倍)；</li>
+<li>半字长边界对齐的起始地址的最末一位为0(２字节整数倍)。</li>
+</ul>
+<p><img src="/2019/12/24/存储系统一/image-20191224151700729.png" alt="image-20191224151700729"></p>
+<p><img src="/2019/12/24/存储系统一/image-20191224151728347.png" alt="image-20191224151728347"></p>
+<h2 id="静态存储器工作原理"><a href="#静态存储器工作原理" class="headerlink" title="静态存储器工作原理"></a>静态存储器工作原理</h2><p><img src="/2019/12/24/存储系统一/image-20191224154646533.png" alt="image-20191224154646533"></p>
+<p><img src="/2019/12/24/存储系统一/image-20191224154652629.png" alt="image-20191224154652629"></p>
+<p><img src="/2019/12/24/存储系统一/image-20191224154658914.png" alt="image-20191224154658914"></p>
+<p><img src="/2019/12/24/存储系统一/image-20191224154704558.png" alt="image-20191224154704558"></p>
+<p><img src="/2019/12/24/存储系统一/image-20191224154711826.png" alt="image-20191224154711826"></p>
+<p><img src="/2019/12/24/存储系统一/image-20191224154729278.png" alt="image-20191224154729278"></p>
+<p><img src="/2019/12/24/存储系统一/image-20191224154739209.png" alt="image-20191224154739209"></p>
+<h2 id="动态存储器工作原理"><a href="#动态存储器工作原理" class="headerlink" title="动态存储器工作原理"></a>动态存储器工作原理</h2><p>SRAM存储单元不足：</p>
+<ul>
+<li>晶体管过多</li>
+<li>存储密度低</li>
+<li>功耗大</li>
+</ul>
+<p><img src="/2019/12/24/存储系统一/image-20191224162301973.png" alt="image-20191224162301973"></p>
+<p><img src="/2019/12/24/存储系统一/image-20191224162316869.png" alt="image-20191224162316869"></p>
+<p><img src="/2019/12/24/存储系统一/image-20191224162327920.png" alt="image-20191224162327920"></p>
+<p><img src="/2019/12/24/存储系统一/image-20191224162336607.png" alt="image-20191224162336607"></p>
+<p><img src="/2019/12/24/存储系统一/image-20191224162343371.png" alt="image-20191224162343371"></p>
+<p><img src="/2019/12/24/存储系统一/image-20191224162351879.png" alt="image-20191224162351879"></p>
+<p><img src="/2019/12/24/存储系统一/image-20191224162357494.png" alt="image-20191224162357494"></p>
+<p><img src="/2019/12/24/存储系统一/image-20191224162402845.png" alt="image-20191224162402845"></p>
+<p><img src="/2019/12/24/存储系统一/image-20191224162410001.png" alt="image-20191224162410001"></p>
+<h2 id="存储拓展"><a href="#存储拓展" class="headerlink" title="存储拓展"></a>存储拓展</h2><p><img src="/2019/12/24/存储系统一/image-20191224161733688.png" alt="image-20191224161733688"></p>
+<p><img src="/2019/12/24/存储系统一/image-20191224161804378.png" alt="image-20191224161804378"></p>
+<p>16K需要14根地址线，则低2位地址线不用。</p>
+<p><img src="/2019/12/24/存储系统一/image-20191224162008786.png" alt="image-20191224162008786"></p>
+<p><img src="/2019/12/24/存储系统一/image-20191224162014600.png" alt="image-20191224162014600"></p>
+<p><img src="/2019/12/24/存储系统一/image-20191224162020202.png" alt="image-20191224162020202"></p>
+<p><img src="/2019/12/24/存储系统一/image-20191224162032635.png" alt="image-20191224162032635"></p>
+<h2 id="习题"><a href="#习题" class="headerlink" title="习题"></a>习题</h2><p>字位结构为256Kｘ4位SRAM存储芯片，其地址引脚与数据引脚之和为：22</p>
+<p>256K 需要18根，4位4根</p>
+<p>假定用若干块4K <em>4位的存储芯片组成一个8K</em>8位的存储器，则地址0B1F所在芯片的最小地址是<strong>0000H</strong></p>
+<p>用若干片2K´4位的存储芯片组成一个8K´8位的存储器，则地址0B1FH所在的芯片在全局的最大地址是<strong>0FFFH</strong></p>
+<p>下列存储器类型中，速度最快的是 <strong>B</strong><br>A.Flash Memory    B.SRAM    C.DRAM    D.EPROM</p>
+<p>SRAM是cache</p>
+<p>关于内存的下列说法中，错误的是<strong>AD</strong><br>A.内存的存取速度不能低于CPU速度，否则会造成数据丢失<br>B.某计算机内存容量为8GB，按字节编址，那么它的地址总线为33位<br>C.程序只有在数据和代码等被调入内存后才能运行<br>D.采用虚拟内存技术后程序可以在硬盘上直接运行</p>
+<p>DRAM比SRAM慢，可能的原因包括<strong>ABCD</strong></p>
+<p>A.DRAM读之前需要预充电 B.DRAM存储体行列地址线复用 C.DRAM需要刷新 D.DRAM存储单元采用了双译码结构</p>
+<p>不需要定时刷新的半导体存储器芯片是<strong>ACD</strong><br>A.SRAM    B.DRAM    C.Flash Memory    D.EPROM</p>
+<p>某计算机存储器按字节变址，采用小端方式存放数据。假定编译器规定int 型和 short 型长度分别为 32 位和 16 位，并且数据按边界对齐存储。某 C 语言程序段如下：</p>
+<p><img src="/2019/12/24/存储系统一/3814779_1478420350406_9D7738A42D1C889AE8A3BA51F1DEF7AC.png" alt="img"></p>
+<p>若record 变量的首地址为 0xC008，则地址 0xC008 中内容及 record.c 的地址是0x11 0xC00E</p>
+<p>计算机字长32位，主存容量为128MB，按<strong>字</strong>编址，其寻址范围为<strong>0~128M-1</strong></p>
+<p>某计算机内存容量为8GB，按字节编址，那么它的地址总线为33位 <strong>错</strong><br>要大于33根</p>
+<p>下列关于RAM和ROM的叙述中，正确的是<strong>BD</strong><br>A.ROM和RAM都不需要刷新<br>B.RAM是易失性存储器，ROM是非失性存储器<br>C.Cache可选RAM、ROM做数据存储体<br>D. RAM和ROM都采用随机存取的方式进行访问</p>
+<p>一般Cache采用高速的SRAM制作，比ROM速度快很多，因此Ⅲ是错误的，排除法即可选A。动态RAM是靠MOS电路中的栅极电容来记忆信息的。由于电容上的电荷会泄漏,需要定时给与补充,所以动态 RAM需要 设置 刷新 电路。RAM需要刷新，而ROM不需要刷新。<br>ROM与RAM两者的差别：<br>(1) RAM是随机存取存储器; ROM是只读存储器；<br>(2) RAM是易失性的，一旦掉电，则所有信息全部丢失；ROM是非易失性的，其信息可以长期保存，常用于存放一些固定用的数据和程序，如计算机的自检程序、BIOS、游戏卡中的游戏，等等。</p>
+<p>下列属于衡量存储器技术指标的是：存储容量、存取时间、存储周期和存储器带宽</p>
+]]></content>
+      <categories>
+        <category>学习笔记</category>
+        <category>计算机组成原理</category>
+      </categories>
+      <tags>
+        <tag>组成原理</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>运算器</title>
+    <url>/2019/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/</url>
+    <content><![CDATA[<h2 id="定点数运算及溢出检测"><a href="#定点数运算及溢出检测" class="headerlink" title="定点数运算及溢出检测"></a>定点数运算及溢出检测</h2><a id="more"></a>
+<p><img src="/2019/12/23/运算器/image-20191223010219114.png" alt="image-20191223010219114"></p>
+<p><img src="/2019/12/23/运算器/image-20191223005946819.png" alt="image-20191223005946819"></p>
+<p><img src="/2019/12/23/运算器/image-20191223005953670.png" alt="image-20191223005953670"></p>
+<p><img src="/2019/12/23/运算器/image-20191223010001433.png" alt="image-20191223010001433"></p>
+<p><img src="/2019/12/23/运算器/image-20191223010017306.png" alt="image-20191223010017306"></p>
+<h2 id="定点数补码加减运算器设计"><a href="#定点数补码加减运算器设计" class="headerlink" title="定点数补码加减运算器设计"></a>定点数补码加减运算器设计</h2><p><img src="/2019/12/23/运算器/image-20191223011539952.png" alt="image-20191223011539952"></p>
+<p><img src="/2019/12/23/运算器/image-20191223011546598.png" alt="image-20191223011546598"></p>
+<p><img src="/2019/12/23/运算器/image-20191223011554683.png" alt="image-20191223011554683"></p>
+<p><img src="/2019/12/23/运算器/image-20191223011604477.png" alt="image-20191223011604477"></p>
+<p><img src="/2019/12/23/运算器/image-20191223011617449.png" alt="image-20191223011617449"></p>
+<p><img src="/2019/12/23/运算器/image-20191223011651720.png" alt="image-20191223011651720"></p>
+<h2 id="原码一位乘法"><a href="#原码一位乘法" class="headerlink" title="原码一位乘法"></a>原码一位乘法</h2><p><img src="/2019/12/23/运算器/image-20191223105629422.png" alt="image-20191223105629422"></p>
+<p><img src="/2019/12/23/运算器/image-20191223105639405.png" alt="image-20191223105639405"></p>
+<p><img src="/2019/12/23/运算器/image-20191223105649861.png" alt="image-20191223105649861"></p>
+<p><img src="/2019/12/23/运算器/image-20191223105703307.png" alt="image-20191223105703307"></p>
+<p><img src="/2019/12/23/运算器/image-20191223105716737.png" alt="image-20191223105716737"></p>
+<h2 id="补码一位乘法"><a href="#补码一位乘法" class="headerlink" title="补码一位乘法"></a>补码一位乘法</h2><p><img src="/2019/12/23/运算器/image-20191223110715830.png" alt="image-20191223110715830"></p>
+<p><img src="/2019/12/23/运算器/image-20191223110723869.png" alt="image-20191223110723869"></p>
+<p><img src="/2019/12/23/运算器/image-20191223110734838.png" alt="image-20191223110734838"></p>
+<p><img src="/2019/12/23/运算器/image-20191223110749473.png" alt="image-20191223110749473"></p>
+<p><img src="/2019/12/23/运算器/image-20191223110759842.png" alt="image-20191223110759842"></p>
+<h2 id="乘法运算器设计"><a href="#乘法运算器设计" class="headerlink" title="乘法运算器设计"></a>乘法运算器设计</h2><p><img src="/2019/12/23/运算器/image-20191223112447328.png" alt="image-20191223112447328"></p>
+<p><img src="/2019/12/23/运算器/image-20191223112458216.png" alt="image-20191223112458216"></p>
+<p><img src="/2019/12/23/运算器/image-20191223112506070.png" alt="image-20191223112506070"></p>
+<p><img src="/2019/12/23/运算器/image-20191223112518818.png" alt="image-20191223112518818"></p>
+<p><img src="/2019/12/23/运算器/image-20191223112531553.png" alt="image-20191223112531553"></p>
+<h2 id="定点数除法"><a href="#定点数除法" class="headerlink" title="定点数除法"></a>定点数除法</h2><p><img src="/2019/12/23/运算器/image-20191223231843074.png" alt="image-20191223231843074"></p>
+<p><img src="/2019/12/23/运算器/image-20191223231854975.png" alt="image-20191223231854975"></p>
+<p><img src="/2019/12/23/运算器/image-20191223231901994.png" alt="image-20191223231901994"></p>
+<p><img src="/2019/12/23/运算器/image-20191223231912849.png" alt="image-20191223231912849"></p>
+<p><img src="/2019/12/23/运算器/image-20191223231927917.png" alt="image-20191223231927917"></p>
+<p><img src="/2019/12/23/运算器/image-20191223232007762.png" alt="image-20191223232007762"></p>
+<p><img src="/2019/12/23/运算器/image-20191223232026608.png" alt="image-20191223232026608"></p>
+<p><img src="/2019/12/23/运算器/image-20191223232033420.png" alt="image-20191223232033420"></p>
+<h2 id="浮点数加减运算"><a href="#浮点数加减运算" class="headerlink" title="浮点数加减运算"></a>浮点数加减运算</h2><h3 id="规格化浮点数概念"><a href="#规格化浮点数概念" class="headerlink" title="规格化浮点数概念"></a>规格化浮点数概念</h3><ul>
+<li>由于浮点数是将数据的表示范围与精确度分别表示的数据表示方法，若不对浮点数的表示作出明确规定，同一个浮点数的表示就不唯一</li>
+<li>规格化浮点数是指把一个浮点数按指定的格式进行转换，</li>
+<li>由于浮点数是将数据的表示范围与精确度分别表示的数据表示方法，若不 对浮点数的表示作出明确规定，同一个浮点数的表示就不唯一，</li>
+<li>以浮点数一般格式为例，规格化浮点数的尾数形式为: 00.1… 或 11.0…。</li>
+</ul>
+<h3 id="规格化浮点数方法"><a href="#规格化浮点数方法" class="headerlink" title="规格化浮点数方法"></a>规格化浮点数方法</h3><ul>
+<li>当尾数结果为 00.0… 或 11.1，需要左规格化即将尾数向左移动， 每移动一次，阶码减1，直到尾数形式为 00.1… 或 11.0…。</li>
+<li>当尾数的结果为 01.… 或 10.， 表明尾数求和的结果 &gt; 1,此时仅 需要执行一次右移规格化， 阶码加 1 ,尾数形式即为00.1… 或 11.0…</li>
+</ul>
+<h3 id="浮点数加减运算方法及其步骤"><a href="#浮点数加减运算方法及其步骤" class="headerlink" title="浮点数加减运算方法及其步骤"></a>浮点数加减运算方法及其步骤</h3><ul>
+<li>对阶 <ul>
+<li>求阶差；</li>
+<li>右移阶码小的浮点数的尾数并同步增加其阶码，直至两数阶码相等。</li>
+</ul>
+</li>
+<li>尾数加/减 <ul>
+<li>尾数加/减运算 （用对阶后的尾数） </li>
+</ul>
+</li>
+<li>结果规格化</li>
+<li>舍入<ul>
+<li>右移规格化时可能丢失一些低位的数值位, 为提高精度,  可采取舍入的方法: </li>
+<li>0 舍 1 入 : 若右移出的是1则在最低位加1; </li>
+<li>恒置 1 : 只要数字位1被移掉,就将最后一位恒置成1。</li>
+</ul>
+</li>
+<li>溢出处理 <ul>
+<li>浮点数的溢出标志:  阶码溢出 </li>
+<li>阶码上溢 ： 阶码的符号位为 01 </li>
+<li>阶码下溢 ： 阶码的符号位为 10</li>
+</ul>
+</li>
+</ul>
+<p><img src="/2019/12/23/运算器/image-20191223234038778.png" alt="image-20191223234038778"></p>
+<p><img src="/2019/12/23/运算器/image-20191223234049917.png" alt="image-20191223234049917"></p>
+<h2 id="习题"><a href="#习题" class="headerlink" title="习题"></a>习题</h2><p><strong>单符号位补码表示的两个同号数相加或异号数相减时，所得结果的符号位SF和进位标志CF进行（D ）运算为1时，表示运算的结果产生溢出</strong><br>A.与非    B.与        C.或        D.异或</p>
+<p><strong>若采用双符号位补码运算，运算结果的符号位为10，下列结论中错误的是 AB</strong><br>A.产生了上溢    B.运算结果溢出，结果为正数    C.产生了下溢    D.运算结果溢出，结果为负数<br>计算机运算溢出检测机制，采用双符号位，00表示正号，11表示负号。如果进位将会导致符号位不一致，从而检测出溢出。结果的符号位为01时，称为上溢；为10时，称为下溢。</p>
+<p>以下说法正确的是<strong>ABCD</strong></p>
+<p>A.n位小数的补码一位乘法（Booth算法），需做n+1次运算，第n+1次不移位</p>
+<p>B.浮点运算可由阶码运算和尾数运算两个部分联合实现</p>
+<p>C.补码加减交替法是一种不恢复余数法</p>
+<p><strong>D.在定点小数补码一位除法中，为了避免溢出，被除数的绝对值一定要小于除数的绝对值</strong></p>
+]]></content>
+      <categories>
+        <category>学习笔记</category>
+        <category>计算机组成原理</category>
+      </categories>
+      <tags>
+        <tag>组成原理</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>数据表示</title>
+    <url>/2019/12/19/%E6%95%B0%E6%8D%AE%E8%A1%A8%E7%A4%BA/</url>
+    <content><![CDATA[<h2 id="进制转换"><a href="#进制转换" class="headerlink" title="进制转换"></a>进制转换</h2><a id="more"></a>
+<p><img src="/2019/12/19/数据表示/image-20191220003552325.png" alt="image-20191220003552325"></p>
+<h2 id="机器数及其特点"><a href="#机器数及其特点" class="headerlink" title="机器数及其特点"></a>机器数及其特点</h2><p><img src="/2019/12/19/数据表示/image-20191219231153151.png" alt="image-20191219231153151"></p>
+<p><strong>原码特性</strong></p>
+<ul>
+<li>直观易懂<ul>
+<li>第一位为符号位</li>
+<li>其他为数值位</li>
+</ul>
+</li>
+<li>正零负零两个零</li>
+<li>加、减运算方式不统一<ul>
+<li>符号相异加法不能直接运算</li>
+<li>特别当 a&lt;b时，实现 a-b比较困难</li>
+</ul>
+</li>
+<li>从50年代开始，整数都采用补码来表示</li>
+<li>但浮点数的尾数用原码定点小数表示</li>
+</ul>
+<p><strong>反码特性</strong></p>
+<ul>
+<li>两个零</li>
+<li>求反用逻辑门容易实现</li>
+<li>运算仍然很复杂<ul>
+<li>相加时需要将符号位的进位位增加到LSB上</li>
+</ul>
+</li>
+</ul>
+<p><strong>补码特性</strong></p>
+<ul>
+<li>唯一的零</li>
+<li>符号位可以直接参与运算</li>
+<li>减法可以变成加法，运算电路统一</li>
+<li>负数比整数多一个</li>
+<li>不同位数的整数补码相加减时<ul>
+<li>位数少的补码符号位向左扩展</li>
+<li>一直扩展到符号位对齐</li>
+</ul>
+</li>
+</ul>
+<p><img src="/2019/12/19/数据表示/image-20191219231207351.png" alt="image-20191219231207351"></p>
+<p><img src="/2019/12/19/数据表示/image-20191219232033377.png" alt="image-20191219232033377"></p>
+<p><img src="/2019/12/19/数据表示/image-20191219232235893.png" alt="image-20191219232235893"></p>
+<p>定点数机器码表示范围：<br><img src="/2019/12/19/数据表示/image-20191219232325487.png" alt="image-20191219232325487"></p>
+<h3 id="双符号位补码"><a href="#双符号位补码" class="headerlink" title="双符号位补码"></a>双符号位补码</h3><p><img src="/2019/12/19/数据表示/image-20191220004143783.png" alt="image-20191220004143783"></p>
+<h2 id="定点与浮点数据表示"><a href="#定点与浮点数据表示" class="headerlink" title="定点与浮点数据表示"></a>定点与浮点数据表示</h2><p><img src="/2019/12/19/数据表示/image-20191219233804226.png" alt="image-20191219233804226"></p>
+<p><img src="/2019/12/19/数据表示/image-20191219233824924.png" alt="image-20191219233824924"></p>
+<p><img src="/2019/12/19/数据表示/image-20191219233857085.png" alt="image-20191219233857085"></p>
+<p><img src="/2019/12/19/数据表示/image-20191219233918638.png" alt="image-20191219233918638"></p>
+<p><img src="/2019/12/19/数据表示/image-20191220005108307.png" alt="image-20191220005108307"></p>
+<p><img src="/2019/12/19/数据表示/image-20191220005139118.png" alt="image-20191220005139118"></p>
+<p><img src="/2019/12/19/数据表示/image-20191219233929847.png" alt="image-20191219233929847"></p>
+<ul>
+<li>机器字长一定时，阶码越长，表示范围越大</li>
+<li>阶码相同，尾数越长，数据精度越高</li>
+<li>浮点数表示范围比定点数大，精度高</li>
+<li>阶码尾码长度应为多少合适？  </li>
+<li>阶码越长，表示范围越大，精度越高 (规格化)</li>
+<li>浮点数扩大了数值表示的范围， 未增加表示数值的个数</li>
+<li>绝对值越大，浮点数分布越稀疏，浮点数是离散空间</li>
+<li>浮点运算不满足结合律<ul>
+<li>（2-126+1020）-1020 = ?       2-126 + (1020 - 1020) =?</li>
+</ul>
+</li>
+</ul>
+<h3 id="十进制数的表示-BCD码"><a href="#十进制数的表示-BCD码" class="headerlink" title="十进制数的表示 BCD码"></a>十进制数的表示 BCD码</h3><p><img src="/2019/12/19/数据表示/image-20191220005354101.png" alt="image-2019"></p>
+<h2 id="数据校验的基本原理"><a href="#数据校验的基本原理" class="headerlink" title="数据校验的基本原理"></a>数据校验的基本原理</h2><p><img src="/2019/12/19/数据表示/image-20191219234631646.png" alt="image-20191219234631646"></p>
+<p><img src="/2019/12/19/数据表示/image-20191219234643400.png" alt="image-20191219234643400"></p>
+<p><img src="/2019/12/19/数据表示/image-20191219234654617.png" alt="image-20191219234654617"></p>
+<h2 id="奇偶校验"><a href="#奇偶校验" class="headerlink" title="奇偶校验"></a>奇偶校验</h2><p><img src="/2019/12/19/数据表示/image-20191220005825812.png" alt="image-20191220005825812"></p>
+<p><img src="/2019/12/19/数据表示/image-20191219235642154.png" alt="image-20191219235642154"></p>
+<p><img src="/2019/12/19/数据表示/image-20191219235921834.png" alt="image-20191219235921834"></p>
+<h2 id="CRC校验及其实现"><a href="#CRC校验及其实现" class="headerlink" title="CRC校验及其实现"></a>CRC校验及其实现</h2><p><img src="/2019/12/19/数据表示/image-20191220001405535.png" alt="image-20191220001405535"></p>
+<ul>
+<li><strong>生成多项式特征</strong><ul>
+<li>任意位发生错误都应使余数不为0</li>
+<li>不同位发生错误余数不同</li>
+<li>余数左移一位继续作模2除，应使余数循环，循环周期 N=k+r  ？</li>
+</ul>
+</li>
+<li><strong>如何产生生成多项式</strong><ul>
+<li>(n,k)码，将Xn+1分解为若干质因子   （模2的运算）</li>
+<li>根据码距要求选择其中的因式或多个因式的乘积为生成多项式</li>
+</ul>
+</li>
+</ul>
+<p><img src="/2019/12/19/数据表示/image-20191220001447447.png" alt="image-20191220001447447"></p>
+<p><img src="/2019/12/19/数据表示/image-20191220001757864.png" alt="image-20191220001757864"></p>
+<p><img src="/2019/12/19/数据表示/image-20191220010438469.png" alt="image-20191220010438469"></p>
+<p><img src="/2019/12/19/数据表示/image-20191220001833199.png" alt="image-20191220001833199"></p>
+<h2 id="海明校验及其实现"><a href="#海明校验及其实现" class="headerlink" title="海明校验及其实现"></a>海明校验及其实现</h2><ul>
+<li><p>多个奇偶校验组</p>
+</li>
+<li><p>既能检错，也能纠错</p>
+</li>
+<li><p>最小码距为3</p>
+</li>
+</ul>
+<p><img src="/2019/12/19/数据表示/image-20191220010111427.png" alt="image-20191220010111427"></p>
+<p><img src="/2019/12/19/数据表示/image-20191220003136644.png" alt="image-20191220003136644"></p>
+<p><img src="/2019/12/19/数据表示/image-20191220003145152.png" alt="image-20191220003145152"></p>
+<p><img src="/2019/12/19/数据表示/image-20191220003206327.png" alt="image-20191220003206327"></p>
+<p><img src="/2019/12/19/数据表示/image-20191220003218848.png" alt="image-20191220003218848"></p>
+<p><img src="/2019/12/19/数据表示/image-20191220003228764.png" alt="image-20191220003228764"></p>
+<p><img src="/2019/12/19/数据表示/image-20191220003246821.png" alt="image-20191220003246821"></p>
+<p>在海明校验基础上增加一位奇偶校验</p>
+<h2 id="校验码总结"><a href="#校验码总结" class="headerlink" title="校验码总结"></a>校验码总结</h2><p><img src="/2019/12/19/数据表示/image-20191220010548069.png" alt="image-20191220010548069"></p>
+<h2 id="习题"><a href="#习题" class="headerlink" title="习题"></a>习题</h2><p>下列对海明校验的描述中，正确的描述是  <strong>C</strong></p>
+<ul>
+<li><p>A.</p>
+<p>在任何条件下，海明校验都无法检测到多位数据同时出错的情况</p>
+</li>
+<li><p>B.</p>
+<p>分成r组时，可以得到r位指误码，因此可以QU区分2^r种只有1位出错的情况</p>
+</li>
+<li><p>C.</p>
+<p>待编码数据长度为4位，再增加3位校验码就可以检测到仅1位数据出错的情况并纠错</p>
+</li>
+<li><p>D.</p>
+<p>海明校验码的码距与校验位的位数没有关系</p>
+<p>0.00/2.0</p>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>学习笔记</category>
+        <category>组成原理</category>
+      </categories>
+      <tags>
+        <tag>计算机组成原理</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>二叉树的右视图</title>
     <url>/2019/12/19/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%8F%B3%E8%A7%86%E5%9B%BE/</url>
     <content><![CDATA[<p>来源Leetcode第199题二叉树的右视图</p>
@@ -253,8 +672,8 @@
       </categories>
       <tags>
         <tag>Leetcode</tag>
-        <tag>深度优先搜索</tag>
         <tag>栈</tag>
+        <tag>深度优先搜索</tag>
       </tags>
   </entry>
   <entry>
@@ -3226,8 +3645,8 @@ public Node(int _val,List&lt;Node&gt; _neighbors) {
         <category>数组</category>
       </categories>
       <tags>
-        <tag>贪心</tag>
         <tag>Leetcode</tag>
+        <tag>贪心</tag>
       </tags>
   </entry>
   <entry>
@@ -3278,8 +3697,8 @@ public Node(int _val,List&lt;Node&gt; _neighbors) {
         <category>数组</category>
       </categories>
       <tags>
-        <tag>贪心</tag>
         <tag>Leetcode</tag>
+        <tag>贪心</tag>
         <tag>动态规划</tag>
         <tag>回溯</tag>
       </tags>
@@ -4334,8 +4753,8 @@ public Node(int _val,List&lt;Node&gt; _neighbors) {
       </categories>
       <tags>
         <tag>Leetcode</tag>
-        <tag>二分查找</tag>
         <tag>双指针</tag>
+        <tag>二分查找</tag>
       </tags>
   </entry>
   <entry>
@@ -4891,8 +5310,8 @@ public Node(int _val,List&lt;Node&gt; _neighbors) {
         <category>链表</category>
       </categories>
       <tags>
-        <tag>贪心</tag>
         <tag>Leetcode</tag>
+        <tag>贪心</tag>
         <tag>链表</tag>
         <tag>归并</tag>
         <tag>分治</tag>
@@ -5240,8 +5659,8 @@ public Node(int _val,List&lt;Node&gt; _neighbors) {
         <category>数学</category>
       </categories>
       <tags>
-        <tag>贪心</tag>
         <tag>Leetcode</tag>
+        <tag>贪心</tag>
       </tags>
   </entry>
   <entry>
