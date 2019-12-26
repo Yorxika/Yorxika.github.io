@@ -75,7 +75,7 @@
 
 
 
-  <meta name="keywords" content="计算机组成原理,">
+  <meta name="keywords" content="组成原理,">
 
 
 
@@ -87,7 +87,7 @@
 
 
 <meta name="description" content="进制转换">
-<meta name="keywords" content="计算机组成原理">
+<meta name="keywords" content="组成原理">
 <meta property="og:type" content="article">
 <meta property="og:title" content="数据表示">
 <meta property="og:url" content="http://yorxika.github.io/2019/12/19/数据表示/index.html">
@@ -117,18 +117,21 @@
 <meta property="og:image" content="http://yorxika.github.io/2019/12/19/数据表示/image-20191219235921834.png">
 <meta property="og:image" content="http://yorxika.github.io/2019/12/19/数据表示/image-20191220001405535.png">
 <meta property="og:image" content="http://yorxika.github.io/2019/12/19/数据表示/image-20191220001447447.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/19/数据表示/image-20191226232339760.png">
 <meta property="og:image" content="http://yorxika.github.io/2019/12/19/数据表示/image-20191220001757864.png">
-<meta property="og:image" content="http://yorxika.github.io/2019/12/19/数据表示/image-20191220010438469.png">
-<meta property="og:image" content="http://yorxika.github.io/2019/12/19/数据表示/image-20191220001833199.png">
-<meta property="og:image" content="http://yorxika.github.io/2019/12/19/数据表示/image-20191220010111427.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/19/数据表示/image-20191226232647970.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/19/数据表示/image-20191226233101210.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/19/数据表示/image-20191226233311840.png">
 <meta property="og:image" content="http://yorxika.github.io/2019/12/19/数据表示/image-20191220003136644.png">
 <meta property="og:image" content="http://yorxika.github.io/2019/12/19/数据表示/image-20191220003145152.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/19/数据表示/image-20191226231723570.png">
 <meta property="og:image" content="http://yorxika.github.io/2019/12/19/数据表示/image-20191220003206327.png">
 <meta property="og:image" content="http://yorxika.github.io/2019/12/19/数据表示/image-20191220003218848.png">
 <meta property="og:image" content="http://yorxika.github.io/2019/12/19/数据表示/image-20191220003228764.png">
 <meta property="og:image" content="http://yorxika.github.io/2019/12/19/数据表示/image-20191220003246821.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/19/数据表示/image-20191226231946271.png">
 <meta property="og:image" content="http://yorxika.github.io/2019/12/19/数据表示/image-20191220010548069.png">
-<meta property="og:updated_time" content="2019-12-22T16:45:01.876Z">
+<meta property="og:updated_time" content="2019-12-26T15:38:37.729Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据表示">
 <meta name="twitter:description" content="进制转换">
@@ -372,8 +375,8 @@
               
                 <span class="post-meta-item-text">Post modified&#58;</span>
               
-              <time title="Post modified" itemprop="dateModified" datetime="2019-12-23T00:45:01+08:00">
-                2019-12-23
+              <time title="Post modified" itemprop="dateModified" datetime="2019-12-26T23:38:37+08:00">
+                2019-12-26
               </time>
             
           </span>
@@ -402,8 +405,8 @@
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/学习笔记/组成原理/" itemprop="url" rel="index">
-                    <span itemprop="name">组成原理</span>
+                  <a href="/categories/学习笔记/计算机组成原理/" itemprop="url" rel="index">
+                    <span itemprop="name">计算机组成原理</span>
                   </a>
                 </span>
 
@@ -438,7 +441,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  721
+                  2.2k
                 </span>
               
 
@@ -454,7 +457,7 @@
                   <span class="post-meta-item-text">Reading time &asymp;</span>
                 
                 <span title="Reading time">
-                  2
+                  7
                 </span>
               
             </div>
@@ -549,22 +552,63 @@
 <p><img src="/2019/12/19/数据表示/image-20191219235921834.png" alt="image-20191219235921834"></p>
 <h2 id="CRC校验及其实现"><a href="#CRC校验及其实现" class="headerlink" title="CRC校验及其实现"></a>CRC校验及其实现</h2><p><img src="/2019/12/19/数据表示/image-20191220001405535.png" alt="image-20191220001405535"></p>
 <ul>
-<li><strong>生成多项式特征</strong><ul>
+<li><p><strong>生成多项式特征</strong></p>
+<ul>
 <li>任意位发生错误都应使余数不为0</li>
 <li>不同位发生错误余数不同</li>
 <li>余数左移一位继续作模2除，应使余数循环，循环周期 N=k+r  ？</li>
 </ul>
 </li>
-<li><strong>如何产生生成多项式</strong><ul>
+<li><p><strong>如何产生生成多项式</strong></p>
+<ul>
 <li>(n,k)码，将Xn+1分解为若干质因子   （模2的运算）</li>
 <li>根据码距要求选择其中的因式或多个因式的乘积为生成多项式</li>
 </ul>
 </li>
+<li><p>码距：任意两个合法编码间不同的二进制位数    最小码距</p>
+</li>
+<li><p>码距越大，抗干扰能力、纠错能力越强，数据冗余越大，编码效率越低</p>
+</li>
+<li><p>选择码距应考虑信息出错概率和系统容错率</p>
+<ul>
+<li>奇偶校验  最小码距为2</li>
+<li>海明码     最小码距为3</li>
+</ul>
+</li>
 </ul>
 <p><img src="/2019/12/19/数据表示/image-20191220001447447.png" alt="image-20191220001447447"></p>
+<p><img src="/2019/12/19/数据表示/image-20191226232339760.png" alt="image-20191226232339760"></p>
 <p><img src="/2019/12/19/数据表示/image-20191220001757864.png" alt="image-20191220001757864"></p>
-<p><img src="/2019/12/19/数据表示/image-20191220010438469.png" alt="image-20191220010438469"></p>
-<p><img src="/2019/12/19/数据表示/image-20191220001833199.png" alt="image-20191220001833199"></p>
+<p>(7,3)码多位错余数情况</p>
+<ul>
+<li>两位数出错余数与一位错有重叠（见表）</li>
+<li>三位错余数有可能为零   如 C1，C2，C4   （无法全部检错）</li>
+</ul>
+<p><img src="/2019/12/19/数据表示/image-20191226232647970.png" alt="image-20191226232647970"></p>
+<p>CRC串行编码电路    (时序逻辑)</p>
+<p><img src="/2019/12/19/数据表示/image-20191226233101210.png" alt="image-20191226233101210"></p>
+<ul>
+<li>有异或门的位置是生成多项式为1的位置，G(X)=X4+X+1    10011</li>
+<li>触发器初始状态为0</li>
+<li>Q4=0时，不够除，下一个时钟，数据左移一位</li>
+<li>Q4=1时，够除，商上1， Q4Q3Q2Q1Serial_in ⊕ 生成多项式  结果左移<br>运算速度慢，高速设备普遍采用 并行CRC 编解码</li>
+</ul>
+<p>备注：<br>下面我们来看一看CRC串行编码电路，注意这个串行编码电路是一个同步时序逻辑，具有统一时钟。<br>从图中我们可以看到这个电路的包括若干个D触发器，Q4这Q3…..一共共4个D触发器，所有D触发器时钟同步，注意D触发器之间的链接，部分是直接串联，部分D触发器之间有一个异或门，异或门一个输入连接的是当前寄存器输出，另外一个是Q4的输出。这里有异或门的地方就是CRC编码电路生成多项式为1的位置，具体如红色文字所示，Q4位置是最高位，默认为1，所以生成多项式为10011，初始状态，所有触发器输出Q4Q3Q2Q1的值均为零，最高位Q4为零，按模2的除法不够除，Q4控制所有的异或门，因为Q4为零，所有异或门位置变成数据直通，Q1直接连接到Q2的D端。<br>四个D触发器直接串联，变成一个移位寄存器，时钟到来数据左移一位<br>这和模2除法的不够除的处理过程是完全一致的。根据这个运算规则，如果左移后Q4的值仍然还是0，则会继续左移，Q3，Q2，Q1初值都为零，所以只有串行输入数据中的第一个1传输到Q4时电路才会改变运行模式，当Q4为1时，所有异或门的地方要异或上1，相当于是Q4Q3Q2Q1串行输入这一组数据和生成多项式做异或，生成多项式为1的地方进行异或运算，为0的地方异或上零还是不变，还是原始数据，这里采用直连方式，计算后的结果下一时钟会左移一位，这个电路状态就是模2除法运时最高位为1，够除，商上1，被除数和除数进行异或运算，结果左移当串行输入的最后一位数据抵达进入电路后，各触发器输入端的值D4D3D2D1就是最终的余数这样一个电路，如果串行输入的数据越长，那么它需要的时钟就越多，所以它的运算速度非常慢的，目前在高速网络设备中必须采用并行的CRC编解码电路。</p>
+<p>(7,3）编码电路</p>
+<p><img src="/2019/12/19/数据表示/image-20191226233311840.png" alt="image-20191226233311840"></p>
+<p>CRC   (N,k)码检错性能      r=N-k</p>
+<ul>
+<li>所有小于等于r长度的突发错<ul>
+<li>通讯中常见，各出错位之间有因果关系</li>
+<li>突发错长度：第一和最后一个错位之间的距离</li>
+</ul>
+</li>
+<li>( 1−2^(–r+1))比例的r+1长度的突发错</li>
+<li>( 1−2^–r )比例的大于r+1长度的突发错</li>
+<li>所有小于最小码距的任意位数的错误</li>
+<li>如果生成多项式中1的数目为偶数，可检测所有奇数错</li>
+<li>广泛运用于通信传输领域，磁存储领域</li>
+</ul>
 <h2 id="海明校验及其实现"><a href="#海明校验及其实现" class="headerlink" title="海明校验及其实现"></a>海明校验及其实现</h2><ul>
 <li><p>多个奇偶校验组</p>
 </li>
@@ -572,32 +616,64 @@
 </li>
 <li><p>最小码距为3</p>
 </li>
+<li><p>编码规则：分组交叉奇偶校验法</p>
+<ul>
+<li>待编码数据分成 r 个奇偶校验组，r&gt;1</li>
+<li>r 位校验位（冗余），生成r位检错码</li>
+<li>各数据位至少参加2个校验组</li>
+<li>一个数据位出错，可导致多个检错码为1</li>
 </ul>
-<p><img src="/2019/12/19/数据表示/image-20191220010111427.png" alt="image-20191220010111427"></p>
+</li>
+<li><p>检错纠错：检错码值表示出错位置   （假设1位错）</p>
+<ul>
+<li>检错码全零， 数据大概率正常</li>
+<li>可检错，也可纠错，将出错位取反即可</li>
+</ul>
+</li>
+</ul>
 <p><img src="/2019/12/19/数据表示/image-20191220003136644.png" alt="image-20191220003136644"></p>
 <p><img src="/2019/12/19/数据表示/image-20191220003145152.png" alt="image-20191220003145152"></p>
+<p>(4,3)码分组依据<br><img src="/2019/12/19/数据表示/image-20191226231723570.png" alt="image-20191226231723570"></p>
 <p><img src="/2019/12/19/数据表示/image-20191220003206327.png" alt="image-20191220003206327"></p>
 <p><img src="/2019/12/19/数据表示/image-20191220003218848.png" alt="image-20191220003218848"></p>
 <p><img src="/2019/12/19/数据表示/image-20191220003228764.png" alt="image-20191220003228764"></p>
 <p><img src="/2019/12/19/数据表示/image-20191220003246821.png" alt="image-20191220003246821"></p>
-<p>在海明校验基础上增加一位奇偶校验</p>
-<h2 id="校验码总结"><a href="#校验码总结" class="headerlink" title="校验码总结"></a>校验码总结</h2><p><img src="/2019/12/19/数据表示/image-20191220010548069.png" alt="image-20191220010548069"></p>
-<h2 id="习题"><a href="#习题" class="headerlink" title="习题"></a>习题</h2><p>下列对海明校验的描述中，正确的描述是  <strong>C</strong></p>
 <ul>
-<li><p>A.</p>
-<p>在任何条件下，海明校验都无法检测到多位数据同时出错的情况</p>
+<li>可检一位错<ul>
+<li>检错码G3G2G1 !=000，具体值为出错位置，取反即可纠错</li>
+</ul>
 </li>
-<li><p>B.</p>
-<p>分成r组时，可以得到r位指误码，因此可以QU区分2^r种只有1位出错的情况</p>
+<li>可检两位错<ul>
+<li>假设D1 ，D2同时出错，  G3G2G1=110  ？</li>
+</ul>
 </li>
-<li><p>C.</p>
-<p>待编码数据长度为4位，再增加3位校验码就可以检测到仅1位数据出错的情况并纠错</p>
+<li>大多数三位错<ul>
+<li>D1，D2，D3同时出错？G3G2G1=000  ？</li>
+</ul>
 </li>
-<li><p>D.</p>
-<p>海明校验码的码距与校验位的位数没有关系</p>
-<p>0.00/2.0</p>
+<li>能否区分区分一位错，两位错？  <ul>
+<li>假设没有3位错</li>
+<li>引入总偶校验位 P4=H1⊕H2⊕H3⊕H4⊕H5⊕H6⊕H7</li>
+<li>G4=P4⊕H1⊕H2⊕H3⊕H4⊕H5⊕H6⊕H7  区分一位两位错</li>
+</ul>
 </li>
 </ul>
+<p><img src="/2019/12/19/数据表示/image-20191226231946271.png" alt="image-20191226231946271"></p>
+<p>海明码特点：</p>
+<ul>
+<li>编码效率高：数据增加一倍，校验位只增加一位</li>
+<li>可纠正一位错</li>
+<li>50年代发明时用于自动处理穿孔卡片的故障</li>
+<li>现在普遍用于ECC  DRAM芯片</li>
+<li>RAID2，卫星通讯</li>
+</ul>
+<h2 id="校验码总结"><a href="#校验码总结" class="headerlink" title="校验码总结"></a>校验码总结</h2><p><img src="/2019/12/19/数据表示/image-20191220010548069.png" alt="image-20191220010548069"></p>
+<h2 id="习题"><a href="#习题" class="headerlink" title="习题"></a>习题</h2><p>下列对海明校验的描述中，正确的描述是  <strong>C</strong><br>A.在任何条件下，海明校验都无法检测到多位数据同时出错的情况<br>B.分成r组时，可以得到r位指误码，因此可以QU区分2^r种只有1位出错的情况<br>C.待编码数据长度为4位，再增加3位校验码就可以检测到仅1位数据出错的情况并纠错<br>D.海明校验码的码距与校验位的位数没有关系</p>
+<hr>
+<p>计算机字长16位，采用补码表示整数，下列关于其表示数据范围的描述中正确的是<strong>ABCD</strong><br>A.能表示的最小正数是1<br>B.能表示的最小负数是- (2 ^15)<br>C.能表示最大正数是(2^15) - 1<br>D.能表示的最大负数是-1</p>
+<hr>
+<p>列关于补码和移码关系的描述中，错误的是<strong>B</strong><br>A.一般用译码表示浮点数的阶码，而用补码表示定点数<br>B.零的补码和移码相同<br>C.同一个数的补码和移码，其数值部分相同，而符号相反<br>D.相同位数的补码和移码具有相同的数据表示范围</p>
+<p>移码：X+2^n</p>
 
       
     </div>
@@ -633,7 +709,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/计算机组成原理/" rel="tag"><i class="fa fa-tag"></i> 计算机组成原理</a>
+            <a href="/tags/组成原理/" rel="tag"><i class="fa fa-tag"></i> 组成原理</a>
           
         </div>
       
@@ -740,7 +816,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">141</span>
+                  <span class="site-state-item-count">143</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -751,7 +827,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">23</span>
+                  <span class="site-state-item-count">22</span>
                   <span class="site-state-item-name">categories</span>
                 </a>
               </div>
@@ -762,7 +838,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">52</span>
+                  <span class="site-state-item-count">51</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>

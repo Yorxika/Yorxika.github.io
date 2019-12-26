@@ -86,18 +86,16 @@
 
 
 
-<meta name="description" content="存储系统层次结构">
+<meta name="description" content="存储系统层次结构基本存储体系存储程序                                                  —&amp;gt; 内存1) 输入设备将程序与数据写入主存；   ^2) CPU取指令;                                           |3) CPU执行指令期间读数据；                |4) CPU写回运算结果；">
 <meta name="keywords" content="组成原理">
 <meta property="og:type" content="article">
 <meta property="og:title" content="存储系统I">
 <meta property="og:url" content="http://yorxika.github.io/2019/12/24/存储系统一/index.html">
 <meta property="og:site_name" content="Nameless blog">
-<meta property="og:description" content="存储系统层次结构">
+<meta property="og:description" content="存储系统层次结构基本存储体系存储程序                                                  —&amp;gt; 内存1) 输入设备将程序与数据写入主存；   ^2) CPU取指令;                                           |3) CPU执行指令期间读数据；                |4) CPU写回运算结果；">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="http://yorxika.github.io/2019/12/24/存储系统一/image-20191224143340664.png">
 <meta property="og:image" content="http://yorxika.github.io/2019/12/24/存储系统一/image-20191224143440462.png">
-<meta property="og:image" content="http://yorxika.github.io/2019/12/24/存储系统一/image-20191224143507659.png">
-<meta property="og:image" content="http://yorxika.github.io/2019/12/24/存储系统一/image-20191224143515906.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/24/存储系统一/image-20191227012511278.png">
 <meta property="og:image" content="http://yorxika.github.io/2019/12/24/存储系统一/image-20191224151529700.png">
 <meta property="og:image" content="http://yorxika.github.io/2019/12/24/存储系统一/image-20191224151536995.png">
 <meta property="og:image" content="http://yorxika.github.io/2019/12/24/存储系统一/image-20191224151700729.png">
@@ -119,17 +117,16 @@
 <meta property="og:image" content="http://yorxika.github.io/2019/12/24/存储系统一/image-20191224162402845.png">
 <meta property="og:image" content="http://yorxika.github.io/2019/12/24/存储系统一/image-20191224162410001.png">
 <meta property="og:image" content="http://yorxika.github.io/2019/12/24/存储系统一/image-20191224161733688.png">
-<meta property="og:image" content="http://yorxika.github.io/2019/12/24/存储系统一/image-20191224161804378.png">
-<meta property="og:image" content="http://yorxika.github.io/2019/12/24/存储系统一/image-20191224162008786.png">
-<meta property="og:image" content="http://yorxika.github.io/2019/12/24/存储系统一/image-20191224162014600.png">
-<meta property="og:image" content="http://yorxika.github.io/2019/12/24/存储系统一/image-20191224162020202.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/24/存储系统一/image-20191227012839226.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/24/存储系统一/image-20191227012958630.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/24/存储系统一/image-20191227013302066.png">
 <meta property="og:image" content="http://yorxika.github.io/2019/12/24/存储系统一/image-20191224162032635.png">
 <meta property="og:image" content="http://yorxika.github.io/2019/12/24/存储系统一/3814779_1478420350406_9D7738A42D1C889AE8A3BA51F1DEF7AC.png">
-<meta property="og:updated_time" content="2019-12-24T13:10:09.341Z">
+<meta property="og:updated_time" content="2019-12-26T17:34:34.822Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="存储系统I">
-<meta name="twitter:description" content="存储系统层次结构">
-<meta name="twitter:image" content="http://yorxika.github.io/2019/12/24/存储系统一/image-20191224143340664.png">
+<meta name="twitter:description" content="存储系统层次结构基本存储体系存储程序                                                  —&amp;gt; 内存1) 输入设备将程序与数据写入主存；   ^2) CPU取指令;                                           |3) CPU执行指令期间读数据；                |4) CPU写回运算结果；">
+<meta name="twitter:image" content="http://yorxika.github.io/2019/12/24/存储系统一/image-20191224143440462.png">
 
 
 
@@ -369,8 +366,8 @@
               
                 <span class="post-meta-item-text">Post modified&#58;</span>
               
-              <time title="Post modified" itemprop="dateModified" datetime="2019-12-24T21:10:09+08:00">
-                2019-12-24
+              <time title="Post modified" itemprop="dateModified" datetime="2019-12-27T01:34:34+08:00">
+                2019-12-27
               </time>
             
           </span>
@@ -435,7 +432,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  1.1k
+                  1.5k
                 </span>
               
 
@@ -451,7 +448,7 @@
                   <span class="post-meta-item-text">Reading time &asymp;</span>
                 
                 <span title="Reading time">
-                  3
+                  5
                 </span>
               
             </div>
@@ -472,16 +469,30 @@
       
 
       
-        <h2 id="存储系统层次结构"><a href="#存储系统层次结构" class="headerlink" title="存储系统层次结构"></a>存储系统层次结构</h2><a id="more"></a>
-<p><img src="/2019/12/24/存储系统一/image-20191224143340664.png" alt="image-20191224143340664"></p>
+        <h2 id="存储系统层次结构"><a href="#存储系统层次结构" class="headerlink" title="存储系统层次结构"></a>存储系统层次结构</h2><h3 id="基本存储体系"><a href="#基本存储体系" class="headerlink" title="基本存储体系"></a>基本存储体系</h3><p>存储程序                                                  —&gt; 内存<br>1) 输入设备将程序与数据写入主存；   ^<br>2) CPU取指令;                                           |<br>3) CPU执行指令期间读数据；                |<br>4) CPU写回运算结果；                            |<br>5)  输出设备输出结果；                           |<br>程序控制                                                    —&gt; CPU</p>
+<a id="more"></a>
+
 <p>主存容量不足的原因：</p>
 <ul>
 <li>存在制约主存容量的技术因素</li>
 <li>应用对主存的需求不断扩大</li>
 </ul>
 <p><img src="/2019/12/24/存储系统一/image-20191224143440462.png" alt="image-20191224143440462"></p>
-<p><img src="/2019/12/24/存储系统一/image-20191224143507659.png" alt="image-20191224143507659"></p>
-<p><img src="/2019/12/24/存储系统一/image-20191224143515906.png" alt="image-20191224143515906"></p>
+<p>哈佛结构：是一种将指令储存和数据储存分开的存储器结构，可支持：数据和指令并行储存、指令 预取，提高处理器的执行效率；另外，指令和数据可有不同的数据宽度，如Microchip 公司的PIC16芯片的程序指令是14位宽度，而数据是8位宽度。<br>目前使用哈佛结构的：PIC系列、摩托罗拉公司的MC68系列、Zilog公司的Z8系列、 ATMEL公司的AVR系列和ARM公司的ARM9、ARM10和ARM11。</p>
+<p><img src="/2019/12/24/存储系统一/image-20191227012511278.png" alt="image-20191227012511278"></p>
+<h3 id="存储体系层次化结构的理论基础"><a href="#存储体系层次化结构的理论基础" class="headerlink" title="存储体系层次化结构的理论基础"></a>存储体系层次化结构的理论基础</h3><p>局部性原理 </p>
+<ul>
+<li>时间局部性: <ul>
+<li>现在被访问的信息2在不久的将来还将再次被访问;</li>
+<li>时间局部性的程序结构体现：循环结构 </li>
+</ul>
+</li>
+<li>空间局部性： <ul>
+<li>现访问信息2 ，下一次访问2附近的信息。</li>
+<li>空间局部性的程序结构体现：顺序结构</li>
+</ul>
+</li>
+</ul>
 <h2 id="主存中的数据组织"><a href="#主存中的数据组织" class="headerlink" title="主存中的数据组织"></a>主存中的数据组织</h2><p>存储字长：</p>
 <ul>
 <li>主存的一个存储单元所包含的二进制位数；</li>
@@ -525,30 +536,47 @@
 <p><img src="/2019/12/24/存储系统一/image-20191224162402845.png" alt="image-20191224162402845"></p>
 <p><img src="/2019/12/24/存储系统一/image-20191224162410001.png" alt="image-20191224162410001"></p>
 <h2 id="存储拓展"><a href="#存储拓展" class="headerlink" title="存储拓展"></a>存储拓展</h2><p><img src="/2019/12/24/存储系统一/image-20191224161733688.png" alt="image-20191224161733688"></p>
-<p><img src="/2019/12/24/存储系统一/image-20191224161804378.png" alt="image-20191224161804378"></p>
-<p>16K需要14根地址线，则低2位地址线不用。</p>
-<p><img src="/2019/12/24/存储系统一/image-20191224162008786.png" alt="image-20191224162008786"></p>
-<p><img src="/2019/12/24/存储系统一/image-20191224162014600.png" alt="image-20191224162014600"></p>
-<p><img src="/2019/12/24/存储系统一/image-20191224162020202.png" alt="image-20191224162020202"></p>
+<p>位拓展举例： 用16K * 8 的存储芯片构建16K * 32的存储器</p>
+<p>所需芯片数量： 16K*32/(16K*8) = 4<br>所有存储芯片并行工作，贡献32位数据中的不同8位</p>
+<p><img src="/2019/12/24/存储系统一/image-20191227012839226.png" alt="image-20191227012839226"></p>
+<hr>
+<p>字扩展举例:  用16K* 8 的存储芯片构建128k* 8的存储器</p>
+<p>所需芯片数量： 128K * 8/ (16K*8) = 8<br>128k存储器 -&gt; 17根地址线<br>16K的存储 -&gt; 14根地址线<br>多余的3根地址线 作为片选译码输入</p>
+<p><img src="/2019/12/24/存储系统一/image-20191227012958630.png" alt="image-20191227012958630"></p>
+<hr>
+<p>用16K* 8 的存储芯片构建128K*  8的存储器，其中08000H~0BFFFH存储空间保留不用</p>
+<p>所需芯片数量： (128K-16k )* 8/ (16K*8) = 7<br><img src="/2019/12/24/存储系统一/image-20191227013302066.png" alt="image-20191227013302066"></p>
+<hr>
 <p><img src="/2019/12/24/存储系统一/image-20191224162032635.png" alt="image-20191224162032635"></p>
 <h2 id="习题"><a href="#习题" class="headerlink" title="习题"></a>习题</h2><p>字位结构为256Kｘ4位SRAM存储芯片，其地址引脚与数据引脚之和为：22</p>
 <p>256K 需要18根，4位4根</p>
+<hr>
 <p>假定用若干块4K <em>4位的存储芯片组成一个8K</em>8位的存储器，则地址0B1F所在芯片的最小地址是<strong>0000H</strong></p>
+<hr>
 <p>用若干片2K´4位的存储芯片组成一个8K´8位的存储器，则地址0B1FH所在的芯片在全局的最大地址是<strong>0FFFH</strong></p>
+<hr>
 <p>下列存储器类型中，速度最快的是 <strong>B</strong><br>A.Flash Memory    B.SRAM    C.DRAM    D.EPROM</p>
 <p>SRAM是cache</p>
+<hr>
 <p>关于内存的下列说法中，错误的是<strong>AD</strong><br>A.内存的存取速度不能低于CPU速度，否则会造成数据丢失<br>B.某计算机内存容量为8GB，按字节编址，那么它的地址总线为33位<br>C.程序只有在数据和代码等被调入内存后才能运行<br>D.采用虚拟内存技术后程序可以在硬盘上直接运行</p>
-<p>DRAM比SRAM慢，可能的原因包括<strong>ABCD</strong></p>
-<p>A.DRAM读之前需要预充电 B.DRAM存储体行列地址线复用 C.DRAM需要刷新 D.DRAM存储单元采用了双译码结构</p>
+<hr>
+<p>DRAM比SRAM慢，可能的原因包括<strong>ABCD</strong><br>A.DRAM读之前需要预充电<br>B.DRAM存储体行列地址线复用<br>C.DRAM需要刷新<br>D.DRAM存储单元采用了双译码结构</p>
+<hr>
 <p>不需要定时刷新的半导体存储器芯片是<strong>ACD</strong><br>A.SRAM    B.DRAM    C.Flash Memory    D.EPROM</p>
+<hr>
 <p>某计算机存储器按字节变址，采用小端方式存放数据。假定编译器规定int 型和 short 型长度分别为 32 位和 16 位，并且数据按边界对齐存储。某 C 语言程序段如下：</p>
 <p><img src="/2019/12/24/存储系统一/3814779_1478420350406_9D7738A42D1C889AE8A3BA51F1DEF7AC.png" alt="img"></p>
 <p>若record 变量的首地址为 0xC008，则地址 0xC008 中内容及 record.c 的地址是0x11 0xC00E</p>
+<hr>
 <p>计算机字长32位，主存容量为128MB，按<strong>字</strong>编址，其寻址范围为<strong>0~128M-1</strong></p>
+<hr>
 <p>某计算机内存容量为8GB，按字节编址，那么它的地址总线为33位 <strong>错</strong><br>要大于33根</p>
+<hr>
 <p>下列关于RAM和ROM的叙述中，正确的是<strong>BD</strong><br>A.ROM和RAM都不需要刷新<br>B.RAM是易失性存储器，ROM是非失性存储器<br>C.Cache可选RAM、ROM做数据存储体<br>D. RAM和ROM都采用随机存取的方式进行访问</p>
+<hr>
 <p>一般Cache采用高速的SRAM制作，比ROM速度快很多，因此Ⅲ是错误的，排除法即可选A。动态RAM是靠MOS电路中的栅极电容来记忆信息的。由于电容上的电荷会泄漏,需要定时给与补充,所以动态 RAM需要 设置 刷新 电路。RAM需要刷新，而ROM不需要刷新。<br>ROM与RAM两者的差别：<br>(1) RAM是随机存取存储器; ROM是只读存储器；<br>(2) RAM是易失性的，一旦掉电，则所有信息全部丢失；ROM是非易失性的，其信息可以长期保存，常用于存放一些固定用的数据和程序，如计算机的自检程序、BIOS、游戏卡中的游戏，等等。</p>
-<p>下列属于衡量存储器技术指标的是：存储容量、存取时间、存储周期和存储器带宽</p>
+<hr>
+<p>下列属于衡量存储器技术指标的是：<strong>存储容量、存取时间、存储周期和存储器带宽</strong></p>
 
       
     </div>
@@ -691,7 +719,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">141</span>
+                  <span class="site-state-item-count">143</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -702,7 +730,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">23</span>
+                  <span class="site-state-item-count">22</span>
                   <span class="site-state-item-name">categories</span>
                 </a>
               </div>
@@ -713,7 +741,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">52</span>
+                  <span class="site-state-item-count">51</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
@@ -764,7 +792,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#存储系统层次结构"><span class="nav-number">1.</span> <span class="nav-text">存储系统层次结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#主存中的数据组织"><span class="nav-number">2.</span> <span class="nav-text">主存中的数据组织</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#静态存储器工作原理"><span class="nav-number">3.</span> <span class="nav-text">静态存储器工作原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#动态存储器工作原理"><span class="nav-number">4.</span> <span class="nav-text">动态存储器工作原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#存储拓展"><span class="nav-number">5.</span> <span class="nav-text">存储拓展</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#习题"><span class="nav-number">6.</span> <span class="nav-text">习题</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#存储系统层次结构"><span class="nav-number">1.</span> <span class="nav-text">存储系统层次结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基本存储体系"><span class="nav-number">1.1.</span> <span class="nav-text">基本存储体系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#存储体系层次化结构的理论基础"><span class="nav-number">1.2.</span> <span class="nav-text">存储体系层次化结构的理论基础</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#主存中的数据组织"><span class="nav-number">2.</span> <span class="nav-text">主存中的数据组织</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#静态存储器工作原理"><span class="nav-number">3.</span> <span class="nav-text">静态存储器工作原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#动态存储器工作原理"><span class="nav-number">4.</span> <span class="nav-text">动态存储器工作原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#存储拓展"><span class="nav-number">5.</span> <span class="nav-text">存储拓展</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#习题"><span class="nav-number">6.</span> <span class="nav-text">习题</span></a></li></ol></div>
             
 
           </div>
