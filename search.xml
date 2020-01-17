@@ -1,6 +1,385 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>颠倒二进制位</title>
+    <url>/2020/01/16/%E9%A2%A0%E5%80%92%E4%BA%8C%E8%BF%9B%E5%88%B6%E4%BD%8D/</url>
+    <content><![CDATA[<p>来自Leetcode第190题颠倒二进制位</p>
+<p>颠倒给定的 32 位无符号整数的二进制位。</p>
+<a id="more"></a>
+
+<p><strong>示例 1：</strong></p>
+<figure class="highlight angelscript"><table><tr><td class="code"><pre><span class="line">输入: <span class="number">00000010100101000001111010011100</span></span><br><span class="line">输出: <span class="number">00111001011110000010100101000000</span></span><br><span class="line">解释: 输入的二进制串 <span class="number">00000010100101000001111010011100</span> 表示无符号整数 <span class="number">43261596</span>，</span><br><span class="line">      因此返回 <span class="number">964176192</span>，其二进制表示形式为 <span class="number">00111001011110000010100101000000</span>。</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="Integer-reverse"><a href="#Integer-reverse" class="headerlink" title="Integer.reverse()"></a>Integer.reverse()</h3><pre><code>public int reverseBits(int n) {
+    return Integer.reverse(n);
+}</code></pre><h3 id="错位交换"><a href="#错位交换" class="headerlink" title="错位交换"></a>错位交换</h3><p>其实就是Integer.reverse的源码。</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="string">初始为</span> <span class="string">abcdefghijklmnopqrstuvwxyz012345</span></span><br><span class="line"><span class="string">第一步结果:</span>  <span class="string">qrstuvwxyz012345</span>  <span class="string">abcdefghijklmnop</span>               </span><br><span class="line"><span class="string">第二步结果:</span>  <span class="string">yz012345</span> <span class="string">qrstuvwx</span>   <span class="string">ijklmnop</span> <span class="string">abcdefgh</span>           </span><br><span class="line"><span class="string">第三步结果:</span>  <span class="number">2345</span> <span class="string">yz01</span> <span class="string">uvwx</span> <span class="string">qrst</span>  <span class="string">mnop</span>  <span class="string">ijkl</span> <span class="string">efgh</span> <span class="string">abcd</span> </span><br><span class="line"><span class="string">第四步结果:</span>  <span class="number">45</span> <span class="number">23</span> <span class="number">01</span> <span class="string">yz</span> <span class="string">wx</span> <span class="string">uv</span> <span class="string">st</span> <span class="string">qr</span>  <span class="string">op</span> <span class="string">mn</span> <span class="string">kl</span> <span class="string">ij</span> <span class="string">gh</span> <span class="string">ef</span> <span class="string">cd</span> <span class="string">ab</span> </span><br><span class="line"><span class="string">第五步结果:</span>  <span class="number">5</span> <span class="number">4</span> <span class="number">3</span> <span class="number">2</span> <span class="number">1</span> <span class="number">0</span> <span class="string">z</span> <span class="string">y</span> <span class="string">x</span> <span class="string">w</span> <span class="string">v</span> <span class="string">u</span> <span class="string">t</span> <span class="string">s</span> <span class="string">r</span> <span class="string">q</span>  <span class="string">p</span> <span class="string">o</span> <span class="string">n</span> <span class="string">m</span> <span class="string">l</span> <span class="string">k</span> <span class="string">j</span> <span class="string">i</span> <span class="string">h</span> <span class="string">g</span> <span class="string">f</span> <span class="string">e</span> <span class="string">d</span> <span class="string">c</span> <span class="string">b</span> <span class="string">a</span></span><br></pre></td></tr></table></figure>
+
+<p>这种换法本质是错位法 即创造两个互相错位的数据 这样保证数据不会丢失</p>
+<p>好比两排16个的麻将 一排拿掉后边8个, 再右移8个单位, 另一排拿掉前面8个, 再左移8个单位, 再合并, 那么便得到了一排16个的麻将 但前8和后8的相对位置不变, 但整体位置却前后变换了. 再一排拿掉中间的4个, 右移4位 另一排同理 再合并. 所以这个算法实际上模拟的这个过程. 下面用数字解释:</p>
+<p>如何创造? 先屏蔽 再移位 比如要创造4位错位, 即12345678换位56781234, 那么先屏蔽5678得到12340000, 移位得到00001234, 同理可得56780000, 再加起来得到56781234; 然后再2位错位, 即屏蔽得到56001200, 移位得到00560012, 同理可得78003400, 加起来得到78563412; 再创造一位错位, 即先屏蔽得到70503010,移位得到07050301, 同理可得80604020, 加起来就是最后结果即87654321.</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">reverseBits</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    n = ((n &amp; <span class="number">0xffff0000</span>) &gt;&gt;&gt; <span class="number">16</span>) | ((n &amp; <span class="number">0x0000ffff</span>) &lt;&lt; <span class="number">16</span>);</span><br><span class="line">    n = ((n &amp; <span class="number">0xff00ff00</span>) &gt;&gt;&gt; <span class="number">8</span>) | ((n &amp; <span class="number">0x00ff00ff</span>) &lt;&lt; <span class="number">8</span>);</span><br><span class="line">    n = ((n &amp; <span class="number">0xf0f0f0f0</span>) &gt;&gt;&gt; <span class="number">4</span>) | ((n &amp; <span class="number">0x0f0f0f0f</span>) &lt;&lt; <span class="number">4</span>);</span><br><span class="line">    n = ((n &amp; <span class="number">0xcccccccc</span>) &gt;&gt;&gt; <span class="number">2</span>) | ((n &amp; <span class="number">0x33333333</span>) &lt;&lt; <span class="number">2</span>);</span><br><span class="line">    n = ((n &amp; <span class="number">0xaaaaaaaa</span>) &gt;&gt;&gt; <span class="number">1</span>) | ((n &amp; <span class="number">0x55555555</span>) &lt;&lt; <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">return</span> n;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="移位"><a href="#移位" class="headerlink" title="移位"></a>移位</h3><p>用一个变量 <code>res</code> 去存储结果，依次得到要转换数字的低位，然后依次保存到 <code>res</code> 中。<code>res</code> 每得到一位后进行左移腾出位置保存下一位。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">reverseBits</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (count &lt; <span class="number">32</span>) &#123;</span><br><span class="line">        res &lt;&lt;= <span class="number">1</span>;  <span class="comment">//res 左移一位空出位置</span></span><br><span class="line">        res |= (n &amp; <span class="number">1</span>); <span class="comment">//得到的最低位加过来</span></span><br><span class="line">        n &gt;&gt;= <span class="number">1</span>;<span class="comment">//原数字右移一位去掉已经处理过的最低位</span></span><br><span class="line">        count++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>算法</category>
+        <category>Leetcode</category>
+        <category>数学</category>
+      </categories>
+      <tags>
+        <tag>Leetcode</tag>
+        <tag>位运算</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>将有序数组转化为二叉搜索树</title>
+    <url>/2020/01/16/%E5%B0%86%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84%E8%BD%AC%E5%8C%96%E4%B8%BA%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91/</url>
+    <content><![CDATA[<p>来源Leetcode第108题将有序数组转化为二叉搜索树</p>
+<p>将一个按照升序排列的有序数组，转换为一棵高度平衡二叉搜索树。</p>
+<p>本题中，一个高度平衡二叉树是指一个二叉树<em>每个节点</em> 的左右两个子树的高度差的绝对值不超过 1。</p>
+<a id="more"></a>
+<p><strong>示例:</strong></p>
+<figure class="highlight angelscript"><table><tr><td class="code"><pre><span class="line">给定有序数组: [<span class="number">-10</span>,<span class="number">-3</span>,<span class="number">0</span>,<span class="number">5</span>,<span class="number">9</span>],</span><br><span class="line"></span><br><span class="line">一个可能的答案是：[<span class="number">0</span>,<span class="number">-3</span>,<span class="number">9</span>,<span class="number">-10</span>,<span class="literal">null</span>,<span class="number">5</span>]，它可以表示下面这个高度平衡二叉搜索树：</span><br><span class="line"></span><br><span class="line">      <span class="number">0</span></span><br><span class="line">     / \</span><br><span class="line">   <span class="number">-3</span>   <span class="number">9</span></span><br><span class="line">   /   /</span><br><span class="line"> <span class="number">-10</span>  <span class="number">5</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="中点作为根节点"><a href="#中点作为根节点" class="headerlink" title="中点作为根节点"></a>中点作为根节点</h3><p>数组的中点就是根节点，然后将数组截断，以此类推</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> TreeNode <span class="title">sortedArrayToBST</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(nums.length == <span class="number">0</span> || nums == <span class="keyword">null</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    <span class="keyword">int</span> mid = nums.length / <span class="number">2</span>;</span><br><span class="line">    TreeNode root = <span class="keyword">new</span> TreeNode(nums[mid]);</span><br><span class="line">    <span class="keyword">if</span>(mid &gt; <span class="number">0</span>) </span><br><span class="line">        root.left = sortedArrayToBST(Arrays.copyOfRange(nums,<span class="number">0</span>,mid));</span><br><span class="line">    <span class="keyword">if</span>(mid &lt; nums.length - <span class="number">1</span>)</span><br><span class="line">    root.right = sortedArrayToBST(Arrays.copyOfRange(nums,mid + <span class="number">1</span>,nums.length));</span><br><span class="line">    <span class="keyword">return</span> root;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>算法</category>
+        <category>Leetcode</category>
+      </categories>
+      <tags>
+        <tag>Leetcode</tag>
+        <tag>树</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>平衡二叉树</title>
+    <url>/2020/01/16/%E5%B9%B3%E8%A1%A1%E4%BA%8C%E5%8F%89%E6%A0%91/</url>
+    <content><![CDATA[<p>来源Leetcode第110题平衡二叉树</p>
+<p>给定一个二叉树，判断它是否是高度平衡的二叉树。</p>
+<p>本题中，一棵高度平衡二叉树定义为：</p>
+<blockquote>
+<p>一个二叉树<em>每个节点</em> 的左右两个子树的高度差的绝对值不超过1。</p>
+</blockquote>
+<a id="more"></a>
+<p><strong>示例 1:</strong></p>
+<p>给定二叉树 <code>[3,9,20,null,null,15,7]</code></p>
+<figure class="highlight angelscript"><table><tr><td class="code"><pre><span class="line">  <span class="number">3</span></span><br><span class="line"> / \</span><br><span class="line"><span class="number">9</span>  <span class="number">20</span></span><br><span class="line">  /  \</span><br><span class="line"> <span class="number">15</span>   <span class="number">7</span></span><br></pre></td></tr></table></figure>
+
+<p>返回 <code>true</code> 。</p>
+<h3 id="自底向上的递归"><a href="#自底向上的递归" class="headerlink" title="自底向上的递归"></a>自底向上的递归</h3><p>这道题和求树的高度是一样的，只是在递归求解的时候需要判断树的左右高度是否是平衡的。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">boolean</span> flag = <span class="keyword">true</span>;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isBalanced</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(root == <span class="keyword">null</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    hlper(root);</span><br><span class="line">    <span class="keyword">return</span> flag;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">hlper</span><span class="params">(TreeNode root)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> height_l = <span class="number">0</span>,height_r = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">if</span>(root.left != <span class="keyword">null</span>)</span><br><span class="line">        height_l = <span class="number">1</span> + hlper(root.left);</span><br><span class="line">    <span class="keyword">if</span>(root.right != <span class="keyword">null</span>)</span><br><span class="line">        height_r = <span class="number">1</span> + hlper(root.right);</span><br><span class="line">    <span class="keyword">if</span>(Math.abs(height_l - height_r) &gt; <span class="number">1</span>)</span><br><span class="line">        flag = <span class="keyword">false</span>;</span><br><span class="line">    <span class="keyword">return</span> Math.max(height_l,height_r);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="分支-限界"><a href="#分支-限界" class="headerlink" title="分支 - 限界"></a>分支 - 限界</h3><p>当递归求解出现左右子树高度相差大于1的情况时，记返回值为-1，这样遇到-1，就可以一路返回上一层，避免了多余的计算。<br>来自<a href="https://leetcode-cn.com/problems/balanced-binary-tree/solution/ti-qian-zu-duan-fa-gei-da-lao-de-xie-fa-xie-zhu-sh/" target="_blank" rel="noopener">题解</a></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isBalanced</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//-1 即为存在层数相差大于1</span></span><br><span class="line">		<span class="keyword">return</span> depth(root)!=-<span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * 以当前节点为根节点的树的层数</span></span><br><span class="line"><span class="comment">	 * 返回-1的话说明 不满足要求不用求了直接 -1 退出</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@param</span> root</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">depth</span><span class="params">(TreeNode root)</span></span>&#123;</span><br><span class="line">        <span class="comment">//当前节点不存在其层数为0</span></span><br><span class="line">		<span class="keyword">if</span>(root==<span class="keyword">null</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="comment">//获取左节点的层数</span></span><br><span class="line">		<span class="keyword">int</span> left = depth(root.left);</span><br><span class="line">        <span class="comment">//如果层数为-1直接截断</span></span><br><span class="line">		<span class="keyword">if</span>(left==-<span class="number">1</span>)<span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">        <span class="comment">//获取右节点的层数</span></span><br><span class="line">		<span class="keyword">int</span> right = depth(root.right);</span><br><span class="line">		<span class="comment">//如果层数为-1直接退出</span></span><br><span class="line">        <span class="keyword">if</span>(right==-<span class="number">1</span>)<span class="keyword">return</span>  -<span class="number">1</span>;</span><br><span class="line">		<span class="comment">//如果左右节点层数相差大于1 直接返回-1 否则返回真实层数</span></span><br><span class="line">        <span class="keyword">return</span> Math.abs(left-right)&lt;<span class="number">2</span>?Math.max(left,right)+<span class="number">1</span>:-<span class="number">1</span>;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>算法</category>
+        <category>Leetcode</category>
+      </categories>
+      <tags>
+        <tag>Leetcode</tag>
+        <tag>树</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>C++学习笔记</title>
+    <url>/2020/01/16/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
+    <content><![CDATA[<h2 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h2><p>引用变量是一个别名，也就是说，它是某个已存在变量的另一个名字。一旦把引用初始化为某个变量，就可以使用该引用名称或变量名称来指向变量。</p>
+<a id="more"></a>
+<p>C++ 引用 vs 指针</p>
+<p>引用很容易与指针混淆，它们之间有三个主要的不同：</p>
+<ul>
+<li>不存在空引用。引用必须连接到一块合法的内存。</li>
+<li>一旦引用被初始化为一个对象，就不能被指向到另一个对象。指针可以在任何时候指向到另一个对象。</li>
+<li>引用必须在创建时被初始化。指针可以在任何时间被初始化。</li>
+</ul>
+<p>引用的好处之一就是在函数调用时在内存中不会生成副本。</p>
+<p>引用总结</p>
+<ul>
+<li>在引用的使用中，单纯给某个变量取个别名是毫无意义的，引用的目的主要用于在函数参数传递中，解决大块数据或对象的传递效率和空间不如意的问题。</li>
+<li>用引用传递函数的参数，能保证参数传递中不产生副本，提高传递的效率，且通过<strong>const</strong>的使用，保证了引用传递的安全性。</li>
+<li>引用与指针的区别是，指针通过某个指针变量指向一个对象后，对它所指向的变量间接操作。程序中使用指针，程序的可读性差；而引用本身就是目标变量的别名，对引用的操作就是对目标变量的操作。</li>
+<li>使用引用的时机。流操作符<strong>&lt;&lt;</strong>和<strong>&gt;&gt;</strong>、赋值操作符<strong>=</strong>的返回值、拷贝构造函数的参数、赋值操作符<strong>=</strong>的参数、其它情况都推荐使用引用。</li>
+<li>声明引用时，必须同时对其进行初始化。</li>
+<li>引用声明完毕后，相当于目标变量名有两个名称，即该目标原名称和引用名，且不能再把该引用名作为其他变量名的别名。ra=1; 等价于 a=1; </li>
+<li>声明一个引用，不是新定义了一个变量，它只表示该引用名是目标变量名的一个别名，它本身不是一种数据类型，因此引用本身不占存储单元，系统也不给引用分配存储单元。故：对引用求地址，就是对目标变量求地址。&amp;ra与&amp;a相等。</li>
+<li>不能建立数组的引用。因为数组是一个由若干个元素所成的集合，所以无法建立一个数组的别名。</li>
+<li>不能建立引用的引用，不能建立指向引用的指针。因为引用不是一种数据类型！！所以没有引用的引用，没有引用的指针。<br>引用就是某一变量（目标）的一个别名，对引用的操作与对变量直接操作完全一样。</li>
+</ul>
+<p>引用的声明方法：类型标识符<strong>&amp;</strong>引用名=目标变量名；</p>
+<h3 id="引用应用"><a href="#引用应用" class="headerlink" title="引用应用"></a>引用应用</h3><h4 id="引用作为参数"><a href="#引用作为参数" class="headerlink" title="引用作为参数"></a>引用作为参数</h4><p>引用的一个重要作用就是作为函数的参数。以前的C语言中函数参数传递是值传递，如果有大块数据作为参数传递的时候，采用的方案往往是指针，因为这样可以避免将整块数据全部压栈，可以提高程序的效率。但是现在（C++中）又增加了一种同样有效率的选择（在某些特殊情况下又是必须的选择），就是引用。</p>
+<p>递引用给函数与传递指针的效果是一样的。这时，被调函数的形参就成为原来主调函数中的实参变量或对象的一个别名来使用，所以在被调函数中对形参变量的操作就是对其相应的目标对象（在主调函数中）的操作。</p>
+<p>使用引用传递函数的参数，在内存中并没有产生实参的副本，它是直接对实参操作；而使用一般变量传递函数的参数，当发生函数调用时，需要给形参分配存储单元，形参变量是实参变量的副本；如果传递的是对象，还将调用拷贝构造函数。因此，当参数传递的数据较大时，用引用比用一般变量传递参数的效率和所占空间都好。</p>
+<p>使用指针作为函数的参数虽然也能达到与使用引用的效果，但是，在被调函数中同样要给形参分配存储单元，且需要重复使用”*指针变量名”的形式进行运算，这很容易产生错误且程序的阅读性较差；另一方面，在主调函数的调用点处，必须用变量的地址作为实参。而引用更容易使用，更清晰。</p>
+<h4 id="常引用"><a href="#常引用" class="headerlink" title="常引用"></a>常引用</h4><p>常引用声明方式：const 类型标识符 &amp;引用名=目标变量名；</p>
+<p>用这种方式声明的引用，不能通过引用对目标变量的值进行修改,从而使引用的目标成为const，达到了引用的安全性。</p>
+<h4 id="引用作为返回值"><a href="#引用作为返回值" class="headerlink" title="引用作为返回值"></a>引用作为返回值</h4><p>要以引用返回函数值，则函数定义时要按以下格式：<br>类型标识符 &amp;函数名（形参列表及类型说明）<br>{函数体}</p>
+<p>说明：<br>（1）以引用返回函数值，定义函数时需要在函数名前加&amp;<br>（2）用引用返回一个函数值的最大好处是，在内存中不产生被返回值的副本。</p>
+<p>引用作为返回值，必须遵守以下规则：<br>（1）不能返回局部变量的引用。这条可以参照Effective C++[1]的Item 31。主要原因是局部变量会在函数返回后被销毁，因此被返回的引用就成为了”无所指”的引用，程序会进入未知状态。 </p>
+<p>（2）不能返回函数内部new分配的内存的引用。这条可以参照Effective C++[1]的Item 31。虽然不存在局部变量的被动销毁问题，可对于这种情况（返回函数内部new分配内存的引用），又面临其它尴尬局面。例如，被函数返回的引用只是作为一个临时变量出现，而没有被赋予一个实际的变量，那么这个引用所指向的空间（由new分配）就无法释放，造成memory leak(内存泄露)。</p>
+<p>（3）可以返回类成员的引用，但最好是const。这条原则可以参照Effective C++[1]的Item 30。主要原因是当对象的属性是与某种业务规则（business rule）相关联的时候，其赋值常常与某些其它属性或者对象的状态有关，因此有必要将赋值操作封装在一个业务规则当中。如果其它对象可以获得该属性的非常量引用（或指针），那么对该属性的单纯赋值就会破坏业务规则的完整性。</p>
+<p>（4）引用与一些操作符的重载：流操作符&lt;&lt;和&gt;&gt;，这两个操作符常常希望被连续使用，例如：cout &lt;&lt; “hello” &lt;&lt; endl;　因此这两个操作符的返回值应该是一个仍然支持这两个操作符的流引用。可选的其它方案包括：返回一个流对象和返回一个流对象指针。但是对于返回一个流对象，程序必须重新（拷贝）构造一个新的流对象，也就是说，连续的两个&lt;&lt;操作符实际上是针对不同对象的！这无法让人接受。对于返回一个流指针则不能连续使用&lt;&lt;操作符。因此，返回一个流对象引用是惟一选择。这个唯一选择很关键，它说明了引用的重要性以及无可替代性，也许这就是C++语言中引入引用这个概念的原因吧。 赋值操作符=。这个操作符象流操作符一样，是可以连续使用的，例如：x = j = 10;或者(x=10)=100;赋值操作符的返回值必须是一个左值，以便可以被继续赋值。因此引用成了这个操作符的惟一返回值选择。</p>
+<p>（5）在另外的一些操作符中，却千万不能返回引用：+-*/ 四则运算符。它们不能返回引用，Effective C++[1]的Item23详细的讨论了这个问题。主要原因是这四个操作符没有side effect，因此，它们必须构造一个对象作为返回值，可选的方案包括：返回一个对象、返回一个局部变量的引用，返回一个new分配的对象的引用、返回一个静态对象引用。根据前面提到的引用作为返回值的三个规则，第2、3两个方案都被否决了。静态对象的引用又因为((a+b) == (c+d))会永远为true而导致错误。所以可选的只剩下返回一个对象了。</p>
+<h4 id="引用和多态"><a href="#引用和多态" class="headerlink" title="引用和多态"></a>引用和多态</h4><p>引用是除指针外另一个可以产生多态效果的手段。这意味着，一个基类的引用可以指向它的派生类实例。</p>
+<p>【例7】：<br>class 　A;<br>class 　B：public A{……};<br>B 　b;<br>A 　&amp;Ref = b;  // 用派生类对象初始化基类对象的引用<br>Ref 只能用来访问派生类对象中从基类继承下来的成员，是基类引用指向派生类。如果A类中定义有虚函数，并且在B类中重写了这个虚函数，就可以通过Ref产生多态效果。</p>
+<h2 id="顶层const与底层const"><a href="#顶层const与底层const" class="headerlink" title="顶层const与底层const"></a>顶层const与底层const</h2><p>2.4.3.Top-Level const<br>As we’ve seen, a pointer is an object that can point to a different object. As a result,we can talk independently about whether a pointer is const and whether the objects to which it can point are const. We use the term <strong>top-level const</strong> to indicate that the pointer itself is a const. When a pointer can point to a const object, we refer to that const as a <strong>low-level const</strong>.</p>
+<p>指针本身是一个对象，因为，指针实际对应着内存单元的一段存储空间，然而，指针所指向的也是一个数据对象，因此，指针是一个常量与指针所指向的是一个常量是两个完全不同的概念， <strong>顶层 const</strong> 表示的是 <strong>指针本身是一个常量</strong>， <strong>底层 const</strong> 表示的是 <strong>指针所指的对象是一个常量</strong>，更一般情况下， <strong>顶层 const 可以表示任意对象是一个常量</strong>，这对于算术类型、类、指针等任何数据类型都是成立的， <strong>底层 const 则与指针和引用等复合类型的基本类型部分有关</strong> ，比较特殊的是，指针既可以是顶层 const 也可以是底层 const ，这一点与其他类型区别明显。</p>
+<p>顶层和底层的翻译很容易让人误解为就只有两层，实际上当然是不是的。首先我们假设有这样的代码：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt; <span class="keyword">using</span> Const = <span class="keyword">const</span> T;</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt; <span class="keyword">using</span> Ptr = T*;</span><br></pre></td></tr></table></figure>
+
+<p>然后</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> *** <span class="keyword">const</span> shit = <span class="literal">nullptr</span>;</span><br></pre></td></tr></table></figure>
+
+<p>要怎么看呢？很简单，不要用const和*，用Const和Ptr来表达，马上明白：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">Const&lt;Ptr&lt;Ptr&lt;Ptr&lt;Const&lt;<span class="keyword">int</span>&gt;&gt;&gt;&gt;&gt; shit = <span class="literal">nullptr</span>;</span><br></pre></td></tr></table></figure>
+
+<p>从右向左读，星号读作pointer，没多一层加一个to，然后最前面加上declare就行。比如对const int *** const shit;，可以读作：declare shit as const pointer to pointer to pointer to const int。</p>
+<h2 id="constexpr"><a href="#constexpr" class="headerlink" title="constexpr"></a>constexpr</h2><p><code>constexpr</code> 说明符声明可以在编译时求得函数或变量的值。然后这些变量和函数（若给定了合适的函数实参）即可用于仅允许编译时<a href="https://zh.cppreference.com/w/cpp/language/constant_expression" target="_blank" rel="noopener">常量表达式</a>之处。用于对象或非静态成员函数 (C++14 前)声明的 constexpr 说明符蕴含 const。用于函数声明的 constexpr 说明符或 <a href="https://zh.cppreference.com/w/cpp/language/static" target="_blank" rel="noopener">static</a> 成员变量 (C++17 起)蕴含 inline。若函数或函数模板的任何声明拥有 <code>constexpr</code> 说明符，则每个声明必须都含有该说明符。</p>
+<p><strong>constexpr 变量</strong>必须满足下列要求：</p>
+<ul>
+<li>其类型必须是<a href="https://zh.cppreference.com/w/cpp/named_req/LiteralType" target="_blank" rel="noopener"><em>字面类型</em> (<em>LiteralType</em>) </a>。</li>
+<li>它必须被立即初始化</li>
+<li>其初始化的<a href="https://zh.cppreference.com/w/cpp/language/eval_order" target="_blank" rel="noopener">全表达式</a>，包括所有隐式转换、构造函数调用等，都必须是<a href="https://zh.cppreference.com/w/cpp/language/constant_expression" target="_blank" rel="noopener">常量表达式</a></li>
+</ul>
+<p><strong>constexpr 函数</strong>必须满足下列要求：</p>
+<ul>
+<li>它必须非<a href="https://zh.cppreference.com/w/cpp/language/virtual" target="_blank" rel="noopener">虚</a> </li>
+</ul>
+<p>TO BE CONTINUE P110</p>
+]]></content>
+      <categories>
+        <category>学习笔记</category>
+        <category>C++</category>
+      </categories>
+      <tags>
+        <tag>C++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>二叉树展开为链表</title>
+    <url>/2020/01/16/%E4%BA%8C%E5%8F%89%E6%A0%91%E5%B1%95%E5%BC%80%E4%B8%BA%E9%93%BE%E8%A1%A8/</url>
+    <content><![CDATA[<p>来源Leetcode第114二叉树展开为链表</p>
+<p>给定一个二叉树，<a href="https://baike.baidu.com/item/原地算法/8010757" target="_blank" rel="noopener">原地</a>将它展开为链表。</p>
+<p>例如，给定二叉树</p>
+<a id="more"></a>
+<figure class="highlight angelscript"><table><tr><td class="code"><pre><span class="line">    <span class="number">1</span></span><br><span class="line">   / \</span><br><span class="line">  <span class="number">2</span>   <span class="number">5</span></span><br><span class="line"> / \   \</span><br><span class="line"><span class="number">3</span>   <span class="number">4</span>   <span class="number">6</span></span><br></pre></td></tr></table></figure>
+
+<p>将其展开为：</p>
+<figure class="highlight angelscript"><table><tr><td class="code"><pre><span class="line"><span class="number">1</span></span><br><span class="line"> \</span><br><span class="line">  <span class="number">2</span></span><br><span class="line">   \</span><br><span class="line">    <span class="number">3</span></span><br><span class="line">     \</span><br><span class="line">      <span class="number">4</span></span><br><span class="line">       \</span><br><span class="line">        <span class="number">5</span></span><br><span class="line">         \</span><br><span class="line">          <span class="number">6</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="栈的先序遍历"><a href="#栈的先序遍历" class="headerlink" title="栈的先序遍历"></a>栈的先序遍历</h3><p>由题目可知这是一道先序遍历的题目，于是考虑了用栈，通过栈提前保存二叉树的右左子树，然后通过出栈解决。<br>但是与普通的二叉树先序遍历不一样，需要对出栈节点的<strong>左子树赋值为null</strong>，并且保存当前遍历节点。<br>代码如下:</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">flatten</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(root == <span class="keyword">null</span>)</span><br><span class="line">        <span class="keyword">return</span> ;</span><br><span class="line">    Stack&lt;TreeNode&gt; stack = <span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line">    TreeNode temp = <span class="keyword">null</span>;</span><br><span class="line">    stack.push(root);</span><br><span class="line">    <span class="keyword">while</span> (!stack.empty()) &#123;</span><br><span class="line">        TreeNode tmp = stack.pop();</span><br><span class="line">        <span class="keyword">if</span>(temp != <span class="keyword">null</span>)&#123;</span><br><span class="line">            temp.right = tmp;</span><br><span class="line">            temp.left = <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (tmp.right != <span class="keyword">null</span>)</span><br><span class="line">            stack.push(tmp.right);</span><br><span class="line">        <span class="keyword">if</span> (tmp.left != <span class="keyword">null</span>)</span><br><span class="line">            stack.push(tmp.left);</span><br><span class="line">        temp = tmp;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Morris遍历"><a href="#Morris遍历" class="headerlink" title="Morris遍历"></a>Morris遍历</h3><p>来自<a href="https://leetcode-cn.com/problems/flatten-binary-tree-to-linked-list/solution/xiang-xi-tong-su-de-si-lu-fen-xi-duo-jie-fa-by--26/" target="_blank" rel="noopener">题解</a></p>
+<p>可以发现展开的顺序其实就是二叉树的先序遍历。算法和 94 题中序遍历的 Morris 算法有些神似，我们需要两步完成这道题。</p>
+<ol>
+<li>将左子树插入到右子树的地方</li>
+<li>将原来的右子树接到左子树的最右边节点</li>
+<li>考虑新的右子树的根节点，一直重复上边的过程，直到新的右子树为 null</li>
+</ol>
+<p>可以看图理解下这个过程。</p>
+<figure class="highlight angelscript"><table><tr><td class="code"><pre><span class="line">   <span class="number">1</span></span><br><span class="line">   / \</span><br><span class="line">  <span class="number">2</span>   <span class="number">5</span></span><br><span class="line"> / \   \</span><br><span class="line"><span class="number">3</span>   <span class="number">4</span>   <span class="number">6</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//将 1 的左子树插入到右子树的地方</span></span><br><span class="line">    <span class="number">1</span></span><br><span class="line">     \</span><br><span class="line">      <span class="number">2</span>         <span class="number">5</span></span><br><span class="line">     / \         \</span><br><span class="line">    <span class="number">3</span>   <span class="number">4</span>         <span class="number">6</span>        </span><br><span class="line"><span class="comment">//将原来的右子树接到左子树的最右边节点</span></span><br><span class="line">    <span class="number">1</span></span><br><span class="line">     \</span><br><span class="line">      <span class="number">2</span>          </span><br><span class="line">     / \          </span><br><span class="line">    <span class="number">3</span>   <span class="number">4</span>  </span><br><span class="line">         \</span><br><span class="line">          <span class="number">5</span></span><br><span class="line">           \</span><br><span class="line">            <span class="number">6</span></span><br><span class="line">            </span><br><span class="line"> <span class="comment">//将 2 的左子树插入到右子树的地方</span></span><br><span class="line">    <span class="number">1</span></span><br><span class="line">     \</span><br><span class="line">      <span class="number">2</span>          </span><br><span class="line">       \          </span><br><span class="line">        <span class="number">3</span>       <span class="number">4</span>  </span><br><span class="line">                 \</span><br><span class="line">                  <span class="number">5</span></span><br><span class="line">                   \</span><br><span class="line">                    <span class="number">6</span>   </span><br><span class="line">        </span><br><span class="line"> <span class="comment">//将原来的右子树接到左子树的最右边节点</span></span><br><span class="line">    <span class="number">1</span></span><br><span class="line">     \</span><br><span class="line">      <span class="number">2</span>          </span><br><span class="line">       \          </span><br><span class="line">        <span class="number">3</span>      </span><br><span class="line">         \</span><br><span class="line">          <span class="number">4</span>  </span><br><span class="line">           \</span><br><span class="line">            <span class="number">5</span></span><br><span class="line">             \</span><br><span class="line">              <span class="number">6</span>         </span><br><span class="line">  </span><br><span class="line">  ......</span><br></pre></td></tr></table></figure>
+
+<p>于是相应的，代码如下：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">flatten</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">while</span>(root != <span class="keyword">null</span>)&#123;</span><br><span class="line">        <span class="keyword">if</span>(root.left == <span class="keyword">null</span>)&#123;</span><br><span class="line">            root = root.right;  <span class="comment">//左子树为空可以直接进行下一层的遍历</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">            TreeNode tmp = root.left;</span><br><span class="line">            <span class="keyword">while</span> (tmp.right != <span class="keyword">null</span>)</span><br><span class="line">                tmp = tmp.right;</span><br><span class="line">            tmp.right = root.right;  <span class="comment">//根节点右子树成为左子树最右节点</span></span><br><span class="line">            root.right = root.left;  <span class="comment">//根节点的右子树成为左子树</span></span><br><span class="line">            root.left = <span class="keyword">null</span>;  <span class="comment">//根节点左子树赋值为空</span></span><br><span class="line">            root = root.right;  <span class="comment">//进行下一个节点的遍历</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="递归"><a href="#递归" class="headerlink" title="递归"></a>递归</h3><p>我们可以逆过来进行。</p>
+<p>我们依次遍历 <code>6 5 4 3 2 1</code>，然后每遍历一个节点就将当前节点的右指针更新为上一个节点。</p>
+<p>遍历到 <code>5</code>，把 <code>5</code> 的右指针指向 <code>6</code>。<code>6 &lt;- 5 4 3 2 1</code>。</p>
+<p>遍历到 <code>4</code>，把 <code>4</code> 的右指针指向 <code>5</code>。<code>6 &lt;- 5 &lt;- 4 3 2 1</code>。</p>
+<p>… …</p>
+<figure class="highlight angelscript"><table><tr><td class="code"><pre><span class="line">    <span class="number">1</span></span><br><span class="line">   / \</span><br><span class="line">  <span class="number">2</span>   <span class="number">5</span></span><br><span class="line"> / \   \</span><br><span class="line"><span class="number">3</span>   <span class="number">4</span>   <span class="number">6</span></span><br></pre></td></tr></table></figure>
+
+<p>这样就不会有丢失孩子的问题了，因为更新当前的右指针的时候，当前节点的右孩子已经访问过了。</p>
+<p>而 <code>6 5 4 3 2 1</code> 的遍历顺序其实变形的后序遍历，遍历顺序是右子树-&gt;左子树-&gt;根节点。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">private</span> TreeNode pre = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">flatten</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (root == <span class="keyword">null</span>)</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    flatten(root.right);</span><br><span class="line">    flatten(root.left);</span><br><span class="line">    root.right = pre;</span><br><span class="line">    root.left = <span class="keyword">null</span>;</span><br><span class="line">    pre = root;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>算法</category>
+        <category>Leetcode</category>
+        <category>树</category>
+      </categories>
+      <tags>
+        <tag>Leetcode</tag>
+        <tag>二叉树</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>算法导论考试理论部分</title>
+    <url>/2020/01/07/%E7%AE%97%E6%B3%95%E5%AF%BC%E8%AE%BA%E8%80%83%E8%AF%95%E7%90%86%E8%AE%BA%E9%83%A8%E5%88%86/</url>
+    <content><![CDATA[<p>算法的基本概念和性质：</p>
+<p>算法就是任何良定义（well-defined）的计<br>算过程，该过程取某个值或值的集合作为输入（input），并<br>产生某个值或者值的集合作为输出（output）。<br>   —— 算法就是把输入转换成输出的计算步骤。<br>   —— 在计算机科学中，算法是使用计算机解一类问题的精确、有效方法的代名词；<br>   算法是一组有穷的规则，它规定了解决某一特定类型问题 的一系列运算。 （选自《计算机算法基础》） </p>
+<hr>
+<p>渐近表示：O、Ω、Θ记号的定义和相关性质及其证明。 </p>
+]]></content>
+      <categories>
+        <category>学习笔记</category>
+        <category>算法导论</category>
+      </categories>
+      <tags>
+        <tag>算法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>主存管理</title>
+    <url>/2020/01/05/%E4%B8%BB%E5%AD%98%E7%AE%A1%E7%90%86/</url>
+    <content><![CDATA[<h2 id="主存管理概述"><a href="#主存管理概述" class="headerlink" title="主存管理概述"></a>主存管理概述</h2><h3 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h3><blockquote>
+<p>现代操作系统将主存区分为物理主存和逻辑主存2类。<br>物理主存是共享的物质基础。</p>
+</blockquote>
+<a id="more"></a>
+
+<h3 id="主存共享方式–分片共享"><a href="#主存共享方式–分片共享" class="headerlink" title="主存共享方式–分片共享"></a>主存共享方式–分片共享</h3><ul>
+<li>大小不等的区域<br>① 分区存储管理<br>② 段式存储管理</li>
+<li>大小相等的区域<br>页式存储管理</li>
+<li>二者结合<br>段页式存储管理</li>
+</ul>
+<p>现代操作系统的主存管理必须实现主存分配、主存保护、虚拟主存等功能，即：</p>
+<ol>
+<li>将逻辑地址映射为物理主存地址</li>
+<li>在多用户之间分配物理主存</li>
+<li>对各用户区的信息提供保护措施</li>
+<li>扩充逻辑主存区</li>
+</ol>
+<h3 id="程序的逻辑组织"><a href="#程序的逻辑组织" class="headerlink" title="程序的逻辑组织"></a>程序的逻辑组织</h3><p>一维地址结构</p>
+<ul>
+<li>一个程序是一个连续、线性的地址结构；</li>
+<li>确定线性地址空间中的指令地址或操作数地址只需要一个信息。</li>
+</ul>
+<p>二维地址结构 </p>
+<ul>
+<li>一个程序由若干个分段组成，每个分段是一个连续的地址区； </li>
+<li>确定线性地址空间中的指令地址或操作数地址需要两个 信息，一是该信息所在的分段，另一个是该信息在段内的偏移量。</li>
+</ul>
+<p><img src="/2020/01/05/主存管理/image-20200105085223070.png" alt="image-20200105085223070"></p>
+<h2 id="主存管理功能"><a href="#主存管理功能" class="headerlink" title="主存管理功能"></a>主存管理功能</h2><h3 id="几个概念"><a href="#几个概念" class="headerlink" title="几个概念"></a>几个概念</h3><ul>
+<li>物理地址 (绝对地址、实地址)<br>物理地址是计算机主存单元的真实地址，又称为绝对地址或实地址。</li>
+<li>主存空间<br>物理地址的集合所对应的空间组成了主存空间。</li>
+<li>逻辑地址 (相对地址、虚地址)<br>用户的程序地址 (指令地址或操作数地址)均为逻辑地址。 </li>
+<li>程序地址空间<br>用户程序所有的逻辑地址集合对应的空间。</li>
+</ul>
+<h3 id="主存管理功能-1"><a href="#主存管理功能-1" class="headerlink" title="主存管理功能"></a>主存管理功能</h3><ul>
+<li>地址映射——实现逻辑地址到物理主存地址的映射</li>
+<li>主存分配 ——在多用户之间分配物理主存</li>
+<li>存储保护——对各用户区的信息提供保护措施</li>
+<li>主存扩充/虚拟主存——扩充逻辑主存区</li>
+</ul>
+<h4 id="地址映射"><a href="#地址映射" class="headerlink" title="地址映射"></a>地址映射</h4><p>什么是地址映射 ：将程序地址空间中使用的逻辑地址变换成主存中的物理地 址的过程，称为地址映射。</p>
+<p>地址映射的时机和类别<br>① 编程或编译时确定地址映射关系<br>在程序编写或程序编译时确定虚、实地址之间的对应关系，结果是一 个不能浮动的程序模块。<br>② 在程序装入时确定地址映射关系<br>在程序装入过程中随即进行的地址变换方式称为静态地址映射<br>在这种情况下，一个已开始执行的程序是无法在主存中移动的；同时，如果该程序因某种原因暂时放在辅存，若再调入主存时，还必须把它放回到主存的同一位置上。<br><img src="/2020/01/05/主存管理/image-20200105091248853.png" alt="image-20200105091248853"><br>③ 在程序运行时确定地址映射关系 在程序执行期间，随着每条指令和数据的访问自动地连续 地进行地址映射，这种地址变换方式称为动态地址映射。<br>经过动态重定位的程序，可以不经过任何改变而装入主存单元。<br>可满足以下目标：</p>
+<ol>
+<li>具有给用户程序分配一个主存区域的能力</li>
+<li>在改变系统设备时，具有不需要重新编程和重新编辑的能力</li>
+<li>具有在任何时刻，在主存可用空间中重新分配一个程序的能力</li>
+<li>对于一个用户程序，具有以间断方式分配主存的能力</li>
+<li>具有只装入用户程序的部分代码即可投入运行的能力</li>
+</ol>
+<p><img src="/2020/01/05/主存管理/image-20200105091228936.png" alt="image-20200105091228936"></p>
+<table>
+<thead>
+<tr>
+<th>静态地址映射</th>
+<th>动态地址映射</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>在程序装入过程中进行地址映射</td>
+<td>在程序执行期间进行地址映射</td>
+</tr>
+<tr>
+<td>需软件(重定位装入程序)</td>
+<td>需硬件地址变换机构(重定位寄存器)</td>
+</tr>
+<tr>
+<td>需花费较多CPU时间</td>
+<td>地址变换快</td>
+</tr>
+<tr>
+<td>不灵活</td>
+<td>灵活</td>
+</tr>
+</tbody></table>
+<h3 id="主存分配"><a href="#主存分配" class="headerlink" title="主存分配"></a>主存分配</h3><p>构造分配用的数据结构<br>主存资源信息块：等待队列；空闲区队列；主存分配程序</p>
+<p>制定策略<br>① 分配策略 —— 在众多个请求者中选择一个请求者的原则<br>② 放置策略 —— 在可用资源中，选择一个空闲区的原则<br>③ 调入策略 —— 决定信息装入主存的时机<br>预调策略：预先将信息调入主存<br>请调策略：当需要信息时，将信息调入主存<br>④ 淘汰策略 —— 在主存中没有可用的空闲区 (对某一程序 而言)时，决定哪些信息从主存中移走，即确定淘汰已占用的内存区的原则。</p>
+<h3 id="主存分配-1"><a href="#主存分配-1" class="headerlink" title="主存分配"></a>主存分配</h3><p>构造分配用的数据结构<br>主存资源信息块：等待队列；空闲区队列；主存分配程序</p>
+<p>制定策略<br>① 分配策略 —— 在众多个请求者中选择一个请求者的原则<br>② 放置策略 —— 在可用资源中，选择一个空闲区的原则<br>③ 调入策略 —— 决定信息装入主存的时机<br>预调策略：预先将信息调入主存<br>请调策略：当需要信息时，将信息调入主存<br>④ 淘汰策略 —— 在主存中没有可用的空闲区 (对某一程序 而言)时，决定哪些信息从主存中移走，即确定淘汰已占 用的内存区的原则。</p>
+<p>实施主存分配与回收</p>
+<h3 id="主存扩充"><a href="#主存扩充" class="headerlink" title="主存扩充"></a>主存扩充</h3><p>可行性 局部性特征</p>
+<p>实现方法</p>
+<ul>
+<li>程序的全部代码和数据存放在辅存中；</li>
+<li>将程序当前执行所涉及的那部分程序代码放入主存中；</li>
+<li>程序执行时，当所需信息不在主存，由操作系统和硬件相配合来完成主存从辅存中调入信息，程序继续执行。</li>
+</ul>
+<p>虚拟存储器：由操作系统和硬件相配合来完成主存和辅存之间的信息的动态调度。这样的计算机系统好像为用户提供了一个其存储容量比实际主存大得多的存储器，这个存储器称为虚拟存储器<br>虚拟存储器的核心</p>
+<ul>
+<li>逻辑地址与物理地址分开</li>
+<li>存储空间与虚地址空间分开</li>
+<li>提供地址变换机构 </li>
+</ul>
+<p>实现虚拟存储器的物质基础</p>
+<ul>
+<li>有相当容量的辅存： 足以存放应用程序的虚地址空间</li>
+<li>有一定容量的主存： 存放进入主存的多进程的信息</li>
+<li>地址变换机构</li>
+</ul>
+<h3 id="存储保护"><a href="#存储保护" class="headerlink" title="存储保护"></a>存储保护</h3><p>什么是存储保护 ：在多用户环境中，主存储器按区分配给各用户程序使用。 为了互不影响，必须由硬件 (软件配合)保证各用户程序只 能在给定的存储区域内活动，这种措施叫做存储保护。</p>
+<p>实现方法</p>
+<ol>
+<li>界地址保护<ol>
+<li>上下界防护  物理地址<br><img src="/2020/01/05/主存管理/image-20200105091048112.png" alt="image-20200105091048112"></li>
+<li>基地址、限长防护 逻辑地址<br><img src="/2020/01/05/主存管理/image-20200105091157055.png" alt="image-20200105091157055"></li>
+</ol>
+</li>
+<li>存储键保护</li>
+</ol>
+<h2 id="分区存储管理"><a href="#分区存储管理" class="headerlink" title="分区存储管理"></a>分区存储管理</h2><h3 id="动态分区分配"><a href="#动态分区分配" class="headerlink" title="动态分区分配"></a>动态分区分配</h3><p>什么是动态分区分配：在处理程序的过程中，建立分区，依用户请求的大小分配分区。</p>
+<p>分区分配数据结构<br>① 主存资源信息块 (M_RIB)<br>② 分区描述器 (PD)<br>flag： 为 0  —— 空闲区<br>     为 1  —— 已分配区<br>size： 分区大小<br>next：空闲区——自由主存队列中的勾链字<br>     已分配区——此项为零</p>
+<p>M_RIB</p>
+<table>
+<thead>
+<tr>
+<th>等待队列头指针</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>空闲区队列头指针</td>
+</tr>
+<tr>
+<td>主存分配程序入口地址</td>
+</tr>
+</tbody></table>
+<p>PD</p>
+<table>
+<thead>
+<tr>
+<th>分配标志</th>
+<th>flag</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>大小</td>
+<td>size</td>
+</tr>
+<tr>
+<td>勾链字</td>
+<td>next</td>
+</tr>
+</tbody></table>
+<p><img src="/2020/01/05/主存管理/image-20200105091701189.png" alt="image-20200105091701189"></p>
+<h3 id="分区的分配与回收"><a href="#分区的分配与回收" class="headerlink" title="分区的分配与回收"></a>分区的分配与回收</h3><p>分区分配思路<br>① 寻找空闲块<br>依申请者所要求的主存区的大小，分区分配程序在自由主存队列中找一个满足用户需要的空闲块；<br>② 若找到了所需的空闲区，有两种情况<br>ⅰ 空闲区与要求的大小相等，将该空闲区分配并从队列中摘除；<br>ⅱ 空闲区大于所要求的的大小，将空闲区分为两部分：一 部分成为已分配区，建立已分配区的描述器；剩下部分 仍为空闲区。返回所分配区域的首址；<br>③ 否则，告之不能满足要求。</p>
+<p>分区回收思路<br>① 检查释放分区 (即为回收分区)在主存中的邻接情况<br>若上、下邻接空闲区，则合并，成为一个连续的空闲区<br>② 若回收分区不与任何空闲区相邻接<br>建立一个新的空闲区，并加入到空闲区队列中。</p>
+]]></content>
+      <categories>
+        <category>学习笔记</category>
+        <category>操作系统</category>
+      </categories>
+      <tags>
+        <tag>操作系统</tag>
+        <tag>内存</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>处理机的调度</title>
     <url>/2020/01/04/%E5%A4%84%E7%90%86%E6%9C%BA%E7%9A%84%E8%B0%83%E5%BA%A6/</url>
     <content><![CDATA[<h2 id="处理机的多级调度"><a href="#处理机的多级调度" class="headerlink" title="处理机的多级调度"></a>处理机的多级调度</h2><ul>
