@@ -1,6 +1,211 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>比较版本号</title>
+    <url>/2020/01/21/%E6%AF%94%E8%BE%83%E7%89%88%E6%9C%AC%E5%8F%B7/</url>
+    <content><![CDATA[<p>来源Leetcode第165题比较版本号</p>
+<p>比较两个版本号 <em>version1</em> 和 <em>version2<em>。<br>如果 `</em>version1</em> &gt; <em>version2<em><code>返回</code>1<code>，如果</code></em>version1</em> &lt; <em>version2</em><code>返回</code>-1<code>， 除此之外返回</code>0`。</p>
+<a id="more"></a>
+<p>你可以假设版本字符串非空，并且只包含数字和 <code>.</code> 字符。</p>
+<p> <code>.</code> 字符不代表小数点，而是用于分隔数字序列。</p>
+<p>例如，<code>2.5</code> 不是“两个半”，也不是“差一半到三”，而是第二版中的第五个小版本。</p>
+<p>你可以假设版本号的每一级的默认修订版号为 <code>0</code>。例如，版本号 <code>3.4</code> 的第一级（大版本）和第二级（小版本）修订号分别为 <code>3</code> 和 <code>4</code>。其第三级和第四级修订号均为 <code>0</code>。</p>
+<h3 id="利用split分割"><a href="#利用split分割" class="headerlink" title="利用split分割"></a>利用split分割</h3><p>利用split对字符串进行切割，然后转成Int比较。对于已经遍历完的部分直接赋值为0即可。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compareVersion</span><span class="params">(String version1, String version2)</span> </span>&#123;</span><br><span class="line">    String [] temp1 = version1.split(<span class="string">"\\."</span>);</span><br><span class="line">    String [] temp2 = version2.split(<span class="string">"\\."</span>);</span><br><span class="line">    <span class="keyword">int</span> p1 = <span class="number">0</span> , p2 = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> v1,v2;</span><br><span class="line">    <span class="keyword">while</span>(p1 &lt; temp1.length || p2 &lt; temp2.length)&#123;</span><br><span class="line">        String num1 = p1 &lt; temp1.length ? temp1[p1] : <span class="string">"0"</span>;</span><br><span class="line">        String num2 = p2 &lt; temp2.length ? temp2[p2] : <span class="string">"0"</span>;</span><br><span class="line">        v1 = Integer.parseInt(num1);</span><br><span class="line">        v2 = Integer.parseInt(num2);</span><br><span class="line">        <span class="keyword">if</span> (v1 &gt; v2)</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(v1 &lt; v2)</span><br><span class="line">            <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            p1++;</span><br><span class="line">            p2++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="分割后字符串比较"><a href="#分割后字符串比较" class="headerlink" title="分割后字符串比较"></a>分割后字符串比较</h3><p>利用Integer.parseInt在一定程度上增加了运行时间并且当数字过大时，可能会溢出，无法比较，因而可以进一步直接用字符串比较。<br>然而提交后还是一样的用时，我傻了。</p>
+<pre><code class="JAVA"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compareVersion</span><span class="params">(String version1, String version2)</span> </span>{
+    String [] temp1 = version1.split(<span class="string">"\\."</span>);
+    String [] temp2 = version2.split(<span class="string">"\\."</span>);
+    <span class="keyword">int</span> p1 = <span class="number">0</span> , p2 = <span class="number">0</span>;
+    <span class="keyword">int</span> v1,v2;
+    <span class="keyword">while</span>(p1 &lt; temp1.length || p2 &lt; temp2.length){
+        String num1 = p1 &lt; temp1.length ? temp1[p1] : <span class="string">"0"</span>;
+        String num2 = p2 &lt; temp2.length ? temp2[p2] : <span class="string">"0"</span>;
+        <span class="comment">//去掉前导0</span>
+        v1 = <span class="number">0</span>;
+        v2 = <span class="number">0</span>;
+        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span> ; i &lt; num1.length(); i++){
+            <span class="keyword">if</span>(num1.charAt(i) == <span class="string">'0'</span>)
+                v1++;
+            <span class="keyword">else</span>
+                <span class="keyword">break</span>;
+        }
+        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span> ; i &lt; num2.length(); i++){
+            <span class="keyword">if</span>(num2.charAt(i) == <span class="string">'0'</span>)
+                v2++;
+            <span class="keyword">else</span>
+                <span class="keyword">break</span>;
+        }
+        num1 = num1.substring(v1);
+        num2 = num2.substring(v2);
+        <span class="comment">//开始比较字符串</span>
+        <span class="keyword">if</span>(num1.length() &gt; num2.length())
+            <span class="keyword">return</span> <span class="number">1</span>;
+        <span class="keyword">else</span> <span class="keyword">if</span>(num2.length() &gt; num1.length())
+            <span class="keyword">return</span> -<span class="number">1</span>;
+        <span class="keyword">else</span>
+        {
+            <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span> ; i &lt; num1.length() ; i++){
+                <span class="keyword">if</span> (num1.charAt(i) - num2.charAt(i) &gt; <span class="number">0</span>) {
+                    <span class="keyword">return</span> <span class="number">1</span>;
+                } <span class="keyword">else</span> <span class="keyword">if</span> (num1.charAt(i) - num2.charAt(i) &lt; <span class="number">0</span>) {
+                    <span class="keyword">return</span> -<span class="number">1</span>;
+                }
+            }
+            p1++;
+            p2++;
+        }
+    }
+    <span class="keyword">return</span> <span class="number">0</span>;
+}</code></pre>
+]]></content>
+      <categories>
+        <category>算法</category>
+        <category>Leetcode</category>
+        <category>字符串</category>
+      </categories>
+      <tags>
+        <tag>字符串</tag>
+        <tag>Leetcode</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>寻找旋转数组中的最小值II</title>
+    <url>/2020/01/21/%E5%AF%BB%E6%89%BE%E6%97%8B%E8%BD%AC%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E6%9C%80%E5%B0%8F%E5%80%BCII/</url>
+    <content><![CDATA[<p>来源Leetcode第154题寻找旋转数组中的最小值II</p>
+<p>假设按照升序排序的数组在预先未知的某个点上进行了旋转。</p>
+<p>( 例如，数组 <code>[0,1,2,4,5,6,7]</code> 可能变为 <code>[4,5,6,7,0,1,2]</code> )。</p>
+<p>请找出其中最小的元素。</p>
+<a id="more"></a>
+<p>注意数组中可能存在重复的元素。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight angelscript"><table><tr><td class="code"><pre><span class="line">输入: [<span class="number">1</span>,<span class="number">3</span>,<span class="number">5</span>]</span><br><span class="line">输出: <span class="number">1</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="二分查找"><a href="#二分查找" class="headerlink" title="二分查找"></a>二分查找</h3><p>思路同上一题153，只是在判断相等时直接舍弃即可。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">findMin</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> left=<span class="number">0</span>,right=nums.length-<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span> (left &lt;= right &amp;&amp; nums[left] &gt;= nums[right]) &#123;</span><br><span class="line">        <span class="keyword">int</span> mid = (left+right) &gt;&gt;&gt; <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span> (nums[mid] &gt; nums[right])&#123;</span><br><span class="line">            left = mid+<span class="number">1</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (nums[mid] &lt; nums[right])&#123;</span><br><span class="line">            right = mid;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            right--;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> nums[left];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="去重"><a href="#去重" class="headerlink" title="去重"></a>去重</h3><p>可以做一个预处理，保证所有重复数字不在两段里出现即可，再简单化，也就是保证切割的位置不要是重复数字。也就是比较 <code>start</code> 和 <code>end</code> 是否相同，相同的话 <code>end--</code> 即可。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">findMin</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> start = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> end = nums.length - <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span> (nums[end] == nums[start] &amp;&amp; end &gt; start) &#123;</span><br><span class="line">        end--;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span> (start &lt; end) &#123;</span><br><span class="line">        <span class="keyword">int</span> mid = (start + end) &gt;&gt;&gt; <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span> (nums[mid] &gt; nums[end]) &#123;</span><br><span class="line">            start = mid + <span class="number">1</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span>&#123;</span><br><span class="line">            end = mid;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> nums[start];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>算法</category>
+        <category>Leetcode</category>
+        <category>数组</category>
+      </categories>
+      <tags>
+        <tag>Leetcode</tag>
+        <tag>二分查找</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>峰值元素</title>
+    <url>/2020/01/19/%E5%B3%B0%E5%80%BC%E5%85%83%E7%B4%A0/</url>
+    <content><![CDATA[<p>来源Leetcode第162题寻找峰值</p>
+<p>峰值元素是指其值大于左右相邻值的元素。</p>
+<p>给定一个输入数组 <code>nums</code>，其中 <code>nums[i] ≠ nums[i+1]</code>，找到峰值元素并返回其索引。</p>
+<p>数组可能包含多个峰值，在这种情况下，返回任何一个峰值所在位置即可。</p>
+<a id="more"></a>
+<p>你可以假设 <code>nums[-1] = nums[n] = -∞</code>。</p>
+<p><strong>示例 1:</strong></p>
+<figure class="highlight angelscript"><table><tr><td class="code"><pre><span class="line">输入: nums = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">1</span>]</span><br><span class="line">输出: <span class="number">2</span></span><br><span class="line">解释: <span class="number">3</span> 是峰值元素，你的函数应该返回其索引 <span class="number">2</span>。</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="一次扫描"><a href="#一次扫描" class="headerlink" title="一次扫描"></a>一次扫描</h3><p>因为 <code>nums[-1]</code> 看做负无穷，所以从第 <code>0</code> 个元素开始，它一定是上升的趋势，由于我们要找峰顶，所以当它第一次出现下降，下降前的值就是我们要找的了。</p>
+<p>如果它一直上升到最后一个值，又因为 <code>nums[n]</code> 看做负无穷，所以最后一个值就可以看做一个峰顶。</p>
+<p>题解的解法比我提交时的答案相对的少了很多无谓的判断及比较。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">findPeakElement</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length - <span class="number">1</span>; i++) &#123;</span><br><span class="line">        <span class="comment">//第一次下降</span></span><br><span class="line">        <span class="keyword">if</span> (nums[i] &gt; nums[i + <span class="number">1</span>]) &#123;</span><br><span class="line">            <span class="keyword">return</span> i;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//一直上升</span></span><br><span class="line">    <span class="keyword">return</span> nums.length - <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="二分查找"><a href="#二分查找" class="headerlink" title="二分查找"></a>二分查找</h3><p>我们可以将 <em>nums</em> 数组中的任何给定序列视为交替的升序和降序序列。通过利用这一点，以及“可以返回任何一个峰作为结果”的要求，我们可以利用二分查找来找到所需的峰值元素。</p>
+<p>在简单的二分查找中，我们处理的是一个有序数列，并通过在每一步减少搜索空间来找到所需要的数字。在本例中，我们对二分查找进行一点修改。首先从数组 nums中找到中间的元素 <em>m<strong>i</strong>d<em>。若该元素恰好位于降序序列或者一个局部下降坡度中（通过将 <em>n</em></em>u<strong>m</strong>s</em>[<em>i</em>] 与右侧比较判断)，则说明峰值会在本元素的左边。于是，我们将搜索空间缩小为 <em>m<strong>i</strong>d</em> 的左边(包括其本身)，并在左侧子数组上重复上述过程。</p>
+<p>若该元素恰好位于升序序列或者一个局部上升坡度中（通过将 <em>n<strong>u</strong>m**s</em>[<em>i</em>] 与右侧比较判断)，则说明峰值会在本元素的右边。于是，我们将搜索空间缩小为 <em>m<strong>i</strong>d</em> 的右边，并在右侧子数组上重复上述过程。</p>
+<p>就这样，我们不断地缩小搜索空间，直到搜索空间中只有一个元素，该元素即为峰值元素。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">findPeakElement</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> l = <span class="number">0</span>, r = nums.length - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span> (l &lt; r) &#123;</span><br><span class="line">            <span class="keyword">int</span> mid = (l + r) / <span class="number">2</span>;</span><br><span class="line">            <span class="keyword">if</span> (nums[mid] &gt; nums[mid + <span class="number">1</span>])</span><br><span class="line">                r = mid;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                l = mid + <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> l;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>算法</category>
+        <category>Leetcode</category>
+        <category>数组</category>
+      </categories>
+      <tags>
+        <tag>Leetcode</tag>
+        <tag>二分查找</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>相交链表</title>
+    <url>/2020/01/17/%E7%9B%B8%E4%BA%A4%E9%93%BE%E8%A1%A8/</url>
+    <content><![CDATA[<p>来源Leetcode第160题相交链表</p>
+<p>编写一个程序，找到两个单链表相交的起始节点。</p>
+<a id="more"></a>
+<p>如下面的两个链表<strong>：</strong></p>
+<p><a href="https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2018/12/14/160_statement.png" target="_blank" rel="noopener"><img src="/2020/01/17/相交链表/160_statement.png" alt="img"></a></p>
+<p>在节点 c1 开始相交。</p>
+<p><strong>示例 1：</strong></p>
+<p><a href="https://assets.leetcode.com/uploads/2018/12/13/160_example_1.png" target="_blank" rel="noopener"><img src="/2020/01/17/相交链表/160_example_1.png" alt="img"></a></p>
+<figure class="highlight angelscript"><table><tr><td class="code"><pre><span class="line">输入：<span class="built_in">int</span>ersectVal = <span class="number">8</span>, listA = [<span class="number">4</span>,<span class="number">1</span>,<span class="number">8</span>,<span class="number">4</span>,<span class="number">5</span>], listB = [<span class="number">5</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">8</span>,<span class="number">4</span>,<span class="number">5</span>], skipA = <span class="number">2</span>, skipB = <span class="number">3</span></span><br><span class="line">输出：Reference of the node with value = <span class="number">8</span></span><br><span class="line">输入解释：相交节点的值为 <span class="number">8</span> （注意，如果两个列表相交则不能为 <span class="number">0</span>）。从各自的表头开始算起，链表 A 为 [<span class="number">4</span>,<span class="number">1</span>,<span class="number">8</span>,<span class="number">4</span>,<span class="number">5</span>]，链表 B 为 [<span class="number">5</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">8</span>,<span class="number">4</span>,<span class="number">5</span>]。在 A 中，相交节点前有 <span class="number">2</span> 个节点；在 B 中，相交节点前有 <span class="number">3</span> 个节点。</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="哈希表"><a href="#哈希表" class="headerlink" title="哈希表"></a>哈希表</h3><p>遍历链表 <code>A</code> 并将每个结点的地址/引用存储在哈希表中。然后检查链表 <code>B</code> 中的每一个结点 b_i<em>b**i</em> 是否在哈希表中。若在，则 b_i<em>b**i</em> 为相交结点。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> ListNode <span class="title">getIntersectionNode</span><span class="params">(ListNode headA, ListNode headB)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(headA == <span class="keyword">null</span> || headB == <span class="keyword">null</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    ListNode p1 = headA;</span><br><span class="line">    Set&lt;ListNode&gt; map = <span class="keyword">new</span> HashSet&lt;&gt;();</span><br><span class="line">    <span class="keyword">while</span>(p1 != <span class="keyword">null</span>)&#123;</span><br><span class="line">        map.add(p1);</span><br><span class="line">        p1 = p1.next;</span><br><span class="line">    &#125;</span><br><span class="line">    p1 = headB;</span><br><span class="line">    <span class="keyword">while</span>(p1 != <span class="keyword">null</span>)&#123;</span><br><span class="line">        <span class="keyword">if</span>(map.contains(p1))</span><br><span class="line">            <span class="keyword">return</span> p1;</span><br><span class="line">        <span class="keyword">else</span> p1 = p1.next;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="双指针"><a href="#双指针" class="headerlink" title="双指针"></a>双指针</h3><ul>
+<li>创建两个指针 pA<em>p**A</em> 和 pB<em>p*</em>B*，分别初始化为链表 <code>A</code> 和 <code>B</code> 的头结点。然后让它们向后逐结点遍历。</li>
+<li>当 pA<em>p**A</em> 到达链表的尾部时，将它重定位到链表 <code>B</code> 的头结点 (你没看错，就是链表 <code>B</code>); 类似的，当 pB<em>p**B</em> 到达链表的尾部时，将它重定位到链表 <code>A</code> 的头结点。</li>
+<li>若在某一时刻 pA<em>p**A</em> 和 pB<em>p**B</em> 相遇，则 pA<em>p**A</em>/pB<em>p**B</em> 为相交结点。</li>
+<li>想弄清楚为什么这样可行, 可以考虑以下两个链表: <code>A={1,3,5,7,9,11}</code> 和 <code>B={2,4,9,11}</code>，相交于结点 <code>9</code>。 由于 <code>B.length (=4) &lt; A.length (=6)</code>，pB<em>p**B</em> 比 pA<em>p**A</em> 少经过 22 个结点，会先到达尾部。将 pB<em>p**B</em> 重定向到 <code>A</code> 的头结点，pA<em>p**A</em> 重定向到 <code>B</code> 的头结点后，pB<em>p**B</em> 要比 pA<em>p**A</em> 多走 <code>2</code> 个结点。因此，它们会同时到达交点。</li>
+<li>如果两个链表存在相交，它们末尾的结点必然相同。因此当 pA<em>p**A</em>/pB<em>p**B</em> 到达链表结尾时，记录下链表 <code>A/B</code> 对应的元素。若最后元素不相同，则两个链表不相交。</li>
+</ul>
+<pre><code class="JAVA"><span class="function"><span class="keyword">public</span> ListNode <span class="title">getIntersectionNode</span><span class="params">(ListNode headA, ListNode headB)</span> </span>{
+    <span class="keyword">if</span>(headA == <span class="keyword">null</span> || headB == <span class="keyword">null</span>)
+        <span class="keyword">return</span> <span class="keyword">null</span>;
+    ListNode pa = headA , pb = headB;
+    <span class="keyword">while</span>(pa != pb){
+        pa = pa == <span class="keyword">null</span> ? headB : pa.next;
+        pb = pb == <span class="keyword">null</span> ? headA : pb.next;
+    }
+    <span class="keyword">return</span> pa;
+}</code></pre>
+]]></content>
+      <categories>
+        <category>算法</category>
+        <category>Leetcode</category>
+        <category>链表</category>
+      </categories>
+      <tags>
+        <tag>Leetcode</tag>
+        <tag>链表</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>寻找旋转排序数组中的最小值</title>
+    <url>/2020/01/17/%E5%AF%BB%E6%89%BE%E6%97%8B%E8%BD%AC%E6%8E%92%E5%BA%8F%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E6%9C%80%E5%B0%8F%E5%80%BC/</url>
+    <content><![CDATA[<p>来源Leetcode第153题寻找旋转排序数组中的最小值</p>
+<p>假设按照升序排序的数组在预先未知的某个点上进行了旋转。<br>( 例如，数组 <code>[0,1,2,4,5,6,7]</code> 可能变为 <code>[4,5,6,7,0,1,2]</code> )。<br>请找出其中最小的元素。<br>你可以假设数组中不存在重复元素。</p>
+<a id="more"></a>
+<p><strong>示例 1:</strong></p>
+<figure class="highlight angelscript"><table><tr><td class="code"><pre><span class="line">输入: [<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">1</span>,<span class="number">2</span>]</span><br><span class="line">输出: <span class="number">1</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="二分查找"><a href="#二分查找" class="headerlink" title="二分查找"></a>二分查找</h3><p>由于给定的数组是有序的，我们就可以使用二分搜索。</p>
+<ol>
+<li>找到数组的中间元素 <code>mid</code>。</li>
+<li>如果<code>中间元素 &gt; 数组第一个元素</code>，我们需要在 <code>mid</code> 右边搜索变化点。</li>
+<li>如果<code>中间元素 &lt; 数组第一个元素</code>，我们需要在 <code>mid</code> 做边搜索变化点。</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">findMin</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> left=<span class="number">0</span>,right=nums.length-<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span> (left&lt;right &amp;&amp; nums[left] &gt; nums[right]) &#123;</span><br><span class="line">        <span class="keyword">int</span> mid = (left+right) &gt;&gt;&gt; <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span> (nums[mid]&gt;=nums[left])&#123;</span><br><span class="line">            left = mid+<span class="number">1</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            right = mid;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> nums[left];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>算法</category>
+        <category>Leetcode</category>
+        <category>数组</category>
+      </categories>
+      <tags>
+        <tag>Leetcode</tag>
+        <tag>二分查找</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>颠倒二进制位</title>
     <url>/2020/01/16/%E9%A2%A0%E5%80%92%E4%BA%8C%E8%BF%9B%E5%88%B6%E4%BD%8D/</url>
     <content><![CDATA[<p>来自Leetcode第190题颠倒二进制位</p>
@@ -6162,8 +6367,8 @@ public Node(int _val,List&lt;Node&gt; _neighbors) {
         <category>数组</category>
       </categories>
       <tags>
-        <tag>贪心</tag>
         <tag>Leetcode</tag>
+        <tag>贪心</tag>
       </tags>
   </entry>
   <entry>
@@ -6214,8 +6419,8 @@ public Node(int _val,List&lt;Node&gt; _neighbors) {
         <category>数组</category>
       </categories>
       <tags>
-        <tag>贪心</tag>
         <tag>Leetcode</tag>
+        <tag>贪心</tag>
         <tag>动态规划</tag>
         <tag>回溯</tag>
       </tags>
@@ -7827,8 +8032,8 @@ public Node(int _val,List&lt;Node&gt; _neighbors) {
         <category>链表</category>
       </categories>
       <tags>
-        <tag>贪心</tag>
         <tag>Leetcode</tag>
+        <tag>贪心</tag>
         <tag>链表</tag>
         <tag>归并</tag>
         <tag>分治</tag>
@@ -8280,8 +8485,8 @@ public Node(int _val,List&lt;Node&gt; _neighbors) {
         <category>数学</category>
       </categories>
       <tags>
-        <tag>贪心</tag>
         <tag>Leetcode</tag>
+        <tag>贪心</tag>
       </tags>
   </entry>
   <entry>
