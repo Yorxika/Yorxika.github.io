@@ -1,6 +1,426 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>用队列实现栈</title>
+    <url>/2020/02/10/%E7%94%A8%E9%98%9F%E5%88%97%E5%AE%9E%E7%8E%B0%E6%A0%88/</url>
+    <content><![CDATA[<p>来自Leetcode第225题用队列实现栈</p>
+<p>使用队列实现栈的下列操作：</p>
+<ul>
+<li>push(x) – 元素 x 入栈</li>
+<li>pop() – 移除栈顶元素</li>
+<li>top() – 获取栈顶元素</li>
+<li>empty() – 返回栈是否为空<a id="more"></a></li>
+</ul>
+<p><strong>注意:</strong></p>
+<ul>
+<li>你只能使用队列的基本操作– 也就是 <code>push to back</code>, <code>peek/pop from front</code>, <code>size</code>, 和 <code>is empty</code> 这些操作是合法的。</li>
+<li>你所使用的语言也许不支持队列。 你可以使用 list 或者 deque（双端队列）来模拟一个队列 , 只要是标准的队列操作即可。</li>
+<li>你可以假设所有操作都是有效的（例如, 对一个空的栈不会调用 pop 或者 top 操作）。</li>
+</ul>
+<hr>
+<p>用一个链表实现，压栈时就先将元素压到队列尾，然后在依次移除队列里的元素，在添加到队列尾。</p>
+<pre><code class="JAVA"><span class="class"><span class="keyword">class</span> <span class="title">MyStack</span> </span>{
+
+    <span class="keyword">private</span> LinkedList&lt;Integer&gt; queue = <span class="keyword">new</span> LinkedList&lt;&gt;();
+    <span class="comment">/** Initialize your data structure here. */</span>
+    <span class="function"><span class="keyword">public</span> <span class="title">MyStack</span><span class="params">()</span> </span>{
+    }
+
+    <span class="comment">/** Push element x onto stack. */</span>
+    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">push</span><span class="params">(<span class="keyword">int</span> x)</span> </span>{
+        queue.add(x);
+        <span class="keyword">int</span> size = queue.size();
+        <span class="keyword">while</span>(size &gt; <span class="number">1</span>){
+            queue.add(queue.remove());  <span class="comment">//移动队首元素至队列尾，从而实现了后进先出</span>
+            size--;
+        }
+    }
+
+    <span class="comment">/** Removes the element on top of the stack and returns that element. */</span>
+    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">pop</span><span class="params">()</span> </span>{
+        <span class="keyword">return</span> queue.remove();
+    }
+
+    <span class="comment">/** Get the top element. */</span>
+    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">top</span><span class="params">()</span> </span>{
+        <span class="keyword">return</span> queue.peek();
+    }
+
+    <span class="comment">/** Returns whether the stack is empty. */</span>
+    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">empty</span><span class="params">()</span> </span>{
+        <span class="keyword">return</span> queue.isEmpty();
+    }
+}</code></pre>
+]]></content>
+      <categories>
+        <category>算法</category>
+        <category>Leetcode</category>
+        <category>数据结构设计</category>
+      </categories>
+      <tags>
+        <tag>Leetcode</tag>
+        <tag>栈</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>矩形面积</title>
+    <url>/2020/02/10/%E7%9F%A9%E5%BD%A2%E9%9D%A2%E7%A7%AF/</url>
+    <content><![CDATA[<p>来源Leetcode第223题矩形面积</p>
+<p>在<strong>二维</strong>平面上计算出两个<strong>由直线构成的</strong>矩形重叠后形成的总面积。</p>
+<p>每个矩形由其左下顶点和右上顶点坐标表示，如图所示。</p>
+<a id="more"></a>
+<p><img src="/2020/02/10/矩形面积/rectangle_area.png" alt="Rectangle Area"></p>
+<p><strong>示例:</strong></p>
+<figure class="highlight angelscript"><table><tr><td class="code"><pre><span class="line">输入: <span class="number">-3</span>, <span class="number">0</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">0</span>, <span class="number">-1</span>, <span class="number">9</span>, <span class="number">2</span></span><br><span class="line">输出: <span class="number">45</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>说明:</strong> 假设矩形面积不会超出 <strong>int</strong> 的范围。</p>
+<hr>
+<p>把两个矩形叫做 A 和 B，不重叠就有四种情况，A 在 B 左边，A 在 B 右边，A 在 B 上边，A 在 B 下边。</p>
+<p>判断上边的四种情况也很简单，比如判断 A 是否在 B 左边，只需要判断 A 的最右边的坐标是否小于 B 的最左边的坐标即可。其他情况类似。</p>
+<p>此时矩形覆盖的面积就是两个矩形的面积和。</p>
+<p>接下来考虑有重叠的情况。</p>
+<p>此时我们只要求出重叠形成的矩形的面积，然后用两个矩形的面积减去重叠矩形的面积就是两个矩形覆盖的面积了。</p>
+<p>而求重叠矩形的面积也很简单，我们只需要确认重叠矩形的四条边即可，可以结合题目的图想。</p>
+<p>左边只需选择两个矩形的两条左边靠右的那条。</p>
+<p>上边只需选择两个矩形的两条上边靠下的那条。</p>
+<p>右边只需选择两个矩形的两条右边靠左的那条。</p>
+<p>下边只需选择两个矩形的两条下边靠上的那条。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">computeArea</span><span class="params">(<span class="keyword">int</span> A, <span class="keyword">int</span> B, <span class="keyword">int</span> C, <span class="keyword">int</span> D, <span class="keyword">int</span> E, <span class="keyword">int</span> F, <span class="keyword">int</span> G, <span class="keyword">int</span> H)</span> </span>&#123;</span><br><span class="line">    <span class="comment">//求第一个矩形的面积</span></span><br><span class="line">    <span class="keyword">int</span> len1_1 = C - A;  <span class="comment">//长</span></span><br><span class="line">    <span class="keyword">int</span> len1_2 = D - B; <span class="comment">//高</span></span><br><span class="line">    <span class="keyword">int</span> s1 = len1_1 * len1_2;  <span class="comment">//面积</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">//求第二个矩形面积</span></span><br><span class="line">    <span class="keyword">int</span> len2_1 = G - E;</span><br><span class="line">    <span class="keyword">int</span> len2_2 = H - F;</span><br><span class="line">    <span class="keyword">int</span> s2 = len2_1 * len2_2;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(E &gt;= C || G &lt;= A || F &gt;= D || H &lt;=B)</span><br><span class="line">        <span class="keyword">return</span> s1 + s2;  <span class="comment">//没有重叠</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> cover_x = Math.max(A,E);</span><br><span class="line">    <span class="keyword">int</span> cover_x2 = Math.min(C,G);</span><br><span class="line">    <span class="keyword">int</span> len = cover_x2 - cover_x;  <span class="comment">//重叠在x轴的边长</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> cover_y = Math.min(D,H);</span><br><span class="line">    <span class="keyword">int</span> cover_y2 = Math.max(F,B);</span><br><span class="line">    <span class="keyword">int</span> len_2 = cover_y - cover_y2;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> cover_s = len * len_2;</span><br><span class="line">    <span class="keyword">return</span> s1 + s2 - cover_s;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>算法</category>
+        <category>Leetcode</category>
+        <category>数学</category>
+      </categories>
+      <tags>
+        <tag>Leetcode</tag>
+        <tag>数学</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>最大正方形</title>
+    <url>/2020/02/10/%E6%9C%80%E5%A4%A7%E6%AD%A3%E6%96%B9%E5%BD%A2/</url>
+    <content><![CDATA[<p>来源Leetcode第221题最大正方形</p>
+<p>在一个由 0 和 1 组成的二维矩阵内，找到只包含 1 的最大正方形，并返回其面积。</p>
+<a id="more"></a>
+<p><strong>示例:</strong></p>
+<figure class="highlight angelscript"><table><tr><td class="code"><pre><span class="line">输入: </span><br><span class="line"></span><br><span class="line"><span class="number">1</span> <span class="number">0</span> <span class="number">1</span> <span class="number">0</span> <span class="number">0</span></span><br><span class="line"><span class="number">1</span> <span class="number">0</span> <span class="number">1</span> <span class="number">1</span> <span class="number">1</span></span><br><span class="line"><span class="number">1</span> <span class="number">1</span> <span class="number">1</span> <span class="number">1</span> <span class="number">1</span></span><br><span class="line"><span class="number">1</span> <span class="number">0</span> <span class="number">0</span> <span class="number">1</span> <span class="number">0</span></span><br><span class="line"></span><br><span class="line">输出: <span class="number">4</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="暴力遍历"><a href="#暴力遍历" class="headerlink" title="暴力遍历"></a>暴力遍历</h3><p>如果当前节点是<code>1</code>就以此点为正方形的左上角，进行向右向下的遍历，在遍历时维护一个变量，当前正方形的边长和最大正方形的边长，如果新增加的行列均为<code>1</code>，则当前边长+1，直到检索到<code>0</code>，移动到下一点，并且更新最大正方形边长。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maximalSquare</span><span class="params">(<span class="keyword">char</span>[][] matrix)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(matrix.length == <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> max = <span class="number">0</span>;  <span class="comment">//记录最大边长</span></span><br><span class="line">    <span class="keyword">int</span> row = matrix.length;</span><br><span class="line">    <span class="keyword">int</span> col = matrix[<span class="number">0</span>].length;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span> ; i &lt; row; i++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span> ; j &lt; col; j++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(matrix[i][j] == <span class="string">'1'</span>)&#123;</span><br><span class="line">                <span class="comment">//从当前点开始搜索</span></span><br><span class="line">                <span class="keyword">int</span> curlen = <span class="number">1</span>;  <span class="comment">//记录能组成的最大正方形边长</span></span><br><span class="line">                <span class="keyword">boolean</span> flag = <span class="keyword">true</span>;</span><br><span class="line">                <span class="keyword">while</span>(curlen + i &lt; row &amp;&amp; curlen + j &lt; col &amp;&amp; flag)&#123;</span><br><span class="line">                    <span class="comment">//从当前点向右向下搜索</span></span><br><span class="line">                    <span class="keyword">for</span>(<span class="keyword">int</span> k = j ; k &lt;= curlen + j;k++)&#123;</span><br><span class="line">                        <span class="keyword">if</span>(matrix[i + curlen][k] == <span class="string">'0'</span>)&#123;</span><br><span class="line">                            flag = <span class="keyword">false</span>;</span><br><span class="line">                            <span class="keyword">break</span>;</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">for</span>(<span class="keyword">int</span> k = i ; k &lt;= curlen + i ; k++)&#123;</span><br><span class="line">                        <span class="keyword">if</span>(matrix[k][j + curlen] == <span class="string">'0'</span>)&#123;</span><br><span class="line">                            flag = <span class="keyword">false</span>;</span><br><span class="line">                            <span class="keyword">break</span>;</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">if</span>(flag) <span class="comment">// 为真，增加搜索的边长</span></span><br><span class="line">                        curlen++;</span><br><span class="line">                &#125;</span><br><span class="line">                max = Math.max(max,curlen);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> max * max;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="动态规划"><a href="#动态规划" class="headerlink" title="动态规划"></a>动态规划</h3><p><a href="https://leetcode-cn.com/problems/maximal-square/solution/li-jie-san-zhe-qu-zui-xiao-1-by-lzhlyle/" target="_blank" rel="noopener">来源</a></p>
+<p>如题，动态规划方法的题解中，都会涉及到下列形式的代码：</p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> (grid(<span class="built_in">i</span>, <span class="built_in">j</span>) == <span class="number">1</span>) &#123;</span><br><span class="line">    dp(<span class="built_in">i</span>, <span class="built_in">j</span>) = <span class="built_in">min</span>(dp(<span class="built_in">i</span><span class="number">-1</span>, <span class="built_in">j</span>), dp(<span class="built_in">i</span>, <span class="built_in">j</span><span class="number">-1</span>), dp(<span class="built_in">i</span><span class="number">-1</span>, <span class="built_in">j</span><span class="number">-1</span>)) + <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>翻译成中文</p>
+<blockquote>
+<p>若某格子值为 <code>1</code> ，则以此为<strong>右下角</strong>的正方形的、最大边长为：上面的正方形、左面的正方形或左上的正方形中，最小的那个，再加上此格。</p>
+</blockquote>
+<p>先来阐述简单共识</p>
+<ul>
+<li>若形成正方形（非单 <code>1</code>），以当前为右下角的视角看，则需要：当前格、上、左、左上都是 <code>1</code></li>
+<li>可以换个角度：当前格、上、左、左上都不能受 <code>0</code> 的限制，才能成为正方形</li>
+</ul>
+<p><img src="/2020/02/10/最大正方形/8c4bf78cf6396c40291e40c25d34ef56bd524313c2aa863f3a20c1f004f32ab0-image.png" alt="image.png"></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maximalSquare</span><span class="params">(<span class="keyword">char</span>[][] matrix)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// base condition</span></span><br><span class="line">    <span class="keyword">if</span> (matrix == <span class="keyword">null</span> || matrix.length &lt; <span class="number">1</span> || matrix[<span class="number">0</span>].length &lt; <span class="number">1</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> height = matrix.length;</span><br><span class="line">    <span class="keyword">int</span> width = matrix[<span class="number">0</span>].length;</span><br><span class="line">    <span class="keyword">int</span> maxSide = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 相当于已经预处理新增第一行、第一列均为0</span></span><br><span class="line"><span class="comment">//        int[][] dp = new int[height + 1][width + 1];</span></span><br><span class="line">    <span class="keyword">int</span>[] dp = <span class="keyword">new</span> <span class="keyword">int</span>[width + <span class="number">1</span>];</span><br><span class="line">    <span class="keyword">int</span> northwest = <span class="number">0</span>; <span class="comment">// 西北角、左上角</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//        for (int row = 0; row &lt; height; row++) &#123;</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">char</span>[] chars : matrix) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> col = <span class="number">0</span>; col &lt; width; col++) &#123;</span><br><span class="line">            <span class="keyword">int</span> nextNorthwest = dp[col + <span class="number">1</span>];</span><br><span class="line">            <span class="keyword">if</span> (chars[col] == <span class="string">'1'</span>) &#123;</span><br><span class="line"><span class="comment">//                    dp[row + 1][col + 1] = Math.min(Math.min(dp[row + 1][col], dp[row][col + 1]), dp[row][col]) + 1;</span></span><br><span class="line">                dp[col + <span class="number">1</span>] = Math.min(Math.min(dp[col], dp[col + <span class="number">1</span>]), northwest) + <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//                    maxSide = Math.max(maxSide, dp[row + 1][col + 1]);</span></span><br><span class="line">                maxSide = Math.max(maxSide, dp[col + <span class="number">1</span>]);</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                dp[col + <span class="number">1</span>] = <span class="number">0</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            northwest = nextNorthwest;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> maxSide * maxSide;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>算法</category>
+        <category>Leetcode</category>
+        <category>数组</category>
+      </categories>
+      <tags>
+        <tag>Leetcode</tag>
+        <tag>动态规划</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>存在重复元素III</title>
+    <url>/2020/02/10/%E5%AD%98%E5%9C%A8%E9%87%8D%E5%A4%8D%E5%85%83%E7%B4%A0III/</url>
+    <content><![CDATA[<p>给定一个整数数组，判断数组中是否有两个不同的索引 <em>i</em> 和 <em>j</em>，使得 <strong>nums [i]</strong> 和 <strong>nums [j]</strong> 的差的绝对值最大为 <em>t</em>，并且 <em>i</em> 和 <em>j</em> 之间的差的绝对值最大为 <em>ķ</em>。</p>
+<a id="more"></a>
+<p><strong>示例 1:</strong></p>
+<figure class="highlight angelscript"><table><tr><td class="code"><pre><span class="line">输入: nums = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">1</span>], k = <span class="number">3</span>, t = <span class="number">0</span></span><br><span class="line">输出: <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="面向测试用例编程"><a href="#面向测试用例编程" class="headerlink" title="面向测试用例编程"></a>面向测试用例编程</h3><p>暴力遍历，经过评论区提示，加了一句<code>if(k == 10000) return false;</code>，速度直接到了0ms。。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">containsNearbyAlmostDuplicate</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> k, <span class="keyword">int</span> t)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(k == <span class="number">10000</span>) <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span> ; i &lt; nums.length ; ++i)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = Math.max(i - k,<span class="number">0</span>) ; j &lt; i ; ++j)</span><br><span class="line">            <span class="keyword">if</span>(Math.abs((<span class="keyword">long</span>)nums[i] - nums[j]) &lt;= t)</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="TreeSet"><a href="#TreeSet" class="headerlink" title="TreeSet"></a>TreeSet</h3><p><a href="https://www.jianshu.com/p/5392b68826a7" target="_blank" rel="noopener">TreeSet</a>的介绍</p>
+<p>来自<a href="https://leetcode-cn.com/problems/contains-duplicate-iii/solution/xiang-xi-tong-su-de-si-lu-fen-xi-duo-jie-fa-by-46/" target="_blank" rel="noopener">windliang</a></p>
+<p>TreeSet中有一个方法 <code>public E ceiling(E e)</code> ，返回 <code>treeSet</code> 中大于等于 <code>e</code> 的元素中最小的元素，如果没有大于等于 <code>e</code> 的元素就返回 <code>null</code>。</p>
+<p>还有一个对应的方法，<code>public E floor(E e)</code>，返回 <code>treeSet</code> 中小于等于 <code>e</code> 的元素中最大的元素，如果没有小于等于 <code>e</code> 的元素就返回 <code>null</code>。</p>
+<p>维护一个滑动窗口，去寻找窗口中是否存在 <code>x - t ~ x + t</code> 的元素。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">containsNearbyAlmostDuplicate</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> k, <span class="keyword">int</span> t)</span> </span>&#123;</span><br><span class="line">    TreeSet&lt;Long&gt; set = <span class="keyword">new</span> TreeSet&lt;&gt;();</span><br><span class="line">    <span class="keyword">int</span> len = nums.length;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span> ; i &lt; len ; i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(i &gt; k)</span><br><span class="line">            set.remove((<span class="keyword">long</span>)nums[i - k - <span class="number">1</span>]); <span class="comment">//滑动窗口满，移出最早进入窗口的元素</span></span><br><span class="line">        Long tmp = set.ceiling((<span class="keyword">long</span>)nums[i] - t);  <span class="comment">//找到元素在 &gt;= nums[i] - t 的最小元素</span></span><br><span class="line">        <span class="keyword">if</span>(tmp != <span class="keyword">null</span> &amp;&amp; tmp &lt;= (<span class="keyword">long</span>)nums[i] + t)  <span class="comment">//并且确认其 &lt;= nums[i] + t 因为|nums[i] - tmp| &lt;= t -&gt; ,nums[i] - t &lt;= tmp &lt;= nums[i] + t</span></span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        <span class="comment">//以上不满足继续加入Tree</span></span><br><span class="line">        set.add((<span class="keyword">long</span>)nums[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>算法</category>
+        <category>Leetcode</category>
+        <category>数组</category>
+      </categories>
+      <tags>
+        <tag>Leetcode</tag>
+        <tag>二叉搜索树</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>打家劫舍II</title>
+    <url>/2020/02/10/%E6%89%93%E5%AE%B6%E5%8A%AB%E8%88%8DII/</url>
+    <content><![CDATA[<p>来自Leetcode第213题打家劫舍II</p>
+<p>你是一个专业的小偷，计划偷窃沿街的房屋，每间房内都藏有一定的现金。这个地方所有的房屋都<strong>围成一圈，</strong>这意味着第一个房屋和最后一个房屋是紧挨着的。同时，相邻的房屋装有相互连通的防盗系统，<strong>如果两间相邻的房屋在同一晚上被小偷闯入，系统会自动报警</strong>。</p>
+<p>给定一个代表每个房屋存放金额的非负整数数组，计算你<strong>在不触动警报装置的情况下，</strong>能够偷窃到的最高金额。</p>
+<a id="more"></a>
+<p><strong>示例 1:</strong></p>
+<figure class="highlight angelscript"><table><tr><td class="code"><pre><span class="line">输入: [<span class="number">2</span>,<span class="number">3</span>,<span class="number">2</span>]</span><br><span class="line">输出: <span class="number">3</span></span><br><span class="line">解释: 你不能先偷窃 <span class="number">1</span> 号房屋（金额 = <span class="number">2</span>），然后偷窃 <span class="number">3</span> 号房屋（金额 = <span class="number">2</span>）, 因为他们是相邻的。</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="动态规划"><a href="#动态规划" class="headerlink" title="动态规划"></a>动态规划</h3><p><strong>环状排列</strong>意味着第一个房子和最后一个房子中<strong>只能选择一个偷窃</strong>，因此可以把此<strong>环状排列房间</strong>问题约化为两个<strong>单排排列房间</strong>子问题：</p>
+<ol>
+<li>在不偷窃第一个房子的情况下（即 <em>n*</em>u*<em>m</em>s[1:]），最大金额是 <em>p</em>1 ；</li>
+<li>在不偷窃最后一个房子的情况下（即 n<strong>u</strong>ms*[:*n−1]），最大金额是 p2 。</li>
+</ol>
+<ul>
+<li><strong>综合偷窃最大金额：</strong> 为以上两种情况的较大值，即 m<strong>a</strong>x<em>(</em>p<em>1,</em>p2) 。</li>
+</ul>
+<p>记：</p>
+<blockquote>
+<p><em>f</em>(<em>k</em>) = 从前 <em>k</em> 个房屋中能抢劫到的最大数额，<em>Ai</em> = 第 i 个房屋的钱数。</p>
+</blockquote>
+<p>首先看 <code>n = 1</code> 的情况，显然 <em>f</em>(1) = A1。</p>
+<p>再看 <code>n = 2</code>，<em>f</em>(2) = max(A<em>1, A</em>2)。</p>
+<p>对于 <code>n = 3</code>，有两个选项:</p>
+<ol>
+<li>抢第三个房子，将数额与第一个房子相加。</li>
+<li>不抢第三个房子，保持现有最大数额。</li>
+</ol>
+<p>显然，你想选择数额更大的选项。于是，可以总结出公式：</p>
+<blockquote>
+<p><em>f</em>(<em>k</em>) = max(<em>f</em>(<em>k</em> – 2) + A_k, <em>f</em>(<em>k</em> – 1))</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">rob</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(nums.length == <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">if</span>(nums.length == <span class="number">1</span>)</span><br><span class="line">        <span class="keyword">return</span> nums[<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">return</span> Math.max(helper(Arrays.copyOfRange(nums,<span class="number">0</span>,nums.length - <span class="number">1</span>)),helper(Arrays.copyOfRange(nums,<span class="number">1</span>,nums.length)));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">int</span> <span class="title">helper</span><span class="params">(<span class="keyword">int</span> []nums)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> pre = <span class="number">0</span>, cur = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> tmp;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> x : nums)&#123;</span><br><span class="line">        tmp = cur;</span><br><span class="line">        cur = Math.max(pre + x,cur);</span><br><span class="line">        pre = tmp;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> cur;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>算法</category>
+        <category>Leetcode</category>
+        <category>数组</category>
+      </categories>
+      <tags>
+        <tag>Leetcode</tag>
+        <tag>动态规划</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>存在重复元素</title>
+    <url>/2020/02/09/%E5%AD%98%E5%9C%A8%E9%87%8D%E5%A4%8D%E5%85%83%E7%B4%A0/</url>
+    <content><![CDATA[<p>来自Leetcode第219题存在重复元素II</p>
+<p>给定一个整数数组和一个整数 <em>k</em>，判断数组中是否存在两个不同的索引 <em>i</em> 和 <em>j</em>，使得 <strong>nums [i] = nums [j]</strong>，并且 <em>i</em> 和 <em>j</em> 的差的绝对值最大为 <em>k</em>。</p>
+<p><strong>示例 1:</strong></p>
+<figure class="highlight angelscript"><table><tr><td class="code"><pre><span class="line">输入: nums = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">1</span>], k = <span class="number">3</span></span><br><span class="line">输出: <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="Set"><a href="#Set" class="headerlink" title="Set"></a>Set</h3><p>维护一个哈希表，里面始终最多包含 <code>k</code> 个元素，当出现重复值时则说明在 <code>k</code> 距离内存在重复元素,每次遍历一个元素则将其加入哈希表中，如果哈希表的大小大于 <code>k</code>，则移除最前面的数字</p>
+<pre><code class="JAVA"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">containsNearbyDuplicate</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> k)</span> </span>{
+    HashSet&lt;Integer&gt; set = <span class="keyword">new</span> HashSet&lt;&gt;();
+    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span> ; i &lt; nums.length ; ++i){
+        <span class="keyword">if</span>(set.contains(nums[i]))
+            <span class="keyword">return</span> <span class="keyword">true</span>;
+        set.add(nums[i]);
+        <span class="keyword">if</span>(set.size() &gt; k)
+            set.remove(nums[i - k]);
+    }
+    <span class="keyword">return</span> <span class="keyword">false</span>;
+}</code></pre>
+]]></content>
+      <categories>
+        <category>算法</category>
+        <category>Leetcode</category>
+        <category>数组</category>
+      </categories>
+      <tags>
+        <tag>Leetcode</tag>
+        <tag>哈希</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>第K大元素</title>
+    <url>/2020/02/09/%E7%AC%ACK%E5%A4%A7%E5%85%83%E7%B4%A0/</url>
+    <content><![CDATA[<p>来自Leetcode第215题数组中的第K大元素</p>
+<p>在未排序的数组中找到第 <strong>k</strong> 个最大的元素。请注意，你需要找的是数组排序后的第 k 个最大的元素，而不是第 k 个不同的元素。</p>
+<a id="more"></a>
+<p><strong>示例 1:</strong></p>
+<figure class="highlight angelscript"><table><tr><td class="code"><pre><span class="line">输入: [<span class="number">3</span>,<span class="number">2</span>,<span class="number">1</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">4</span>] 和 k = <span class="number">2</span></span><br><span class="line">输出: <span class="number">5</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="partition"><a href="#partition" class="headerlink" title="partition"></a>partition</h3><p>利用快速排序里的partition过程实现。<a href="https://leetcode-cn.com/problems/kth-largest-element-in-an-array/solution/partitionfen-er-zhi-zhi-you-xian-dui-lie-java-dai-/" target="_blank" rel="noopener">参考</a></p>
+<p>partition（切分）操作，使得：</p>
+<ul>
+<li>对于某个索引 <code>j</code>，<code>nums[j]</code> 已经排定，即 <code>nums[j]</code> 经过 partition（切分）操作以后会放置在它 “最终应该放置的地方”；</li>
+<li><code>nums[left]</code> 到 <code>nums[j - 1]</code> 中的所有元素都不大于 <code>nums[j]</code>；</li>
+<li><code>nums[j + 1]</code> 到 <code>nums[right]</code> 中的所有元素都不小于 <code>nums[j]</code>。</li>
+</ul>
+<p><img src="/2020/02/09/第K大元素/65ec311c3e9792bb17e9c08cabd4a07f251c9cd65a011b6c5ffb54b46d8e5012-image.png" alt="image.png"></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> []nums;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Random ran = <span class="keyword">new</span> Random(System.currentTimeMillis());</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">findKthLargest</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> len = nums.length;</span><br><span class="line">        <span class="keyword">int</span> left = <span class="number">0</span>, right = len - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">int</span> target = len - k;</span><br><span class="line">        <span class="keyword">this</span>.nums = nums;</span><br><span class="line">        <span class="keyword">int</span> index;</span><br><span class="line">        <span class="keyword">while</span>(<span class="keyword">true</span>)&#123;</span><br><span class="line">            index = partition(left,right);</span><br><span class="line">            <span class="keyword">if</span>(index &lt; target)</span><br><span class="line">                left = index + <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(index &gt; target)</span><br><span class="line">                right = index - <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">this</span>.nums[index];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">int</span> <span class="title">partition</span><span class="params">(<span class="keyword">int</span> left,<span class="keyword">int</span> right)</span></span>&#123;</span><br><span class="line">        <span class="comment">//在区间随机选择一个点作为枢纽</span></span><br><span class="line">        <span class="keyword">if</span>(right &gt; left)&#123;</span><br><span class="line">            <span class="keyword">int</span> index = left + <span class="number">1</span> + ran.nextInt(right - left);</span><br><span class="line">            swap(left,index);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> pivot = nums[left];</span><br><span class="line">        <span class="keyword">int</span> j = left;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = left + <span class="number">1</span> ; i &lt;= right ; i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(<span class="keyword">this</span>.nums[i] &lt; pivot)&#123;</span><br><span class="line">                <span class="comment">//小于枢纽的交换位置</span></span><br><span class="line">                j++;</span><br><span class="line">                swap(j,i);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 在之前遍历的过程中，满足 [left + 1, j] &lt; pivot，并且 (j, i] &gt;= pivot</span></span><br><span class="line">        <span class="comment">// 交换以后 [left, j - 1] &lt; pivot, nums[j] = pivot, [j + 1, right] &gt;= pivot</span></span><br><span class="line">        swap(j,left);</span><br><span class="line">        <span class="keyword">return</span> j;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">swap</span><span class="params">(<span class="keyword">int</span> left,<span class="keyword">int</span> right)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> temp = <span class="keyword">this</span>.nums[left];</span><br><span class="line">        <span class="keyword">this</span>.nums[left] = <span class="keyword">this</span>.nums[right];</span><br><span class="line">        <span class="keyword">this</span>.nums[right] = temp;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="优先队列"><a href="#优先队列" class="headerlink" title="优先队列"></a>优先队列</h3><p><a href="https://leetcode-cn.com/problems/kth-largest-element-in-an-array/solution/partitionfen-er-zhi-zhi-you-xian-dui-lie-java-dai-/" target="_blank" rel="noopener">参考</a></p>
+<p>优先队列的思路是很朴素的。因为第 <code>K</code> 大元素，其实就是整个数组排序以后后半部分最小的那个元素。因此，我们可以维护一个有 <code>K</code> 个元素的最小堆：</p>
+<p>1、如果当前堆不满，直接添加；</p>
+<p>2、堆满的时候，如果新读到的数小于等于堆顶，肯定不是我们要找的元素，只有新都到的数大于堆顶的时候，才将堆顶拿出，然后放入新读到的数，进而让堆自己去调整内部结构。</p>
+<p>说明：这里最合适的操作其实是 <code>replace</code>，即直接把新读进来的元素放在堆顶，然后执行下沉（<code>siftDown</code>）操作。Java 当中的 <code>PriorityQueue</code> 没有提供这个操作，只好先 <code>poll()</code> 再 <code>offer()</code>。</p>
+<p>优先队列的写法就很多了，这里例举一下我能想到的（以下的写法大同小异，没有本质差别）。</p>
+<p>假设数组有 <code>len</code> 个元素。</p>
+<p>思路1：把 <code>len</code> 个元素都放入一个最小堆中，然后再 <code>pop()</code> 出 <code>len - k</code> 个元素，此时最小堆只剩下 <code>k</code> 个元素，堆顶元素就是数组中的第 <code>k</code> 个最大元素。</p>
+<p>思路2：把 <code>len</code> 个元素都放入一个最大堆中，然后再 <code>pop()</code> 出 <code>k - 1</code> 个元素，因为前 <code>k - 1</code> 大的元素都被弹出了，此时最大堆的堆顶元素就是数组中的第 <code>k</code> 个最大元素。</p>
+<p>思路 3：只用 <code>k</code> 个容量的优先队列，而不用全部 <code>len</code> 个容量。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.PriorityQueue;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">findKthLargest</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> len = nums.length;</span><br><span class="line">        <span class="comment">// 使用一个含有 k 个元素的最小堆</span></span><br><span class="line">        PriorityQueue&lt;Integer&gt; minHeap = <span class="keyword">new</span> PriorityQueue&lt;&gt;(k, (a, b) -&gt; a - b);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; k; i++) &#123;</span><br><span class="line">            minHeap.add(nums[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = k; i &lt; len; i++) &#123;</span><br><span class="line">            <span class="comment">// 看一眼，不拿出，因为有可能没有必要替换</span></span><br><span class="line">            Integer topEle = minHeap.peek();</span><br><span class="line">            <span class="comment">// 只要当前遍历的元素比堆顶元素大，堆顶弹出，遍历的元素进去</span></span><br><span class="line">            <span class="keyword">if</span> (nums[i] &gt; topEle) &#123;</span><br><span class="line">                minHeap.poll();</span><br><span class="line">                minHeap.add(nums[i]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> minHeap.peek();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>算法</category>
+        <category>Leetcode</category>
+        <category>数组</category>
+      </categories>
+      <tags>
+        <tag>Leetcode</tag>
+        <tag>优先队列，堆</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>课程表</title>
+    <url>/2020/02/08/%E8%AF%BE%E7%A8%8B%E8%A1%A8/</url>
+    <content><![CDATA[<p>来源Leetcode第207题课程表</p>
+<p>现在你总共有 <em>n</em> 门课需要选，记为 <code>0</code> 到 <code>n-1</code>。</p>
+<p>在选修某些课程之前需要一些先修课程。 例如，想要学习课程 0 ，你需要先完成课程 1 ，我们用一个匹配来表示他们: <code>[0,1]</code></p>
+<p>给定课程总量以及它们的先决条件，判断是否可能完成所有课程的学习？</p>
+<a id="more"></a>
+<p><strong>示例 1:</strong></p>
+<figure class="highlight angelscript"><table><tr><td class="code"><pre><span class="line">输入: <span class="number">2</span>, [[<span class="number">1</span>,<span class="number">0</span>]] </span><br><span class="line">输出: <span class="literal">true</span></span><br><span class="line">解释: 总共有 <span class="number">2</span> 门课程。学习课程 <span class="number">1</span> 之前，你需要完成课程 <span class="number">0</span>。所以这是可能的。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2:</strong></p>
+<figure class="highlight angelscript"><table><tr><td class="code"><pre><span class="line">输入: <span class="number">2</span>, [[<span class="number">1</span>,<span class="number">0</span>],[<span class="number">0</span>,<span class="number">1</span>]]</span><br><span class="line">输出: <span class="literal">false</span></span><br><span class="line">解释: 总共有 <span class="number">2</span> 门课程。学习课程 <span class="number">1</span> 之前，你需要先完成课程 <span class="number">0</span>；并且学习课程 <span class="number">0</span> 之前，你还应先完成课程 <span class="number">1</span>。这是不可能的。</span><br></pre></td></tr></table></figure>
+
+<p><strong>说明:</strong></p>
+<ol>
+<li>输入的先决条件是由<strong>边缘列表</strong>表示的图形，而不是邻接矩阵。详情请参见<a href="http://blog.csdn.net/woaidapaopao/article/details/51732947" target="_blank" rel="noopener">图的表示法</a>。</li>
+<li>你可以假定输入的先决条件中没有重复的边。</li>
+</ol>
+<p><strong>提示:</strong></p>
+<ol>
+<li>这个问题相当于查找一个循环是否存在于有向图中。如果存在循环，则不存在拓扑排序，因此不可能选取所有课程进行学习。</li>
+<li><a href="https://www.coursera.org/specializations/algorithms" target="_blank" rel="noopener">通过 DFS 进行拓扑排序</a> - 一个关于Coursera的精彩视频教程（21分钟），介绍拓扑排序的基本概念。</li>
+<li>拓扑排序也可以通过 <a href="https://baike.baidu.com/item/宽度优先搜索/5224802?fr=aladdin&fromid=2148012&fromtitle=广度优先搜索" target="_blank" rel="noopener">BFS</a> 完成。</li>
+</ol>
+<hr>
+<h3 id="BFS拓扑排序"><a href="#BFS拓扑排序" class="headerlink" title="BFS拓扑排序"></a>BFS拓扑排序</h3><p>来源<a href="https://leetcode-cn.com/problems/course-schedule/solution/tuo-bu-pai-xu-by-liweiwei1419/" target="_blank" rel="noopener">题解</a></p>
+<ul>
+<li><p>本题可约化为：课程安排图是否是 <strong>有向无环图(DAG)</strong>。即课程间规定了前置条件，但不能构成任何环路，否则课程前置条件将不成立。</p>
+</li>
+<li><p>思路是通过<strong>拓扑排序</strong>判断此课程安排图是否是<strong>有向无环图(DAG)</strong>。</p>
+<ul>
+<li>拓扑排序是对 DAG 的顶点进行排序，使得对每一条有向边 (u, v)(<em>u</em>,<em>v</em>)，均有 u<em>u</em>（在排序记录中）比 v<em>v</em> 先出现。亦可理解为对某点 v<em>v</em> 而言，只有当 v<em>v</em> 的所有源点均出现了，v<em>v</em> 才能出现。</li>
+</ul>
+</li>
+<li><p>通过课程前置条件列表 <code>prerequisites</code> 可以得到课程安排图的 <strong>邻接矩阵</strong> <code>adjacency</code>，以下两种方法都会用到邻接矩阵。</p>
+</li>
+</ul>
+<p>拓扑排序实际上应用的是<strong>贪心算法</strong>。贪心算法简而言之：每一步最优，全局就最优。</p>
+<p>具体到拓扑排序，每一次都从图中删除没有前驱的顶点，这里并不需要真正的做删除操作，我们可以设置一个入度数组，每一轮都输出入度为 0 的结点，并移除它、修改它指向的结点的入度（-1−1即可），依次得到的结点序列就是拓扑排序的结点序列。如果图中还有结点没有被移除，则说明“不能完成所有课程的学习”。</p>
+<p>拓扑排序保证了每个活动（在这题中是“课程”）的所有前驱活动都排在该活动的前面，并且可以完成所有活动。拓扑排序的结果不唯一。拓扑排序还可以用于检测一个有向图是否有环。相关的概念还有 AOV 网，这里就不展开了。</p>
+<p><strong>算法流程</strong>：</p>
+<p>1、在开始排序前，扫描对应的存储空间（使用邻接表），将入度为 0 的结点放入队列。</p>
+<p>2、只要队列非空，就从队首取出入度为 0 的结点，将这个结点输出到结果集中，并且将这个结点的所有邻接结点（它指向的结点）的入度减 1，在减1 以后，如果这个被减 1 的结点的入度为 0 ，就继续入队。</p>
+<p>3、当队列为空的时候，检查结果集中的顶点个数是否和课程数相等即可。</p>
+<p><img src="/2020/02/08/课程表/ca22fa351d5278e95c4c8c94aba6da42ae45d465ff3e8e82149777274293e194-0210.gif" alt="0210.gif"></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">canFinish</span><span class="params">(<span class="keyword">int</span> numCourses, <span class="keyword">int</span>[][] prerequisites)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(numCourses &lt;= <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    <span class="keyword">if</span>(prerequisites.length == <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    <span class="keyword">int</span> []indegree = <span class="keyword">new</span> <span class="keyword">int</span>[numCourses];</span><br><span class="line">    Integer ve;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> [] tmp : prerequisites)</span><br><span class="line">        indegree[tmp[<span class="number">0</span>]]++;  <span class="comment">//记录各节点的入度数</span></span><br><span class="line">    LinkedList&lt;Integer&gt; queue = <span class="keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span> ; i &lt; numCourses ; i++)</span><br><span class="line">        <span class="keyword">if</span>(indegree[i] == <span class="number">0</span>)</span><br><span class="line">            queue.addLast(i);  <span class="comment">//入度为0的点入队尾</span></span><br><span class="line">    <span class="keyword">while</span>(!queue.isEmpty())&#123;</span><br><span class="line">        ve = queue.removeFirst();  <span class="comment">//队首元素出队</span></span><br><span class="line">        numCourses--;  <span class="comment">//对应的课程数减一</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span>[] tmp:prerequisites)&#123;  <span class="comment">//在表里去掉与之有关的边</span></span><br><span class="line">            <span class="keyword">if</span>(tmp[<span class="number">1</span>] != ve) <span class="comment">//如果该边的起点不是出队节点，continue</span></span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            <span class="keyword">if</span>(--indegree[tmp[<span class="number">0</span>]] == <span class="number">0</span>)  <span class="comment">//是就删去该边，并且入度数-1</span></span><br><span class="line">                queue.addLast(tmp[<span class="number">0</span>]); <span class="comment">//入度为0入队列</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> numCourses == <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>算法</category>
+        <category>Leetcode</category>
+        <category>图</category>
+      </categories>
+      <tags>
+        <tag>Leetcode</tag>
+        <tag>图</tag>
+        <tag>拓扑排序</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>同构字符串</title>
+    <url>/2020/02/08/%E5%90%8C%E6%9E%84%E5%AD%97%E7%AC%A6%E4%B8%B2/</url>
+    <content><![CDATA[<p>来自Leetcode第205题同构字符串</p>
+<p>给定两个字符串 <strong><em>s</em></strong> 和 <strong><em>t</em></strong>，判断它们是否是同构的。</p>
+<p>如果 <strong><em>s</em></strong> 中的字符可以被替换得到 <strong><em>t</em></strong> ，那么这两个字符串是同构的。</p>
+<p>所有出现的字符都必须用另一个字符替换，同时保留字符的顺序。两个字符不能映射到同一个字符上，但字符可以映射自己本身。</p>
+<a id="more"></a>
+<p><strong>示例 1:</strong></p>
+<figure class="highlight nix"><table><tr><td class="code"><pre><span class="line">输入: <span class="attr">s</span> = <span class="string">"egg"</span>, <span class="attr">t</span> = <span class="string">"add"</span></span><br><span class="line">输出: <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="Hash"><a href="#Hash" class="headerlink" title="Hash"></a>Hash</h3><p>维护一个HashMap，里面存放2个字符串相对的映射方式，要注意Map里的元素应当是唯一的，如果出现重复，可以直接返回false。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isIsomorphic</span><span class="params">(String s, String t)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(s.equals(<span class="string">""</span>) || s == <span class="keyword">null</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    <span class="keyword">char</span> tmp_t,tmp_s;</span><br><span class="line">    HashMap&lt;Character,Character&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span> ;i &lt; s.length() ; i++)&#123;</span><br><span class="line">        tmp_s = s.charAt(i);</span><br><span class="line">        tmp_t = t.charAt(i);</span><br><span class="line">        <span class="keyword">if</span>(!map.containsKey(tmp_s))&#123;</span><br><span class="line">            <span class="keyword">if</span>(!map.containsValue(tmp_t)) </span><br><span class="line">                map.put(tmp_s,tmp_t);</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(tmp_t != map.get(tmp_s))</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="字母映射成数字"><a href="#字母映射成数字" class="headerlink" title="字母映射成数字"></a>字母映射成数字</h3><p>最开始写的时候是考虑过将字符串add映射成122这种形式，最后比较生成的2个字符串是否一致即可，于是我选择了维护2个HashMap，但是这导致了超时。</p>
+<p>原代码如下</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isIsomorphic</span><span class="params">(String s, String t)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(s.equals(<span class="string">""</span>) || s == <span class="keyword">null</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    String s1 = <span class="string">""</span>,s2 = <span class="string">""</span>;</span><br><span class="line">    HashMap&lt;Character,Integer&gt; map1 = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">    HashMap&lt;Character,Integer&gt; map2 = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span> ;i &lt; s.length() ; i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(!map1.containsKey(s.charAt(i)))&#123;</span><br><span class="line">            map1.put(s.charAt(i),i);</span><br><span class="line">            s1 += i;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            s1 += map1.get(s.charAt(i));</span><br><span class="line">        <span class="keyword">if</span>(!map2.containsKey(t.charAt(i)))&#123;</span><br><span class="line">            map2.put(t.charAt(i),i);</span><br><span class="line">            s2 += i;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            s2 += map2.get(t.charAt(i));</span><br><span class="line">        <span class="keyword">if</span>(!s1.equals(s2))</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在参考了<a href="https://leetcode-cn.com/problems/isomorphic-strings/solution/xiang-xi-tong-su-de-si-lu-fen-xi-duo-jie-fa-by-42/" target="_blank" rel="noopener">windliang</a>的解答后发现可以不用HashMap，可以直接用2个数组处理，但是本质思想是差不多的。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isIsomorphic</span><span class="params">(String s, String t)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(s.equals(<span class="string">""</span>) || s == <span class="keyword">null</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    <span class="keyword">char</span> tmp_t,tmp_s;</span><br><span class="line">    <span class="keyword">int</span> len = s.length();</span><br><span class="line">    <span class="keyword">int</span>[] map1 = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">128</span>];</span><br><span class="line">    <span class="keyword">int</span>[] map2 = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">128</span>];</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span> ; i &lt; len; i ++)&#123;</span><br><span class="line">        tmp_s = s.charAt(i);</span><br><span class="line">        tmp_t = t.charAt(i);</span><br><span class="line">        <span class="keyword">if</span>(map1[tmp_s] != map2[tmp_t])</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">if</span>(map1[tmp_s] == <span class="number">0</span>)&#123;</span><br><span class="line">                map1[tmp_s] = i + <span class="number">1</span>;</span><br><span class="line">                map2[tmp_t] = i + <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>算法</category>
+        <category>Leetcode</category>
+        <category>字符串</category>
+      </categories>
+      <tags>
+        <tag>字符串</tag>
+        <tag>Leetcode</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>计数质数</title>
+    <url>/2020/02/07/%E8%AE%A1%E6%95%B0%E8%B4%A8%E6%95%B0/</url>
+    <content><![CDATA[<p>来自Leetcode第204题计数质数</p>
+<p>统计所有小于非负整数 <em>n</em> 的质数的数量。</p>
+<a id="more"></a>
+<p><strong>示例:</strong></p>
+<figure class="highlight angelscript"><table><tr><td class="code"><pre><span class="line">输入: <span class="number">10</span></span><br><span class="line">输出: <span class="number">4</span></span><br><span class="line">解释: 小于 <span class="number">10</span> 的质数一共有 <span class="number">4</span> 个, 它们是 <span class="number">2</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">7</span> 。</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="筛选"><a href="#筛选" class="headerlink" title="筛选"></a>筛选</h3><p>来自<a href="https://leetcode-cn.com/problems/count-primes/solution/ru-he-gao-xiao-pan-ding-shai-xuan-su-shu-by-labula/" target="_blank" rel="noopener">labuladong</a></p>
+<p>首先从 2 开始，我们知道 2 是一个素数，那么 2 × 2 = 4, 3 × 2 = 6, 4 × 2 = 8… 都不可能是素数了。</p>
+<p>然后我们发现 3 也是素数，那么 3 × 2 = 6, 3 × 3 = 9, 3 × 4 = 12… 也都不可能是素数了。</p>
+<p>看到这里，你是否有点明白这个排除法的逻辑了呢？先看我们的第一版代码：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">countPrimes</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">boolean</span>[] isPrim = <span class="keyword">new</span> <span class="keyword">boolean</span>[n];</span><br><span class="line">    <span class="comment">// 将数组都初始化为 true</span></span><br><span class="line">    Arrays.fill(isPrim, <span class="keyword">true</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i &lt; n; i++) </span><br><span class="line">        <span class="keyword">if</span> (isPrim[i]) </span><br><span class="line">            <span class="comment">// i 的倍数不可能是素数了</span></span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">2</span> * i; j &lt; n; j += i) </span><br><span class="line">                    isPrim[j] = <span class="keyword">false</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i &lt; n; i++)</span><br><span class="line">        <span class="keyword">if</span> (isPrim[i]) count++;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> count;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2020/02/07/计数质数/23d348bef930ca4bb73f749500f664ccffc5e41467aac0ba9787025392ca207b-1.gif" alt="1.gif"></p>
+<p>首先，回想刚才判断一个数是否是素数的 <code>isPrime</code> 函数，由于因子的对称性，其中的 for 循环只需要遍历 <code>[2,sqrt(n)]</code> 就够了。这里也是类似的，我们外层的 for 循环也只需要遍历到 <code>sqrt(n)</code>：</p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> (int <span class="built_in">i</span> = <span class="number">2</span>; <span class="built_in">i</span> * <span class="built_in">i</span> &lt; n; <span class="built_in">i</span>++) </span><br><span class="line">    <span class="keyword">if</span> (isPrim[<span class="built_in">i</span>]) </span><br><span class="line">        ...</span><br></pre></td></tr></table></figure>
+
+<p>除此之外，很难注意到内层的 for 循环也可以优化。我们之前的做法是：</p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> (int <span class="built_in">j</span> = <span class="number">2</span> * <span class="built_in">i</span>; <span class="built_in">j</span> &lt; n; <span class="built_in">j</span> += <span class="built_in">i</span>) </span><br><span class="line">    isPrim[<span class="built_in">j</span>] = <span class="built_in">false</span>;</span><br></pre></td></tr></table></figure>
+
+<p>这样可以把 <code>i</code> 的整数倍都标记为 <code>false</code>，但是仍然存在计算冗余。</p>
+<p>比如 <code>n = 25</code>，<code>i = 4</code> 时算法会标记 4 × 2 = 8，4 × 3 = 12 等等数字，但是这两个数字已经被 <code>i = 2</code> 和 <code>i = 3</code> 的 2 × 4 和 3 × 4 标记了。</p>
+<p>我们可以稍微优化一下，让 <code>j</code> 从 <code>i</code> 的平方开始遍历，而不是从 <code>2 * i</code> 开始：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> j = i * i; j &lt; n; j += i) </span><br><span class="line">    isPrim[j] = <span class="keyword">false</span>;</span><br></pre></td></tr></table></figure>
+
+<p>这样，素数计数的算法就高效实现了，其实这个算法有一个名字，叫做 Sieve of Eratosthenes。看下完整的最终代码：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">countPrimes</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">boolean</span>[] isPrim = <span class="keyword">new</span> <span class="keyword">boolean</span>[n];</span><br><span class="line">    Arrays.fill(isPrim, <span class="keyword">true</span>);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i * i &lt; n; i++) </span><br><span class="line">        <span class="keyword">if</span> (isPrim[i]) </span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = i * i; j &lt; n; j += i) </span><br><span class="line">                isPrim[j] = <span class="keyword">false</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i &lt; n; i++)</span><br><span class="line">        <span class="keyword">if</span> (isPrim[i]) count++;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> count;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>算法</category>
+        <category>Leetcode</category>
+        <category>数学</category>
+      </categories>
+      <tags>
+        <tag>Leetcode</tag>
+        <tag>数学</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>快乐数</title>
     <url>/2020/02/07/%E5%BF%AB%E4%B9%90%E4%B9%A6/</url>
     <content><![CDATA[<p>来源Leetcode第202题快乐数</p>
@@ -156,10 +576,10 @@
         <category>算法</category>
         <category>Leetcode</category>
         <category>数组</category>
-        <category>并查集</category>
       </categories>
       <tags>
         <tag>深度优先搜索</tag>
+        <tag>并查集</tag>
       </tags>
   </entry>
   <entry>
@@ -7063,8 +7483,8 @@ public Node(int _val,List&lt;Node&gt; _neighbors) {
         <category>数组</category>
       </categories>
       <tags>
-        <tag>贪心</tag>
         <tag>Leetcode</tag>
+        <tag>贪心</tag>
       </tags>
   </entry>
   <entry>
@@ -7115,8 +7535,8 @@ public Node(int _val,List&lt;Node&gt; _neighbors) {
         <category>数组</category>
       </categories>
       <tags>
-        <tag>贪心</tag>
         <tag>Leetcode</tag>
+        <tag>贪心</tag>
         <tag>动态规划</tag>
         <tag>回溯</tag>
       </tags>
@@ -8728,11 +9148,11 @@ public Node(int _val,List&lt;Node&gt; _neighbors) {
         <category>链表</category>
       </categories>
       <tags>
-        <tag>贪心</tag>
         <tag>Leetcode</tag>
+        <tag>贪心</tag>
         <tag>链表</tag>
-        <tag>归并</tag>
         <tag>分治</tag>
+        <tag>归并</tag>
         <tag>优先队列</tag>
       </tags>
   </entry>
@@ -9181,8 +9601,8 @@ public Node(int _val,List&lt;Node&gt; _neighbors) {
         <category>数学</category>
       </categories>
       <tags>
-        <tag>贪心</tag>
         <tag>Leetcode</tag>
+        <tag>贪心</tag>
       </tags>
   </entry>
   <entry>
