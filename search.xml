@@ -1,6 +1,468 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>长度最小的子数组</title>
+    <url>/2020/02/13/%E9%95%BF%E5%BA%A6%E6%9C%80%E5%B0%8F%E7%9A%84%E5%AD%90%E6%95%B0%E7%BB%84/</url>
+    <content><![CDATA[<p>来自Leetcode第209题长度最小的子数组</p>
+<p>给定一个含有 <strong>n</strong> 个正整数的数组和一个正整数 <strong>s ，</strong>找出该数组中满足其和 <strong>≥ s</strong> 的长度最小的连续子数组<strong>。</strong>如果不存在符合条件的连续子数组，返回 0。</p>
+<a id="more"></a>
+<p><strong>示例:</strong> </p>
+<figure class="highlight angelscript"><table><tr><td class="code"><pre><span class="line">输入: s = <span class="number">7</span>, nums = [<span class="number">2</span>,<span class="number">3</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">4</span>,<span class="number">3</span>]</span><br><span class="line">输出: <span class="number">2</span></span><br><span class="line">解释: 子数组 [<span class="number">4</span>,<span class="number">3</span>] 是该条件下的长度最小的连续子数组。</span><br></pre></td></tr></table></figure>
+
+<p><strong>进阶:</strong></p>
+<p>如果你已经完成了<em>O</em>(<em>n</em>) 时间复杂度的解法, 请尝试 <em>O</em>(<em>n</em> log <em>n</em>) 时间复杂度的解法。</p>
+<h3 id="丢人写法"><a href="#丢人写法" class="headerlink" title="丢人写法"></a>丢人写法</h3><p>双指针，一开始按照等于做的直接错了，是大于等于，此外还要注意临界条件，当<code>nums[right] &gt;= s</code>时，可以直接返回1；当<code>if(minlen == Integer.MAX_VALUE || right - left == len)</code>时，意味着没满足条件，应当返回0.</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">minSubArrayLen</span><span class="params">(<span class="keyword">int</span> s, <span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(nums.length == <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> minlen = Integer.MAX_VALUE;</span><br><span class="line">    <span class="keyword">int</span> left = <span class="number">0</span>, right = <span class="number">0</span>,len = nums.length;</span><br><span class="line">    <span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(right &lt; len)&#123;</span><br><span class="line">        <span class="keyword">if</span>(nums[right] &gt;= s)&#123;</span><br><span class="line">            <span class="comment">//minlen = 1;</span></span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        sum += nums[right];</span><br><span class="line">        <span class="keyword">if</span>(sum &gt;= s)&#123;</span><br><span class="line">            <span class="keyword">while</span>(sum &gt;= s &amp;&amp; left &lt; right) &#123;</span><br><span class="line">                <span class="keyword">if</span> (minlen &gt; right - left + <span class="number">1</span>) &#123;</span><br><span class="line">                    minlen = right - left + <span class="number">1</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                    sum -= nums[left];</span><br><span class="line">                    left++;  <span class="comment">//左指针移动</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        right++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(minlen == Integer.MAX_VALUE || right - left == len)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">return</span> minlen;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="精简双指针"><a href="#精简双指针" class="headerlink" title="精简双指针"></a>精简双指针</h3><p>用双指针 left 和 right 表示一个窗口。</p>
+<ol>
+<li>right 向右移增大窗口，直到窗口内的数字和大于等于了 <code>s</code>。进行第 <code>2</code> 步。</li>
+<li>记录此时的长度，left 向右移动，开始减少长度，每减少一次，就更新最小长度。直到当前窗口内的数字和小于了 <code>s</code>，回到第 1 步。</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">minSubArrayLen</span><span class="params">(<span class="keyword">int</span> s, <span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (nums == <span class="keyword">null</span> || nums.length == <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> left = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> right = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> min = Integer.MAX_VALUE;</span><br><span class="line">    <span class="keyword">while</span> (right &lt; nums.length) &#123;</span><br><span class="line">        sum += nums[right];</span><br><span class="line">        right++;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> (sum &gt;= s) &#123;</span><br><span class="line">            min = Math.min(min, right - left);</span><br><span class="line">            sum -= nums[left];</span><br><span class="line">            left++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> min == Integer.MAX_VALUE ? <span class="number">0</span> : min;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="二分查找"><a href="#二分查找" class="headerlink" title="二分查找"></a>二分查找</h3><p><a href="https://leetcode-cn.com/problems/minimum-size-subarray-sum/solution/xiang-xi-tong-su-de-si-lu-fen-xi-duo-jie-fa-by-43/" target="_blank" rel="noopener">来自</a></p>
+<p>题目中，我们要寻找连续的数字和大于等于 <code>s</code> 的最小长度。那么，我们可以对这个长度采取二分的方法去寻找吗？</p>
+<p>答案是肯定的，原因就是长度为 <code>1</code> 的所有连续数字中最大的和、长度为 <code>2</code> 的所有连续数字中最大的和、长度为 <code>3</code> 的所有连续数字中最大的和 … 长度为 <code>n</code> 的所有连续数字中最大的和，同样是一个升序数组。</p>
+<p>算法的话就是对长度进行二分，寻求满足条件的最小长度。</p>
+<p>对于长度为 <code>n</code> 的数组，我们先去判断长度为 <code>n/2</code> 的连续数字中最大的和是否大于等于 <code>s</code>。</p>
+<ul>
+<li>如果大于等于 <code>s</code> ，那么我们需要减少长度，继续判断所有长度为 <code>n/4</code> 的连续数字</li>
+<li>如果小于 <code>s</code>，我们需要增加长度，我们继续判断所有长度为 <code>(n/2 + n) / 2</code>，也就是 <code>3n/4</code> 的连续数字。</li>
+</ul>
+<p>可以再结合下边的代码看一下。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">minSubArrayLen</span><span class="params">(<span class="keyword">int</span> s, <span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n = nums.length;</span><br><span class="line">    <span class="keyword">if</span> (n == <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> minLen = <span class="number">0</span>, maxLen = n;</span><br><span class="line">    <span class="keyword">int</span> midLen;</span><br><span class="line">    <span class="keyword">int</span> min = -<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span> (minLen &lt;= maxLen) &#123;</span><br><span class="line">        <span class="comment">//取中间的长度</span></span><br><span class="line">        midLen = (minLen + maxLen) &gt;&gt;&gt; <span class="number">1</span>;</span><br><span class="line">        <span class="comment">//判断当前长度的最大和是否大于等于 s</span></span><br><span class="line">        <span class="keyword">if</span> (getMaxSum(midLen, nums) &gt;= s) &#123;</span><br><span class="line">            maxLen = midLen - <span class="number">1</span>; <span class="comment">//减小长度</span></span><br><span class="line">            min = midLen; <span class="comment">//更新最小值</span></span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            minLen = midLen + <span class="number">1</span>; <span class="comment">//增大长度</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> min == -<span class="number">1</span> ? <span class="number">0</span> : min;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">int</span> <span class="title">getMaxSum</span><span class="params">(<span class="keyword">int</span> len, <span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n = nums.length;</span><br><span class="line">    <span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> maxSum = <span class="number">0</span>;</span><br><span class="line">    <span class="comment">// 达到长度</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len; i++) &#123;</span><br><span class="line">        sum += nums[i];</span><br><span class="line">    &#125;</span><br><span class="line">    maxSum = sum; <span class="comment">// 初始化 maxSum</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = len; i &lt; n; i++) &#123;</span><br><span class="line">        <span class="comment">// 加一个数字减一个数字，保持长度不变</span></span><br><span class="line">        sum += nums[i];</span><br><span class="line">        sum = sum - nums[i - len];</span><br><span class="line">        <span class="comment">// 更新 maxSum</span></span><br><span class="line">        maxSum = Math.max(maxSum, sum);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> maxSum;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>算法</category>
+        <category>Leetcode</category>
+        <category>数组</category>
+      </categories>
+      <tags>
+        <tag>双指针</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>滑动窗口中的最大值</title>
+    <url>/2020/02/13/%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3%E4%B8%AD%E7%9A%84%E6%9C%80%E5%A4%A7%E5%80%BC/</url>
+    <content><![CDATA[<p>来源Leetcode第239题滑动窗口中的最大值</p>
+<p>给定一个数组 <em>nums*，有一个大小为 *k</em> 的滑动窗口从数组的最左侧移动到数组的最右侧。你只可以看到在滑动窗口内的 <em>k</em> 个数字。滑动窗口每次只向右移动一位。</p>
+<p>返回滑动窗口中的最大值。</p>
+<a id="more"></a>
+<p><strong>示例:</strong></p>
+<figure class="highlight angelscript"><table><tr><td class="code"><pre><span class="line">输入: nums = [<span class="number">1</span>,<span class="number">3</span>,<span class="number">-1</span>,<span class="number">-3</span>,<span class="number">5</span>,<span class="number">3</span>,<span class="number">6</span>,<span class="number">7</span>], 和 k = <span class="number">3</span></span><br><span class="line">输出: [<span class="number">3</span>,<span class="number">3</span>,<span class="number">5</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>] </span><br><span class="line">解释: </span><br><span class="line"></span><br><span class="line">  滑动窗口的位置                最大值</span><br><span class="line">---------------               -----</span><br><span class="line">[<span class="number">1</span>  <span class="number">3</span>  <span class="number">-1</span>] <span class="number">-3</span>  <span class="number">5</span>  <span class="number">3</span>  <span class="number">6</span>  <span class="number">7</span>       <span class="number">3</span></span><br><span class="line"> <span class="number">1</span> [<span class="number">3</span>  <span class="number">-1</span>  <span class="number">-3</span>] <span class="number">5</span>  <span class="number">3</span>  <span class="number">6</span>  <span class="number">7</span>       <span class="number">3</span></span><br><span class="line"> <span class="number">1</span>  <span class="number">3</span> [<span class="number">-1</span>  <span class="number">-3</span>  <span class="number">5</span>] <span class="number">3</span>  <span class="number">6</span>  <span class="number">7</span>       <span class="number">5</span></span><br><span class="line"> <span class="number">1</span>  <span class="number">3</span>  <span class="number">-1</span> [<span class="number">-3</span>  <span class="number">5</span>  <span class="number">3</span>] <span class="number">6</span>  <span class="number">7</span>       <span class="number">5</span></span><br><span class="line"> <span class="number">1</span>  <span class="number">3</span>  <span class="number">-1</span>  <span class="number">-3</span> [<span class="number">5</span>  <span class="number">3</span>  <span class="number">6</span>] <span class="number">7</span>       <span class="number">6</span></span><br><span class="line"> <span class="number">1</span>  <span class="number">3</span>  <span class="number">-1</span>  <span class="number">-3</span>  <span class="number">5</span> [<span class="number">3</span>  <span class="number">6</span>  <span class="number">7</span>]      <span class="number">7</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>提示：</strong></p>
+<p>你可以假设 <em>k</em> 总是有效的，在输入数组不为空的情况下，1 ≤ k ≤ 输入数组的大小。</p>
+<hr>
+<h3 id="暴力遍历"><a href="#暴力遍历" class="headerlink" title="暴力遍历"></a>暴力遍历</h3><p>思路同重复元素III，在数组中划定长度为k的滑动窗口，通过2重循环，依次找到每个滑动窗口里的最大值。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">int</span>[] maxSlidingWindow(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> k) &#123;</span><br><span class="line">    <span class="keyword">int</span> len = nums.length;</span><br><span class="line">    <span class="keyword">if</span>(len * k == <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">int</span> [] ans = <span class="keyword">new</span> <span class="keyword">int</span>[len - k + <span class="number">1</span>];</span><br><span class="line">    <span class="comment">//LinkedList&lt;Integer&gt; queue = new LinkedList&lt;&gt;();</span></span><br><span class="line">    <span class="keyword">int</span> max = Integer.MIN_VALUE;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len - k + <span class="number">1</span>; i++)&#123;</span><br><span class="line">        max = Integer.MIN_VALUE;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = i; j &lt; i + k; j++)</span><br><span class="line">            max = Math.max(max,nums[j]);</span><br><span class="line">        ans[i] = max;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="单调队列"><a href="#单调队列" class="headerlink" title="单调队列"></a>单调队列</h3><p><a href="https://leetcode-cn.com/problems/sliding-window-maximum/solution/dan-diao-dui-lie-by-labuladong/" target="_blank" rel="noopener">来源</a></p>
+<p>「单调队列」的核心思路和「单调栈」类似。单调队列的 push 方法依然在队尾添加元素，但是要把前面比新元素小的元素都删掉.</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">deque</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> LinkedList&lt;Integer&gt; data;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">push</span><span class="params">(<span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">        <span class="keyword">while</span>(!data.isEmpty() &amp;&amp; data.getLast() &lt; n)</span><br><span class="line">            data.removeLast();</span><br><span class="line">        data.addLast(n);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">max</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> data.getFirst();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">pop</span><span class="params">(<span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(!data.isEmpty() &amp;&amp; data.getFirst() ==n)</span><br><span class="line">            data.removeFirst();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">deque</span><span class="params">()</span></span>&#123;</span><br><span class="line">        data = <span class="keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">int</span>[] maxSlidingWindow(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> k) &#123;</span><br><span class="line">    <span class="keyword">int</span> len = nums.length;</span><br><span class="line">    <span class="keyword">if</span>(len * k == <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">int</span> [] ans = <span class="keyword">new</span> <span class="keyword">int</span>[len - k + <span class="number">1</span>];</span><br><span class="line">    <span class="comment">//LinkedList&lt;Integer&gt; queue = new LinkedList&lt;&gt;();</span></span><br><span class="line">    deque window = <span class="keyword">new</span> deque();</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span> ; i &lt; nums.length; i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(i &lt; k - <span class="number">1</span>)</span><br><span class="line">            window.push(nums[i]);  <span class="comment">//先填满窗口前的k - 1</span></span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="comment">//窗口向前滑动</span></span><br><span class="line">            window.push(nums[i]);</span><br><span class="line">            ans[i - k + <span class="number">1</span>] = window.max();</span><br><span class="line">            window.pop(nums[i-k+<span class="number">1</span>]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="遍历"><a href="#遍历" class="headerlink" title="遍历"></a>遍历</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">int</span>[] maxSlidingWindow(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> k) &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(nums.length * k == <span class="number">0</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">0</span>];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span>[] ans=<span class="keyword">new</span> <span class="keyword">int</span>[nums.length-k+<span class="number">1</span>];</span><br><span class="line">    <span class="keyword">if</span>(nums.length&lt;k)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="keyword">int</span>[]&#123;&#125;;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> begin=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> end=k-<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">int</span> count=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> max=Integer.MIN_VALUE;</span><br><span class="line">    <span class="keyword">int</span> stand=<span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;=k-<span class="number">1</span>;i++)&#123;  <span class="comment">//先填充初始滑动窗口</span></span><br><span class="line">        <span class="keyword">if</span>(max&lt;nums[i])&#123;</span><br><span class="line">            max=nums[i];</span><br><span class="line">            stand=i; <span class="comment">//记录最大值的位置</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    ans[count]=nums[stand];</span><br><span class="line">    count++;</span><br><span class="line">    begin++;</span><br><span class="line">    end++;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">while</span>(end&lt;nums.length)&#123;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span>(nums[end]&gt;max)&#123;</span><br><span class="line">            max=nums[end];</span><br><span class="line">            stand=end;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span>(begin&gt;stand)&#123;  <span class="comment">//最大值离开了滑动窗口</span></span><br><span class="line">            max=Integer.MIN_VALUE;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i=begin;i&lt;=end;i++)&#123;</span><br><span class="line">                <span class="keyword">if</span>(max&lt;nums[i])&#123;</span><br><span class="line">                    max=nums[i];</span><br><span class="line">                    stand=i;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        ans[count]=nums[stand];</span><br><span class="line">        count++;</span><br><span class="line">        begin++;</span><br><span class="line">        end++;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>算法</category>
+        <category>Leetcode</category>
+        <category>数组</category>
+      </categories>
+      <tags>
+        <tag>滑动窗口</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>二叉搜索树中第K小的元素</title>
+    <url>/2020/02/13/%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E4%B8%AD%E7%AC%ACK%E5%B0%8F%E7%9A%84%E5%85%83%E7%B4%A0/</url>
+    <content><![CDATA[<p>来自Leetcode第230题二叉搜索树中第K小的元素</p>
+<p>给定一个二叉搜索树，编写一个函数 <code>kthSmallest</code> 来查找其中第 <strong>k</strong> 个最小的元素。</p>
+<p><strong>说明：</strong><br>你可以假设 k 总是有效的，1 ≤ k ≤ 二叉搜索树元素个数。</p>
+<a id="more"></a>
+<p><strong>示例 1:</strong></p>
+<figure class="highlight angelscript"><table><tr><td class="code"><pre><span class="line">输入: root = [<span class="number">3</span>,<span class="number">1</span>,<span class="number">4</span>,<span class="literal">null</span>,<span class="number">2</span>], k = <span class="number">1</span></span><br><span class="line">   <span class="number">3</span></span><br><span class="line">  / \</span><br><span class="line"> <span class="number">1</span>   <span class="number">4</span></span><br><span class="line">  \</span><br><span class="line">   <span class="number">2</span></span><br><span class="line">输出: <span class="number">1</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="二叉树中序遍历"><a href="#二叉树中序遍历" class="headerlink" title="二叉树中序遍历"></a>二叉树中序遍历</h3><p>通过中序遍历按序保存二叉搜索树中的节点值，最后返回<code>K-1</code>位置的值即可。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">List&lt;Integer&gt; tree = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">kthSmallest</span><span class="params">(TreeNode root, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">    helper(root);</span><br><span class="line">    <span class="keyword">return</span> tree.get(k - <span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span>  <span class="keyword">void</span> <span class="title">helper</span><span class="params">(TreeNode root)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(root == <span class="keyword">null</span>)</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    helper(root.left);</span><br><span class="line">    tree.add(root.val);</span><br><span class="line">    helper(root.right);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="迭代"><a href="#迭代" class="headerlink" title="迭代"></a>迭代</h3><p>来源<a href="https://leetcode-cn.com/problems/kth-smallest-element-in-a-bst/solution/er-cha-sou-suo-shu-zhong-di-kxiao-de-yuan-su-by-le/" target="_blank" rel="noopener">官方题解</a></p>
+<p>在栈的帮助下，可以将方法一的递归转换为迭代，这样可以加快速度，因为这样可以不用遍历整个树，可以在找到答案后停止。</p>
+<p><img src="/2020/02/13/二叉搜索树中第K小的元素/25159a5137867644b75f203ee1917645d2cd454d8f4871e371d7edfa67bef083-file_1579413216176.jfif" alt="在这里插入图片描述"></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">kthSmallest</span><span class="params">(TreeNode root, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">    LinkedList&lt;TreeNode&gt; stack = <span class="keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line">    <span class="keyword">while</span>(<span class="keyword">true</span>)&#123;</span><br><span class="line">        <span class="keyword">while</span>(root != <span class="keyword">null</span>)&#123;</span><br><span class="line">            stack.add(root);</span><br><span class="line">            root = root.left;</span><br><span class="line">        &#125;</span><br><span class="line">        root = stack.removeLast();  <span class="comment">//最后入栈的是最小的元素，即最左边的根结点</span></span><br><span class="line">        <span class="keyword">if</span>(--k == <span class="number">0</span>)</span><br><span class="line">            <span class="keyword">return</span> root.val;</span><br><span class="line">        root = root.right;  </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="递归"><a href="#递归" class="headerlink" title="递归"></a>递归</h3><p>用一个变量记录遍历了的位置，最后返回对应位置的值</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> num=<span class="number">0</span>,minimum=<span class="number">0</span>;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">kthSmallest</span><span class="params">(TreeNode root, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(root==<span class="keyword">null</span>)<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    kthSmallest(root.left,k);</span><br><span class="line">    num++;</span><br><span class="line">    <span class="keyword">if</span>(num==k)</span><br><span class="line">    &#123;</span><br><span class="line">        minimum=root.val;</span><br><span class="line">        <span class="keyword">return</span> minimum;</span><br><span class="line">    &#125;</span><br><span class="line">    kthSmallest(root.right,k);</span><br><span class="line">    <span class="keyword">return</span> minimum;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>算法</category>
+        <category>Leetcode</category>
+        <category>树</category>
+      </categories>
+      <tags>
+        <tag>二叉搜索树</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>除自身以外数组的乘积</title>
+    <url>/2020/02/12/%E9%99%A4%E8%87%AA%E8%BA%AB%E4%BB%A5%E5%A4%96%E6%95%B0%E7%BB%84%E7%9A%84%E4%B9%98%E7%A7%AF/</url>
+    <content><![CDATA[<p>来自Leetcode第238题除自身以外数组的乘积</p>
+<p>给定长度为 <em>n</em> 的整数数组 <code>nums</code>，其中 <em>n</em> &gt; 1，返回输出数组 <code>output</code> ，其中 <code>output[i]</code> 等于 <code>nums</code> 中除 <code>nums[i]</code> 之外其余各元素的乘积。</p>
+<a id="more"></a>
+<p><strong>示例:</strong></p>
+<figure class="highlight angelscript"><table><tr><td class="code"><pre><span class="line">输入: [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>]</span><br><span class="line">输出: [<span class="number">24</span>,<span class="number">12</span>,<span class="number">8</span>,<span class="number">6</span>]</span><br></pre></td></tr></table></figure>
+
+<p><strong>说明:</strong> 请<strong>不要使用除法，</strong>且在 O(<em>n</em>) 时间复杂度内完成此题。</p>
+<p><strong>进阶：</strong><br>你可以在常数空间复杂度内完成这个题目吗？（ 出于对空间复杂度分析的目的，输出数组<strong>不被视为</strong>额外空间。）</p>
+<hr>
+<p>这似乎是一个简单的问题，可以在线性时间和空间内解决。可以先计算给定数组所有元素的乘积，然后对数组中的每个元素 <em>x</em>，将乘积除以 x* 来求得除自身值的以外的数组乘积。</p>
+<p>然后这样的解决方法有一个问题，就是如果输入数组中出现 0，那么这个方法就失效了。而且在问题中说明了不允许使用除法运算。这增加了这个问题的难度。</p>
+<ol>
+<li>初始化数组长度<em>n</em>。初始化r<strong>e</strong>s<em>=[0,0,…,0]为1*n*的数组。初试化乘积k</em>=1</li>
+<li>从左向右遍历，遍历区间[0,<em>n</em>)：<ul>
+<li><em>r<strong>e</strong>s<em>每个位置保存它左侧所有元素的乘积。即</em>r<strong>e</strong>s</em>[<em>i</em>]=<em>k</em>,<em>k</em>∗=<em>n<strong>u</strong>ms</em>[<em>i</em>]</li>
+</ul>
+</li>
+<li>重置乘积<em>k</em>=1，用来保存元素右边的乘积和</li>
+<li>从右向左遍历，遍历区间(<em>n</em>,0]：<ul>
+<li>r<strong>e</strong>s*[<em>i</em>]∗=*k，表示将当前位置的左积乘以右积。</li>
+<li>更新右积k<em>∗=<em>n*</em>u*<em>m</em>s</em>[<em>i</em>]</li>
+</ul>
+</li>
+<li>返回<em>r<strong>e</strong>s</em></li>
+</ol>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">int</span>[] productExceptSelf(<span class="keyword">int</span>[] nums) &#123;</span><br><span class="line">    <span class="keyword">int</span>[] ans = <span class="keyword">new</span> <span class="keyword">int</span>[nums.length];</span><br><span class="line">    <span class="keyword">int</span> tmp = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span> ; i &lt; ans.length ; i++)&#123;</span><br><span class="line">        ans[i] = tmp;</span><br><span class="line">        tmp *= nums[i]; <span class="comment">// 此时数组存储的是除去当前元素左边的元素乘积</span></span><br><span class="line">    &#125;</span><br><span class="line">    tmp = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = ans.length - <span class="number">1</span>;i &gt;= <span class="number">0</span> ; i--)&#123;</span><br><span class="line">        ans[i] *= tmp;  <span class="comment">// tmp为该数右边的乘积。</span></span><br><span class="line">        tmp *= nums[i];  <span class="comment">// 此时数组等于左边的 * 该数右边的</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>算法</category>
+        <category>Leetcode</category>
+        <category>数组</category>
+      </categories>
+      <tags>
+        <tag>Leetcode</tag>
+        <tag>数学</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>有效的字母异位词</title>
+    <url>/2020/02/12/%E6%9C%89%E6%95%88%E7%9A%84%E5%AD%97%E6%AF%8D%E5%BC%82%E4%BD%8D%E8%AF%8D/</url>
+    <content><![CDATA[<p>来自Leetcode第242题有效的字母异位词</p>
+<p>给定两个字符串 <em>s</em> 和 <em>t</em> ，编写一个函数来判断 <em>t</em> 是否是 <em>s</em> 的字母异位词。</p>
+<a id="more"></a>
+<p><strong>示例 1:</strong></p>
+<figure class="highlight nix"><table><tr><td class="code"><pre><span class="line">输入: <span class="attr">s</span> = <span class="string">"anagram"</span>, <span class="attr">t</span> = <span class="string">"nagaram"</span></span><br><span class="line">输出: <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Map"><a href="#Map" class="headerlink" title="Map"></a>Map</h3><p>用2个数组统计字符串里的字母出现次数，最后比对他们是否相等，进一步优化的，因为我们可以用一个计数器表计算 s 字母的频率，用 t减少计数器表中的每个字母的计数器，然后检查计数器是否回到零。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isAnagram</span><span class="params">(String s, String t)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> len1 = s.length(), len2 = t.length();</span><br><span class="line">    <span class="keyword">if</span>(len1 != len2)</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    <span class="keyword">int</span> []map1 = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">26</span>];</span><br><span class="line">    <span class="keyword">int</span> []map2 = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">26</span>];</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span> ; i &lt; len1 ; i++)&#123;</span><br><span class="line">        map1[s.charAt(i) - <span class="string">'a'</span>]++;</span><br><span class="line">        map2[t.charAt(i) - <span class="string">'a'</span>]++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span> ; i &lt; <span class="number">26</span> ; i++)</span><br><span class="line">        <span class="keyword">if</span>(map1[i] != map2[i])</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h3><p>将 <em>s</em> 的字母重新排列成 t* 来生成变位词。因此，如果 <em>T</em> 是 <em>S</em> 的变位词，对两个字符串进行排序将产生两个相同的字符串。此外，如果 <em>s</em> 和 t* 的长度不同，<em>t</em> 不能是 <em>s</em> 的变位词，我们可以提前返回。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isAnagram</span><span class="params">(String s, String t)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (s.length() != t.length()) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">char</span>[] str1 = s.toCharArray();</span><br><span class="line">    <span class="keyword">char</span>[] str2 = t.toCharArray();</span><br><span class="line">    Arrays.sort(str1);</span><br><span class="line">    Arrays.sort(str2);</span><br><span class="line">    <span class="keyword">return</span> Arrays.equals(str1, str2);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>算法</category>
+        <category>Leetcode</category>
+        <category>字符串</category>
+      </categories>
+      <tags>
+        <tag>字符串</tag>
+        <tag>Leetcode</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>回文链表</title>
+    <url>/2020/02/12/%E5%9B%9E%E6%96%87%E9%93%BE%E8%A1%A8/</url>
+    <content><![CDATA[<p>来自Leetcode第234题回文链表</p>
+<p>请判断一个链表是否为回文链表。</p>
+<a id="more"></a>
+<p><strong>示例 1:</strong></p>
+<figure class="highlight angelscript"><table><tr><td class="code"><pre><span class="line">输入: <span class="number">1</span>-&gt;<span class="number">2</span></span><br><span class="line">输出: <span class="literal">false</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="equals"><a href="#equals" class="headerlink" title=".equals"></a>.equals</h3><p>这种题目其实之前就做过了，但是很明显还是忘了，用了O(n)的空间复杂度来存储整个链表的内容，但是发现在比对的时候，如果直接用<code>!=</code>得到的结果是<code>.equals()</code>是不一样的，<code>!=</code>得不到正确的运行结果。</p>
+<p>这里补充一下<code>.equals()</code>和<code>!=</code>的区别</p>
+<p>equals是判断两个变量或者实例指向不同内存空间的值是不是相同</p>
+<p>而==是判断两个变量或者实例是不是指向同一个内存空间</p>
+<p>举个通俗的例子来说，==是判断两个人是不是住在同一个地址，而equals是判断不同地址里住的人是不是同一个</p>
+<p>在这题中，有一个测试用例为-129，首先看一下Integer的源码</p>
+<p><img src="/2020/02/12/回文链表/20170418111933837.jfif" alt="img"></p>
+<p>high的值为127，low的值为-128，当进行这个方法时如果值在-128-127之间，返回的值也就是地址是相同的，因而用<code>!=</code>这个测试用例自然就过不了了。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isPalindrome</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(head == <span class="keyword">null</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    ListNode p1 = head;</span><br><span class="line">    LinkedList&lt;Integer&gt; ans = <span class="keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span>(p1 != <span class="keyword">null</span>)&#123;</span><br><span class="line">        ans.addLast(p1.val);</span><br><span class="line">        p1 = p1.next;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span>(ans.size() &gt; <span class="number">1</span>)&#123;</span><br><span class="line">        <span class="keyword">if</span>(!ans.removeFirst().equals(ans.removeLast()))</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="翻转链表比对"><a href="#翻转链表比对" class="headerlink" title="翻转链表比对"></a>翻转链表比对</h3><p>避免使用 O(n)<em>O</em>(<em>n</em>) 额外空间的方法就是改变输入。</p>
+<p>我们可以将链表的后半部分反转（修改链表结构），然后将前半部分和后半部分进行比较。比较完成后我们应该将链表恢复原样。虽然不需要恢复也能通过测试用例，因为使用该函数的人不希望链表结构被更改。</p>
+<p><strong>算法：</strong></p>
+<p>我们可以分为以下几个步骤：</p>
+<ol>
+<li><p>找到前半部分链表的尾节点。</p>
+</li>
+<li><p>反转后半部分链表。</p>
+</li>
+<li><p>判断是否为回文。</p>
+</li>
+<li><p>恢复链表。</p>
+</li>
+<li><p>返回结果。</p>
+<p>执行步骤一，我们可以计算链表节点的数量，然后遍历链表找到前半部分的尾节点。</p>
+<p>或者可以使用快慢指针在一次遍历中找到：慢指针一次走一步，快指针一次走两步，快慢指针同时出发。当快指针移动到链表的末尾时，慢指针到链表的中间。通过慢指针将链表分为两部分。</p>
+<p>若链表有奇数个节点，则中间的节点应该看作是前半部分。</p>
+<p>步骤二可以使用在反向链表问题中找到解决方法来反转链表的后半部分。</p>
+<p>步骤三比较两个部分的值，当后半部分到达末尾则比较完成，可以忽略计数情况中的中间节点。</p>
+<p>步骤四与步骤二使用的函数相同，再反转一次恢复链表本身。</p>
+</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isPalindrome</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(head == <span class="keyword">null</span> || head.next == <span class="keyword">null</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        ListNode fast = head;</span><br><span class="line">        ListNode slow = head;</span><br><span class="line">        <span class="keyword">while</span>(fast.next != <span class="keyword">null</span> &amp;&amp; fast.next.next != <span class="keyword">null</span>)&#123;</span><br><span class="line">            slow = slow.next;</span><br><span class="line">            fast = fast.next.next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//从slow后面的链表逆序</span></span><br><span class="line">        ListNode node = slow.next;</span><br><span class="line">        ListNode curNode = node;</span><br><span class="line">        slow.next = <span class="keyword">null</span>;</span><br><span class="line">        ListNode pre = <span class="keyword">null</span>;</span><br><span class="line">        ListNode nextNode = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">while</span>(curNode != <span class="keyword">null</span>)&#123;</span><br><span class="line">            nextNode = curNode.next;</span><br><span class="line">            curNode.next = pre;</span><br><span class="line">            pre = curNode;</span><br><span class="line">            curNode = nextNode;</span><br><span class="line">        &#125;</span><br><span class="line">        ListNode temp = head;</span><br><span class="line">        <span class="keyword">boolean</span> flag = <span class="keyword">true</span>;</span><br><span class="line">        <span class="keyword">while</span>(pre != <span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="keyword">if</span>(temp.val != pre.val)&#123;</span><br><span class="line">                flag = <span class="keyword">false</span>;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            temp = temp.next;</span><br><span class="line">            pre = pre.next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> flag;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="数学方法"><a href="#数学方法" class="headerlink" title="数学方法"></a>数学方法</h3><p>从头到尾和从尾到头比对</p>
+<p>*<em>equals 默认是比较地址的<br>但是string重写了equals方法，让他比较内容<br>stringbuffer和stringbuilder并没有重写equals方法，所以比较的是地址<br>只有string可以比较内容<br>*</em></p>
+<pre><code class="JAVA"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isPalindrome</span><span class="params">(ListNode head)</span> </span>{
+    <span class="keyword">if</span>(head == <span class="keyword">null</span>)
+        <span class="keyword">return</span> <span class="keyword">true</span>;
+    ListNode p1 = head;
+    StringBuilder s1 = <span class="keyword">new</span> StringBuilder();
+    StringBuilder s2 = <span class="keyword">new</span> StringBuilder();
+
+    <span class="keyword">while</span>(p1 != <span class="keyword">null</span>){
+        s1.append(p1.val);
+        s2.insert(<span class="number">0</span>,p1.val);
+        p1 = p1.next;
+    }
+    <span class="keyword">return</span> s1.toString().equals(s2.toString());
+}</code></pre>
+]]></content>
+      <categories>
+        <category>算法</category>
+        <category>Leetcode</category>
+        <category>链表</category>
+      </categories>
+      <tags>
+        <tag>Leetcode</tag>
+        <tag>回文</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>用栈实现队列</title>
+    <url>/2020/02/11/%E7%94%A8%E6%A0%88%E5%AE%9E%E7%8E%B0%E9%98%9F%E5%88%97/</url>
+    <content><![CDATA[<p>来自Leetcode第232题用栈实现队列</p>
+<p>使用栈实现队列的下列操作：</p>
+<ul>
+<li>push(x) – 将一个元素放入队列的尾部。</li>
+<li>pop() – 从队列首部移除元素。</li>
+<li>peek() – 返回队列首部的元素。</li>
+<li>empty() – 返回队列是否为空。<a id="more"></a></li>
+</ul>
+<p><strong>示例:</strong></p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">MyQueue <span class="built_in">queue</span> = <span class="keyword">new</span> MyQueue();</span><br><span class="line"></span><br><span class="line"><span class="built_in">queue</span>.push(<span class="number">1</span>);</span><br><span class="line"><span class="built_in">queue</span>.push(<span class="number">2</span>);  </span><br><span class="line"><span class="built_in">queue</span>.peek();  <span class="comment">// 返回 1</span></span><br><span class="line"><span class="built_in">queue</span>.pop();   <span class="comment">// 返回 1</span></span><br><span class="line"><span class="built_in">queue</span>.empty(); <span class="comment">// 返回 false</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>说明:</strong></p>
+<ul>
+<li>你只能使用标准的栈操作 – 也就是只有 <code>push to top</code>, <code>peek/pop from top</code>, <code>size</code>, 和 <code>is empty</code> 操作是合法的。</li>
+<li>你所使用的语言也许不支持栈。你可以使用 list 或者 deque（双端队列）来模拟一个栈，只要是标准的栈操作即可。</li>
+<li>假设所有操作都是有效的 （例如，一个空的队列不会调用 pop 或者 peek 操作）。</li>
+</ul>
+<hr>
+<h3 id="铁憨憨"><a href="#铁憨憨" class="headerlink" title="铁憨憨"></a>铁憨憨</h3><p>一开始想用1个栈实现队列，但是发现1个栈倒腾之后栈里元素的顺序会错乱，因而还是老老实实用了2个栈，一个用来压入元素，一个用来实现出队列。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyQueue</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    Stack&lt;Integer&gt; instack = <span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line">    Stack&lt;Integer&gt; outstack = <span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line">    <span class="comment">/** Initialize your data structure here. */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MyQueue</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/** Push element x to the back of queue. */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">push</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">while</span> (!outstack.empty())</span><br><span class="line">            instack.push(outstack.pop());</span><br><span class="line">        instack.push(x);</span><br><span class="line">        <span class="keyword">while</span> (!instack.empty())</span><br><span class="line">            outstack.push(instack.pop());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/** Removes the element from in front of queue and returns that element. */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">pop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> outstack.pop();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/** Get the front element. */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">peek</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> outstack.peek();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/** Returns whether the queue is empty. */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">empty</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> outstack.empty();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="执行用时为-0-ms-的范例"><a href="#执行用时为-0-ms-的范例" class="headerlink" title="执行用时为 0 ms 的范例"></a>执行用时为 0 ms 的范例</h3><p>仔细看了看，这个范例8行，还得看题解的</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyQueue</span> </span>&#123;</span><br><span class="line">    Stack&lt;Integer&gt; s1, s2;</span><br><span class="line">    <span class="keyword">int</span> size = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> top = <span class="number">0</span>;</span><br><span class="line">    <span class="comment">/** Initialize your data structure here. */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MyQueue</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        s1 = <span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line">        s2 = <span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/** Push element x to the back of queue. */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">push</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">        s1.push(x);</span><br><span class="line">        <span class="keyword">if</span> (size == <span class="number">0</span>) top = x;</span><br><span class="line">        size ++;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/** Removes the element from in front of queue and returns that element. */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">pop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; size - <span class="number">1</span>; i ++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (i == size - <span class="number">2</span>) &#123;</span><br><span class="line">                top = s1.pop();</span><br><span class="line">                s2.push(top);</span><br><span class="line">            &#125; <span class="keyword">else</span> s2.push(s1.pop());</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> element = s1.pop();</span><br><span class="line">        size --;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; size; i ++) s1.push(s2.pop());</span><br><span class="line">        <span class="keyword">return</span> element;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/** Get the front element. */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">peek</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> top;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/** Returns whether the queue is empty. */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">empty</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> size == <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="使用两个栈-入队-O-1-，出队-摊还复杂度-O-1"><a href="#使用两个栈-入队-O-1-，出队-摊还复杂度-O-1" class="headerlink" title="使用两个栈 入队 - O(1)，出队 - 摊还复杂度 O(1)"></a>使用两个栈 入队 - O(1)，出队 - 摊还复杂度 O(1)</h3><p>来自<a href="https://leetcode-cn.com/problems/implement-queue-using-stacks/solution/yong-zhan-shi-xian-dui-lie-by-leetcode/" target="_blank" rel="noopener">官方题解</a></p>
+<p>新元素总是压入 <code>s1</code> 的栈顶，同时我们会把 <code>s1</code> 中压入的第一个元素赋值给作为队首元素的 <code>front</code> 变量。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">private</span> Stack&lt;Integer&gt; s1 = <span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line"><span class="keyword">private</span> Stack&lt;Integer&gt; s2 = <span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line"></span><br><span class="line"><span class="comment">// Push element x to the back of queue.</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">push</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (s1.empty())</span><br><span class="line">        front = x;</span><br><span class="line">    s1.push(x);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>根据栈 <code>LIFO</code> 的特性，<code>s1</code> 中第一个压入的元素在栈底。为了弹出 <code>s1</code> 的栈底元素，我们得把 <code>s1</code> 中所有的元素全部弹出，再把它们压入到另一个栈 <code>s2</code> 中，这个操作会让元素的入栈顺序反转过来。通过这样的方式，<code>s1</code> 中栈底元素就变成了 <code>s2</code> 的栈顶元素，这样就可以直接从 <code>s2</code> 将它弹出了。一旦 <code>s2</code> 变空了，我们只需把 <code>s1</code> 中的元素再一次转移到 <code>s2</code> 就可以了。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Removes the element from in front of queue.</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">pop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (s2.isEmpty()) &#123;</span><br><span class="line">        <span class="keyword">while</span> (!s1.isEmpty())</span><br><span class="line">            s2.push(s1.pop());</span><br><span class="line">    &#125;</span><br><span class="line">    s2.pop();    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>s1</code> 和 <code>s2</code> 都存有队列的元素，所以只需要检查 <code>s1</code> 和 <code>s2</code> 是否都为空就可以了。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Return whether the queue is empty.</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">empty</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> s1.isEmpty() &amp;&amp; s2.isEmpty();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>我们定义了 <code>front</code> 变量来保存队首元素，每次 <code>入队</code> 操作我们都会随之更新这个变量。当 <code>s2</code> 为空，<code>front</code> 变量就是对首元素，当 <code>s2</code> 非空，<code>s2</code> 的栈顶元素就是队首元素。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Get the front element.</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">peek</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (!s2.isEmpty()) &#123;</span><br><span class="line">        <span class="keyword">return</span> s2.peek();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> front;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>算法</category>
+        <category>Leetcode</category>
+        <category>数据结构设计</category>
+      </categories>
+      <tags>
+        <tag>Leetcode</tag>
+        <tag>栈</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>求众数II</title>
+    <url>/2020/02/11/%E6%B1%82%E4%BC%97%E6%95%B0II/</url>
+    <content><![CDATA[<p>来源Leetcode第229题求众数II</p>
+<p>给定一个大小为 <em>n</em> 的数组，找出其中所有出现超过 <code>⌊ n/3 ⌋</code> 次的元素。</p>
+<a id="more"></a>
+<p><strong>说明:</strong> 要求算法的时间复杂度为 O(n)，空间复杂度为 O(1)。</p>
+<p><strong>示例 1:</strong></p>
+<figure class="highlight angelscript"><table><tr><td class="code"><pre><span class="line">输入: [<span class="number">3</span>,<span class="number">2</span>,<span class="number">3</span>]</span><br><span class="line">输出: [<span class="number">3</span>]</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="HashMap"><a href="#HashMap" class="headerlink" title="HashMap"></a>HashMap</h3><p>如果无视了题目的要求，直接无脑上HashMap，那么这题非常简单，对数组一次遍历，将其出现次数存入Map，然后在对Map做一次遍历，取出里面的众数。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> List&lt;Integer&gt; <span class="title">majorityElement</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">    List&lt;Integer&gt; ans = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">    <span class="keyword">if</span>(nums.length == <span class="number">0</span> || nums == <span class="keyword">null</span>)</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    HashMap&lt;Integer,Integer&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">    <span class="keyword">int</span> times = nums.length / <span class="number">3</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length; i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(!map.containsKey(nums[i]))&#123;</span><br><span class="line">            map.put(nums[i],<span class="number">1</span>);</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            map.put(nums[i],map.get(nums[i]) + <span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//Map.Entry&lt;Integer,Integer&gt; entry = null;</span></span><br><span class="line">    <span class="keyword">for</span>(Map.Entry&lt;Integer , Integer&gt; entry : map.entrySet())&#123;</span><br><span class="line">        <span class="keyword">if</span>(entry.getValue() &gt; times)</span><br><span class="line">            ans.add(entry.getKey());</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="摩尔投票法"><a href="#摩尔投票法" class="headerlink" title="摩尔投票法"></a>摩尔投票法</h3><p>来自<a href="https://www.cs.utexas.edu/~moore/best-ideas/mjrty/index.html" target="_blank" rel="noopener">网站</a></p>
+<p>选票情况为：<br>A A A C C B B C C C B C C<br>结果应该是<code>C</code></p>
+<ul>
+<li>算法执行过程<br><img src="/2020/02/11/求众数II/76ab0f592cceba613016d5b9c6b5eb6a5e4607dc12d50deab1de33debd4604ff.gif" alt="img"></li>
+</ul>
+<p>因为可能会产生两名。所以候选人cand<em>c*</em>a<strong>n</strong>d<em>与计数cnt</em>c<strong>n</strong>t<em>都转成相应的数组形式cands</em>c<strong>a</strong>n<strong>d</strong>s<em>与cnts</em>c<strong>n</strong>t*<em>s</em>，长度都为2。<br>第一阶段成对抵销时，<code>cands[0]</code>与<code>cands[1]</code>的选票不相互抵销，即如果代表将票投给了<code>cands[0]</code>，则<code>cands[1]</code>对应的<code>cnts[1]</code>的值不变化。<br>投给<code>cands[1]</code>也是同样的道理。这样就转化成摩尔投票法的原始情形了。<br>第二阶段计数时，除了要判断两个候选的票数是否超过三分之一，还需判断两个候选是否相同。</p>
+<p>至多选出m个代表，每个选票数大于n / (m + 1)，只需要将判断最后候选是否相同代码进行修改即可。</p>
+<pre><code class="JAVA"><span class="function"><span class="keyword">public</span> List&lt;Integer&gt; <span class="title">majorityElement</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>{
+    List&lt;Integer&gt; ans = <span class="keyword">new</span> ArrayList&lt;&gt;();
+    <span class="keyword">if</span>(nums.length == <span class="number">0</span> || nums == <span class="keyword">null</span>)
+        <span class="keyword">return</span> ans;
+
+    <span class="comment">//初始化：定义两个候选人及其对应的票数</span>
+    <span class="keyword">int</span> candidateA = nums[<span class="number">0</span>];
+    <span class="keyword">int</span> candidateB = nums[<span class="number">0</span>];
+    <span class="keyword">int</span> countA = <span class="number">0</span>;
+    <span class="keyword">int</span> countB = <span class="number">0</span>;
+
+    <span class="comment">//遍历数组</span>
+    <span class="keyword">for</span> (<span class="keyword">int</span> num : nums) {
+        <span class="keyword">if</span> (num == candidateA) {
+            countA++;<span class="comment">//投A</span>
+            <span class="keyword">continue</span>;
+        }
+        <span class="keyword">if</span> (num == candidateB) {
+            countB++;<span class="comment">//投B</span>
+            <span class="keyword">continue</span>;
+        }
+
+        <span class="comment">//此时当前值和AB都不等，检查是否有票数减为0的情况，如果为0，则更新候选人</span>
+        <span class="keyword">if</span> (countA == <span class="number">0</span>) {
+            candidateA = num;
+            countA++;
+            <span class="keyword">continue</span>;
+        }
+        <span class="keyword">if</span> (countB == <span class="number">0</span>) {
+            candidateB = num;
+            countB++;
+            <span class="keyword">continue</span>;
+        }
+        <span class="comment">//若此时两个候选人的票数都不为0，且当前元素不投AB，那么A,B对应的票数都要--;</span>
+        countA--;
+        countB--;
+    }
+
+    <span class="comment">//上一轮遍历找出了两个候选人，但是这两个候选人是否均满足票数大于N/3仍然没法确定，需要重新遍历，确定票数</span>
+    countA = <span class="number">0</span>;
+    countB = <span class="number">0</span>;
+    <span class="keyword">for</span> (<span class="keyword">int</span> num : nums) {
+        <span class="keyword">if</span> (num == candidateA)
+            countA++;
+        <span class="keyword">else</span> <span class="keyword">if</span> (num == candidateB)
+            countB++;
+    }
+    <span class="keyword">if</span> (countA &gt; nums.length / <span class="number">3</span>)
+        ans.add(candidateA);
+    <span class="keyword">if</span> (countB &gt; nums.length / <span class="number">3</span>)
+        ans.add(candidateB);
+
+    <span class="keyword">return</span> ans;
+}</code></pre>
+]]></content>
+      <categories>
+        <category>算法</category>
+        <category>Leetcode</category>
+        <category>数组</category>
+      </categories>
+      <tags>
+        <tag>Leetcode</tag>
+        <tag>投票法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>二的幂</title>
+    <url>/2020/02/11/%E4%BA%8C%E7%9A%84%E5%B9%82/</url>
+    <content><![CDATA[<p>来源Leetcode第231题 2的幂</p>
+<p>给定一个整数，编写一个函数来判断它是否是 2 的幂次方。</p>
+<a id="more"></a>
+<p><strong>示例 1:</strong></p>
+<figure class="highlight angelscript"><table><tr><td class="code"><pre><span class="line">输入: <span class="number">1</span></span><br><span class="line">输出: <span class="literal">true</span></span><br><span class="line">解释: <span class="number">20</span> = <span class="number">1</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="2147483648"><a href="#2147483648" class="headerlink" title="2147483648"></a>2147483648</h3><p>最开始的移位比对超时后，评论区有人提到用(2^32 % n)，因为2^32 % n一定为0。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isPowerOfTwo</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">long</span> test = <span class="number">2147483647</span>;</span><br><span class="line">    test += <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">return</span> n &gt; <span class="number">0</span> &amp;&amp; test % n == <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="官方题解"><a href="#官方题解" class="headerlink" title="官方题解"></a>官方题解</h3><p><a href="https://leetcode-cn.com/problems/power-of-two/solution/2de-mi-by-leetcode/" target="_blank" rel="noopener">来自</a></p>
+<p>我们不打算在这里讨论时间复杂度为 O(log<em>N</em>) 的解决方案。该问题将通过位运算在 O(1) 的时间复杂度解决，通过使用如下的按位技巧：</p>
+<ul>
+<li>如何获取二进制中最右边的 <code>1</code>：<code>x &amp; (-x)</code>。</li>
+<li>如何将二进制中最右边的 <code>1</code> 设置为 <code>0</code>：<code>x &amp; (x - 1)</code>。</li>
+</ul>
+<h4 id="位运算：获取二进制中最右边的-1"><a href="#位运算：获取二进制中最右边的-1" class="headerlink" title="位运算：获取二进制中最右边的 1"></a>位运算：获取二进制中最右边的 1</h4><p>易知，x 和 -x 只有一个共同点：最右边的 1。这说明 <code>x &amp; (-x)</code> 将保留最右边的 1。并将其他的位设置为 0。通过 <code>x &amp; (-x)</code> 保留了最右边的 1，并将其他位设置为 0 若 <code>x</code> 为 2 的幂，则它的二进制表示中只包含一个 1，则有 <code>x &amp; (-x) = x</code>。</p>
+<p>若 <code>x</code> 不是 2 的幂，则在二进制表示中存在其他 1，因此 <code>x &amp; (-x) != x</code>。</p>
+<p>因此判断是否为 2 的幂的关键是：判断 <code>x &amp; (-x) == x</code>。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isPowerOfTwo</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (n == <span class="number">0</span>) <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    <span class="keyword">long</span> x = (<span class="keyword">long</span>) n;</span><br><span class="line">    <span class="keyword">return</span> (x &amp; (-x)) == x;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="位运算：去除二进制中最右边的-1"><a href="#位运算：去除二进制中最右边的-1" class="headerlink" title="位运算：去除二进制中最右边的 1"></a>位运算：去除二进制中最右边的 1</h4><p>易知，<code>x &amp; (x - 1)</code> 可以将最右边的 1 设置为 0。因而，<code>x &amp; (x - 1)</code> 操作会将 2 的幂设置为 0，因此判断是否为 2 的幂是：判断 <code>x &amp; (x - 1) == 0</code>。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isPowerOfTwo</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">   <span class="keyword">if</span> (n == <span class="number">0</span>) <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">   <span class="keyword">long</span> x = (<span class="keyword">long</span>) n;</span><br><span class="line">   <span class="keyword">return</span> (x &amp; (x - <span class="number">1</span>)) == <span class="number">0</span>;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>算法</category>
+        <category>Leetcode</category>
+        <category>数学</category>
+      </categories>
+      <tags>
+        <tag>Leetcode</tag>
+        <tag>位运算</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>汇总区间</title>
+    <url>/2020/02/11/%E6%B1%87%E6%80%BB%E5%8C%BA%E9%97%B4/</url>
+    <content><![CDATA[<p>来源Leetcode第228题汇总区间</p>
+<p>给定一个无重复元素的有序整数数组，返回数组区间范围的汇总。</p>
+<a id="more"></a>
+<p><strong>示例 1:</strong></p>
+<figure class="highlight angelscript"><table><tr><td class="code"><pre><span class="line">输入: [<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">7</span>]</span><br><span class="line">输出: [<span class="string">"0-&gt;2"</span>,<span class="string">"4-&gt;5"</span>,<span class="string">"7"</span>]</span><br><span class="line">解释: <span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span> 可组成一个连续的区间; <span class="number">4</span>,<span class="number">5</span> 可组成一个连续的区间。</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="双指针"><a href="#双指针" class="headerlink" title="双指针"></a>双指针</h3><p>用两个指针i,j，分别初始化为0,1，利用尾指针j一直向前寻找满足<code>nums[j] - nums[j - 1] == 1</code>的位置，当i,j之差≥2时，说明产生了区间合并，这时将nums[j - 1]加入String中即可。最后在结束时还要判断一下指针i的位置，如果在最尾，说明最后一个独立的不连续的元素没有添加。</p>
+<pre><code class="JAVA"><span class="function"><span class="keyword">public</span> List&lt;String&gt; <span class="title">summaryRanges</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>{
+    List&lt;String&gt; ans = <span class="keyword">new</span> ArrayList&lt;&gt;();
+    <span class="keyword">if</span>(nums.length == <span class="number">0</span> || nums == <span class="keyword">null</span>)
+        <span class="keyword">return</span> ans;
+    <span class="keyword">int</span> i = <span class="number">0</span> , j = <span class="number">1</span>;
+    <span class="keyword">while</span>(j &lt; nums.length){
+        <span class="keyword">while</span> (j &lt; nums.length &amp;&amp; nums[j] - nums[j - <span class="number">1</span>] == <span class="number">1</span>){
+            j++;
+        }
+        String tmp = <span class="string">""</span> + nums[i];
+        <span class="keyword">if</span>(j - i &gt;= <span class="number">2</span>)
+            tmp += <span class="string">"-&gt;"</span> + nums[j - <span class="number">1</span>];
+        ans.add(tmp);
+        i = j;
+        j = i + <span class="number">1</span>;
+    }
+    <span class="keyword">if</span>(i == nums.length - <span class="number">1</span>){
+        String tmp = <span class="string">""</span> + nums[i];
+        ans.add(tmp);
+    }
+    <span class="keyword">return</span> ans;
+}</code></pre>
+]]></content>
+      <categories>
+        <category>算法</category>
+        <category>Leetcode</category>
+        <category>数组</category>
+      </categories>
+      <tags>
+        <tag>Leetcode</tag>
+        <tag>双指针</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>用队列实现栈</title>
     <url>/2020/02/10/%E7%94%A8%E9%98%9F%E5%88%97%E5%AE%9E%E7%8E%B0%E6%A0%88/</url>
     <content><![CDATA[<p>来自Leetcode第225题用队列实现栈</p>
@@ -4482,8 +4944,8 @@ x\*15  -&gt;  (x&lt;&lt;4) – x               乘法转换成了1次移位和1�
       </categories>
       <tags>
         <tag>POJ</tag>
-        <tag>中位数</tag>
         <tag>二分</tag>
+        <tag>中位数</tag>
       </tags>
   </entry>
   <entry>
@@ -4916,7 +5378,7 @@ x\*15  -&gt;  (x&lt;&lt;4) – x               乘法转换成了1次移位和1�
 <p><strong>想法</strong></p>
 <p>如果我们把众数记为 +1+1 ，把其他数记为 -1−1 ，将它们全部加起来，显然和大于 0 ，从结果本身我们可以看出众数比其他数多。</p>
 <p><strong>算法</strong></p>
-<p>本质上， Boyer-Moore 算法就是找 <code>nums</code> 的一个后缀 suf<em>s<strong>u</strong>f</em> ，其中 suf[0]<em>s<strong>u</strong>f</em>[0] 就是后缀中的众数。我们维护一个计数器，如果遇到一个我们目前的候选众数，就将计数器加一，否则减一。只要计数器等于 0 ，我们就将 <code>nums</code> 中之前访问的数字全部 <em>忘记</em> ，并把下一个数字当做候选的众数。直观上这个算法不是特别明显为何是对的，我们先看下面这个例子（竖线用来划分每次计数器归零的情况）</p>
+<p>本质上， Boyer-Moore 算法就是找 <code>nums</code> 的一个后缀 suf ，其中 suf[0]就是后缀中的众数。我们维护一个计数器，如果遇到一个我们目前的候选众数，就将计数器加一，否则减一。只要计数器等于 0 ，我们就将 <code>nums</code> 中之前访问的数字全部 <em>忘记</em> ，并把下一个数字当做候选的众数。直观上这个算法不是特别明显为何是对的，我们先看下面这个例子（竖线用来划分每次计数器归零的情况）</p>
 <p>[7, 7, 5, 7, 5, 1 | 5, 7 | 5, 5, 7, 7 | 7, 7, 7, 7]</p>
 <p>首先，下标为 0 的 <code>7</code> 被当做众数的第一个候选。在下标为 5 处，计数器会变回0 。所以下标为 6 的 <code>5</code> 是下一个众数的候选者。由于这个例子中 <code>7</code> 是真正的众数，所以通过忽略掉前面的数字，我们忽略掉了同样多数目的众数和非众数。因此， <code>7</code> 仍然是剩下数字中的众数。</p>
 <p>[7, 7, 5, 7, 5, 1 | 5, 7 | 5, 5, 7, 7 | <strong>5, 5, 5, 5</strong>]</p>
@@ -4941,6 +5403,7 @@ x\*15  -&gt;  (x&lt;&lt;4) – x               乘法转换成了1次移位和1�
         <tag>Leetcode</tag>
         <tag>数组</tag>
         <tag>位运算</tag>
+        <tag>投票法</tag>
       </tags>
   </entry>
   <entry>
@@ -7483,8 +7946,8 @@ public Node(int _val,List&lt;Node&gt; _neighbors) {
         <category>数组</category>
       </categories>
       <tags>
-        <tag>Leetcode</tag>
         <tag>贪心</tag>
+        <tag>Leetcode</tag>
       </tags>
   </entry>
   <entry>
@@ -7535,8 +7998,8 @@ public Node(int _val,List&lt;Node&gt; _neighbors) {
         <category>数组</category>
       </categories>
       <tags>
-        <tag>Leetcode</tag>
         <tag>贪心</tag>
+        <tag>Leetcode</tag>
         <tag>动态规划</tag>
         <tag>回溯</tag>
       </tags>
@@ -9148,11 +9611,11 @@ public Node(int _val,List&lt;Node&gt; _neighbors) {
         <category>链表</category>
       </categories>
       <tags>
-        <tag>Leetcode</tag>
         <tag>贪心</tag>
+        <tag>Leetcode</tag>
         <tag>链表</tag>
-        <tag>分治</tag>
         <tag>归并</tag>
+        <tag>分治</tag>
         <tag>优先队列</tag>
       </tags>
   </entry>
@@ -9601,8 +10064,8 @@ public Node(int _val,List&lt;Node&gt; _neighbors) {
         <category>数学</category>
       </categories>
       <tags>
-        <tag>Leetcode</tag>
         <tag>贪心</tag>
+        <tag>Leetcode</tag>
       </tags>
   </entry>
   <entry>
