@@ -1,0 +1,1414 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="操作系统,Linux,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="以下内容为操作系统课设期间遇到的一些问题的补充 __user含意# define __user __attribute__((noderef, address_space(1)))">
+<meta name="keywords" content="操作系统,Linux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux有关笔记">
+<meta property="og:url" content="http://yorxika.github.io/2020/02/25/Linux有关笔记/index.html">
+<meta property="og:site_name" content="Five">
+<meta property="og:description" content="以下内容为操作系统课设期间遇到的一些问题的补充 __user含意# define __user __attribute__((noderef, address_space(1)))">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://yorxika.github.io/2020/02/25/Linux有关笔记/20151123145837317">
+<meta property="og:image" content="http://yorxika.github.io/2020/02/25/Linux有关笔记/2019091016174868.png">
+<meta property="og:image" content="http://yorxika.github.io/2020/02/25/Linux有关笔记/20190910161839417.png">
+<meta property="og:updated_time" content="2020-02-27T13:12:05.712Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Linux有关笔记">
+<meta name="twitter:description" content="以下内容为操作系统课设期间遇到的一些问题的补充 __user含意# define __user __attribute__((noderef, address_space(1)))">
+<meta name="twitter:image" content="http://yorxika.github.io/2020/02/25/Linux有关笔记/20151123145837317">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yorxika.github.io/2020/02/25/Linux有关笔记/">
+
+
+
+
+
+  <title>Linux有关笔记 | Five</title>
+  
+
+
+
+
+
+
+
+
+<link rel="alternate" href="/atom.xml" title="Five" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Five</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">But one day, you will stand before its decrepit gate,without really knowing why.</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="Searching..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yorxika.github.io/2020/02/25/Linux有关笔记/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Five">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/touxiang.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Five">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Linux有关笔记</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-02-25T15:10:48+08:00">
+                2020-02-25
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Post modified&#58;</span>
+              
+              <time title="Post modified" itemprop="dateModified" datetime="2020-02-27T21:12:05+08:00">
+                2020-02-27
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/学习笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">学习笔记</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/学习笔记/操作系统/" itemprop="url" rel="index">
+                    <span itemprop="name">操作系统</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+
+  <span class="post-meta-divider">|</span>
+  <span id="busuanzi_value_page_pv"></span>次阅读
+
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  10.7k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">
+                  44
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>以下内容为操作系统课设期间遇到的一些问题的补充</p>
+<h2 id="user含意"><a href="#user含意" class="headerlink" title="__user含意"></a>__user含意</h2><p><code># define __user __attribute__((noderef, address_space(1)))</code></p>
+<a id="more"></a>
+<p><em>user这个特性，即<em>_attribute</em></em>((noderef, address_space(1)))，是用来修饰一个变量的，这个变量必须是非解除参考（no dereference）的，即这个变量地址必须是有效的，而且变量所在的地址空间必须是1，即用户程序空间的。<br>这里把程序空间分成了3个部分，0表示normal space，即普通地址空间，对内核代码来说，当然就是内核空间地址了。1表示用户地址空间，这个不用多讲，还有一个2，表示是设备地址映射空间，例如硬件设备的寄存器在内核里所映射的地址空间。</p>
+<p><strong>attribute</strong>是gnu c编译器的一个功能，它用来让开发者使用此功能给所声明的函数或者变量附加一个属性，以方便编译器进行错误检查，其实就是一个内核检查器。</p>
+<p>linux把操作系统内存和用户区内存隔离开，<br>用户程序只能通过系统调用访问系统功能，<br>内核态可以访问用户内存，但是要做检查，因为用户区内存是不可靠的，甚至是危险的。_user就表示这个意思。</p>
+<p>以下内容<a href="https://blog.csdn.net/Rong_Toa/article/details/86585086" target="_blank" rel="noopener">来自</a></p>
+<p>首先看一下linux内核4.20.1源码：</p>
+<p><strong>linux/linux/compile_types.h</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta"># <span class="meta-keyword">define</span> __user		__attribute__((noderef, address_space(1)))</span></span><br><span class="line"><span class="meta"># <span class="meta-keyword">define</span> __kernel	__attribute__((address_space(0)))</span></span><br><span class="line"><span class="meta"># <span class="meta-keyword">define</span> __safe		__attribute__((safe))</span></span><br><span class="line"><span class="meta"># <span class="meta-keyword">define</span> __force	__attribute__((force))</span></span><br><span class="line"><span class="meta"># <span class="meta-keyword">define</span> __nocast	__attribute__((nocast))</span></span><br><span class="line"><span class="meta"># <span class="meta-keyword">define</span> __iomem	__attribute__((noderef, address_space(2)))</span></span><br><span class="line"><span class="meta"># <span class="meta-keyword">define</span> __must_hold(x)	__attribute__((context(x,1,1)))</span></span><br><span class="line"><span class="meta"># <span class="meta-keyword">define</span> __acquires(x)	__attribute__((context(x,0,1)))</span></span><br><span class="line"><span class="meta"># <span class="meta-keyword">define</span> __releases(x)	__attribute__((context(x,1,0)))</span></span><br><span class="line"><span class="meta"># <span class="meta-keyword">define</span> __acquire(x)	__context__(x,1)</span></span><br><span class="line"><span class="meta"># <span class="meta-keyword">define</span> __release(x)	__context__(x,-1)</span></span><br><span class="line"><span class="meta"># <span class="meta-keyword">define</span> __cond_lock(x,c)	((c) ? (&#123; __acquire(x); 1; &#125;) : 0)</span></span><br><span class="line"><span class="meta"># <span class="meta-keyword">define</span> __percpu	__attribute__((noderef, address_space(3)))</span></span><br><span class="line"><span class="meta"># <span class="meta-keyword">define</span> __rcu		__attribute__((noderef, address_space(4)))</span></span><br><span class="line"><span class="meta"># <span class="meta-keyword">define</span> __private	__attribute__((noderef))</span></span><br></pre></td></tr></table></figure>
+
+<p>Sparse 诞生于 2004 年, 是由linux之父开发的, 目的就是提供一个静态检查代码的工具, 从而减少linux内核的隐患. 其实在Sparse之前, 已经有了一个不错的代码静态检查工具(“SWAT”), 只不过这个工具不是免费软件, 使用上有一些限制.所以 linus 还是自己开发了一个静态检查工具.（<a href="https://blog.csdn.net/Rong_Toa/article/details/86584999" target="_blank" rel="noopener">参考</a>，<a href="https://lwn.net/Articles/87538/" target="_blank" rel="noopener">原文</a>）</p>
+<p>Sparse通过 gcc 的扩展属性 <strong>attribute</strong> 以及自己定义的 <strong>context</strong> 来对代码进行静态检查.</p>
+<table>
+<thead>
+<tr>
+<th><strong>宏名称</strong></th>
+<th><strong>宏定义</strong></th>
+<th><strong>检查点</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>__bitwise</td>
+<td><strong>attribute</strong>((bitwise))</td>
+<td>确保变量是相同的位方式(比如 bit-endian, little-endiandeng)</td>
+</tr>
+<tr>
+<td>__user</td>
+<td><strong>attribute</strong>((noderef, address_space(1)))</td>
+<td>指针地址必须在用户地址空间</td>
+</tr>
+<tr>
+<td>__kernel</td>
+<td><strong>attribute</strong>((noderef, address_space(0)))</td>
+<td>指针地址必须在内核地址空间</td>
+</tr>
+<tr>
+<td>__iomem</td>
+<td><strong>attribute</strong>((noderef, address_space(2)))</td>
+<td>指针地址必须在设备地址空间</td>
+</tr>
+<tr>
+<td>__safe</td>
+<td><strong>attribute</strong>((safe))</td>
+<td>变量可以为空</td>
+</tr>
+<tr>
+<td>__force</td>
+<td><strong>attribute</strong>((force))</td>
+<td>变量可以进行强制转换</td>
+</tr>
+<tr>
+<td>__nocast</td>
+<td><strong>attribute</strong>((nocast))</td>
+<td>参数类型与实际参数类型必须一致</td>
+</tr>
+<tr>
+<td>__acquires(x)</td>
+<td><strong>attribute</strong>((context(x, 0, 1)))</td>
+<td>参数x 在执行前引用计数必须是0,执行后,引用计数必须为1</td>
+</tr>
+<tr>
+<td>__releases(x)</td>
+<td><strong>attribute</strong>((context(x, 1, 0)))</td>
+<td>与 __acquires(x) 相反</td>
+</tr>
+<tr>
+<td>__acquire(x)</td>
+<td><strong>context</strong>(x, 1)</td>
+<td>参数x 的引用计数 + 1</td>
+</tr>
+<tr>
+<td>__release(x)</td>
+<td><strong>context</strong>(x, -1)</td>
+<td>与 __acquire(x) 相反</td>
+</tr>
+<tr>
+<td>__cond_lock(x,c)</td>
+<td>((c) ? ({ __acquire(x); 1; }) : 0)</td>
+<td>参数c 不为0时,引用计数 + 1, 并返回1</td>
+</tr>
+</tbody></table>
+<h3 id="user-的使用"><a href="#user-的使用" class="headerlink" title="__user 的使用"></a>__user 的使用</h3><p>如果使用了 __user 宏的指针不在用户地址空间初始化, 或者指向内核地址空间, 设备地址空间等等, Sparse会给出警告.</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 内核版本:v2.6.32.61  file:arch/score/kernel/signal.c 45行 */</span></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">int</span> <span class="title">setup_sigcontext</span><span class="params">(struct pt_regs *regs, struct sigcontext __user *sc)</span></span></span><br></pre></td></tr></table></figure>
+
+<h2 id="关于get-ds-set-fs-get-fs函数的使用"><a href="#关于get-ds-set-fs-get-fs函数的使用" class="headerlink" title="关于get_ds, set_fs, get_fs函数的使用"></a>关于get_ds, set_fs, get_fs函数的使用</h2><p>在linux内核编程时，进行系统调用（如文件操作）时如果要访问用户空间的参数，可以用set_fs,get_ds等函数实现访问：</p>
+<p>get_ds获得kernel的内存访问地址范围（IA32是4GB），</p>
+<p>get_fs是取得当前的地址访问限制值。</p>
+<p>set_fs是设置当前的地址访问限制值</p>
+<p>进程由用户态进入核态，linux进程的task_struct结构中的成员addr_limit也应该由0xBFFFFFFF变为0xFFFFFFFF(addr_limit规定了进程有用户态核内核态情况下的虚拟地址空间访问范围，在用户态，addr_limit成员值是0xBFFFFFFF也就是有3GB的虚拟内存空间，在核心态，是0xFFFFFFFF,范围扩展了1GB)。使用这三个函数是为了安全性。为了保证用户态的地址所指向空间有效，函数会做一些检查工作。如果set_fs(KERNEL_DS),函数将跳过这些检查。</p>
+<p>具体用法参考<a href="https://www.cnblogs.com/arnoldlu/p/8879800.html" target="_blank" rel="noopener">示例</a></p>
+<h2 id="copy-to-user和copy-from-user"><a href="#copy-to-user和copy-from-user" class="headerlink" title="copy_to_user和copy_from_user"></a>copy_to_user和copy_from_user</h2><p>首先解决一个问题：</p>
+<p><strong>1. 为什么要划分为内核空间和用户空间？</strong><br>Linux Kernel是操作系统的核心，独立于普通的应用程序，可以访问受保护的内存空间，也有访问底层硬件设备的所有权限。<br>对于Kernel这么一个高安全级别的东西，显然是不容许其它的应用程序随便调用或访问的，所以需要对Kernel提供一定的保护机制，这个保护机制用来告诉那些应用程序，你只可以访问某些许可的资源，不许可的资源是拒绝被访问的，于是就把Kernel和上层的应用程序抽像的隔离开，分别称之为Kernel Space和User Space。</p>
+<p><strong>2. 用户空间的程序如何对内核空间进行访问？</strong><br>上面说到用户态和内核态是两个隔离的空间，虽然从逻辑上被抽像的隔离，但无可避免的是,总是会有那么一些用户空间需要访问内核空间的资源，怎么办呢？</p>
+<p><img src="/2020/02/25/Linux有关笔记/20151123145837317" alt="Linux内部结构"></p>
+<p><a href="http://blog.csdn.net/ysgjiangsu/article/details/49995229" target="_blank" rel="noopener">http://blog.csdn.net/ysgjiangsu/article/details/49995229</a><br>从上图结构中可以看出，Kernel Space层从下至上包括：<br>Arch：对应Kernel里arch目录，含有诸如x86, ia64, arm, s390等体系结构的支持；<br>Device Driver：对应Kernel里drivers目录，含有block, char, net, usb等不同硬件驱动的支持；<br>在Arch和Driver之上，是对内存，进程，文件系统，网络协议栈等的支持；</p>
+<p>最上一层是System Call Interface，系统调用接口，正如其名，这层就是用户空间与内核空间的桥梁，用户空间的应用程序通过System Call这个统一入口来访问系统中的硬件资源，通过此接口，所有的资源访问都是在内核的控制下执行，以免导致对用户程序对系统资源的越权访问，从而保障了系统的安全和稳定。</p>
+<p><strong>3.copy_to_user()在内核定义如下：</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * copy_to_user: - Copy a block of data into user space.</span></span><br><span class="line"><span class="comment"> * @to: Destination address, in user space.</span></span><br><span class="line"><span class="comment"> * @from: Source address, in kernel space.</span></span><br><span class="line"><span class="comment"> * @n: Number of bytes to copy.</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * Context: User context only. This function may sleep.</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * Copy data from kernel space to user space.</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * Returns number of bytes that could not be copied.</span></span><br><span class="line"><span class="comment"> * On success, this will be zero.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"> <span class="keyword">unsigned</span> <span class="keyword">long</span></span><br><span class="line"> copy_to_user(<span class="keyword">void</span> __user *to, <span class="keyword">const</span> <span class="keyword">void</span> *from, <span class="keyword">unsigned</span> <span class="keyword">long</span> n)</span><br><span class="line"> &#123;</span><br><span class="line">     <span class="keyword">if</span> (access_ok(VERIFY_WRITE, to, n))</span><br><span class="line">         n = __copy_to_user(to, from, n);</span><br><span class="line">     <span class="keyword">return</span> n;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+
+<p>其功能是将内核空间的内容复制到用户空间，所复制的内容是从from来，到to去，复制n个位。 其中又牵扯到两个函数：<strong>access_ok()</strong>和<strong>__copy_to_user()</strong>,好我们继续往下深入，先来看看第一个函数<strong>access_ok()</strong>的源码：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* access_ok: - Checks if a user space pointer is valid</span></span><br><span class="line"><span class="comment"> * @type: Type of access: %VERIFY_READ or %VERIFY_WRITE. Note that</span></span><br><span class="line"><span class="comment"> * %VERIFY_WRITE is a superset of %VERIFY_READ - if it is safe</span></span><br><span class="line"><span class="comment"> * to write to a block, it is always safe to read from it.</span></span><br><span class="line"><span class="comment"> * @addr: User space pointer to start of block to check</span></span><br><span class="line"><span class="comment"> * @size: Size of block to check</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * Context: User context only. This function may sleep.</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * Checks if a pointer to a block of memory in user space is valid.</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * Returns true (nonzero) if the memory block may be valid, false (zero)</span></span><br><span class="line"><span class="comment"> * if it is definitely invalid.</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * Note that, depending on architecture, this function probably just</span></span><br><span class="line"><span class="comment"> * checks that the pointer is in the user space range - after calling</span></span><br><span class="line"><span class="comment"> * this function, memory access functions may still return -EFAULT.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> CONFIG_MMU</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> access_ok(type,addr,size) (likely(__range_ok(addr,size) == 0))</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">else</span></span></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">access_ok</span><span class="params">(<span class="keyword">int</span> type, <span class="keyword">const</span> <span class="keyword">void</span> *addr, <span class="keyword">unsigned</span> <span class="keyword">long</span> size)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"> <span class="keyword">extern</span> <span class="keyword">unsigned</span> <span class="keyword">long</span> memory_start, memory_end;</span><br><span class="line"> <span class="keyword">unsigned</span> <span class="keyword">long</span> val = (<span class="keyword">unsigned</span> <span class="keyword">long</span>)addr;</span><br><span class="line"></span><br><span class="line"> <span class="keyword">return</span> ((val &gt;= memory_start) &amp;&amp; ((val + size) &lt; memory_end));</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span> <span class="comment">/* CONFIG_MMU */</span></span></span><br></pre></td></tr></table></figure>
+
+<p>其功能是检查用户空间是否合法，它的第一个参数：type，有两种 类型：VERIFY_READ 和VERIFY_WRITE，前者为可读，后者可写，注意：如果标志为可写（VERIFY_WRITE）时，必然可读！因为可写是可读的超集 （%VERIFY_WRITE is a superset of %VERIFY_READ）。<br>检查过程如下：addr为起始地址，size为所要复制的大小，那么从addr到addr＋size则是所要检查的空间，如果它的范围在memory_start和memory_end之间的话，则返回真。至于memory_start详细信息，我没有读。<br>到此为止，如果检查合法，那么OK，我们来实现真正的复制功能：<strong>__copy_to_user()</strong>，其源码定义如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keyword">__kernel_size_t</span> __copy_to_user(<span class="keyword">void</span> __user *to, <span class="keyword">const</span> <span class="keyword">void</span> *from,</span><br><span class="line">  <span class="keyword">__kernel_size_t</span> n)</span><br><span class="line"> &#123;</span><br><span class="line">  <span class="keyword">return</span> __copy_user((<span class="keyword">void</span> __force *)to, from, n);</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+
+<p>又遇到一个函数：<strong>__copy_user()</strong>，这个函数才真正在做底层的复制工作<br><strong>__copy_user</strong><br>宏__copy_user在include/asm-i386/uaccess.h中定义，是作为从用户空间和内核空间进行内存复制的关键。这个宏扩展为汇编后如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">000</span> <span class="meta">#<span class="meta-keyword">define</span> __copy_user(to,from,size)</span></span><br><span class="line"><span class="number">001</span> <span class="keyword">do</span> &#123;</span><br><span class="line"><span class="number">002</span> <span class="keyword">int</span> __d0, __d1;</span><br><span class="line"><span class="number">003</span> __asm__ __volatile__(</span><br><span class="line"><span class="number">004</span> <span class="string">"0: rep; movsl\n"</span></span><br><span class="line"><span class="number">005</span> <span class="string">" movl %3,%0\n"</span></span><br><span class="line"><span class="number">006</span> <span class="string">"1: rep; movsb\n"</span></span><br><span class="line"><span class="number">007</span> <span class="string">"2:\n"</span></span><br><span class="line"><span class="number">008</span> <span class="string">".section .fixup,\"ax\"\n"</span></span><br><span class="line"><span class="number">009</span> <span class="string">"3: lea 0(%3,%0,4),%0\n"</span></span><br><span class="line"><span class="number">010</span> <span class="string">" jmp 2b\n"</span></span><br><span class="line"><span class="number">011</span> <span class="string">".previous\n"</span></span><br><span class="line"><span class="number">012</span> <span class="string">".section __ex_table,\"a\"\n"</span></span><br><span class="line"><span class="number">013</span> <span class="string">" .align 4\n"</span></span><br><span class="line"><span class="number">014</span> <span class="string">" .long 0b,3b\n"</span></span><br><span class="line"><span class="number">015</span> <span class="string">" .long 1b,2b\n"</span></span><br><span class="line"><span class="number">016</span> <span class="string">".previous"</span></span><br><span class="line"><span class="number">017</span> : <span class="string">"=&amp;c"</span>(size), <span class="string">"=&amp;D"</span> (__d0), <span class="string">"=&amp;S"</span> (__d1)</span><br><span class="line"><span class="number">018</span> : <span class="string">"r"</span>(size &amp; <span class="number">3</span>), <span class="string">"0"</span>(size / <span class="number">4</span>), <span class="string">"1"</span>(to), <span class="string">"2"</span>(from)</span><br><span class="line"><span class="number">019</span> : <span class="string">"memory"</span>);</span><br><span class="line"><span class="number">020</span> &#125; <span class="keyword">while</span> (<span class="number">0</span>)</span><br></pre></td></tr></table></figure>
+
+<p>这段代码的主要操作就是004-007行，它的主要功能是将from处长度为size的数据复制到to处。</p>
+<h2 id="文件系统"><a href="#文件系统" class="headerlink" title="文件系统"></a>文件系统</h2><p>详见<a href="https://blog.csdn.net/liushengxi_root/article/details/87439737" target="_blank" rel="noopener">深入理解 Linux 文件系统</a></p>
+<h2 id="设备驱动"><a href="#设备驱动" class="headerlink" title="设备驱动"></a>设备驱动</h2><h3 id="基础知识"><a href="#基础知识" class="headerlink" title="基础知识"></a>基础知识</h3><p>系统调用是操作系统内核和应用程序之间的接口，而设备驱动程序是操作系统内核和机器硬件之间的接口。设备驱动程序为应用程序屏蔽了硬件的细节，这样在应用程序看来，硬件设备只是一个设备文件， 应用程序可以象操作普通文件一样对硬件设备进行操作。设备驱动程序是内核的一部分，它完成以下的功能：</p>
+<ol>
+<li>对设备初始化和释放. </li>
+<li>把数据从内核传送到硬件和从硬件读取数据. </li>
+<li>读取应用程序传送给设备文件的数据和回送应用程序请求的数据. </li>
+<li>检测和处理设备出现的错误. </li>
+</ol>
+<p>Linux支持三中不同类型的设备：字符设备（character devices）、块设备（block devices）和网络设备（network interfaces）。字符设备和块设备的主要区别是:在对字符设备发出读/写请求时，实际的硬件I/O一般就紧接着发生了，块设备则不然，它利用一块系统内存作缓冲区，当用户进程对设备请求能满足用户的要求，就返回请求的数据，如果不能，就调用请求函数来进行实际的I/O操作.块设备是主要针对磁盘等慢速设备设计的，以免耗费过多的CPU时间来等待.</p>
+<p>用户进程是通过设备文件来与实际的硬件打交道，每个设备文件都都有其文件属性(c/b)，表示是字符设备还是块设备。<strong>另外每个文件都有两个设备号，第一个是主设备号，标识驱动程序，第二个是从设备号，标识使用同一个设备驱动程序的不同的硬件设备，</strong>比如有两个软盘，就可以用从设备号来区分他们.设备文件的的主设备号必须与设备驱动程序在登记时申请的主设备号一致，否则用户进程将无法访问到驱动程序.。</p>
+<p><strong>设备驱动程序工作的基本原理：</strong></p>
+<p>用户进程利用系统调用对设备进行诸如read/write操作，系统调用通过设备文件的主设备号找到相应的设备驱动程序，然后读取这个数据结构相应的函数指针，接着把控制权交给该函数。</p>
+<p>最后，在用户进程调用驱动程序时，系统进入核心态，这时不再是抢先式调度.也就是说，系统必须在你的驱动程序的子函数返回后才能进行其他的工作。如果你的驱动程序陷入死循环，你只有重新启动机器了。</p>
+<h3 id="添加新模块的基本步骤"><a href="#添加新模块的基本步骤" class="headerlink" title="添加新模块的基本步骤"></a>添加新模块的基本步骤</h3><h4 id="写设备驱动源代码"><a href="#写设备驱动源代码" class="headerlink" title="写设备驱动源代码"></a>写设备驱动源代码</h4><p>在设备驱动程序中有一个非常重要的结构file_operations,该结构的每个域都对应着一个系统调用。用户进程利用系统调用在对设备文件进行诸如read/write操作时，系统调用通过设备文件的主设备号找到相应的设备驱动程序，然后读取这个数据结构相应的函数指针，接着把控制权交给该函数。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">file_operations</span> &#123;</span> </span><br><span class="line"><span class="keyword">int</span> (*seek) (struct inode * ，struct file *， <span class="keyword">off_t</span> ，<span class="keyword">int</span>); </span><br><span class="line"><span class="keyword">int</span> (*read) (struct inode * ，struct file *， <span class="keyword">char</span> ，<span class="keyword">int</span>); </span><br><span class="line"><span class="keyword">int</span> (*write) (struct inode * ，struct file *， <span class="keyword">off_t</span> ，<span class="keyword">int</span>); </span><br><span class="line"><span class="keyword">int</span> (*readdir) (struct inode * ，struct file *， struct dirent * ，<span class="keyword">int</span>); </span><br><span class="line"><span class="keyword">int</span> (*select) (struct inode * ，struct file *， <span class="keyword">int</span> ，select_table *); </span><br><span class="line"><span class="keyword">int</span> (*ioctl) (struct inode * ，struct file *， unsined <span class="keyword">int</span> ，<span class="keyword">unsigned</span> <span class="keyword">long</span>); </span><br><span class="line"><span class="keyword">int</span> (*mmap) (struct inode * ，struct file *， struct vm_area_struct *); </span><br><span class="line"><span class="keyword">int</span> (*open) (struct inode * ，struct file *); </span><br><span class="line"><span class="keyword">int</span> (*release) (struct inode * ，struct file *); </span><br><span class="line"><span class="keyword">int</span> (*fsync) (struct inode * ，struct file *); </span><br><span class="line"><span class="keyword">int</span> (*fasync) (struct inode * ，struct file *，<span class="keyword">int</span>); </span><br><span class="line"><span class="keyword">int</span> (*check_media_change) (struct inode * ，struct file *); </span><br><span class="line"><span class="keyword">int</span> (*revalidate) (<span class="keyword">dev_t</span> dev); </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>编写设备驱动程序的<strong>主要工作是编写子函数，并填充**</strong>file_operations<strong>**的各个域</strong>。</p>
+<p>例如：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Struct file_operations my_fops=&#123;</span><br><span class="line">       .read=my_read,</span><br><span class="line">       .write=my_write,</span><br><span class="line">       .open=my_open,</span><br><span class="line">       .release=my_release</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>然后再定义函数my_read,my_write,my_open,my_release相应的函数体.对于可卸载的内核模块（LKM）,至少还有两个基本的模块：。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//内核模块的初始化</span></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">int</span> <span class="title">globalvar_init</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">    int register_chrdev(unsigned int major, unsigned int baseminor,unsigned int count, const char *name,const struct file_operations *fops)</span></span><br><span class="line"><span class="comment">    返回值提示操作成功还是失败。负的返回值表示错误;0 或正的返回值表明操作成功。</span></span><br><span class="line"><span class="comment">    major参数是被请求的主设备号,name 是设备的名称,该名称将出现在 /proc/devices 中, </span></span><br><span class="line"><span class="comment">    fops是指向函数指针数组的指针,这些函数是调用驱动程序的入口点,</span></span><br><span class="line"><span class="comment">    在 2.6 的内核之后，新增了一个 register_chrdev_region 函数，</span></span><br><span class="line"><span class="comment">    它支持将同一个主设备号下的次设备号进行分段，每一段供给一个字符设备驱动程序使用，使得资源利用率大大提升，</span></span><br><span class="line"><span class="comment">    */</span>    </span><br><span class="line">    <span class="keyword">int</span> result = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> err = <span class="number">0</span>;</span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">    宏定义：#define MKDEV(major,minor) (((major) &lt;&lt; MINORBITS) | (minor))</span></span><br><span class="line"><span class="comment">    成功执行返回dev_t类型的设备编号，dev_t类型是unsigned int 类型，32位，用于在驱动程序中定义设备编号，</span></span><br><span class="line"><span class="comment">    高12位为主设备号，低20位为次设备号,可以通过MAJOR和MINOR来获得主设备号和次设备号。</span></span><br><span class="line"><span class="comment">    在module_init宏调用的函数中去注册字符设备驱动</span></span><br><span class="line"><span class="comment">    major传0进去表示要让内核帮我们自动分配一个合适的空白的没被使用的主设备号</span></span><br><span class="line"><span class="comment">    内核如果成功分配就会返回分配的主设备号；如果分配失败会返回负数</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">    <span class="keyword">dev_t</span> dev = MKDEV(major, <span class="number">0</span>);</span><br><span class="line">    <span class="keyword">if</span>(major)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">//静态申请设备编号</span></span><br><span class="line">        result = register_chrdev_region(dev, <span class="number">1</span>, <span class="string">"charmem"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">//动态分配设备号</span></span><br><span class="line">        result = alloc_chrdev_region(&amp;dev, <span class="number">0</span>, <span class="number">1</span>, <span class="string">"charmem"</span>);</span><br><span class="line">        major = MAJOR(dev);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(result &lt; <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">    file_operations这个结构体变量，让cdev中的ops成员的值为file_operations结构体变量的值。</span></span><br><span class="line"><span class="comment">    这个结构体会被cdev_add函数想内核注册cdev结构体，可以用很多函数来操作他。</span></span><br><span class="line"><span class="comment">    如：</span></span><br><span class="line"><span class="comment">    cdev_alloc：让内核为这个结构体分配内存的</span></span><br><span class="line"><span class="comment">    cdev_init：将struct cdev类型的结构体变量和file_operations结构体进行绑定的</span></span><br><span class="line"><span class="comment">    cdev_add：向内核里面添加一个驱动，注册驱动</span></span><br><span class="line"><span class="comment">    cdev_del：从内核中注销掉一个驱动。注销驱动</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">    <span class="comment">//注册字符设备驱动，设备号和file_operations结构体进行绑定</span></span><br><span class="line">    cdev_init(&amp;globalvar.devm, &amp;globalvar_fops);</span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">    #define THIS_MODULE (&amp;__this_module)是一个struct module变量，代表当前模块，</span></span><br><span class="line"><span class="comment">    与那个著名的current有几分相似，可以通过THIS_MODULE宏来引用模块的struct module结构，</span></span><br><span class="line"><span class="comment">    比如使用THIS_MODULE-&gt;state可以获得当前模块的状态。</span></span><br><span class="line"><span class="comment">    现在你应该明白为啥在那个岁月里，你需要毫不犹豫毫不迟疑的将struct usb_driver结构里的owner设置为THIS_MODULE了吧，</span></span><br><span class="line"><span class="comment">    这个owner指针指向的就是你的模块自己。</span></span><br><span class="line"><span class="comment">    那现在owner咋就说没就没了那？这个说来可就话长了，咱就长话短说吧。</span></span><br><span class="line"><span class="comment">    不知道那个时候你有没有忘记过初始化owner，</span></span><br><span class="line"><span class="comment">    反正是很多人都会忘记，</span></span><br><span class="line"><span class="comment">    于是在2006年的春节前夕，在咱们都无心工作无心学习等着过春节的时候，Greg坚守一线，去掉了 owner，</span></span><br><span class="line"><span class="comment">    于是千千万万个写usb驱动的人再也不用去时刻谨记初始化owner了。</span></span><br><span class="line"><span class="comment">    咱们是不用设置owner了，可core里不能不设置，</span></span><br><span class="line"><span class="comment">    struct usb_driver结构里不是没有owner了么，</span></span><br><span class="line"><span class="comment">    可它里面嵌的那个struct device_driver结构里还有啊，设置了它就可以了。</span></span><br><span class="line"><span class="comment">    于是Greg同时又增加了usb_register_driver()这么一层，</span></span><br><span class="line"><span class="comment">    usb_register()可以通过将参数指定为THIS_MODULE去调用它，所有的事情都挪到它里面去做。</span></span><br><span class="line"><span class="comment">    反正usb_register() 也是内联的，并不会增加调用的开销。</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">    globalvar.devm.owner = THIS_MODULE;</span><br><span class="line">    err = cdev_add(&amp;globalvar.devm, dev, <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">if</span>(err)</span><br><span class="line">        printk(KERN_INFO <span class="string">"Error %d adding char_mem device"</span>, err);</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        printk(<span class="string">"globalvar register success\n"</span>);</span><br><span class="line">        sema_init(&amp;globalvar.sem,<span class="number">1</span>); <span class="comment">//初始化信号量</span></span><br><span class="line">        init_waitqueue_head(&amp;globalvar.outq); <span class="comment">//初始化等待队列</span></span><br><span class="line">        globalvar.rd = globalvar.buffer; <span class="comment">//读指针</span></span><br><span class="line">        globalvar.wr = globalvar.buffer; <span class="comment">//写指针</span></span><br><span class="line">        globalvar.end = globalvar.buffer + MAXNUM;<span class="comment">//缓冲区尾指针</span></span><br><span class="line">        globalvar.flag = <span class="number">0</span>; <span class="comment">// 阻塞唤醒标志置 0</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">    定义在/include/linux/device.h</span></span><br><span class="line"><span class="comment">    创建class并将class注册到内核中，返回值为class结构指针</span></span><br><span class="line"><span class="comment">    在驱动初始化的代码里调用class_create为该设备创建一个class，再为每个设备调用device_create创建对应的设备。</span></span><br><span class="line"><span class="comment">    省去了利用mknod命令手动创建设备节点</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">    my_class = class_create(THIS_MODULE, <span class="string">"chardev0"</span>);</span><br><span class="line">    device_create(my_class, <span class="literal">NULL</span>, dev, <span class="literal">NULL</span>, <span class="string">"chardev0"</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">globalvar_exit</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    device_destroy(my_class, MKDEV(major, <span class="number">0</span>));</span><br><span class="line">    class_destroy(my_class);</span><br><span class="line">    cdev_del(&amp;globalvar.devm);</span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">    参数列表包括要释放的主设备号和相应的设备名。</span></span><br><span class="line"><span class="comment">    参数中的这个设备名会被内核用来和主设备号参数所对应的已注册设备名进行比较,如果不同,则返回 -EINVAL。</span></span><br><span class="line"><span class="comment">    如果主设备号超出了所允许的范围,则内核同样返回 -EINVAL。</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">    unregister_chrdev_region(MKDEV(major, <span class="number">0</span>), <span class="number">1</span>);<span class="comment">//注销设备</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="编译安装模块"><a href="#编译安装模块" class="headerlink" title="编译安装模块"></a>编译安装模块</h3><p>Makefile:</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">obj-m += globalvar.o #obj-m 指编译成外部模块</span><br><span class="line"></span><br><span class="line">build:</span><br><span class="line">	make -C /lib/modules/$(shell uname -r)/build M=$(PWD) modules</span><br><span class="line"></span><br><span class="line">clean:</span><br><span class="line">	make -C /lib/modules/$(shell uname -r)/build M=$(PWD) clean</span><br></pre></td></tr></table></figure>
+
+<p>然后</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">make</span></span><br><span class="line"><span class="selector-tag">insmod</span> <span class="selector-tag">globalvar</span><span class="selector-class">.ko</span></span><br></pre></td></tr></table></figure>
+
+<p>卸载模块：</p>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">rmmod mydev</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;sys/types.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;sys/stat.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;fcntl.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span>** argv)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> fd;</span><br><span class="line">	<span class="keyword">char</span> buf[<span class="number">1024</span>];</span><br><span class="line">	<span class="keyword">int</span> start, len;</span><br><span class="line">	<span class="comment">//fd = open("/dev/chardev0", O_RDWR, S_IRUSR | S_IWUSR);</span></span><br><span class="line">	fd = open(<span class="string">"/dev/mydev"</span>, O_RDWR);</span><br><span class="line">	<span class="keyword">if</span> (fd == <span class="number">-1</span>) &#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"Open device error!\n"</span>);</span><br><span class="line">		<span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> (argc == <span class="number">4</span> &amp;&amp; <span class="built_in">strncmp</span>(argv[<span class="number">1</span>], <span class="string">"read"</span>, <span class="number">4</span>) == <span class="number">0</span>) &#123; </span><br><span class="line">		<span class="comment">//static ssize_t my_read(struct file* filp, char* buf, size_t len, loff_t* off) </span></span><br><span class="line">		start = atoi(argv[<span class="number">2</span>]);</span><br><span class="line">		len = atoi(argv[<span class="number">3</span>]);</span><br><span class="line">		lseek(fd, start, SEEK_SET);</span><br><span class="line">		read(fd, buf, len);</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"Character device read : %s\n"</span>, buf);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">if</span> (argc == <span class="number">4</span> &amp;&amp; <span class="built_in">strncmp</span>(argv[<span class="number">1</span>], <span class="string">"write"</span>, <span class="number">5</span>) == <span class="number">0</span>) &#123;</span><br><span class="line">		start = atoi(argv[<span class="number">2</span>]);</span><br><span class="line">		lseek(fd, start, SEEK_CUR);</span><br><span class="line">		write(fd, argv[<span class="number">3</span>], <span class="built_in">strlen</span>(argv[<span class="number">3</span>]));</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span> &#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"Usage : ./executable file &lt;read | write&gt; &lt;start_offset&gt; &lt;len | string&gt;\n"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	close(fd);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>参考代码<a href="https://www.cnblogs.com/yueshangzuo/p/8078687.html" target="_blank" rel="noopener">来自</a></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br><span class="line">284</span><br><span class="line">285</span><br><span class="line">286</span><br><span class="line">287</span><br><span class="line">288</span><br><span class="line">289</span><br><span class="line">290</span><br><span class="line">291</span><br><span class="line">292</span><br><span class="line">293</span><br><span class="line">294</span><br><span class="line">295</span><br><span class="line">296</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">参考：深入浅出linux设备驱动开发</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;linux/module.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;linux/init.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;linux/fs.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;asm/uaccess.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;linux/wait.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;linux/semaphore.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;linux/sched.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;linux/cdev.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;linux/types.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;linux/kdev_t.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;linux/device.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MAXNUM 100</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MAJOR_NUM 456 <span class="comment">//主设备号 ,没有被使用</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">dev</span>&#123;</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">cdev</span> <span class="title">devm</span>;</span> <span class="comment">//字符设备</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">semaphore</span> <span class="title">sem</span>;</span></span><br><span class="line">    <span class="keyword">wait_queue_head_t</span> outq;<span class="comment">//等待队列,实现阻塞操作</span></span><br><span class="line">    <span class="keyword">int</span> flag; <span class="comment">//阻塞唤醒标志</span></span><br><span class="line">    <span class="keyword">char</span> buffer[MAXNUM+<span class="number">1</span>]; <span class="comment">//字符缓冲区</span></span><br><span class="line">    <span class="keyword">char</span> *rd,*wr,*end; <span class="comment">//读,写,尾指针</span></span><br><span class="line">&#125;globalvar;</span><br><span class="line"><span class="keyword">static</span> <span class="class"><span class="keyword">struct</span> <span class="title">class</span> *<span class="title">my_class</span>;</span></span><br><span class="line"><span class="keyword">int</span> major=MAJOR_NUM;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">static</span> ssize_t <span class="title">globalvar_read</span><span class="params">(struct file *,<span class="keyword">char</span> *,<span class="keyword">size_t</span> ,<span class="keyword">loff_t</span> *)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">static</span> ssize_t <span class="title">globalvar_write</span><span class="params">(struct file *,<span class="keyword">const</span> <span class="keyword">char</span> *,<span class="keyword">size_t</span> ,<span class="keyword">loff_t</span> *)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">int</span> <span class="title">globalvar_open</span><span class="params">(struct inode *inode,struct file *filp)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">int</span> <span class="title">globalvar_release</span><span class="params">(struct inode *inode,struct file *filp)</span></span>;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">结构体file_operations在头文件 linux/fs.h中定义，用来存储驱动内核模块提供的对设备进行各种操作的函数的指针。</span></span><br><span class="line"><span class="comment">该结构体的每个域都对应着驱动内核模块用来处理某个被请求的事务的函数的地址。</span></span><br><span class="line"><span class="comment">设备"gobalvar"的基本入口点结构变量gobalvar_fops </span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">file_operations</span> <span class="title">globalvar_fops</span> =</span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">    标记化的初始化格式这种格式允许用名字对这类结构的字段进行初始化,这就避免了因数据结构发生变化而带来的麻烦。</span></span><br><span class="line"><span class="comment">    这种标记化的初始化处理并不是标准 C 的规范,而是对 GUN 编译器的一种(有用的)特殊扩展</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">    <span class="comment">//用来从设备中获取数据. 在这个位置的一个空指针导致 read 系统调用以 -EINVAL("Invalid argument") 失败. 一个非负返回值代表了成功读取的字节数( 返回值是一个 "signed size" 类型, 常常是目标平台本地的整数类型).</span></span><br><span class="line">    .read=globalvar_read,</span><br><span class="line">    <span class="comment">//发送数据给设备. 如果 NULL, -EINVAL 返回给调用 write 系统调用的程序. 如果非负, 返回值代表成功写的字节数.</span></span><br><span class="line">    .write=globalvar_write,</span><br><span class="line">    <span class="comment">//尽管这常常是对设备文件进行的第一个操作, 不要求驱动声明一个对应的方法. 如果这个项是 NULL, 设备打开一直成功, 但是你的驱动不会得到通知.</span></span><br><span class="line">    .open=globalvar_open,</span><br><span class="line">    <span class="comment">//当最后一个打开设备的用户进程执行close ()系统调用时，内核将调用驱动程序的release () 函数：release 函数的主要任务是清理未结束的输入/输出操作、释放资源、用户自定义排他标志的复位等。</span></span><br><span class="line">    .release=globalvar_release,</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">//内核模块的初始化</span></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">int</span> <span class="title">globalvar_init</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">    int register_chrdev(unsigned int major, unsigned int baseminor,unsigned int count, const char *name,const struct file_operations *fops)</span></span><br><span class="line"><span class="comment">    返回值提示操作成功还是失败。负的返回值表示错误;0 或正的返回值表明操作成功。</span></span><br><span class="line"><span class="comment">    major参数是被请求的主设备号,name 是设备的名称,该名称将出现在 /proc/devices 中, </span></span><br><span class="line"><span class="comment">    fops是指向函数指针数组的指针,这些函数是调用驱动程序的入口点,</span></span><br><span class="line"><span class="comment">    在 2.6 的内核之后，新增了一个 register_chrdev_region 函数，</span></span><br><span class="line"><span class="comment">    它支持将同一个主设备号下的次设备号进行分段，每一段供给一个字符设备驱动程序使用，使得资源利用率大大提升，</span></span><br><span class="line"><span class="comment">    */</span>    </span><br><span class="line">    <span class="keyword">int</span> result = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> err = <span class="number">0</span>;</span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">    宏定义：#define MKDEV(major,minor) (((major) &lt;&lt; MINORBITS) | (minor))</span></span><br><span class="line"><span class="comment">    成功执行返回dev_t类型的设备编号，dev_t类型是unsigned int 类型，32位，用于在驱动程序中定义设备编号，</span></span><br><span class="line"><span class="comment">    高12位为主设备号，低20位为次设备号,可以通过MAJOR和MINOR来获得主设备号和次设备号。</span></span><br><span class="line"><span class="comment">    在module_init宏调用的函数中去注册字符设备驱动</span></span><br><span class="line"><span class="comment">    major传0进去表示要让内核帮我们自动分配一个合适的空白的没被使用的主设备号</span></span><br><span class="line"><span class="comment">    内核如果成功分配就会返回分配的主设备号；如果分配失败会返回负数</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">    <span class="keyword">dev_t</span> dev = MKDEV(major, <span class="number">0</span>);</span><br><span class="line">    <span class="keyword">if</span>(major)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">//静态申请设备编号</span></span><br><span class="line">        result = register_chrdev_region(dev, <span class="number">1</span>, <span class="string">"charmem"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">//动态分配设备号</span></span><br><span class="line">        result = alloc_chrdev_region(&amp;dev, <span class="number">0</span>, <span class="number">1</span>, <span class="string">"charmem"</span>);</span><br><span class="line">        major = MAJOR(dev);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(result &lt; <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">    file_operations这个结构体变量，让cdev中的ops成员的值为file_operations结构体变量的值。</span></span><br><span class="line"><span class="comment">    这个结构体会被cdev_add函数想内核注册cdev结构体，可以用很多函数来操作他。</span></span><br><span class="line"><span class="comment">    如：</span></span><br><span class="line"><span class="comment">    cdev_alloc：让内核为这个结构体分配内存的</span></span><br><span class="line"><span class="comment">    cdev_init：将struct cdev类型的结构体变量和file_operations结构体进行绑定的</span></span><br><span class="line"><span class="comment">    cdev_add：向内核里面添加一个驱动，注册驱动</span></span><br><span class="line"><span class="comment">    cdev_del：从内核中注销掉一个驱动。注销驱动</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">    <span class="comment">//注册字符设备驱动，设备号和file_operations结构体进行绑定</span></span><br><span class="line">    cdev_init(&amp;globalvar.devm, &amp;globalvar_fops);</span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">    #define THIS_MODULE (&amp;__this_module)是一个struct module变量，代表当前模块，</span></span><br><span class="line"><span class="comment">    与那个著名的current有几分相似，可以通过THIS_MODULE宏来引用模块的struct module结构，</span></span><br><span class="line"><span class="comment">    比如使用THIS_MODULE-&gt;state可以获得当前模块的状态。</span></span><br><span class="line"><span class="comment">    现在你应该明白为啥在那个岁月里，你需要毫不犹豫毫不迟疑的将struct usb_driver结构里的owner设置为THIS_MODULE了吧，</span></span><br><span class="line"><span class="comment">    这个owner指针指向的就是你的模块自己。</span></span><br><span class="line"><span class="comment">    那现在owner咋就说没就没了那？这个说来可就话长了，咱就长话短说吧。</span></span><br><span class="line"><span class="comment">    不知道那个时候你有没有忘记过初始化owner，</span></span><br><span class="line"><span class="comment">    反正是很多人都会忘记，</span></span><br><span class="line"><span class="comment">    于是在2006年的春节前夕，在咱们都无心工作无心学习等着过春节的时候，Greg坚守一线，去掉了 owner，</span></span><br><span class="line"><span class="comment">    于是千千万万个写usb驱动的人再也不用去时刻谨记初始化owner了。</span></span><br><span class="line"><span class="comment">    咱们是不用设置owner了，可core里不能不设置，</span></span><br><span class="line"><span class="comment">    struct usb_driver结构里不是没有owner了么，</span></span><br><span class="line"><span class="comment">    可它里面嵌的那个struct device_driver结构里还有啊，设置了它就可以了。</span></span><br><span class="line"><span class="comment">    于是Greg同时又增加了usb_register_driver()这么一层，</span></span><br><span class="line"><span class="comment">    usb_register()可以通过将参数指定为THIS_MODULE去调用它，所有的事情都挪到它里面去做。</span></span><br><span class="line"><span class="comment">    反正usb_register() 也是内联的，并不会增加调用的开销。</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">    globalvar.devm.owner = THIS_MODULE;</span><br><span class="line">    err = cdev_add(&amp;globalvar.devm, dev, <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">if</span>(err)</span><br><span class="line">        printk(KERN_INFO <span class="string">"Error %d adding char_mem device"</span>, err);</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        printk(<span class="string">"globalvar register success\n"</span>);</span><br><span class="line">        sema_init(&amp;globalvar.sem,<span class="number">1</span>); <span class="comment">//初始化信号量</span></span><br><span class="line">        init_waitqueue_head(&amp;globalvar.outq); <span class="comment">//初始化等待队列</span></span><br><span class="line">        globalvar.rd = globalvar.buffer; <span class="comment">//读指针</span></span><br><span class="line">        globalvar.wr = globalvar.buffer; <span class="comment">//写指针</span></span><br><span class="line">        globalvar.end = globalvar.buffer + MAXNUM;<span class="comment">//缓冲区尾指针</span></span><br><span class="line">        globalvar.flag = <span class="number">0</span>; <span class="comment">// 阻塞唤醒标志置 0</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">    定义在/include/linux/device.h</span></span><br><span class="line"><span class="comment">    创建class并将class注册到内核中，返回值为class结构指针</span></span><br><span class="line"><span class="comment">    在驱动初始化的代码里调用class_create为该设备创建一个class，再为每个设备调用device_create创建对应的设备。</span></span><br><span class="line"><span class="comment">    省去了利用mknod命令手动创建设备节点</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">    my_class = class_create(THIS_MODULE, <span class="string">"chardev0"</span>);</span><br><span class="line">    device_create(my_class, <span class="literal">NULL</span>, dev, <span class="literal">NULL</span>, <span class="string">"chardev0"</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">在大部分驱动程序中,open 应完成如下工作:</span></span><br><span class="line"><span class="comment">● 递增使用计数。--为了老版本的可移植性</span></span><br><span class="line"><span class="comment">● 检查设备特定的错误(诸如设备未就绪或类似的硬件问题)。</span></span><br><span class="line"><span class="comment">● 如果设备是首次打开,则对其进行初始化。</span></span><br><span class="line"><span class="comment">● 识别次设备号,并且如果有必要,更新 f_op 指针。</span></span><br><span class="line"><span class="comment">● 分配并填写被置于 filp-&gt;private_data 里的数据结构。</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">int</span> <span class="title">globalvar_open</span><span class="params">(struct inode *inode,struct file *filp)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    try_module_get(THIS_MODULE);<span class="comment">//模块计数加一</span></span><br><span class="line">    printk(<span class="string">"This chrdev is in open\n"</span>);</span><br><span class="line">    <span class="keyword">return</span>(<span class="number">0</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">release都应该完成下面的任务:</span></span><br><span class="line"><span class="comment">● 释放由 open 分配的、保存在 filp-&gt;private_data 中的所有内容。</span></span><br><span class="line"><span class="comment">● 在最后一次关闭操作时关闭设备。字符设备驱动程序</span></span><br><span class="line"><span class="comment">● 使用计数减 1。</span></span><br><span class="line"><span class="comment">如果使用计数不归0,内核就无法卸载模块。</span></span><br><span class="line"><span class="comment">并不是每个 close 系统调用都会引起对 release 方法的调用。</span></span><br><span class="line"><span class="comment">仅仅是那些真正释放设备数据结构的 close 调用才会调用这个方法,</span></span><br><span class="line"><span class="comment">因此名字是 release 而不是 close。内核维护一个 file 结构被使用多少次的计数器。</span></span><br><span class="line"><span class="comment">无论是 fork 还是 dup 都不创建新的数据结构(仅由 open 创建),它们只是增加已有结构中的计数。</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">int</span> <span class="title">globalvar_release</span><span class="params">(struct inode *inode,struct file *filp)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    module_put(THIS_MODULE); <span class="comment">//模块计数减一</span></span><br><span class="line">    printk(<span class="string">"This chrdev is in release\n"</span>);</span><br><span class="line">    <span class="keyword">return</span>(<span class="number">0</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">globalvar_exit</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    device_destroy(my_class, MKDEV(major, <span class="number">0</span>));</span><br><span class="line">    class_destroy(my_class);</span><br><span class="line">    cdev_del(&amp;globalvar.devm);</span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">    参数列表包括要释放的主设备号和相应的设备名。</span></span><br><span class="line"><span class="comment">    参数中的这个设备名会被内核用来和主设备号参数所对应的已注册设备名进行比较,如果不同,则返回 -EINVAL。</span></span><br><span class="line"><span class="comment">    如果主设备号超出了所允许的范围,则内核同样返回 -EINVAL。</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">    unregister_chrdev_region(MKDEV(major, <span class="number">0</span>), <span class="number">1</span>);<span class="comment">//注销设备</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">ssize_t read(struct file *filp, char *buff,size_t count, loff_t *offp);</span></span><br><span class="line"><span class="comment">参数 filp 是文件指针,参数 count 是请求传输的数据长度。</span></span><br><span class="line"><span class="comment">参数 buff 是指向用户空间的缓冲区,这个缓冲区或者保存将写入的数据,或者是一个存放新读入数据的空缓冲区。</span></span><br><span class="line"><span class="comment">最后的 offp 是一个指向“long offset type(长偏移量类型)”对象的指针,这个对象指明用户在文件中进行存取操作的位置。</span></span><br><span class="line"><span class="comment">返回值是“signed size type(有符号的尺寸类型)”</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">主要问题是,需要在内核地址空间和用户地址空间之间传输数据。</span></span><br><span class="line"><span class="comment">不能用通常的办法利用指针或 memcpy来完成这样的操作。由于许多原因,不能在内核空间中直接使用用户空间地址。</span></span><br><span class="line"><span class="comment">内核空间地址与用户空间地址之间很大的一个差异就是,用户空间的内存是可被换出的。</span></span><br><span class="line"><span class="comment">当内核访问用户空间指针时,相对应的页面可能已不在内存中了,这样的话就会产生一个页面失效</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="function"><span class="keyword">static</span> ssize_t <span class="title">globalvar_read</span><span class="params">(struct file *filp,<span class="keyword">char</span> *buf,<span class="keyword">size_t</span> len,<span class="keyword">loff_t</span> *off)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(wait_event_interruptible(globalvar.outq,globalvar.flag!=<span class="number">0</span>)) <span class="comment">//不可读时 阻塞读进程</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> -ERESTARTSYS;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">    down_interruptible 可以由一个信号中断,但 down 不允许有信号传送到进程。</span></span><br><span class="line"><span class="comment">    大多数情况下都希望信号起作用;否则,就有可能建立一个无法杀掉的进程,并产生其他不可预期的结果。</span></span><br><span class="line"><span class="comment">    但是,允许信号中断将使得信号量的处理复杂化,因为我们总要去检查函数(这里是 down_interruptible)是否已被中断。</span></span><br><span class="line"><span class="comment">    一般来说,当该函数返回 0 时表示成功,返回非 0 时则表示出错。</span></span><br><span class="line"><span class="comment">    如果这个处理过程被中断,它就不会获得信号量 , 因此,也就不能调用 up 函数了。</span></span><br><span class="line"><span class="comment">    因此,对信号量的典型调用通常是下面的这种形式:</span></span><br><span class="line"><span class="comment">    if (down_interruptible (&amp;sem))</span></span><br><span class="line"><span class="comment">        return -ERESTARTSYS;</span></span><br><span class="line"><span class="comment">    返回值 -ERESTARTSYS通知系统操作被信号中断。</span></span><br><span class="line"><span class="comment">    调用这个设备方法的内核函数或者重新尝试,或者返回 -EINTR 给应用程序,这取决于应用程序是如何设置信号处理函数的。</span></span><br><span class="line"><span class="comment">    当然,如果是以这种方式中断操作的话,那么代码应在返回前完成清理工作。</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">    使用down_interruptible来获取信号量的代码不应调用其他也试图获得该信号量的函数,否则就会陷入死锁。</span></span><br><span class="line"><span class="comment">    如果驱动程序中的某段程序对其持有的信号量释放失败的话(可能就是一次出错返回的结果),</span></span><br><span class="line"><span class="comment">    那么其他任何获取该信号量的尝试都将阻塞在那里。</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">    <span class="keyword">if</span>(down_interruptible(&amp;globalvar.sem)) <span class="comment">//P 操作</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> -ERESTARTSYS;</span><br><span class="line">    &#125;</span><br><span class="line">    globalvar.flag = <span class="number">0</span>;</span><br><span class="line">    printk(<span class="string">"into the read function\n"</span>);</span><br><span class="line">    printk(<span class="string">"the rd is %c\n"</span>,*globalvar.rd); <span class="comment">//读指针</span></span><br><span class="line">    <span class="keyword">if</span>(globalvar.rd &lt; globalvar.wr)</span><br><span class="line">        len = min(len,(<span class="keyword">size_t</span>)(globalvar.wr - globalvar.rd)); <span class="comment">//更新读写长度</span></span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        len = min(len,(<span class="keyword">size_t</span>)(globalvar.end - globalvar.rd));</span><br><span class="line">    printk(<span class="string">"the len is %d\n"</span>,len);</span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">    read 和 write 代码要做的工作,就是在用户地址空间和内核地址空间之间进行整段数据的拷贝。</span></span><br><span class="line"><span class="comment">    这种能力是由下面的内核函数提供的,它们用于拷贝任意的一段字节序列,这也是每个 read 和 write 方法实现的核心部分:</span></span><br><span class="line"><span class="comment">    unsigned long copy_to_user(void *to, const void *from,unsigned long count);</span></span><br><span class="line"><span class="comment">    unsigned long copy_from_user(void *to, const void *from,unsigned long count);</span></span><br><span class="line"><span class="comment">    虽然这些函数的行为很像通常的 memcpy 函数,但当在内核空间内运行的代码访问用户空间时,则要多加小心。</span></span><br><span class="line"><span class="comment">    被寻址的用户空间的页面可能当前并不在内存,于是处理页面失效的程序会使访问进程转入睡眠,直到该页面被传送至期望的位置。</span></span><br><span class="line"><span class="comment">    例如,当页面必须从交换空间取回时,这样的情况就会发生。对于驱动程序编写人员来说,</span></span><br><span class="line"><span class="comment">    结果就是访问用户空间的任何函数都必须是可重入的,并且必须能和其他驱动程序函数并发执行。</span></span><br><span class="line"><span class="comment">    这就是我们使用信号量来控制并发访问的原因.</span></span><br><span class="line"><span class="comment">    这两个函数的作用并不限于在内核空间和用户空间之间拷贝数据,它们还检查用户空间的指针是否有效。</span></span><br><span class="line"><span class="comment">    如果指针无效,就不会进行拷贝;另一方面,如果在拷贝过程中遇到无效地址,则仅仅会复制部分数据。</span></span><br><span class="line"><span class="comment">    在这两种情况下,返回值是还未拷贝完的内存的数量值。</span></span><br><span class="line"><span class="comment">    如果发现这样的错误返回,就会在返回值不为 0 时,返回 -EFAULT 给用户。</span></span><br><span class="line"><span class="comment">    负值意味着发生了错误,该值指明发生了什么错误,错误码在&lt;linux/errno.h&gt;中定义。</span></span><br><span class="line"><span class="comment">    比如这样的一些错误:-EINTR(系统调用被中断)或 -EFAULT (无效地址)。</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">    <span class="keyword">if</span>(copy_to_user(buf,globalvar.rd,len))</span><br><span class="line">    &#123;</span><br><span class="line">        printk(KERN_ALERT<span class="string">"copy failed\n"</span>);</span><br><span class="line">        <span class="comment">/*</span></span><br><span class="line"><span class="comment">        up递增信号量的值,并唤醒所有正在等待信号量转为可用状态的进程。</span></span><br><span class="line"><span class="comment">        必须小心使用信号量。被信号量保护的数据必须是定义清晰的,并且存取这些数据的所有代码都必须首先获得信号量。</span></span><br><span class="line"><span class="comment">        */</span></span><br><span class="line">        up(&amp;globalvar.sem);</span><br><span class="line">        <span class="keyword">return</span> -EFAULT;</span><br><span class="line">    &#125;</span><br><span class="line">    printk(<span class="string">"the read buffer is %s\n"</span>,globalvar.buffer);</span><br><span class="line">    globalvar.rd = globalvar.rd + len;</span><br><span class="line">    <span class="keyword">if</span>(globalvar.rd == globalvar.end)</span><br><span class="line">        globalvar.rd = globalvar.buffer; <span class="comment">//字符缓冲区循环</span></span><br><span class="line">    up(&amp;globalvar.sem); <span class="comment">//V 操作</span></span><br><span class="line">    <span class="keyword">return</span> len;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">static</span> ssize_t <span class="title">globalvar_write</span><span class="params">(struct file *filp,<span class="keyword">const</span> <span class="keyword">char</span> *buf,<span class="keyword">size_t</span> len,<span class="keyword">loff_t</span> *off)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(down_interruptible(&amp;globalvar.sem)) <span class="comment">//P 操作</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> -ERESTARTSYS;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(globalvar.rd &lt;= globalvar.wr)</span><br><span class="line">        len = min(len,(<span class="keyword">size_t</span>)(globalvar.end - globalvar.wr));</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        len = min(len,(<span class="keyword">size_t</span>)(globalvar.rd-globalvar.wr<span class="number">-1</span>));</span><br><span class="line">    printk(<span class="string">"the write len is %d\n"</span>,len);</span><br><span class="line">    <span class="keyword">if</span>(copy_from_user(globalvar.wr,buf,len))</span><br><span class="line">    &#123;</span><br><span class="line">        up(&amp;globalvar.sem); <span class="comment">//V 操作</span></span><br><span class="line">        <span class="keyword">return</span> -EFAULT;</span><br><span class="line">    &#125;</span><br><span class="line">    printk(<span class="string">"the write buffer is %s\n"</span>,globalvar.buffer);</span><br><span class="line">    printk(<span class="string">"the len of buffer is %d\n"</span>,<span class="built_in">strlen</span>(globalvar.buffer));</span><br><span class="line">    globalvar.wr = globalvar.wr + len;</span><br><span class="line">    <span class="keyword">if</span>(globalvar.wr == globalvar.end)</span><br><span class="line">    globalvar.wr = globalvar.buffer; <span class="comment">//循环</span></span><br><span class="line">    up(&amp;globalvar.sem);</span><br><span class="line">    <span class="comment">//V 操作</span></span><br><span class="line">    globalvar.flag=<span class="number">1</span>; <span class="comment">//条件成立,可以唤醒读进程</span></span><br><span class="line">    wake_up_interruptible(&amp;globalvar.outq); <span class="comment">//唤醒读进程</span></span><br><span class="line">    <span class="keyword">return</span> len;</span><br><span class="line">&#125;</span><br><span class="line">module_init(globalvar_init);</span><br><span class="line">module_exit(globalvar_exit);</span><br><span class="line">MODULE_LICENSE(<span class="string">"GPL"</span>);</span><br></pre></td></tr></table></figure>
+
+<p>mydev:</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;linux/kernel.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;linux/module.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;linux/cdev.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;linux/fs.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;linux/init.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;linux/slab.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;linux/string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;linux/uaccess.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MAXNUM 1024</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MAJOR_NUM 300  <span class="comment">//主设备号，没有被使用  查看/proc/devices可知</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">//指定license版本</span></span><br><span class="line">MODULE_LICENSE(<span class="string">"GPL"</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">dev</span> &#123;</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">cdev</span> <span class="title">devm</span>;</span> <span class="comment">//字符设备</span></span><br><span class="line">	<span class="keyword">char</span> buf[MAXNUM + <span class="number">1</span>]; <span class="comment">//字符缓冲区</span></span><br><span class="line">	<span class="keyword">char</span>* rd, * wr, * end; <span class="comment">//读,写,尾指针</span></span><br><span class="line">&#125;globalvar;</span><br><span class="line"></span><br><span class="line"><span class="keyword">static</span> <span class="class"><span class="keyword">struct</span> <span class="title">class</span>* <span class="title">my_class</span>;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//文件打开函数</span></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">int</span> <span class="title">my_open</span><span class="params">(struct inode* inode, struct file* filp)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	printk(<span class="string">"Character device is open.\n"</span>);</span><br><span class="line">	<span class="comment">//try_module_get(THIS_MODULE);//模块计数加一</span></span><br><span class="line">	filp-&gt;private_data = &amp;globalvar;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//文件释放函数</span></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">int</span> <span class="title">my_release</span><span class="params">(struct inode* inode, struct file* filp)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	printk(<span class="string">"Character device is released.\n"</span>);</span><br><span class="line">	<span class="comment">//module_put(THIS_MODULE); //模块计数减一</span></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//模块卸载函数</span></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">mydev_exit</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	printk(<span class="string">"Unload module: mydev.\n"</span>);</span><br><span class="line">	device_destroy(my_class, MKDEV(MAJOR_NUM, <span class="number">0</span>));</span><br><span class="line">	class_destroy(my_class);</span><br><span class="line">	cdev_del(&amp;globalvar.devm);</span><br><span class="line">	cdev_del(&amp;globalvar.devm);  <span class="comment">//注销设备</span></span><br><span class="line">	unregister_chrdev_region(MKDEV(MAJOR_NUM, <span class="number">0</span>), <span class="number">1</span>);  <span class="comment">//释放设备号</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//读函数</span></span><br><span class="line"><span class="function"><span class="keyword">static</span> ssize_t <span class="title">my_read</span><span class="params">(struct file* filp, <span class="keyword">char</span> __user* buf, <span class="keyword">size_t</span> len, <span class="keyword">loff_t</span>* off)</span> </span>&#123;</span><br><span class="line">	printk(KERN_INFO <span class="string">"Character device start read.\n"</span>);</span><br><span class="line">	<span class="keyword">int</span> rtn = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">int</span> free_mem = MAXNUM - *off;  <span class="comment">//剩余可用空间</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">dev</span>* <span class="title">dev</span> = <span class="title">filp</span>-&gt;<span class="title">private_data</span>;</span></span><br><span class="line">	<span class="keyword">if</span> (len &lt;= free_mem) &#123;  <span class="comment">//可用空间充足</span></span><br><span class="line">		<span class="keyword">if</span> (copy_to_user(buf, dev-&gt;buf + *off, len)) &#123;</span><br><span class="line">			printk(KERN_ALERT <span class="string">"1.Copy to user buffer failed.\n"</span>);</span><br><span class="line">			<span class="keyword">return</span> -EFAULT;</span><br><span class="line">		&#125;</span><br><span class="line">		*off += len;</span><br><span class="line">		rtn = len;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span> &#123;</span><br><span class="line">		<span class="comment">//可用空间不足</span></span><br><span class="line">		<span class="keyword">if</span> (copy_to_user(buf, dev-&gt;buf + *off, free_mem)) &#123;</span><br><span class="line">			printk(KERN_ALERT<span class="string">"2.Copy to user buffer failed.\n"</span>);</span><br><span class="line">			<span class="keyword">return</span> -EFAULT;</span><br><span class="line">		&#125;</span><br><span class="line">		*off += free_mem;</span><br><span class="line">		rtn = free_mem;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//printk("the read buffer is %s\n", globalvar.buf);</span></span><br><span class="line">	printk(KERN_INFO <span class="string">"Character device has read %d bytes.\n"</span>, rtn);</span><br><span class="line">	<span class="keyword">return</span> rtn;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//写函数</span></span><br><span class="line"><span class="function"><span class="keyword">static</span> ssize_t <span class="title">my_write</span><span class="params">(struct file* filp, <span class="keyword">const</span> <span class="keyword">char</span> __user * buf, <span class="keyword">size_t</span> len, <span class="keyword">loff_t</span>* off)</span> </span>&#123;</span><br><span class="line">	printk(KERN_INFO <span class="string">"Start write.\n"</span>);</span><br><span class="line">	<span class="keyword">int</span> rtn = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">int</span> free_mem = MAXNUM - *off;  <span class="comment">//剩余可用空间</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">dev</span>* <span class="title">dev</span> = <span class="title">filp</span>-&gt;<span class="title">private_data</span>;</span></span><br><span class="line">	<span class="comment">//printk(KERN_DEBUG "len: %d buf:%send.\n",strlen(dev-&gt;buf), dev-&gt;buf);</span></span><br><span class="line">	<span class="keyword">if</span> (len &lt;= free_mem) &#123;</span><br><span class="line">		<span class="keyword">if</span> (copy_from_user(dev-&gt;buf + *off, buf, len)) &#123;</span><br><span class="line">			printk(KERN_ALERT <span class="string">"1.Copy frome user buffer failed.\n"</span>);</span><br><span class="line">			<span class="keyword">return</span> -EFAULT;</span><br><span class="line">		&#125;</span><br><span class="line">		*off += len;</span><br><span class="line">		rtn = len;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span> &#123;</span><br><span class="line">		<span class="keyword">if</span> (copy_from_user(dev-&gt;buf + *off, buf, free_mem)) &#123;</span><br><span class="line">			printk(KERN_ALERT<span class="string">"2.Copy frome user buffer failed.\n"</span>);</span><br><span class="line">			<span class="keyword">return</span> -EFAULT;</span><br><span class="line">		&#125;</span><br><span class="line">		*off += free_mem;</span><br><span class="line">		rtn = free_mem;</span><br><span class="line">	&#125;</span><br><span class="line">	printk(<span class="string">"Character device has written %d bytes.\n"</span>, rtn);</span><br><span class="line">	<span class="keyword">return</span> rtn;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//文件定位函数</span></span><br><span class="line"><span class="function"><span class="keyword">static</span> loff_t <span class="title">my_llseek</span><span class="params">(struct file* filp, <span class="keyword">loff_t</span> off, <span class="keyword">int</span> whence)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	printk(KERN_INFO <span class="string">"Character device start lseek.\n"</span>);</span><br><span class="line">	<span class="keyword">loff_t</span> rtn = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">switch</span> (whence) &#123;</span><br><span class="line">	<span class="keyword">case</span> SEEK_SET:</span><br><span class="line">		rtn = off;</span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line">	<span class="keyword">case</span> SEEK_CUR:</span><br><span class="line">		rtn = filp-&gt;f_pos + off;</span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line">	<span class="keyword">case</span> SEEK_END:</span><br><span class="line">		rtn = MAXNUM + off;</span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line">	<span class="keyword">default</span>:</span><br><span class="line">		<span class="keyword">return</span> -EINVAL;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> (rtn &lt; <span class="number">0</span> || rtn &gt; MAXNUM)</span><br><span class="line">		<span class="keyword">return</span> -EINVAL;</span><br><span class="line">	printk(<span class="string">"Character device set offset at %d.\n"</span>, rtn);</span><br><span class="line">	filp-&gt;f_pos = rtn;</span><br><span class="line">	<span class="keyword">return</span> rtn;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">file_operations</span> <span class="title">my_fops</span> = &#123;</span></span><br><span class="line">	.open = my_open,</span><br><span class="line">	.read = my_read,</span><br><span class="line">	.write = my_write,</span><br><span class="line">	.release = my_release,</span><br><span class="line">	.llseek = my_llseek,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">//设置初始化入口函数</span></span><br><span class="line"><span class="keyword">static</span> <span class="keyword">int</span> __<span class="function">init <span class="title">mydev_init</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="comment">//printk(KERN_DEBUG "hello %s!!!\n", name);</span></span><br><span class="line">	printk(KERN_DEBUG <span class="string">"Load module: mydev\n"</span>);</span><br><span class="line">	<span class="keyword">int</span> rtn;</span><br><span class="line">	<span class="keyword">dev_t</span> devno = MKDEV(MAJOR_NUM, <span class="number">0</span>);  <span class="comment">//注册字符设备驱动</span></span><br><span class="line">	rtn = register_chrdev_region(devno, <span class="number">1</span>, <span class="string">"mydev"</span>);  <span class="comment">//静态申请设备编号</span></span><br><span class="line">	<span class="keyword">if</span> (rtn &lt; <span class="number">0</span>) &#123;</span><br><span class="line">		printk(KERN_ALERT <span class="string">"Register character device error."</span>);</span><br><span class="line">		<span class="keyword">return</span> rtn;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">memset</span>(globalvar.buf, <span class="string">'\0'</span>, MAXNUM + <span class="number">1</span>);</span><br><span class="line">	<span class="comment">//printk(KERN_DEBUG "buf:%s\n", globalvar.buf);</span></span><br><span class="line">	cdev_init(&amp;(globalvar.devm), &amp;my_fops); <span class="comment">//注册字符设备驱动，设备号和file_operations结构体进行绑定</span></span><br><span class="line">	globalvar.devm.owner = THIS_MODULE;  <span class="comment">//通过THIS_MODULE宏来引用模块的struct module结构</span></span><br><span class="line">	rtn = cdev_add(&amp;(globalvar.devm), devno, <span class="number">1</span>);</span><br><span class="line">	<span class="keyword">if</span> (rtn)</span><br><span class="line">		printk(KERN_ALERT <span class="string">"Error %d adding mydev device.\n"</span>, rtn);</span><br><span class="line">	<span class="keyword">else</span> &#123;</span><br><span class="line">		printk(KERN_INFO <span class="string">"Character device register success.\n"</span>);</span><br><span class="line">		globalvar.rd = globalvar.buf; <span class="comment">//读指针</span></span><br><span class="line">		globalvar.wr = globalvar.buf;  <span class="comment">//写指针</span></span><br><span class="line">		globalvar.end = globalvar.buf + MAXNUM;  <span class="comment">//缓冲区尾指针</span></span><br><span class="line">	&#125;</span><br><span class="line">	my_class = class_create(THIS_MODULE, <span class="string">"mydev"</span>);</span><br><span class="line">	device_create(my_class, <span class="literal">NULL</span>, devno, <span class="literal">NULL</span>, <span class="string">"mydev"</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">module_init(mydev_init);</span><br><span class="line">module_exit(mydev_exit);</span><br></pre></td></tr></table></figure>
+
+<h2 id="proc"><a href="#proc" class="headerlink" title="/proc"></a>/proc</h2><h3 id="基础知识-1"><a href="#基础知识-1" class="headerlink" title="基础知识"></a>基础知识</h3><p><strong>这是一个提供内核统计信息的文件系统接口。由内核动态创建，不需要任何存储设备。多数为只读，提供观察数据，一部分可写用于控制内核行为。</strong></p>
+<p>/proc包含很多目录，其中以进程ID命名的目录代表就是那个进程。这些目录下众多文件包含了进程的信息和统计信息，由内核数据映射而来。</p>
+<p><img src="/2020/02/25/Linux有关笔记/2019091016174868.png" alt="img"></p>
+<ul>
+<li>limits：实际的资源限制</li>
+<li>maps：映射的内存区域</li>
+<li>sched：CPU调度的各种统计</li>
+<li>schedstat：CPU运行时间，延迟和时间分片</li>
+<li>smaps：映射内存区域的使用统计</li>
+<li>stat：进程状态和统计。包括总的CPU和内存使用情况</li>
+<li>statm：以页为单位的内存使用总结</li>
+<li>status：stat和statm的信息，用户可读</li>
+<li>task：每个任务的统计目录</li>
+</ul>
+<p>系统级别的统计,与性能观察相关的系统级别的文件</p>
+<p><img src="/2020/02/25/Linux有关笔记/20190910161839417.png" alt="img"></p>
+<ul>
+<li>cpuinfo:物理处理器信息，包含所有虚拟CPU、型号、时钟频率和缓存大小</li>
+<li>diskstats：对于所有磁盘设备的磁盘IO统计</li>
+<li>interrupts：每个CPU的中断计数器</li>
+<li>loadavg：负载平均值</li>
+<li>meminfo：系统内存使用明细</li>
+<li>net/dev：网络接口统计</li>
+<li>net/tcp：活跃的TCP套接字信息</li>
+<li>schedstat：系统级别的CPU调度器统计</li>
+<li>self：关联当前进程ID路径的链接符号。为了方便使用</li>
+<li>slabinfo：内核slab分配器缓存统计</li>
+<li>stat：内核和系统资源的统计</li>
+<li>zoneinfo：内存区信息</li>
+</ul>
+<h3 id="proc-pid-stat"><a href="#proc-pid-stat" class="headerlink" title="/proc/(pid)/stat"></a>/proc/(pid)/stat</h3><p>可以通过查看/usr/src/linux/Documentation/filesystems/proc.txt文件来获得更多的信息</p>
+<p>[root@localhost ~]# cat /proc/6873/stat</p>
+<p>6873 (a.out) R 6723 6873 6723 34819 6873 8388608 77 0 0 0 41958 31 0 0 25 0 3 0 5882654 1409024 56 4294967295 134512640 134513720 3215579040 0 2097798 0 0 0 0 0 0 0 17 0 0 0 [root@localhost ~]#</p>
+<p>每个参数意思为：<br>参数 解释<br>pid=6873 进程(包括轻量级进程，即线程)号<br>comm=a.out 应用程序或命令的名字<br>task_state=R 任务的状态，R:runnign, S:sleeping (TASK_INTERRUPTIBLE), D:disk sleep (TASK_UNINTERRUPTIBLE), T: stopped, T:tracing stop,Z:zombie, X:dead<br>ppid=6723 父进程ID<br>pgid=6873 线程组号<br>sid=6723 c该任务所在的会话组ID<br>tty_nr=34819(pts/3) 该任务的tty终端的设备号，INT（34817/256）=主设备号，（34817-主设备号）=次设备号<br>tty_pgrp=6873 终端的进程组号，当前运行在该任务所在终端的前台任务(包括shell 应用程序)的PID。<br>task-&gt;flags=8388608 进程标志位，查看该任务的特性<br>min_flt=77 该任务不需要从硬盘拷数据而发生的缺页（次缺页）的次数<br>cmin_flt=0 累计的该任务的所有的waited-for进程曾经发生的次缺页的次数目<br>maj_flt=0 该任务需要从硬盘拷数据而发生的缺页（主缺页）的次数<br>cmaj_flt=0 累计的该任务的所有的waited-for进程曾经发生的主缺页的次数目<br>utime=1587 该任务在用户态运行的时间，单位为jiffies<br>stime=1 该任务在核心态运行的时间，单位为jiffies<br>cutime=0 累计的该任务的所有的waited-for进程曾经在用户态运行的时间，单位为jiffies<br>cstime=0 累计的该任务的所有的waited-for进程曾经在核心态运行的时间，单位为jiffies<br>priority=25 任务的动态优先级<br>nice=0 任务的静态优先级<br>num_threads=3 该任务所在的线程组里线程的个数<br>it_real_value=0 由于计时间隔导致的下一个 SIGALRM 发送进程的时延，以 jiffy 为单位.<br>start_time=5882654 该任务启动的时间，单位为jiffies<br>vsize=1409024（B） 该任务的虚拟地址空间大小（很多说明上在此误导为vsize的单位为page实际是不正确的）<br>rss=56(page) 该任务当前驻留物理地址空间的大小<br>Number of pages the process has in real memory,minu 3 for administrative purpose.<br>这些页可能用于代码，数据和栈。<br>rlim=4294967295（bytes） 该任务能驻留物理地址空间的最大值<br>start_code=134512640 该任务在虚拟地址空间的代码段的起始地址<br>end_code=134513720 该任务在虚拟地址空间的代码段的结束地址<br>start_stack=3215579040 该任务在虚拟地址空间的栈的结束地址<br>kstkesp=0 esp(32 位堆栈指针) 的当前值, 与在进程的内核堆栈页得到的一致.<br>kstkeip=2097798 指向将要执行的指令的指针, EIP(32 位指令指针)的当前值.<br>pendingsig=0 待处理信号的位图，记录发送给进程的普通信号<br>block_sig=0 阻塞信号的位图<br>sigign=0 忽略的信号的位图<br>sigcatch=082985 被俘获的信号的位图<br>wchan=0 如果该进程是睡眠状态，该值给出调度的调用点<br>nswap 被swapped的页数，当前没用<br>cnswap 所有子进程被swapped的页数的和，当前没用<br>exit_signal=17 该进程结束时，向父进程所发送的信号<br>task_cpu(task)=0 运行在哪个CPU上<br>task_rt_priority=0 实时进程的相对优先级别<br>task_policy=0 进程的调度策略，0=非实时进程，1=FIFO实时进程；2=RR实时进程 </p>
+<p>rss是实际占用内存，以页为单位存放，一般是4K每页，所以要乘以4<br>vsize则是以B的单位存放，转化到K所以除1024 </p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>Post author:</strong>
+    Five
+  </li>
+  <li class="post-copyright-link">
+    <strong>Post link:</strong>
+    <a href="http://yorxika.github.io/2020/02/25/Linux有关笔记/" title="Linux有关笔记">http://yorxika.github.io/2020/02/25/Linux有关笔记/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>Copyright Notice: </strong>
+    All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> unless stating additionally.
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/操作系统/" rel="tag"><i class="fa fa-tag"></i> 操作系统</a>
+          
+            <a href="/tags/Linux/" rel="tag"><i class="fa fa-tag"></i> Linux</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/02/24/移动0/" rel="next" title="移动0">
+                <i class="fa fa-chevron-left"></i> 移动0
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/02/27/H指数/" rel="prev" title="H指数">
+                H指数 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+  <div id="gitalk-container"></div>
+ 
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/touxiang.jpg" alt="Five">
+            
+              <p class="site-author-name" itemprop="name">Five</p>
+              <p class="site-description motion-element" itemprop="description">To your valor, my sword, and our victory together.</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">204</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">24</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">60</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/Yorxika" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:alonede@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://twitter.com/LinMFeng" target="_blank" title="Twitter">
+                      
+                        <i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+	  <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="298" height="60" src="//music.163.com/outchain/player?type=2&id=509038&auto=0&height=32"></iframe>
+	  
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#user含意"><span class="nav-number">1.</span> <span class="nav-text">__user含意</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#user-的使用"><span class="nav-number">1.1.</span> <span class="nav-text">__user 的使用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关于get-ds-set-fs-get-fs函数的使用"><span class="nav-number">2.</span> <span class="nav-text">关于get_ds, set_fs, get_fs函数的使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#copy-to-user和copy-from-user"><span class="nav-number">3.</span> <span class="nav-text">copy_to_user和copy_from_user</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件系统"><span class="nav-number">4.</span> <span class="nav-text">文件系统</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#设备驱动"><span class="nav-number">5.</span> <span class="nav-text">设备驱动</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基础知识"><span class="nav-number">5.1.</span> <span class="nav-text">基础知识</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#添加新模块的基本步骤"><span class="nav-number">5.2.</span> <span class="nav-text">添加新模块的基本步骤</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#写设备驱动源代码"><span class="nav-number">5.2.1.</span> <span class="nav-text">写设备驱动源代码</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#编译安装模块"><span class="nav-number">5.3.</span> <span class="nav-text">编译安装模块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#测试"><span class="nav-number">5.4.</span> <span class="nav-text">测试</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#proc"><span class="nav-number">6.</span> <span class="nav-text">/proc</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基础知识-1"><span class="nav-number">6.1.</span> <span class="nav-text">基础知识</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#proc-pid-stat"><span class="nav-number">6.2.</span> <span class="nav-text">/proc/(pid)/stat</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<div class="copyright">&copy; 2019 &mdash; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Five</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+  <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+  <script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.js"></script>
+  <div id="gitalk-container"></div>
+  
+  
+  
+  <script type="text/javascript">
+    var gitalk = new Gitalk({
+      clientID: '0635d0bc6ad58e628693',
+      clientSecret: 'a02a3a1ab4874ccb117251539125fe3a1a4d43da',
+      repo: 'blogtalk',
+      owner: 'Yorxika',
+      admin: ['Yorxika'],
+      id: md5(window.location.pathname),
+      distractionFreeMode: 'true'
+    })
+    gitalk.render('gitalk-container')
+  </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/miku.model.json"},"display":{"position":"right","hOffset":40,"width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7},"log":false});</script></body>
+</html>
