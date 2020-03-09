@@ -1,6 +1,330 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>和为s的连续整数序列</title>
+    <url>/2020/03/08/%E5%92%8C%E4%B8%BAs%E7%9A%84%E8%BF%9E%E7%BB%AD%E6%95%B4%E6%95%B0%E5%BA%8F%E5%88%97/</url>
+    <content><![CDATA[<p>来自Leetcode面试题57-II 和为s的连续整数序列</p>
+<p>输入一个正整数 <code>target</code> ，输出所有和为 <code>target</code> 的连续正整数序列（至少含有两个数）。</p>
+<p>序列内的数字由小到大排列，不同序列按照首个数字从小到大排列。</p>
+<a id="more"></a>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight angelscript"><table><tr><td class="code"><pre><span class="line">输入：target = <span class="number">9</span></span><br><span class="line">输出：[[<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>],[<span class="number">4</span>,<span class="number">5</span>]]</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="滑动窗口"><a href="#滑动窗口" class="headerlink" title="滑动窗口"></a>滑动窗口</h3><ul>
+<li>当窗口的和小于 <code>target</code> 的时候，窗口的和需要增加，所以要扩大窗口，窗口的右边界向右移动</li>
+<li>当窗口的和大于 <code>target</code> 的时候，窗口的和需要减少，所以要缩小窗口，窗口的左边界向右移动</li>
+<li>当窗口的和恰好等于 <code>target</code> 的时候，我们需要记录此时的结果。设此时的窗口为 [i, j)，那么我们已经找到了一个 i 开头的序列，也是唯一一个 i 开头的序列，接下来需要找 i+1开头的序列，所以窗口的左边界要向右移动</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">int</span>[][] findContinuousSequence(<span class="keyword">int</span> target) &#123;</span><br><span class="line">    <span class="keyword">int</span> left = <span class="number">1</span>; <span class="comment">// 滑动窗口的左边界</span></span><br><span class="line">    <span class="keyword">int</span> right = <span class="number">1</span>; <span class="comment">// 滑动窗口的右边界</span></span><br><span class="line">    <span class="keyword">int</span> sum = <span class="number">0</span>; <span class="comment">// 滑动窗口中数字的和</span></span><br><span class="line">    List&lt;<span class="keyword">int</span>[]&gt; res = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (left &lt;= target / <span class="number">2</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> (sum &lt; target) &#123;</span><br><span class="line">            <span class="comment">// 右边界向右移动</span></span><br><span class="line">            sum += right;</span><br><span class="line">            right++;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (sum &gt; target) &#123;</span><br><span class="line">            <span class="comment">// 左边界向右移动</span></span><br><span class="line">            sum -= left;</span><br><span class="line">            left++;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="comment">// 记录结果</span></span><br><span class="line">            <span class="keyword">int</span>[] arr = <span class="keyword">new</span> <span class="keyword">int</span>[right-left];</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> k = left; k &lt; right; k++) &#123;</span><br><span class="line">                arr[k-left] = k;</span><br><span class="line">            &#125;</span><br><span class="line">            res.add(arr);</span><br><span class="line">            <span class="comment">// 左边界向右移动</span></span><br><span class="line">            sum -= left;</span><br><span class="line">            left++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> res.toArray(<span class="keyword">new</span> <span class="keyword">int</span>[res.size()][]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>算法</category>
+        <category>Leetcode</category>
+        <category>数组</category>
+      </categories>
+      <tags>
+        <tag>双指针</tag>
+        <tag>滑动窗口</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>分糖果II</title>
+    <url>/2020/03/08/%E5%88%86%E7%B3%96%E6%9E%9C/</url>
+    <content><![CDATA[<p>来自Leetcode第1103题分糖果II</p>
+<p>排排坐，分糖果。</p>
+<p>我们买了一些糖果 <code>candies</code>，打算把它们分给排好队的 <strong><code>n = num_people</code></strong> 个小朋友。</p>
+<p>给第一个小朋友 1 颗糖果，第二个小朋友 2 颗，依此类推，直到给最后一个小朋友 <code>n</code> 颗糖果。</p>
+<p>然后，我们再回到队伍的起点，给第一个小朋友 <code>n + 1</code> 颗糖果，第二个小朋友 <code>n + 2</code> 颗，依此类推，直到给最后一个小朋友 <code>2 * n</code> 颗糖果。</p>
+<p>重复上述过程（每次都比上一次多给出一颗糖果，当到达队伍终点后再次从队伍起点开始），直到我们分完所有的糖果。注意，就算我们手中的剩下糖果数不够（不比前一次发出的糖果多），这些糖果也会全部发给当前的小朋友。</p>
+<p>返回一个长度为 <code>num_people</code>、元素之和为 <code>candies</code> 的数组，以表示糖果的最终分发情况（即 <code>ans[i]</code> 表示第 <code>i</code> 个小朋友分到的糖果数）。</p>
+<a id="more"></a>
+
+
+<p><strong>示例 1：</strong></p>
+<figure class="highlight angelscript"><table><tr><td class="code"><pre><span class="line">输入：candies = <span class="number">7</span>, num_people = <span class="number">4</span></span><br><span class="line">输出：[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">1</span>]</span><br><span class="line">解释：</span><br><span class="line">第一次，ans[<span class="number">0</span>] += <span class="number">1</span>，数组变为 [<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>]。</span><br><span class="line">第二次，ans[<span class="number">1</span>] += <span class="number">2</span>，数组变为 [<span class="number">1</span>,<span class="number">2</span>,<span class="number">0</span>,<span class="number">0</span>]。</span><br><span class="line">第三次，ans[<span class="number">2</span>] += <span class="number">3</span>，数组变为 [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">0</span>]。</span><br><span class="line">第四次，ans[<span class="number">3</span>] += <span class="number">1</span>（因为此时只剩下 <span class="number">1</span> 颗糖果），最终数组变为 [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">1</span>]。</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="暴力"><a href="#暴力" class="headerlink" title="暴力"></a>暴力</h3><p>不断地遍历数组，如果还有糖就一直分，直到没有糖为止。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">int</span>[] distributeCandies(<span class="keyword">int</span> candies, <span class="keyword">int</span> num_people) &#123;</span><br><span class="line">    <span class="keyword">int</span>[] ans = <span class="keyword">new</span> <span class="keyword">int</span>[num_people];</span><br><span class="line">    <span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (candies != <span class="number">0</span>) &#123;</span><br><span class="line">        ans[i % num_people] += Math.min(candies, i + <span class="number">1</span>);</span><br><span class="line">        candies -= Math.min(candies, i + <span class="number">1</span>);</span><br><span class="line">        i += <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="数学推导"><a href="#数学推导" class="headerlink" title="数学推导"></a>数学推导</h3><p>来自<a href="https://leetcode-cn.com/problems/distribute-candies-to-people/solution/xiang-xi-jie-shi-shu-xue-fang-fa-zen-yao-zuo-gao-z/" target="_blank" rel="noopener">题解</a></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">int</span>[] distributeCandies(<span class="keyword">int</span> candies, <span class="keyword">int</span> num_people) &#123;</span><br><span class="line">  <span class="keyword">int</span> n = num_people;</span><br><span class="line">  <span class="comment">// how many people received complete gifts</span></span><br><span class="line">  <span class="keyword">int</span> p = (<span class="keyword">int</span>)(Math.sqrt(<span class="number">2</span> * candies + <span class="number">0.25</span>) - <span class="number">0.5</span>);</span><br><span class="line">  <span class="keyword">int</span> remaining = (<span class="keyword">int</span>)(candies - (p + <span class="number">1</span>) * p * <span class="number">0.5</span>);</span><br><span class="line">  <span class="keyword">int</span> rows = p / n, cols = p % n;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">int</span>[] d = <span class="keyword">new</span> <span class="keyword">int</span>[n];</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; ++i) &#123;</span><br><span class="line">    <span class="comment">// complete rows</span></span><br><span class="line">    d[i] = (i + <span class="number">1</span>) * rows + (<span class="keyword">int</span>)(rows * (rows - <span class="number">1</span>) * <span class="number">0.5</span>) * n;</span><br><span class="line">    <span class="comment">// cols in the last row</span></span><br><span class="line">    <span class="keyword">if</span> (i &lt; cols) d[i] += i + <span class="number">1</span> + rows * n;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// remaining candies        </span></span><br><span class="line">  d[cols] += remaining;</span><br><span class="line">  <span class="keyword">return</span> d;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>算法</category>
+        <category>Leetcode</category>
+        <category>数学</category>
+      </categories>
+      <tags>
+        <tag>数学</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>腐烂的橘子</title>
+    <url>/2020/03/08/%E8%85%90%E7%83%82%E7%9A%84%E6%A9%98%E5%AD%90/</url>
+    <content><![CDATA[<p>来自Leetcode第994题腐烂的橘子</p>
+<p>在给定的网格中，每个单元格可以有以下三个值之一：</p>
+<ul>
+<li>值 <code>0</code> 代表空单元格；</li>
+<li>值 <code>1</code> 代表新鲜橘子；</li>
+<li>值 <code>2</code> 代表腐烂的橘子。</li>
+</ul>
+<p>每分钟，任何与腐烂的橘子（在 4 个正方向上）相邻的新鲜橘子都会腐烂。</p>
+<p>返回直到单元格中没有新鲜橘子为止所必须经过的最小分钟数。如果不可能，返回 <code>-1</code>。</p>
+<a id="more"></a>
+
+
+<p><strong>示例 1：</strong></p>
+<p><strong><img src="/2020/03/08/腐烂的橘子/oranges.png" alt="img"></strong></p>
+<figure class="highlight angelscript"><table><tr><td class="code"><pre><span class="line">输入：[[<span class="number">2</span>,<span class="number">1</span>,<span class="number">1</span>],[<span class="number">1</span>,<span class="number">1</span>,<span class="number">0</span>],[<span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>]]</span><br><span class="line">输出：<span class="number">4</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="BFS-I"><a href="#BFS-I" class="headerlink" title="BFS I"></a>BFS I</h3><p>来自<a href="https://leetcode-cn.com/problems/rotting-oranges/solution/fu-lan-de-ju-zi-by-leetcode-solution/" target="_blank" rel="noopener">官方题解</a></p>
+<p>观察到对于所有的腐烂橘子，其实它们<strong>在广度优先搜索上是等价于同一层的节点的</strong>。</p>
+<p>假设这些腐烂橘子刚开始是新鲜的，而有一个腐烂橘子(<strong>我们令其为超级源点</strong>)会在下一秒把这些橘子都变腐烂，而这个腐烂橘子刚开始在的时间是 -1−1 ，那么按照广度优先搜索的算法，下一分钟也就是第 00 分钟的时候，这个腐烂橘子会把它们都变成腐烂橘子，然后继续向外拓展，所以其实这些腐烂橘子是同一层的节点。那么在广度优先搜索的时候，我们将这些腐烂橘子都放进队列里进行广度优先搜索即可，最后每个新鲜橘子被腐烂的最短时间 dis[x][y]<em>d<strong>i</strong>s</em>[<em>x</em>][<em>y</em>] 其实是以这个超级源点的腐烂橘子为起点的广度优先搜索得到的结果。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">        <span class="comment">// dr,dc 配合使用得到 grid[r][c] 上grid[r-1][c]左grid[r][c-1]下grid[r+1][c]右grid[r][c+1]的元素</span></span><br><span class="line">        <span class="keyword">int</span>[] dr = <span class="keyword">new</span> <span class="keyword">int</span>[]&#123;-<span class="number">1</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>&#125;;</span><br><span class="line">        <span class="keyword">int</span>[] dc = <span class="keyword">new</span> <span class="keyword">int</span>[]&#123;<span class="number">0</span>, -<span class="number">1</span>, <span class="number">0</span>, <span class="number">1</span>&#125;;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">orangesRotting</span><span class="params">(<span class="keyword">int</span>[][] grid)</span> </span>&#123;</span><br><span class="line">            <span class="comment">// 获取二维数组的行数row 和 列数 column</span></span><br><span class="line">            <span class="keyword">int</span> R = grid.length, C = grid[<span class="number">0</span>].length;</span><br><span class="line"></span><br><span class="line">            <span class="comment">// queue : all starting cells with rotten oranges</span></span><br><span class="line">            Queue&lt;Integer&gt; queue = <span class="keyword">new</span> ArrayDeque();</span><br><span class="line">            Map&lt;Integer, Integer&gt; depth = <span class="keyword">new</span> HashMap();</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> r = <span class="number">0</span>; r &lt; R; ++r)</span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">int</span> c = <span class="number">0</span>; c &lt; C; ++c)</span><br><span class="line">                    <span class="keyword">if</span> (grid[r][c] == <span class="number">2</span>) &#123;</span><br><span class="line">                        <span class="keyword">int</span> code = r * C + c;  <span class="comment">// 转化为索引唯一的一维数组</span></span><br><span class="line">                        queue.add(code); <span class="comment">//存储腐烂橘子</span></span><br><span class="line">                        depth.put(code, <span class="number">0</span>); <span class="comment">//存储橘子变为腐烂时的时间,key为橘子的一维数组下标，value为变腐烂的时间</span></span><br><span class="line">                    &#125;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">while</span> (!queue.isEmpty()) &#123;</span><br><span class="line">                <span class="keyword">int</span> code = queue.remove();</span><br><span class="line">                <span class="keyword">int</span> r = code / C, c = code % C;</span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">int</span> k = <span class="number">0</span>; k &lt; <span class="number">4</span>; ++k) &#123;</span><br><span class="line">                    <span class="keyword">int</span> nr = r + dr[k];</span><br><span class="line">                    <span class="keyword">int</span> nc = c + dc[k];</span><br><span class="line">                    <span class="keyword">if</span> (<span class="number">0</span> &lt;= nr &amp;&amp; nr &lt; R &amp;&amp; <span class="number">0</span> &lt;= nc &amp;&amp; nc &lt; C &amp;&amp; grid[nr][nc] == <span class="number">1</span>) &#123;</span><br><span class="line">                        grid[nr][nc] = <span class="number">2</span>;</span><br><span class="line">                        <span class="keyword">int</span> ncode = nr * C + nc;</span><br><span class="line">                        queue.add(ncode);</span><br><span class="line">                        <span class="comment">// 计次的关键 元素 grid[r][c] 的上左下右元素得腐烂时间应该一致</span></span><br><span class="line">                        depth.put(ncode, depth.get(code) + <span class="number">1</span>);</span><br><span class="line">                        ans = depth.get(ncode);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">           <span class="comment">//检查grid，此时的grid能被感染已经都腐烂了，此时还新鲜的橘子无法被感染</span></span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span>[] row: grid)</span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">int</span> v: row)</span><br><span class="line">                    <span class="keyword">if</span> (v == <span class="number">1</span>)</span><br><span class="line">                        <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">            <span class="keyword">return</span> ans;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="BFS-II"><a href="#BFS-II" class="headerlink" title="BFS II"></a>BFS II</h3><p>首先遍历一遍数组，将腐烂橘子入队列，新鲜橘子计数；接下来开始计时，从-1时刻开始遍历队列，将腐烂橘子出队，判断周围是否会有新鲜的橘子，如果有就入队，并且计时+1.</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">orangesRotting</span><span class="params">(<span class="keyword">int</span>[][] grid)</span> </span>&#123;</span><br><span class="line">        Queue&lt;<span class="keyword">int</span>[]&gt; queue = <span class="keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line">        <span class="keyword">int</span> e = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; grid.length; i++)</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; grid[<span class="number">0</span>].length; j++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (grid[i][j] == <span class="number">2</span>)</span><br><span class="line">                    queue.offer(<span class="keyword">new</span> <span class="keyword">int</span>[]&#123;i, j&#125;);</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span> (grid[i][j] == <span class="number">1</span>)</span><br><span class="line">                    e++;</span><br><span class="line">            &#125;</span><br><span class="line">        <span class="keyword">if</span> (queue.isEmpty() &amp;&amp; e &gt; <span class="number">0</span>)</span><br><span class="line">            <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span> (queue.isEmpty() &amp;&amp; e == <span class="number">0</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> count = -<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">int</span>[][] dis = <span class="keyword">new</span> <span class="keyword">int</span>[][]&#123;&#123;<span class="number">0</span>, <span class="number">1</span>&#125;, &#123;<span class="number">0</span>, -<span class="number">1</span>&#125;, &#123;<span class="number">1</span>, <span class="number">0</span>&#125;, &#123;-<span class="number">1</span>, <span class="number">0</span>&#125;&#125;;</span><br><span class="line">        <span class="keyword">while</span> (!queue.isEmpty()) &#123;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">int</span> size = queue.size();</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; size; j++) &#123;</span><br><span class="line"></span><br><span class="line">                <span class="keyword">int</span>[] p = queue.poll();</span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">4</span>; i++) &#123;</span><br><span class="line">                    <span class="keyword">int</span> nx = p[<span class="number">0</span>] + dis[i][<span class="number">0</span>], ny = p[<span class="number">1</span>] + dis[i][<span class="number">1</span>];</span><br><span class="line">                    <span class="keyword">if</span> (check(grid, nx, ny)) &#123;</span><br><span class="line">                        queue.offer(<span class="keyword">new</span> <span class="keyword">int</span>[]&#123;nx, ny&#125;);</span><br><span class="line">                        grid[nx][ny] = <span class="number">2</span>;</span><br><span class="line">                        e--;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            count++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> e == <span class="number">0</span> ? count : -<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">check</span><span class="params">(<span class="keyword">int</span>[][] grid, <span class="keyword">int</span> x, <span class="keyword">int</span> y)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> x &lt; grid.length &amp;&amp; x &gt;= <span class="number">0</span> &amp;&amp; y &lt; grid[<span class="number">0</span>].length &amp;&amp; y &gt;= <span class="number">0</span> &amp;&amp; grid[x][y] == <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>算法</category>
+        <category>Leetcode</category>
+        <category>数组</category>
+      </categories>
+      <tags>
+        <tag>广度优先搜索</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>搜索二维矩阵II</title>
+    <url>/2020/03/03/%E6%90%9C%E7%B4%A2%E4%BA%8C%E7%BB%B4%E7%9F%A9%E9%98%B5II/</url>
+    <content><![CDATA[<p>来自Leetcode第240题搜索二维矩阵II</p>
+<p>编写一个高效的算法来搜索 <em>m</em> x <em>n</em> 矩阵 matrix 中的一个目标值 target。该矩阵具有以下特性：</p>
+<ul>
+<li>每行的元素从左到右升序排列。</li>
+<li>每列的元素从上到下升序排列。<a id="more"></a></li>
+</ul>
+<p><strong>示例:</strong></p>
+<p>现有矩阵 matrix 如下：</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">[</span><br><span class="line">  [<span class="number">1</span>,   <span class="number">4</span>,  <span class="number">7</span>, <span class="number">11</span>, <span class="number">15</span>],</span><br><span class="line">  [<span class="number">2</span>,   <span class="number">5</span>,  <span class="number">8</span>, <span class="number">12</span>, <span class="number">19</span>],</span><br><span class="line">  [<span class="number">3</span>,   <span class="number">6</span>,  <span class="number">9</span>, <span class="number">16</span>, <span class="number">22</span>],</span><br><span class="line">  [<span class="number">10</span>, <span class="number">13</span>, <span class="number">14</span>, <span class="number">17</span>, <span class="number">24</span>],</span><br><span class="line">  [<span class="number">18</span>, <span class="number">21</span>, <span class="number">23</span>, <span class="number">26</span>, <span class="number">30</span>]</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<p>给定 target = <code>5</code>，返回 <code>true</code>。</p>
+<p>给定 target = <code>20</code>，返回 <code>false</code>。</p>
+<hr>
+<h3 id="左下-右上遍历"><a href="#左下-右上遍历" class="headerlink" title="左下/右上遍历"></a>左下/右上遍历</h3><p>数组从左到右和从上到下都是升序的，如果从右上角出发开始遍历呢？</p>
+<p>会发现每次都是向左数字会变小，向下数字会变大，有点和二分查找树相似。二分查找树的话，是向左数字变小，向右数字变大。</p>
+<p>所以我们可以把 <code>target</code> 和当前值比较。</p>
+<ul>
+<li>如果 <code>target</code> 的值大于当前值，那么就向下走。</li>
+<li>如果 <code>target</code> 的值小于当前值，那么就向左走。</li>
+<li>如果相等的话，直接返回 <code>true</code> 。</li>
+</ul>
+<p>也可以换个角度思考。</p>
+<p>如果 <code>target</code> 的值小于当前值，也就意味着当前值所在的列肯定不会存在 <code>target</code> 了，可以把当前列去掉，从新的右上角的值开始遍历。</p>
+<p>同理，如果 <code>target</code> 的值大于当前值，也就意味着当前值所在的行肯定不会存在 <code>target</code> 了，可以把当前行去掉，从新的右上角的值开始遍历。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">searchMatrix</span><span class="params">(<span class="keyword">int</span>[][] matrix, <span class="keyword">int</span> target)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (matrix == <span class="keyword">null</span> || matrix.length == <span class="number">0</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> m = matrix.length;</span><br><span class="line">    <span class="keyword">int</span> n = matrix[<span class="number">0</span>].length;</span><br><span class="line">    <span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> j = n - <span class="number">1</span>;</span><br><span class="line">    <span class="comment">//从右上角开始，比较target与右上角的数据的大小，如果大于target，就可以往左进一列，如果小于target，就可以往下走一行</span></span><br><span class="line">    <span class="keyword">while</span>(i&lt;m &amp;&amp; j&gt;= <span class="number">0</span>)&#123;</span><br><span class="line">        <span class="keyword">if</span> (matrix[i][j] &gt; target)&#123;</span><br><span class="line">            j--;</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span> (matrix[i][j] &lt; target)&#123;</span><br><span class="line">            i++;</span><br><span class="line">        &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="遍历二分"><a href="#遍历二分" class="headerlink" title="遍历二分"></a>遍历二分</h3><p>对每一行都做一次二分查找，<a href="https://leetcode-cn.com/problems/search-a-2d-matrix-ii/solution/xiang-xi-tong-su-de-si-lu-fen-xi-duo-jie-fa-by-5-4/" target="_blank" rel="noopener">来自</a></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">searchMatrix</span><span class="params">(<span class="keyword">int</span>[][] matrix, <span class="keyword">int</span> target)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (matrix.length == <span class="number">0</span> || matrix[<span class="number">0</span>].length == <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; matrix.length; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (matrix[i][<span class="number">0</span>] &gt; target) &#123;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(matrix[i][matrix[i].length - <span class="number">1</span>] &lt; target)&#123;</span><br><span class="line">            <span class="keyword">continue</span>;</span><br><span class="line">        &#125; </span><br><span class="line">        <span class="keyword">int</span> col = binarySearch(matrix[i], target);</span><br><span class="line">        <span class="keyword">if</span> (col != -<span class="number">1</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//二分查找</span></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">int</span> <span class="title">binarySearch</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> target)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> start = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> end = nums.length - <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span> (start &lt;= end) &#123;</span><br><span class="line">        <span class="keyword">int</span> mid = (start + end) &gt;&gt;&gt; <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span> (nums[mid] == target) &#123;</span><br><span class="line">            <span class="keyword">return</span> mid;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (nums[mid] &lt; target) &#123;</span><br><span class="line">            start = mid + <span class="number">1</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            end = mid - <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>算法</category>
+        <category>Leetcode</category>
+        <category>数组</category>
+      </categories>
+      <tags>
+        <tag>二分查找</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>二叉搜索树最近的公共祖先</title>
+    <url>/2020/03/03/%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E6%9C%80%E8%BF%91%E7%9A%84%E5%85%AC%E5%85%B1%E7%A5%96%E5%85%88/</url>
+    <content><![CDATA[<p>来自Leetcode第235题二叉搜索树最近的公共祖先</p>
+<p>给定一个二叉搜索树, 找到该树中两个指定节点的最近公共祖先。</p>
+<p><a href="https://baike.baidu.com/item/最近公共祖先/8918834?fr=aladdin" target="_blank" rel="noopener">百度百科</a>中最近公共祖先的定义为：“对于有根树 T 的两个结点 p、q，最近公共祖先表示为一个结点 x，满足 x 是 p、q 的祖先且 x 的深度尽可能大（<strong>一个节点也可以是它自己的祖先</strong>）。”</p>
+<a id="more"></a>
+<p>例如，给定如下二叉搜索树: root = [6,2,8,0,4,7,9,null,null,3,5]</p>
+<p><img src="/2020/03/03/二叉搜索树最近的公共祖先/binarysearchtree_improved.png" alt="img"></p>
+<p><strong>示例 1:</strong></p>
+<figure class="highlight angelscript"><table><tr><td class="code"><pre><span class="line">输入: root = [<span class="number">6</span>,<span class="number">2</span>,<span class="number">8</span>,<span class="number">0</span>,<span class="number">4</span>,<span class="number">7</span>,<span class="number">9</span>,<span class="literal">null</span>,<span class="literal">null</span>,<span class="number">3</span>,<span class="number">5</span>], p = <span class="number">2</span>, q = <span class="number">8</span></span><br><span class="line">输出: <span class="number">6</span> </span><br><span class="line">解释: 节点 <span class="number">2</span> 和节点 <span class="number">8</span> 的最近公共祖先是 <span class="number">6</span>。</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="递归"><a href="#递归" class="headerlink" title="递归"></a>递归</h3><ol>
+<li>从根节点开始遍历树</li>
+<li>如果节点 p<em>p</em> 和节点 q<em>q</em> 都在右子树上，那么以右孩子为根节点继续 1 的操作</li>
+<li>如果节点 p<em>p</em> 和节点 q<em>q</em> 都在左子树上，那么以左孩子为根节点继续 1 的操作</li>
+<li>如果条件 2 和条件 3 都不成立，这就意味着我们已经找到节 p<em>p</em> 和节点 q<em>q</em> 的 LCA 了</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> TreeNode <span class="title">lowestCommonAncestor</span><span class="params">(TreeNode root, TreeNode p, TreeNode q)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> pval = p.val;</span><br><span class="line">    <span class="keyword">int</span> qval = q.val;</span><br><span class="line">    <span class="keyword">int</span> rval = root.val;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span>(pval &gt; rval &amp;&amp; qval &gt; rval)</span><br><span class="line">        <span class="keyword">return</span> lowestCommonAncestor(root.right,p,q);</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(pval &lt; rval &amp;&amp; qval &lt; rval)</span><br><span class="line">        <span class="keyword">return</span> lowestCommonAncestor(root.left,p,q);</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        <span class="keyword">return</span> root;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="迭代"><a href="#迭代" class="headerlink" title="迭代"></a>迭代</h3><p>思路同上</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> TreeNode <span class="title">lowestCommonAncestor</span><span class="params">(TreeNode root, TreeNode p, TreeNode q)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> pval = p.val;</span><br><span class="line">    <span class="keyword">int</span> qval = q.val;</span><br><span class="line">    <span class="keyword">int</span> rval = root.val;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">while</span>(root != <span class="keyword">null</span>) &#123;</span><br><span class="line">        rval = root.val;</span><br><span class="line">        <span class="keyword">if</span> (pval &gt; rval &amp;&amp; qval &gt; rval)</span><br><span class="line">            <span class="comment">//return lowestCommonAncestor(root.right, p, q);</span></span><br><span class="line">            root = root.right;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (pval &lt; rval &amp;&amp; qval &lt; rval)</span><br><span class="line">            <span class="comment">//return lowestCommonAncestor(root.left, p, q);</span></span><br><span class="line">            root = root.left;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            <span class="keyword">return</span> root;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>算法</category>
+        <category>Leetcode</category>
+        <category>树</category>
+      </categories>
+      <tags>
+        <tag>树</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>二叉树最近的公共祖先</title>
+    <url>/2020/03/02/%E4%BA%8C%E5%8F%89%E6%A0%91%E6%9C%80%E8%BF%91%E7%9A%84%E5%85%AC%E5%85%B1%E7%A5%96%E5%85%88/</url>
+    <content><![CDATA[<p>来自Leetcode第236题二叉树最近的公共祖先</p>
+<p>给定一个二叉树, 找到该树中两个指定节点的最近公共祖先。</p>
+<p><a href="https://baike.baidu.com/item/最近公共祖先/8918834?fr=aladdin" target="_blank" rel="noopener">百度百科</a>中最近公共祖先的定义为：“对于有根树 T 的两个结点 p、q，最近公共祖先表示为一个结点 x，满足 x 是 p、q 的祖先且 x 的深度尽可能大（<strong>一个节点也可以是它自己的祖先</strong>）。”</p>
+<a id="more"></a>
+<p>例如，给定如下二叉树: root = [3,5,1,6,2,0,8,null,null,7,4]</p>
+<p><img src="/2020/03/02/二叉树最近的公共祖先/binarytree.png" alt="img"></p>
+<p><strong>示例 1:</strong></p>
+<figure class="highlight angelscript"><table><tr><td class="code"><pre><span class="line">输入: root = [<span class="number">3</span>,<span class="number">5</span>,<span class="number">1</span>,<span class="number">6</span>,<span class="number">2</span>,<span class="number">0</span>,<span class="number">8</span>,<span class="literal">null</span>,<span class="literal">null</span>,<span class="number">7</span>,<span class="number">4</span>], p = <span class="number">5</span>, q = <span class="number">1</span></span><br><span class="line">输出: <span class="number">3</span></span><br><span class="line">解释: 节点 <span class="number">5</span> 和节点 <span class="number">1</span> 的最近公共祖先是节点 <span class="number">3</span>。</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="递归"><a href="#递归" class="headerlink" title="递归"></a>递归</h3><ul>
+<li>在左、右子树中分别查找是否包含p或q：</li>
+<li>如果以下两种情况（左子树包含p，右子树包含q/左子树包含q，右子树包含p），<strong>那么此时的根节点就是最近公共祖先</strong></li>
+<li>如果左子树包含p和q，那么到root-&gt;left中继续查找，最近公共祖先在左子树里面</li>
+<li>如果右子树包含p和q，那么到root-&gt;right中继续查找，最近公共祖先在右子树里面</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> TreeNode <span class="title">lowestCommonAncestor</span><span class="params">(TreeNode root, TreeNode p, TreeNode q)</span> </span>&#123;</span><br><span class="line">     <span class="keyword">if</span>(root == <span class="keyword">null</span> || root == p || root == q)</span><br><span class="line">         <span class="keyword">return</span> root;</span><br><span class="line">     TreeNode left = lowestCommonAncestor(root.left,p,q);</span><br><span class="line">     TreeNode right = lowestCommonAncestor(root.right,p,q);</span><br><span class="line">     <span class="keyword">if</span>(left == <span class="keyword">null</span>)</span><br><span class="line">         <span class="keyword">return</span> right;</span><br><span class="line">     <span class="keyword">if</span>(right == <span class="keyword">null</span>)</span><br><span class="line">         <span class="keyword">return</span> left;</span><br><span class="line">     <span class="keyword">return</span> root;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+
+<p>来自<a href="https://leetcode-cn.com/problems/lowest-common-ancestor-of-a-binary-tree/solution/er-cha-shu-de-zui-jin-gong-gong-zu-xian-by-leetcod/" target="_blank" rel="noopener">官方题解</a>的解答</p>
+<p>先深度遍历改树。当你遇到节点 <code>p</code> 或 <code>q</code> 时，返回一些布尔标记。该标志有助于确定是否在任何路径中找到了所需的节点。最不常见的祖先将是两个子树递归都返回真标志的节点。它也可以是一个节点，它本身是<code>p</code>或<code>q</code>中的一个，对于这个节点,子树递归返回一个真标志。</p>
+<p><strong>算法：</strong></p>
+<ol>
+<li>从根节点开始遍历树。</li>
+<li>如果当前节点本身是 <code>p</code> 或 <code>q</code> 中的一个，我们会将变量 <code>mid</code> 标记为 <code>true</code>，并继续搜索左右分支中的另一个节点。</li>
+<li>如果左分支或右分支中的任何一个返回 <code>true</code>，则表示在下面找到了两个节点中的一个。</li>
+<li>如果在遍历的任何点上，左、右或中三个标志中的任意两个变为 <code>true</code>，这意味着我们找到了节点 <code>p</code> 和 <code>q</code> 的最近公共祖先。</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> TreeNode ans;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Solution</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">// Variable to store LCA node.</span></span><br><span class="line">        <span class="keyword">this</span>.ans = <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">boolean</span> <span class="title">recurseTree</span><span class="params">(TreeNode currentNode, TreeNode p, TreeNode q)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// If reached the end of a branch, return false.</span></span><br><span class="line">        <span class="keyword">if</span> (currentNode == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// Left Recursion. If left recursion returns true, set left = 1 else 0</span></span><br><span class="line">        <span class="keyword">int</span> left = <span class="keyword">this</span>.recurseTree(currentNode.left, p, q) ? <span class="number">1</span> : <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// Right Recursion</span></span><br><span class="line">        <span class="keyword">int</span> right = <span class="keyword">this</span>.recurseTree(currentNode.right, p, q) ? <span class="number">1</span> : <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// If the current node is one of p or q</span></span><br><span class="line">        <span class="keyword">int</span> mid = (currentNode == p || currentNode == q) ? <span class="number">1</span> : <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="comment">// If any two of the flags left, right or mid become True</span></span><br><span class="line">        <span class="keyword">if</span> (mid + left + right &gt;= <span class="number">2</span>) &#123;</span><br><span class="line">            <span class="keyword">this</span>.ans = currentNode;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// Return true if any one of the three bool values is True.</span></span><br><span class="line">        <span class="keyword">return</span> (mid + left + right &gt; <span class="number">0</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> TreeNode <span class="title">lowestCommonAncestor</span><span class="params">(TreeNode root, TreeNode p, TreeNode q)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// Traverse the tree</span></span><br><span class="line">        <span class="keyword">this</span>.recurseTree(root, p, q);</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="使用父指针迭代"><a href="#使用父指针迭代" class="headerlink" title="使用父指针迭代"></a>使用父指针迭代</h3><p>还是来自官方题解</p>
+<p>如果每个节点都有父指针，那么我们可以从 <code>p</code> 和 <code>q</code> 返回以获取它们的祖先。在这个遍历过程中，我们得到的第一个公共节点是 LCA 节点。我们可以在遍历树时将父指针保存在字典中。</p>
+<p><strong>算法：</strong></p>
+<ol>
+<li>从根节点开始遍历树。</li>
+<li>在找到 <code>p</code> 和 <code>q</code> 之前，将父指针存储在字典中。</li>
+<li>一旦我们找到了 <code>p</code> 和 <code>q</code>，我们就可以使用父亲字典获得 <code>p</code> 的所有祖先，并添加到一个称为祖先的集合中。</li>
+<li>同样，我们遍历节点 <code>q</code> 的祖先。如果祖先存在于为 <code>p</code> 设置的祖先中，这意味着这是 <code>p</code> 和 <code>q</code> 之间的第一个共同祖先（同时向上遍历），因此这是 LCA 节点。</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> TreeNode <span class="title">lowestCommonAncestor</span><span class="params">(TreeNode root, TreeNode p, TreeNode q)</span> </span>&#123;</span><br><span class="line">    Stack&lt;TreeNode&gt; stack = <span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line">    HashMap&lt;TreeNode, TreeNode&gt; parent = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">    stack.push(root);</span><br><span class="line">    parent.put(root, <span class="keyword">null</span>);</span><br><span class="line">    <span class="comment">//将遍历过程中每个节点的父节点保存起来</span></span><br><span class="line">    <span class="keyword">while</span> (!parent.containsKey(p) || !parent.containsKey(q)) &#123;</span><br><span class="line">        TreeNode cur = stack.pop();</span><br><span class="line">        <span class="keyword">if</span> (cur.left != <span class="keyword">null</span>) &#123;</span><br><span class="line">            stack.push(cur.left);</span><br><span class="line">            parent.put(cur.left, cur);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (cur.right != <span class="keyword">null</span>) &#123;</span><br><span class="line">            stack.push(cur.right);</span><br><span class="line">            parent.put(cur.right, cur);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    HashSet&lt;TreeNode&gt; path = <span class="keyword">new</span> HashSet&lt;&gt;();</span><br><span class="line">    <span class="comment">// 倒着还原 p 的路径，并将每个节点加入到 set 中</span></span><br><span class="line">    <span class="keyword">while</span> (p != <span class="keyword">null</span>) &#123;</span><br><span class="line">        path.add(p);</span><br><span class="line">        p = parent.get(p);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 倒着遍历 q 的路径，判断是否在 p 的路径中</span></span><br><span class="line">    <span class="keyword">while</span> (q != <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> (path.contains(q)) &#123;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        q = parent.get(q);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> q;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>算法</category>
+        <category>Leetcode</category>
+        <category>树</category>
+      </categories>
+      <tags>
+        <tag>树</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>组合综合III</title>
+    <url>/2020/03/01/%E7%BB%84%E5%90%88%E7%BB%BC%E5%90%88III/</url>
+    <content><![CDATA[<p>来源Leetcode第216题组合综合III</p>
+<p>找出所有相加之和为 <strong><em>n</em></strong> 的 <strong><em>k\</em></strong> 个数的组合<strong><em>。\</em></strong>组合中只允许含有 1 - 9 的正整数，并且每种组合中不存在重复的数字。</p>
+<p><strong>说明：</strong></p>
+<ul>
+<li><p>所有数字都是正整数。</p>
+</li>
+<li><p>解集不能包含重复的组合。</p>
+<a id="more"></a></li>
+</ul>
+<p><strong>示例 1:</strong></p>
+  <figure class="highlight angelscript"><table><tr><td class="code"><pre><span class="line">输入: k = <span class="number">3</span>, n = <span class="number">7</span></span><br><span class="line">输出: [[<span class="number">1</span>,<span class="number">2</span>,<span class="number">4</span>]]</span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<h3 id="回溯"><a href="#回溯" class="headerlink" title="回溯"></a>回溯</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">List&lt;List&lt;Integer&gt;&gt; ans = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line"><span class="keyword">public</span> List&lt;List&lt;Integer&gt;&gt; combinationSum3(<span class="keyword">int</span> k, <span class="keyword">int</span> n) &#123;</span><br><span class="line">    <span class="comment">//List&lt;Integer&gt; tmp = new ArrayList&lt;&gt;();</span></span><br><span class="line">    backtrack(<span class="number">1</span>,n,k,<span class="keyword">new</span> ArrayList&lt;&gt;());</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">backtrack</span><span class="params">(<span class="keyword">int</span> start,<span class="keyword">int</span> target ,<span class="keyword">int</span> k,List&lt;Integer&gt; tmp)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(tmp.size() &gt; k || target &lt; <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    <span class="keyword">if</span>(target == <span class="number">0</span> &amp;&amp; tmp.size() == k) &#123;</span><br><span class="line">        ans.add(<span class="keyword">new</span> ArrayList&lt;&gt;(tmp));</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = start; i &lt; <span class="number">10</span>; i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(target &lt; start)</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        tmp.add(i);</span><br><span class="line">        backtrack(i+<span class="number">1</span>,target-i,k,tmp);</span><br><span class="line">        tmp.remove(tmp.size() - <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>算法</category>
+        <category>Leetcode</category>
+        <category>数组</category>
+      </categories>
+      <tags>
+        <tag>回溯</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>完全二叉树的结点个数</title>
+    <url>/2020/03/01/%E2%80%9C%E5%AE%8C%E5%85%A8%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E7%BB%93%E7%82%B9%E4%B8%AA%E6%95%B0%E2%80%9D/</url>
+    <content><![CDATA[<p>来源Leetcode第222题完全二叉树的结点个数</p>
+<p>给出一个<strong>完全二叉树</strong>，求出该树的节点个数。</p>
+<p><strong>说明：</strong></p>
+<p><a href="https://baike.baidu.com/item/完全二叉树/7773232?fr=aladdin" target="_blank" rel="noopener">完全二叉树</a>的定义如下：在完全二叉树中，除了最底层节点可能没填满外，其余每层节点数都达到最大值，并且最下面一层的节点都集中在该层最左边的若干位置。若最底层为第 h 层，则该层包含 1~ 2h 个节点。</p>
+<a id="more"></a>
+<p><strong>示例:</strong></p>
+<figure class="highlight angelscript"><table><tr><td class="code"><pre><span class="line">输入: </span><br><span class="line">    <span class="number">1</span></span><br><span class="line">   / \</span><br><span class="line">  <span class="number">2</span>   <span class="number">3</span></span><br><span class="line"> / \  /</span><br><span class="line"><span class="number">4</span>  <span class="number">5</span> <span class="number">6</span></span><br><span class="line"></span><br><span class="line">输出: <span class="number">6</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="递归"><a href="#递归" class="headerlink" title="递归"></a>递归</h3><p>最简单的递归遍历完所有结点，返回所有结点数。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">countNodes</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> root == <span class="keyword">null</span> ? <span class="number">0</span> : <span class="number">1</span> + countNodes(root.left) + countNodes(root.right);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="利用定义"><a href="#利用定义" class="headerlink" title="利用定义"></a>利用定义</h3><p><a href="https://leetcode-cn.com/problems/count-complete-tree-nodes/solution/chang-gui-jie-fa-he-ji-bai-100de-javajie-fa-by-xia/" target="_blank" rel="noopener">来源</a></p>
+<p>首先需要明确完全二叉树的定义：<strong>它是一棵空树或者它的叶子节点只出在最后两层，若最后一层不满则叶子节点只在最左侧。</strong></p>
+<p>再来回顾一下满二叉的节点个数怎么计算，如果满二叉树的层数为h，则总节点数为：2^h - 1.<br>那么我们来对root节点的左右子树进行高度统计，分别记为left和right,有以下两种结果：</p>
+<ol>
+<li>left == right。这说明，左子树一定是满二叉树，因为节点已经填充到右子树了，左子树必定已经填满了。所以左子树的节点总数我们可以直接得到，是2^left - 1，加上当前这个root节点，则正好是2^left。再对右子树进行递归统计。</li>
+<li>left != right。说明此时最后一层不满，但倒数第二层已经满了，可以直接得到右子树的节点个数。同理，右子树节点+root节点，总数为2^right。再对左子树进行递归查找。</li>
+</ol>
+<p>关于如何计算二叉树的层数，可以利用下面的递归来算，当然对于完全二叉树，可以利用其特点，不用递归直接算，具体请参考最后的完整代码。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">countNodes</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(root == <span class="keyword">null</span>)&#123;</span><br><span class="line">           <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125; </span><br><span class="line">        <span class="keyword">int</span> left = countLevel(root.left);</span><br><span class="line">        <span class="keyword">int</span> right = countLevel(root.right);</span><br><span class="line">        <span class="keyword">if</span>(left == right)&#123;</span><br><span class="line">            <span class="keyword">return</span> countNodes(root.right) + (<span class="number">1</span>&lt;&lt;left);</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">return</span> countNodes(root.left) + (<span class="number">1</span>&lt;&lt;right);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">int</span> <span class="title">countLevel</span><span class="params">(TreeNode root)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> level = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>(root != <span class="keyword">null</span>)&#123;</span><br><span class="line">            level++;</span><br><span class="line">            root = root.left;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> level;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>算法</category>
+        <category>Leetcode</category>
+        <category>树</category>
+      </categories>
+      <tags>
+        <tag>二分查找</tag>
+        <tag>树</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>填充每个结点的下一个右侧节点</title>
+    <url>/2020/02/28/%E5%A1%AB%E5%85%85%E6%AF%8F%E4%B8%AA%E7%BB%93%E7%82%B9%E7%9A%84%E4%B8%8B%E4%B8%80%E4%B8%AA%E5%8F%B3%E4%BE%A7%E8%8A%82%E7%82%B9/</url>
+    <content><![CDATA[<p>来源Leetcode第116题填充每个结点的下一个右侧节点</p>
+<p>给定一个<strong>完美二叉树</strong>，其所有叶子节点都在同一层，每个父节点都有两个子节点。二叉树定义如下：</p>
+<figure class="highlight crmsh"><table><tr><td class="code"><pre><span class="line">struct <span class="keyword">Node</span> <span class="title">&#123;</span></span><br><span class="line"><span class="title">  int</span> val;</span><br><span class="line">  <span class="keyword">Node</span> <span class="title">*left</span>;</span><br><span class="line">  <span class="keyword">Node</span> <span class="title">*right</span>;</span><br><span class="line">  <span class="keyword">Node</span> <span class="title">*next</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>填充它的每个 next 指针，让这个指针指向其下一个右侧节点。如果找不到下一个右侧节点，则将 next 指针设置为 <code>NULL</code>。</p>
+<p>初始状态下，所有 next 指针都被设置为 <code>NULL</code>。</p>
+<a id="more"></a>
+
+<p><strong>示例：</strong></p>
+<p><img src="/2020/02/28/填充每个结点的下一个右侧节点/116_sample.png" alt="img"></p>
+<p><strong>提示：</strong></p>
+<ul>
+<li>你只能使用常量级额外空间。</li>
+<li>使用递归解题也符合要求，本题中递归程序占用的栈空间不算做额外的空间复杂度。</li>
+</ul>
+<hr>
+<h3 id="常规BFS"><a href="#常规BFS" class="headerlink" title="常规BFS"></a>常规BFS</h3><p>创建一个队列，按层序遍历实现。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">// Definition for a Node.</span></span><br><span class="line"><span class="comment">class Node &#123;</span></span><br><span class="line"><span class="comment">    public int val;</span></span><br><span class="line"><span class="comment">    public Node left;</span></span><br><span class="line"><span class="comment">    public Node right;</span></span><br><span class="line"><span class="comment">    public Node next;</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">    public Node() &#123;&#125;</span></span><br><span class="line"><span class="comment">    </span></span><br><span class="line"><span class="comment">    public Node(int _val) &#123;</span></span><br><span class="line"><span class="comment">        val = _val;</span></span><br><span class="line"><span class="comment">    &#125;</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">    public Node(int _val, Node _left, Node _right, Node _next) &#123;</span></span><br><span class="line"><span class="comment">        val = _val;</span></span><br><span class="line"><span class="comment">        left = _left;</span></span><br><span class="line"><span class="comment">        right = _right;</span></span><br><span class="line"><span class="comment">        next = _next;</span></span><br><span class="line"><span class="comment">    &#125;</span></span><br><span class="line"><span class="comment">&#125;;</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Node <span class="title">connect</span><span class="params">(Node root)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(root == <span class="keyword">null</span>)</span><br><span class="line">            <span class="keyword">return</span> root;</span><br><span class="line">        LinkedList&lt;Node&gt; queue = <span class="keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line">        queue.add(root);</span><br><span class="line">        <span class="keyword">int</span> size = <span class="number">0</span>;</span><br><span class="line">        Node tmp;</span><br><span class="line">        <span class="keyword">while</span>(!queue.isEmpty())&#123;</span><br><span class="line">            size = queue.size();</span><br><span class="line">            tmp = queue.peek();</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; size ; ++i)&#123;  <span class="comment">//串联队列里的结点</span></span><br><span class="line">                tmp.next = queue.get(i);</span><br><span class="line">                tmp = queue.get(i);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span> ; i &lt; size ; ++i)&#123;</span><br><span class="line">                tmp = queue.poll();</span><br><span class="line">                <span class="keyword">if</span>(tmp.left != <span class="keyword">null</span>)</span><br><span class="line">                    queue.add(tmp.left);</span><br><span class="line">                <span class="keyword">if</span>(tmp.right != <span class="keyword">null</span>)</span><br><span class="line">                    queue.add(tmp.right);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> root;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="利用已有的next结点"><a href="#利用已有的next结点" class="headerlink" title="利用已有的next结点"></a>利用已有的next结点</h3><p>如果不为一层的尾结点，那么其<code>next</code>指针只想的就是根节点的右孩子，或者更结点兄弟的右孩子，根节点的兄弟在上一轮递归中已经用<code>root.next</code>实现了。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> Node <span class="title">connect</span><span class="params">(Node root)</span> </span>&#123;</span><br><span class="line"> <span class="keyword">if</span>(root == <span class="keyword">null</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(root.left != <span class="keyword">null</span>)&#123;</span><br><span class="line">        root.left.next = root.right;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(root.right != <span class="keyword">null</span>)&#123;</span><br><span class="line">        root.right.next = root.next == <span class="keyword">null</span> ? <span class="keyword">null</span> : root.next.left;</span><br><span class="line">    &#125;</span><br><span class="line">    connect(root.left);</span><br><span class="line">    connect(root.right);</span><br><span class="line">    <span class="keyword">return</span> root;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>算法</category>
+        <category>Leetcode</category>
+        <category>树</category>
+      </categories>
+      <tags>
+        <tag>宽度优先搜索</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>有序链表转化二叉搜索树</title>
     <url>/2020/02/27/%E6%9C%89%E5%BA%8F%E9%93%BE%E8%A1%A8%E8%BD%AC%E5%8C%96%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91/</url>
     <content><![CDATA[<p>来源Leetcode第109题有序链表转化二叉搜索树</p>
@@ -35,8 +359,8 @@
       </categories>
       <tags>
         <tag>链表</tag>
-        <tag>双指针</tag>
         <tag>树</tag>
+        <tag>双指针</tag>
       </tags>
   </entry>
   <entry>
@@ -266,6 +590,20 @@
 <p>6873 (a.out) R 6723 6873 6723 34819 6873 8388608 77 0 0 0 41958 31 0 0 25 0 3 0 5882654 1409024 56 4294967295 134512640 134513720 3215579040 0 2097798 0 0 0 0 0 0 0 17 0 0 0 [root@localhost ~]#</p>
 <p>每个参数意思为：<br>参数 解释<br>pid=6873 进程(包括轻量级进程，即线程)号<br>comm=a.out 应用程序或命令的名字<br>task_state=R 任务的状态，R:runnign, S:sleeping (TASK_INTERRUPTIBLE), D:disk sleep (TASK_UNINTERRUPTIBLE), T: stopped, T:tracing stop,Z:zombie, X:dead<br>ppid=6723 父进程ID<br>pgid=6873 线程组号<br>sid=6723 c该任务所在的会话组ID<br>tty_nr=34819(pts/3) 该任务的tty终端的设备号，INT（34817/256）=主设备号，（34817-主设备号）=次设备号<br>tty_pgrp=6873 终端的进程组号，当前运行在该任务所在终端的前台任务(包括shell 应用程序)的PID。<br>task-&gt;flags=8388608 进程标志位，查看该任务的特性<br>min_flt=77 该任务不需要从硬盘拷数据而发生的缺页（次缺页）的次数<br>cmin_flt=0 累计的该任务的所有的waited-for进程曾经发生的次缺页的次数目<br>maj_flt=0 该任务需要从硬盘拷数据而发生的缺页（主缺页）的次数<br>cmaj_flt=0 累计的该任务的所有的waited-for进程曾经发生的主缺页的次数目<br>utime=1587 该任务在用户态运行的时间，单位为jiffies<br>stime=1 该任务在核心态运行的时间，单位为jiffies<br>cutime=0 累计的该任务的所有的waited-for进程曾经在用户态运行的时间，单位为jiffies<br>cstime=0 累计的该任务的所有的waited-for进程曾经在核心态运行的时间，单位为jiffies<br>priority=25 任务的动态优先级<br>nice=0 任务的静态优先级<br>num_threads=3 该任务所在的线程组里线程的个数<br>it_real_value=0 由于计时间隔导致的下一个 SIGALRM 发送进程的时延，以 jiffy 为单位.<br>start_time=5882654 该任务启动的时间，单位为jiffies<br>vsize=1409024（B） 该任务的虚拟地址空间大小（很多说明上在此误导为vsize的单位为page实际是不正确的）<br>rss=56(page) 该任务当前驻留物理地址空间的大小<br>Number of pages the process has in real memory,minu 3 for administrative purpose.<br>这些页可能用于代码，数据和栈。<br>rlim=4294967295（bytes） 该任务能驻留物理地址空间的最大值<br>start_code=134512640 该任务在虚拟地址空间的代码段的起始地址<br>end_code=134513720 该任务在虚拟地址空间的代码段的结束地址<br>start_stack=3215579040 该任务在虚拟地址空间的栈的结束地址<br>kstkesp=0 esp(32 位堆栈指针) 的当前值, 与在进程的内核堆栈页得到的一致.<br>kstkeip=2097798 指向将要执行的指令的指针, EIP(32 位指令指针)的当前值.<br>pendingsig=0 待处理信号的位图，记录发送给进程的普通信号<br>block_sig=0 阻塞信号的位图<br>sigign=0 忽略的信号的位图<br>sigcatch=082985 被俘获的信号的位图<br>wchan=0 如果该进程是睡眠状态，该值给出调度的调用点<br>nswap 被swapped的页数，当前没用<br>cnswap 所有子进程被swapped的页数的和，当前没用<br>exit_signal=17 该进程结束时，向父进程所发送的信号<br>task_cpu(task)=0 运行在哪个CPU上<br>task_rt_priority=0 实时进程的相对优先级别<br>task_policy=0 进程的调度策略，0=非实时进程，1=FIFO实时进程；2=RR实时进程 </p>
 <p>rss是实际占用内存，以页为单位存放，一般是4K每页，所以要乘以4<br>vsize则是以B的单位存放，转化到K所以除1024 </p>
+<h3 id="proc-cpuinfo"><a href="#proc-cpuinfo" class="headerlink" title="/proc/cpuinfo"></a>/proc/cpuinfo</h3><p>/proc/cpuinfo文件分析</p>
+<p>　　在<a href="http://en.wikipedia.org/wiki/Linux" target="_blank" rel="noopener">Linux</a>系统中，提供了<a href="http://en.wikipedia.org/wiki/Procfs" target="_blank" rel="noopener">proc文件系统</a>显示系统的软硬件信息。如果想了解系统中CPU的提供商和相关配置信息，则可以通过/proc/cpuinfo文件得到。本文章针对该文件进行简单的总结。</p>
+<p>　　基于不同指令集（ISA）的CPU产生的/proc/cpuinfo文件不一样，基于X86指令集CPU的/proc/cpuinfo文件包含如下内容：</p>
+<p>processor　　： 0<br>vendor_id　　：GenuineIntel<br>cpu family　　：6<br>model　　　　：26<br>model name　：Intel(R) Xeon(R) CPU      E5520 @ 2.27GHz<br>stepping　　 ：5<br>cpu MHz　　  ：1600.000<br>cache size　　： 8192 KB<br>physical id　　：0<br>siblings　　　 ：8<br>core id　　　 ： 0<br>cpu cores　　 ：4<br>apicid　　    ：0<br>fpu　　　　　 ：yes<br>fpu_exception ：yes<br>cpuid level　　 ： 11<br>wp　　　　　　：yes<br>flags 　　　　　： fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm syscall nx rdtscp lm constant_tsc ida nonstop_tsc pni monitor ds_cpl vmx est tm2 cx16 xtpr popcnt lahf_lm<br>bogomips　　 ：4522.12<br>clflush size　　：64<br>cache_alignment　　： 64<br>address sizes　　　 ： 40 bits physical, 48 bits virtual<br>power management ：</p>
+<p>以上输出项的含义如下：</p>
+<p>processor　：系统中逻辑处理核的编号。对于单核处理器，则课认为是其CPU编号，对于多核处理器则可以是物理核、或者使用超线程技术虚拟的逻辑核<br>vendor_id　：CPU制造商<br>cpu family　：CPU产品系列代号<br>model　　　：CPU属于其系列中的哪一代的代号<br>model name：CPU属于的名字及其编号、标称主频<br>stepping　 ：CPU属于制作更新版本<br>cpu MHz　 ：CPU的实际使用主频<br>cache size  ：CPU二级缓存大小<br>physical id  ：单个CPU的标号<br>siblings    ：单个CPU逻辑物理核数<br>core id    ：当前物理核在其所处CPU中的编号，这个编号不一定连续<br>cpu cores  ：该逻辑核所处CPU的物理核数<br>apicid     ：用来区分不同逻辑核的编号，系统中每个逻辑核的此编号必然不同，此编号不一定连续<br>fpu       ：是否具有浮点运算单元（Floating Point Unit）<br>fpu_exception ：是否支持浮点计算异常<br>cpuid level  ：执行cpuid指令前，eax寄存器中的值，根据不同的值<a href="http://en.wikipedia.org/wiki/CPUID" target="_blank" rel="noopener">cpuid</a>指令会返回不同的内容<br>wp       ：表明当前CPU是否在内核态支持对用户空间的写保护（Write Protection）<br>flags     ：当前CPU支持的功能<br><a href="http://en.wikipedia.org/wiki/Bogomips" target="_blank" rel="noopener">bogomips</a>  ：在系统内核启动时粗略测算的CPU速度（Million Instructions Per Second）<br>clflush size ：每次刷新缓存的大小单位<br>cache_alignment ：缓存地址对齐单位<br>address sizes   ：可访问地址空间位数<br>power management ：对能源管理的支持，有以下几个可选支持功能：</p>
+<p>　　ts：　　temperature sensor</p>
+<p>　　fid：　 frequency id control</p>
+<p>　　vid：　 voltage id control</p>
+<p>　　ttp：　 thermal trip</p>
+<p>　　tm：</p>
+<p>　　stc：</p>
+<p>　　100mhzsteps：</p>
+<p>　　hwpstate：</p>
 ]]></content>
       <categories>
         <category>学习笔记</category>
@@ -1021,8 +1359,8 @@ gtk_window_new()</code>的功能创建一个窗口并返回这个窗口的控件
         <category>字符串</category>
       </categories>
       <tags>
-        <tag>Leetcode</tag>
         <tag>字符串</tag>
+        <tag>Leetcode</tag>
       </tags>
   </entry>
   <entry>
@@ -1689,8 +2027,8 @@ gtk_window_new()</code>的功能创建一个窗口并返回这个窗口的控件
         <category>字符串</category>
       </categories>
       <tags>
-        <tag>Leetcode</tag>
         <tag>字符串</tag>
+        <tag>Leetcode</tag>
       </tags>
   </entry>
   <entry>
@@ -2191,8 +2529,8 @@ gtk_window_new()</code>的功能创建一个窗口并返回这个窗口的控件
         <category>字符串</category>
       </categories>
       <tags>
-        <tag>Leetcode</tag>
         <tag>字符串</tag>
+        <tag>Leetcode</tag>
       </tags>
   </entry>
   <entry>
@@ -5825,8 +6163,8 @@ x\*15  -&gt;  (x&lt;&lt;4) – x               乘法转换成了1次移位和1�
       </categories>
       <tags>
         <tag>Leetcode</tag>
-        <tag>深度优先搜索</tag>
         <tag>栈</tag>
+        <tag>深度优先搜索</tag>
       </tags>
   </entry>
   <entry>
@@ -5895,8 +6233,8 @@ x\*15  -&gt;  (x&lt;&lt;4) – x               乘法转换成了1次移位和1�
         <category>数组</category>
       </categories>
       <tags>
-        <tag>哈希</tag>
         <tag>POJ</tag>
+        <tag>哈希</tag>
         <tag>二分</tag>
       </tags>
   </entry>
@@ -6354,8 +6692,8 @@ x\*15  -&gt;  (x&lt;&lt;4) – x               乘法转换成了1次移位和1�
         <category>字符串</category>
       </categories>
       <tags>
-        <tag>Leetcode</tag>
         <tag>字符串</tag>
+        <tag>Leetcode</tag>
       </tags>
   </entry>
   <entry>
@@ -8103,8 +8441,8 @@ public Node(int _val,List&lt;Node&gt; _neighbors) {
         <category>字符串</category>
       </categories>
       <tags>
-        <tag>Leetcode</tag>
         <tag>字符串</tag>
+        <tag>Leetcode</tag>
         <tag>双指针</tag>
         <tag>回文</tag>
       </tags>
@@ -8799,8 +9137,8 @@ public Node(int _val,List&lt;Node&gt; _neighbors) {
         <category>数组</category>
       </categories>
       <tags>
-        <tag>Leetcode</tag>
         <tag>贪心</tag>
+        <tag>Leetcode</tag>
       </tags>
   </entry>
   <entry>
@@ -8851,8 +9189,8 @@ public Node(int _val,List&lt;Node&gt; _neighbors) {
         <category>数组</category>
       </categories>
       <tags>
-        <tag>Leetcode</tag>
         <tag>贪心</tag>
+        <tag>Leetcode</tag>
         <tag>回溯</tag>
         <tag>动态规划</tag>
       </tags>
@@ -9053,8 +9391,8 @@ public Node(int _val,List&lt;Node&gt; _neighbors) {
         <category>字符串</category>
       </categories>
       <tags>
-        <tag>Leetcode</tag>
         <tag>字符串</tag>
+        <tag>Leetcode</tag>
         <tag>栈</tag>
       </tags>
   </entry>
@@ -9160,8 +9498,8 @@ public Node(int _val,List&lt;Node&gt; _neighbors) {
         <category>字符串</category>
       </categories>
       <tags>
-        <tag>Leetcode</tag>
         <tag>字符串</tag>
+        <tag>Leetcode</tag>
       </tags>
   </entry>
   <entry>
@@ -9636,8 +9974,8 @@ public Node(int _val,List&lt;Node&gt; _neighbors) {
         <category>字符串</category>
       </categories>
       <tags>
-        <tag>Leetcode</tag>
         <tag>字符串</tag>
+        <tag>Leetcode</tag>
         <tag>动态规划</tag>
       </tags>
   </entry>
@@ -9677,8 +10015,8 @@ public Node(int _val,List&lt;Node&gt; _neighbors) {
         <category>字符串</category>
       </categories>
       <tags>
-        <tag>Leetcode</tag>
         <tag>字符串</tag>
+        <tag>Leetcode</tag>
       </tags>
   </entry>
   <entry>
@@ -10235,14 +10573,12 @@ public Node(int _val,List&lt;Node&gt; _neighbors) {
     <title>Android开发小记</title>
     <url>/2019/10/06/Android%E5%BC%80%E5%8F%91%E5%B0%8F%E8%AE%B0/</url>
     <content><![CDATA[<p>做了几天的软工作业，今天终于磨出了点东西了<br>虽然我负责的是比较水的出题模块，但是还是出现了许多智障操作。<br>我巴不得每一个类型写一个方法出来<br>最后记一下今天遇到的几个坑</p>
-<blockquote>
 <a id="more"></a>
 <ul>
 <li>空指针异常</li>
 <li>空栈异常</li>
 <li>除数为0异常</li>
 </ul>
-</blockquote>
 <p>空指针异常的出错代码为：</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line">StatOfType E = <span class="keyword">new</span> StatOfType();</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">47</span>; i++) &#123;</span><br><span class="line">            </span><br><span class="line">            E.setNum(<span class="number">10</span>);</span><br><span class="line">            E.setTypeId(i+<span class="number">1</span>);</span><br><span class="line">            typeList.add(E);</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
 
@@ -10464,8 +10800,8 @@ public Node(int _val,List&lt;Node&gt; _neighbors) {
         <category>链表</category>
       </categories>
       <tags>
-        <tag>Leetcode</tag>
         <tag>贪心</tag>
+        <tag>Leetcode</tag>
         <tag>链表</tag>
         <tag>归并</tag>
         <tag>分治</tag>
@@ -10917,8 +11253,8 @@ public Node(int _val,List&lt;Node&gt; _neighbors) {
         <category>数学</category>
       </categories>
       <tags>
-        <tag>Leetcode</tag>
         <tag>贪心</tag>
+        <tag>Leetcode</tag>
       </tags>
   </entry>
   <entry>
@@ -11047,8 +11383,8 @@ public Node(int _val,List&lt;Node&gt; _neighbors) {
         <category>字符串</category>
       </categories>
       <tags>
-        <tag>Leetcode</tag>
         <tag>字符串</tag>
+        <tag>Leetcode</tag>
       </tags>
   </entry>
   <entry>
