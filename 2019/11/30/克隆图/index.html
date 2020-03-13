@@ -273,20 +273,19 @@
       
         <p>来源Leetcode第133题克隆图</p>
 <blockquote>
-<p>给定无向连通图中一个节点的引用，返回该图的深拷贝（克隆）。图中的每个节点都包含它的值 val（Int） 和其邻居的列表（list[Node]）。</p>
-</blockquote>
-<a id="more"></a>
-<h3 id="图的定义"><a href="#图的定义" class="headerlink" title="图的定义"></a>图的定义</h3><p>class Node {<br>    public int val;<br>    public List<node> neighbors;</node></p>
+<p>给定无向连通图中一个节点的引用，返回该图的深拷贝（克隆）。图中的每个节点都包含它的值 val（Int） 和其邻居的列表（list[Node]）。<br><a id="more"></a></p>
+<h3 id="图的定义"><a href="#图的定义" class="headerlink" title="图的定义"></a>图的定义</h3></blockquote>
+<p>class Node {<br>    public int val;<br>    public List<node> neighbors;</node></p>
 <pre><code>public Node() {}
 
 public Node(int _val,List&lt;Node&gt; _neighbors) {
     val = _val;
     neighbors = _neighbors;
-}</code></pre><p>};</p>
+}
+</code></pre><p>};</p>
 <h4 id="广度优先搜索"><a href="#广度优先搜索" class="headerlink" title="广度优先搜索"></a>广度优先搜索</h4><p>这题的本质就是对图的遍历，在遍历时怎么把图的邻居添加进去。</p>
 <p>首先对图进行一个 BFS，把所有节点 new 出来，不处理 neighbors，并且把所有的节点存到 map 中。<br>然后再对图做一个 BFS，因为此时所有的节点已经创建了，只需要更新所有节点的 neighbors。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> Node <span class="title">cloneGraph</span><span class="params">(Node node)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (node == <span class="keyword">null</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    Queue&lt;Node&gt; queue = <span class="keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line">    <span class="comment">//队列用来判断是否遍历完所有结点</span></span><br><span class="line">    Map&lt;Node, Node&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">    <span class="comment">//map key值为原结点，val值为克隆结点</span></span><br><span class="line">    Node new_node = <span class="keyword">new</span> Node(node.val, <span class="keyword">new</span> LinkedList&lt;&gt;());</span><br><span class="line">    queue.offer(node);</span><br><span class="line">    <span class="comment">//头结点入队</span></span><br><span class="line">    map.put(node, new_node);</span><br><span class="line">    <span class="keyword">while</span> (!queue.isEmpty()) &#123;</span><br><span class="line">        Node cur = queue.poll();</span><br><span class="line">        <span class="keyword">for</span> (Node n : cur.neighbors) &#123;</span><br><span class="line">            <span class="keyword">if</span> (!map.containsKey(n)) &#123;</span><br><span class="line">                <span class="comment">//不包含的结点加入到map里</span></span><br><span class="line">                queue.offer(n);</span><br><span class="line">                <span class="comment">//同把该结点入队</span></span><br><span class="line">                Node tmp = <span class="keyword">new</span> Node(n.val, <span class="keyword">new</span> LinkedList&lt;&gt;());</span><br><span class="line">                map.put(n, tmp);</span><br><span class="line">            &#125;</span><br><span class="line">            map.get(cur).neighbors.add(map.get(n));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> map.get(node);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <h4 id="深度优先搜索"><a href="#深度优先搜索" class="headerlink" title="深度优先搜索"></a>深度优先搜索</h4><p>同样利用一个map来存储原结点和克隆结点，接着对第一个结点进行深度优先搜索，出口为当所有结点都在map时。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> Node <span class="title">cloneGraph</span><span class="params">(Node node)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (node == <span class="keyword">null</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    HashMap&lt;Node,Node&gt; map = <span class="keyword">new</span> HashMap&lt;Node,Node&gt;();</span><br><span class="line">    node = dfs(node,map);</span><br><span class="line">    <span class="keyword">return</span> node;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> Node <span class="title">dfs</span><span class="params">(Node node,HashMap&lt;Node,Node&gt; map)</span></span>&#123;</span><br><span class="line">   <span class="comment">//当所有结点都在map里时退出递归</span></span><br><span class="line">    Node aNode = <span class="keyword">new</span> Node(node.val,<span class="keyword">new</span> ArrayList&lt;&gt;());</span><br><span class="line">    map.put(node,aNode);</span><br><span class="line">    <span class="keyword">for</span>(Node neighbours : node.neighbors)&#123;</span><br><span class="line">        <span class="keyword">if</span>(!map.containsKey(neighbours))</span><br><span class="line">            <span class="comment">//如果没有包含此结点，从此结点一直往下遍历</span></span><br><span class="line">            neighbours = dfs(neighbours,map);</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            <span class="comment">//如果包含了此结点，返回其克隆结点</span></span><br><span class="line">            neighbours = map.get(neighbours);</span><br><span class="line">        aNode.neighbors.add(neighbours);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> aNode;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
     </div>
@@ -409,7 +408,7 @@ public Node(int _val,List&lt;Node&gt; _neighbors) {
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">213</span>
+          <span class="site-state-item-count">215</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -470,13 +469,13 @@ public Node(int _val,List&lt;Node&gt; _neighbors) {
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="Symbols count total">584k</span>
+    <span title="Symbols count total">581k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">8:51</span>
-</div>
+    <span title="Reading time total">8:48</span>
+</div><script color="255,255,255" opacity="0.5" zIndex="-1" count="180" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
 
         
 
@@ -499,7 +498,6 @@ public Node(int _val,List&lt;Node&gt; _neighbors) {
 <script src="/js/schemes/pisces.js"></script>
 <script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
 
-  <script defer src="/lib/three/three.min.js"></script>
 
 
   
@@ -528,6 +526,8 @@ public Node(int _val,List&lt;Node&gt; _neighbors) {
 
 
 
+
+  
 
   
 

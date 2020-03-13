@@ -281,7 +281,6 @@
 <h4 id="自底向上的贪心"><a href="#自底向上的贪心" class="headerlink" title="自底向上的贪心"></a>自底向上的贪心</h4><p>思路同<strong>跳跃游戏</strong>一题里一样，先用一个变量maxLength记录能到达的最远位置，再用变量end记录能到达的最远位置边界，steps记录步数。<br>则每当到达边界end的时候，将end更新为新的maxLength，并且steps++。<br>因为在一次遍历i 到 end 的时候，我们总能找到到达新的最远距离的方法。</p>
 <p>提交的时候遇到坑了，在for循环里，i 是应该要小于 nums.length - 1的，少了末尾。因为在最开始第0个位置的时候，step已经加1了。如果是最后一步刚好到达末尾，steps并不用加1。如果是i &lt; nums.length ，i到最后时进入if语句，steps会 + 1.</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">jump</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> maxLength = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> steps = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> end = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span> ; i &lt; nums.length - <span class="number">1</span>; i++)&#123;</span><br><span class="line">        maxLength = Math.max(maxLength, i + nums[i]);</span><br><span class="line">        <span class="keyword">if</span>(i == end)&#123;</span><br><span class="line">            end = maxLength;</span><br><span class="line">            steps++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> steps;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <h4 id="自顶向下的贪心"><a href="#自顶向下的贪心" class="headerlink" title="自顶向下的贪心"></a>自顶向下的贪心</h4><p>来自<a href="https://leetcode-cn.com/problems/jump-game-ii/solution/xiang-xi-tong-su-de-si-lu-fen-xi-duo-jie-fa-by-10/" target="_blank" rel="noopener">题解</a></p>
 <p>我们知道最终要到达最后一个位置，然后我们找前一个位置，遍历数组，找到能到达它的位置，离它最远的就是要找的位置。然后继续找上上个位置，最后到了第 0 个位置就结束了。</p>
 <p>至于离它最远的位置，其实我们从左到右遍历数组，第一个满足的位置就是我们要找的。</p>
@@ -405,7 +404,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">213</span>
+          <span class="site-state-item-count">215</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -466,13 +465,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="Symbols count total">584k</span>
+    <span title="Symbols count total">581k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">8:51</span>
-</div>
+    <span title="Reading time total">8:48</span>
+</div><script color="255,255,255" opacity="0.5" zIndex="-1" count="180" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
 
         
 
@@ -495,7 +494,6 @@
 <script src="/js/schemes/pisces.js"></script>
 <script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
 
-  <script defer src="/lib/three/three.min.js"></script>
 
 
   
@@ -524,6 +522,8 @@
 
 
 
+
+  
 
   
 

@@ -379,8 +379,7 @@
 <p><img src="/2019/12/19/数据表示/image-20191219235921834.png" alt="image-20191219235921834"></p>
 <h2 id="CRC校验及其实现"><a href="#CRC校验及其实现" class="headerlink" title="CRC校验及其实现"></a>CRC校验及其实现</h2><p><img src="/2019/12/19/数据表示/image-20191220001405535.png" alt="image-20191220001405535"></p>
 <ul>
-<li><p><strong>生成多项式特征</strong></p>
-<ul>
+<li><strong>生成多项式特征</strong><ul>
 <li>任意位发生错误都应使余数不为0</li>
 <li>不同位发生错误余数不同</li>
 <li>余数左移一位继续作模2除，应使余数循环，循环周期 N=k+r  ？</li>
@@ -394,10 +393,8 @@
 </li>
 <li><p>码距：任意两个合法编码间不同的二进制位数    最小码距</p>
 </li>
-<li><p>码距越大，抗干扰能力、纠错能力越强，数据冗余越大，编码效率越低</p>
-</li>
-<li><p>选择码距应考虑信息出错概率和系统容错率</p>
-<ul>
+<li>码距越大，抗干扰能力、纠错能力越强，数据冗余越大，编码效率越低</li>
+<li>选择码距应考虑信息出错概率和系统容错率<ul>
 <li>奇偶校验  最小码距为2</li>
 <li>海明码     最小码距为3</li>
 </ul>
@@ -437,10 +434,8 @@
 <li>广泛运用于通信传输领域，磁存储领域</li>
 </ul>
 <h2 id="海明校验及其实现"><a href="#海明校验及其实现" class="headerlink" title="海明校验及其实现"></a>海明校验及其实现</h2><ul>
-<li><p>多个奇偶校验组</p>
-</li>
-<li><p>既能检错，也能纠错</p>
-</li>
+<li>多个奇偶校验组</li>
+<li>既能检错，也能纠错</li>
 <li><p>最小码距为3</p>
 </li>
 <li><p>编码规则：分组交叉奇偶校验法</p>
@@ -451,8 +446,7 @@
 <li>一个数据位出错，可导致多个检错码为1</li>
 </ul>
 </li>
-<li><p>检错纠错：检错码值表示出错位置   （假设1位错）</p>
-<ul>
+<li>检错纠错：检错码值表示出错位置   （假设1位错）<ul>
 <li>检错码全零， 数据大概率正常</li>
 <li>可检错，也可纠错，将出错位取反即可</li>
 </ul>
@@ -620,7 +614,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">213</span>
+          <span class="site-state-item-count">215</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -681,13 +675,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="Symbols count total">584k</span>
+    <span title="Symbols count total">581k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">8:51</span>
-</div>
+    <span title="Reading time total">8:48</span>
+</div><script color="255,255,255" opacity="0.5" zIndex="-1" count="180" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
 
         
 
@@ -710,7 +704,6 @@
 <script src="/js/schemes/pisces.js"></script>
 <script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
 
-  <script defer src="/lib/three/three.min.js"></script>
 
 
   
@@ -739,6 +732,8 @@
 
 
 
+
+  
 
   
 

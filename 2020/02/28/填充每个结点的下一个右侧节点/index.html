@@ -22,19 +22,19 @@
     var CONFIG = {"hostname":"yorxika.github.io","root":"/","scheme":"Gemini","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="来源Leetcode第116题填充每个结点的下一个右侧节点 给定一个完美二叉树，其所有叶子节点都在同一层，每个父节点都有两个子节点。二叉树定义如下： 123456struct Node &amp;#123;  int val;  Node *left;  Node *right;  Node *next;&amp;#125;  填充它的每个 next 指针，让这个指针指向其下一个右侧节点。如果找不到下一个右侧节点">
+  <meta name="description" content="来源Leetcode第116题填充每个结点的下一个右侧节点 给定一个完美二叉树，其所有叶子节点都在同一层，每个父节点都有两个子节点。二叉树定义如下： 123456struct Node &amp;#123;  int val;  Node *left;  Node *right;  Node *next;&amp;#125; 填充它的每个 next 指针，让这个指针指向其下一个右侧节点。如果找不到下一个右侧节点，">
 <meta name="keywords" content="宽度优先搜索">
 <meta property="og:type" content="article">
 <meta property="og:title" content="填充每个结点的下一个右侧节点">
 <meta property="og:url" content="http://yorxika.github.io/2020/02/28/填充每个结点的下一个右侧节点/index.html">
 <meta property="og:site_name" content="Nameless Site">
-<meta property="og:description" content="来源Leetcode第116题填充每个结点的下一个右侧节点 给定一个完美二叉树，其所有叶子节点都在同一层，每个父节点都有两个子节点。二叉树定义如下： 123456struct Node &amp;#123;  int val;  Node *left;  Node *right;  Node *next;&amp;#125;  填充它的每个 next 指针，让这个指针指向其下一个右侧节点。如果找不到下一个右侧节点">
+<meta property="og:description" content="来源Leetcode第116题填充每个结点的下一个右侧节点 给定一个完美二叉树，其所有叶子节点都在同一层，每个父节点都有两个子节点。二叉树定义如下： 123456struct Node &amp;#123;  int val;  Node *left;  Node *right;  Node *next;&amp;#125; 填充它的每个 next 指针，让这个指针指向其下一个右侧节点。如果找不到下一个右侧节点，">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="http://yorxika.github.io/2020/02/28/填充每个结点的下一个右侧节点/116_sample.png">
 <meta property="og:updated_time" content="2020-02-28T13:14:02.432Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="填充每个结点的下一个右侧节点">
-<meta name="twitter:description" content="来源Leetcode第116题填充每个结点的下一个右侧节点 给定一个完美二叉树，其所有叶子节点都在同一层，每个父节点都有两个子节点。二叉树定义如下： 123456struct Node &amp;#123;  int val;  Node *left;  Node *right;  Node *next;&amp;#125;  填充它的每个 next 指针，让这个指针指向其下一个右侧节点。如果找不到下一个右侧节点">
+<meta name="twitter:description" content="来源Leetcode第116题填充每个结点的下一个右侧节点 给定一个完美二叉树，其所有叶子节点都在同一层，每个父节点都有两个子节点。二叉树定义如下： 123456struct Node &amp;#123;  int val;  Node *left;  Node *right;  Node *next;&amp;#125; 填充它的每个 next 指针，让这个指针指向其下一个右侧节点。如果找不到下一个右侧节点，">
 <meta name="twitter:image" content="http://yorxika.github.io/2020/02/28/填充每个结点的下一个右侧节点/116_sample.png">
 
 <link rel="canonical" href="http://yorxika.github.io/2020/02/28/填充每个结点的下一个右侧节点/">
@@ -270,11 +270,8 @@
         <p>来源Leetcode第116题填充每个结点的下一个右侧节点</p>
 <p>给定一个<strong>完美二叉树</strong>，其所有叶子节点都在同一层，每个父节点都有两个子节点。二叉树定义如下：</p>
 <figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">struct <span class="keyword">Node</span> <span class="title">&#123;</span></span><br><span class="line"><span class="title">  int</span> val;</span><br><span class="line">  <span class="keyword">Node</span> <span class="title">*left</span>;</span><br><span class="line">  <span class="keyword">Node</span> <span class="title">*right</span>;</span><br><span class="line">  <span class="keyword">Node</span> <span class="title">*next</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <p>填充它的每个 next 指针，让这个指针指向其下一个右侧节点。如果找不到下一个右侧节点，则将 next 指针设置为 <code>NULL</code>。</p>
-<p>初始状态下，所有 next 指针都被设置为 <code>NULL</code>。</p>
-<a id="more"></a>
-
+<p>初始状态下，所有 next 指针都被设置为 <code>NULL</code>。<br><a id="more"></a></p>
 <p><strong>示例：</strong></p>
 <p><img src="/2020/02/28/填充每个结点的下一个右侧节点/116_sample.png" alt="img"></p>
 <p><strong>提示：</strong></p>
@@ -285,10 +282,8 @@
 <hr>
 <h3 id="常规BFS"><a href="#常规BFS" class="headerlink" title="常规BFS"></a>常规BFS</h3><p>创建一个队列，按层序遍历实现。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">// Definition for a Node.</span></span><br><span class="line"><span class="comment">class Node &#123;</span></span><br><span class="line"><span class="comment">    public int val;</span></span><br><span class="line"><span class="comment">    public Node left;</span></span><br><span class="line"><span class="comment">    public Node right;</span></span><br><span class="line"><span class="comment">    public Node next;</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">    public Node() &#123;&#125;</span></span><br><span class="line"><span class="comment">    </span></span><br><span class="line"><span class="comment">    public Node(int _val) &#123;</span></span><br><span class="line"><span class="comment">        val = _val;</span></span><br><span class="line"><span class="comment">    &#125;</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">    public Node(int _val, Node _left, Node _right, Node _next) &#123;</span></span><br><span class="line"><span class="comment">        val = _val;</span></span><br><span class="line"><span class="comment">        left = _left;</span></span><br><span class="line"><span class="comment">        right = _right;</span></span><br><span class="line"><span class="comment">        next = _next;</span></span><br><span class="line"><span class="comment">    &#125;</span></span><br><span class="line"><span class="comment">&#125;;</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Node <span class="title">connect</span><span class="params">(Node root)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(root == <span class="keyword">null</span>)</span><br><span class="line">            <span class="keyword">return</span> root;</span><br><span class="line">        LinkedList&lt;Node&gt; queue = <span class="keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line">        queue.add(root);</span><br><span class="line">        <span class="keyword">int</span> size = <span class="number">0</span>;</span><br><span class="line">        Node tmp;</span><br><span class="line">        <span class="keyword">while</span>(!queue.isEmpty())&#123;</span><br><span class="line">            size = queue.size();</span><br><span class="line">            tmp = queue.peek();</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; size ; ++i)&#123;  <span class="comment">//串联队列里的结点</span></span><br><span class="line">                tmp.next = queue.get(i);</span><br><span class="line">                tmp = queue.get(i);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span> ; i &lt; size ; ++i)&#123;</span><br><span class="line">                tmp = queue.poll();</span><br><span class="line">                <span class="keyword">if</span>(tmp.left != <span class="keyword">null</span>)</span><br><span class="line">                    queue.add(tmp.left);</span><br><span class="line">                <span class="keyword">if</span>(tmp.right != <span class="keyword">null</span>)</span><br><span class="line">                    queue.add(tmp.right);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> root;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <h3 id="利用已有的next结点"><a href="#利用已有的next结点" class="headerlink" title="利用已有的next结点"></a>利用已有的next结点</h3><p>如果不为一层的尾结点，那么其<code>next</code>指针只想的就是根节点的右孩子，或者更结点兄弟的右孩子，根节点的兄弟在上一轮递归中已经用<code>root.next</code>实现了。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> Node <span class="title">connect</span><span class="params">(Node root)</span> </span>&#123;</span><br><span class="line"> <span class="keyword">if</span>(root == <span class="keyword">null</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(root.left != <span class="keyword">null</span>)&#123;</span><br><span class="line">        root.left.next = root.right;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(root.right != <span class="keyword">null</span>)&#123;</span><br><span class="line">        root.right.next = root.next == <span class="keyword">null</span> ? <span class="keyword">null</span> : root.next.left;</span><br><span class="line">    &#125;</span><br><span class="line">    connect(root.left);</span><br><span class="line">    connect(root.right);</span><br><span class="line">    <span class="keyword">return</span> root;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 
     </div>
 
@@ -408,7 +403,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">213</span>
+          <span class="site-state-item-count">215</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -469,13 +464,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="Symbols count total">584k</span>
+    <span title="Symbols count total">581k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">8:51</span>
-</div>
+    <span title="Reading time total">8:48</span>
+</div><script color="255,255,255" opacity="0.5" zIndex="-1" count="180" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
 
         
 
@@ -498,7 +493,6 @@
 <script src="/js/schemes/pisces.js"></script>
 <script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
 
-  <script defer src="/lib/three/three.min.js"></script>
 
 
   
@@ -527,6 +521,8 @@
 
 
 
+
+  
 
   
 

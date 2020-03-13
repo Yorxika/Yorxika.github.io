@@ -263,11 +263,8 @@
       
         <p>来源Leetcode第108题将有序数组转化为二叉搜索树</p>
 <p>将一个按照升序排列的有序数组，转换为一棵高度平衡二叉搜索树。</p>
-<p>本题中，一个高度平衡二叉树是指一个二叉树<em>每个节点</em> 的左右两个子树的高度差的绝对值不超过 1。</p>
-<a id="more"></a>
-<p><strong>示例:</strong></p>
+<p>本题中，一个高度平衡二叉树是指一个二叉树<em>每个节点</em> 的左右两个子树的高度差的绝对值不超过 1。<br><a id="more"></a><br><strong>示例:</strong></p>
 <figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">给定有序数组: [<span class="number">-10</span>,<span class="number">-3</span>,<span class="number">0</span>,<span class="number">5</span>,<span class="number">9</span>],</span><br><span class="line"></span><br><span class="line">一个可能的答案是：[<span class="number">0</span>,<span class="number">-3</span>,<span class="number">9</span>,<span class="number">-10</span>,<span class="literal">null</span>,<span class="number">5</span>]，它可以表示下面这个高度平衡二叉搜索树：</span><br><span class="line"></span><br><span class="line">      <span class="number">0</span></span><br><span class="line">     / \</span><br><span class="line">   <span class="number">-3</span>   <span class="number">9</span></span><br><span class="line">   /   /</span><br><span class="line"> <span class="number">-10</span>  <span class="number">5</span></span><br></pre></td></tr></table></figure>
-
 <h3 id="中点作为根节点"><a href="#中点作为根节点" class="headerlink" title="中点作为根节点"></a>中点作为根节点</h3><p>数组的中点就是根节点，然后将数组截断，以此类推</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> TreeNode <span class="title">sortedArrayToBST</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(nums.length == <span class="number">0</span> || nums == <span class="keyword">null</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    <span class="keyword">int</span> mid = nums.length / <span class="number">2</span>;</span><br><span class="line">    TreeNode root = <span class="keyword">new</span> TreeNode(nums[mid]);</span><br><span class="line">    <span class="keyword">if</span>(mid &gt; <span class="number">0</span>) </span><br><span class="line">        root.left = sortedArrayToBST(Arrays.copyOfRange(nums,<span class="number">0</span>,mid));</span><br><span class="line">    <span class="keyword">if</span>(mid &lt; nums.length - <span class="number">1</span>)</span><br><span class="line">    root.right = sortedArrayToBST(Arrays.copyOfRange(nums,mid + <span class="number">1</span>,nums.length));</span><br><span class="line">    <span class="keyword">return</span> root;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
     </div>
@@ -389,7 +386,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">213</span>
+          <span class="site-state-item-count">215</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -450,13 +447,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="Symbols count total">584k</span>
+    <span title="Symbols count total">581k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">8:51</span>
-</div>
+    <span title="Reading time total">8:48</span>
+</div><script color="255,255,255" opacity="0.5" zIndex="-1" count="180" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
 
         
 
@@ -479,7 +476,6 @@
 <script src="/js/schemes/pisces.js"></script>
 <script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
 
-  <script defer src="/lib/three/three.min.js"></script>
 
 
   
@@ -508,6 +504,8 @@
 
 
 
+
+  
 
   
 

@@ -246,7 +246,7 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>860</span>
+              <span>855</span>
             </span>
             <span class="post-meta-item" title="Reading time">
               <span class="post-meta-item-icon">
@@ -266,32 +266,28 @@
 
       
         <p>来自Leetcode第238题除自身以外数组的乘积</p>
-<p>给定长度为 <em>n</em> 的整数数组 <code>nums</code>，其中 <em>n</em> &gt; 1，返回输出数组 <code>output</code> ，其中 <code>output[i]</code> 等于 <code>nums</code> 中除 <code>nums[i]</code> 之外其余各元素的乘积。</p>
-<a id="more"></a>
-<p><strong>示例:</strong></p>
+<p>给定长度为 <em>n</em> 的整数数组 <code>nums</code>，其中 <em>n</em> &gt; 1，返回输出数组 <code>output</code> ，其中 <code>output[i]</code> 等于 <code>nums</code> 中除 <code>nums[i]</code> 之外其余各元素的乘积。<br><a id="more"></a><br><strong>示例:</strong></p>
 <figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>]</span><br><span class="line">输出: [<span class="number">24</span>,<span class="number">12</span>,<span class="number">8</span>,<span class="number">6</span>]</span><br></pre></td></tr></table></figure>
-
 <p><strong>说明:</strong> 请<strong>不要使用除法，</strong>且在 O(<em>n</em>) 时间复杂度内完成此题。</p>
 <p><strong>进阶：</strong><br>你可以在常数空间复杂度内完成这个题目吗？（ 出于对空间复杂度分析的目的，输出数组<strong>不被视为</strong>额外空间。）</p>
 <hr>
 <p>这似乎是一个简单的问题，可以在线性时间和空间内解决。可以先计算给定数组所有元素的乘积，然后对数组中的每个元素 <em>x</em>，将乘积除以 x* 来求得除自身值的以外的数组乘积。</p>
 <p>然后这样的解决方法有一个问题，就是如果输入数组中出现 0，那么这个方法就失效了。而且在问题中说明了不允许使用除法运算。这增加了这个问题的难度。</p>
 <ol>
-<li>初始化数组长度<em>n</em>。初始化r<strong>e</strong>s<em>=[0,0,…,0]为1*n*的数组。初试化乘积k</em>=1</li>
+<li>初始化数组长度<em>n</em>。初始化r<strong>e</strong>s<em>=[0,0,…,0]为1\</em>n<em>的数组。初试化乘积k</em>=1</li>
 <li>从左向右遍历，遍历区间[0,<em>n</em>)：<ul>
-<li><em>r<strong>e</strong>s<em>每个位置保存它左侧所有元素的乘积。即</em>r<strong>e</strong>s</em>[<em>i</em>]=<em>k</em>,<em>k</em>∗=<em>n<strong>u</strong>ms</em>[<em>i</em>]</li>
+<li><em>r<strong>e</strong>s</em>每个位置保存它左侧所有元素的乘积。即<em>r<strong>e</strong>s</em>[<em>i</em>]=<em>k</em>,<em>k</em>∗=<em>n<strong>u</strong>ms</em>[<em>i</em>]</li>
 </ul>
 </li>
 <li>重置乘积<em>k</em>=1，用来保存元素右边的乘积和</li>
 <li>从右向左遍历，遍历区间(<em>n</em>,0]：<ul>
-<li>r<strong>e</strong>s*[<em>i</em>]∗=*k，表示将当前位置的左积乘以右积。</li>
-<li>更新右积k<em>∗=<em>n*</em>u*<em>m</em>s</em>[<em>i</em>]</li>
+<li>r<strong>e</strong>s<em>[</em>i<em>]∗=</em>k，表示将当前位置的左积乘以右积。</li>
+<li>更新右积k<em>∗=</em>n<strong>u</strong>m<em>s</em>[<em>i</em>]</li>
 </ul>
 </li>
 <li>返回<em>r<strong>e</strong>s</em></li>
 </ol>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">int</span>[] productExceptSelf(<span class="keyword">int</span>[] nums) &#123;</span><br><span class="line">    <span class="keyword">int</span>[] ans = <span class="keyword">new</span> <span class="keyword">int</span>[nums.length];</span><br><span class="line">    <span class="keyword">int</span> tmp = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span> ; i &lt; ans.length ; i++)&#123;</span><br><span class="line">        ans[i] = tmp;</span><br><span class="line">        tmp *= nums[i]; <span class="comment">// 此时数组存储的是除去当前元素左边的元素乘积</span></span><br><span class="line">    &#125;</span><br><span class="line">    tmp = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = ans.length - <span class="number">1</span>;i &gt;= <span class="number">0</span> ; i--)&#123;</span><br><span class="line">        ans[i] *= tmp;  <span class="comment">// tmp为该数右边的乘积。</span></span><br><span class="line">        tmp *= nums[i];  <span class="comment">// 此时数组等于左边的 * 该数右边的</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 
     </div>
 
@@ -411,7 +407,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">213</span>
+          <span class="site-state-item-count">215</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -472,13 +468,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="Symbols count total">584k</span>
+    <span title="Symbols count total">581k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">8:51</span>
-</div>
+    <span title="Reading time total">8:48</span>
+</div><script color="255,255,255" opacity="0.5" zIndex="-1" count="180" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
 
         
 
@@ -501,7 +497,6 @@
 <script src="/js/schemes/pisces.js"></script>
 <script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
 
-  <script defer src="/lib/three/three.min.js"></script>
 
 
   
@@ -530,6 +525,8 @@
 
 
 
+
+  
 
   
 

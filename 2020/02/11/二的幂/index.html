@@ -266,15 +266,11 @@
 
       
         <p>来源Leetcode第231题 2的幂</p>
-<p>给定一个整数，编写一个函数来判断它是否是 2 的幂次方。</p>
-<a id="more"></a>
-<p><strong>示例 1:</strong></p>
+<p>给定一个整数，编写一个函数来判断它是否是 2 的幂次方。<br><a id="more"></a><br><strong>示例 1:</strong></p>
 <figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入: <span class="number">1</span></span><br><span class="line">输出: <span class="literal">true</span></span><br><span class="line">解释: <span class="number">20</span> = <span class="number">1</span></span><br></pre></td></tr></table></figure>
-
 <hr>
 <h3 id="2147483648"><a href="#2147483648" class="headerlink" title="2147483648"></a>2147483648</h3><p>最开始的移位比对超时后，评论区有人提到用(2^32 % n)，因为2^32 % n一定为0。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isPowerOfTwo</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">long</span> test = <span class="number">2147483647</span>;</span><br><span class="line">    test += <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">return</span> n &gt; <span class="number">0</span> &amp;&amp; test % n == <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <h3 id="官方题解"><a href="#官方题解" class="headerlink" title="官方题解"></a>官方题解</h3><p><a href="https://leetcode-cn.com/problems/power-of-two/solution/2de-mi-by-leetcode/" target="_blank" rel="noopener">来自</a></p>
 <p>我们不打算在这里讨论时间复杂度为 O(log<em>N</em>) 的解决方案。该问题将通过位运算在 O(1) 的时间复杂度解决，通过使用如下的按位技巧：</p>
 <ul>
@@ -285,10 +281,8 @@
 <p>若 <code>x</code> 不是 2 的幂，则在二进制表示中存在其他 1，因此 <code>x &amp; (-x) != x</code>。</p>
 <p>因此判断是否为 2 的幂的关键是：判断 <code>x &amp; (-x) == x</code>。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isPowerOfTwo</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (n == <span class="number">0</span>) <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    <span class="keyword">long</span> x = (<span class="keyword">long</span>) n;</span><br><span class="line">    <span class="keyword">return</span> (x &amp; (-x)) == x;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
-
 <h4 id="位运算：去除二进制中最右边的-1"><a href="#位运算：去除二进制中最右边的-1" class="headerlink" title="位运算：去除二进制中最右边的 1"></a>位运算：去除二进制中最右边的 1</h4><p>易知，<code>x &amp; (x - 1)</code> 可以将最右边的 1 设置为 0。因而，<code>x &amp; (x - 1)</code> 操作会将 2 的幂设置为 0，因此判断是否为 2 的幂是：判断 <code>x &amp; (x - 1) == 0</code>。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isPowerOfTwo</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">   <span class="keyword">if</span> (n == <span class="number">0</span>) <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">   <span class="keyword">long</span> x = (<span class="keyword">long</span>) n;</span><br><span class="line">   <span class="keyword">return</span> (x &amp; (x - <span class="number">1</span>)) == <span class="number">0</span>;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
-
 
     </div>
 
@@ -409,7 +403,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">213</span>
+          <span class="site-state-item-count">215</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -470,13 +464,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="Symbols count total">584k</span>
+    <span title="Symbols count total">581k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">8:51</span>
-</div>
+    <span title="Reading time total">8:48</span>
+</div><script color="255,255,255" opacity="0.5" zIndex="-1" count="180" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
 
         
 
@@ -499,7 +493,6 @@
 <script src="/js/schemes/pisces.js"></script>
 <script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
 
-  <script defer src="/lib/three/three.min.js"></script>
 
 
   
@@ -528,6 +521,8 @@
 
 
 
+
+  
 
   
 

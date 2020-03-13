@@ -309,16 +309,14 @@
 <li>零：返回到新创建的子进程。</li>
 <li>正值：返回父母或来电者。该值包含新创建的子进程的进程ID</li>
 </ul>
-<p><strong>头文件</strong>:</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;unistd.h&gt;/*#包含&lt;unistd.h&gt;*/</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;sys/types.h&gt;/*#包含&lt;sys/types.h&gt;*/</span></span></span><br></pre></td></tr></table></figure>
-
-<p><strong>函数原型</strong>:<br>pid_t fork( void);<br>（pid_t 是一个宏定义，其实质是int 被定义在#include&lt;sys/types.h&gt;中）<br>返回值： 若成功调用一次则返回两个值，子进程返回0，父进程返回子进程ID；否则，出错返回-1</p>
+<p><strong>头文件</strong>:<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;unistd.h&gt;/*#包含&lt;unistd.h&gt;*/</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;sys/types.h&gt;/*#包含&lt;sys/types.h&gt;*/</span></span></span><br></pre></td></tr></table></figure></p>
+<p><strong>函数原型</strong>:<br>pid_t fork( void);<br>（pid_t 是一个宏定义，其实质是int 被定义在#include<sys types.h>中）<br>返回值： 若成功调用一次则返回两个值，子进程返回0，父进程返回子进程ID；否则，出错返回-1</sys></p>
 <p><strong>函数说明</strong>：<br>一个现有进程可以调用fork函数创建一个新进程。由fork创建的新进程被称为子进程（child process）。fork函数被调用一次但返回两次。两次返回的唯一区别是子进程中返回0值而父进程中返回子进程ID。<br>子进程是父进程的副本，它将获得父进程数据空间、堆、栈等资源的副本。注意，子进程持有的是上述存储空间的“副本”，这意味着父子进程间不共享这些存储空间。<br>UNIX将复制父进程的地址空间内容给子进程，因此，子进程有了独立的地址空间。在不同的UNIX (Like)系统下，我们无法确定fork之后是子进程先运行还是父进程先运行，这依赖于系统的实现。所以在移植代码的时候我们不应该对此作出任何的假设。</p>
 <p><strong>为什么fork会返回两次？</strong><br>由于在复制时复制了父进程的堆栈段，所以两个进程都停留在fork函数中，等待返回。因此fork函数会返回两次，一次是在父进程中返回，另一次是在子进程中返回，这两次的返回值是不一样的。</p>
 <p>fork调用的一个奇妙之处就是它仅仅被调用一次，却能够返回两次，它可能有三种不同的返回值：<br>(1)在父进程中，fork返回新创建子进程的进程ID；<br>(2)在子进程中，fork返回0；<br>(3)如果出现错误，fork返回一个负值。<br>在fork函数执行完毕后，如果创建新进程成功，则出现两个进程，一个是子进程，一个是父进程。在子进程中，fork函数返回0，在父进程中，fork返回新创建子进程的进程ID。我们可以通过fork返回的值来判断当前进程是子进程还是父进程。<br>引用一位网友的话来解释fork函数返回的值为什么在父子进程中不同。“其实就相当于链表，进程形成了链表，父进程的fork函数返回的值指向子进程的进程id, 因为子进程没有子进程，所以其fork函数返回的值为0.<br>调用fork之后，数据、堆、栈有两份，代码仍然为一份但是这个代码段成为两个进程的共享代码段都从fork函数中返回，箭头表示各自的执行处。当父子进程有一个想要修改数据或者堆栈时，两个进程真正分裂。</p>
 <h4 id="exec"><a href="#exec" class="headerlink" title="exec()"></a>exec()</h4><p>函数族exec() ：启动另外的进程取代当前的进程 </p>
 <ul>
-<li>#include &lt;unistd.h&gt; </li>
+<li><h1 id="include"><a href="#include" class="headerlink" title="include "></a>include <unistd.h></unistd.h></h1></li>
 <li>extern char **environ;</li>
 <li>int execl(const char *path, const char *arg, …); </li>
 <li>int execlp(const char *file, const char *arg, …); </li>
@@ -386,26 +384,21 @@
 </ul>
 <h4 id="等待进程终止"><a href="#等待进程终止" class="headerlink" title="等待进程终止"></a>等待进程终止</h4><p>wait();    waitpid();</p>
 <ul>
-<li><p>① wait() 语法格式： pid=wait(stat_addr);<br> wait()函数使父进程暂停执行，直到它的一个子进程结束为止，该函数 的返回值是终止运行的子进程的PID。参数status所指向的变量存放子 进程的退出码，即从子进程的main函数返回的值或子进程中exit()函数 的参数。如果status不是一个空指针，状态信息将被写入它指向的变量。</p>
-</li>
+<li>① wait() 语法格式： pid=wait(stat_addr);<br> wait()函数使父进程暂停执行，直到它的一个子进程结束为止，该函数 的返回值是终止运行的子进程的PID。参数status所指向的变量存放子 进程的退出码，即从子进程的main函数返回的值或子进程中exit()函数 的参数。如果status不是一个空指针，状态信息将被写入它指向的变量。</li>
 <li><p>② waitpid() 语法格式：waitpid(pid_t pid,int * status,int options)<br> 用来等待子进程的结束，但它用于等待某个特定进程结束。<br> 参数pid指明要等待的子进程的PID，参数status的含义与wait()函数中的 status相同。</p>
 <p> 如果在调用 waitpid()时子进程已经结束,则 waitpid()会立即返回子进程结束状态值。 子进程的结束状态值会由参数 status 返回,而子进程的进程识别码也会一起返回。如果不在意结束状态值,则参数 status 可以设成 NULL。参数 pid 为欲等待的子进程识别码.<br> 其他数值意义如下:</p>
 <ul>
-<li><p>pid&lt;-1 等待进程组识别码为 pid 绝对值的任何子进程。</p>
-</li>
-<li><p>pid=-1 等待任何子进程,相当于 wait()。</p>
-</li>
-<li><p>pid=0 等待进程组识别码与目前进程相同的任何子进程。</p>
-</li>
-<li><p>pid&gt;0 等待任何子进程识别码为 pid 的子进程。</p>
-</li>
+<li>pid&lt;-1 等待进程组识别码为 pid 绝对值的任何子进程。</li>
+<li>pid=-1 等待任何子进程,相当于 wait()。</li>
+<li>pid=0 等待进程组识别码与目前进程相同的任何子进程。</li>
+<li>pid&gt;0 等待任何子进程识别码为 pid 的子进程。</li>
 <li><p>参数options提供了一些额外的选项来控制waitpid，参数 option 可以为 0 或可以用”|”运算符把它们连接起来使用，比如：<code>ret=waitpid(-1,NULL,WNOHANG | WUNTRACED);</code><br>WNOHANG 若pid指定的子进程没有结束，则waitpid()函数返回0，不予以等待。若结束，则返回该子进程的ID。<br>WUNTRACED 若子进程进入暂停状态，则马上返回，但子进程的结束状态不予以理会。WIFSTOPPED(status)宏确定返回值是否对应与一个暂停子进程。</p>
 <p>子进程的结束状态返回后存于 status,底下有几个宏可判别结束情况:<br>WIFEXITED(status)如果若为正常结束子进程返回的状态，则为真；对于这种情况可执行WEXITSTATUS(status)，取子进程传给exit或_eixt的低8位。<br>WEXITSTATUS(status)取得子进程 exit()返回的结束代码,一般会先用 WIFEXITED 来判断是否正常结束才能使用此宏。<br>WIFSIGNALED(status)若为异常结束子进程返回的状态，则为真；对于这种情况可执行WTERMSIG(status)，取使子进程结束的信号编号。<br>WTERMSIG(status) 取得子进程因信号而中止的信号代码,一般会先用 WIFSIGNALED 来判断后才使用此宏。<br>WIFSTOPPED(status) 若为当前暂停子进程返回的状态，则为真；对于这种情况可执行WSTOPSIG(status)，取使子进程暂停的信号编号。<br>WSTOPSIG(status) 取得引发子进程暂停的信号代码,一般会先用 WIFSTOPPED 来判断后才使用此宏。<br>如果执行成功则返回子进程识别码(PID) ,如果有错误发生则返回<br>返回值-1。失败原因存于 errno 中。</p>
 </li>
 </ul>
 </li>
 </ul>
-<h3 id="进程的软中断通信"><a href="#进程的软中断通信" class="headerlink" title="进程的软中断通信"></a>进程的软中断通信</h3><h4 id="signal"><a href="#signal" class="headerlink" title="signal()"></a>signal()</h4><p><strong>表头文件</strong>#include&lt;signal.h&gt;</p>
+<h3 id="进程的软中断通信"><a href="#进程的软中断通信" class="headerlink" title="进程的软中断通信"></a>进程的软中断通信</h3><h4 id="signal"><a href="#signal" class="headerlink" title="signal()"></a>signal()</h4><p><strong>表头文件</strong>#include<signal.h></signal.h></p>
 <p><strong>功能</strong>：设置某一信号的对应动作</p>
 <p><strong>函数原型</strong>：void (*signal(int signum,void(* handler)(int)))(int);<br>或者：typedef void (*sig_t)( int );<br>sig_t signal(int signum,sig_t handler);</p>
 <p><strong>参数说明</strong>：<br>第一个参数signum指明了所要处理的信号类型，它可以取除了SIGKILL和SIGSTOP外的任何一种信号。<br>第二个参数handler描述了与信号关联的动作，它可以取以下三种值：</p>
@@ -425,178 +418,182 @@
 <li>软件中断。如当Alarm Clock超时（SIGURG），当Reader中止之后又向管道写数据（SIGPIPE），等等</li>
 </ul>
 <p>Signals:</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
-<th align="center">Signal</th>
-<th align="center">Description</th>
+<th style="text-align:center">Signal</th>
+<th style="text-align:center">Description</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="center">SIGABRT</td>
-<td align="center">由调用abort函数产生，进程非正常退出</td>
+<tbody>
+<tr>
+<td style="text-align:center">SIGABRT</td>
+<td style="text-align:center">由调用abort函数产生，进程非正常退出 </td>
 </tr>
 <tr>
-<td align="center">SIGALRM</td>
-<td align="center">用alarm函数设置的timer超时或setitimer函数设置的interval timer超时</td>
+<td style="text-align:center">SIGALRM</td>
+<td style="text-align:center">用alarm函数设置的timer超时或setitimer函数设置的interval timer超时 </td>
 </tr>
 <tr>
-<td align="center">SIGBUS</td>
-<td align="center">某种特定的硬件异常，通常由内存访问引起</td>
+<td style="text-align:center">SIGBUS</td>
+<td style="text-align:center">某种特定的硬件异常，通常由内存访问引起</td>
 </tr>
 <tr>
-<td align="center">SIGCANCEL</td>
-<td align="center">由Solaris Thread Library内部使用，通常不会使用</td>
+<td style="text-align:center">SIGCANCEL</td>
+<td style="text-align:center">由Solaris Thread Library内部使用，通常不会使用</td>
 </tr>
 <tr>
-<td align="center">SIGCHLD</td>
-<td align="center">进程Terminate或Stop的时候，SIGCHLD会发送给它的父进程。缺省情况下该Signal会被忽略</td>
+<td style="text-align:center">SIGCHLD</td>
+<td style="text-align:center">进程Terminate或Stop的时候，SIGCHLD会发送给它的父进程。缺省情况下该Signal会被忽略</td>
 </tr>
 <tr>
-<td align="center">SIGCONT</td>
-<td align="center">当被stop的进程恢复运行的时候，自动发送</td>
+<td style="text-align:center">SIGCONT</td>
+<td style="text-align:center">当被stop的进程恢复运行的时候，自动发送</td>
 </tr>
 <tr>
-<td align="center">SIGEMT</td>
-<td align="center">和实现相关的硬件异常</td>
+<td style="text-align:center">SIGEMT</td>
+<td style="text-align:center">和实现相关的硬件异常</td>
 </tr>
 <tr>
-<td align="center">SIGFPE</td>
-<td align="center">数学相关的异常，如被0除，浮点溢出，等等</td>
+<td style="text-align:center">SIGFPE</td>
+<td style="text-align:center">数学相关的异常，如被0除，浮点溢出，等等</td>
 </tr>
 <tr>
-<td align="center">SIGFREEZE</td>
-<td align="center">Solaris专用，Hiberate或者Suspended时候发送</td>
+<td style="text-align:center">SIGFREEZE</td>
+<td style="text-align:center">Solaris专用，Hiberate或者Suspended时候发送</td>
 </tr>
 <tr>
-<td align="center">SIGHUP</td>
-<td align="center">发送给具有Terminal的Controlling Process，当terminal被disconnect时候发送</td>
+<td style="text-align:center">SIGHUP</td>
+<td style="text-align:center">发送给具有Terminal的Controlling Process，当terminal被disconnect时候发送</td>
 </tr>
 <tr>
-<td align="center">SIGILL</td>
-<td align="center">非法指令异常</td>
+<td style="text-align:center">SIGILL</td>
+<td style="text-align:center">非法指令异常</td>
 </tr>
 <tr>
-<td align="center">SIGINFO</td>
-<td align="center">BSD signal。由Status Key产生，通常是CTRL+T。发送给所有Foreground Group的进程</td>
+<td style="text-align:center">SIGINFO</td>
+<td style="text-align:center">BSD signal。由Status Key产生，通常是CTRL+T。发送给所有Foreground Group的进程</td>
 </tr>
 <tr>
-<td align="center">SIGINT</td>
-<td align="center">由Interrupt Key产生，通常是CTRL+C或者DELETE。发送给所有ForeGround Group的进程</td>
+<td style="text-align:center">SIGINT</td>
+<td style="text-align:center">由Interrupt Key产生，通常是CTRL+C或者DELETE。发送给所有ForeGround Group的进程</td>
 </tr>
 <tr>
-<td align="center">SIGIO</td>
-<td align="center">异步IO事件</td>
+<td style="text-align:center">SIGIO</td>
+<td style="text-align:center">异步IO事件</td>
 </tr>
 <tr>
-<td align="center">SIGIOT</td>
-<td align="center">实现相关的硬件异常，一般对应SIGABRT</td>
+<td style="text-align:center">SIGIOT</td>
+<td style="text-align:center">实现相关的硬件异常，一般对应SIGABRT</td>
 </tr>
 <tr>
-<td align="center">SIGKILL</td>
-<td align="center">无法处理和忽略。中止某个进程</td>
+<td style="text-align:center">SIGKILL</td>
+<td style="text-align:center">无法处理和忽略。中止某个进程</td>
 </tr>
 <tr>
-<td align="center">SIGLWP</td>
-<td align="center">由Solaris Thread Libray内部使用</td>
+<td style="text-align:center">SIGLWP</td>
+<td style="text-align:center">由Solaris Thread Libray内部使用</td>
 </tr>
 <tr>
-<td align="center">SIGPIPE</td>
-<td align="center">在reader中止之后写Pipe的时候发送</td>
+<td style="text-align:center">SIGPIPE</td>
+<td style="text-align:center">在reader中止之后写Pipe的时候发送</td>
 </tr>
 <tr>
-<td align="center">SIGPOLL</td>
-<td align="center">当某个事件发送给Pollable Device的时候发送</td>
+<td style="text-align:center">SIGPOLL</td>
+<td style="text-align:center">当某个事件发送给Pollable Device的时候发送</td>
 </tr>
 <tr>
-<td align="center">SIGPROF</td>
-<td align="center">Setitimer指定的Profiling Interval Timer所产生</td>
+<td style="text-align:center">SIGPROF</td>
+<td style="text-align:center">Setitimer指定的Profiling Interval Timer所产生</td>
 </tr>
 <tr>
-<td align="center">SIGPWR</td>
-<td align="center">和系统相关。和UPS相关。</td>
+<td style="text-align:center">SIGPWR</td>
+<td style="text-align:center">和系统相关。和UPS相关。</td>
 </tr>
 <tr>
-<td align="center">SIGQUIT</td>
-<td align="center">输入Quit Key的时候（CTRL+\）发送给所有Foreground Group的进程</td>
+<td style="text-align:center">SIGQUIT</td>
+<td style="text-align:center">输入Quit Key的时候（CTRL+\）发送给所有Foreground Group的进程</td>
 </tr>
 <tr>
-<td align="center">SIGSEGV</td>
-<td align="center">非法内存访问</td>
+<td style="text-align:center">SIGSEGV</td>
+<td style="text-align:center">非法内存访问</td>
 </tr>
 <tr>
-<td align="center">SIGSTKFLT</td>
-<td align="center">Linux专用，数学协处理器的栈异常</td>
+<td style="text-align:center">SIGSTKFLT</td>
+<td style="text-align:center">Linux专用，数学协处理器的栈异常</td>
 </tr>
 <tr>
-<td align="center">SIGSTOP</td>
-<td align="center">中止进程。无法处理和忽略。</td>
+<td style="text-align:center">SIGSTOP</td>
+<td style="text-align:center">中止进程。无法处理和忽略。</td>
 </tr>
 <tr>
-<td align="center">SIGSYS</td>
-<td align="center">非法系统调用</td>
+<td style="text-align:center">SIGSYS</td>
+<td style="text-align:center">非法系统调用</td>
 </tr>
 <tr>
-<td align="center">SIGTERM</td>
-<td align="center">请求中止进程，kill命令缺省发送</td>
+<td style="text-align:center">SIGTERM</td>
+<td style="text-align:center">请求中止进程，kill命令缺省发送</td>
 </tr>
 <tr>
-<td align="center">SIGTHAW</td>
-<td align="center">Solaris专用，从Suspend恢复时候发送</td>
+<td style="text-align:center">SIGTHAW</td>
+<td style="text-align:center">Solaris专用，从Suspend恢复时候发送</td>
 </tr>
 <tr>
-<td align="center">SIGTRAP</td>
-<td align="center">实现相关的硬件异常。一般是调试异常</td>
+<td style="text-align:center">SIGTRAP</td>
+<td style="text-align:center">实现相关的硬件异常。一般是调试异常</td>
 </tr>
 <tr>
-<td align="center">SIGTSTP</td>
-<td align="center">Suspend Key，一般是Ctrl+Z。发送给所有Foreground Group的进程</td>
+<td style="text-align:center">SIGTSTP</td>
+<td style="text-align:center">Suspend Key，一般是Ctrl+Z。发送给所有Foreground Group的进程</td>
 </tr>
 <tr>
-<td align="center">SIGTTIN</td>
-<td align="center">当Background Group的进程尝试读取Terminal的时候发送</td>
+<td style="text-align:center">SIGTTIN</td>
+<td style="text-align:center">当Background Group的进程尝试读取Terminal的时候发送</td>
 </tr>
 <tr>
-<td align="center">SIGTTOU</td>
-<td align="center">当Background Group的进程尝试写Terminal的时候发送</td>
+<td style="text-align:center">SIGTTOU</td>
+<td style="text-align:center">当Background Group的进程尝试写Terminal的时候发送</td>
 </tr>
 <tr>
-<td align="center">SIGURG</td>
-<td align="center">当out-of-band data接收的时候可能发送</td>
+<td style="text-align:center">SIGURG</td>
+<td style="text-align:center">当out-of-band data接收的时候可能发送</td>
 </tr>
 <tr>
-<td align="center">SIGUSR1</td>
-<td align="center">用户自定义signal 1</td>
+<td style="text-align:center">SIGUSR1</td>
+<td style="text-align:center">用户自定义signal 1</td>
 </tr>
 <tr>
-<td align="center">SIGUSR2</td>
-<td align="center">用户自定义signal 2</td>
+<td style="text-align:center">SIGUSR2</td>
+<td style="text-align:center">用户自定义signal 2</td>
 </tr>
 <tr>
-<td align="center">SIGVTALRM</td>
-<td align="center">setitimer函数设置的Virtual Interval Timer超时的时候</td>
+<td style="text-align:center">SIGVTALRM</td>
+<td style="text-align:center">setitimer函数设置的Virtual Interval Timer超时的时候</td>
 </tr>
 <tr>
-<td align="center">SIGWAITING</td>
-<td align="center">Solaris Thread Library内部实现专用</td>
+<td style="text-align:center">SIGWAITING</td>
+<td style="text-align:center">Solaris Thread Library内部实现专用</td>
 </tr>
 <tr>
-<td align="center">SIGWINCH</td>
-<td align="center">当Terminal的窗口大小改变的时候，发送给Foreground Group的所有进程</td>
+<td style="text-align:center">SIGWINCH</td>
+<td style="text-align:center">当Terminal的窗口大小改变的时候，发送给Foreground Group的所有进程</td>
 </tr>
 <tr>
-<td align="center">SIGXCPU</td>
-<td align="center">当CPU时间限制超时的时候</td>
+<td style="text-align:center">SIGXCPU</td>
+<td style="text-align:center">当CPU时间限制超时的时候</td>
 </tr>
 <tr>
-<td align="center">SIGXFSZ</td>
-<td align="center">进程超过文件大小限制</td>
+<td style="text-align:center">SIGXFSZ</td>
+<td style="text-align:center">进程超过文件大小限制</td>
 </tr>
 <tr>
-<td align="center">SIGXRES</td>
-<td align="center">Solaris专用，进程超过资源限制的时候发送</td>
+<td style="text-align:center">SIGXRES</td>
+<td style="text-align:center">Solaris专用，进程超过资源限制的时候发送</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <p><strong>注意</strong></p>
 <ul>
 <li>不要使用低级的或者STDIO.H的IO函数</li>
@@ -612,7 +609,7 @@
 <li>捕捉信号：通知内核在某种信号发生时，调用一个用户函数 </li>
 <li>执行系统默认动作：异常终止(abort)、退出(exit)、忽略(ignore)、停 止(stop)或继续(continue)</li>
 </ul>
-<p>*<em>功能 *</em></p>
+<p><strong>功能 </strong></p>
 <ul>
 <li>发送信号：发送进程把信号送到指定进程信号域的某一位上，如目标进程正在一个可被中断的优先级上睡眠，核心便将其唤醒 </li>
 <li>预置对信号的处理方式：进程处于核心态时，即使受到软中断也不予理睬；只有当它返回到用户态后，才处理软中断信号 </li>
@@ -796,7 +793,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Linux进程管理命令——进程查看"><span class="nav-number">1.</span> <span class="nav-text">Linux进程管理命令——进程查看</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Linux进程管理命令—进程终止"><span class="nav-number">2.</span> <span class="nav-text">Linux进程管理命令—进程终止</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Linux进程控制函数——进程创建"><span class="nav-number">3.</span> <span class="nav-text">Linux进程控制函数——进程创建</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#fork"><span class="nav-number">3.1.</span> <span class="nav-text">fork()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#exec"><span class="nav-number">3.2.</span> <span class="nav-text">exec()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Linux进程属性操作"><span class="nav-number">3.3.</span> <span class="nav-text">Linux进程属性操作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#进程退出"><span class="nav-number">3.4.</span> <span class="nav-text">进程退出</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#等待进程终止"><span class="nav-number">3.5.</span> <span class="nav-text">等待进程终止</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#进程的软中断通信"><span class="nav-number">4.</span> <span class="nav-text">进程的软中断通信</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#signal"><span class="nav-number">4.1.</span> <span class="nav-text">signal()</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#进程的软中断通信——函数的使用"><span class="nav-number">5.</span> <span class="nav-text">进程的软中断通信——函数的使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Linux进程间通信—管道和有名管道"><span class="nav-number">6.</span> <span class="nav-text">Linux进程间通信—管道和有名管道</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#无名管道的使用"><span class="nav-number">6.1.</span> <span class="nav-text">无名管道的使用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#管道通信的使用—命名管道的创建与读写"><span class="nav-number">6.2.</span> <span class="nav-text">管道通信的使用—命名管道的创建与读写</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实例"><span class="nav-number">7.</span> <span class="nav-text">实例</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Linux进程管理命令——进程查看"><span class="nav-number">1.</span> <span class="nav-text">Linux进程管理命令——进程查看</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Linux进程管理命令—进程终止"><span class="nav-number">2.</span> <span class="nav-text">Linux进程管理命令—进程终止</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Linux进程控制函数——进程创建"><span class="nav-number">3.</span> <span class="nav-text">Linux进程控制函数——进程创建</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#fork"><span class="nav-number">3.1.</span> <span class="nav-text">fork()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#exec"><span class="nav-number">3.2.</span> <span class="nav-text">exec()</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#include"><span class="nav-number"></span> <span class="nav-text">include </span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Linux进程属性操作"><span class="nav-number">0.1.</span> <span class="nav-text">Linux进程属性操作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#进程退出"><span class="nav-number">0.2.</span> <span class="nav-text">进程退出</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#等待进程终止"><span class="nav-number">0.3.</span> <span class="nav-text">等待进程终止</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#进程的软中断通信"><span class="nav-number">1.</span> <span class="nav-text">进程的软中断通信</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#signal"><span class="nav-number">1.1.</span> <span class="nav-text">signal()</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#进程的软中断通信——函数的使用"><span class="nav-number">2.</span> <span class="nav-text">进程的软中断通信——函数的使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Linux进程间通信—管道和有名管道"><span class="nav-number">3.</span> <span class="nav-text">Linux进程间通信—管道和有名管道</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#无名管道的使用"><span class="nav-number">3.1.</span> <span class="nav-text">无名管道的使用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#管道通信的使用—命名管道的创建与读写"><span class="nav-number">3.2.</span> <span class="nav-text">管道通信的使用—命名管道的创建与读写</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实例"><span class="nav-number">4.</span> <span class="nav-text">实例</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -812,7 +809,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">213</span>
+          <span class="site-state-item-count">215</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -873,13 +870,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="Symbols count total">584k</span>
+    <span title="Symbols count total">581k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">8:51</span>
-</div>
+    <span title="Reading time total">8:48</span>
+</div><script color="255,255,255" opacity="0.5" zIndex="-1" count="180" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
 
         
 
@@ -902,7 +899,6 @@
 <script src="/js/schemes/pisces.js"></script>
 <script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
 
-  <script defer src="/lib/three/three.min.js"></script>
 
 
   
@@ -931,6 +927,8 @@
 
 
 
+
+  
 
   
 

@@ -268,77 +268,74 @@
 
       
         <p>来源Leetcode第229题求众数II</p>
-<p>给定一个大小为 <em>n</em> 的数组，找出其中所有出现超过 <code>⌊ n/3 ⌋</code> 次的元素。</p>
-<a id="more"></a>
-<p><strong>说明:</strong> 要求算法的时间复杂度为 O(n)，空间复杂度为 O(1)。</p>
+<p>给定一个大小为 <em>n</em> 的数组，找出其中所有出现超过 <code>⌊ n/3 ⌋</code> 次的元素。<br><a id="more"></a><br><strong>说明:</strong> 要求算法的时间复杂度为 O(n)，空间复杂度为 O(1)。</p>
 <p><strong>示例 1:</strong></p>
 <figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: [<span class="number">3</span>,<span class="number">2</span>,<span class="number">3</span>]</span><br><span class="line">输出: [<span class="number">3</span>]</span><br></pre></td></tr></table></figure>
-
 <hr>
 <h3 id="HashMap"><a href="#HashMap" class="headerlink" title="HashMap"></a>HashMap</h3><p>如果无视了题目的要求，直接无脑上HashMap，那么这题非常简单，对数组一次遍历，将其出现次数存入Map，然后在对Map做一次遍历，取出里面的众数。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> List&lt;Integer&gt; <span class="title">majorityElement</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">    List&lt;Integer&gt; ans = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">    <span class="keyword">if</span>(nums.length == <span class="number">0</span> || nums == <span class="keyword">null</span>)</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    HashMap&lt;Integer,Integer&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">    <span class="keyword">int</span> times = nums.length / <span class="number">3</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length; i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(!map.containsKey(nums[i]))&#123;</span><br><span class="line">            map.put(nums[i],<span class="number">1</span>);</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            map.put(nums[i],map.get(nums[i]) + <span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//Map.Entry&lt;Integer,Integer&gt; entry = null;</span></span><br><span class="line">    <span class="keyword">for</span>(Map.Entry&lt;Integer , Integer&gt; entry : map.entrySet())&#123;</span><br><span class="line">        <span class="keyword">if</span>(entry.getValue() &gt; times)</span><br><span class="line">            ans.add(entry.getKey());</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <h3 id="摩尔投票法"><a href="#摩尔投票法" class="headerlink" title="摩尔投票法"></a>摩尔投票法</h3><p>来自<a href="https://www.cs.utexas.edu/~moore/best-ideas/mjrty/index.html" target="_blank" rel="noopener">网站</a></p>
 <p>选票情况为：<br>A A A C C B B C C C B C C<br>结果应该是<code>C</code></p>
 <ul>
 <li>算法执行过程<br><img src="/2020/02/11/求众数II/76ab0f592cceba613016d5b9c6b5eb6a5e4607dc12d50deab1de33debd4604ff.gif" alt="img"></li>
 </ul>
-<p>因为可能会产生两名。所以候选人cand<em>c*</em>a<strong>n</strong>d<em>与计数cnt</em>c<strong>n</strong>t<em>都转成相应的数组形式cands</em>c<strong>a</strong>n<strong>d</strong>s<em>与cnts</em>c<strong>n</strong>t*<em>s</em>，长度都为2。<br>第一阶段成对抵销时，<code>cands[0]</code>与<code>cands[1]</code>的选票不相互抵销，即如果代表将票投给了<code>cands[0]</code>，则<code>cands[1]</code>对应的<code>cnts[1]</code>的值不变化。<br>投给<code>cands[1]</code>也是同样的道理。这样就转化成摩尔投票法的原始情形了。<br>第二阶段计数时，除了要判断两个候选的票数是否超过三分之一，还需判断两个候选是否相同。</p>
+<p>因为可能会产生两名。所以候选人cand<em>c<strong>a</strong>n**d</em>与计数cnt<em>c<strong>n</strong>t</em>都转成相应的数组形式cands<em>c<strong>a</strong>n<strong>d</strong>s</em>与cnts<em>c<strong>n</strong>t**s</em>，长度都为2。<br>第一阶段成对抵销时，<code>cands[0]</code>与<code>cands[1]</code>的选票不相互抵销，即如果代表将票投给了<code>cands[0]</code>，则<code>cands[1]</code>对应的<code>cnts[1]</code>的值不变化。<br>投给<code>cands[1]</code>也是同样的道理。这样就转化成摩尔投票法的原始情形了。<br>第二阶段计数时，除了要判断两个候选的票数是否超过三分之一，还需判断两个候选是否相同。</p>
 <p>至多选出m个代表，每个选票数大于n / (m + 1)，只需要将判断最后候选是否相同代码进行修改即可。</p>
-<pre><code class="JAVA"><span class="function"><span class="keyword">public</span> List&lt;Integer&gt; <span class="title">majorityElement</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>{
-    List&lt;Integer&gt; ans = <span class="keyword">new</span> ArrayList&lt;&gt;();
-    <span class="keyword">if</span>(nums.length == <span class="number">0</span> || nums == <span class="keyword">null</span>)
-        <span class="keyword">return</span> ans;
+<pre><code class="lang-JAVA">    public List&lt;Integer&gt; majorityElement(int[] nums) {
+        List&lt;Integer&gt; ans = new ArrayList&lt;&gt;();
+        if(nums.length == 0 || nums == null)
+            return ans;
 
-    <span class="comment">//初始化：定义两个候选人及其对应的票数</span>
-    <span class="keyword">int</span> candidateA = nums[<span class="number">0</span>];
-    <span class="keyword">int</span> candidateB = nums[<span class="number">0</span>];
-    <span class="keyword">int</span> countA = <span class="number">0</span>;
-    <span class="keyword">int</span> countB = <span class="number">0</span>;
+        //初始化：定义两个候选人及其对应的票数
+        int candidateA = nums[0];
+        int candidateB = nums[0];
+        int countA = 0;
+        int countB = 0;
 
-    <span class="comment">//遍历数组</span>
-    <span class="keyword">for</span> (<span class="keyword">int</span> num : nums) {
-        <span class="keyword">if</span> (num == candidateA) {
-            countA++;<span class="comment">//投A</span>
-            <span class="keyword">continue</span>;
-        }
-        <span class="keyword">if</span> (num == candidateB) {
-            countB++;<span class="comment">//投B</span>
-            <span class="keyword">continue</span>;
+        //遍历数组
+        for (int num : nums) {
+            if (num == candidateA) {
+                countA++;//投A
+                continue;
+            }
+            if (num == candidateB) {
+                countB++;//投B
+                continue;
+            }
+
+            //此时当前值和AB都不等，检查是否有票数减为0的情况，如果为0，则更新候选人
+            if (countA == 0) {
+                candidateA = num;
+                countA++;
+                continue;
+            }
+            if (countB == 0) {
+                candidateB = num;
+                countB++;
+                continue;
+            }
+            //若此时两个候选人的票数都不为0，且当前元素不投AB，那么A,B对应的票数都要--;
+            countA--;
+            countB--;
         }
 
-        <span class="comment">//此时当前值和AB都不等，检查是否有票数减为0的情况，如果为0，则更新候选人</span>
-        <span class="keyword">if</span> (countA == <span class="number">0</span>) {
-            candidateA = num;
-            countA++;
-            <span class="keyword">continue</span>;
+        //上一轮遍历找出了两个候选人，但是这两个候选人是否均满足票数大于N/3仍然没法确定，需要重新遍历，确定票数
+        countA = 0;
+        countB = 0;
+        for (int num : nums) {
+            if (num == candidateA)
+                countA++;
+            else if (num == candidateB)
+                countB++;
         }
-        <span class="keyword">if</span> (countB == <span class="number">0</span>) {
-            candidateB = num;
-            countB++;
-            <span class="keyword">continue</span>;
-        }
-        <span class="comment">//若此时两个候选人的票数都不为0，且当前元素不投AB，那么A,B对应的票数都要--;</span>
-        countA--;
-        countB--;
+        if (countA &gt; nums.length / 3)
+            ans.add(candidateA);
+        if (countB &gt; nums.length / 3)
+            ans.add(candidateB);
+
+        return ans;
     }
-
-    <span class="comment">//上一轮遍历找出了两个候选人，但是这两个候选人是否均满足票数大于N/3仍然没法确定，需要重新遍历，确定票数</span>
-    countA = <span class="number">0</span>;
-    countB = <span class="number">0</span>;
-    <span class="keyword">for</span> (<span class="keyword">int</span> num : nums) {
-        <span class="keyword">if</span> (num == candidateA)
-            countA++;
-        <span class="keyword">else</span> <span class="keyword">if</span> (num == candidateB)
-            countB++;
-    }
-    <span class="keyword">if</span> (countA &gt; nums.length / <span class="number">3</span>)
-        ans.add(candidateA);
-    <span class="keyword">if</span> (countB &gt; nums.length / <span class="number">3</span>)
-        ans.add(candidateB);
-
-    <span class="keyword">return</span> ans;
-}</code></pre>
+</code></pre>
 
     </div>
 
@@ -459,7 +456,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">213</span>
+          <span class="site-state-item-count">215</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -520,13 +517,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="Symbols count total">584k</span>
+    <span title="Symbols count total">581k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">8:51</span>
-</div>
+    <span title="Reading time total">8:48</span>
+</div><script color="255,255,255" opacity="0.5" zIndex="-1" count="180" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
 
         
 
@@ -549,7 +546,6 @@
 <script src="/js/schemes/pisces.js"></script>
 <script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
 
-  <script defer src="/lib/three/three.min.js"></script>
 
 
   
@@ -578,6 +574,8 @@
 
 
 
+
+  
 
   
 

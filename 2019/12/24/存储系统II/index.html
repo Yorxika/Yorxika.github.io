@@ -350,7 +350,7 @@
 <p><img src="/2019/12/24/存储系统II/image-20191224215532554.png" alt="image-20191224215532554"></p>
 <h2 id="替换算法"><a href="#替换算法" class="headerlink" title="替换算法"></a>替换算法</h2><h3 id="先进先出-（First-in-First-out）"><a href="#先进先出-（First-in-First-out）" class="headerlink" title="先进先出-（First in First out）"></a>先进先出-（First in First out）</h3><p><img src="/2019/12/24/存储系统II/image-20191224221407980.png" alt="image-20191224221407980"></p>
 <h3 id="最不经常使用法-LFU-（Least-Frequently-Used"><a href="#最不经常使用法-LFU-（Least-Frequently-Used" class="headerlink" title="最不经常使用法-LFU （Least Frequently Used )"></a>最不经常使用法-LFU （Least Frequently Used )</h3><p><img src="/2019/12/24/存储系统II/image-20191224221454348.png" alt="image-20191224221454348"></p>
-<h3 id="近期最少使用法—-LRU-Least-recently-used"><a href="#近期最少使用法—-LRU-Least-recently-used" class="headerlink" title="近期最少使用法— LRU(Least recently used )"></a>近期最少使用法— LRU(Least recently used )</h3><p><img src="/2019/12/24/存储系统II/image-20191224221523084.png" alt="image-20191224221523084"></p>
+<h3 id="近期最少使用法—-LRU-Least-recently-used"><a href="#近期最少使用法—-LRU-Least-recently-used" class="headerlink" title="近期最少使用法—- LRU(Least recently used )"></a>近期最少使用法—- LRU(Least recently used )</h3><p><img src="/2019/12/24/存储系统II/image-20191224221523084.png" alt="image-20191224221523084"></p>
 <h2 id="Cache例题选讲"><a href="#Cache例题选讲" class="headerlink" title="Cache例题选讲"></a>Cache例题选讲</h2><p>假定主存和Cache之间采用直接映射方式，块大小为16B。Cache数据区容量 为64KB，主存地址为32位，按字节编址，数据字长32位。要求 1)给出直接映射方式下主存地址划分 2)完成Cache访问的硬件实现 3)计算Cache容量<br>解：1)由题目条件知：<br>数据块大小16B  -&gt;   块内偏移地址4位；<br>Cache数据区容量为64KB -&gt;  64KB/16B = 4096行Cache）；-&gt; Index字段12位<br>Tag字段的位数为 32- 12 - 4 =16位（Tag）<br>由第一问的解答可知：Tag 为16 bit<br>由题目条件及Cache的工作原理知： Cache每行数据存储体容量为 16<em>8 = 128 bit<br>Cache 每行的总存储容量为： 1+ 16 + 128 = 145 bit<br>Cache 总容量为：4096 \</em>（1+16 +128）= 580Kbit<br><img src="/2019/12/24/存储系统II/image-20191224224643640.png" alt="image-20191224224643640"></p>
 <p>设某机内存容量为16MB,Cache的容量16KB,每块8个字,每个字32位.设计一个四 路组相联映射(即Cache内每组包含4个字块)的Cache组织方式。<br>1）求满足组相联映射的主存地址字段中各字段的位数<br>2)设Cache的初态为空,CPU从主存第0号单元开始连续访问100个字(主存一次读出一 个字),重复此次序读8次,求存储访问的命中率<br>3)若Cache的速度是主存速度的6倍,求存储系统访问加速比</p>
 <p><img src="/2019/12/24/存储系统II/image-20191224224843910.png" alt="image-20191224224843910"></p>
@@ -511,7 +511,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#多体交叉存储器"><span class="nav-number">1.</span> <span class="nav-text">多体交叉存储器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Cache的基本原理"><span class="nav-number">2.</span> <span class="nav-text">Cache的基本原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#组相联存储器"><span class="nav-number">3.</span> <span class="nav-text">组相联存储器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Cache地址映射与变换方法"><span class="nav-number">4.</span> <span class="nav-text">Cache地址映射与变换方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#全相联"><span class="nav-number">4.1.</span> <span class="nav-text">全相联</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#直接映射"><span class="nav-number">4.2.</span> <span class="nav-text">直接映射</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#组相联"><span class="nav-number">4.3.</span> <span class="nav-text">组相联</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#替换算法"><span class="nav-number">5.</span> <span class="nav-text">替换算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#先进先出-（First-in-First-out）"><span class="nav-number">5.1.</span> <span class="nav-text">先进先出-（First in First out）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#最不经常使用法-LFU-（Least-Frequently-Used"><span class="nav-number">5.2.</span> <span class="nav-text">最不经常使用法-LFU （Least Frequently Used )</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#近期最少使用法—-LRU-Least-recently-used"><span class="nav-number">5.3.</span> <span class="nav-text">近期最少使用法— LRU(Least recently used )</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Cache例题选讲"><span class="nav-number">6.</span> <span class="nav-text">Cache例题选讲</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#虚拟存储器"><span class="nav-number">7.</span> <span class="nav-text">虚拟存储器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TLB-Translation-Lookaside-Buffer"><span class="nav-number">8.</span> <span class="nav-text">TLB (Translation Lookaside Buffer)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#TLB工作原理"><span class="nav-number">8.1.</span> <span class="nav-text">TLB工作原理</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RAID"><span class="nav-number">9.</span> <span class="nav-text">RAID</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#习题"><span class="nav-number">10.</span> <span class="nav-text">习题</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#多体交叉存储器"><span class="nav-number">1.</span> <span class="nav-text">多体交叉存储器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Cache的基本原理"><span class="nav-number">2.</span> <span class="nav-text">Cache的基本原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#组相联存储器"><span class="nav-number">3.</span> <span class="nav-text">组相联存储器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Cache地址映射与变换方法"><span class="nav-number">4.</span> <span class="nav-text">Cache地址映射与变换方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#全相联"><span class="nav-number">4.1.</span> <span class="nav-text">全相联</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#直接映射"><span class="nav-number">4.2.</span> <span class="nav-text">直接映射</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#组相联"><span class="nav-number">4.3.</span> <span class="nav-text">组相联</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#替换算法"><span class="nav-number">5.</span> <span class="nav-text">替换算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#先进先出-（First-in-First-out）"><span class="nav-number">5.1.</span> <span class="nav-text">先进先出-（First in First out）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#最不经常使用法-LFU-（Least-Frequently-Used"><span class="nav-number">5.2.</span> <span class="nav-text">最不经常使用法-LFU （Least Frequently Used )</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#近期最少使用法—-LRU-Least-recently-used"><span class="nav-number">5.3.</span> <span class="nav-text">近期最少使用法—- LRU(Least recently used )</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Cache例题选讲"><span class="nav-number">6.</span> <span class="nav-text">Cache例题选讲</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#虚拟存储器"><span class="nav-number">7.</span> <span class="nav-text">虚拟存储器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TLB-Translation-Lookaside-Buffer"><span class="nav-number">8.</span> <span class="nav-text">TLB (Translation Lookaside Buffer)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#TLB工作原理"><span class="nav-number">8.1.</span> <span class="nav-text">TLB工作原理</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RAID"><span class="nav-number">9.</span> <span class="nav-text">RAID</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#习题"><span class="nav-number">10.</span> <span class="nav-text">习题</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -527,7 +527,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">213</span>
+          <span class="site-state-item-count">215</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -588,13 +588,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="Symbols count total">584k</span>
+    <span title="Symbols count total">581k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">8:51</span>
-</div>
+    <span title="Reading time total">8:48</span>
+</div><script color="255,255,255" opacity="0.5" zIndex="-1" count="180" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
 
         
 
@@ -617,7 +617,6 @@
 <script src="/js/schemes/pisces.js"></script>
 <script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
 
-  <script defer src="/lib/three/three.min.js"></script>
 
 
   
@@ -646,6 +645,8 @@
 
 
 
+
+  
 
   
 

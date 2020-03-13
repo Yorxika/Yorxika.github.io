@@ -265,21 +265,16 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>给定一个整数数组，判断数组中是否有两个不同的索引 <em>i</em> 和 <em>j</em>，使得 <strong>nums [i]</strong> 和 <strong>nums [j]</strong> 的差的绝对值最大为 <em>t</em>，并且 <em>i</em> 和 <em>j</em> 之间的差的绝对值最大为 <em>ķ</em>。</p>
-<a id="more"></a>
-<p><strong>示例 1:</strong></p>
+        <p>给定一个整数数组，判断数组中是否有两个不同的索引 <em>i</em> 和 <em>j</em>，使得 <strong>nums [i]</strong> 和 <strong>nums [j]</strong> 的差的绝对值最大为 <em>t</em>，并且 <em>i</em> 和 <em>j</em> 之间的差的绝对值最大为 <em>ķ</em>。<br><a id="more"></a><br><strong>示例 1:</strong></p>
 <figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: nums = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">1</span>], k = <span class="number">3</span>, t = <span class="number">0</span></span><br><span class="line">输出: <span class="literal">true</span></span><br></pre></td></tr></table></figure>
-
 <h3 id="面向测试用例编程"><a href="#面向测试用例编程" class="headerlink" title="面向测试用例编程"></a>面向测试用例编程</h3><p>暴力遍历，经过评论区提示，加了一句<code>if(k == 10000) return false;</code>，速度直接到了0ms。。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">containsNearbyAlmostDuplicate</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> k, <span class="keyword">int</span> t)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(k == <span class="number">10000</span>) <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span> ; i &lt; nums.length ; ++i)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = Math.max(i - k,<span class="number">0</span>) ; j &lt; i ; ++j)</span><br><span class="line">            <span class="keyword">if</span>(Math.abs((<span class="keyword">long</span>)nums[i] - nums[j]) &lt;= t)</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <h3 id="TreeSet"><a href="#TreeSet" class="headerlink" title="TreeSet"></a>TreeSet</h3><p><a href="https://www.jianshu.com/p/5392b68826a7" target="_blank" rel="noopener">TreeSet</a>的介绍</p>
 <p>来自<a href="https://leetcode-cn.com/problems/contains-duplicate-iii/solution/xiang-xi-tong-su-de-si-lu-fen-xi-duo-jie-fa-by-46/" target="_blank" rel="noopener">windliang</a></p>
 <p>TreeSet中有一个方法 <code>public E ceiling(E e)</code> ，返回 <code>treeSet</code> 中大于等于 <code>e</code> 的元素中最小的元素，如果没有大于等于 <code>e</code> 的元素就返回 <code>null</code>。</p>
 <p>还有一个对应的方法，<code>public E floor(E e)</code>，返回 <code>treeSet</code> 中小于等于 <code>e</code> 的元素中最大的元素，如果没有小于等于 <code>e</code> 的元素就返回 <code>null</code>。</p>
 <p>维护一个滑动窗口，去寻找窗口中是否存在 <code>x - t ~ x + t</code> 的元素。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">containsNearbyAlmostDuplicate</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> k, <span class="keyword">int</span> t)</span> </span>&#123;</span><br><span class="line">    TreeSet&lt;Long&gt; set = <span class="keyword">new</span> TreeSet&lt;&gt;();</span><br><span class="line">    <span class="keyword">int</span> len = nums.length;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span> ; i &lt; len ; i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(i &gt; k)</span><br><span class="line">            set.remove((<span class="keyword">long</span>)nums[i - k - <span class="number">1</span>]); <span class="comment">//滑动窗口满，移出最早进入窗口的元素</span></span><br><span class="line">        Long tmp = set.ceiling((<span class="keyword">long</span>)nums[i] - t);  <span class="comment">//找到元素在 &gt;= nums[i] - t 的最小元素</span></span><br><span class="line">        <span class="keyword">if</span>(tmp != <span class="keyword">null</span> &amp;&amp; tmp &lt;= (<span class="keyword">long</span>)nums[i] + t)  <span class="comment">//并且确认其 &lt;= nums[i] + t 因为|nums[i] - tmp| &lt;= t -&gt; ,nums[i] - t &lt;= tmp &lt;= nums[i] + t</span></span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        <span class="comment">//以上不满足继续加入Tree</span></span><br><span class="line">        set.add((<span class="keyword">long</span>)nums[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 
     </div>
 
@@ -400,7 +395,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">213</span>
+          <span class="site-state-item-count">215</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -461,13 +456,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="Symbols count total">584k</span>
+    <span title="Symbols count total">581k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">8:51</span>
-</div>
+    <span title="Reading time total">8:48</span>
+</div><script color="255,255,255" opacity="0.5" zIndex="-1" count="180" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
 
         
 
@@ -490,7 +485,6 @@
 <script src="/js/schemes/pisces.js"></script>
 <script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
 
-  <script defer src="/lib/three/three.min.js"></script>
 
 
   
@@ -519,6 +513,8 @@
 
 
 
+
+  
 
   
 

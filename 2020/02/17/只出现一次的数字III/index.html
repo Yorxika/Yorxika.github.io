@@ -266,21 +266,16 @@
 
       
         <p>来源Leetcode第260只出现一次的数字III</p>
-<p>给定一个整数数组 <code>nums</code>，其中恰好有两个元素只出现一次，<strong>其余所有元素均出现两次</strong>。 找出只出现一次的那两个元素。</p>
-<a id="more"></a>
-<p><strong>示例 :</strong></p>
+<p>给定一个整数数组 <code>nums</code>，其中恰好有两个元素只出现一次，<strong>其余所有元素均出现两次</strong>。 找出只出现一次的那两个元素。<br><a id="more"></a><br><strong>示例 :</strong></p>
 <figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: [<span class="number">1</span>,<span class="number">2</span>,<span class="number">1</span>,<span class="number">3</span>,<span class="number">2</span>,<span class="number">5</span>]</span><br><span class="line">输出: [<span class="number">3</span>,<span class="number">5</span>]</span><br></pre></td></tr></table></figure>
-
 <h3 id="Hash"><a href="#Hash" class="headerlink" title="Hash"></a>Hash</h3><p>建立一个值到频率的映射关系的哈希表，返回频率为 1 的数字。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">addDigits</span><span class="params">(<span class="keyword">int</span> num)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(num &lt; <span class="number">10</span>)</span><br><span class="line">        <span class="keyword">return</span> num;</span><br><span class="line">    LinkedList&lt;Integer&gt; list = <span class="keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line">    <span class="comment">//int sum = 0;</span></span><br><span class="line">    <span class="keyword">while</span>(<span class="keyword">true</span>)&#123;</span><br><span class="line">        <span class="keyword">while</span>(num &gt; <span class="number">0</span>) &#123;</span><br><span class="line">            list.add(num % <span class="number">10</span>);</span><br><span class="line">            num = num / <span class="number">10</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span>(!list.isEmpty())&#123;</span><br><span class="line">            num += list.removeFirst();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(num &lt; <span class="number">10</span>)</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> num;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <h3 id="位运算"><a href="#位运算" class="headerlink" title="位运算"></a>位运算</h3><p>来源<a href="https://leetcode-cn.com/problems/single-number-iii/solution/zhi-chu-xian-yi-ci-de-shu-zi-iii-by-leetcode/" target="_blank" rel="noopener">官方题解</a></p>
 <p>在做这题时没有注意到题目给出了信息<strong>其余所有元素均出现两次</strong>，这样就好说了。</p>
 <p>首先计算 <code>bitmask ^= x</code>，则 <code>bitmask</code> 不会保留出现两次数字的值，因为相同数字的异或值为 <code>0</code>。但是 <code>bitmask</code> 会保留只出现一次的两个数字（<code>x</code> 和 <code>y</code>）之间的差异。我们通过 <code>bitmask &amp; (-bitmask)</code> 保留 <code>bitmask</code> 最右边的 <code>1</code>，这个 <code>1</code> 要么来自 <code>x</code>，要么来自 <code>y</code>。当我们找到了 <code>x</code>，那么 <code>y = bitmask^x</code>。</p>
 <p>另外一个解释：</p>
 <p>1.对所有数字异或,一样的数字抵消,出现一次的两个数字异或运算后必定不为0;<br>2.这个数字和相反数做与运算得到一个二进制位最右边一位为1的数字;<br>3.mask和数组的每个数字做与运算,等于0的分为一组,等于mask的分为一组,同时也将两个不一样的数字分开;<br>4.完结。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">addDigits</span><span class="params">(<span class="keyword">int</span> num)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(num &lt; <span class="number">10</span>)</span><br><span class="line">        <span class="keyword">return</span> num;</span><br><span class="line">    LinkedList&lt;Integer&gt; list = <span class="keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line">    <span class="comment">//int sum = 0;</span></span><br><span class="line">    <span class="keyword">while</span>(<span class="keyword">true</span>)&#123;</span><br><span class="line">        <span class="keyword">while</span>(num &gt; <span class="number">0</span>) &#123;</span><br><span class="line">            list.add(num % <span class="number">10</span>);</span><br><span class="line">            num = num / <span class="number">10</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span>(!list.isEmpty())&#123;</span><br><span class="line">            num += list.removeFirst();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(num &lt; <span class="number">10</span>)</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> num;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">int</span>[] singleNumber(<span class="keyword">int</span>[] nums) &#123;</span><br><span class="line">    <span class="keyword">int</span> xor = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i : nums)<span class="comment">// 一样的抵消,不一样的两个数字异或运算结果必定有一位是1</span></span><br><span class="line">        xor ^= i;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> mask = xor &amp; (-xor);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span>[] ans = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">2</span>];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i : nums) &#123;</span><br><span class="line">        <span class="keyword">if</span> ((i &amp; mask) == <span class="number">0</span>)<span class="comment">//== 0、 == mask 两种结果</span></span><br><span class="line">            ans[<span class="number">0</span>] ^= i;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            ans[<span class="number">1</span>] ^= i;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
     </div>
 
@@ -400,7 +395,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">213</span>
+          <span class="site-state-item-count">215</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -461,13 +456,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="Symbols count total">584k</span>
+    <span title="Symbols count total">581k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">8:51</span>
-</div>
+    <span title="Reading time total">8:48</span>
+</div><script color="255,255,255" opacity="0.5" zIndex="-1" count="180" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
 
         
 
@@ -490,7 +485,6 @@
 <script src="/js/schemes/pisces.js"></script>
 <script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
 
-  <script defer src="/lib/three/three.min.js"></script>
 
 
   
@@ -519,6 +513,8 @@
 
 
 
+
+  
 
   
 

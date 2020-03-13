@@ -268,21 +268,18 @@
         <p>来自Leetcode第190题颠倒二进制位</p>
 <p>颠倒给定的 32 位无符号整数的二进制位。</p>
 <a id="more"></a>
-
 <p><strong>示例 1：</strong></p>
 <figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">输入: <span class="number">00000010100101000001111010011100</span></span><br><span class="line">输出: <span class="number">00111001011110000010100101000000</span></span><br><span class="line">解释: 输入的二进制串 <span class="number">00000010100101000001111010011100</span> 表示无符号整数 <span class="number">43261596</span>，</span><br><span class="line">      因此返回 <span class="number">964176192</span>，其二进制表示形式为 <span class="number">00111001011110000010100101000000</span>。</span><br></pre></td></tr></table></figure>
-
 <hr>
 <h3 id="Integer-reverse"><a href="#Integer-reverse" class="headerlink" title="Integer.reverse()"></a>Integer.reverse()</h3><pre><code>public int reverseBits(int n) {
     return Integer.reverse(n);
-}</code></pre><h3 id="错位交换"><a href="#错位交换" class="headerlink" title="错位交换"></a>错位交换</h3><p>其实就是Integer.reverse的源码。</p>
+}
+</code></pre><h3 id="错位交换"><a href="#错位交换" class="headerlink" title="错位交换"></a>错位交换</h3><p>其实就是Integer.reverse的源码。</p>
 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">初始为</span> <span class="string">abcdefghijklmnopqrstuvwxyz012345</span></span><br><span class="line"><span class="string">第一步结果:</span>  <span class="string">qrstuvwxyz012345</span>  <span class="string">abcdefghijklmnop</span>               </span><br><span class="line"><span class="string">第二步结果:</span>  <span class="string">yz012345</span> <span class="string">qrstuvwx</span>   <span class="string">ijklmnop</span> <span class="string">abcdefgh</span>           </span><br><span class="line"><span class="string">第三步结果:</span>  <span class="number">2345</span> <span class="string">yz01</span> <span class="string">uvwx</span> <span class="string">qrst</span>  <span class="string">mnop</span>  <span class="string">ijkl</span> <span class="string">efgh</span> <span class="string">abcd</span> </span><br><span class="line"><span class="string">第四步结果:</span>  <span class="number">45</span> <span class="number">23</span> <span class="number">01</span> <span class="string">yz</span> <span class="string">wx</span> <span class="string">uv</span> <span class="string">st</span> <span class="string">qr</span>  <span class="string">op</span> <span class="string">mn</span> <span class="string">kl</span> <span class="string">ij</span> <span class="string">gh</span> <span class="string">ef</span> <span class="string">cd</span> <span class="string">ab</span> </span><br><span class="line"><span class="string">第五步结果:</span>  <span class="number">5</span> <span class="number">4</span> <span class="number">3</span> <span class="number">2</span> <span class="number">1</span> <span class="number">0</span> <span class="string">z</span> <span class="string">y</span> <span class="string">x</span> <span class="string">w</span> <span class="string">v</span> <span class="string">u</span> <span class="string">t</span> <span class="string">s</span> <span class="string">r</span> <span class="string">q</span>  <span class="string">p</span> <span class="string">o</span> <span class="string">n</span> <span class="string">m</span> <span class="string">l</span> <span class="string">k</span> <span class="string">j</span> <span class="string">i</span> <span class="string">h</span> <span class="string">g</span> <span class="string">f</span> <span class="string">e</span> <span class="string">d</span> <span class="string">c</span> <span class="string">b</span> <span class="string">a</span></span><br></pre></td></tr></table></figure>
-
 <p>这种换法本质是错位法 即创造两个互相错位的数据 这样保证数据不会丢失</p>
 <p>好比两排16个的麻将 一排拿掉后边8个, 再右移8个单位, 另一排拿掉前面8个, 再左移8个单位, 再合并, 那么便得到了一排16个的麻将 但前8和后8的相对位置不变, 但整体位置却前后变换了. 再一排拿掉中间的4个, 右移4位 另一排同理 再合并. 所以这个算法实际上模拟的这个过程. 下面用数字解释:</p>
 <p>如何创造? 先屏蔽 再移位 比如要创造4位错位, 即12345678换位56781234, 那么先屏蔽5678得到12340000, 移位得到00001234, 同理可得56780000, 再加起来得到56781234; 然后再2位错位, 即屏蔽得到56001200, 移位得到00560012, 同理可得78003400, 加起来得到78563412; 再创造一位错位, 即先屏蔽得到70503010,移位得到07050301, 同理可得80604020, 加起来就是最后结果即87654321.</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">reverseBits</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    n = ((n &amp; <span class="number">0xffff0000</span>) &gt;&gt;&gt; <span class="number">16</span>) | ((n &amp; <span class="number">0x0000ffff</span>) &lt;&lt; <span class="number">16</span>);</span><br><span class="line">    n = ((n &amp; <span class="number">0xff00ff00</span>) &gt;&gt;&gt; <span class="number">8</span>) | ((n &amp; <span class="number">0x00ff00ff</span>) &lt;&lt; <span class="number">8</span>);</span><br><span class="line">    n = ((n &amp; <span class="number">0xf0f0f0f0</span>) &gt;&gt;&gt; <span class="number">4</span>) | ((n &amp; <span class="number">0x0f0f0f0f</span>) &lt;&lt; <span class="number">4</span>);</span><br><span class="line">    n = ((n &amp; <span class="number">0xcccccccc</span>) &gt;&gt;&gt; <span class="number">2</span>) | ((n &amp; <span class="number">0x33333333</span>) &lt;&lt; <span class="number">2</span>);</span><br><span class="line">    n = ((n &amp; <span class="number">0xaaaaaaaa</span>) &gt;&gt;&gt; <span class="number">1</span>) | ((n &amp; <span class="number">0x55555555</span>) &lt;&lt; <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">return</span> n;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <h3 id="移位"><a href="#移位" class="headerlink" title="移位"></a>移位</h3><p>用一个变量 <code>res</code> 去存储结果，依次得到要转换数字的低位，然后依次保存到 <code>res</code> 中。<code>res</code> 每得到一位后进行左移腾出位置保存下一位。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">reverseBits</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (count &lt; <span class="number">32</span>) &#123;</span><br><span class="line">        res &lt;&lt;= <span class="number">1</span>;  <span class="comment">//res 左移一位空出位置</span></span><br><span class="line">        res |= (n &amp; <span class="number">1</span>); <span class="comment">//得到的最低位加过来</span></span><br><span class="line">        n &gt;&gt;= <span class="number">1</span>;<span class="comment">//原数字右移一位去掉已经处理过的最低位</span></span><br><span class="line">        count++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
     </div>
@@ -404,7 +401,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">213</span>
+          <span class="site-state-item-count">215</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -465,13 +462,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="Symbols count total">584k</span>
+    <span title="Symbols count total">581k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">8:51</span>
-</div>
+    <span title="Reading time total">8:48</span>
+</div><script color="255,255,255" opacity="0.5" zIndex="-1" count="180" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
 
         
 
@@ -494,7 +491,6 @@
 <script src="/js/schemes/pisces.js"></script>
 <script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
 
-  <script defer src="/lib/three/three.min.js"></script>
 
 
   
@@ -523,6 +519,8 @@
 
 
 
+
+  
 
   
 

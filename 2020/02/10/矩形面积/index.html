@@ -269,12 +269,9 @@
       
         <p>来源Leetcode第223题矩形面积</p>
 <p>在<strong>二维</strong>平面上计算出两个<strong>由直线构成的</strong>矩形重叠后形成的总面积。</p>
-<p>每个矩形由其左下顶点和右上顶点坐标表示，如图所示。</p>
-<a id="more"></a>
-<p><img src="/2020/02/10/矩形面积/rectangle_area.png" alt="Rectangle Area"></p>
+<p>每个矩形由其左下顶点和右上顶点坐标表示，如图所示。<br><a id="more"></a><br><img src="/2020/02/10/矩形面积/rectangle_area.png" alt="Rectangle Area"></p>
 <p><strong>示例:</strong></p>
 <figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: <span class="number">-3</span>, <span class="number">0</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">0</span>, <span class="number">-1</span>, <span class="number">9</span>, <span class="number">2</span></span><br><span class="line">输出: <span class="number">45</span></span><br></pre></td></tr></table></figure>
-
 <p><strong>说明:</strong> 假设矩形面积不会超出 <strong>int</strong> 的范围。</p>
 <hr>
 <p>把两个矩形叫做 A 和 B，不重叠就有四种情况，A 在 B 左边，A 在 B 右边，A 在 B 上边，A 在 B 下边。</p>
@@ -288,7 +285,6 @@
 <p>右边只需选择两个矩形的两条右边靠左的那条。</p>
 <p>下边只需选择两个矩形的两条下边靠上的那条。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">computeArea</span><span class="params">(<span class="keyword">int</span> A, <span class="keyword">int</span> B, <span class="keyword">int</span> C, <span class="keyword">int</span> D, <span class="keyword">int</span> E, <span class="keyword">int</span> F, <span class="keyword">int</span> G, <span class="keyword">int</span> H)</span> </span>&#123;</span><br><span class="line">    <span class="comment">//求第一个矩形的面积</span></span><br><span class="line">    <span class="keyword">int</span> len1_1 = C - A;  <span class="comment">//长</span></span><br><span class="line">    <span class="keyword">int</span> len1_2 = D - B; <span class="comment">//高</span></span><br><span class="line">    <span class="keyword">int</span> s1 = len1_1 * len1_2;  <span class="comment">//面积</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">//求第二个矩形面积</span></span><br><span class="line">    <span class="keyword">int</span> len2_1 = G - E;</span><br><span class="line">    <span class="keyword">int</span> len2_2 = H - F;</span><br><span class="line">    <span class="keyword">int</span> s2 = len2_1 * len2_2;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(E &gt;= C || G &lt;= A || F &gt;= D || H &lt;=B)</span><br><span class="line">        <span class="keyword">return</span> s1 + s2;  <span class="comment">//没有重叠</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> cover_x = Math.max(A,E);</span><br><span class="line">    <span class="keyword">int</span> cover_x2 = Math.min(C,G);</span><br><span class="line">    <span class="keyword">int</span> len = cover_x2 - cover_x;  <span class="comment">//重叠在x轴的边长</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> cover_y = Math.min(D,H);</span><br><span class="line">    <span class="keyword">int</span> cover_y2 = Math.max(F,B);</span><br><span class="line">    <span class="keyword">int</span> len_2 = cover_y - cover_y2;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> cover_s = len * len_2;</span><br><span class="line">    <span class="keyword">return</span> s1 + s2 - cover_s;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 
     </div>
 
@@ -408,7 +404,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">213</span>
+          <span class="site-state-item-count">215</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -469,13 +465,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="Symbols count total">584k</span>
+    <span title="Symbols count total">581k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">8:51</span>
-</div>
+    <span title="Reading time total">8:48</span>
+</div><script color="255,255,255" opacity="0.5" zIndex="-1" count="180" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
 
         
 
@@ -498,7 +494,6 @@
 <script src="/js/schemes/pisces.js"></script>
 <script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
 
-  <script defer src="/lib/three/three.min.js"></script>
 
 
   
@@ -527,6 +522,8 @@
 
 
 
+
+  
 
   
 

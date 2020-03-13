@@ -266,16 +266,12 @@
 
       
         <p>来自Leetcode第112题路径总和</p>
-<p>给定一个二叉树和一个目标和，判断该树中是否存在根节点到叶子节点的路径，这条路径上所有节点值相加等于目标和。</p>
-<a id="more"></a>
-<p><strong>说明:</strong> 叶子节点是指没有子节点的节点。</p>
+<p>给定一个二叉树和一个目标和，判断该树中是否存在根节点到叶子节点的路径，这条路径上所有节点值相加等于目标和。<br><a id="more"></a><br><strong>说明:</strong> 叶子节点是指没有子节点的节点。</p>
 <p><strong>示例:</strong><br>给定如下二叉树，以及目标和 <code>sum = 22</code>，</p>
 <figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">      <span class="number">5</span></span><br><span class="line">     / \</span><br><span class="line">    <span class="number">4</span>   <span class="number">8</span></span><br><span class="line">   /   / \</span><br><span class="line">  <span class="number">11</span>  <span class="number">13</span>  <span class="number">4</span></span><br><span class="line"> /  \      \</span><br><span class="line"><span class="number">7</span>    <span class="number">2</span>      <span class="number">1</span></span><br></pre></td></tr></table></figure>
-
 <p>返回 <code>true</code>, 因为存在目标和为 22 的根节点到叶子节点的路径 <code>5-&gt;4-&gt;11-&gt;2</code>。</p>
 <h3 id="迭代"><a href="#迭代" class="headerlink" title="迭代"></a>迭代</h3><p>利用两个栈分别保存到当前叶子节点走过的路径和总和，最后比对出栈换向.</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">hasPathSum</span><span class="params">(TreeNode root, <span class="keyword">int</span> sum)</span> </span>&#123;</span><br><span class="line">    Stack&lt;TreeNode&gt; tree = <span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line">    Stack&lt;Integer&gt; val = <span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line">    TreeNode tmp = root;</span><br><span class="line">    <span class="keyword">int</span> tmp_sum = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(tmp != <span class="keyword">null</span> || !tree.empty())&#123;</span><br><span class="line">        <span class="comment">//遍历完左子树</span></span><br><span class="line">        <span class="keyword">while</span> (tmp != <span class="keyword">null</span>)&#123;</span><br><span class="line">            tree.push(tmp);</span><br><span class="line">            tmp_sum += tmp.val;</span><br><span class="line">            val.push(tmp_sum);</span><br><span class="line">            tmp = tmp.left;</span><br><span class="line">        &#125;</span><br><span class="line">        tmp = tree.pop();</span><br><span class="line">        tmp_sum = val.pop();</span><br><span class="line">        <span class="comment">//依次遍历值</span></span><br><span class="line">        <span class="keyword">if</span>(tmp_sum == sum &amp;&amp; tmp.left == <span class="keyword">null</span> &amp;&amp; tmp.right == <span class="keyword">null</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        <span class="comment">//更改方向到右子树</span></span><br><span class="line">        tmp = tmp.right;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <h3 id="递归"><a href="#递归" class="headerlink" title="递归"></a>递归</h3><p>递归来源于<a href="https://leetcode-cn.com/problems/path-sum/solution/lu-jing-zong-he-by-leetcode/" target="_blank" rel="noopener">题解</a></p>
 <p>最直接的方法就是利用递归，遍历整棵树：如果当前节点不是叶子，对它的所有孩子节点，递归调用 <code>hasPathSum</code> 函数，其中 sum 值减去当前节点的权值；如果当前节点是叶子，检查 sum 值是否为 0，也就是是否找到了给定的目标和。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">hasPathSum</span><span class="params">(TreeNode root, <span class="keyword">int</span> sum)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (root == <span class="keyword">null</span>)</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line"></span><br><span class="line">  sum -= root.val;</span><br><span class="line">  <span class="keyword">if</span> ((root.left == <span class="keyword">null</span>) &amp;&amp; (root.right == <span class="keyword">null</span>))</span><br><span class="line">    <span class="keyword">return</span> (sum == <span class="number">0</span>);</span><br><span class="line">  <span class="keyword">return</span> hasPathSum(root.left, sum) || hasPathSum(root.right, sum);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -399,7 +395,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">213</span>
+          <span class="site-state-item-count">215</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -460,13 +456,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="Symbols count total">584k</span>
+    <span title="Symbols count total">581k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">8:51</span>
-</div>
+    <span title="Reading time total">8:48</span>
+</div><script color="255,255,255" opacity="0.5" zIndex="-1" count="180" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
 
         
 
@@ -489,7 +485,6 @@
 <script src="/js/schemes/pisces.js"></script>
 <script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
 
-  <script defer src="/lib/three/three.min.js"></script>
 
 
   
@@ -518,6 +513,8 @@
 
 
 
+
+  
 
   
 

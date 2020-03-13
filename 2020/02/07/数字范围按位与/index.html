@@ -266,26 +266,20 @@
 
       
         <p>来源Leetcode第201题数字范围按位与</p>
-<p>给定范围 [m, n]，其中 0 &lt;= m &lt;= n &lt;= 2147483647，返回此范围内所有数字的按位与（包含 m, n 两端点）。</p>
-<a id="more"></a>
-<p><strong>示例 1:</strong> </p>
+<p>给定范围 [m, n]，其中 0 &lt;= m &lt;= n &lt;= 2147483647，返回此范围内所有数字的按位与（包含 m, n 两端点）。<br><a id="more"></a><br><strong>示例 1:</strong> </p>
 <figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: [<span class="number">5</span>,<span class="number">7</span>]</span><br><span class="line">输出: <span class="number">4</span></span><br></pre></td></tr></table></figure>
-
 <hr>
 <h3 id="暴力"><a href="#暴力" class="headerlink" title="暴力"></a>暴力</h3><p>按顺序执行按位运算，然后有一个测试算例超时了，在运算时排除全0与全1的数，即到了0xFFFF和0x0就可以返回运算结果了。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">rangeBitwiseAnd</span><span class="params">(<span class="keyword">int</span> m, <span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(m == Integer.MAX_VALUE)</span><br><span class="line">        <span class="keyword">return</span> m;</span><br><span class="line">    <span class="keyword">int</span> ans = m++;</span><br><span class="line">    <span class="keyword">while</span>(m &lt;= n) &#123;</span><br><span class="line">        ans &amp;= m;</span><br><span class="line">        <span class="keyword">if</span>(ans == <span class="number">0</span> || m == Integer.MAX_VALUE)</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        m++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <h3 id="二进制1的个数"><a href="#二进制1的个数" class="headerlink" title="二进制1的个数"></a>二进制1的个数</h3><p>来源<a href="https://leetcode-cn.com/problems/bitwise-and-of-numbers-range/solution/shu-zi-fan-wei-an-wei-yu-qu-qi-gao-wei-wu-bian-hua/" target="_blank" rel="noopener">题解</a></p>
 <p>此题其实就是寻找[m,n]范围内二进制数高位（左边）没有变化的数，后面补上0即为所求的结果。</p>
 <p>判断m、n是否相等，如果不相等，m+1会使m的二进制数末位进位，有进位说明m的末位肯定有0的情况，0与任何数相与皆得0，所以结果的末位肯定是0。同理，不断右移1位进行比较，直到最终 m=n 时，说明找到了[m,n]这个范围内高位没有变化的数，左移相同位数得到的结果就是所求的值。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">rangeBitwiseAnd</span><span class="params">(<span class="keyword">int</span> m, <span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(m == Integer.MAX_VALUE || m == <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> m;</span><br><span class="line">    <span class="keyword">int</span> count = <span class="number">0</span> ; <span class="comment">// 记录移位次数</span></span><br><span class="line">    <span class="keyword">while</span>(m &lt; n)&#123;</span><br><span class="line">        m &gt;&gt;&gt;= <span class="number">1</span>;</span><br><span class="line">        n &gt;&gt;&gt;= <span class="number">1</span>;</span><br><span class="line">        count ++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> n &lt;&lt;= count;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <h3 id="二进制最右边1置0"><a href="#二进制最右边1置0" class="headerlink" title="二进制最右边1置0"></a>二进制最右边1置0</h3><p>有一个方法，可以把最右边的 <code>1</code> 置为 <code>0</code>，举个具体的例子。</p>
 <p>比如十进制的 <code>10</code>，二进制形式是 <code>1010</code>，然后我们只需要把它和 <code>9</code> 进行按位与操作，也就是 <code>10 &amp; 9 = (1010) &amp; (1001) = 1000</code>，也就是把 <code>1010</code> 最右边的 <code>1</code> 置为 <code>0</code>。</p>
 <p>规律就是对于任意一个数 <code>n</code>，然后 <code>n &amp; (n-1)</code> 的结果就是把 <code>n</code> 的最右边的 <code>1</code> 置为 <code>0</code> 。</p>
 <p>也比较好理解，当我们对一个数减 <code>1</code> 的话，比如原来的数是 <code>...1010000</code>，然后减一就会向前借位，直到遇到最右边的第一个 <code>1</code>，变成 <code>...1001111</code>，然后我们把它和原数按位与，就会把从原数最右边 <code>1</code> 开始的位置全部置零了 <code>...10000000</code>。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">rangeBitwiseAnd</span><span class="params">(<span class="keyword">int</span> m, <span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> zeros = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (n &gt; m) &#123;</span><br><span class="line">        n = n &amp; (n - <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> n;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 
     </div>
 
@@ -406,7 +400,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">213</span>
+          <span class="site-state-item-count">215</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -467,13 +461,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="Symbols count total">584k</span>
+    <span title="Symbols count total">581k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">8:51</span>
-</div>
+    <span title="Reading time total">8:48</span>
+</div><script color="255,255,255" opacity="0.5" zIndex="-1" count="180" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
 
         
 
@@ -496,7 +490,6 @@
 <script src="/js/schemes/pisces.js"></script>
 <script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
 
-  <script defer src="/lib/three/three.min.js"></script>
 
 
   
@@ -525,6 +518,8 @@
 
 
 
+
+  
 
   
 

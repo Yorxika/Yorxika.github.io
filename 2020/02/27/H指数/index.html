@@ -270,20 +270,16 @@
       
         <p>来自Leetcode第274题H指数</p>
 <p>给定一位研究者论文被引用次数的数组（被引用次数是非负整数）。编写一个方法，计算出研究者的 <em>h</em> 指数。</p>
-<p><a href="https://baike.baidu.com/item/h-index/3991452?fr=aladdin" target="_blank" rel="noopener">h 指数的定义</a>: “h 代表“高引用次数”（high citations），一名科研人员的 h 指数是指他（她）的 （N 篇论文中）<strong>至多</strong>有 h 篇论文分别被引用了<strong>至少</strong> h 次。（其余的 <em>N - h</em> 篇论文每篇被引用次数<strong>不多于</strong> <em>h</em> 次。）”</p>
-<a id="more"></a>
-
+<p><a href="https://baike.baidu.com/item/h-index/3991452?fr=aladdin" target="_blank" rel="noopener">h 指数的定义</a>: “h 代表“高引用次数”（high citations），一名科研人员的 h 指数是指他（她）的 （N 篇论文中）<strong>至多</strong>有 h 篇论文分别被引用了<strong>至少</strong> h 次。（其余的 <em>N - h</em> 篇论文每篇被引用次数<strong>不多于</strong> <em>h</em> 次。）”<br><a id="more"></a></p>
 <p><strong>示例:</strong></p>
 <figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">输入: citations = [<span class="number">3</span>,<span class="number">0</span>,<span class="number">6</span>,<span class="number">1</span>,<span class="number">5</span>]</span><br><span class="line">输出: <span class="number">3</span> </span><br><span class="line">解释: 给定数组表示研究者总共有 <span class="number">5</span> 篇论文，每篇论文相应的被引用了 <span class="number">3</span>, <span class="number">0</span>, <span class="number">6</span>, <span class="number">1</span>, <span class="number">5</span> 次。</span><br><span class="line">     由于研究者有 <span class="number">3</span> 篇论文每篇至少被引用了 <span class="number">3</span> 次，其余两篇论文每篇被引用不多于 <span class="number">3</span> 次，所以她的 h 指数是 <span class="number">3</span>。</span><br></pre></td></tr></table></figure>
-
 <p><strong>说明:</strong> 如果 <em>h</em> 有多种可能的值，<em>h</em> 指数是其中最大的那个。</p>
 <hr>
 <h3 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h3><p>来源<a href="https://leetcode-cn.com/problems/h-index/solution/hzhi-shu-by-leetcode/" target="_blank" rel="noopener">题解</a></p>
-<p>我们想象一个直方图，其中 <em>x</em> 轴表示文章，y 轴表示每篇文章的引用次数。如果将这些文章按照引用次数<em>降序*排序并在直方图上进行表示，那么直方图上的最大的正方形的边长 *h</em> 就是我们所要求的 <em>h</em>。</p>
+<p>我们想象一个直方图，其中 <em>x</em> 轴表示文章，y 轴表示每篇文章的引用次数。如果将这些文章按照引用次数<em>降序</em>排序并在直方图上进行表示，那么直方图上的最大的正方形的边长 <em>h</em> 就是我们所要求的 <em>h</em>。</p>
 <p><img src="/2020/02/27/H指数/274_H_index.svg" alt="h-index"></p>
 <p>首先我们将引用次数降序排序，在排完序的数组citations 中，如果 citations[<em>i</em>]&gt;<em>i</em>，那么说明第 0 到 <em>i</em> 篇论文都有至少 i<em>+1 次引用。因此我们只要找到最大的 i满足 citations[</em>i<em>]&gt;</em>i*，那么 h 指数即为 i+1。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">hIndex</span><span class="params">(<span class="keyword">int</span>[] citations)</span> </span>&#123;</span><br><span class="line">    Arrays.sort(citations);</span><br><span class="line">    <span class="keyword">int</span> h = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span> ; i &lt; citations.length ;i++)&#123;</span><br><span class="line">        h = citations.length - i;</span><br><span class="line">        <span class="keyword">if</span>( h &lt;= citations[i])</span><br><span class="line">            <span class="keyword">return</span> h;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <h3 id="计数"><a href="#计数" class="headerlink" title="计数"></a>计数</h3><p>来源<a href="https://leetcode-cn.com/problems/h-index/solution/hzhi-shu-by-leetcode/" target="_blank" rel="noopener">题解</a></p>
 <p>要得到时间复杂度更低的算法. 可以考虑最常用的不基于比较的排序，<a href="https://baike.baidu.com/item/计数排序" target="_blank" rel="noopener">计数排序</a>。</p>
 <p>然而，论文的引用次数可能会非常多，这个数值很可能会超过论文的总数 <em>n</em>，因此使用计数排序是非常不合算的（会超出空间限制）。在这道题中，我们可以通过一个不难发现的结论来让计数排序变得有用，即：</p>
@@ -293,7 +289,6 @@
 <p>由于 h 指数一定小于等于 <em>n</em>，因此这样做是正确的。在直方图中，将所有超过 <em>y</em> 轴值大于 <em>n</em> 的变为 <em>n</em> 等价于去掉 <em>y</em>&gt;<em>n</em> 的整个区域。</p>
 <p><img src="/2020/02/27/H指数/274_H_index_2.svg" alt="h-index cut off"></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">hIndex</span><span class="params">(<span class="keyword">int</span>[] citations)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> n = citations.length;</span><br><span class="line">        <span class="keyword">int</span>[] papers = <span class="keyword">new</span> <span class="keyword">int</span>[n + <span class="number">1</span>];</span><br><span class="line">        <span class="comment">// 计数</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> c: citations)</span><br><span class="line">            papers[Math.min(n, c)]++;</span><br><span class="line">        <span class="comment">// 找出最大的 k</span></span><br><span class="line">        <span class="keyword">int</span> k = n;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> s = papers[n]; k &gt; s; s += papers[k])</span><br><span class="line">            k--;</span><br><span class="line">        <span class="keyword">return</span> k;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 
     </div>
 
@@ -413,7 +408,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">213</span>
+          <span class="site-state-item-count">215</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -474,13 +469,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="Symbols count total">584k</span>
+    <span title="Symbols count total">581k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">8:51</span>
-</div>
+    <span title="Reading time total">8:48</span>
+</div><script color="255,255,255" opacity="0.5" zIndex="-1" count="180" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
 
         
 
@@ -503,7 +498,6 @@
 <script src="/js/schemes/pisces.js"></script>
 <script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
 
-  <script defer src="/lib/three/three.min.js"></script>
 
 
   
@@ -532,6 +526,8 @@
 
 
 
+
+  
 
   
 

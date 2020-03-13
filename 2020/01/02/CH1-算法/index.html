@@ -290,9 +290,9 @@
 </ul>
 </li>
 </ul>
-<h2 id="算法基础"><a href="#算法基础" class="headerlink" title="算法基础"></a>算法基础</h2><h3 id="循环不变式"><a href="#循环不变式" class="headerlink" title="循环不变式"></a>循环不变式</h3><p>INSERTION-SORT 的for循环中，循环变量为j（j代表当前正要被插入到<br>序列中的元素的下标）。循环过程具有以下性质：<br>        *<em>子数组A[1~j-1]是已经被排好序的子序列。 *</em><br>这一性质，在j被赋予初值2，首次进入循环之前成立，而且每次循环之<br>后（j加了1）、进入下一次循环之前也成立。<br>   ——把这种在第一次进入循环之前成立、每次循环之后还成立的关系称为“循环不变式”或“循环不变性质” 。  </p>
+<h2 id="算法基础"><a href="#算法基础" class="headerlink" title="算法基础"></a>算法基础</h2><h3 id="循环不变式"><a href="#循环不变式" class="headerlink" title="循环不变式"></a>循环不变式</h3><p>INSERTION-SORT 的for循环中，循环变量为j（j代表当前正要被插入到<br>序列中的元素的下标）。循环过程具有以下性质：<br>        <strong>子数组A[1~j-1]是已经被排好序的子序列。 </strong><br>这一性质，在j被赋予初值2，首次进入循环之前成立，而且每次循环之<br>后（j加了1）、进入下一次循环之前也成立。<br>   ——把这种在第一次进入循环之前成立、每次循环之后还成立的关系称为“循环不变式”或“循环不变性质” 。  </p>
 <ul>
-<li>插入排序for循环的循环不变式可以描述为：在第1<del>8行的for循环的每次迭代开始时，子数组A[1</del>j-1]由原来在 A[1~j-1]中的元素组成，且已按序排列。 </li>
+<li>插入排序for循环的循环不变式可以描述为：在第1~8行的for循环的每次迭代开始时，子数组A[1~j-1]由原来在 A[1~j-1]中的元素组成，且已按序排列。 </li>
 </ul>
 <p>可以利用循环不变关系证明循环的正确性。<br>分三步走：<br>1）初始化：证明初始状态时循环不变式成立，即证明循环不变式在循 环开始之前为真；<br>2）保持：证明每次循环之后、下一次循环开始之前循环不变式仍为真；<br>3）终止：证明循环可以在有限次循环之后终止。<br>证明循环正确性的思路：<br>第1）和2）步类似于数学归纳法的证明策略<br>第3）步保证算法可以终止<br>如果1）~3）都满足，则说明循环过程正确 </p>
 
@@ -414,7 +414,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">213</span>
+          <span class="site-state-item-count">215</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -475,13 +475,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="Symbols count total">584k</span>
+    <span title="Symbols count total">581k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">8:51</span>
-</div>
+    <span title="Reading time total">8:48</span>
+</div><script color="255,255,255" opacity="0.5" zIndex="-1" count="180" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
 
         
 
@@ -504,7 +504,6 @@
 <script src="/js/schemes/pisces.js"></script>
 <script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
 
-  <script defer src="/lib/three/three.min.js"></script>
 
 
   
@@ -533,6 +532,8 @@
 
 
 
+
+  
 
   
 

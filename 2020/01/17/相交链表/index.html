@@ -275,36 +275,33 @@
 
       
         <p>来源Leetcode第160题相交链表</p>
-<p>编写一个程序，找到两个单链表相交的起始节点。</p>
-<a id="more"></a>
-<p>如下面的两个链表<strong>：</strong></p>
+<p>编写一个程序，找到两个单链表相交的起始节点。<br><a id="more"></a><br>如下面的两个链表<strong>：</strong></p>
 <p><a href="https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2018/12/14/160_statement.png" target="_blank" rel="noopener"><img src="/2020/01/17/相交链表/160_statement.png" alt="img"></a></p>
 <p>在节点 c1 开始相交。</p>
 <p><strong>示例 1：</strong></p>
 <p><a href="https://assets.leetcode.com/uploads/2018/12/13/160_example_1.png" target="_blank" rel="noopener"><img src="/2020/01/17/相交链表/160_example_1.png" alt="img"></a></p>
 <figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：<span class="built_in">int</span>ersectVal = <span class="number">8</span>, listA = [<span class="number">4</span>,<span class="number">1</span>,<span class="number">8</span>,<span class="number">4</span>,<span class="number">5</span>], listB = [<span class="number">5</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">8</span>,<span class="number">4</span>,<span class="number">5</span>], skipA = <span class="number">2</span>, skipB = <span class="number">3</span></span><br><span class="line">输出：Reference of the node with value = <span class="number">8</span></span><br><span class="line">输入解释：相交节点的值为 <span class="number">8</span> （注意，如果两个列表相交则不能为 <span class="number">0</span>）。从各自的表头开始算起，链表 A 为 [<span class="number">4</span>,<span class="number">1</span>,<span class="number">8</span>,<span class="number">4</span>,<span class="number">5</span>]，链表 B 为 [<span class="number">5</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">8</span>,<span class="number">4</span>,<span class="number">5</span>]。在 A 中，相交节点前有 <span class="number">2</span> 个节点；在 B 中，相交节点前有 <span class="number">3</span> 个节点。</span><br></pre></td></tr></table></figure>
-
 <hr>
 <h3 id="哈希表"><a href="#哈希表" class="headerlink" title="哈希表"></a>哈希表</h3><p>遍历链表 <code>A</code> 并将每个结点的地址/引用存储在哈希表中。然后检查链表 <code>B</code> 中的每一个结点 b_i<em>b**i</em> 是否在哈希表中。若在，则 b_i<em>b**i</em> 为相交结点。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> ListNode <span class="title">getIntersectionNode</span><span class="params">(ListNode headA, ListNode headB)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(headA == <span class="keyword">null</span> || headB == <span class="keyword">null</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    ListNode p1 = headA;</span><br><span class="line">    Set&lt;ListNode&gt; map = <span class="keyword">new</span> HashSet&lt;&gt;();</span><br><span class="line">    <span class="keyword">while</span>(p1 != <span class="keyword">null</span>)&#123;</span><br><span class="line">        map.add(p1);</span><br><span class="line">        p1 = p1.next;</span><br><span class="line">    &#125;</span><br><span class="line">    p1 = headB;</span><br><span class="line">    <span class="keyword">while</span>(p1 != <span class="keyword">null</span>)&#123;</span><br><span class="line">        <span class="keyword">if</span>(map.contains(p1))</span><br><span class="line">            <span class="keyword">return</span> p1;</span><br><span class="line">        <span class="keyword">else</span> p1 = p1.next;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <h3 id="双指针"><a href="#双指针" class="headerlink" title="双指针"></a>双指针</h3><ul>
-<li>创建两个指针 pA<em>p**A</em> 和 pB<em>p*</em>B*，分别初始化为链表 <code>A</code> 和 <code>B</code> 的头结点。然后让它们向后逐结点遍历。</li>
+<li>创建两个指针 pA<em>p**A</em> 和 pB<em>p**B</em>，分别初始化为链表 <code>A</code> 和 <code>B</code> 的头结点。然后让它们向后逐结点遍历。</li>
 <li>当 pA<em>p**A</em> 到达链表的尾部时，将它重定位到链表 <code>B</code> 的头结点 (你没看错，就是链表 <code>B</code>); 类似的，当 pB<em>p**B</em> 到达链表的尾部时，将它重定位到链表 <code>A</code> 的头结点。</li>
 <li>若在某一时刻 pA<em>p**A</em> 和 pB<em>p**B</em> 相遇，则 pA<em>p**A</em>/pB<em>p**B</em> 为相交结点。</li>
 <li>想弄清楚为什么这样可行, 可以考虑以下两个链表: <code>A={1,3,5,7,9,11}</code> 和 <code>B={2,4,9,11}</code>，相交于结点 <code>9</code>。 由于 <code>B.length (=4) &lt; A.length (=6)</code>，pB<em>p**B</em> 比 pA<em>p**A</em> 少经过 22 个结点，会先到达尾部。将 pB<em>p**B</em> 重定向到 <code>A</code> 的头结点，pA<em>p**A</em> 重定向到 <code>B</code> 的头结点后，pB<em>p**B</em> 要比 pA<em>p**A</em> 多走 <code>2</code> 个结点。因此，它们会同时到达交点。</li>
 <li>如果两个链表存在相交，它们末尾的结点必然相同。因此当 pA<em>p**A</em>/pB<em>p**B</em> 到达链表结尾时，记录下链表 <code>A/B</code> 对应的元素。若最后元素不相同，则两个链表不相交。</li>
 </ul>
-<pre><code class="JAVA"><span class="function"><span class="keyword">public</span> ListNode <span class="title">getIntersectionNode</span><span class="params">(ListNode headA, ListNode headB)</span> </span>{
-    <span class="keyword">if</span>(headA == <span class="keyword">null</span> || headB == <span class="keyword">null</span>)
-        <span class="keyword">return</span> <span class="keyword">null</span>;
-    ListNode pa = headA , pb = headB;
-    <span class="keyword">while</span>(pa != pb){
-        pa = pa == <span class="keyword">null</span> ? headB : pa.next;
-        pb = pb == <span class="keyword">null</span> ? headA : pb.next;
-    }
-    <span class="keyword">return</span> pa;
-}</code></pre>
+<pre><code class="lang-JAVA">        public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+            if(headA == null || headB == null)
+                return null;
+            ListNode pa = headA , pb = headB;
+            while(pa != pb){
+                pa = pa == null ? headB : pa.next;
+                pb = pb == null ? headA : pb.next;
+            }
+            return pa;
+        }
+</code></pre>
 
     </div>
 
@@ -425,7 +422,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">213</span>
+          <span class="site-state-item-count">215</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -486,13 +483,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="Symbols count total">584k</span>
+    <span title="Symbols count total">581k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">8:51</span>
-</div>
+    <span title="Reading time total">8:48</span>
+</div><script color="255,255,255" opacity="0.5" zIndex="-1" count="180" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
 
         
 
@@ -515,7 +512,6 @@
 <script src="/js/schemes/pisces.js"></script>
 <script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
 
-  <script defer src="/lib/three/three.min.js"></script>
 
 
   
@@ -544,6 +540,8 @@
 
 
 
+
+  
 
   
 

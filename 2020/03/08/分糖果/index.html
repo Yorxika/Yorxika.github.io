@@ -271,20 +271,14 @@
 <p>给第一个小朋友 1 颗糖果，第二个小朋友 2 颗，依此类推，直到给最后一个小朋友 <code>n</code> 颗糖果。</p>
 <p>然后，我们再回到队伍的起点，给第一个小朋友 <code>n + 1</code> 颗糖果，第二个小朋友 <code>n + 2</code> 颗，依此类推，直到给最后一个小朋友 <code>2 * n</code> 颗糖果。</p>
 <p>重复上述过程（每次都比上一次多给出一颗糖果，当到达队伍终点后再次从队伍起点开始），直到我们分完所有的糖果。注意，就算我们手中的剩下糖果数不够（不比前一次发出的糖果多），这些糖果也会全部发给当前的小朋友。</p>
-<p>返回一个长度为 <code>num_people</code>、元素之和为 <code>candies</code> 的数组，以表示糖果的最终分发情况（即 <code>ans[i]</code> 表示第 <code>i</code> 个小朋友分到的糖果数）。</p>
-<a id="more"></a>
-
-
+<p>返回一个长度为 <code>num_people</code>、元素之和为 <code>candies</code> 的数组，以表示糖果的最终分发情况（即 <code>ans[i]</code> 表示第 <code>i</code> 个小朋友分到的糖果数）。<br><a id="more"></a></p>
 <p><strong>示例 1：</strong></p>
 <figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">输入：candies = <span class="number">7</span>, num_people = <span class="number">4</span></span><br><span class="line">输出：[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">1</span>]</span><br><span class="line">解释：</span><br><span class="line">第一次，ans[<span class="number">0</span>] += <span class="number">1</span>，数组变为 [<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>]。</span><br><span class="line">第二次，ans[<span class="number">1</span>] += <span class="number">2</span>，数组变为 [<span class="number">1</span>,<span class="number">2</span>,<span class="number">0</span>,<span class="number">0</span>]。</span><br><span class="line">第三次，ans[<span class="number">2</span>] += <span class="number">3</span>，数组变为 [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">0</span>]。</span><br><span class="line">第四次，ans[<span class="number">3</span>] += <span class="number">1</span>（因为此时只剩下 <span class="number">1</span> 颗糖果），最终数组变为 [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">1</span>]。</span><br></pre></td></tr></table></figure>
-
 <hr>
 <h3 id="暴力"><a href="#暴力" class="headerlink" title="暴力"></a>暴力</h3><p>不断地遍历数组，如果还有糖就一直分，直到没有糖为止。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">int</span>[] distributeCandies(<span class="keyword">int</span> candies, <span class="keyword">int</span> num_people) &#123;</span><br><span class="line">    <span class="keyword">int</span>[] ans = <span class="keyword">new</span> <span class="keyword">int</span>[num_people];</span><br><span class="line">    <span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (candies != <span class="number">0</span>) &#123;</span><br><span class="line">        ans[i % num_people] += Math.min(candies, i + <span class="number">1</span>);</span><br><span class="line">        candies -= Math.min(candies, i + <span class="number">1</span>);</span><br><span class="line">        i += <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <h3 id="数学推导"><a href="#数学推导" class="headerlink" title="数学推导"></a>数学推导</h3><p>来自<a href="https://leetcode-cn.com/problems/distribute-candies-to-people/solution/xiang-xi-jie-shi-shu-xue-fang-fa-zen-yao-zuo-gao-z/" target="_blank" rel="noopener">题解</a></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">int</span>[] distributeCandies(<span class="keyword">int</span> candies, <span class="keyword">int</span> num_people) &#123;</span><br><span class="line">  <span class="keyword">int</span> n = num_people;</span><br><span class="line">  <span class="comment">// how many people received complete gifts</span></span><br><span class="line">  <span class="keyword">int</span> p = (<span class="keyword">int</span>)(Math.sqrt(<span class="number">2</span> * candies + <span class="number">0.25</span>) - <span class="number">0.5</span>);</span><br><span class="line">  <span class="keyword">int</span> remaining = (<span class="keyword">int</span>)(candies - (p + <span class="number">1</span>) * p * <span class="number">0.5</span>);</span><br><span class="line">  <span class="keyword">int</span> rows = p / n, cols = p % n;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">int</span>[] d = <span class="keyword">new</span> <span class="keyword">int</span>[n];</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; ++i) &#123;</span><br><span class="line">    <span class="comment">// complete rows</span></span><br><span class="line">    d[i] = (i + <span class="number">1</span>) * rows + (<span class="keyword">int</span>)(rows * (rows - <span class="number">1</span>) * <span class="number">0.5</span>) * n;</span><br><span class="line">    <span class="comment">// cols in the last row</span></span><br><span class="line">    <span class="keyword">if</span> (i &lt; cols) d[i] += i + <span class="number">1</span> + rows * n;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// remaining candies        </span></span><br><span class="line">  d[cols] += remaining;</span><br><span class="line">  <span class="keyword">return</span> d;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 
     </div>
 
@@ -404,7 +398,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">213</span>
+          <span class="site-state-item-count">215</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -465,13 +459,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="Symbols count total">584k</span>
+    <span title="Symbols count total">581k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">8:51</span>
-</div>
+    <span title="Reading time total">8:48</span>
+</div><script color="255,255,255" opacity="0.5" zIndex="-1" count="180" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
 
         
 
@@ -494,7 +488,6 @@
 <script src="/js/schemes/pisces.js"></script>
 <script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
 
-  <script defer src="/lib/three/three.min.js"></script>
 
 
   
@@ -523,6 +516,8 @@
 
 
 
+
+  
 
   
 

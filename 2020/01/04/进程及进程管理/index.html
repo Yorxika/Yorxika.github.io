@@ -313,8 +313,7 @@
 <h3 id="进程描述"><a href="#进程描述" class="headerlink" title="进程描述"></a>进程描述</h3><p>什么是进程控制块<br>描述进程与其他进程、系统资源的关系以及进程在各个不同时期所处的状态的数据结构，称为进程控制块 PCB (process control block)。 </p>
 <p>进程的组成</p>
 <ul>
-<li><p>程序与数据<br> 描述进程本身所应完成的功能</p>
-</li>
+<li>程序与数据<br> 描述进程本身所应完成的功能</li>
 <li><p>PCB<br> 进程的动态特征，该进程与其他进 程和系统资源的关系。</p>
 <p> <img src="/2020/01/04/进程及进程管理/image-20200104193922671.png" alt="image-20200104193922671"></p>
 </li>
@@ -390,9 +389,7 @@
 </ul>
 </li>
 </ul>
-<p>程序描述<br>程序 prod_cons</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">main( )</span><br><span class="line">&#123;</span><br><span class="line">   <span class="keyword">int</span> sa=<span class="number">0</span>； ∕/满缓冲区数目  </span><br><span class="line">   <span class="keyword">int</span> sb=n； ∕/空缓冲区数目</span><br><span class="line">   <span class="keyword">int</span>  mutex=<span class="number">1</span>； ∕/对有界缓冲区进行操作 </span><br><span class="line">   cobegin </span><br><span class="line">   p1 ( )； p2 ( )；… pm ( )； </span><br><span class="line">   c1 ( )； c2 ( )；… ck ( )； </span><br><span class="line">   coend</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">pi( )                                                     </span><br><span class="line">&#123;</span><br><span class="line">   <span class="keyword">while</span>(生产未完成)</span><br><span class="line">   &#123;</span><br><span class="line">      M</span><br><span class="line">      生产一个产品;</span><br><span class="line">      p(sb)；</span><br><span class="line">      p(mutex)； </span><br><span class="line">      送一个产品到有界缓冲区；</span><br><span class="line">      v(mutex)；</span><br><span class="line">      v(sa)；</span><br><span class="line">   &#125;  </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">cj( ) </span><br><span class="line">&#123; </span><br><span class="line">   <span class="keyword">while</span>(还要继续消费)</span><br><span class="line">   &#123;</span><br><span class="line">        p(sa)； </span><br><span class="line">        p(mutex)；</span><br><span class="line">        从有界缓冲区中取产品</span><br><span class="line">        v(mutex)； </span><br><span class="line">        v(sb)； </span><br><span class="line">        消费一个产品； </span><br><span class="line">        M</span><br></pre></td></tr></table></figure>
-
+<p>程序描述<br>程序 prod_cons<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">main( )</span><br><span class="line">&#123;</span><br><span class="line">   <span class="keyword">int</span> sa=<span class="number">0</span>； ∕/满缓冲区数目  </span><br><span class="line">   <span class="keyword">int</span> sb=n； ∕/空缓冲区数目</span><br><span class="line">   <span class="keyword">int</span>  mutex=<span class="number">1</span>； ∕/对有界缓冲区进行操作 </span><br><span class="line">   cobegin </span><br><span class="line">   p1 ( )； p2 ( )；… pm ( )； </span><br><span class="line">   c1 ( )； c2 ( )；… ck ( )； </span><br><span class="line">   coend</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">pi( )                                                     </span><br><span class="line">&#123;</span><br><span class="line">   <span class="keyword">while</span>(生产未完成)</span><br><span class="line">   &#123;</span><br><span class="line">      M</span><br><span class="line">      生产一个产品;</span><br><span class="line">      p(sb)；</span><br><span class="line">      p(mutex)； </span><br><span class="line">      送一个产品到有界缓冲区；</span><br><span class="line">      v(mutex)；</span><br><span class="line">      v(sa)；</span><br><span class="line">   &#125;  </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">cj( ) </span><br><span class="line">&#123; </span><br><span class="line">   <span class="keyword">while</span>(还要继续消费)</span><br><span class="line">   &#123;</span><br><span class="line">        p(sa)； </span><br><span class="line">        p(mutex)；</span><br><span class="line">        从有界缓冲区中取产品</span><br><span class="line">        v(mutex)； </span><br><span class="line">        v(sb)； </span><br><span class="line">        消费一个产品； </span><br><span class="line">        M</span><br></pre></td></tr></table></figure></p>
 <h3 id="理发师睡觉问题"><a href="#理发师睡觉问题" class="headerlink" title="理发师睡觉问题"></a>理发师睡觉问题</h3><p>理发店里有一位理发师、一把理发椅和n把供等候理发的顾客坐的椅子。如果没有顾客，则理发师便在理发椅上睡觉。当一个顾客到来时，他必须先叫醒理发师，如果理发师正在理发时又有顾客来到，则如果有空椅子可坐，他们就坐下来等。如果没有空椅子，他就离开。</p>
 <ul>
 <li><p>一个理发师，一把理发椅，n把等候理发的顾客椅子。 </p>
@@ -404,8 +401,7 @@
 </li>
 <li><p>理发师和顾客之间的同步关系<br> 当理发师睡觉时，顾客进来需要唤醒理发师为其理发；<br> 当有顾客时理发师为其理发，没有的时候理发师睡觉。</p>
 </li>
-<li><p>理发师与顾客、顾客与顾客之间的互斥关系<br> 由于每次理发师只能为1个人理发，且可供等侯的椅子只有n把，即理发师和椅子是临界资源，顾客之间是互斥的关系。</p>
-</li>
+<li>理发师与顾客、顾客与顾客之间的互斥关系<br> 由于每次理发师只能为1个人理发，且可供等侯的椅子只有n把，即理发师和椅子是临界资源，顾客之间是互斥的关系。</li>
 </ul>
 <p>信号灯设置<br>引入3个信号量和一个控制变量： </p>
 <ul>
@@ -415,7 +411,6 @@
 <li>信号量mutex用于互斥，初值为1. </li>
 </ul>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta"># <span class="meta-keyword">define</span> CHAIRS 5 <span class="comment">/*为等待的顾客准备的椅子数*/</span> </span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">int</span> semaphone ; <span class="comment">/*信号灯类型*/</span> </span><br><span class="line">semaphore customers=<span class="number">0</span>; <span class="comment">/*等待服务的顾客数*/</span> </span><br><span class="line">semaphore barbers=<span class="number">0</span>; <span class="comment">/*等待顾客的理发师数*/</span> </span><br><span class="line">semaphore mutex=<span class="number">1</span>; <span class="comment">/*用于互斥*/</span></span><br><span class="line"><span class="keyword">int</span> waiting=<span class="number">0</span>; <span class="comment">/*等待的顾客(还没理发的)，waiting是一个共享变量，对它操作时必须加锁，用mutex加以保护*/</span></span><br><span class="line"></span><br><span class="line">main() </span><br><span class="line">&#123;   </span><br><span class="line">   …… </span><br><span class="line">   cobegin </span><br><span class="line">      barber（）； </span><br><span class="line">      customers（）； </span><br><span class="line">   coend </span><br><span class="line">   …… </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">barber</span><span class="params">(<span class="keyword">void</span>)</span> </span></span><br><span class="line"><span class="function"></span>&#123; </span><br><span class="line">   <span class="keyword">while</span>(TRUE) <span class="comment">/*理完1人,还有顾客吗?*/</span> </span><br><span class="line">   &#123; </span><br><span class="line">      p(customers); <span class="comment">/*如果顾客数是0，则理发师睡眠*/</span> </span><br><span class="line">      p(mutex); <span class="comment">/*要求进程等待*/</span> </span><br><span class="line">         waiting=waiting<span class="number">-1</span>; <span class="comment">/*等待顾客数减1*/</span> </span><br><span class="line">      v(barbers); <span class="comment">/*一个理发师现在开始理发了*/</span> </span><br><span class="line">      v(mutex); <span class="comment">/*释放等待*/</span> </span><br><span class="line">      cut_hair(); <span class="comment">/*理发(非临界区操作)*/</span> </span><br><span class="line">   &#125; </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">customers</span><span class="params">(<span class="keyword">void</span>)</span> </span></span><br><span class="line"><span class="function"></span>&#123;       </span><br><span class="line">   p(mutex);<span class="comment">/*进入临界区*/</span> </span><br><span class="line">   <span class="keyword">if</span> (waiting &lt; CHAIRS) </span><br><span class="line">   &#123;<span class="comment">/*如果没有空椅子，就离开*/</span> </span><br><span class="line">      waiting = waiting + <span class="number">1</span>;<span class="comment">/*等待顾客数加1*/</span> </span><br><span class="line">      v(customers); <span class="comment">/*如果必要的话，唤醒理发师*/</span> </span><br><span class="line">      v(mutex); <span class="comment">/*释放访问等待*/</span> </span><br><span class="line">      p(barbers); <span class="comment">/*无理发师, 顾客坐着养神*/</span> </span><br><span class="line">      get_haircut();<span class="comment">/*一个顾客坐下等理发*/</span> </span><br><span class="line">   &#125; </span><br><span class="line">   <span class="keyword">else</span> </span><br><span class="line">      v(mutex); <span class="comment">/*店里人满了，走吧*/</span> </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <h2 id="进程通信"><a href="#进程通信" class="headerlink" title="进程通信"></a>进程通信</h2><p>进程通信(Interprocess Communication, IPC)是指进程之间直 接以较高的效率传递较多数据的信息交互方式。</p>
 <p>IPC机制：指消息（message）从一个进程的地址空间拷贝到另一个进程 的地址空间的过程，而不使用共享存储器。</p>
 <p><img src="/2020/01/04/进程及进程管理/image-20200104202215510.png" alt="image-20200104202215510"></p>
@@ -679,7 +674,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">213</span>
+          <span class="site-state-item-count">215</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -740,13 +735,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="Symbols count total">584k</span>
+    <span title="Symbols count total">581k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">8:51</span>
-</div>
+    <span title="Reading time total">8:48</span>
+</div><script color="255,255,255" opacity="0.5" zIndex="-1" count="180" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
 
         
 
@@ -769,7 +764,6 @@
 <script src="/js/schemes/pisces.js"></script>
 <script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
 
-  <script defer src="/lib/three/three.min.js"></script>
 
 
   
@@ -798,6 +792,8 @@
 
 
 
+
+  
 
   
 

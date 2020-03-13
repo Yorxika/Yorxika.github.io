@@ -273,50 +273,59 @@
       
         <p>来源Leetcode第12题整数转罗马数字</p>
 <blockquote>
-<p>罗马数字包含以下七种字符：I，V，X，L，C，D和M。</p>
-<a id="more"></a>
-
+<p>罗马数字包含以下七种字符：I，V，X，L，C，D和M。<br><a id="more"></a></p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
-<th align="center">字符</th>
-<th align="center">数值</th>
+<th style="text-align:center">字符</th>
+<th style="text-align:center">数值</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="center">I</td>
-<td align="center">1</td>
+<tbody>
+<tr>
+<td style="text-align:center">I</td>
+<td style="text-align:center">1</td>
+<td></td>
 </tr>
 <tr>
-<td align="center">V</td>
-<td align="center">5</td>
+<td style="text-align:center">V</td>
+<td style="text-align:center">5</td>
+<td></td>
 </tr>
 <tr>
-<td align="center">X</td>
-<td align="center">10</td>
+<td style="text-align:center">X</td>
+<td style="text-align:center">10</td>
+<td></td>
 </tr>
 <tr>
-<td align="center">L</td>
-<td align="center">50</td>
+<td style="text-align:center">L</td>
+<td style="text-align:center">50</td>
+<td></td>
 </tr>
 <tr>
-<td align="center">C</td>
-<td align="center">100</td>
+<td style="text-align:center">C</td>
+<td style="text-align:center">100</td>
+<td></td>
 </tr>
 <tr>
-<td align="center">D</td>
-<td align="center">500</td>
+<td style="text-align:center">D</td>
+<td style="text-align:center">500</td>
+<td></td>
 </tr>
 <tr>
-<td align="center">M</td>
-<td align="center">1000</td>
+<td style="text-align:center">M</td>
+<td style="text-align:center">1000</td>
+<td></td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <p>例如，罗马数字2写做II，即为两个并列的1。12 写做XII，即为X+II。27写做XXVII,即为XX+V+II。<br>通常情况下，罗马数字中小的数字在大的数字的右边。但也存在特例，例如4不写做IIII，而是IV。数字1在数字5 的左边，所表示的数等于大数5减小数1得到的数值4 。同样地，数字9 表示为 IX。这个特殊的规则只适用于以下六种情况：<br>I 可以放在 V (5) 和 X (10) 的左边，来表示 4 和 9。<br>X 可以放在 L (50) 和 C (100) 的左边，来表示 40 和 90。<br>C 可以放在 D (500) 和 M (1000) 的左边，来表示 400 和 900。<br>给定一个整数，将其转为罗马数字。输入确保在 1 到 3999 的范围内。<br>示例 1:</p>
 <p>输入: 3<br>输出: “III”</p>
 </blockquote>
-<p>根据题意可知罗马数字有如下基数：1，4，5，9，10，40，50，90，100，400，500，900，1000<br>在进行转化时只用将待转换数字减去基数，并在输出的字符串上加上对应的罗马字母，直到当前基数大于剩下的待转换数字，用下一个基数进行转化。<br>代码如下：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="built_in">string</span> <span class="title">intToRoman</span><span class="params">(<span class="keyword">int</span> num)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> values[]=&#123;<span class="number">1000</span>,<span class="number">900</span>,<span class="number">500</span>,<span class="number">400</span>,<span class="number">100</span>,<span class="number">90</span>,<span class="number">50</span>,<span class="number">40</span>,<span class="number">10</span>,<span class="number">9</span>,<span class="number">5</span>,<span class="number">4</span>,<span class="number">1</span>&#125;;</span><br><span class="line">        <span class="built_in">string</span> reps[]=&#123;<span class="string">"M"</span>,<span class="string">"CM"</span>,<span class="string">"D"</span>,<span class="string">"CD"</span>,<span class="string">"C"</span>,<span class="string">"XC"</span>,<span class="string">"L"</span>,<span class="string">"XL"</span>,<span class="string">"X"</span>,<span class="string">"IX"</span>,<span class="string">"V"</span>,<span class="string">"IV"</span>,<span class="string">"I"</span>&#125;;</span><br><span class="line">        </span><br><span class="line">        <span class="built_in">string</span> res;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;<span class="number">13</span>; i++)&#123;</span><br><span class="line">            <span class="keyword">while</span>(num&gt;=values[i])&#123;</span><br><span class="line">                num -= values[i];</span><br><span class="line">                res += reps[i];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>根据题意可知罗马数字有如下基数：1，4，5，9，10，40，50，90，100，400，500，900，1000<br>在进行转化时只用将待转换数字减去基数，并在输出的字符串上加上对应的罗马字母，直到当前基数大于剩下的待转换数字，用下一个基数进行转化。<br>代码如下：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="built_in">string</span> <span class="title">intToRoman</span><span class="params">(<span class="keyword">int</span> num)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> values[]=&#123;<span class="number">1000</span>,<span class="number">900</span>,<span class="number">500</span>,<span class="number">400</span>,<span class="number">100</span>,<span class="number">90</span>,<span class="number">50</span>,<span class="number">40</span>,<span class="number">10</span>,<span class="number">9</span>,<span class="number">5</span>,<span class="number">4</span>,<span class="number">1</span>&#125;;</span><br><span class="line">        <span class="built_in">string</span> reps[]=&#123;<span class="string">"M"</span>,<span class="string">"CM"</span>,<span class="string">"D"</span>,<span class="string">"CD"</span>,<span class="string">"C"</span>,<span class="string">"XC"</span>,<span class="string">"L"</span>,<span class="string">"XL"</span>,<span class="string">"X"</span>,<span class="string">"IX"</span>,<span class="string">"V"</span>,<span class="string">"IV"</span>,<span class="string">"I"</span>&#125;;</span><br><span class="line">        </span><br><span class="line">        <span class="built_in">string</span> res;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;<span class="number">13</span>; i++)&#123;</span><br><span class="line">            <span class="keyword">while</span>(num&gt;=values[i])&#123;</span><br><span class="line">                num -= values[i];</span><br><span class="line">                res += reps[i];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+
     </div>
 
     
@@ -435,7 +444,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">213</span>
+          <span class="site-state-item-count">215</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -496,13 +505,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="Symbols count total">584k</span>
+    <span title="Symbols count total">581k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">8:51</span>
-</div>
+    <span title="Reading time total">8:48</span>
+</div><script color="255,255,255" opacity="0.5" zIndex="-1" count="180" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
 
         
 
@@ -525,7 +534,6 @@
 <script src="/js/schemes/pisces.js"></script>
 <script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
 
-  <script defer src="/lib/three/three.min.js"></script>
 
 
   
@@ -554,6 +562,8 @@
 
 
 
+
+  
 
   
 

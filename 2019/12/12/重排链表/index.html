@@ -270,17 +270,12 @@
       
         <p>来自Leetcode第143题重排链表</p>
 <p>给定一个单链表 <em>L</em>：<em>L</em>0→<em>L</em>1→…→<em>L</em>n-1→<em>L</em>n ，<br>将其重新排列后变为： <em>L</em>0→<em>L</em>n→<em>L</em>1→<em>L</em>n-1→<em>L</em>2→<em>L</em>n-2→…</p>
-<p>你不能只是单纯的改变节点内部的值，而是需要实际的进行节点交换。</p>
-<a id="more"></a>
-<p><strong>示例 1:</strong></p>
+<p>你不能只是单纯的改变节点内部的值，而是需要实际的进行节点交换。<br><a id="more"></a><br><strong>示例 1:</strong></p>
 <figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">给定链表 <span class="number">1</span>-&gt;<span class="number">2</span>-&gt;<span class="number">3</span>-&gt;<span class="number">4</span>, 重新排列为 <span class="number">1</span>-&gt;<span class="number">4</span>-&gt;<span class="number">2</span>-&gt;<span class="number">3.</span></span><br></pre></td></tr></table></figure>
-
 <p><strong>示例 2:</strong></p>
 <figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">给定链表 <span class="number">1</span>-&gt;<span class="number">2</span>-&gt;<span class="number">3</span>-&gt;<span class="number">4</span>-&gt;<span class="number">5</span>, 重新排列为 <span class="number">1</span>-&gt;<span class="number">5</span>-&gt;<span class="number">2</span>-&gt;<span class="number">4</span>-&gt;<span class="number">3.</span></span><br></pre></td></tr></table></figure>
-
 <h3 id="空间换时间"><a href="#空间换时间" class="headerlink" title="空间换时间"></a>空间换时间</h3><p>创建线性表，依次存储各个链表结点，然后用双指针依次取头尾元素，避免了每次从头遍历.</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">reorderList</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(head == <span class="keyword">null</span> || head.next == <span class="keyword">null</span> || head.next.next == <span class="keyword">null</span>)</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    List&lt;ListNode&gt; list = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">    <span class="comment">//保存结点</span></span><br><span class="line">    <span class="keyword">while</span>(head != <span class="keyword">null</span>)&#123;</span><br><span class="line">        list.add(head);</span><br><span class="line">        head = head.next;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//头尾指针取元素</span></span><br><span class="line">    <span class="keyword">int</span> i = <span class="number">0</span> , j = list.size() - <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span> (i &lt; j)&#123;</span><br><span class="line">        list.get(i).next = list.get(j);</span><br><span class="line">        i++;</span><br><span class="line">        <span class="comment">//偶数结点相遇</span></span><br><span class="line">        <span class="keyword">if</span>(i == j)</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        list.get(j).next = list.get(i);</span><br><span class="line">        j--;</span><br><span class="line">    &#125;</span><br><span class="line">    list.get(i).next = <span class="keyword">null</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <h3 id="递归"><a href="#递归" class="headerlink" title="递归"></a>递归</h3><p>参考 <a href="https://leetcode.com/problems/reorder-list/discuss/45113/Share-a-consise-recursive-solution-in-C%2B%2B" target="_blank" rel="noopener">这里</a>。</p>
 <p>解法一中也说到了，我们的问题就是取尾元素的时候，需要遍历一遍链表。</p>
 <p>如果我们的递归函数能够返回当前头元素对应的尾元素，并且将头元素和尾元素之间的链表按要求完成，那就变得简单了。</p>
@@ -292,11 +287,9 @@
 <p>递归出口的话，如果只有一个节点，那么我们只需要将 <code>head.next</code> 返回。</p>
 <p>如果是两个节点，我们需要将 <code>head.next.next</code> 返回。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">reorderList</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(head == <span class="keyword">null</span> || head.next == <span class="keyword">null</span> || head.next.next == <span class="keyword">null</span>)</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    <span class="keyword">int</span> len = <span class="number">0</span>;</span><br><span class="line">    ListNode ahead = head;</span><br><span class="line">    <span class="keyword">while</span> (ahead != <span class="keyword">null</span>) &#123;</span><br><span class="line">        len++;</span><br><span class="line">        ahead = ahead.next;</span><br><span class="line">    &#125;</span><br><span class="line">    reorderListHelper(head, len);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> ListNode <span class="title">reorderListHelper</span><span class="params">(ListNode head, <span class="keyword">int</span> len)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (len == <span class="number">1</span>) &#123;</span><br><span class="line">        ListNode outTail = head.next;</span><br><span class="line">        head.next = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">return</span> outTail;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (len == <span class="number">2</span>) &#123;</span><br><span class="line">        ListNode outTail = head.next.next;</span><br><span class="line">        head.next.next = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">return</span> outTail;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//得到对应的尾节点，并且将头结点和尾节点之间的链表通过递归处理</span></span><br><span class="line">    ListNode tail = reorderListHelper(head.next, len - <span class="number">2</span>);</span><br><span class="line">    ListNode subHead = head.next;<span class="comment">//中间链表的头结点</span></span><br><span class="line">    head.next = tail;</span><br><span class="line">    ListNode outTail = tail.next;  <span class="comment">//上一层 head 对应的 tail</span></span><br><span class="line">    tail.next = subHead;</span><br><span class="line">    <span class="keyword">return</span> outTail;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <h3 id="分治"><a href="#分治" class="headerlink" title="分治"></a>分治</h3><p>参考 <a href="https://leetcode.com/problems/reorder-list/discuss/44992/Java-solution-with-3-steps" target="_blank" rel="noopener">这里</a>，主要是利用到一头一尾取元素的特性。</p>
 <p>主要是三步，举个例子。</p>
 <figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span> -&gt; <span class="number">2</span> -&gt; <span class="number">3</span> -&gt; <span class="number">4</span> -&gt; <span class="number">5</span> -&gt; <span class="number">6</span></span><br><span class="line">第一步，将链表平均分成两半</span><br><span class="line"><span class="number">1</span> -&gt; <span class="number">2</span> -&gt; <span class="number">3</span></span><br><span class="line"><span class="number">4</span> -&gt; <span class="number">5</span> -&gt; <span class="number">6</span></span><br><span class="line">    </span><br><span class="line">第二步，将第二个链表逆序</span><br><span class="line"><span class="number">1</span> -&gt; <span class="number">2</span> -&gt; <span class="number">3</span></span><br><span class="line"><span class="number">6</span> -&gt; <span class="number">5</span> -&gt; <span class="number">4</span></span><br><span class="line">    </span><br><span class="line">第三步，依次连接两个链表</span><br><span class="line"><span class="number">1</span> -&gt; <span class="number">6</span> -&gt; <span class="number">2</span> -&gt; <span class="number">5</span> -&gt; <span class="number">3</span> -&gt; <span class="number">4</span></span><br></pre></td></tr></table></figure>
-
 <p>第一步找中点的话，可以应用 19 题的方法，快慢指针。快指针一次走两步，慢指针一次走一步，当快指针走到终点的话，慢指针会刚好到中点。如果节点个数是偶数的话，<code>slow</code> 走到的是左端点，利用这一点，我们可以把奇数和偶数的情况合并，不需要分开考虑。</p>
 <p>第二步链表逆序的话，在 第 2 题]讨论过了，有迭代和递归的两种方式，迭代的话主要利用两个指针，依次逆转。</p>
 <p>第三步的话就很简单了，两个指针分别向后移动就可以。</p>
@@ -420,7 +413,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">213</span>
+          <span class="site-state-item-count">215</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -481,13 +474,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="Symbols count total">584k</span>
+    <span title="Symbols count total">581k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">8:51</span>
-</div>
+    <span title="Reading time total">8:48</span>
+</div><script color="255,255,255" opacity="0.5" zIndex="-1" count="180" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
 
         
 
@@ -510,7 +503,6 @@
 <script src="/js/schemes/pisces.js"></script>
 <script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
 
-  <script defer src="/lib/three/three.min.js"></script>
 
 
   
@@ -539,6 +531,8 @@
 
 
 
+
+  
 
   
 

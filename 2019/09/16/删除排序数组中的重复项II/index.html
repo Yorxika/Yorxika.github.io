@@ -252,7 +252,7 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>972</span>
+              <span>937</span>
             </span>
             <span class="post-meta-item" title="Reading time">
               <span class="post-meta-item-icon">
@@ -274,18 +274,12 @@
         <p>来源Leetcode第80题删除排序数组中的重复项II</p>
 <blockquote>
 <p>给定一个排序数组，你需要在原地删除重复出现的元素，使得每个元素最多出现两次，返回移除后数组的新长度。<br>不要使用额外的数组空间，你必须在原地修改输入数组并在使用 O(1) 额外空间的条件下完成。</p>
-<p>示例 1:</p>
-<a id="more"></a>
-
+<p>示例 1:<br><a id="more"></a></p>
 <p>给定 nums = [1,1,1,2,2,3],<br>函数应返回新长度 length = 5, 并且原数组的前五个元素被修改为 1, 1, 2, 2, 3 。<br>你不需要考虑数组中超出新长度后面的元素。</p>
 </blockquote>
-<p>第一反应是新建一个表，按顺序记录下排序数组中对应数字出现的次数，但是发现题目要求空间负责度为O(1)，那么则可以简化一下思路，采用两个指针，一个记录当前要修改部位，一个保持向后遍历数组，当有两个连续的数字重复的时候就要进行判断，先保存当前val，然后再复制两个重复的元素，接着指针i开始跳过多余的重复元素即可。<br>代码如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">removeDuplicates</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> m = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length;) &#123;</span><br><span class="line">        <span class="keyword">if</span> (i &lt; nums.length - <span class="number">1</span> &amp;&amp; nums[i] == nums[i + <span class="number">1</span>]) &#123;</span><br><span class="line">            <span class="keyword">int</span> val = nums[i];  <span class="comment">//记录当前值</span></span><br><span class="line">            nums[m++] = nums[i++]; <span class="comment">//对数组进行两次操作</span></span><br><span class="line">            nums[m++] = nums[i++];</span><br><span class="line">            <span class="keyword">while</span> (i &lt; nums.length &amp;&amp; nums[i] == val) <span class="comment">//如果2个数之后的数据元素仍与之前相等就跳过</span></span><br><span class="line">                i++;</span><br><span class="line">        &#125; <span class="keyword">else</span></span><br><span class="line">            nums[m++] = nums[i++];  <span class="comment">//最后两个元素无所谓从不重复，直接复制就完事了</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> m;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>在附上一个评论区比较秀的代码：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">removeDuplicates</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> n : nums)</span><br><span class="line">            <span class="keyword">if</span> (i &lt; <span class="number">2</span> || n &gt; nums[i-<span class="number">2</span>])</span><br><span class="line">                nums[i++] = n;</span><br><span class="line">        <span class="keyword">return</span> i;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-<p>当i&lt;2时，前两项直接复制就好，从第三项开始，如果数组里的n&gt;nums[i-2],说明当前元素和前面复制的不等，拓展开来复制前K个重复的数字就可以把i-2替换成i-K。</p>
+<p>第一反应是新建一个表，按顺序记录下排序数组中对应数字出现的次数，但是发现题目要求空间负责度为O(1)，那么则可以简化一下思路，采用两个指针，一个记录当前要修改部位，一个保持向后遍历数组，当有两个连续的数字重复的时候就要进行判断，先保存当前val，然后再复制两个重复的元素，接着指针i开始跳过多余的重复元素即可。<br>代码如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">removeDuplicates</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> m = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length;) &#123;</span><br><span class="line">        <span class="keyword">if</span> (i &lt; nums.length - <span class="number">1</span> &amp;&amp; nums[i] == nums[i + <span class="number">1</span>]) &#123;</span><br><span class="line">            <span class="keyword">int</span> val = nums[i];  <span class="comment">//记录当前值</span></span><br><span class="line">            nums[m++] = nums[i++]; <span class="comment">//对数组进行两次操作</span></span><br><span class="line">            nums[m++] = nums[i++];</span><br><span class="line">            <span class="keyword">while</span> (i &lt; nums.length &amp;&amp; nums[i] == val) <span class="comment">//如果2个数之后的数据元素仍与之前相等就跳过</span></span><br><span class="line">                i++;</span><br><span class="line">        &#125; <span class="keyword">else</span></span><br><span class="line">            nums[m++] = nums[i++];  <span class="comment">//最后两个元素无所谓从不重复，直接复制就完事了</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> m;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>在附上一个评论区比较秀的代码：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">removeDuplicates</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> n : nums)</span><br><span class="line">            <span class="keyword">if</span> (i &lt; <span class="number">2</span> || n &gt; nums[i-<span class="number">2</span>])</span><br><span class="line">                nums[i++] = n;</span><br><span class="line">        <span class="keyword">return</span> i;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
+<p>当i<2时，前两项直接复制就好，从第三项开始，如果数组里的n>nums[i-2],说明当前元素和前面复制的不等，拓展开来复制前K个重复的数字就可以把i-2替换成i-K。</2时，前两项直接复制就好，从第三项开始，如果数组里的n></p>
 
     </div>
 
@@ -405,7 +399,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">213</span>
+          <span class="site-state-item-count">215</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -466,13 +460,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="Symbols count total">584k</span>
+    <span title="Symbols count total">581k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">8:51</span>
-</div>
+    <span title="Reading time total">8:48</span>
+</div><script color="255,255,255" opacity="0.5" zIndex="-1" count="180" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
 
         
 
@@ -495,7 +489,6 @@
 <script src="/js/schemes/pisces.js"></script>
 <script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
 
-  <script defer src="/lib/three/three.min.js"></script>
 
 
   
@@ -524,6 +517,8 @@
 
 
 
+
+  
 
   
 

@@ -22,18 +22,18 @@
     var CONFIG = {"hostname":"yorxika.github.io","root":"/","scheme":"Gemini","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="来自Leetcode第232题用栈实现队列 使用栈实现队列的下列操作：  push(x) – 将一个元素放入队列的尾部。 pop() – 从队列首部移除元素。 peek() – 返回队列首部的元素。 empty() – 返回队列是否为空。">
+  <meta name="description" content="来自Leetcode第232题用栈实现队列 使用栈实现队列的下列操作：  push(x) — 将一个元素放入队列的尾部。 pop() — 从队列首部移除元素。 peek() — 返回队列首部的元素。 empty() — 返回队列是否为空。">
 <meta name="keywords" content="Leetcode,栈">
 <meta property="og:type" content="article">
 <meta property="og:title" content="用栈实现队列">
 <meta property="og:url" content="http://yorxika.github.io/2020/02/11/用栈实现队列/index.html">
 <meta property="og:site_name" content="Nameless Site">
-<meta property="og:description" content="来自Leetcode第232题用栈实现队列 使用栈实现队列的下列操作：  push(x) – 将一个元素放入队列的尾部。 pop() – 从队列首部移除元素。 peek() – 返回队列首部的元素。 empty() – 返回队列是否为空。">
+<meta property="og:description" content="来自Leetcode第232题用栈实现队列 使用栈实现队列的下列操作：  push(x) — 将一个元素放入队列的尾部。 pop() — 从队列首部移除元素。 peek() — 返回队列首部的元素。 empty() — 返回队列是否为空。">
 <meta property="og:locale" content="en">
 <meta property="og:updated_time" content="2020-02-11T15:36:27.365Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="用栈实现队列">
-<meta name="twitter:description" content="来自Leetcode第232题用栈实现队列 使用栈实现队列的下列操作：  push(x) – 将一个元素放入队列的尾部。 pop() – 从队列首部移除元素。 peek() – 返回队列首部的元素。 empty() – 返回队列是否为空。">
+<meta name="twitter:description" content="来自Leetcode第232题用栈实现队列 使用栈实现队列的下列操作：  push(x) — 将一个元素放入队列的尾部。 pop() — 从队列首部移除元素。 peek() — 返回队列首部的元素。 empty() — 返回队列是否为空。">
 
 <link rel="canonical" href="http://yorxika.github.io/2020/02/11/用栈实现队列/">
 
@@ -268,40 +268,33 @@
         <p>来自Leetcode第232题用栈实现队列</p>
 <p>使用栈实现队列的下列操作：</p>
 <ul>
-<li>push(x) – 将一个元素放入队列的尾部。</li>
-<li>pop() – 从队列首部移除元素。</li>
-<li>peek() – 返回队列首部的元素。</li>
-<li>empty() – 返回队列是否为空。<a id="more"></a></li>
+<li>push(x) — 将一个元素放入队列的尾部。</li>
+<li>pop() — 从队列首部移除元素。</li>
+<li>peek() — 返回队列首部的元素。</li>
+<li>empty() — 返回队列是否为空。<a id="more"></a>
+<strong>示例:</strong></li>
 </ul>
-<p><strong>示例:</strong></p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">MyQueue <span class="built_in">queue</span> = <span class="keyword">new</span> MyQueue();</span><br><span class="line"></span><br><span class="line"><span class="built_in">queue</span>.push(<span class="number">1</span>);</span><br><span class="line"><span class="built_in">queue</span>.push(<span class="number">2</span>);  </span><br><span class="line"><span class="built_in">queue</span>.peek();  <span class="comment">// 返回 1</span></span><br><span class="line"><span class="built_in">queue</span>.pop();   <span class="comment">// 返回 1</span></span><br><span class="line"><span class="built_in">queue</span>.empty(); <span class="comment">// 返回 false</span></span><br></pre></td></tr></table></figure>
-
 <p><strong>说明:</strong></p>
 <ul>
-<li>你只能使用标准的栈操作 – 也就是只有 <code>push to top</code>, <code>peek/pop from top</code>, <code>size</code>, 和 <code>is empty</code> 操作是合法的。</li>
+<li>你只能使用标准的栈操作 — 也就是只有 <code>push to top</code>, <code>peek/pop from top</code>, <code>size</code>, 和 <code>is empty</code> 操作是合法的。</li>
 <li>你所使用的语言也许不支持栈。你可以使用 list 或者 deque（双端队列）来模拟一个栈，只要是标准的栈操作即可。</li>
 <li>假设所有操作都是有效的 （例如，一个空的队列不会调用 pop 或者 peek 操作）。</li>
 </ul>
 <hr>
 <h3 id="铁憨憨"><a href="#铁憨憨" class="headerlink" title="铁憨憨"></a>铁憨憨</h3><p>一开始想用1个栈实现队列，但是发现1个栈倒腾之后栈里元素的顺序会错乱，因而还是老老实实用了2个栈，一个用来压入元素，一个用来实现出队列。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyQueue</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    Stack&lt;Integer&gt; instack = <span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line">    Stack&lt;Integer&gt; outstack = <span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line">    <span class="comment">/** Initialize your data structure here. */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MyQueue</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/** Push element x to the back of queue. */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">push</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">while</span> (!outstack.empty())</span><br><span class="line">            instack.push(outstack.pop());</span><br><span class="line">        instack.push(x);</span><br><span class="line">        <span class="keyword">while</span> (!instack.empty())</span><br><span class="line">            outstack.push(instack.pop());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/** Removes the element from in front of queue and returns that element. */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">pop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> outstack.pop();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/** Get the front element. */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">peek</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> outstack.peek();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/** Returns whether the queue is empty. */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">empty</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> outstack.empty();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <h3 id="执行用时为-0-ms-的范例"><a href="#执行用时为-0-ms-的范例" class="headerlink" title="执行用时为 0 ms 的范例"></a>执行用时为 0 ms 的范例</h3><p>仔细看了看，这个范例8行，还得看题解的</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyQueue</span> </span>&#123;</span><br><span class="line">    Stack&lt;Integer&gt; s1, s2;</span><br><span class="line">    <span class="keyword">int</span> size = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> top = <span class="number">0</span>;</span><br><span class="line">    <span class="comment">/** Initialize your data structure here. */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MyQueue</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        s1 = <span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line">        s2 = <span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/** Push element x to the back of queue. */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">push</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">        s1.push(x);</span><br><span class="line">        <span class="keyword">if</span> (size == <span class="number">0</span>) top = x;</span><br><span class="line">        size ++;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/** Removes the element from in front of queue and returns that element. */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">pop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; size - <span class="number">1</span>; i ++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (i == size - <span class="number">2</span>) &#123;</span><br><span class="line">                top = s1.pop();</span><br><span class="line">                s2.push(top);</span><br><span class="line">            &#125; <span class="keyword">else</span> s2.push(s1.pop());</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> element = s1.pop();</span><br><span class="line">        size --;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; size; i ++) s1.push(s2.pop());</span><br><span class="line">        <span class="keyword">return</span> element;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/** Get the front element. */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">peek</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> top;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/** Returns whether the queue is empty. */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">empty</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> size == <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <h3 id="使用两个栈-入队-O-1-，出队-摊还复杂度-O-1"><a href="#使用两个栈-入队-O-1-，出队-摊还复杂度-O-1" class="headerlink" title="使用两个栈 入队 - O(1)，出队 - 摊还复杂度 O(1)"></a>使用两个栈 入队 - O(1)，出队 - 摊还复杂度 O(1)</h3><p>来自<a href="https://leetcode-cn.com/problems/implement-queue-using-stacks/solution/yong-zhan-shi-xian-dui-lie-by-leetcode/" target="_blank" rel="noopener">官方题解</a></p>
 <p>新元素总是压入 <code>s1</code> 的栈顶，同时我们会把 <code>s1</code> 中压入的第一个元素赋值给作为队首元素的 <code>front</code> 变量。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> Stack&lt;Integer&gt; s1 = <span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line"><span class="keyword">private</span> Stack&lt;Integer&gt; s2 = <span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line"></span><br><span class="line"><span class="comment">// Push element x to the back of queue.</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">push</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (s1.empty())</span><br><span class="line">        front = x;</span><br><span class="line">    s1.push(x);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <p>根据栈 <code>LIFO</code> 的特性，<code>s1</code> 中第一个压入的元素在栈底。为了弹出 <code>s1</code> 的栈底元素，我们得把 <code>s1</code> 中所有的元素全部弹出，再把它们压入到另一个栈 <code>s2</code> 中，这个操作会让元素的入栈顺序反转过来。通过这样的方式，<code>s1</code> 中栈底元素就变成了 <code>s2</code> 的栈顶元素，这样就可以直接从 <code>s2</code> 将它弹出了。一旦 <code>s2</code> 变空了，我们只需把 <code>s1</code> 中的元素再一次转移到 <code>s2</code> 就可以了。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Removes the element from in front of queue.</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">pop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (s2.isEmpty()) &#123;</span><br><span class="line">        <span class="keyword">while</span> (!s1.isEmpty())</span><br><span class="line">            s2.push(s1.pop());</span><br><span class="line">    &#125;</span><br><span class="line">    s2.pop();    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <p><code>s1</code> 和 <code>s2</code> 都存有队列的元素，所以只需要检查 <code>s1</code> 和 <code>s2</code> 是否都为空就可以了。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Return whether the queue is empty.</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">empty</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> s1.isEmpty() &amp;&amp; s2.isEmpty();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <p>我们定义了 <code>front</code> 变量来保存队首元素，每次 <code>入队</code> 操作我们都会随之更新这个变量。当 <code>s2</code> 为空，<code>front</code> 变量就是对首元素，当 <code>s2</code> 非空，<code>s2</code> 的栈顶元素就是队首元素。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Get the front element.</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">peek</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (!s2.isEmpty()) &#123;</span><br><span class="line">        <span class="keyword">return</span> s2.peek();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> front;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 
     </div>
 
@@ -422,7 +415,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">213</span>
+          <span class="site-state-item-count">215</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -483,13 +476,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="Symbols count total">584k</span>
+    <span title="Symbols count total">581k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">8:51</span>
-</div>
+    <span title="Reading time total">8:48</span>
+</div><script color="255,255,255" opacity="0.5" zIndex="-1" count="180" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
 
         
 
@@ -512,7 +505,6 @@
 <script src="/js/schemes/pisces.js"></script>
 <script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
 
-  <script defer src="/lib/three/three.min.js"></script>
 
 
   
@@ -541,6 +533,8 @@
 
 
 
+
+  
 
   
 

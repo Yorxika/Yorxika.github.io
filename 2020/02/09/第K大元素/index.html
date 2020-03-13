@@ -268,11 +268,8 @@
 
       
         <p>来自Leetcode第215题数组中的第K大元素</p>
-<p>在未排序的数组中找到第 <strong>k</strong> 个最大的元素。请注意，你需要找的是数组排序后的第 k 个最大的元素，而不是第 k 个不同的元素。</p>
-<a id="more"></a>
-<p><strong>示例 1:</strong></p>
+<p>在未排序的数组中找到第 <strong>k</strong> 个最大的元素。请注意，你需要找的是数组排序后的第 k 个最大的元素，而不是第 k 个不同的元素。<br><a id="more"></a><br><strong>示例 1:</strong></p>
 <figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: [<span class="number">3</span>,<span class="number">2</span>,<span class="number">1</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">4</span>] 和 k = <span class="number">2</span></span><br><span class="line">输出: <span class="number">5</span></span><br></pre></td></tr></table></figure>
-
 <hr>
 <h3 id="partition"><a href="#partition" class="headerlink" title="partition"></a>partition</h3><p>利用快速排序里的partition过程实现。<a href="https://leetcode-cn.com/problems/kth-largest-element-in-an-array/solution/partitionfen-er-zhi-zhi-you-xian-dui-lie-java-dai-/" target="_blank" rel="noopener">参考</a></p>
 <p>partition（切分）操作，使得：</p>
@@ -283,7 +280,6 @@
 </ul>
 <p><img src="/2020/02/09/第K大元素/65ec311c3e9792bb17e9c08cabd4a07f251c9cd65a011b6c5ffb54b46d8e5012-image.png" alt="image.png"></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> []nums;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Random ran = <span class="keyword">new</span> Random(System.currentTimeMillis());</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">findKthLargest</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> len = nums.length;</span><br><span class="line">        <span class="keyword">int</span> left = <span class="number">0</span>, right = len - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">int</span> target = len - k;</span><br><span class="line">        <span class="keyword">this</span>.nums = nums;</span><br><span class="line">        <span class="keyword">int</span> index;</span><br><span class="line">        <span class="keyword">while</span>(<span class="keyword">true</span>)&#123;</span><br><span class="line">            index = partition(left,right);</span><br><span class="line">            <span class="keyword">if</span>(index &lt; target)</span><br><span class="line">                left = index + <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(index &gt; target)</span><br><span class="line">                right = index - <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">this</span>.nums[index];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">int</span> <span class="title">partition</span><span class="params">(<span class="keyword">int</span> left,<span class="keyword">int</span> right)</span></span>&#123;</span><br><span class="line">        <span class="comment">//在区间随机选择一个点作为枢纽</span></span><br><span class="line">        <span class="keyword">if</span>(right &gt; left)&#123;</span><br><span class="line">            <span class="keyword">int</span> index = left + <span class="number">1</span> + ran.nextInt(right - left);</span><br><span class="line">            swap(left,index);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> pivot = nums[left];</span><br><span class="line">        <span class="keyword">int</span> j = left;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = left + <span class="number">1</span> ; i &lt;= right ; i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(<span class="keyword">this</span>.nums[i] &lt; pivot)&#123;</span><br><span class="line">                <span class="comment">//小于枢纽的交换位置</span></span><br><span class="line">                j++;</span><br><span class="line">                swap(j,i);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 在之前遍历的过程中，满足 [left + 1, j] &lt; pivot，并且 (j, i] &gt;= pivot</span></span><br><span class="line">        <span class="comment">// 交换以后 [left, j - 1] &lt; pivot, nums[j] = pivot, [j + 1, right] &gt;= pivot</span></span><br><span class="line">        swap(j,left);</span><br><span class="line">        <span class="keyword">return</span> j;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">swap</span><span class="params">(<span class="keyword">int</span> left,<span class="keyword">int</span> right)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> temp = <span class="keyword">this</span>.nums[left];</span><br><span class="line">        <span class="keyword">this</span>.nums[left] = <span class="keyword">this</span>.nums[right];</span><br><span class="line">        <span class="keyword">this</span>.nums[right] = temp;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
 <h3 id="优先队列"><a href="#优先队列" class="headerlink" title="优先队列"></a>优先队列</h3><p><a href="https://leetcode-cn.com/problems/kth-largest-element-in-an-array/solution/partitionfen-er-zhi-zhi-you-xian-dui-lie-java-dai-/" target="_blank" rel="noopener">参考</a></p>
 <p>优先队列的思路是很朴素的。因为第 <code>K</code> 大元素，其实就是整个数组排序以后后半部分最小的那个元素。因此，我们可以维护一个有 <code>K</code> 个元素的最小堆：</p>
 <p>1、如果当前堆不满，直接添加；</p>
@@ -414,7 +410,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">213</span>
+          <span class="site-state-item-count">215</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -475,13 +471,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="Symbols count total">584k</span>
+    <span title="Symbols count total">581k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">8:51</span>
-</div>
+    <span title="Reading time total">8:48</span>
+</div><script color="255,255,255" opacity="0.5" zIndex="-1" count="180" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
 
         
 
@@ -504,7 +500,6 @@
 <script src="/js/schemes/pisces.js"></script>
 <script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
 
-  <script defer src="/lib/three/three.min.js"></script>
 
 
   
@@ -533,6 +528,8 @@
 
 
 
+
+  
 
   
 

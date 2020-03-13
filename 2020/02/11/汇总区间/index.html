@@ -246,7 +246,7 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>657</span>
+              <span>687</span>
             </span>
             <span class="post-meta-item" title="Reading time">
               <span class="post-meta-item-icon">
@@ -266,35 +266,33 @@
 
       
         <p>来源Leetcode第228题汇总区间</p>
-<p>给定一个无重复元素的有序整数数组，返回数组区间范围的汇总。</p>
-<a id="more"></a>
-<p><strong>示例 1:</strong></p>
+<p>给定一个无重复元素的有序整数数组，返回数组区间范围的汇总。<br><a id="more"></a><br><strong>示例 1:</strong></p>
 <figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入: [<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">7</span>]</span><br><span class="line">输出: [<span class="string">"0-&gt;2"</span>,<span class="string">"4-&gt;5"</span>,<span class="string">"7"</span>]</span><br><span class="line">解释: <span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span> 可组成一个连续的区间; <span class="number">4</span>,<span class="number">5</span> 可组成一个连续的区间。</span><br></pre></td></tr></table></figure>
-
 <hr>
 <h3 id="双指针"><a href="#双指针" class="headerlink" title="双指针"></a>双指针</h3><p>用两个指针i,j，分别初始化为0,1，利用尾指针j一直向前寻找满足<code>nums[j] - nums[j - 1] == 1</code>的位置，当i,j之差≥2时，说明产生了区间合并，这时将nums[j - 1]加入String中即可。最后在结束时还要判断一下指针i的位置，如果在最尾，说明最后一个独立的不连续的元素没有添加。</p>
-<pre><code class="JAVA"><span class="function"><span class="keyword">public</span> List&lt;String&gt; <span class="title">summaryRanges</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>{
-    List&lt;String&gt; ans = <span class="keyword">new</span> ArrayList&lt;&gt;();
-    <span class="keyword">if</span>(nums.length == <span class="number">0</span> || nums == <span class="keyword">null</span>)
-        <span class="keyword">return</span> ans;
-    <span class="keyword">int</span> i = <span class="number">0</span> , j = <span class="number">1</span>;
-    <span class="keyword">while</span>(j &lt; nums.length){
-        <span class="keyword">while</span> (j &lt; nums.length &amp;&amp; nums[j] - nums[j - <span class="number">1</span>] == <span class="number">1</span>){
-            j++;
+<pre><code class="lang-JAVA">    public List&lt;String&gt; summaryRanges(int[] nums) {
+        List&lt;String&gt; ans = new ArrayList&lt;&gt;();
+        if(nums.length == 0 || nums == null)
+            return ans;
+        int i = 0 , j = 1;
+        while(j &lt; nums.length){
+            while (j &lt; nums.length &amp;&amp; nums[j] - nums[j - 1] == 1){
+                j++;
+            }
+            String tmp = &quot;&quot; + nums[i];
+            if(j - i &gt;= 2)
+                tmp += &quot;-&gt;&quot; + nums[j - 1];
+            ans.add(tmp);
+            i = j;
+            j = i + 1;
         }
-        String tmp = <span class="string">""</span> + nums[i];
-        <span class="keyword">if</span>(j - i &gt;= <span class="number">2</span>)
-            tmp += <span class="string">"-&gt;"</span> + nums[j - <span class="number">1</span>];
-        ans.add(tmp);
-        i = j;
-        j = i + <span class="number">1</span>;
+        if(i == nums.length - 1){
+            String tmp = &quot;&quot; + nums[i];
+            ans.add(tmp);
+        }
+        return ans;
     }
-    <span class="keyword">if</span>(i == nums.length - <span class="number">1</span>){
-        String tmp = <span class="string">""</span> + nums[i];
-        ans.add(tmp);
-    }
-    <span class="keyword">return</span> ans;
-}</code></pre>
+</code></pre>
 
     </div>
 
@@ -415,7 +413,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">213</span>
+          <span class="site-state-item-count">215</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -476,13 +474,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="Symbols count total">584k</span>
+    <span title="Symbols count total">581k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">8:51</span>
-</div>
+    <span title="Reading time total">8:48</span>
+</div><script color="255,255,255" opacity="0.5" zIndex="-1" count="180" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
 
         
 
@@ -505,7 +503,6 @@
 <script src="/js/schemes/pisces.js"></script>
 <script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
 
-  <script defer src="/lib/three/three.min.js"></script>
 
 
   
@@ -534,6 +531,8 @@
 
 
 
+
+  
 
   
 

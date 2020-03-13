@@ -265,17 +265,13 @@
 <p>给定一个二叉树，判断它是否是高度平衡的二叉树。</p>
 <p>本题中，一棵高度平衡二叉树定义为：</p>
 <blockquote>
-<p>一个二叉树<em>每个节点</em> 的左右两个子树的高度差的绝对值不超过1。</p>
+<p>一个二叉树<em>每个节点</em> 的左右两个子树的高度差的绝对值不超过1。<br><a id="more"></a><br><strong>示例 1:</strong></p>
 </blockquote>
-<a id="more"></a>
-<p><strong>示例 1:</strong></p>
 <p>给定二叉树 <code>[3,9,20,null,null,15,7]</code></p>
 <figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">  <span class="number">3</span></span><br><span class="line"> / \</span><br><span class="line"><span class="number">9</span>  <span class="number">20</span></span><br><span class="line">  /  \</span><br><span class="line"> <span class="number">15</span>   <span class="number">7</span></span><br></pre></td></tr></table></figure>
-
 <p>返回 <code>true</code> 。</p>
 <h3 id="自底向上的递归"><a href="#自底向上的递归" class="headerlink" title="自底向上的递归"></a>自底向上的递归</h3><p>这道题和求树的高度是一样的，只是在递归求解的时候需要判断树的左右高度是否是平衡的。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">boolean</span> flag = <span class="keyword">true</span>;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isBalanced</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(root == <span class="keyword">null</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    hlper(root);</span><br><span class="line">    <span class="keyword">return</span> flag;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">hlper</span><span class="params">(TreeNode root)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> height_l = <span class="number">0</span>,height_r = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">if</span>(root.left != <span class="keyword">null</span>)</span><br><span class="line">        height_l = <span class="number">1</span> + hlper(root.left);</span><br><span class="line">    <span class="keyword">if</span>(root.right != <span class="keyword">null</span>)</span><br><span class="line">        height_r = <span class="number">1</span> + hlper(root.right);</span><br><span class="line">    <span class="keyword">if</span>(Math.abs(height_l - height_r) &gt; <span class="number">1</span>)</span><br><span class="line">        flag = <span class="keyword">false</span>;</span><br><span class="line">    <span class="keyword">return</span> Math.max(height_l,height_r);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <h3 id="分支-限界"><a href="#分支-限界" class="headerlink" title="分支 - 限界"></a>分支 - 限界</h3><p>当递归求解出现左右子树高度相差大于1的情况时，记返回值为-1，这样遇到-1，就可以一路返回上一层，避免了多余的计算。<br>来自<a href="https://leetcode-cn.com/problems/balanced-binary-tree/solution/ti-qian-zu-duan-fa-gei-da-lao-de-xie-fa-xie-zhu-sh/" target="_blank" rel="noopener">题解</a></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isBalanced</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//-1 即为存在层数相差大于1</span></span><br><span class="line">		<span class="keyword">return</span> depth(root)!=-<span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * 以当前节点为根节点的树的层数</span></span><br><span class="line"><span class="comment">	 * 返回-1的话说明 不满足要求不用求了直接 -1 退出</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@param</span> root</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">depth</span><span class="params">(TreeNode root)</span></span>&#123;</span><br><span class="line">        <span class="comment">//当前节点不存在其层数为0</span></span><br><span class="line">		<span class="keyword">if</span>(root==<span class="keyword">null</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="comment">//获取左节点的层数</span></span><br><span class="line">		<span class="keyword">int</span> left = depth(root.left);</span><br><span class="line">        <span class="comment">//如果层数为-1直接截断</span></span><br><span class="line">		<span class="keyword">if</span>(left==-<span class="number">1</span>)<span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">        <span class="comment">//获取右节点的层数</span></span><br><span class="line">		<span class="keyword">int</span> right = depth(root.right);</span><br><span class="line">		<span class="comment">//如果层数为-1直接退出</span></span><br><span class="line">        <span class="keyword">if</span>(right==-<span class="number">1</span>)<span class="keyword">return</span>  -<span class="number">1</span>;</span><br><span class="line">		<span class="comment">//如果左右节点层数相差大于1 直接返回-1 否则返回真实层数</span></span><br><span class="line">        <span class="keyword">return</span> Math.abs(left-right)&lt;<span class="number">2</span>?Math.max(left,right)+<span class="number">1</span>:-<span class="number">1</span>;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
     </div>
@@ -397,7 +393,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">213</span>
+          <span class="site-state-item-count">215</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -458,13 +454,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="Symbols count total">584k</span>
+    <span title="Symbols count total">581k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">8:51</span>
-</div>
+    <span title="Reading time total">8:48</span>
+</div><script color="255,255,255" opacity="0.5" zIndex="-1" count="180" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
 
         
 
@@ -487,7 +483,6 @@
 <script src="/js/schemes/pisces.js"></script>
 <script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
 
-  <script defer src="/lib/three/three.min.js"></script>
 
 
   
@@ -516,6 +511,8 @@
 
 
 
+
+  
 
   
 

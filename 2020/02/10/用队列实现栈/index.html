@@ -22,18 +22,18 @@
     var CONFIG = {"hostname":"yorxika.github.io","root":"/","scheme":"Gemini","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="来自Leetcode第225题用队列实现栈 使用队列实现栈的下列操作：  push(x) – 元素 x 入栈 pop() – 移除栈顶元素 top() – 获取栈顶元素 empty() – 返回栈是否为空">
+  <meta name="description" content="来自Leetcode第225题用队列实现栈 使用队列实现栈的下列操作：  push(x) — 元素 x 入栈 pop() — 移除栈顶元素 top() — 获取栈顶元素 empty() — 返回栈是否为空">
 <meta name="keywords" content="Leetcode,栈">
 <meta property="og:type" content="article">
 <meta property="og:title" content="用队列实现栈">
 <meta property="og:url" content="http://yorxika.github.io/2020/02/10/用队列实现栈/index.html">
 <meta property="og:site_name" content="Nameless Site">
-<meta property="og:description" content="来自Leetcode第225题用队列实现栈 使用队列实现栈的下列操作：  push(x) – 元素 x 入栈 pop() – 移除栈顶元素 top() – 获取栈顶元素 empty() – 返回栈是否为空">
+<meta property="og:description" content="来自Leetcode第225题用队列实现栈 使用队列实现栈的下列操作：  push(x) — 元素 x 入栈 pop() — 移除栈顶元素 top() — 获取栈顶元素 empty() — 返回栈是否为空">
 <meta property="og:locale" content="en">
 <meta property="og:updated_time" content="2020-02-10T14:01:52.172Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="用队列实现栈">
-<meta name="twitter:description" content="来自Leetcode第225题用队列实现栈 使用队列实现栈的下列操作：  push(x) – 元素 x 入栈 pop() – 移除栈顶元素 top() – 获取栈顶元素 empty() – 返回栈是否为空">
+<meta name="twitter:description" content="来自Leetcode第225题用队列实现栈 使用队列实现栈的下列操作：  push(x) — 元素 x 入栈 pop() — 移除栈顶元素 top() — 获取栈顶元素 empty() — 返回栈是否为空">
 
 <link rel="canonical" href="http://yorxika.github.io/2020/02/10/用队列实现栈/">
 
@@ -268,51 +268,53 @@
         <p>来自Leetcode第225题用队列实现栈</p>
 <p>使用队列实现栈的下列操作：</p>
 <ul>
-<li>push(x) – 元素 x 入栈</li>
-<li>pop() – 移除栈顶元素</li>
-<li>top() – 获取栈顶元素</li>
-<li>empty() – 返回栈是否为空<a id="more"></a></li>
-</ul>
+<li>push(x) — 元素 x 入栈</li>
+<li>pop() — 移除栈顶元素</li>
+<li>top() — 获取栈顶元素</li>
+<li><p>empty() — 返回栈是否为空</p>
+<a id="more"></a>
 <p><strong>注意:</strong></p>
-<ul>
-<li>你只能使用队列的基本操作– 也就是 <code>push to back</code>, <code>peek/pop from front</code>, <code>size</code>, 和 <code>is empty</code> 这些操作是合法的。</li>
+</li>
+<li><p>你只能使用队列的基本操作— 也就是 <code>push to back</code>, <code>peek/pop from front</code>, <code>size</code>, 和 <code>is empty</code> 这些操作是合法的。</p>
+</li>
 <li>你所使用的语言也许不支持队列。 你可以使用 list 或者 deque（双端队列）来模拟一个队列 , 只要是标准的队列操作即可。</li>
 <li>你可以假设所有操作都是有效的（例如, 对一个空的栈不会调用 pop 或者 top 操作）。</li>
 </ul>
 <hr>
 <p>用一个链表实现，压栈时就先将元素压到队列尾，然后在依次移除队列里的元素，在添加到队列尾。</p>
-<pre><code class="JAVA"><span class="class"><span class="keyword">class</span> <span class="title">MyStack</span> </span>{
+<pre><code class="lang-JAVA">    class MyStack {
 
-    <span class="keyword">private</span> LinkedList&lt;Integer&gt; queue = <span class="keyword">new</span> LinkedList&lt;&gt;();
-    <span class="comment">/** Initialize your data structure here. */</span>
-    <span class="function"><span class="keyword">public</span> <span class="title">MyStack</span><span class="params">()</span> </span>{
-    }
+        private LinkedList&lt;Integer&gt; queue = new LinkedList&lt;&gt;();
+        /** Initialize your data structure here. */
+        public MyStack() {
+        }
 
-    <span class="comment">/** Push element x onto stack. */</span>
-    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">push</span><span class="params">(<span class="keyword">int</span> x)</span> </span>{
-        queue.add(x);
-        <span class="keyword">int</span> size = queue.size();
-        <span class="keyword">while</span>(size &gt; <span class="number">1</span>){
-            queue.add(queue.remove());  <span class="comment">//移动队首元素至队列尾，从而实现了后进先出</span>
-            size--;
+        /** Push element x onto stack. */
+        public void push(int x) {
+            queue.add(x);
+            int size = queue.size();
+            while(size &gt; 1){
+                queue.add(queue.remove());  //移动队首元素至队列尾，从而实现了后进先出
+                size--;
+            }
+        }
+
+        /** Removes the element on top of the stack and returns that element. */
+        public int pop() {
+            return queue.remove();
+        }
+
+        /** Get the top element. */
+        public int top() {
+            return queue.peek();
+        }
+
+        /** Returns whether the stack is empty. */
+        public boolean empty() {
+            return queue.isEmpty();
         }
     }
-
-    <span class="comment">/** Removes the element on top of the stack and returns that element. */</span>
-    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">pop</span><span class="params">()</span> </span>{
-        <span class="keyword">return</span> queue.remove();
-    }
-
-    <span class="comment">/** Get the top element. */</span>
-    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">top</span><span class="params">()</span> </span>{
-        <span class="keyword">return</span> queue.peek();
-    }
-
-    <span class="comment">/** Returns whether the stack is empty. */</span>
-    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">empty</span><span class="params">()</span> </span>{
-        <span class="keyword">return</span> queue.isEmpty();
-    }
-}</code></pre>
+</code></pre>
 
     </div>
 
@@ -432,7 +434,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">213</span>
+          <span class="site-state-item-count">215</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -493,13 +495,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="Symbols count total">584k</span>
+    <span title="Symbols count total">581k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">8:51</span>
-</div>
+    <span title="Reading time total">8:48</span>
+</div><script color="255,255,255" opacity="0.5" zIndex="-1" count="180" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
 
         
 
@@ -522,7 +524,6 @@
 <script src="/js/schemes/pisces.js"></script>
 <script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
 
-  <script defer src="/lib/three/three.min.js"></script>
 
 
   
@@ -551,6 +552,8 @@
 
 
 
+
+  
 
   
 

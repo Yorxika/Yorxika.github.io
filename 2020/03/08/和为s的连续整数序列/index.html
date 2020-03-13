@@ -267,11 +267,8 @@
       
         <p>来自Leetcode面试题57-II 和为s的连续整数序列</p>
 <p>输入一个正整数 <code>target</code> ，输出所有和为 <code>target</code> 的连续正整数序列（至少含有两个数）。</p>
-<p>序列内的数字由小到大排列，不同序列按照首个数字从小到大排列。</p>
-<a id="more"></a>
-<p><strong>示例 1：</strong></p>
+<p>序列内的数字由小到大排列，不同序列按照首个数字从小到大排列。<br><a id="more"></a><br><strong>示例 1：</strong></p>
 <figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：target = <span class="number">9</span></span><br><span class="line">输出：[[<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>],[<span class="number">4</span>,<span class="number">5</span>]]</span><br></pre></td></tr></table></figure>
-
 <hr>
 <h3 id="滑动窗口"><a href="#滑动窗口" class="headerlink" title="滑动窗口"></a>滑动窗口</h3><ul>
 <li>当窗口的和小于 <code>target</code> 的时候，窗口的和需要增加，所以要扩大窗口，窗口的右边界向右移动</li>
@@ -279,7 +276,6 @@
 <li>当窗口的和恰好等于 <code>target</code> 的时候，我们需要记录此时的结果。设此时的窗口为 [i, j)，那么我们已经找到了一个 i 开头的序列，也是唯一一个 i 开头的序列，接下来需要找 i+1开头的序列，所以窗口的左边界要向右移动</li>
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">int</span>[][] findContinuousSequence(<span class="keyword">int</span> target) &#123;</span><br><span class="line">    <span class="keyword">int</span> left = <span class="number">1</span>; <span class="comment">// 滑动窗口的左边界</span></span><br><span class="line">    <span class="keyword">int</span> right = <span class="number">1</span>; <span class="comment">// 滑动窗口的右边界</span></span><br><span class="line">    <span class="keyword">int</span> sum = <span class="number">0</span>; <span class="comment">// 滑动窗口中数字的和</span></span><br><span class="line">    List&lt;<span class="keyword">int</span>[]&gt; res = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (left &lt;= target / <span class="number">2</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> (sum &lt; target) &#123;</span><br><span class="line">            <span class="comment">// 右边界向右移动</span></span><br><span class="line">            sum += right;</span><br><span class="line">            right++;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (sum &gt; target) &#123;</span><br><span class="line">            <span class="comment">// 左边界向右移动</span></span><br><span class="line">            sum -= left;</span><br><span class="line">            left++;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="comment">// 记录结果</span></span><br><span class="line">            <span class="keyword">int</span>[] arr = <span class="keyword">new</span> <span class="keyword">int</span>[right-left];</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> k = left; k &lt; right; k++) &#123;</span><br><span class="line">                arr[k-left] = k;</span><br><span class="line">            &#125;</span><br><span class="line">            res.add(arr);</span><br><span class="line">            <span class="comment">// 左边界向右移动</span></span><br><span class="line">            sum -= left;</span><br><span class="line">            left++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> res.toArray(<span class="keyword">new</span> <span class="keyword">int</span>[res.size()][]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 
     </div>
 
@@ -320,7 +316,10 @@
     <a href="/2020/03/08/分糖果/" rel="prev" title="分糖果II">
       <i class="fa fa-chevron-left"></i> 分糖果II
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2020/03/13/字符串最大公因子/" rel="next" title="字符串最大公因子">
+      字符串最大公因子 <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -397,7 +396,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">213</span>
+          <span class="site-state-item-count">215</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -458,13 +457,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="Symbols count total">584k</span>
+    <span title="Symbols count total">581k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">8:51</span>
-</div>
+    <span title="Reading time total">8:48</span>
+</div><script color="255,255,255" opacity="0.5" zIndex="-1" count="180" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
 
         
 
@@ -487,7 +486,6 @@
 <script src="/js/schemes/pisces.js"></script>
 <script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
 
-  <script defer src="/lib/three/three.min.js"></script>
 
 
   
@@ -516,6 +514,8 @@
 
 
 
+
+  
 
   
 

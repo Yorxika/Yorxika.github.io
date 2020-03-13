@@ -269,13 +269,10 @@
       
         <p>来自Leetcode第235题二叉搜索树最近的公共祖先</p>
 <p>给定一个二叉搜索树, 找到该树中两个指定节点的最近公共祖先。</p>
-<p><a href="https://baike.baidu.com/item/最近公共祖先/8918834?fr=aladdin" target="_blank" rel="noopener">百度百科</a>中最近公共祖先的定义为：“对于有根树 T 的两个结点 p、q，最近公共祖先表示为一个结点 x，满足 x 是 p、q 的祖先且 x 的深度尽可能大（<strong>一个节点也可以是它自己的祖先</strong>）。”</p>
-<a id="more"></a>
-<p>例如，给定如下二叉搜索树: root = [6,2,8,0,4,7,9,null,null,3,5]</p>
+<p><a href="https://baike.baidu.com/item/最近公共祖先/8918834?fr=aladdin" target="_blank" rel="noopener">百度百科</a>中最近公共祖先的定义为：“对于有根树 T 的两个结点 p、q，最近公共祖先表示为一个结点 x，满足 x 是 p、q 的祖先且 x 的深度尽可能大（<strong>一个节点也可以是它自己的祖先</strong>）。”<br><a id="more"></a><br>例如，给定如下二叉搜索树: root = [6,2,8,0,4,7,9,null,null,3,5]</p>
 <p><img src="/2020/03/03/二叉搜索树最近的公共祖先/binarysearchtree_improved.png" alt="img"></p>
 <p><strong>示例 1:</strong></p>
 <figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入: root = [<span class="number">6</span>,<span class="number">2</span>,<span class="number">8</span>,<span class="number">0</span>,<span class="number">4</span>,<span class="number">7</span>,<span class="number">9</span>,<span class="literal">null</span>,<span class="literal">null</span>,<span class="number">3</span>,<span class="number">5</span>], p = <span class="number">2</span>, q = <span class="number">8</span></span><br><span class="line">输出: <span class="number">6</span> </span><br><span class="line">解释: 节点 <span class="number">2</span> 和节点 <span class="number">8</span> 的最近公共祖先是 <span class="number">6</span>。</span><br></pre></td></tr></table></figure>
-
 <hr>
 <h3 id="递归"><a href="#递归" class="headerlink" title="递归"></a>递归</h3><ol>
 <li>从根节点开始遍历树</li>
@@ -284,10 +281,8 @@
 <li>如果条件 2 和条件 3 都不成立，这就意味着我们已经找到节 p<em>p</em> 和节点 q<em>q</em> 的 LCA 了</li>
 </ol>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> TreeNode <span class="title">lowestCommonAncestor</span><span class="params">(TreeNode root, TreeNode p, TreeNode q)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> pval = p.val;</span><br><span class="line">    <span class="keyword">int</span> qval = q.val;</span><br><span class="line">    <span class="keyword">int</span> rval = root.val;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span>(pval &gt; rval &amp;&amp; qval &gt; rval)</span><br><span class="line">        <span class="keyword">return</span> lowestCommonAncestor(root.right,p,q);</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(pval &lt; rval &amp;&amp; qval &lt; rval)</span><br><span class="line">        <span class="keyword">return</span> lowestCommonAncestor(root.left,p,q);</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        <span class="keyword">return</span> root;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <h3 id="迭代"><a href="#迭代" class="headerlink" title="迭代"></a>迭代</h3><p>思路同上</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> TreeNode <span class="title">lowestCommonAncestor</span><span class="params">(TreeNode root, TreeNode p, TreeNode q)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> pval = p.val;</span><br><span class="line">    <span class="keyword">int</span> qval = q.val;</span><br><span class="line">    <span class="keyword">int</span> rval = root.val;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">while</span>(root != <span class="keyword">null</span>) &#123;</span><br><span class="line">        rval = root.val;</span><br><span class="line">        <span class="keyword">if</span> (pval &gt; rval &amp;&amp; qval &gt; rval)</span><br><span class="line">            <span class="comment">//return lowestCommonAncestor(root.right, p, q);</span></span><br><span class="line">            root = root.right;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (pval &lt; rval &amp;&amp; qval &lt; rval)</span><br><span class="line">            <span class="comment">//return lowestCommonAncestor(root.left, p, q);</span></span><br><span class="line">            root = root.left;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            <span class="keyword">return</span> root;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 
     </div>
 
@@ -407,7 +402,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">213</span>
+          <span class="site-state-item-count">215</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -468,13 +463,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="Symbols count total">584k</span>
+    <span title="Symbols count total">581k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">8:51</span>
-</div>
+    <span title="Reading time total">8:48</span>
+</div><script color="255,255,255" opacity="0.5" zIndex="-1" count="180" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
 
         
 
@@ -497,7 +492,6 @@
 <script src="/js/schemes/pisces.js"></script>
 <script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
 
-  <script defer src="/lib/three/three.min.js"></script>
 
 
   
@@ -526,6 +520,8 @@
 
 
 
+
+  
 
   
 

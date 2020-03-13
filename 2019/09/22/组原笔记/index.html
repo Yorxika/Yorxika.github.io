@@ -330,7 +330,7 @@
 </ul>
 </li>
 </ul>
-<p>例1 假设一台计算机主频为1GHZ，在其上运行由2105条指令组成的目标代码，程序主要由4类指令组成，他们所占的比例和各自的CPI如下表所示，求程序的CPI和MIPS。<br>|   指令类型    | CPI  | 指令比例 |<br>| :———–: | :–: | :——: |<br>|  算术和逻辑   |  1   |   60%    |<br>|  Load/Store   |  2   |   18%    |<br>|     转移      |  4   |   12%    |<br>| Cache缺失访存 |  8   |   10%    |</p>
+<p>例1 假设一台计算机主频为1GHZ，在其上运行由2105条指令组成的目标代码，程序主要由4类指令组成，他们所占的比例和各自的CPI如下表所示，求程序的CPI和MIPS。<br>|   指令类型    | CPI  | 指令比例 |<br>| :—————-: | :—: | :———: |<br>|  算术和逻辑   |  1   |   60%    |<br>|  Load/Store   |  2   |   18%    |<br>|     转移      |  4   |   12%    |<br>| Cache缺失访存 |  8   |   10%    |</p>
 <p>解：    CPI = 1*60% + 2*18% + 4*12% +8*10% = 2.24<br>     MIPS = f/(CPI * 10^6) = 1*10^9/ (2.24 *10^6 ) = 446.4</p>
 <p>MFLOPS   (Million Floating-Point Operations Per Second) </p>
 <ul>
@@ -344,9 +344,10 @@
 <p>CPU执行</p>
 <ul>
 <li>执行一段程序所需的时间<br>( CPU时间 + I/O时间 + 存储访问时间 + 各类排队时延等)</li>
-<li>CPU时间 = 程序中所有指令的时钟周期数之和 *  T<pre><code>=程序中所有指令的时钟周期数之和 / f</code></pre>CPU 时间  =   CPI  *  指令条数  *  时钟周期<br>CPU 时间  =   指令条数 / (MIPS * 10^6)</li>
+<li>CPU时间 = 程序中所有指令的时钟周期数之和 *  T<pre><code>   =程序中所有指令的时钟周期数之和 / f
+</code></pre>CPU 时间  =   CPI  *  指令条数  *  时钟周期<br>CPU 时间  =   指令条数 / (MIPS * 10^6)</li>
 </ul>
-<p>例1 假设一台计算机主频为1GHZ，在其上运行由2*10^5条指令组成的目标代码，程序主要由4类指令组成，他们所占的比例和各自的CPI如下表所示，求程序的CPI和MIPS，求程序执行时间？<br>| 指令类型      | CPI  | 指令混合比例 |<br>| ————- | —- | ———— |<br>| 算术和逻辑    | 1    | 60%          |<br>| Load/Store    | 2    | 18%          |<br>| 转移          | 4    | 12%          |<br>| Cache缺失访存 | 8    | 10%          |</p>
+<p>例1 假设一台计算机主频为1GHZ，在其上运行由2*10^5条指令组成的目标代码，程序主要由4类指令组成，他们所占的比例和各自的CPI如下表所示，求程序的CPI和MIPS，求程序执行时间？<br>| 指令类型      | CPI  | 指令混合比例 |<br>| ——————- | —— | —————— |<br>| 算术和逻辑    | 1    | 60%          |<br>| Load/Store    | 2    | 18%          |<br>| 转移          | 4    | 12%          |<br>| Cache缺失访存 | 8    | 10%          |</p>
 <p>CPI = 2.24<br>MIPS =  446.4<br>CPU时间 = 2 *10^5 * CPI / f  = (2 *10^5 * 2.24 / 10^9 ) = 4.48 *10^-4 (秒)<br>CPU时间 =  指令条数/MIPS*10^6 = 2 *10^5  / 446.44*10^6</p>
 <p>关键时间指标</p>
 <ul>
@@ -490,7 +491,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">213</span>
+          <span class="site-state-item-count">215</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -551,13 +552,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="Symbols count total">584k</span>
+    <span title="Symbols count total">581k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">8:51</span>
-</div>
+    <span title="Reading time total">8:48</span>
+</div><script color="255,255,255" opacity="0.5" zIndex="-1" count="180" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
 
         
 
@@ -580,7 +581,6 @@
 <script src="/js/schemes/pisces.js"></script>
 <script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
 
-  <script defer src="/lib/three/three.min.js"></script>
 
 
   
@@ -609,6 +609,8 @@
 
 
 
+
+  
 
   
 

@@ -275,17 +275,13 @@
 <blockquote>
 <p>给定一个包含红色、白色和蓝色，一共 n 个元素的数组，原地对它们进行排序，使得相同颜色的元素相邻，并按照红色、白色、蓝色顺序排列。</p>
 <p>此题中，我们使用整数 0、 1 和 2 分别表示红色、白色和蓝色。</p>
-<p>注意:<br>不能使用代码库中的排序函数来解决这道题。</p>
-<a id="more"></a>
-<p>示例:</p>
+<p>注意:<br>不能使用代码库中的排序函数来解决这道题。<br><a id="more"></a><br>示例:</p>
 <p>输入: [2,0,2,1,1,0]<br>输出: [0,0,1,1,2,2]</p>
 </blockquote>
 <hr>
 <h4 id="库函数"><a href="#库函数" class="headerlink" title="库函数"></a>库函数</h4><p>直接调用库函数<code>Arrays.sort(nums);</code>就完事了</p>
 <h4 id="2次遍历"><a href="#2次遍历" class="headerlink" title="2次遍历"></a>2次遍历</h4><p>一次遍历先统计3个球的总数，二次遍历重写数组</p>
-<p>代码如下:</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sortColors</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (nums.length == <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    <span class="keyword">int</span> nums0 = <span class="number">0</span>,nums1 = <span class="number">0</span>,nums2 = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span> ; i &lt; nums.length ; i ++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(nums[i] == <span class="number">0</span>)</span><br><span class="line">            nums0++;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(nums[i] == <span class="number">1</span>)</span><br><span class="line">            nums1++;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(nums[i] == <span class="number">2</span>)</span><br><span class="line">            nums2++;</span><br><span class="line">    &#125;</span><br><span class="line">    nums1 += nums0;</span><br><span class="line">    nums2 += nums1;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span> ; i &lt; nums.length ; i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(i &lt; nums0)</span><br><span class="line">            nums[i] = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(i &lt; nums1)</span><br><span class="line">            nums[i] = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            nums[i] = <span class="number">2</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<p>代码如下:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sortColors</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (nums.length == <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    <span class="keyword">int</span> nums0 = <span class="number">0</span>,nums1 = <span class="number">0</span>,nums2 = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span> ; i &lt; nums.length ; i ++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(nums[i] == <span class="number">0</span>)</span><br><span class="line">            nums0++;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(nums[i] == <span class="number">1</span>)</span><br><span class="line">            nums1++;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(nums[i] == <span class="number">2</span>)</span><br><span class="line">            nums2++;</span><br><span class="line">    &#125;</span><br><span class="line">    nums1 += nums0;</span><br><span class="line">    nums2 += nums1;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span> ; i &lt; nums.length ; i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(i &lt; nums0)</span><br><span class="line">            nums[i] = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(i &lt; nums1)</span><br><span class="line">            nums[i] = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            nums[i] = <span class="number">2</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <h4 id="双指针"><a href="#双指针" class="headerlink" title="双指针"></a>双指针</h4><p>用三个指针（p0, p2 和curr）来分别追踪0的最右边界，2的最左边界和当前考虑的元素。<br>沿着数组移动 curr 指针，若nums[curr] = 0，则将其与 nums[p0]互换；若 nums[curr] = 2 ，则与 nums[p2]互换。</p>
 <ul>
 <li>初始化0的最右边界：p0 = 0。在整个算法执行过程中 nums[idx &lt; p0] = 0.</li>
@@ -298,9 +294,7 @@
 </ul>
 </li>
 </ul>
-<p>代码如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sortColors</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">      <span class="keyword">if</span> (nums.length == <span class="number">0</span>)</span><br><span class="line">          <span class="keyword">return</span>;</span><br><span class="line">      <span class="keyword">int</span> p0 = <span class="number">0</span>;</span><br><span class="line"><span class="comment">//0的边界指针</span></span><br><span class="line">      <span class="keyword">int</span> p2 = nums.length-<span class="number">1</span>;</span><br><span class="line"><span class="comment">//2的边界指针</span></span><br><span class="line">      <span class="keyword">int</span> cur = <span class="number">0</span>;</span><br><span class="line"><span class="comment">//当前数组指针</span></span><br><span class="line">      <span class="keyword">while</span>(cur &lt;= p2)&#123;</span><br><span class="line"><span class="comment">//3种交换情况</span></span><br><span class="line">          <span class="keyword">if</span>(nums[cur] == <span class="number">0</span>)&#123;</span><br><span class="line">              <span class="keyword">int</span> tmp = nums[p0];</span><br><span class="line">              nums[p0++] = nums[cur];</span><br><span class="line">              nums[cur++] = tmp;</span><br><span class="line">          &#125;<span class="keyword">else</span> <span class="keyword">if</span>(nums[cur] == <span class="number">2</span>)&#123;</span><br><span class="line">              <span class="keyword">int</span> tmp = nums[p2];</span><br><span class="line">              nums[p2--] = nums[cur];</span><br><span class="line">              nums[cur] = tmp;</span><br><span class="line">          &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">              cur++;</span><br><span class="line">          &#125;</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
-
+<p>代码如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sortColors</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">      <span class="keyword">if</span> (nums.length == <span class="number">0</span>)</span><br><span class="line">          <span class="keyword">return</span>;</span><br><span class="line">      <span class="keyword">int</span> p0 = <span class="number">0</span>;</span><br><span class="line"><span class="comment">//0的边界指针</span></span><br><span class="line">      <span class="keyword">int</span> p2 = nums.length-<span class="number">1</span>;</span><br><span class="line"><span class="comment">//2的边界指针</span></span><br><span class="line">      <span class="keyword">int</span> cur = <span class="number">0</span>;</span><br><span class="line"><span class="comment">//当前数组指针</span></span><br><span class="line">      <span class="keyword">while</span>(cur &lt;= p2)&#123;</span><br><span class="line"><span class="comment">//3种交换情况</span></span><br><span class="line">          <span class="keyword">if</span>(nums[cur] == <span class="number">0</span>)&#123;</span><br><span class="line">              <span class="keyword">int</span> tmp = nums[p0];</span><br><span class="line">              nums[p0++] = nums[cur];</span><br><span class="line">              nums[cur++] = tmp;</span><br><span class="line">          &#125;<span class="keyword">else</span> <span class="keyword">if</span>(nums[cur] == <span class="number">2</span>)&#123;</span><br><span class="line">              <span class="keyword">int</span> tmp = nums[p2];</span><br><span class="line">              nums[p2--] = nums[cur];</span><br><span class="line">              nums[cur] = tmp;</span><br><span class="line">          &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">              cur++;</span><br><span class="line">          &#125;</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure></p>
 
     </div>
 
@@ -423,7 +417,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">213</span>
+          <span class="site-state-item-count">215</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -484,13 +478,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="Symbols count total">584k</span>
+    <span title="Symbols count total">581k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">8:51</span>
-</div>
+    <span title="Reading time total">8:48</span>
+</div><script color="255,255,255" opacity="0.5" zIndex="-1" count="180" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
 
         
 
@@ -513,7 +507,6 @@
 <script src="/js/schemes/pisces.js"></script>
 <script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
 
-  <script defer src="/lib/three/three.min.js"></script>
 
 
   
@@ -542,6 +535,8 @@
 
 
 
+
+  
 
   
 

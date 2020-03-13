@@ -270,17 +270,11 @@
 <li>空栈异常</li>
 <li>除数为0异常</li>
 </ul>
-<p>空指针异常的出错代码为：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">StatOfType E = <span class="keyword">new</span> StatOfType();</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">47</span>; i++) &#123;</span><br><span class="line">            </span><br><span class="line">            E.setNum(<span class="number">10</span>);</span><br><span class="line">            E.setTypeId(i+<span class="number">1</span>);</span><br><span class="line">            typeList.add(E);</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
-
+<p>空指针异常的出错代码为：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">StatOfType E = <span class="keyword">new</span> StatOfType();</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">47</span>; i++) &#123;</span><br><span class="line">            </span><br><span class="line">            E.setNum(<span class="number">10</span>);</span><br><span class="line">            E.setTypeId(i+<span class="number">1</span>);</span><br><span class="line">            typeList.add(E);</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure></p>
 <p>折磨了我一个下午之后，终于经过坤滨的提示找到了问题所在。<br>由于对象E是在循环外实例的，导致List里其实共享的是最后一个对象E的地址，于是List 在作为参数传参时，输出的都是最后一次修改的结果。<br>其次，由于对象E(StatOfType)类型初始时设置的id是0，这样在传参时，子函数在调用LitePal的find方法时会出错，返回一个空的List，所以也会导致空指针异常。</p>
-<p>空栈异常的出错代码为：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">aAns = (<span class="keyword">int</span>)CalExpression.executeExpression(aProblem);</span><br></pre></td></tr></table></figure>
-
+<p>空栈异常的出错代码为：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">aAns = (<span class="keyword">int</span>)CalExpression.executeExpression(aProblem);</span><br></pre></td></tr></table></figure></p>
 <p>原因是因为 aProblem 的 Num1 没有增加String.Valueof()，这个方法，导致计算时出现了空栈异常。</p>
-<p>除法异常的出错代码为：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> Integer <span class="title">GetRandomNum</span><span class="params">(<span class="keyword">int</span> min,<span class="keyword">int</span> max)</span></span>&#123;</span><br><span class="line">        Random random = <span class="keyword">new</span> Random();</span><br><span class="line">        <span class="comment">//return random.nextInt(max) % (max - min + 1) + min;</span></span><br><span class="line">        <span class="keyword">return</span> random.nextInt(max - min + <span class="number">1</span>) + min;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
+<p>除法异常的出错代码为：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> Integer <span class="title">GetRandomNum</span><span class="params">(<span class="keyword">int</span> min,<span class="keyword">int</span> max)</span></span>&#123;</span><br><span class="line">        Random random = <span class="keyword">new</span> Random();</span><br><span class="line">        <span class="comment">//return random.nextInt(max) % (max - min + 1) + min;</span></span><br><span class="line">        <span class="keyword">return</span> random.nextInt(max - min + <span class="number">1</span>) + min;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
 <p>除法异常出错的原因在于注释的那一句 <code>Javareturn random.nextInt(max) % (max - min + 1) + min;</code><br>max - min +1 存在可能为0的情况？但也不对，emmm反正就是这个改了就可以了<br>Random的nextInt()这个函数里对参数有要求&gt;=0。</p>
 
     </div>
@@ -401,7 +395,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">213</span>
+          <span class="site-state-item-count">215</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -462,13 +456,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="Symbols count total">584k</span>
+    <span title="Symbols count total">581k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">8:51</span>
-</div>
+    <span title="Reading time total">8:48</span>
+</div><script color="255,255,255" opacity="0.5" zIndex="-1" count="180" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
 
         
 
@@ -491,7 +485,6 @@
 <script src="/js/schemes/pisces.js"></script>
 <script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
 
-  <script defer src="/lib/three/three.min.js"></script>
 
 
   
@@ -520,6 +513,8 @@
 
 
 
+
+  
 
   
 

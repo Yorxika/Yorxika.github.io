@@ -267,14 +267,10 @@
       
         <p>来源Leetcode第106题从中序与后序遍历构造二叉树</p>
 <p>根据一棵树的中序遍历与后序遍历构造二叉树。</p>
-<p><strong>注意:</strong><br>你可以假设树中没有重复的元素。</p>
-<a id="more"></a>
-<p>例如，给出</p>
+<p><strong>注意:</strong><br>你可以假设树中没有重复的元素。<br><a id="more"></a><br>例如，给出</p>
 <figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">中序遍历 inorder = [<span class="number">9</span>,<span class="number">3</span>,<span class="number">15</span>,<span class="number">20</span>,<span class="number">7</span>]</span><br><span class="line">后序遍历 postorder = [<span class="number">9</span>,<span class="number">15</span>,<span class="number">7</span>,<span class="number">20</span>,<span class="number">3</span>]</span><br></pre></td></tr></table></figure>
-
 <p>返回如下的二叉树：</p>
 <figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">  <span class="number">3</span></span><br><span class="line"> / \</span><br><span class="line"><span class="number">9</span>  <span class="number">20</span></span><br><span class="line">  /  \</span><br><span class="line"> <span class="number">15</span>   <span class="number">7</span></span><br></pre></td></tr></table></figure>
-
 <hr>
 <h3 id="递归构造"><a href="#递归构造" class="headerlink" title="递归构造"></a>递归构造</h3><p>思路同上一题，先确定根节点，然后在中序遍历中找根节点的位置，然后分出左子树和右子树。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">HashMap&lt;Integer,Integer&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line"><span class="keyword">int</span> [] inorder,postorder;</span><br><span class="line"><span class="function"><span class="keyword">public</span> TreeNode <span class="title">buildTree</span><span class="params">(<span class="keyword">int</span>[] inorder, <span class="keyword">int</span>[] postorder)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span> ; i &lt; inorder.length ; i++)</span><br><span class="line">        map.put(inorder[i],i);</span><br><span class="line">    <span class="keyword">this</span>.inorder = inorder;</span><br><span class="line">    <span class="keyword">this</span>.postorder = postorder;</span><br><span class="line">    <span class="keyword">return</span> helper(<span class="number">0</span>,postorder.length,<span class="number">0</span>,inorder.length);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> TreeNode <span class="title">helper</span><span class="params">(<span class="keyword">int</span> p_start,<span class="keyword">int</span> p_end,<span class="keyword">int</span> i_start,<span class="keyword">int</span> i_end)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(p_start == p_end)</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    TreeNode root = <span class="keyword">new</span> TreeNode(<span class="keyword">this</span>.postorder[p_end - <span class="number">1</span>]);  <span class="comment">//构造根节点</span></span><br><span class="line">    <span class="keyword">int</span> i_root_index = <span class="keyword">this</span>.map.get(<span class="keyword">this</span>.postorder[p_end - <span class="number">1</span>]);  <span class="comment">//得到中序遍历根节点的位置</span></span><br><span class="line">    <span class="keyword">int</span> left = i_root_index - i_start;  <span class="comment">//这一块为根节点的左子树</span></span><br><span class="line">    root.left = helper(p_start , p_start + left,i_start,i_root_index);</span><br><span class="line">    root.right = helper(p_start + left,p_end - <span class="number">1</span>,i_root_index + <span class="number">1</span> , i_end);</span><br><span class="line">    <span class="keyword">return</span> root;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -397,7 +393,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">213</span>
+          <span class="site-state-item-count">215</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -458,13 +454,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="Symbols count total">584k</span>
+    <span title="Symbols count total">581k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">8:51</span>
-</div>
+    <span title="Reading time total">8:48</span>
+</div><script color="255,255,255" opacity="0.5" zIndex="-1" count="180" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
 
         
 
@@ -487,7 +483,6 @@
 <script src="/js/schemes/pisces.js"></script>
 <script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
 
-  <script defer src="/lib/three/three.min.js"></script>
 
 
   
@@ -516,6 +511,8 @@
 
 
 
+
+  
 
   
 

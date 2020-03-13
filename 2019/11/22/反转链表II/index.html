@@ -282,10 +282,8 @@
 <h4 id="憨批写法"><a href="#憨批写法" class="headerlink" title="憨批写法"></a>憨批写法</h4><p>写的时候没考虑到一些特殊条件，用了太多的if了判断特殊情况，但是用时0ms，击败了100% hhh</p>
 <p>思路就是找到要交换的部分，然后切开，交换那部分链表，在重新连接即可。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> ListNode <span class="title">reverseBetween</span><span class="params">(ListNode head, <span class="keyword">int</span> m, <span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(head == <span class="keyword">null</span> || head.next == <span class="keyword">null</span> || m ==<span class="number">1</span> &amp;&amp; n == <span class="number">1</span>)</span><br><span class="line">        <span class="keyword">return</span> head;</span><br><span class="line">    ListNode p1 = head;</span><br><span class="line">    <span class="keyword">int</span> i = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span>(i &lt; m - <span class="number">1</span>)&#123;</span><br><span class="line">        <span class="comment">//找到前一个结点</span></span><br><span class="line">        p1 = p1.next;</span><br><span class="line">        i++;</span><br><span class="line">    &#125;</span><br><span class="line">    ListNode p2 = p1.next;</span><br><span class="line">    i++;</span><br><span class="line">    <span class="keyword">while</span>(i &lt; n)&#123;</span><br><span class="line">        <span class="comment">//找到末尾结点</span></span><br><span class="line">        p2 = p2.next;</span><br><span class="line">        i++;</span><br><span class="line">    &#125;</span><br><span class="line">    ListNode newHead,newCur;</span><br><span class="line">    <span class="keyword">if</span>(m == <span class="number">1</span>)</span><br><span class="line">        newHead = head;</span><br><span class="line">    <span class="keyword">else</span> newHead = p1.next;</span><br><span class="line">    newCur = p2;</span><br><span class="line">    p2 = p2.next;</span><br><span class="line">    newCur.next = <span class="keyword">null</span>;</span><br><span class="line">    newCur = <span class="keyword">null</span>;</span><br><span class="line">    <span class="keyword">if</span>(m != <span class="number">1</span>)</span><br><span class="line">    p1.next = <span class="keyword">null</span>;</span><br><span class="line">    <span class="keyword">while</span>(newHead != <span class="keyword">null</span>)&#123;</span><br><span class="line">        ListNode temp = newHead.next;</span><br><span class="line">        newHead.next = newCur;</span><br><span class="line">        newCur = newHead;</span><br><span class="line">        newHead = temp;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(m == <span class="number">1</span>)</span><br><span class="line">        p1 = newCur;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        p1.next = newCur;</span><br><span class="line">    <span class="keyword">while</span>(newCur.next != <span class="keyword">null</span>)</span><br><span class="line">        newCur = newCur.next;</span><br><span class="line">    newCur.next = p2;</span><br><span class="line">    <span class="keyword">if</span>(m == <span class="number">1</span>)</span><br><span class="line">        <span class="keyword">return</span> p1;</span><br><span class="line">    <span class="keyword">return</span> head;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <h4 id="简洁"><a href="#简洁" class="headerlink" title="简洁"></a>简洁</h4><p>在<a href="https://leetcode-cn.com/problems/reverse-linked-list-ii/solution/zhao-dao-mhao-jie-dian-de-qian-yi-ge-jie-dian-zai-/" target="_blank" rel="noopener">题解</a>里找到了一个写的相对比较简洁的代码，思路大概是差不多的</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">    <span class="function"><span class="keyword">public</span> ListNode <span class="title">reverseBetween</span><span class="params">(ListNode head, <span class="keyword">int</span> m, <span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        ListNode tail = head;  <span class="comment">// tail 记录首个需要翻转的节点</span></span><br><span class="line">        ListNode pre = head;   <span class="comment">// pre 记录首个需要翻转的节点的前一个节点</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;m; ++i) <span class="comment">// 用 pre 记录翻转序列的前一个节点, tail 记录翻转序列的头一个节点</span></span><br><span class="line">        &#123;</span><br><span class="line">            pre = tail;</span><br><span class="line">            tail = tail.next;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        n -= m; <span class="comment">// 新的 n 记录需要翻转的次数</span></span><br><span class="line">        ListNode sub_head = tail;  <span class="comment">// 记录需翻转的字串的头节点</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span>(n-- != <span class="number">0</span>)&#123; <span class="comment">// 翻转子串</span></span><br><span class="line">            ListNode h = tail.next;</span><br><span class="line">            tail.next = h.next;</span><br><span class="line">            h.next = sub_head;</span><br><span class="line">            sub_head = h;</span><br><span class="line">            <span class="keyword">if</span>(m != <span class="number">1</span>) <span class="comment">// 若不是从第一个节点就开始翻转,则进行子串头节点的拼接操作</span></span><br><span class="line">                pre.next = sub_head;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(m != <span class="number">1</span>) <span class="comment">// 若不是从首节点开始翻转,直接返回原头结点</span></span><br><span class="line">            <span class="keyword">return</span> head;</span><br><span class="line">        <span class="keyword">return</span> sub_head; <span class="comment">// 否则表示从首节点开始翻转,返回新的头结点</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 
     </div>
 
@@ -406,7 +404,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">213</span>
+          <span class="site-state-item-count">215</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -467,13 +465,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="Symbols count total">584k</span>
+    <span title="Symbols count total">581k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">8:51</span>
-</div>
+    <span title="Reading time total">8:48</span>
+</div><script color="255,255,255" opacity="0.5" zIndex="-1" count="180" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
 
         
 
@@ -496,7 +494,6 @@
 <script src="/js/schemes/pisces.js"></script>
 <script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
 
-  <script defer src="/lib/three/three.min.js"></script>
 
 
   
@@ -525,6 +522,8 @@
 
 
 
+
+  
 
   
 

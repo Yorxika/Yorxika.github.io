@@ -275,13 +275,10 @@
       
         <p>来自Leetcode第236题二叉树最近的公共祖先</p>
 <p>给定一个二叉树, 找到该树中两个指定节点的最近公共祖先。</p>
-<p><a href="https://baike.baidu.com/item/最近公共祖先/8918834?fr=aladdin" target="_blank" rel="noopener">百度百科</a>中最近公共祖先的定义为：“对于有根树 T 的两个结点 p、q，最近公共祖先表示为一个结点 x，满足 x 是 p、q 的祖先且 x 的深度尽可能大（<strong>一个节点也可以是它自己的祖先</strong>）。”</p>
-<a id="more"></a>
-<p>例如，给定如下二叉树: root = [3,5,1,6,2,0,8,null,null,7,4]</p>
+<p><a href="https://baike.baidu.com/item/最近公共祖先/8918834?fr=aladdin" target="_blank" rel="noopener">百度百科</a>中最近公共祖先的定义为：“对于有根树 T 的两个结点 p、q，最近公共祖先表示为一个结点 x，满足 x 是 p、q 的祖先且 x 的深度尽可能大（<strong>一个节点也可以是它自己的祖先</strong>）。”<br><a id="more"></a><br>例如，给定如下二叉树: root = [3,5,1,6,2,0,8,null,null,7,4]</p>
 <p><img src="/2020/03/02/二叉树最近的公共祖先/binarytree.png" alt="img"></p>
 <p><strong>示例 1:</strong></p>
 <figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入: root = [<span class="number">3</span>,<span class="number">5</span>,<span class="number">1</span>,<span class="number">6</span>,<span class="number">2</span>,<span class="number">0</span>,<span class="number">8</span>,<span class="literal">null</span>,<span class="literal">null</span>,<span class="number">7</span>,<span class="number">4</span>], p = <span class="number">5</span>, q = <span class="number">1</span></span><br><span class="line">输出: <span class="number">3</span></span><br><span class="line">解释: 节点 <span class="number">5</span> 和节点 <span class="number">1</span> 的最近公共祖先是节点 <span class="number">3</span>。</span><br></pre></td></tr></table></figure>
-
 <hr>
 <h3 id="递归"><a href="#递归" class="headerlink" title="递归"></a>递归</h3><ul>
 <li>在左、右子树中分别查找是否包含p或q：</li>
@@ -290,7 +287,6 @@
 <li>如果右子树包含p和q，那么到root-&gt;right中继续查找，最近公共祖先在右子树里面</li>
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> TreeNode <span class="title">lowestCommonAncestor</span><span class="params">(TreeNode root, TreeNode p, TreeNode q)</span> </span>&#123;</span><br><span class="line">     <span class="keyword">if</span>(root == <span class="keyword">null</span> || root == p || root == q)</span><br><span class="line">         <span class="keyword">return</span> root;</span><br><span class="line">     TreeNode left = lowestCommonAncestor(root.left,p,q);</span><br><span class="line">     TreeNode right = lowestCommonAncestor(root.right,p,q);</span><br><span class="line">     <span class="keyword">if</span>(left == <span class="keyword">null</span>)</span><br><span class="line">         <span class="keyword">return</span> right;</span><br><span class="line">     <span class="keyword">if</span>(right == <span class="keyword">null</span>)</span><br><span class="line">         <span class="keyword">return</span> left;</span><br><span class="line">     <span class="keyword">return</span> root;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
-
 <p>来自<a href="https://leetcode-cn.com/problems/lowest-common-ancestor-of-a-binary-tree/solution/er-cha-shu-de-zui-jin-gong-gong-zu-xian-by-leetcod/" target="_blank" rel="noopener">官方题解</a>的解答</p>
 <p>先深度遍历改树。当你遇到节点 <code>p</code> 或 <code>q</code> 时，返回一些布尔标记。该标志有助于确定是否在任何路径中找到了所需的节点。最不常见的祖先将是两个子树递归都返回真标志的节点。它也可以是一个节点，它本身是<code>p</code>或<code>q</code>中的一个，对于这个节点,子树递归返回一个真标志。</p>
 <p><strong>算法：</strong></p>
@@ -301,7 +297,6 @@
 <li>如果在遍历的任何点上，左、右或中三个标志中的任意两个变为 <code>true</code>，这意味着我们找到了节点 <code>p</code> 和 <code>q</code> 的最近公共祖先。</li>
 </ol>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> TreeNode ans;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Solution</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">// Variable to store LCA node.</span></span><br><span class="line">        <span class="keyword">this</span>.ans = <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">boolean</span> <span class="title">recurseTree</span><span class="params">(TreeNode currentNode, TreeNode p, TreeNode q)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// If reached the end of a branch, return false.</span></span><br><span class="line">        <span class="keyword">if</span> (currentNode == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// Left Recursion. If left recursion returns true, set left = 1 else 0</span></span><br><span class="line">        <span class="keyword">int</span> left = <span class="keyword">this</span>.recurseTree(currentNode.left, p, q) ? <span class="number">1</span> : <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// Right Recursion</span></span><br><span class="line">        <span class="keyword">int</span> right = <span class="keyword">this</span>.recurseTree(currentNode.right, p, q) ? <span class="number">1</span> : <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// If the current node is one of p or q</span></span><br><span class="line">        <span class="keyword">int</span> mid = (currentNode == p || currentNode == q) ? <span class="number">1</span> : <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="comment">// If any two of the flags left, right or mid become True</span></span><br><span class="line">        <span class="keyword">if</span> (mid + left + right &gt;= <span class="number">2</span>) &#123;</span><br><span class="line">            <span class="keyword">this</span>.ans = currentNode;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// Return true if any one of the three bool values is True.</span></span><br><span class="line">        <span class="keyword">return</span> (mid + left + right &gt; <span class="number">0</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> TreeNode <span class="title">lowestCommonAncestor</span><span class="params">(TreeNode root, TreeNode p, TreeNode q)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// Traverse the tree</span></span><br><span class="line">        <span class="keyword">this</span>.recurseTree(root, p, q);</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <h3 id="使用父指针迭代"><a href="#使用父指针迭代" class="headerlink" title="使用父指针迭代"></a>使用父指针迭代</h3><p>还是来自官方题解</p>
 <p>如果每个节点都有父指针，那么我们可以从 <code>p</code> 和 <code>q</code> 返回以获取它们的祖先。在这个遍历过程中，我们得到的第一个公共节点是 LCA 节点。我们可以在遍历树时将父指针保存在字典中。</p>
 <p><strong>算法：</strong></p>
@@ -430,7 +425,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">213</span>
+          <span class="site-state-item-count">215</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -491,13 +486,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="Symbols count total">584k</span>
+    <span title="Symbols count total">581k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">8:51</span>
-</div>
+    <span title="Reading time total">8:48</span>
+</div><script color="255,255,255" opacity="0.5" zIndex="-1" count="180" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
 
         
 
@@ -520,7 +515,6 @@
 <script src="/js/schemes/pisces.js"></script>
 <script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
 
-  <script defer src="/lib/three/three.min.js"></script>
 
 
   
@@ -549,6 +543,8 @@
 
 
 
+
+  
 
   
 
