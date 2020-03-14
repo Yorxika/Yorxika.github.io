@@ -424,8 +424,8 @@ F(i)=\min_{j=0 \ldots n-1}{F(i -c_j)} + 1</script><p>其中 $c_j$代表的是第
       </categories>
       <tags>
         <tag>链表</tag>
-        <tag>双指针</tag>
         <tag>树</tag>
+        <tag>双指针</tag>
       </tags>
   </entry>
   <entry>
