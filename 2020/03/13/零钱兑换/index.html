@@ -613,6 +613,7 @@ F(i)=\min_{j=0 \ldots n-1}{F(i -c_j)} + 1</script><p>其中 $c_j$代表的是第
   
 
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+<script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.js"></script>
 
 <script>
 NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
@@ -623,7 +624,7 @@ NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
       repo        : 'blogtalk',
       owner       : 'Yorxika',
       admin       : ['Yorxika'],
-      id          : 'ceb591def63f3003e95013417682921c',
+      id          : md5(window.location.pathname),
         language: '',
       distractionFreeMode: true
     });

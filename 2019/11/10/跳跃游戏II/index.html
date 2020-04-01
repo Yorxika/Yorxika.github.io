@@ -520,6 +520,7 @@
   
 
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+<script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.js"></script>
 
 <script>
 NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
@@ -530,7 +531,7 @@ NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
       repo        : 'blogtalk',
       owner       : 'Yorxika',
       admin       : ['Yorxika'],
-      id          : '0c9eb5b1cb1263478638a933305e12a6',
+      id          : md5(window.location.pathname),
         language: '',
       distractionFreeMode: true
     });

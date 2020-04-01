@@ -773,6 +773,7 @@ x\*15  -&gt;  (x&lt;&lt;4) – x               乘法转换成了1次移位和1�
   
 
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+<script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.js"></script>
 
 <script>
 NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
@@ -783,7 +784,7 @@ NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
       repo        : 'blogtalk',
       owner       : 'Yorxika',
       admin       : ['Yorxika'],
-      id          : '78f1459e946e99f2d3e25cdad95e8f79',
+      id          : md5(window.location.pathname),
         language: '',
       distractionFreeMode: true
     });

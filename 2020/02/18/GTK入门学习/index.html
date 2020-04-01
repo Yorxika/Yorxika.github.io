@@ -708,6 +708,7 @@ gtk_window_new()</code>的功能创建一个窗口并返回这个窗口的控件
   
 
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+<script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.js"></script>
 
 <script>
 NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
@@ -718,7 +719,7 @@ NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
       repo        : 'blogtalk',
       owner       : 'Yorxika',
       admin       : ['Yorxika'],
-      id          : '81d9f40e5293b075002d531cb6f012e8',
+      id          : md5(window.location.pathname),
         language: '',
       distractionFreeMode: true
     });
