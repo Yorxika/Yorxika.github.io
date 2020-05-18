@@ -31,7 +31,7 @@
 <meta property="og:description" content="来自Leetcode第234题回文链表 请判断一个链表是否为回文链表。">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="http://yorxika.github.io/2020/02/12/回文链表/20170418111933837.jfif">
-<meta property="og:updated_time" content="2020-02-12T14:17:18.768Z">
+<meta property="og:updated_time" content="2020-04-13T08:35:56.238Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="回文链表">
 <meta name="twitter:description" content="来自Leetcode第234题回文链表 请判断一个链表是否为回文链表。">
@@ -140,6 +140,11 @@
     <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
 
   </li>
+        <li class="menu-item menu-item-links">
+
+    <a href="/links/" rel="section"><i class="fa fa-link fa-fw"></i>links</a>
+
+  </li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
         </a>
@@ -201,7 +206,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/touxiang.jpg">
-      <meta itemprop="name" content="Five">
+      <meta itemprop="name" content="HMF">
       <meta itemprop="description" content="To your valor, my sword, and our victory together.">
     </span>
 
@@ -219,10 +224,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2020-02-12 21:29:03 / Modified: 22:17:18" itemprop="dateCreated datePublished" datetime="2020-02-12T21:29:03+08:00">2020-02-12</time>
+              <time title="Created: 2020-02-12 21:29:03" itemprop="dateCreated datePublished" datetime="2020-02-12T21:29:03+08:00">2020-02-12</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-04-13 16:35:56" itemprop="dateModified" datetime="2020-04-13T16:35:56+08:00">2020-04-13</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -247,14 +258,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>2.2k</span>
+              <span>3k</span>
             </span>
             <span class="post-meta-item" title="Reading time">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>2 mins.</span>
+              <span>3 mins.</span>
             </span>
 
         </div>
@@ -279,7 +290,7 @@
 <p><img src="/2020/02/12/回文链表/20170418111933837.jfif" alt="img"></p>
 <p>high的值为127，low的值为-128，当进行这个方法时如果值在-128-127之间，返回的值也就是地址是相同的，因而用<code>!=</code>这个测试用例自然就过不了了。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isPalindrome</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(head == <span class="keyword">null</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    ListNode p1 = head;</span><br><span class="line">    LinkedList&lt;Integer&gt; ans = <span class="keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span>(p1 != <span class="keyword">null</span>)&#123;</span><br><span class="line">        ans.addLast(p1.val);</span><br><span class="line">        p1 = p1.next;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span>(ans.size() &gt; <span class="number">1</span>)&#123;</span><br><span class="line">        <span class="keyword">if</span>(!ans.removeFirst().equals(ans.removeLast()))</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="翻转链表比对"><a href="#翻转链表比对" class="headerlink" title="翻转链表比对"></a>翻转链表比对</h3><p>避免使用 O(n)<em>O</em>(<em>n</em>) 额外空间的方法就是改变输入。</p>
+<h3 id="翻转链表比对"><a href="#翻转链表比对" class="headerlink" title="翻转链表比对"></a>翻转链表比对</h3><p>避免使用 <em>O</em>(<em>n</em>) 额外空间的方法就是改变输入。</p>
 <p>我们可以将链表的后半部分反转（修改链表结构），然后将前半部分和后半部分进行比较。比较完成后我们应该将链表恢复原样。虽然不需要恢复也能通过测试用例，因为使用该函数的人不希望链表结构被更改。</p>
 <p><strong>算法：</strong></p>
 <p>我们可以分为以下几个步骤：</p>
@@ -302,25 +313,11 @@
 </li>
 </ol>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isPalindrome</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(head == <span class="keyword">null</span> || head.next == <span class="keyword">null</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        ListNode fast = head;</span><br><span class="line">        ListNode slow = head;</span><br><span class="line">        <span class="keyword">while</span>(fast.next != <span class="keyword">null</span> &amp;&amp; fast.next.next != <span class="keyword">null</span>)&#123;</span><br><span class="line">            slow = slow.next;</span><br><span class="line">            fast = fast.next.next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//从slow后面的链表逆序</span></span><br><span class="line">        ListNode node = slow.next;</span><br><span class="line">        ListNode curNode = node;</span><br><span class="line">        slow.next = <span class="keyword">null</span>;</span><br><span class="line">        ListNode pre = <span class="keyword">null</span>;</span><br><span class="line">        ListNode nextNode = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">while</span>(curNode != <span class="keyword">null</span>)&#123;</span><br><span class="line">            nextNode = curNode.next;</span><br><span class="line">            curNode.next = pre;</span><br><span class="line">            pre = curNode;</span><br><span class="line">            curNode = nextNode;</span><br><span class="line">        &#125;</span><br><span class="line">        ListNode temp = head;</span><br><span class="line">        <span class="keyword">boolean</span> flag = <span class="keyword">true</span>;</span><br><span class="line">        <span class="keyword">while</span>(pre != <span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="keyword">if</span>(temp.val != pre.val)&#123;</span><br><span class="line">                flag = <span class="keyword">false</span>;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            temp = temp.next;</span><br><span class="line">            pre = pre.next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> flag;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>补充一下快慢指针：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"> * public class ListNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     ListNode next;</span></span><br><span class="line"><span class="comment"> *     ListNode(int x) &#123; val = x; &#125;</span></span><br><span class="line"><span class="comment"> * &#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isPalindrome</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(head == <span class="keyword">null</span> || head.next == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        ListNode slow = head, fast = head;</span><br><span class="line">        ListNode pre = <span class="keyword">null</span>, temp;</span><br><span class="line">        <span class="comment">//在通过快慢双指针找中点的时候完成对前半部分链表的翻转</span></span><br><span class="line">        <span class="keyword">while</span>(fast != <span class="keyword">null</span> &amp;&amp; fast.next != <span class="keyword">null</span>) &#123;</span><br><span class="line">            fast = fast.next.next;</span><br><span class="line">            temp = slow.next;</span><br><span class="line">            slow.next = pre;</span><br><span class="line">            pre = slow;</span><br><span class="line">            slow = temp;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//此时slow就是中间节点</span></span><br><span class="line">        <span class="comment">//如果fast==null则是偶数节点，fast.next == null这是奇数</span></span><br><span class="line">        fast = fast == <span class="keyword">null</span> ? slow : slow.next;</span><br><span class="line">        slow = pre;</span><br><span class="line">        <span class="keyword">while</span>(fast != <span class="keyword">null</span> &amp;&amp; slow != <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span>(fast.val != slow.val) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            fast = fast.next;</span><br><span class="line">            slow = slow.next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <h3 id="数学方法"><a href="#数学方法" class="headerlink" title="数学方法"></a>数学方法</h3><p>从头到尾和从尾到头比对</p>
 <p><strong>equals 默认是比较地址的<br>但是string重写了equals方法，让他比较内容<br>stringbuffer和stringbuilder并没有重写equals方法，所以比较的是地址<br>只有string可以比较内容
 </strong></p>
-<pre><code class="lang-JAVA">        public boolean isPalindrome(ListNode head) {
-            if(head == null)
-                return true;
-            ListNode p1 = head;
-            StringBuilder s1 = new StringBuilder();
-            StringBuilder s2 = new StringBuilder();
-
-            while(p1 != null){
-                s1.append(p1.val);
-                s2.insert(0,p1.val);
-                p1 = p1.next;
-            }
-            return s1.toString().equals(s2.toString());
-        }
-</code></pre>
-
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isPalindrome</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(head == <span class="keyword">null</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    ListNode p1 = head;</span><br><span class="line">    StringBuilder s1 = <span class="keyword">new</span> StringBuilder();</span><br><span class="line">    StringBuilder s2 = <span class="keyword">new</span> StringBuilder();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span>(p1 != <span class="keyword">null</span>)&#123;</span><br><span class="line">        s1.append(p1.val);</span><br><span class="line">        s2.insert(<span class="number">0</span>,p1.val);</span><br><span class="line">        p1 = p1.next;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> s1.toString().equals(s2.toString());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
     </div>
 
     
@@ -331,7 +328,7 @@
 <div>
 <ul class="post-copyright">
   <li class="post-copyright-author">
-    <strong>Post author:  </strong>Five
+    <strong>Post author:  </strong>HMF
   </li>
   <li class="post-copyright-link">
     <strong>Post link: </strong>
@@ -429,9 +426,9 @@
 
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <img class="site-author-image" itemprop="image" alt="Five"
+    <img class="site-author-image" itemprop="image" alt="HMF"
       src="/images/touxiang.jpg">
-  <p class="site-author-name" itemprop="name">Five</p>
+  <p class="site-author-name" itemprop="name">HMF</p>
   <div class="site-description" itemprop="description">To your valor, my sword, and our victory together.</div>
 </div>
 <div class="site-state-wrap motion-element">
@@ -439,7 +436,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">227</span>
+          <span class="site-state-item-count">234</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -452,7 +449,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">64</span>
+        <span class="site-state-item-count">65</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -496,17 +493,17 @@
   <span class="with-love">
     <i class="user"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">Five</span>
+  <span class="author" itemprop="copyrightHolder">HMF</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">716k</span>
+    <span title="Symbols count total">736k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">10:51</span>
+    <span title="Reading time total">11:09</span>
 </div><script color="255,255,255" opacity="0.5" zIndex="-1" count="180" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
 
         

@@ -1,6 +1,202 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>和为K的子数组</title>
+    <url>/2020/05/18/%E5%92%8C%E4%B8%BAK%E7%9A%84%E5%AD%90%E6%95%B0%E7%BB%84/</url>
+    <content><![CDATA[<p>来自Leetcode第560题和为K的子数组</p>
+<p>给定一个整数数组和一个整数 <strong>k，</strong>你需要找到该数组中和为 <strong>k</strong> 的连续的子数组的个数。<br><a id="more"></a><br><strong>示例 1 :</strong></p>
+<figure class="highlight angelscript"><table><tr><td class="code"><pre><span class="line">输入:nums = [<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>], k = <span class="number">2</span></span><br><span class="line">输出: <span class="number">2</span> , [<span class="number">1</span>,<span class="number">1</span>] 与 [<span class="number">1</span>,<span class="number">1</span>] 为两种不同的情况。</span><br></pre></td></tr></table></figure>
+<h3 id="暴力遍历"><a href="#暴力遍历" class="headerlink" title="暴力遍历"></a>暴力遍历</h3><p>$O(n^2)$，但是要考虑负数的情况，因而不能当$result &gt; k$时就跳出循环。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">subarraySum</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; nums.length;i++)&#123;</span><br><span class="line">            <span class="keyword">int</span> result = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = i;j &lt; nums.length;j++)&#123;</span><br><span class="line">                result += nums[j];</span><br><span class="line">                <span class="keyword">if</span>(result == k)&#123;</span><br><span class="line">                    count++;</span><br><span class="line">                &#125;</span><br><span class="line">               <span class="comment">/* if(result &gt; k)</span></span><br><span class="line"><span class="comment">                break;*/</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> count;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="前缀和"><a href="#前缀和" class="headerlink" title="前缀和"></a>前缀和</h3><p>定义$pre[i]$为数组$[0..i]$里所有数的和，则有$pre[i] = pre[i-1] + nums[i]$<br>进而$[j…i]这个子数组的和为k$可以转化为$pre[i] - pre[j-1] == k $<br>进而有$pre[j-1] == pre[i]-k$<br>所以考虑以$i$结尾的和为$k$的连续子数组需要统计前缀和为$pre[i]-k 的 pre[j]$的出现次数。可以考虑用一个HashMap存储前缀和以及对应的出现次数，从左往右遍历一遍即可。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">subarraySum</span><span class="params">(<span class="keyword">int</span>[] nums ,<span class="keyword">int</span> k)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> cnt = <span class="number">0</span> ,preSum = <span class="number">0</span>;</span><br><span class="line">    HashMap&lt;Integer,Integer&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">    map.put(<span class="number">0</span>,<span class="number">1</span>);  <span class="comment">//特例</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span> ; i &lt; nums.length ; ++i)&#123;</span><br><span class="line">        preSum += nums[i];</span><br><span class="line">        <span class="keyword">if</span>(map.containsKey(preSum -k))&#123;</span><br><span class="line">            cnt += map.get(preSum - k);</span><br><span class="line">        &#125;</span><br><span class="line">        map.put(preSum,map.getOrDefault(preSum,<span class="number">0</span>)+<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> cnt;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="前缀和优化"><a href="#前缀和优化" class="headerlink" title="前缀和优化"></a>前缀和优化</h3><p>将$nums[i]$当作从$[0…i]$里所有数的前缀和，记录前缀和里的最大值最小值max,min,这样开始数组做HashMap时只需要$max - min + 1$大小的空间。<br>接下来就是对前缀和遍历，如果前缀和$nums[i]==k$，对应的计数就加一，如果$nums[i]-k&gt;=min \&amp;\&amp; nums[i]-k&lt;=max$说明$map[nums[i] - k - min]$也是满足上文中提到的$pre[j-1] == pre[i]-k$的例子，之所以要满足$nums[i]-k&gt;=min \&amp;\&amp; nums[i]-k&lt;=max$是为了避免越界。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">subarraySum</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(nums.length==<span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">int</span> max=nums[<span class="number">0</span>];</span><br><span class="line">	<span class="keyword">int</span> min=nums[<span class="number">0</span>];</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;nums.length;i++)&#123;</span><br><span class="line">		nums[i]+=nums[i-<span class="number">1</span>];</span><br><span class="line">		max=max&gt;nums[i]?max:nums[i];</span><br><span class="line">		min=min&lt;nums[i]?min:nums[i];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">int</span> count=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">int</span> map[]=<span class="keyword">new</span> <span class="keyword">int</span>[max-min+<span class="number">1</span>];</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;nums.length;i++)&#123;</span><br><span class="line">		<span class="keyword">if</span>(nums[i]==k)&#123;</span><br><span class="line">			count++;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span>(nums[i]-k&gt;=min&amp;&amp;nums[i]-k&lt;=max)&#123;</span><br><span class="line">    		count+=map[nums[i]-k-min];</span><br><span class="line">		&#125;</span><br><span class="line">		map[nums[i]-min]++;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> count;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>算法</category>
+        <category>Leetcode</category>
+        <category>数组</category>
+      </categories>
+      <tags>
+        <tag>数组</tag>
+        <tag>哈希表</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>统计优美子数组</title>
+    <url>/2020/05/10/%E7%BB%9F%E8%AE%A1%E4%BC%98%E7%BE%8E%E5%AD%90%E6%95%B0%E7%BB%84/</url>
+    <content><![CDATA[<p>来自Leetcode1248题统计优美子数组</p>
+<p>给你一个整数数组 <code>nums</code> 和一个整数 <code>k</code>。</p>
+<p>如果某个 <strong>连续</strong> 子数组中恰好有 <code>k</code> 个奇数数字，我们就认为这个子数组是「<strong>优美子数组</strong>」。</p>
+<p>请返回这个数组中「优美子数组」的数目。<br><a id="more"></a><br><strong>示例 1：</strong></p>
+<figure class="highlight angelscript"><table><tr><td class="code"><pre><span class="line">输入：nums = [<span class="number">1</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">1</span>,<span class="number">1</span>], k = <span class="number">3</span></span><br><span class="line">输出：<span class="number">2</span></span><br><span class="line">解释：包含 <span class="number">3</span> 个奇数的子数组是 [<span class="number">1</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">1</span>] 和 [<span class="number">1</span>,<span class="number">2</span>,<span class="number">1</span>,<span class="number">1</span>] 。</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="滑动窗口"><a href="#滑动窗口" class="headerlink" title="滑动窗口"></a>滑动窗口</h3><p>用一个辅助数组odd存放原数组nums里奇数位的下标，接着对odd数组遍历，取当前数值j(即原本nums数组里某奇数的下标为j)到其前一个奇数的距离（即odd[i] - odd[i-1]）乘上后k个奇数的下标以及他能拓展的长度。</p>
+<p>总的来说就是用数组存了2个指针，这2个指针刚好指向第一个奇数和第k个奇数，接下来再分别往前往后拓展，拓展相乘的结果就是当前k个连续奇数的可能情况，最后对所有结果再累加即可。<img src="/2020/05/10/统计优美子数组/c07fdee6a57f189e1ccd7aa1487f2ff76f2f392bfdbece516d4cc9e29df6a0b4-image.png" alt="image.png"></p>
+<p>图来自力扣<a href="https://leetcode-cn.com/problems/count-number-of-nice-subarrays/solution/java-hua-dong-chuang-kou-xiang-jie-zhi-xing-yong-s/" target="_blank" rel="noopener">题解</a></p>
+<p>将奇数的下标用数组储存，其中<strong>橘色部分为奇数出现的位置，蓝色部分标定数组的边界</strong>。对于每种子情形，其可能数为：(arr[i] - arr[i - 1]) * (arr[i + k] - arr[i + k - 1]),其中，左边界为−1，右边界为arr.length。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">numberOfSubarrays</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> k)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> len = nums.length;</span><br><span class="line">        <span class="keyword">int</span>[] odd = <span class="keyword">new</span> <span class="keyword">int</span>[len+<span class="number">2</span>];</span><br><span class="line">        <span class="keyword">int</span> ans = <span class="number">0</span> , cnt = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span> ; i &lt; len; ++i)&#123;</span><br><span class="line">            <span class="keyword">if</span>((nums[i] &amp; <span class="number">1</span>) == <span class="number">1</span>)</span><br><span class="line">                odd[++cnt] = i;</span><br><span class="line">        &#125;</span><br><span class="line">        odd[<span class="number">0</span>] = -<span class="number">1</span>;</span><br><span class="line">        odd[++cnt] = len;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span> ; i + k &lt;= cnt ; ++i)</span><br><span class="line">            ans += (odd[i] - odd[i-<span class="number">1</span>]) * (odd[i+k] - odd[i+k-<span class="number">1</span>]);</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="前缀和"><a href="#前缀和" class="headerlink" title="前缀和"></a>前缀和</h3><p>来自<a href="https://leetcode-cn.com/problems/count-number-of-nice-subarrays/solution/hua-dong-chuang-kou-qian-zhui-he-bi-xu-miao-dong-b/" target="_blank" rel="noopener">sweetiee</a></p>
+<ol>
+<li>计算前缀和数组 <code>arr</code>：遍历原数组，每遍历一个元素，计算当前的前缀和（即到当前元素为止，数组中有多少个奇数）；</li>
+<li>对上述前缀和数组，双重循环统计 <code>arr[j] - arr[i] == k</code> 的个数，这样做是 O(N^2)<em>O</em>(<em>N</em>2) 的（这里会超时哦）。</li>
+<li><strong>优化</strong>：因此，我们可以像「<a href="https://leetcode-cn.com/problems/two-sum/" target="_blank" rel="noopener">1. 两数之和</a>」那样使用 <code>HashMap</code> 优化到 <em>O</em>(<em>N</em>)，键是「前缀和」，值是「前缀和的个数」（下面代码中具体使用的是 <code>int[] prefixCnt</code> 数组，下标是「前缀和」，值是「前缀和的个数」），因此我们可以遍历原数组，每遍历到一个元素，计算当前的前缀和 <code>sum</code>，就在 <code>res</code> 中累加上前缀和为 <code>sum - k</code> 的个数。</li>
+<li>这里的前缀和指的是从0开始到当前元素这个区间的奇数的个数，所以两个前缀和的差就是两个元素之间的奇数的个数，我们要找的就是奇数个数为k的区间哈。prefixCnt数组是用来统计的是前缀和的个数，数组下标是前缀和，值是个数。如果当前的前缀数组的奇数个数为s2，那我们需要看有多少个前缀数组的奇数个数为 s1 = s2 - k 的，那么这些区间的奇数个数都是k，就累加到res中。</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">numberOfSubarrays</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 数组 prefixCnt 的下标是前缀和（即当前奇数的个数），值是前缀和的个数。</span></span><br><span class="line">        <span class="keyword">int</span>[] prefixCnt = <span class="keyword">new</span> <span class="keyword">int</span>[nums.length + <span class="number">1</span>];</span><br><span class="line">        prefixCnt[<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">        <span class="comment">// 遍历原数组，计算当前的前缀和，统计到 prefixCnt 数组中，</span></span><br><span class="line">        <span class="comment">// 并且在 res 中累加上与当前前缀和差值为 k 的前缀和的个数。</span></span><br><span class="line">        <span class="keyword">int</span> res = <span class="number">0</span>, sum = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> num: nums) &#123;</span><br><span class="line">            sum += num &amp; <span class="number">1</span>;</span><br><span class="line">            prefixCnt[sum]++;</span><br><span class="line">            <span class="keyword">if</span> (sum &gt;= k) &#123;  <span class="comment">//说明已经有k个奇数</span></span><br><span class="line">                res += prefixCnt[sum - k];</span><br><span class="line">            &#125;       </span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>算法</category>
+        <category>Leetcode</category>
+        <category>数组</category>
+      </categories>
+      <tags>
+        <tag>双指针</tag>
+        <tag>滑动窗口</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>数组中的逆序对</title>
+    <url>/2020/05/08/%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E9%80%86%E5%BA%8F%E5%AF%B9/</url>
+    <content><![CDATA[<p>来自Leetcode面试题51.数组中的逆序对</p>
+<p>在数组中的两个数字，如果前面一个数字大于后面的数字，则这两个数字组成一个逆序对。输入一个数组，求出这个数组中的逆序对的总数。<br><a id="more"></a><br><strong>示例 1:</strong></p>
+<figure class="highlight angelscript"><table><tr><td class="code"><pre><span class="line">输入: [<span class="number">7</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">4</span>]</span><br><span class="line">输出: <span class="number">5</span></span><br></pre></td></tr></table></figure>
+<h3 id="归并排序"><a href="#归并排序" class="headerlink" title="归并排序"></a>归并排序</h3><p>这题其实在算法导论里就有提到。</p>
+<p>以下内容来自<a href="https://leetcode-cn.com/problems/shu-zu-zhong-de-ni-xu-dui-lcof/solution/bao-li-jie-fa-fen-zhi-si-xiang-shu-zhuang-shu-zu-b/" target="_blank" rel="noopener">liweiwei</a></p>
+<ul>
+<li>利用「归并排序」计算逆序对，是非常经典的做法；</li>
+<li><strong>关键在于「合并两个有序数组」的步骤，利用数组的部分有序性</strong>，一下子计算出一个数之前或者之后元素的逆序的个数；</li>
+<li><strong>前面「分」的时候什么都不做，「合」的过程中计算「逆序对」的个数</strong>；</li>
+<li>「排序」的工作是必要的，正是因为「排序」才能在下一轮利用顺序关系加快逆序数的计算，也能避免重复计算；</li>
+<li>在代码实现上，只需要在「归并排序」代码的基础上，加上「逆序对」个数的计算，计算公式需要自己在草稿纸上推导。</li>
+</ul>
+<p>所有的「逆序对」来源于 3 个部分：</p>
+<ul>
+<li>左边区间的逆序对；</li>
+<li>右边区间的逆序对；</li>
+<li>横跨两个区间的逆序对。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">reversePairs</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> len = nums.length;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (len &lt; <span class="number">2</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span>[] copy = <span class="keyword">new</span> <span class="keyword">int</span>[len];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len; i++) &#123;</span><br><span class="line">            copy[i] = nums[i];</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span>[] temp = <span class="keyword">new</span> <span class="keyword">int</span>[len];</span><br><span class="line">        <span class="keyword">return</span> reversePairs(copy, <span class="number">0</span>, len - <span class="number">1</span>, temp);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * nums[left..right] 计算逆序对个数并且排序</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> nums</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> left</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> right</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> temp</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">int</span> <span class="title">reversePairs</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> left, <span class="keyword">int</span> right, <span class="keyword">int</span>[] temp)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (left == right) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> mid = left + (right - left) / <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">int</span> leftPairs = reversePairs(nums, left, mid, temp);</span><br><span class="line">        <span class="keyword">int</span> rightPairs = reversePairs(nums, mid + <span class="number">1</span>, right, temp);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 如果整个数组已经有序，则无需合并，注意这里使用小于等于</span></span><br><span class="line">        <span class="keyword">if</span> (nums[mid] &lt;= nums[mid + <span class="number">1</span>]) &#123;</span><br><span class="line">            <span class="keyword">return</span> leftPairs + rightPairs;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> crossPairs = mergeAndCount(nums, left, mid, right, temp);</span><br><span class="line">        <span class="keyword">return</span> leftPairs + rightPairs + crossPairs;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * nums[left..mid] 有序，nums[mid + 1..right] 有序</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> nums</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> left</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> mid</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> right</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> temp</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">int</span> <span class="title">mergeAndCount</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> left, <span class="keyword">int</span> mid, <span class="keyword">int</span> right, <span class="keyword">int</span>[] temp)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = left; i &lt;= right; i++) &#123;</span><br><span class="line">            temp[i] = nums[i];</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> i = left;</span><br><span class="line">        <span class="keyword">int</span> j = mid + <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> k = left; k &lt;= right; k++) &#123;</span><br><span class="line">            <span class="comment">// 有下标访问，得先判断是否越界</span></span><br><span class="line">            <span class="keyword">if</span> (i == mid + <span class="number">1</span>) &#123;</span><br><span class="line">                nums[k] = temp[j];</span><br><span class="line">                j++;</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (j == right + <span class="number">1</span>) &#123;</span><br><span class="line">                nums[k] = temp[i];</span><br><span class="line">                i++;</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (temp[i] &lt;= temp[j]) &#123;</span><br><span class="line">                <span class="comment">// 注意：这里是 &lt;= ，写成 &lt; 就不对，请思考原因</span></span><br><span class="line">                nums[k] = temp[i];</span><br><span class="line">                i++;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                nums[k] = temp[j];</span><br><span class="line">                j++;</span><br><span class="line">                </span><br><span class="line">                <span class="comment">// 在 j 指向的元素归并回去的时候，计算逆序对的个数，只多了这一行代码</span></span><br><span class="line">                count += (mid - i + <span class="number">1</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> count;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>算法</category>
+        <category>Leetcode</category>
+        <category>数学</category>
+      </categories>
+      <tags>
+        <tag>数学</tag>
+        <tag>归并排序</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>最低票价</title>
+    <url>/2020/05/08/%E6%9C%80%E4%BD%8E%E7%A5%A8%E4%BB%B7/</url>
+    <content><![CDATA[<p>来自Leetcode第983题最低票价</p>
+<p>在一个火车旅行很受欢迎的国度，你提前一年计划了一些火车旅行。在接下来的一年里，你要旅行的日子将以一个名为 <code>days</code> 的数组给出。每一项是一个从 <code>1</code> 到 <code>365</code> 的整数。</p>
+<p>火车票有三种不同的销售方式：</p>
+<ul>
+<li>一张为期一天的通行证售价为 <code>costs[0]</code> 美元；</li>
+<li>一张为期七天的通行证售价为 <code>costs[1]</code> 美元；</li>
+<li>一张为期三十天的通行证售价为 <code>costs[2]</code> 美元。</li>
+</ul>
+<p>通行证允许数天无限制的旅行。 例如，如果我们在第 2 天获得一张为期 7 天的通行证，那么我们可以连着旅行 7 天：第 2 天、第 3 天、第 4 天、第 5 天、第 6 天、第 7 天和第 8 天。</p>
+<p>返回你想要完成在给定的列表 <code>days</code> 中列出的每一天的旅行所需要的最低消费。<br><a id="more"></a></p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight angelscript"><table><tr><td class="code"><pre><span class="line">输入：days = [<span class="number">1</span>,<span class="number">4</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">20</span>], costs = [<span class="number">2</span>,<span class="number">7</span>,<span class="number">15</span>]</span><br><span class="line">输出：<span class="number">11</span></span><br><span class="line">解释： </span><br><span class="line">例如，这里有一种购买通行证的方法，可以让你完成你的旅行计划：</span><br><span class="line">在第 <span class="number">1</span> 天，你花了 costs[<span class="number">0</span>] = $<span class="number">2</span> 买了一张为期 <span class="number">1</span> 天的通行证，它将在第 <span class="number">1</span> 天生效。</span><br><span class="line">在第 <span class="number">3</span> 天，你花了 costs[<span class="number">1</span>] = $<span class="number">7</span> 买了一张为期 <span class="number">7</span> 天的通行证，它将在第 <span class="number">3</span>, <span class="number">4</span>, ..., <span class="number">9</span> 天生效。</span><br><span class="line">在第 <span class="number">20</span> 天，你花了 costs[<span class="number">0</span>] = $<span class="number">2</span> 买了一张为期 <span class="number">1</span> 天的通行证，它将在第 <span class="number">20</span> 天生效。</span><br><span class="line">你总共花了 $<span class="number">11</span>，并完成了你计划的每一天旅行。</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="动态规划-从后往前"><a href="#动态规划-从后往前" class="headerlink" title="动态规划(从后往前)"></a>动态规划(从后往前)</h3><p>记dp[i]为第i天所花费的最小金额，那么dpn[i]的取值有3种情况：</p>
+<ul>
+<li>买一天期，后面的不包n</li>
+<li>买七天期，包到第 <code>n + 7 - 1</code> 天，第 <code>n + 7</code> 天往后的不包</li>
+<li>买三十天期，包到第 <code>n + 30 - 1</code> 天，第 <code>n + 30</code> 天往后的不包</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">dp[i] = min(决策<span class="number">1</span>, 决策<span class="number">2</span>, 决策<span class="number">3</span>);</span><br><span class="line">      = min(c[<span class="number">0</span>] + <span class="number">1</span>天后不包, c[<span class="number">1</span>] + <span class="number">7</span>天后不包, c[<span class="number">2</span>] + <span class="number">30</span>天不包);</span><br><span class="line">      = min(c[<span class="number">0</span>] + dp[i + <span class="number">1</span>], c[<span class="number">1</span>] + dp[i + <span class="number">7</span>], c[<span class="number">2</span>] + dp[i + <span class="number">30</span>]);</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">mincostTickets</span><span class="params">(<span class="keyword">int</span>[] days, <span class="keyword">int</span>[] costs)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> len = days.length, maxDay = days[len - <span class="number">1</span>], minDay = days[<span class="number">0</span>];</span><br><span class="line">        <span class="keyword">int</span>[] dp = <span class="keyword">new</span> <span class="keyword">int</span>[maxDay + <span class="number">31</span>]; <span class="comment">// 多扩几天，省得判断 365 的限制</span></span><br><span class="line">        <span class="comment">// 只需看 maxDay -&gt; minDay，此区间外都不需要出门，不会增加费用</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> d = maxDay, i = len - <span class="number">1</span>; d &gt;= minDay; d--) &#123;</span><br><span class="line">            <span class="comment">// i 表示 days 的索引</span></span><br><span class="line">            <span class="comment">// 也可提前将所有 days 放入 Set，再通过 set.contains() 判断</span></span><br><span class="line">            <span class="keyword">if</span> (d == days[i]) &#123;</span><br><span class="line">                dp[d] = Math.min(dp[d + <span class="number">1</span>] + costs[<span class="number">0</span>], dp[d + <span class="number">7</span>] + costs[<span class="number">1</span>]);</span><br><span class="line">                dp[d] = Math.min(dp[d], dp[d + <span class="number">30</span>] + costs[<span class="number">2</span>]);</span><br><span class="line">                i--; <span class="comment">// 别忘了递减一天</span></span><br><span class="line">            &#125; <span class="keyword">else</span> dp[d] = dp[d + <span class="number">1</span>]; <span class="comment">// 不需要出门</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> dp[minDay]; <span class="comment">// 从后向前遍历，返回最前的 minDay</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="动态规划-从前往后"><a href="#动态规划-从前往后" class="headerlink" title="动态规划(从前往后)"></a>动态规划(从前往后)</h3><p>思路同上</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">mincostTickets</span><span class="params">(<span class="keyword">int</span>[] days, <span class="keyword">int</span>[] costs)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> len = days.length;</span><br><span class="line">    <span class="keyword">int</span> lastDay = days[len-<span class="number">1</span>];</span><br><span class="line">    <span class="keyword">int</span>[] dp = <span class="keyword">new</span> <span class="keyword">int</span>[lastDay+<span class="number">1</span>];  <span class="comment">//dp[i]表示第i天的花费</span></span><br><span class="line">    <span class="keyword">int</span> cursor = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> temp1,temp2,temp3;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span> ; i &lt;= lastDay ; ++i)&#123;</span><br><span class="line">        <span class="keyword">if</span>(i == days[cursor])&#123;</span><br><span class="line">            temp1 = i - <span class="number">1</span>;</span><br><span class="line">            temp2 = Math.max(i - <span class="number">7</span>, <span class="number">0</span>);</span><br><span class="line">            temp3 = Math.max(i - <span class="number">30</span>, <span class="number">0</span>);</span><br><span class="line">            <span class="comment">//枚举当前花费的情况</span></span><br><span class="line">            dp[i] = Math.min(Math.min(dp[temp1]+costs[<span class="number">0</span>],dp[temp2]+costs[<span class="number">1</span>]),dp[temp3]+costs[<span class="number">2</span>]);</span><br><span class="line">            ++cursor;</span><br><span class="line">        &#125;<span class="keyword">else</span></span><br><span class="line">            dp[i] = dp[i-<span class="number">1</span>];  <span class="comment">//第0天花费肯定为0</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> dp[lastDay];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>算法</category>
+        <category>Leetcode</category>
+        <category>数组</category>
+      </categories>
+      <tags>
+        <tag>动态规划</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>01矩阵</title>
+    <url>/2020/04/19/01%E7%9F%A9%E9%98%B5/</url>
+    <content><![CDATA[<p>来自Leetcode第542题01矩阵</p>
+<p>给定一个由 0 和 1 组成的矩阵，找出每个元素到最近的 0 的距离。</p>
+<p>两个相邻元素间的距离为 1 。<br><a id="more"></a><br><strong>示例 2:</strong><br>输入:</p>
+<figure class="highlight basic"><table><tr><td class="code"><pre><span class="line"><span class="symbol">0 </span><span class="number">0</span> <span class="number">0</span></span><br><span class="line"><span class="symbol">0 </span><span class="number">1</span> <span class="number">0</span></span><br><span class="line"><span class="symbol">1 </span><span class="number">1</span> <span class="number">1</span></span><br></pre></td></tr></table></figure>
+<p>输出:</p>
+<figure class="highlight basic"><table><tr><td class="code"><pre><span class="line"><span class="symbol">0 </span><span class="number">0</span> <span class="number">0</span></span><br><span class="line"><span class="symbol">0 </span><span class="number">1</span> <span class="number">0</span></span><br><span class="line"><span class="symbol">1 </span><span class="number">2</span> <span class="number">1</span></span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="BFS"><a href="#BFS" class="headerlink" title="BFS"></a>BFS</h3><p>首先把每个源点 0 入队，然后从各个 0 <strong>同时开始</strong>一圈一圈的向 1 扩散（每个 1 都是被离它最近的 0 扩散到的 ），扩散的时候可以设置 <code>boolean[][] visited</code> 标志是否访问过。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">int</span>[][] updateMatrix(<span class="keyword">int</span>[][] matrix) &#123;</span><br><span class="line">    <span class="keyword">int</span> row = matrix.length,col = matrix[<span class="number">0</span>].length;</span><br><span class="line">    Queue&lt;<span class="keyword">int</span>[]&gt; queue = <span class="keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line">    <span class="keyword">boolean</span>[][] seen = <span class="keyword">new</span> <span class="keyword">boolean</span>[row][col];</span><br><span class="line">    <span class="keyword">int</span>[][] d = &#123;&#123;-<span class="number">1</span>, <span class="number">0</span>&#125;, &#123;<span class="number">1</span>, <span class="number">0</span>&#125;, &#123;<span class="number">0</span>, -<span class="number">1</span>&#125;, &#123;<span class="number">0</span>, <span class="number">1</span>&#125;&#125;;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span> ; i &lt; row ; ++i)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span> ; j &lt; col ; ++j)&#123;</span><br><span class="line">            <span class="keyword">if</span>(matrix[i][j] == <span class="number">0</span>)&#123;</span><br><span class="line">                seen[i][j] = <span class="keyword">true</span>;</span><br><span class="line">                queue.add(<span class="keyword">new</span> <span class="keyword">int</span>[]&#123;i,j&#125;);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span>[] tmp;</span><br><span class="line">    <span class="keyword">int</span> dx,dy;</span><br><span class="line">    <span class="keyword">while</span> (!queue.isEmpty())&#123;</span><br><span class="line">        tmp = queue.poll();</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> k = <span class="number">0</span> ; k &lt; <span class="number">4</span> ; ++k)&#123;</span><br><span class="line">            dx = tmp[<span class="number">0</span>]+d[k][<span class="number">0</span>];</span><br><span class="line">            dy = tmp[<span class="number">1</span>]+d[k][<span class="number">1</span>];</span><br><span class="line">            <span class="keyword">if</span>(dx &gt;= <span class="number">0</span> &amp;&amp; dx &lt; row &amp;&amp; dy &gt;= <span class="number">0</span> &amp;&amp; dy &lt; col &amp;&amp; !seen[dx][dy])&#123;</span><br><span class="line">                matrix[dx][dy] = matrix[tmp[<span class="number">0</span>]][tmp[<span class="number">1</span>]] + <span class="number">1</span>;</span><br><span class="line">                queue.offer(<span class="keyword">new</span> <span class="keyword">int</span>[]&#123;dx,dy&#125;);</span><br><span class="line">                seen[dx][dy] = <span class="keyword">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> matrix;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="动态规划"><a href="#动态规划" class="headerlink" title="动态规划"></a>动态规划</h3><p>用dp[i][j]表示该位置距离最近的0的距离，则<code>dp[i][j] = 1+min(dp[i-1][j],dp[i][j-1],dp[i+1][j],dp[i][j+1]) if matrix[i][j] == 1</code></p>
+<p>尝试将问题分解：</p>
+<ol>
+<li>距离 (i, j) 最近的 0 的位置，是在其 「左上，右上，左下，右下」4个方向之一；</li>
+<li>因此我们分别从四个角开始递推，就分别得到了位于「左上方、右上方、左下方、右下方」距离 (i, j)的最近的 0 的距离，取 min即可；</li>
+<li>通过上两步思路，我们可以很容易的写出 4 个双重 for循环，动态规划的解法写到这一步其实已经完全 OK 了；</li>
+<li>如果第三步还不满足的话，从四个角开始的4次递推，其实还可以优化成从任一组对角开始的2次递推，比如只写从左上角、右下角开始递推就行了。</li>
+</ol>
+<p>对dp数组初始化时不能将其设置为0X7FFFFFFF，不然+1就会溢出，变成-2147483647.</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">int</span>[][] updateMatrix(<span class="keyword">int</span>[][] matrix) &#123;</span><br><span class="line">    <span class="keyword">int</span> row = matrix.length,col = matrix[<span class="number">0</span>].length;</span><br><span class="line">    <span class="keyword">int</span>[][] dp = <span class="keyword">new</span> <span class="keyword">int</span>[row][col];</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span> ; i &lt; row ; ++i)</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span> ; j &lt; col ; ++j)</span><br><span class="line">            dp[i][j] = matrix[i][j] == <span class="number">0</span> ? <span class="number">0</span> : <span class="number">10000</span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//从左上角开始</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span> ; i &lt; row ; ++i)&#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span> ; j &lt; col ; ++j)&#123;</span><br><span class="line">                <span class="keyword">if</span>(i &gt; <span class="number">0</span>)</span><br><span class="line">                    dp[i][j] = Math.min(dp[i][j],dp[i-<span class="number">1</span>][j]+<span class="number">1</span>);</span><br><span class="line">                <span class="keyword">if</span>(j &gt; <span class="number">0</span>)</span><br><span class="line">                    dp[i][j] = Math.min(dp[i][j],dp[i][j-<span class="number">1</span>]+<span class="number">1</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//从右下角开始</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = row - <span class="number">1</span> ; i &gt;= <span class="number">0</span> ; --i)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = col - <span class="number">1</span> ; j &gt;= <span class="number">0</span> ; --j)&#123;</span><br><span class="line">                <span class="keyword">if</span>(i &lt; row - <span class="number">1</span>)</span><br><span class="line">                    dp[i][j] = Math.min(dp[i][j],dp[i+<span class="number">1</span>][j]+<span class="number">1</span>);</span><br><span class="line">                <span class="keyword">if</span>(j &lt; col - <span class="number">1</span>)</span><br><span class="line">                    dp[i][j] = Math.min(dp[i][j],dp[i][j+<span class="number">1</span>]+<span class="number">1</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> dp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>算法</category>
+        <category>Leetcode</category>
+        <category>数组</category>
+      </categories>
+      <tags>
+        <tag>动态规划</tag>
+        <tag>宽度优先搜索</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>外观数列</title>
+    <url>/2020/04/13/%E5%A4%96%E8%A7%82%E9%98%9F%E5%88%97/</url>
+    <content><![CDATA[<p>来自Leetcode第38题外观数列</p>
+<p>「外观数列」是一个整数序列，从数字 1 开始，序列中的每一项都是对前一项的描述。前五项如下：</p>
+<figure class="highlight angelscript"><table><tr><td class="code"><pre><span class="line"><span class="number">1.</span>     <span class="number">1</span></span><br><span class="line"><span class="number">2.</span>     <span class="number">11</span></span><br><span class="line"><span class="number">3.</span>     <span class="number">21</span></span><br><span class="line"><span class="number">4.</span>     <span class="number">1211</span></span><br><span class="line"><span class="number">5.</span>     <span class="number">111221</span></span><br></pre></td></tr></table></figure>
+<p><code>1</code> 被读作 <code>&quot;one 1&quot;</code> (<code>&quot;一个一&quot;</code>) , 即 <code>11</code>。<br><code>11</code> 被读作 <code>&quot;two 1s&quot;</code> (<code>&quot;两个一&quot;</code>）, 即 <code>21</code>。<br><code>21</code> 被读作 <code>&quot;one 2&quot;</code>,  “<code>one 1&quot;</code> （<code>&quot;一个二&quot;</code> , <code>&quot;一个一&quot;</code>) , 即 <code>1211</code>。<br><a id="more"></a><br>给定一个正整数 <em>n</em>（1 ≤ <em>n</em> ≤ 30），输出外观数列的第 <em>n</em> 项。</p>
+<hr>
+<h3 id="递归-双指针"><a href="#递归-双指针" class="headerlink" title="递归+双指针"></a>递归+双指针</h3><p>第n层依赖n-1层求出的结果,设置两个指针,pre指向字符串初始位置0,cur指向字符串1的位置,如果说<code>str[pre] != str[cur]</code>,说明当前字符与前面紧邻的字符不等则更新此次结果,则是<code>sb.append(count).append(str[pre]);</code>,结束循环时,如果<code>pre!=cur</code>,说明两者之间的数据是相等的,仍需要append数据.</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">countAndSay</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        StringBuilder sb = <span class="keyword">new</span> StringBuilder();</span><br><span class="line">        <span class="keyword">int</span> pre = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> cur = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span>(n == <span class="number">1</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="string">"1"</span>;</span><br><span class="line">        <span class="keyword">char</span>[] str = countAndSay(n-<span class="number">1</span>).toCharArray();</span><br><span class="line">        <span class="keyword">for</span>(cur = <span class="number">1</span> ; cur &lt; str.length;++cur)&#123;</span><br><span class="line">            <span class="keyword">if</span>(str[pre] != str[cur])&#123;  <span class="comment">//当前字符与前面紧邻的字符不等则更新此次结果</span></span><br><span class="line">                <span class="keyword">int</span> count = cur - pre;</span><br><span class="line">                sb.append(count).append(str[pre]);</span><br><span class="line">                pre = cur;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(pre != cur)&#123;  <span class="comment">//防止最后一段数相等，如果不等说明p1到cur-1这段字符串是相等的</span></span><br><span class="line">            <span class="keyword">int</span> count = cur - pre;</span><br><span class="line">            sb.append(count).append(str[pre]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> sb.toString();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>算法</category>
+        <category>Leetcode</category>
+        <category>字符串</category>
+      </categories>
+      <tags>
+        <tag>双指针</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>串联所有单词的子串</title>
+    <url>/2020/04/13/%E4%B8%B2%E8%81%94%E6%89%80%E6%9C%89%E5%8D%95%E8%AF%8D%E7%9A%84%E5%AD%90%E4%B8%B2/</url>
+    <content><![CDATA[<p>来自Leetcode第30题串联所有单词的子串</p>
+<p>给定一个字符串 <strong>s</strong> 和一些长度相同的单词 <strong>words。</strong>找出 <strong>s</strong> 中恰好可以由 <strong>words</strong> 中所有单词串联形成的子串的起始位置。</p>
+<p>注意子串要与 <strong>words</strong> 中的单词完全匹配，中间不能有其他字符，但不需要考虑 <strong>words</strong> 中单词串联的顺序。<br><a id="more"></a><br><strong>示例 1：</strong></p>
+<figure class="highlight lsl"><table><tr><td class="code"><pre><span class="line">输入：</span><br><span class="line">  s = <span class="string">"barfoothefoobarman"</span>,</span><br><span class="line">  words = [<span class="string">"foo"</span>,<span class="string">"bar"</span>]</span><br><span class="line">输出：[<span class="number">0</span>,<span class="number">9</span>]</span><br><span class="line">解释：</span><br><span class="line">从索引 <span class="number">0</span> 和 <span class="number">9</span> 开始的子串分别是 <span class="string">"barfoo"</span> 和 <span class="string">"foobar"</span> 。</span><br><span class="line">输出的顺序不重要, [<span class="number">9</span>,<span class="number">0</span>] 也是有效答案。</span><br></pre></td></tr></table></figure>
+<hr>
+<p>首先用一个HashMap存储words里的所有单词以及对应的频次，接着从字符串s的第一个字符开始遍历，按每次增加一个单词的长度（因为题目给定所有单词的长度是固定的），在外层循环里维护一个遍历count用来记录前进了多少个单词，以及一个子串map，用来记录子串里的单词。<br>当counts小于总的字符串数组长度时,依次读取单个单词长度len的字符串,如果全局map有这个单词,说明是子串之一,将其放入子串map,并比较子串map和全局map里的出现频率,如果超过了还要调整初始指针j的位置,并删除对应的子串map里的单词;如果遇到不存在的单词,就清空当前滑动窗口,指针前进.</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> List&lt;Integer&gt; <span class="title">findSubstring</span><span class="params">(String s, String[] words)</span> </span>&#123;</span><br><span class="line">        List&lt;Integer&gt; res = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        <span class="keyword">if</span> (s.length() == <span class="number">0</span> || words.length == <span class="number">0</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> res;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> unit = words[<span class="number">0</span>].length();  <span class="comment">//每个单词的长度</span></span><br><span class="line">        <span class="keyword">int</span> allNums = words.length;  <span class="comment">//所有单词的总共长度</span></span><br><span class="line">        HashMap&lt;String,Integer&gt; allwords = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">        <span class="keyword">for</span>(String word : words)&#123;</span><br><span class="line">            allwords.put(word,<span class="number">1</span>+allwords.getOrDefault(word,<span class="number">0</span>));</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span> ; i &lt; unit ; ++i)&#123;</span><br><span class="line">            <span class="comment">//按单单词遍历</span></span><br><span class="line">            HashMap&lt;String ,Integer&gt; subMap = <span class="keyword">new</span> HashMap&lt;&gt;();  <span class="comment">//子串字典</span></span><br><span class="line">            <span class="keyword">int</span> counts = <span class="number">0</span> ;  <span class="comment">//计数一共前进了多少个单词</span></span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = i ; j &lt; s.length() - unit*allNums + <span class="number">1</span> ; j += unit)&#123;</span><br><span class="line">                <span class="comment">//boolean hasRemoved = false;</span></span><br><span class="line">                <span class="keyword">while</span> (counts &lt; allNums)&#123;</span><br><span class="line">                    String curWord = s.substring(j + counts*unit, j + (counts+<span class="number">1</span>)*unit);</span><br><span class="line">                    <span class="keyword">if</span>(allwords.containsKey(curWord))&#123;</span><br><span class="line">                        <span class="keyword">int</span> freq = subMap.getOrDefault(curWord,<span class="number">0</span>);</span><br><span class="line">                        subMap.put(curWord,freq+<span class="number">1</span>);</span><br><span class="line">                        <span class="comment">//如果出现的次数超过了，需要前进滑动窗口</span></span><br><span class="line">                        <span class="keyword">if</span>(subMap.get(curWord) &gt; allwords.get(curWord))&#123;</span><br><span class="line">                            <span class="keyword">int</span> cntRemoved = <span class="number">0</span>;</span><br><span class="line">                            <span class="keyword">while</span> (subMap.get(curWord) &gt; allwords.get(curWord))&#123;</span><br><span class="line">                                String sub = s.substring(j+cntRemoved*unit,j+(cntRemoved+<span class="number">1</span>)*unit);</span><br><span class="line">                                <span class="keyword">int</span> fre= subMap.get(sub);</span><br><span class="line">                                <span class="keyword">if</span>(fre &gt; <span class="number">1</span>)</span><br><span class="line">                                    subMap.put(sub,fre-<span class="number">1</span>);</span><br><span class="line">                                <span class="keyword">else</span></span><br><span class="line">                                    subMap.remove(sub);</span><br><span class="line">                                cntRemoved++;</span><br><span class="line">                            &#125;</span><br><span class="line">                            counts = counts - cntRemoved + <span class="number">1</span>;  <span class="comment">//计数减掉移动的窗口，然后还要算上当前单词</span></span><br><span class="line">                            j = j + (cntRemoved - <span class="number">1</span>)*unit;  <span class="comment">//减一是因为后面还要加1</span></span><br><span class="line">                            <span class="keyword">break</span>;</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                        <span class="comment">//此时单词不匹配</span></span><br><span class="line">                        subMap.clear();  <span class="comment">//直接清空滑动窗口</span></span><br><span class="line">                        j = j + counts * unit;</span><br><span class="line">                        counts = <span class="number">0</span>;</span><br><span class="line">                        <span class="keyword">break</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                    counts++;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span>(counts == allNums) &#123;</span><br><span class="line">                    res.add(j);</span><br><span class="line">                    String first = s.substring(j,j+unit);  <span class="comment">//移除子串最前面那个元素</span></span><br><span class="line">                    <span class="keyword">int</span> freq= subMap.get(first);</span><br><span class="line">                    <span class="keyword">if</span>(freq &gt; <span class="number">1</span>)</span><br><span class="line">                        subMap.put(first,freq-<span class="number">1</span>);</span><br><span class="line">                    <span class="keyword">else</span></span><br><span class="line">                        subMap.remove(first);</span><br><span class="line">                    counts--;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>算法</category>
+        <category>Leetcode</category>
+        <category>字符串</category>
+      </categories>
+      <tags>
+        <tag>字符串</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>LFU缓存</title>
     <url>/2020/04/06/LFU/</url>
     <content><![CDATA[<p>来源力扣第460题LFU缓存</p>
@@ -410,7 +606,14 @@
   <entry>
     <title>笔记整理</title>
     <url>/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/</url>
-    <content><![CDATA[<h2 id="JAVA"><a href="#JAVA" class="headerlink" title="JAVA"></a>JAVA</h2><h3 id="float中的32bit中哪些代表符号位，小数位，整数位，指数位？"><a href="#float中的32bit中哪些代表符号位，小数位，整数位，指数位？" class="headerlink" title="float中的32bit中哪些代表符号位，小数位，整数位，指数位？"></a>float中的32bit中哪些代表符号位，小数位，整数位，指数位？</h3><a id="more"></a>
+    <content><![CDATA[<h2 id="JAVA"><a href="#JAVA" class="headerlink" title="JAVA"></a>JAVA</h2><h3 id="堆和栈的区别"><a href="#堆和栈的区别" class="headerlink" title="堆和栈的区别"></a>堆和栈的区别</h3><p>栈内存:栈内存首先是一片内存区域，存储的都是局部变量，凡是定义在方法中的都是局部变量（方法外的是全局变量），for循环内部定义的也是局部变量，是先加载函数才能进行局部变量的定义，所以方法先进栈，然后再定义变量，变量有自己的作用域，一旦离开作用域，变量就会被释放。栈内存的更新速度很快，因为局部变量的生命周期都很短。<br><a id="more"></a><br>堆内存:存储的是数组和对象（其实数组就是对象），凡是new建立的都是在堆中，堆中存放的都是实体（对象），实体用于封装数据，而且是封装多个（实体的多个属性），如果一个数据消失，这个实体也没有消失，还可以用，所以堆是不会随时释放的，但是栈不一样，栈里存放的都是单个变量，变量被释放了，那就没有了。堆里的实体虽然不会被释放，但是会被当成垃圾，Java有垃圾回收机制不定时的收取。</p>
+<p>当一个实体，没有引用数据类型指向的时候，它在堆内存中不会被释放，而被当做一个垃圾，在不定时的时间内自动回收，因为Java有一个自动回收机制，（而c++没有，需要程序员手动回收，如果不回收就越堆越多，直到撑满内存溢出，所以Java在内存管理上优于c++）。自动回收机制（程序）自动监测堆里是否有垃圾，如果有，就会自动的做垃圾回收的动作，但是什么时候收不一定。</p>
+<p>​       所以堆与栈的区别很明显：</p>
+<p>​      1.栈内存存储的是局部变量而堆内存存储的是实体；</p>
+<p>​      2.栈内存的更新速度要快于堆内存，因为局部变量的生命周期很短；</p>
+<p>​      3.栈内存存放的变量生命周期一旦结束就会被释放，而堆内存存放的实体会被垃圾回收机制不定时的回收。</p>
+<hr>
+<h3 id="float中的32bit中哪些代表符号位，小数位，整数位，指数位？"><a href="#float中的32bit中哪些代表符号位，小数位，整数位，指数位？" class="headerlink" title="float中的32bit中哪些代表符号位，小数位，整数位，指数位？"></a>float中的32bit中哪些代表符号位，小数位，整数位，指数位？</h3><!--more-->
 <p>答：float：<br>1bit（符号位） 8bits（指数位） 23bits（尾数位）<br>double：<br>1bit（符号位） 11bits（指数位） 52bits（尾数位）<br>于是，float的指数范围为-128~+127，而double的指数范围为-1024~+1023，并且指数位是按补码的形式来划分的。float的范围为-2^128 ~ +2^127，也即-3.40E+38 ~ +3.40E+38；double的范围为-2^1024 ~ +2^1023，也即-1.79E+308 ~ +1.79E+308。</p>
 <hr>
 <h3 id="多态"><a href="#多态" class="headerlink" title="多态"></a>多态</h3><p>答：事物在运行过程中存在不同的状态。多态的存在有<strong>三个前提</strong>:<br><strong>1.要有继承关系</strong><br><strong>2.子类要重写父类的方法</strong><br><strong>3.父类引用指向子类对</strong><br>多态成员访问的特点：<br><strong>成员变量</strong><br>编译看左边(父类),运行看左边(父类)<br><strong>成员方法</strong><br>编译看左边(父类)，运行看右边(子类)。动态绑定<br><strong>静态方法</strong><br>编译看左边(父类)，运行看左边(父类)。<br>(静态和类相关，算不上重写，所以，访问还是左边的)<br><strong>只有非静态的成员方法,编译看左边,运行看右边</strong><br><strong>多态的弊端，就是：不能使用子类特有的成员属性和子类特有的成员方法。</strong></p>
@@ -835,6 +1038,115 @@
 <p>如果你想使用上述功能，那么选择 ReentrantLock 是一个不错的选择。</p>
 <p><strong>④ 两者的性能已经相差无几</strong></p>
 <p>在 JDK1.6 之前，synchronized 的性能是比 ReentrantLock 差很多。具体表示为：synchronized 关键字吞吐量随线程数的增加，下降得非常严重。而 ReentrantLock 基本保持一个比较稳定的水平。我觉得这也侧面反映了， synchronized 关键字还有非常大的优化余地。后续的技术发展也证明了这一点，我们上面也讲了在 JDK1.6 之后 JVM 团队对 synchronized 关键字做了很多优化。JDK1.6 之后，synchronized 和 ReentrantLock 的性能基本是持平了。所以网上那些说因为性能才选择 ReentrantLock 的文章都是错的！JDK1.6 之后，性能已经不是选择 synchronized 和 ReentrantLock 的影响因素了！而且虚拟机在未来的性能改进中会更偏向于原生的 synchronized，所以还是提倡在 synchronized 能满足你的需求的情况下，优先考虑使用 synchronized 关键字来进行同步！优化后的 synchronized 和 ReentrantLock 一样，在很多地方都是用到了 CAS 操作。</p>
+<hr>
+<h3 id="volatile"><a href="#volatile" class="headerlink" title="volatile"></a>volatile</h3><p>volatile 是一个类型修饰符。volatile 的作用是作为指令关键字，确保本条指令不会因编译器的优化而省略。</p>
+<h4 id="volatile-的特性"><a href="#volatile-的特性" class="headerlink" title="volatile 的特性"></a>volatile 的特性</h4><ul>
+<li>保证了不同线程对这个变量进行操作时的可见性，即一个线程修改了某个变量的值，这新值对其他线程来说是立即可见的。（实现可见性）</li>
+<li>禁止进行指令重排序。（实现有序性）</li>
+<li>volatile 只能保证对单次读/写的原子性。i++ 这种操作不能保证原子性。</li>
+</ul>
+<h4 id="volatile-可见性实现"><a href="#volatile-可见性实现" class="headerlink" title="volatile 可见性实现"></a>volatile 可见性实现</h4><ul>
+<li>volatile 变量的内存可见性是基于内存屏障（Memory Barrier）实现。</li>
+<li>内存屏障，又称内存栅栏，是一个 CPU 指令。</li>
+<li>在程序运行时，为了提高执行性能，编译器和处理器会对指令进行重排序，JMM 为了保证在不同的编译器和 CPU 上有相同的结果，通过插入特定类型的内存屏障来禁止特定类型的编译器重排序和处理器重排序，插入一条内存屏障会告诉编译器和 CPU：不管什么指令都不能和这条 Memory Barrier 指令重排序。</li>
+<li>写一段简单的 Java 代码，声明一个 volatile 变量，并赋值。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">volatile</span> <span class="keyword">int</span> a;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">update</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        a = <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Test test = <span class="keyword">new</span> Test();</span><br><span class="line">        test.update();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>通过 hsdis 和 jitwatch 工具可以得到编译后的汇编代码。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">......</span><br><span class="line">  <span class="number">0x0000000002951563</span>: and    $<span class="number">0xffffffffffffff87</span>,%rdi</span><br><span class="line">  <span class="number">0x0000000002951567</span>: je     <span class="number">0x00000000029515f8</span></span><br><span class="line">  <span class="number">0x000000000295156d</span>: test   $<span class="number">0x7</span>,%rdi</span><br><span class="line">  <span class="number">0x0000000002951574</span>: jne    <span class="number">0x00000000029515bd</span></span><br><span class="line">  <span class="number">0x0000000002951576</span>: test   $<span class="number">0x300</span>,%rdi</span><br><span class="line">  <span class="number">0x000000000295157d</span>: jne    <span class="number">0x000000000295159c</span></span><br><span class="line">  <span class="number">0x000000000295157f</span>: and    $<span class="number">0x37f</span>,%rax</span><br><span class="line">  <span class="number">0x0000000002951586</span>: mov    %rax,%rdi</span><br><span class="line">  <span class="number">0x0000000002951589</span>: or     %r15,%rdi</span><br><span class="line">  <span class="number">0x000000000295158c</span>: lock cmpxchg %rdi,(%rdx)  <span class="comment">//在 volatile 修饰的共享变量进行写操作的时候会多出 lock 前缀的指令</span></span><br><span class="line">  <span class="number">0x0000000002951591</span>: jne    <span class="number">0x0000000002951a15</span></span><br><span class="line">  <span class="number">0x0000000002951597</span>: jmpq   <span class="number">0x00000000029515f8</span></span><br><span class="line">  <span class="number">0x000000000295159c</span>: mov    <span class="number">0x8</span>(%rdx),%edi</span><br><span class="line">  <span class="number">0x000000000295159f</span>: shl    $<span class="number">0x3</span>,%rdi</span><br><span class="line">  <span class="number">0x00000000029515a3</span>: mov    <span class="number">0xa8</span>(%rdi),%rdi</span><br><span class="line">  <span class="number">0x00000000029515aa</span>: or     %r15,%rdi</span><br><span class="line">......</span><br></pre></td></tr></table></figure>
+<ul>
+<li>lock 前缀的指令在多核处理器下会引发两件事情。<ul>
+<li>1）将当前处理器缓存行的数据写回到系统内存。</li>
+<li>2）写回内存的操作会使在其他 CPU 里缓存了该内存地址的额数据无效。</li>
+</ul>
+</li>
+<li>为了提高处理速度，处理器不直接和内存进行通信，而是先将系统内存的数据读到内部缓存（L1，L2 或其他）后再进行操作，但操作完不知道何时会写到内存。</li>
+<li>如果对声明了 volatile 的变量进行写操作，JVM 就会向处理器发送一条 lock 前缀的指令，将这个变量所在缓存行的数据写回到系统内存。</li>
+<li>为了保证各个处理器的缓存是一致的，实现了缓存一致性协议（MESI），每个处理器通过嗅探在总线上传播的数据来检查自己缓存的值是不是过期了，当处理器发现自己缓存行对应的内存地址被修改，就会将当前处理器的缓存行设置成无效状态，当处理器对这个数据进行修改操作的时候，会重新从系统内存中把数据读到处理器缓存里。<ul>
+<li>所有多核处理器下还会完成：3）当处理器发现本地缓存失效后，就会从内存中重读该变量数据，即可以获取当前最新值。</li>
+</ul>
+</li>
+<li>volatile 变量通过这样的机制就使得每个线程都能获得该变量的最新值。</li>
+</ul>
+<h5 id="lock-指令"><a href="#lock-指令" class="headerlink" title="lock 指令"></a>lock 指令</h5><ul>
+<li>在 Pentium 和早期的 IA-32 处理器中，lock 前缀会使处理器执行当前指令时产生一个 LOCK# 信号，会对总线进行锁定，其它 CPU 对内存的读写请求都会被阻塞，直到锁释放。</li>
+<li>后来的处理器，加锁操作是由高速缓存锁代替总线锁来处理。<ul>
+<li>因为锁总线的开销比较大，锁总线期间其他 CPU 没法访问内存。</li>
+<li>这种场景多缓存的数据一致通过缓存一致性协议（MESI）来保证。</li>
+</ul>
+</li>
+</ul>
+<h5 id="缓存一致性"><a href="#缓存一致性" class="headerlink" title="缓存一致性"></a>缓存一致性</h5><ul>
+<li>缓存是分段（line）的，一个段对应一块存储空间，称之为缓存行，它是 CPU 缓存中可分配的最小存储单元，大小 32 字节、64 字节、128 字节不等，这与 CPU 架构有关，通常来说是 64 字节。</li>
+<li>LOCK# 因为锁总线效率太低，因此使用了多组缓存。<ul>
+<li>为了使其行为看起来如同一组缓存那样。因而设计了 <strong>缓存一致性协议</strong>。</li>
+<li>缓存一致性协议有多种，但是日常处理的大多数计算机设备都属于 “ <strong>嗅探</strong>（snooping）” 协议。</li>
+</ul>
+</li>
+<li>所有内存的传输都发生在一条共享的总线上，而所有的处理器都能看到这条总线。</li>
+<li>缓存本身是独立的，但是内存是共享资源，所有的内存访问都要经过仲裁（同一个指令周期中，只有一个 CPU 缓存可以读写内存）。</li>
+<li>CPU 缓存不仅仅在做内存传输的时候才与总线打交道，而是不停在嗅探总线上发生的数据交换，跟踪其他缓存在做什么。</li>
+<li>当一个缓存代表它所属的处理器去读写内存时，其它处理器都会得到通知，它们以此来使自己的缓存保持同步。<ul>
+<li>只要某个处理器写内存，其它处理器马上知道这块内存在它们的缓存段中已经失效。</li>
+</ul>
+</li>
+</ul>
+<h4 id="volatile-禁止重排序"><a href="#volatile-禁止重排序" class="headerlink" title="volatile 禁止重排序"></a>volatile 禁止重排序</h4><ul>
+<li>为了性能优化，JMM 在不改变正确语义的前提下，会允许编译器和处理器对指令序列进行重排序。JMM 提供了内存屏障阻止这种重排序。</li>
+<li>Java 编译器会在生成指令系列时在适当的位置会插入内存屏障指令来禁止特定类型的处理器重排序。</li>
+<li>JMM 会针对编译器制定 volatile 重排序规则表。</li>
+</ul>
+<p><img src="/2020/03/16/JAVA笔记整理/5714666-390c861ed043ef94.webp" alt="img"></p>
+<p>volatile 重排序规则表</p>
+<ul>
+<li>“ NO “ 表示禁止重排序。<ul>
+<li>为了实现 volatile 内存语义时，编译器在生成字节码时，会在指令序列中插入内存屏障来禁止特定类型的处理器重排序。</li>
+<li>对于编译器来说，发现一个最优布置来最小化插入屏障的总数几乎是不可能的，为此，JMM 采取了保守的策略。<ul>
+<li>在每个 volatile 写操作的前面插入一个 StoreStore 屏障。</li>
+<li>在每个 volatile 写操作的后面插入一个 StoreLoad 屏障。</li>
+<li>在每个 volatile 读操作的后面插入一个 LoadLoad 屏障。</li>
+<li>在每个 volatile 读操作的后面插入一个 LoadStore 屏障。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>volatile 写是在前面和后面分别插入内存屏障，而 volatile 读操作是在后面插入两个内存屏障。</li>
+</ul>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>内存屏障</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>StoreStore 屏障</td>
+<td>禁止上面的普通写和下面的 volatile 写重排序。</td>
+</tr>
+<tr>
+<td>StoreLoad 屏障</td>
+<td>防止上面的 volatile 写与下面可能有的 volatile 读/写重排序。</td>
+</tr>
+<tr>
+<td>LoadLoad 屏障</td>
+<td>禁止下面所有的普通读操作和上面的 volatile 读重排序。</td>
+</tr>
+<tr>
+<td>LoadStore 屏障</td>
+<td>禁止下面所有的普通写操作和上面的 volatile 读重排序。</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><img src="/2020/03/16/JAVA笔记整理/5714666-42b7250449160dc2.webp" alt="img"></p>
+<p>volatile 写插入内存屏障</p>
+<p><img src="/2020/03/16/JAVA笔记整理/5714666-cce9ccf139acf1a4.webp" alt="img"></p>
+<p>volatile 读插入内存屏障</p>
+<h4 id="为什么num-多线程不安全？"><a href="#为什么num-多线程不安全？" class="headerlink" title="为什么num++多线程不安全？"></a>为什么num++多线程不安全？</h4><p>原因如图<br><img src="/2020/03/16/JAVA笔记整理/20200321025739906.png" alt="在这里插入图片描述"><br>一个num++操作java来写是一句，但执行时候汇编成字节码是4句：从主内存取到工作内存、压栈、加操作、放回主内存。</p>
 <hr>
 <h3 id="线程池"><a href="#线程池" class="headerlink" title="线程池"></a>线程池</h3><h4 id="为什么要用线程池"><a href="#为什么要用线程池" class="headerlink" title="为什么要用线程池?"></a>为什么要用线程池?</h4><p>线程池提供了一种限制和管理资源（包括执行一个任务）。 每个线程池还维护一些基本统计信息，例如已完成任务的数量。</p>
 <p>这里借用《Java 并发编程的艺术》提到的来说一下使用线程池的好处：</p>
@@ -1591,6 +1903,34 @@
 <hr>
 <h3 id="Binder"><a href="#Binder" class="headerlink" title="Binder"></a>Binder</h3><p><a href="https://www.jianshu.com/p/4920c7781afe" target="_blank" rel="noopener">https://www.jianshu.com/p/4920c7781afe</a></p>
 <hr>
+<h3 id="自定义view"><a href="#自定义view" class="headerlink" title="自定义view"></a>自定义view</h3><p><a href="https://www.jianshu.com/p/31a76bf6b816" target="_blank" rel="noopener">https://www.jianshu.com/p/31a76bf6b816</a></p>
+<p>对于自定义view，很多时候需要使用到自定义属性，我们向实现一个view的自定义属性，需要遵循以下几部：<br>a.自定义一个CustomView(extends View )类<br>b.编写values/attrs.xml，在其中编写styleable和item等标签元素<br>c.在布局文件中CustomView使用自定义的属性（注意namespace）<br>导入自定义属性，以下两种方式都可(namespace)<br><a href="http://schemas.android.com/apk/res/包名" target="_blank" rel="noopener">http://schemas.android.com/apk/res/包名</a><br><a href="http://schemas.android.com/apk/res-auto" target="_blank" rel="noopener">http://schemas.android.com/apk/res-auto</a><br>d.在CustomView的构造方法中通过TypedArray获取</p>
+<hr>
+<h3 id="图片三级缓存"><a href="#图片三级缓存" class="headerlink" title="图片三级缓存"></a>图片三级缓存</h3><h4 id="使用三级缓存目的"><a href="#使用三级缓存目的" class="headerlink" title="使用三级缓存目的"></a>使用三级缓存目的</h4><ul>
+<li>速度快，可以提升用户体验度</li>
+<li>避免重复请求网络，重复加载，节省流量</li>
+</ul>
+<h4 id="三级缓存简介"><a href="#三级缓存简介" class="headerlink" title="三级缓存简介"></a>三级缓存简介</h4><ul>
+<li>内存缓存, 优先加载, 速度最快（加载到内存，就容易出现OOM）</li>
+<li>本地缓存, 次优先加载, 速度快</li>
+<li>网络缓存, 不优先加载, 速度慢,浪费流量</li>
+</ul>
+<hr>
+<h3 id="ListView与RecyclerView对比浅析"><a href="#ListView与RecyclerView对比浅析" class="headerlink" title="ListView与RecyclerView对比浅析"></a>ListView与RecyclerView对比浅析</h3><p><a href="https://www.jianshu.com/p/193fb966e954" target="_blank" rel="noopener">https://www.jianshu.com/p/193fb966e954</a></p>
+<hr>
+<h3 id="内存溢出OOM"><a href="#内存溢出OOM" class="headerlink" title="内存溢出OOM"></a>内存溢出OOM</h3><ul>
+<li>Android默认给每个app只分配16M的内存（个别的不是）</li>
+<li>java中的引用<ul>
+<li>强引用 垃圾回收器不会回收, java默认引用都是强引用</li>
+<li>软引用 SoftReference 在内存不够时,垃圾回收器会考虑回收</li>
+<li>弱引用 WeakReference 在内存不够时,垃圾回收器会优先回收</li>
+<li>虚引用 PhantomReference 在内存不够时,垃圾回收器最优先回收</li>
+</ul>
+</li>
+</ul>
+<p>注意: Android2.3+, 系统会优先将SoftReference的对象提前回收掉, 即使内存够用</p>
+<p>所以：一般都只使用强引用，弱引用太弱了</p>
+<hr>
 <h2 id="计网"><a href="#计网" class="headerlink" title="计网"></a>计网</h2><h3 id="三次握手四次挥手使用哪个协议"><a href="#三次握手四次挥手使用哪个协议" class="headerlink" title="三次握手四次挥手使用哪个协议"></a>三次握手四次挥手使用哪个协议</h3><p>建立TCP需要三次握手才能建立，而断开连接则需要四次握手。首先Client端发送连接请求报文，Server段接受连接后回复ACK报文，并为这次连接分配资源。Client端接收到ACK报文后也向Server段发生ACK报文，并分配资源，这样TCP连接就建立了。假设Client端发起中断连接请求，也就是发送FIN报文。Server端接到FIN报文后，意思是说”我Client端没有数据要发给你了”，但是如果你还有数据没有发送完成，则不必急着关闭Socket，可以继续发送数据。所以你先发送ACK，”告诉Client端，你的请求我收到了，但是我还没准备好，请继续你等我的消息”。这个时候Client端就进入FIN_WAIT状态，继续等待Server端的FIN报文。当Server端确定数据已发送完成，则向Client端发送FIN报文，”告诉Client端，好了，我这边数据发完了，准备好关闭连接了”。Client端收到FIN报文后，”就知道可以关闭连接了，但是他还是不相信网络，怕Server端不知道要关闭，所以发送ACK后进入TIME_WAIT状态，如果Server端没有收到ACK则可以重传。“，Server端收到ACK后，”就知道可以断开连接了”。Client端等待了2MSL后依然没有收到回复，则证明Server端已正常关闭，那好，我Client端也可以关闭连接了。Ok，TCP连接就这样关闭了！</p>
 <p>在TIME_WAIT状态中，如果TCP client端最后一次发送的ACK丢失了，它将重新发送。TIME_WAIT状态中所需要的时间是依赖于实现方法的。典型的值为30秒、1分钟和2分钟。等待之后连接正式关闭，并且所有的资源(包括端口号)都被释放。</p>
 <p><strong>【问题1】为什么连接的时候是三次握手，关闭的时候却是四次握手？</strong><br>答：因为当Server端收到Client端的SYN连接请求报文后，可以直接发送SYN+ACK报文。其中ACK报文是用来应答的，SYN报文是用来同步的。但是关闭连接时，当Server端收到FIN报文时，很可能并不会立即关闭SOCKET，所以只能先回复一个ACK报文，告诉Client端，”你发的FIN报文我收到了”。只有等到我Server端所有的报文都发送完了，我才能发送FIN报文，因此不能一起发送。故需要四步握手。</p>
@@ -1979,6 +2319,35 @@
 <p>　　隔行扫描情况下，由于视觉暂留效应，人眼将会看到平滑的运动而不是闪动的半帧半帧的图像。但是这种方法造成了两幅图像显示的时间间隔比较大，从而导致图像画面闪烁较大。 因此该种扫描方式较为落后，通常用在早期的显示产品中。</p>
 <p>每一帧图像由电子束顺序地一行接着一行连续扫描而成，这种扫描方式称为逐行扫描。把每一帧图像通过两场扫描完成则是隔行扫描，两场扫描中，第一场(奇数场)只扫描奇数行，依次扫描1、3、5…行，而第二场(偶数场)只扫描偶数行，依次扫描2、4、6…行。隔行扫描技术在传送信号带宽不够的情况下起了很大作用，逐行扫描和隔行扫描的显示效果主要区别在稳定性上面，隔行扫描的行间闪烁比较明显，逐行扫描克服了隔行扫描的缺点，画面平滑自然无闪烁。</p>
 <hr>
+<h3 id="高数据库读写效率"><a href="#高数据库读写效率" class="headerlink" title="高数据库读写效率"></a>高数据库读写效率</h3><p>可以从以下多个方面优化数据库设计提高数据库查询效率</p>
+<p>a. 对查询进行优化，应尽量避免全表扫描，首先应考虑在 where 及 order by 涉及的列上建立索引。</p>
+<p>b. 应尽量避免在 where 子句中对字段进行 null 值判断，否则将导致引擎放弃使用索引而进行全表扫描，如： select id from t where num is null 可以在num上设置默认值0，确保表中num列没有null值，然后这样查询： select id from t where num=0</p>
+<p>c. 并不是所有索引对查询都有效，SQL是根据表中数据来进行查询优化的，当索引列有大量数据重复时,查询可能不会去利用索引，如一表中有字段sex，male、female几乎各一半，那么即使在sex上建了索引也对查询效率起不了作用。</p>
+<p>d. 索引并不是越多越好，索引固然可以提高相应的 select 的效率，但同时也降低了 insert 及 update 的效率，因为 insert 或 update 时有可能会重建索引，所以怎样建索引需要慎重考虑，视具体情况而定。一个表的索引数最好不要超过6个，若太多则应考虑一些不常使用到的列上建的索引是否有必要。</p>
+<p>e. 应尽可能的避免更新索引数据列，因为索引数据列的顺序就是表记录的物理存储顺序，一旦该列值改变将导致整个表记录的顺序的调整，会耗费相当大的资源。若应用系统需要频繁更新索引数据列，那么需要考虑是否应将该索引建为索引。</p>
+<p>f. 尽量使用数字型字段，若只含数值信息的字段尽量不要设计为字符型，这会降低查询和连接的性能，并会增加存储开销。这是因为引擎在处理查询和连接时会逐个比较字符串中每一个字符，而对于数字型而言只需要比较一次就够了。</p>
+<p>g. 尽可能的使用 varchar/nvarchar 代替 char/nchar ，因为首先变长字段存储空间小，可以节省存储空间，其次对于查询来说，在一个相对较小的字段内搜索效率显然要高些。</p>
+<p>h. 尽量使用表变量来代替临时表。如果表变量包含大量数据，请注意索引非常有限（只有主键索引）。</p>
+<p>i. 避免频繁创建和删除临时表，以减少系统表资源的消耗。</p>
+<p>j. 临时表并不是不可使用，适当地使用它们可以使某些例程更有效，例如，当需要重复引用大型表或常用表中的某个数据集时。但是，对于一次性事件，最好使用导出表。</p>
+<p>k. 在新建临时表时，如果一次性插入数据量很大，那么可以使用 select into 代替 create table，避免造成大量 log ，以提高速度；如果数据量不大，为了缓和系统表的资源，应先create table，然后insert。</p>
+<p>l. 如果使用到了临时表，在存储过程的最后务必将所有的临时表显式删除，先 truncate table ，然后 drop table ，这样可以避免系统表的较长时间锁定。</p>
+<p>可以从以下多个方面比较数据库写入效率：</p>
+<p>一、普通方式 </p>
+<p>​    普通采用jdbc插入</p>
+<p>​    时间:10万条:16672ms 折合100万条 = 166.72秒</p>
+<p>二、事务提交 </p>
+<p>​    jdbc用事务进行提交  —&gt; 事务提交是把语句一起执行</p>
+<p>​    时间:10万条:13558ms 折合100万条 = 135.5秒</p>
+<p>三、批处理</p>
+<p>​    内部实现是是把 values 后面的插入值变成成 values(,,,),(,,,,)<br>​    特别注意:需要url参数加:rewriteBatchedStatements=true<br>​    url范例: jdbc:mysql://127.0.0.1/XXX?characterEncoding=UTF-8&amp;rewriteBatchedStatements=true<br>​    时间 : 10万条:1273ms 折合100万条 = 12.73秒 </p>
+<p>四、事务+批处理并且分批执行</p>
+<p>​    结论:加事务时间无影响，但是分批次能提供效率的增加</p>
+<p>​    时间:100万条:9900ms 折合100万条 = 9.99秒</p>
+<p>​    时间:500万条:46943ms = 47秒</p>
+<p>综合以上比较结论是: 普通方式 &lt; 事务提交 &lt; 批处理 &lt; 事务+批处理</p>
+<p>必要的话配合存储过程应该会进一步提升效率，，，</p>
+<p>最后就是在系统架构设计上实施分库分表，再配合外部存储比如redis、缓存、队列等优化对数据库的压力</p>
 ]]></content>
       <categories>
         <category>学习笔记</category>
@@ -2051,8 +2420,8 @@ F(i)=\min_{j=0 \ldots n-1}{F(i -c_j)} + 1</script><p>其中 $c_j$代表的是第
         <category>数组</category>
       </categories>
       <tags>
-        <tag>贪心</tag>
         <tag>动态规划</tag>
+        <tag>贪心</tag>
       </tags>
   </entry>
   <entry>
@@ -2705,8 +3074,8 @@ F(i)=\min_{j=0 \ldots n-1}{F(i -c_j)} + 1</script><p>其中 $c_j$代表的是第
         <category>树</category>
       </categories>
       <tags>
-        <tag>数学</tag>
         <tag>动态规划</tag>
+        <tag>数学</tag>
       </tags>
   </entry>
   <entry>
@@ -3311,7 +3680,7 @@ gtk_window_new()</code>的功能创建一个窗口并返回这个窗口的控件
 <p><img src="/2020/02/12/回文链表/20170418111933837.jfif" alt="img"></p>
 <p>high的值为127，low的值为-128，当进行这个方法时如果值在-128-127之间，返回的值也就是地址是相同的，因而用<code>!=</code>这个测试用例自然就过不了了。</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isPalindrome</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(head == <span class="keyword">null</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    ListNode p1 = head;</span><br><span class="line">    LinkedList&lt;Integer&gt; ans = <span class="keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span>(p1 != <span class="keyword">null</span>)&#123;</span><br><span class="line">        ans.addLast(p1.val);</span><br><span class="line">        p1 = p1.next;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span>(ans.size() &gt; <span class="number">1</span>)&#123;</span><br><span class="line">        <span class="keyword">if</span>(!ans.removeFirst().equals(ans.removeLast()))</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="翻转链表比对"><a href="#翻转链表比对" class="headerlink" title="翻转链表比对"></a>翻转链表比对</h3><p>避免使用 O(n)<em>O</em>(<em>n</em>) 额外空间的方法就是改变输入。</p>
+<h3 id="翻转链表比对"><a href="#翻转链表比对" class="headerlink" title="翻转链表比对"></a>翻转链表比对</h3><p>避免使用 <em>O</em>(<em>n</em>) 额外空间的方法就是改变输入。</p>
 <p>我们可以将链表的后半部分反转（修改链表结构），然后将前半部分和后半部分进行比较。比较完成后我们应该将链表恢复原样。虽然不需要恢复也能通过测试用例，因为使用该函数的人不希望链表结构被更改。</p>
 <p><strong>算法：</strong></p>
 <p>我们可以分为以下几个步骤：</p>
@@ -3334,25 +3703,11 @@ gtk_window_new()</code>的功能创建一个窗口并返回这个窗口的控件
 </li>
 </ol>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isPalindrome</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(head == <span class="keyword">null</span> || head.next == <span class="keyword">null</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        ListNode fast = head;</span><br><span class="line">        ListNode slow = head;</span><br><span class="line">        <span class="keyword">while</span>(fast.next != <span class="keyword">null</span> &amp;&amp; fast.next.next != <span class="keyword">null</span>)&#123;</span><br><span class="line">            slow = slow.next;</span><br><span class="line">            fast = fast.next.next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//从slow后面的链表逆序</span></span><br><span class="line">        ListNode node = slow.next;</span><br><span class="line">        ListNode curNode = node;</span><br><span class="line">        slow.next = <span class="keyword">null</span>;</span><br><span class="line">        ListNode pre = <span class="keyword">null</span>;</span><br><span class="line">        ListNode nextNode = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">while</span>(curNode != <span class="keyword">null</span>)&#123;</span><br><span class="line">            nextNode = curNode.next;</span><br><span class="line">            curNode.next = pre;</span><br><span class="line">            pre = curNode;</span><br><span class="line">            curNode = nextNode;</span><br><span class="line">        &#125;</span><br><span class="line">        ListNode temp = head;</span><br><span class="line">        <span class="keyword">boolean</span> flag = <span class="keyword">true</span>;</span><br><span class="line">        <span class="keyword">while</span>(pre != <span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="keyword">if</span>(temp.val != pre.val)&#123;</span><br><span class="line">                flag = <span class="keyword">false</span>;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            temp = temp.next;</span><br><span class="line">            pre = pre.next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> flag;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>补充一下快慢指针：<br><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"> * public class ListNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     ListNode next;</span></span><br><span class="line"><span class="comment"> *     ListNode(int x) &#123; val = x; &#125;</span></span><br><span class="line"><span class="comment"> * &#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isPalindrome</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(head == <span class="keyword">null</span> || head.next == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        ListNode slow = head, fast = head;</span><br><span class="line">        ListNode pre = <span class="keyword">null</span>, temp;</span><br><span class="line">        <span class="comment">//在通过快慢双指针找中点的时候完成对前半部分链表的翻转</span></span><br><span class="line">        <span class="keyword">while</span>(fast != <span class="keyword">null</span> &amp;&amp; fast.next != <span class="keyword">null</span>) &#123;</span><br><span class="line">            fast = fast.next.next;</span><br><span class="line">            temp = slow.next;</span><br><span class="line">            slow.next = pre;</span><br><span class="line">            pre = slow;</span><br><span class="line">            slow = temp;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//此时slow就是中间节点</span></span><br><span class="line">        <span class="comment">//如果fast==null则是偶数节点，fast.next == null这是奇数</span></span><br><span class="line">        fast = fast == <span class="keyword">null</span> ? slow : slow.next;</span><br><span class="line">        slow = pre;</span><br><span class="line">        <span class="keyword">while</span>(fast != <span class="keyword">null</span> &amp;&amp; slow != <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span>(fast.val != slow.val) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            fast = fast.next;</span><br><span class="line">            slow = slow.next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <h3 id="数学方法"><a href="#数学方法" class="headerlink" title="数学方法"></a>数学方法</h3><p>从头到尾和从尾到头比对</p>
 <p><strong>equals 默认是比较地址的<br>但是string重写了equals方法，让他比较内容<br>stringbuffer和stringbuilder并没有重写equals方法，所以比较的是地址<br>只有string可以比较内容
 </strong></p>
-<pre><code class="lang-JAVA">        public boolean isPalindrome(ListNode head) {
-            if(head == null)
-                return true;
-            ListNode p1 = head;
-            StringBuilder s1 = new StringBuilder();
-            StringBuilder s2 = new StringBuilder();
-
-            while(p1 != null){
-                s1.append(p1.val);
-                s2.insert(0,p1.val);
-                p1 = p1.next;
-            }
-            return s1.toString().equals(s2.toString());
-        }
-</code></pre>
-]]></content>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isPalindrome</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(head == <span class="keyword">null</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    ListNode p1 = head;</span><br><span class="line">    StringBuilder s1 = <span class="keyword">new</span> StringBuilder();</span><br><span class="line">    StringBuilder s2 = <span class="keyword">new</span> StringBuilder();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span>(p1 != <span class="keyword">null</span>)&#123;</span><br><span class="line">        s1.append(p1.val);</span><br><span class="line">        s2.insert(<span class="number">0</span>,p1.val);</span><br><span class="line">        p1 = p1.next;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> s1.toString().equals(s2.toString());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
         <category>算法</category>
         <category>Leetcode</category>
@@ -3690,8 +4045,8 @@ gtk_window_new()</code>的功能创建一个窗口并返回这个窗口的控件
         <category>数组</category>
       </categories>
       <tags>
-        <tag>Leetcode</tag>
         <tag>动态规划</tag>
+        <tag>Leetcode</tag>
       </tags>
   </entry>
   <entry>
@@ -3757,8 +4112,8 @@ gtk_window_new()</code>的功能创建一个窗口并返回这个窗口的控件
         <category>数组</category>
       </categories>
       <tags>
-        <tag>Leetcode</tag>
         <tag>动态规划</tag>
+        <tag>Leetcode</tag>
       </tags>
   </entry>
   <entry>
@@ -4149,9 +4504,9 @@ gtk_window_new()</code>的功能创建一个窗口并返回这个窗口的控件
         <category>字符串</category>
       </categories>
       <tags>
+        <tag>动态规划</tag>
         <tag>Leetcode</tag>
         <tag>回溯</tag>
-        <tag>动态规划</tag>
       </tags>
   </entry>
   <entry>
@@ -7872,8 +8227,8 @@ x\*15  -&gt;  (x&lt;&lt;4) – x               乘法转换成了1次移位和1�
       </categories>
       <tags>
         <tag>Leetcode</tag>
-        <tag>深度优先搜索</tag>
         <tag>栈</tag>
+        <tag>深度优先搜索</tag>
       </tags>
   </entry>
   <entry>
@@ -8314,8 +8669,8 @@ x\*15  -&gt;  (x&lt;&lt;4) – x               乘法转换成了1次移位和1�
         <category>数组</category>
       </categories>
       <tags>
-        <tag>Leetcode</tag>
         <tag>动态规划</tag>
+        <tag>Leetcode</tag>
       </tags>
   </entry>
   <entry>
@@ -8552,8 +8907,8 @@ x\*15  -&gt;  (x&lt;&lt;4) – x               乘法转换成了1次移位和1�
         <category>数组</category>
       </categories>
       <tags>
-        <tag>Leetcode</tag>
         <tag>动态规划</tag>
+        <tag>Leetcode</tag>
       </tags>
   </entry>
   <entry>
@@ -9139,8 +9494,8 @@ e[i,j]=e[i,r−1]+e[r+1,j]+w[i,j]
         <category>算法导论</category>
       </categories>
       <tags>
-        <tag>算法</tag>
         <tag>动态规划</tag>
+        <tag>算法</tag>
       </tags>
   </entry>
   <entry>
@@ -9231,8 +9586,8 @@ e[i,j]=e[i,r−1]+e[r+1,j]+w[i,j]
         <category>数组</category>
       </categories>
       <tags>
-        <tag>Leetcode</tag>
         <tag>动态规划</tag>
+        <tag>Leetcode</tag>
       </tags>
   </entry>
   <entry>
@@ -9566,6 +9921,9 @@ public Node(int _val,List&lt;Node&gt; _neighbors) {
 <blockquote>
 <p>从 head 到入口点的距离设为 x，入口点到相遇点的距离设为 y，环的的长度设为 n。<br>假设 slow 指针走过的距离为 t，那么 fast 指针走过的一定是 slow 指针的 2 倍，也就是 2t。<br>slow 指针从 head 出发走了 x 的距离到达入口点，然后可能走了 k1 圈，然后再次回到入口点，再走了 y 的距离到达相遇点和 fast 指针相遇。<br>t = x + k1 <em> n + y<br>fast 指针同理，fast 指针从 head 出发走了 x 的距离到达入口点，然后可能走了 k2 圈，然后再次回到入口点，再走了 y 的距离到达相遇点和 slow 指针相遇。<br>2t = x + k2 </em> n + y<br>上边两个等式做一个差，可以得到<br>t = (k2 - k1) <em> n<br>设 k = k2 - k1 ，那么 t = k </em> n。<br>把 t = k <em> n 代入到第一个式子 t = x + k1 </em> n + y 中。<br>k <em> n = x + k1 </em> n + y<br>移项，x = (k - k1) <em> n - y<br>取出一个 n 和 y 结合，x = (k - k1 - 1) </em> n + (n - y)<br>左边的含义就是从 head 到达入口点。<br>右边的含义， n - y 就是从相遇点到入口点的距离，(k - k1 - 1) * n 就是转 (k - k1 - 1) 圈。<br>左边右边的含义结合起来就是，从相遇点走到入口点，然后转 (k - k1 - 1) 圈后再次回到入口点的这段时间，刚好就等于从 head 走向入口点的时间。<br>所以代码的话，我们只需要 meet 指针从相遇点出发的同时，让 head 指针也出发， head 指针和 meet 指针相遇的位置就是入口点了。</p>
 </blockquote>
+<p>假设非环部分的长度是x，从环起点到相遇点的长度是y。环的长度是c。<br>现在走的慢的那个指针走过的长度肯定是<code>x+n1*c+y</code>，走的快的那个指针的速度是走的慢的那个指针速度的两倍。这意味着走的快的那个指针走的长度是<code>2(x+n1*c+y)</code>。</p>
+<p>还有一个约束就是走的快的那个指针比走的慢的那个指针多走的路程一定是环长度的整数倍。根据上面那个式子可以知道<code>2(x+n1*c+y)-x+n1*c+y=x+n1*c+y=n2*c</code>。</p>
+<p>所以有<code>x+y=(n2-n1)*c</code>,这意味着什么？我们解读下这个数学公式：非环部分的长度+环起点到相遇点之间的长度就是环的整数倍。这在数据结构上的意义是什么？现在我们知道两个指针都在离环起点距离是y的那个相遇点，而现在x+y是环长度的整数倍，这意味着他们从相遇点再走x距离就刚刚走了很多圈，这意味着他们如果从相遇点再走x就到了起点。<br>那怎么才能再走x步呢？答：让一个指针从头部开始走，另一个指针从相遇点走，等这两个指针相遇那就走了x步此时就是环的起点。</p>
 <p>通过上面的数学解释，在回顾最开始的代码，就知道了原因所在。最开始就异步，两个指针的步数不一致，也就破坏了后续的推导证明。</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> ListNode <span class="title">detectCycle</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (head == <span class="keyword">null</span> || head.next == <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/*ListNode slow = head;</span></span><br><span class="line"><span class="comment">    ListNode fast = head.next;</span></span><br><span class="line"><span class="comment">    while (slow != fast) &#123;</span></span><br><span class="line"><span class="comment">        if (fast == null || fast.next == null) &#123;</span></span><br><span class="line"><span class="comment">            return null;</span></span><br><span class="line"><span class="comment">        &#125;</span></span><br><span class="line"><span class="comment">        slow = slow.next;</span></span><br><span class="line"><span class="comment">        fast = fast.next.next;</span></span><br><span class="line"><span class="comment">        if(fast == slow)</span></span><br><span class="line"><span class="comment">            break;</span></span><br><span class="line"><span class="comment">    &#125;*/</span></span><br><span class="line">    ListNode fast = head, slow = head;</span><br><span class="line">    <span class="keyword">while</span> (<span class="keyword">true</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> (fast == <span class="keyword">null</span> || fast.next == <span class="keyword">null</span>) <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        fast = fast.next.next;</span><br><span class="line">        slow = slow.next;</span><br><span class="line">        <span class="keyword">if</span> (fast == slow) <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//这时候已经相遇</span></span><br><span class="line">    fast = head;</span><br><span class="line">    <span class="keyword">while</span> (slow != fast)&#123;</span><br><span class="line">        slow = slow.next;</span><br><span class="line">        fast = fast.next;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> fast;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 ]]></content>
@@ -9662,8 +10020,8 @@ public Node(int _val,List&lt;Node&gt; _neighbors) {
         <category>数组</category>
       </categories>
       <tags>
-        <tag>Leetcode</tag>
         <tag>动态规划</tag>
+        <tag>Leetcode</tag>
       </tags>
   </entry>
   <entry>
@@ -9919,8 +10277,8 @@ public Node(int _val,List&lt;Node&gt; _neighbors) {
         <category>字符串</category>
       </categories>
       <tags>
-        <tag>Leetcode</tag>
         <tag>动态规划</tag>
+        <tag>Leetcode</tag>
       </tags>
   </entry>
   <entry>
@@ -10146,8 +10504,8 @@ public Node(int _val,List&lt;Node&gt; _neighbors) {
 <p>代码如下:<br><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxProfit</span><span class="params">(<span class="keyword">int</span>[] prices)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(prices.length == <span class="number">0</span> || prices.length &lt; <span class="number">2</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="comment">//进行初始化，第一天 dp_i_1_1 将股票买入，其他状态全部初始化为最小值</span></span><br><span class="line">    <span class="keyword">int</span> dp_i_1_1 = -prices[<span class="number">0</span>],dp_i_1_0 = Integer.MIN_VALUE,dp_i_2_1 = Integer.MIN_VALUE,dp_i_2_0 = Integer.MIN_VALUE;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;prices.length;++i) &#123;</span><br><span class="line">        dp_i_1_1 = Math.max(dp_i_1_1, -prices[i]); <span class="comment">//买入价格更低的股</span></span><br><span class="line">        dp_i_1_0 = Math.max(dp_i_1_0, dp_i_1_1+prices[i]); <span class="comment">//卖出当前股，或者不操作</span></span><br><span class="line">        dp_i_2_1 = Math.max(dp_i_2_1, dp_i_1_0-prices[i]); <span class="comment">//第二次买入，或者不操作</span></span><br><span class="line">        dp_i_2_0 = Math.max(dp_i_2_0, dp_i_2_1+prices[i]); <span class="comment">//第二次卖出，或者不操作</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> Math.max(<span class="number">0</span>,dp_i_2_0);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 ]]></content>
       <tags>
-        <tag>Leetcode</tag>
         <tag>动态规划</tag>
+        <tag>Leetcode</tag>
         <tag>有限状态机</tag>
       </tags>
   </entry>
@@ -10166,8 +10524,8 @@ public Node(int _val,List&lt;Node&gt; _neighbors) {
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">minimumTotal</span><span class="params">(List&lt;List&lt;Integer&gt;&gt; triangle)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> row = triangle.size();</span><br><span class="line">    <span class="keyword">int</span>[] dp = <span class="keyword">new</span> <span class="keyword">int</span>[row];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; row; i++) dp[i] = triangle.get(row - <span class="number">1</span>).get(i);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = row - <span class="number">2</span>; i &gt;= <span class="number">0</span>; i--)</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt;= i; j++)</span><br><span class="line">            dp[j] = Math.min(dp[j], dp[j + <span class="number">1</span>]) + triangle.get(i).get(j);</span><br><span class="line">    <span class="keyword">return</span> dp[<span class="number">0</span>];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 ]]></content>
       <tags>
-        <tag>Leetcode</tag>
         <tag>动态规划</tag>
+        <tag>Leetcode</tag>
       </tags>
   </entry>
   <entry>
@@ -10191,8 +10549,8 @@ public Node(int _val,List&lt;Node&gt; _neighbors) {
         <category>数组</category>
       </categories>
       <tags>
-        <tag>Leetcode</tag>
         <tag>动态规划</tag>
+        <tag>Leetcode</tag>
       </tags>
   </entry>
   <entry>
@@ -10252,8 +10610,8 @@ public Node(int _val,List&lt;Node&gt; _neighbors) {
         <category>数学</category>
       </categories>
       <tags>
-        <tag>Leetcode</tag>
         <tag>动态规划</tag>
+        <tag>Leetcode</tag>
       </tags>
   </entry>
   <entry>
@@ -10281,8 +10639,8 @@ public Node(int _val,List&lt;Node&gt; _neighbors) {
         <category>数学</category>
       </categories>
       <tags>
-        <tag>Leetcode</tag>
         <tag>动态规划</tag>
+        <tag>Leetcode</tag>
       </tags>
   </entry>
   <entry>
@@ -10315,8 +10673,8 @@ public Node(int _val,List&lt;Node&gt; _neighbors) {
         <category>数学</category>
       </categories>
       <tags>
-        <tag>Leetcode</tag>
         <tag>动态规划</tag>
+        <tag>Leetcode</tag>
       </tags>
   </entry>
   <entry>
@@ -10343,8 +10701,8 @@ public Node(int _val,List&lt;Node&gt; _neighbors) {
         <category>数组</category>
       </categories>
       <tags>
-        <tag>Leetcode</tag>
         <tag>动态规划</tag>
+        <tag>Leetcode</tag>
       </tags>
   </entry>
   <entry>
@@ -10586,8 +10944,8 @@ public Node(int _val,List&lt;Node&gt; _neighbors) {
         <category>数组</category>
       </categories>
       <tags>
-        <tag>Leetcode</tag>
         <tag>贪心</tag>
+        <tag>Leetcode</tag>
       </tags>
   </entry>
   <entry>
@@ -10633,10 +10991,10 @@ public Node(int _val,List&lt;Node&gt; _neighbors) {
         <category>数组</category>
       </categories>
       <tags>
-        <tag>Leetcode</tag>
-        <tag>贪心</tag>
-        <tag>回溯</tag>
         <tag>动态规划</tag>
+        <tag>贪心</tag>
+        <tag>Leetcode</tag>
+        <tag>回溯</tag>
       </tags>
   </entry>
   <entry>
@@ -10967,8 +11325,8 @@ public Node(int _val,List&lt;Node&gt; _neighbors) {
         <category>数组</category>
       </categories>
       <tags>
-        <tag>Leetcode</tag>
         <tag>动态规划</tag>
+        <tag>Leetcode</tag>
         <tag>分治</tag>
       </tags>
   </entry>
@@ -11338,9 +11696,9 @@ public Node(int _val,List&lt;Node&gt; _neighbors) {
         <category>字符串</category>
       </categories>
       <tags>
+        <tag>动态规划</tag>
         <tag>字符串</tag>
         <tag>Leetcode</tag>
-        <tag>动态规划</tag>
       </tags>
   </entry>
   <entry>
@@ -11633,8 +11991,8 @@ public Node(int _val,List&lt;Node&gt; _neighbors) {
         <category>字符串</category>
       </categories>
       <tags>
-        <tag>Leetcode</tag>
         <tag>动态规划</tag>
+        <tag>Leetcode</tag>
         <tag>栈</tag>
       </tags>
   </entry>
@@ -12047,8 +12405,8 @@ public Node(int _val,List&lt;Node&gt; _neighbors) {
         <category>链表</category>
       </categories>
       <tags>
-        <tag>Leetcode</tag>
         <tag>贪心</tag>
+        <tag>Leetcode</tag>
         <tag>链表</tag>
         <tag>归并</tag>
         <tag>分治</tag>
@@ -12103,9 +12461,9 @@ public Node(int _val,List&lt;Node&gt; _neighbors) {
         <category>数学</category>
       </categories>
       <tags>
+        <tag>动态规划</tag>
         <tag>Leetcode</tag>
         <tag>回溯</tag>
-        <tag>动态规划</tag>
       </tags>
   </entry>
   <entry>
@@ -12472,8 +12830,8 @@ public Node(int _val,List&lt;Node&gt; _neighbors) {
         <category>数学</category>
       </categories>
       <tags>
-        <tag>Leetcode</tag>
         <tag>贪心</tag>
+        <tag>Leetcode</tag>
       </tags>
   </entry>
   <entry>
@@ -12514,9 +12872,9 @@ public Node(int _val,List&lt;Node&gt; _neighbors) {
         <category>字符串</category>
       </categories>
       <tags>
+        <tag>动态规划</tag>
         <tag>Leetcode</tag>
         <tag>回溯</tag>
-        <tag>动态规划</tag>
       </tags>
   </entry>
   <entry>
@@ -12607,8 +12965,8 @@ public Node(int _val,List&lt;Node&gt; _neighbors) {
         <category>字符串</category>
       </categories>
       <tags>
-        <tag>Leetcode</tag>
         <tag>动态规划</tag>
+        <tag>Leetcode</tag>
         <tag>回文</tag>
         <tag>拓展中心</tag>
       </tags>
@@ -12657,6 +13015,7 @@ C++代码如下：
 <p>上述的方法最多需要执行 2n 个步骤。事实上，它可以被进一步优化为仅需要 n 个步骤。我们可以定义字符到索引的映射，而不是使用集合来判断一个字符是否存在。 当我们找到重复的字符时，我们可以立即跳过该窗口。<br>也就是说，如果 s[j]在 [i, j)范围内有与 j’重复的字符，我们不需要逐渐增加i。我们可以直接跳过 [i，j’]范围内的所有元素，并将i变为j’ + 1。</p>
 </blockquote>
 <p>但是为什么按照官方优化的方法，将左指针改成了j’ + 1之后反而在Leetcode上的运行时间会增加了呢？</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">lengthOfLongestSubstring</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (s.length() == <span class="number">0</span> )&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">char</span>[] windows = <span class="keyword">new</span> <span class="keyword">char</span>[<span class="number">128</span>];   <span class="comment">//用于记录每个字符</span></span><br><span class="line">    <span class="keyword">int</span> left = <span class="number">0</span> , right = <span class="number">0</span> ;        <span class="comment">//双指针控制窗口大小</span></span><br><span class="line">    <span class="keyword">int</span> maxlength = <span class="number">0</span> ;               <span class="comment">//记录窗口最大长度</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span>(right&lt; s.length())&#123;</span><br><span class="line">        <span class="keyword">char</span> ch = s.charAt(right);     </span><br><span class="line">        windows[ch]++; </span><br><span class="line"></span><br><span class="line">        <span class="comment">//如果有重复字符则左边窗口一直加，直到剔除重复字符</span></span><br><span class="line">        <span class="keyword">while</span> (windows[ch] &gt; <span class="number">1</span>)&#123;      </span><br><span class="line">            <span class="keyword">char</span> ch1 = s.charAt(left);</span><br><span class="line">            windows[ch1]--;</span><br><span class="line">            left++;</span><br><span class="line">        &#125;</span><br><span class="line">        maxlength = Math.max(right - left+<span class="number">1</span> , maxlength);</span><br><span class="line">        right++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> maxlength;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
         <category>算法</category>
