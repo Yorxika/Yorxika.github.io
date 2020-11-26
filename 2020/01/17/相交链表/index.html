@@ -32,7 +32,7 @@
 <meta property="og:locale" content="en">
 <meta property="og:image" content="http://yorxika.github.io/2020/01/17/相交链表/160_statement.png">
 <meta property="og:image" content="http://yorxika.github.io/2020/01/17/相交链表/160_example_1.png">
-<meta property="og:updated_time" content="2020-01-19T09:35:55.272Z">
+<meta property="og:updated_time" content="2020-09-02T06:38:49.078Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="相交链表">
 <meta name="twitter:description" content="来源Leetcode第160题相交链表 编写一个程序，找到两个单链表相交的起始节点。">
@@ -233,7 +233,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-01-19 17:35:55" itemprop="dateModified" datetime="2020-01-19T17:35:55+08:00">2020-01-19</time>
+                <time title="Modified: 2020-09-02 14:38:49" itemprop="dateModified" datetime="2020-09-02T14:38:49+08:00">2020-09-02</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -289,24 +289,13 @@
 <h3 id="哈希表"><a href="#哈希表" class="headerlink" title="哈希表"></a>哈希表</h3><p>遍历链表 <code>A</code> 并将每个结点的地址/引用存储在哈希表中。然后检查链表 <code>B</code> 中的每一个结点 b_i<em>b**i</em> 是否在哈希表中。若在，则 b_i<em>b**i</em> 为相交结点。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> ListNode <span class="title">getIntersectionNode</span><span class="params">(ListNode headA, ListNode headB)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(headA == <span class="keyword">null</span> || headB == <span class="keyword">null</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    ListNode p1 = headA;</span><br><span class="line">    Set&lt;ListNode&gt; map = <span class="keyword">new</span> HashSet&lt;&gt;();</span><br><span class="line">    <span class="keyword">while</span>(p1 != <span class="keyword">null</span>)&#123;</span><br><span class="line">        map.add(p1);</span><br><span class="line">        p1 = p1.next;</span><br><span class="line">    &#125;</span><br><span class="line">    p1 = headB;</span><br><span class="line">    <span class="keyword">while</span>(p1 != <span class="keyword">null</span>)&#123;</span><br><span class="line">        <span class="keyword">if</span>(map.contains(p1))</span><br><span class="line">            <span class="keyword">return</span> p1;</span><br><span class="line">        <span class="keyword">else</span> p1 = p1.next;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="双指针"><a href="#双指针" class="headerlink" title="双指针"></a>双指针</h3><ul>
-<li>创建两个指针 pA<em>p**A</em> 和 pB<em>p**B</em>，分别初始化为链表 <code>A</code> 和 <code>B</code> 的头结点。然后让它们向后逐结点遍历。</li>
-<li>当 pA<em>p**A</em> 到达链表的尾部时，将它重定位到链表 <code>B</code> 的头结点 (你没看错，就是链表 <code>B</code>); 类似的，当 pB<em>p**B</em> 到达链表的尾部时，将它重定位到链表 <code>A</code> 的头结点。</li>
-<li>若在某一时刻 pA<em>p**A</em> 和 pB<em>p**B</em> 相遇，则 pA<em>p**A</em>/pB<em>p**B</em> 为相交结点。</li>
-<li>想弄清楚为什么这样可行, 可以考虑以下两个链表: <code>A={1,3,5,7,9,11}</code> 和 <code>B={2,4,9,11}</code>，相交于结点 <code>9</code>。 由于 <code>B.length (=4) &lt; A.length (=6)</code>，pB<em>p**B</em> 比 pA<em>p**A</em> 少经过 22 个结点，会先到达尾部。将 pB<em>p**B</em> 重定向到 <code>A</code> 的头结点，pA<em>p**A</em> 重定向到 <code>B</code> 的头结点后，pB<em>p**B</em> 要比 pA<em>p**A</em> 多走 <code>2</code> 个结点。因此，它们会同时到达交点。</li>
-<li>如果两个链表存在相交，它们末尾的结点必然相同。因此当 pA<em>p**A</em>/pB<em>p**B</em> 到达链表结尾时，记录下链表 <code>A/B</code> 对应的元素。若最后元素不相同，则两个链表不相交。</li>
+<li>创建两个指针 pA 和 pB，分别初始化为链表 <code>A</code> 和 <code>B</code> 的头结点。然后让它们向后逐结点遍历。</li>
+<li>当 pA到达链表的尾部时，将它重定位到链表 <code>B</code> 的头结点 (你没看错，就是链表 <code>B</code>); 类似的，当 pB 到达链表的尾部时，将它重定位到链表 <code>A</code> 的头结点。</li>
+<li>若在某一时刻 pA和 pB 相遇，则 pA/pB为相交结点。</li>
+<li>想弄清楚为什么这样可行, 可以考虑以下两个链表: <code>A={1,3,5,7,9,11}</code> 和 <code>B={2,4,9,11}</code>，相交于结点 <code>9</code>。 由于 <code>B.length (=4) &lt; A.length (=6)</code>，pB比 pA少经过 22 个结点，会先到达尾部。将 pB 重定向到 <code>A</code> 的头结点，pA 重定向到 <code>B</code> 的头结点后，pB 要比 pA 多走 <code>2</code> 个结点。因此，它们会同时到达交点。</li>
+<li>如果两个链表存在相交，它们末尾的结点必然相同。因此当 pA/pB 到达链表结尾时，记录下链表 <code>A/B</code> 对应的元素。若最后元素不相同，则两个链表不相交。</li>
 </ul>
-<pre><code class="lang-JAVA">        public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
-            if(headA == null || headB == null)
-                return null;
-            ListNode pa = headA , pb = headB;
-            while(pa != pb){
-                pa = pa == null ? headB : pa.next;
-                pb = pb == null ? headA : pb.next;
-            }
-            return pa;
-        }
-</code></pre>
-
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> ListNode <span class="title">getIntersectionNode</span><span class="params">(ListNode headA, ListNode headB)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(headA == <span class="keyword">null</span> || headB == <span class="keyword">null</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    ListNode pa = headA , pb = headB;</span><br><span class="line">    <span class="keyword">while</span>(pa != pb)&#123;</span><br><span class="line">        pa = pa == <span class="keyword">null</span> ? headB : pa.next;</span><br><span class="line">        pb = pb == <span class="keyword">null</span> ? headA : pb.next;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> pa;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
     </div>
 
     
@@ -425,7 +414,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">240</span>
+          <span class="site-state-item-count">242</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -438,7 +427,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">66</span>
+        <span class="site-state-item-count">67</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -487,12 +476,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">745k</span>
+    <span title="Symbols count total">948k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">11:18</span>
+    <span title="Reading time total">14:21</span>
 </div><script color="255,255,255" opacity="0.5" zIndex="-1" count="180" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
 
         
