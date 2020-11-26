@@ -197,6 +197,872 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yorxika.github.io/2020/08/29/一些常见知识点/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/touxiang.jpg">
+      <meta itemprop="name" content="HMF">
+      <meta itemprop="description" content="To your valor, my sword, and our victory together.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Nameless Site">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/08/29/一些常见知识点/" class="post-title-link" itemprop="url">一些常见知识点</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-08-29 16:03:01 / Modified: 17:11:49" itemprop="dateCreated datePublished" datetime="2020-08-29T16:03:01+08:00">2020-08-29</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/学习笔记/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/学习笔记/JAVA/" itemprop="url" rel="index"><span itemprop="name">JAVA</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>25</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>1 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="facedetecor-人脸识别"><a href="#facedetecor-人脸识别" class="headerlink" title="facedetecor 人脸识别"></a>facedetecor 人脸识别</h3><p><a href="https://github.com/RedApparat/FaceDetector" target="_blank" rel="noopener">github仓库地址</a><br><!--more--
+//    添加依赖
+//<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//    repositories &#123;</span></span><br><span class="line"><span class="comment">//        maven &#123;</span></span><br><span class="line"><span class="comment">//            url  "http://dl.bintray.com/fotoapparat/fotoapparat"</span></span><br><span class="line"><span class="comment">//        &#125;</span></span><br><span class="line"><span class="comment">//    &#125;</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">//    compile 'io.fotoapparat:facedetector:1.0.0'</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">//// If you are using Fotoapparat add this one as well</span></span><br><span class="line"><span class="comment">//    compile 'io.fotoapparat.fotoapparat:library:1.2.0' // or later version</span></span><br><span class="line"><span class="comment">//</span></span><br></pre></td></tr></table></figure></p>
+<p>//<br>//    流程：<br>//            1. 选择照片<br>//2. 将照片加载到 bitmap 中并缩放到设置的宽高<br>//3. 用 FaceDetector 来检测人脸，得到 Face 类数组（多人脸检测）<br>//            4. 在照片 bitmap 检测到的人脸上面画上方框和年龄<br>//<br>//#### 选择照片<br>//<br>//    将 Intent 设置 Type 和 Action，启动 activity 选择照片并得到照片的 uri。<br>//            <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//    Intent intent = new Intent();</span></span><br><span class="line"><span class="comment">//        intent.setType("image/*");</span></span><br><span class="line"><span class="comment">//        intent.setAction(Intent.ACTION_GET_CONTENT);</span></span><br><span class="line"><span class="comment">//    startActivityForResult(intent, OPEN_PHOTO_FOLDER_REQUEST_CODE);</span></span><br><span class="line"><span class="comment">//</span></span><br></pre></td></tr></table></figure></p>
+<p>//<br>//        #### 加载照片到 bitmap 并缩放<br>//<br>//1. 通过uri用stream<br>//<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//    public void initBitmap(Uri uri,int width,int height) &#123;</span></span><br><span class="line"><span class="comment">//        try &#123;</span></span><br><span class="line"><span class="comment">//            ContentResolver resolver = mContext.getContentResolver();</span></span><br><span class="line"><span class="comment">//            BitmapFactory.Options options = new BitmapFactory.Options();</span></span><br><span class="line"><span class="comment">//            options.inPreferredConfig = Bitmap.Config.RGB_565;//need this config</span></span><br><span class="line"><span class="comment">//            Bitmap bitmap = BitmapFactory.decodeStream(resolver.openInputStream(uri), null, options);</span></span><br><span class="line"><span class="comment">//            mBitmap = ThumbnailUtils.extractThumbnail(bitmap, width, height);//scale the bitmap</span></span><br><span class="line"><span class="comment">//            detectFace();</span></span><br><span class="line"><span class="comment">//        &#125; catch (Exception ex) &#123;</span></span><br><span class="line"><span class="comment">//            Log.e(TAG,"exception: "+ex.getMessage());</span></span><br><span class="line"><span class="comment">//        &#125;</span></span><br><span class="line"><span class="comment">//    &#125;</span></span><br><span class="line"><span class="comment">//</span></span><br></pre></td></tr></table></figure></p>
+<p>//<br>//        2. 通过真实路径的加载<br>//<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//    private void initFRViewWithPath(Uri uri) &#123;</span></span><br><span class="line"><span class="comment">//        String[] projection =   &#123;MediaStore.Images.Media.DATA&#125;;</span></span><br><span class="line"><span class="comment">//        //        Cursor cursor = managedQuery(uri, projection, null, null, null);//deprecated</span></span><br><span class="line"><span class="comment">//        CursorLoader cursorLoader = new CursorLoader(this,uri,projection,null,null,null);</span></span><br><span class="line"><span class="comment">//        Cursor cursor = cursorLoader.loadInBackground();</span></span><br><span class="line"><span class="comment">//        int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);</span></span><br><span class="line"><span class="comment">//        cursor.moveToFirst();</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">//        String path = cursor.getString(column_index);</span></span><br><span class="line"><span class="comment">//        Log.e(TAG,"real path: "+path);</span></span><br><span class="line"><span class="comment">//        mFRView.initBitmap(path,mFRView.getWidth (),mFRView.getHeight());</span></span><br><span class="line"><span class="comment">//    &#125;</span></span><br><span class="line"><span class="comment">//    public void initBitmap(String path,int width,int height) &#123;</span></span><br><span class="line"><span class="comment">//        BitmapFactory.Options options = new BitmapFactory.Options();</span></span><br><span class="line"><span class="comment">//        options.inPreferredConfig = Bitmap.Config.RGB_565;</span></span><br><span class="line"><span class="comment">//        mBitmap = BitmapFactory.decodeFile(path, options);</span></span><br><span class="line"><span class="comment">//        mBitmap = ThumbnailUtils.extractThumbnail(mBitmap,width,height);//scale the bitmap</span></span><br><span class="line"><span class="comment">//        detectFace();</span></span><br><span class="line"><span class="comment">//    &#125;</span></span><br><span class="line"><span class="comment">//</span></span><br></pre></td></tr></table></figure></p>
+<p>//<br>//        ### 人脸检测<br>//<br>//<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//    private void detectFace() &#123;</span></span><br><span class="line"><span class="comment">//        if(mBitmap != null) &#123;</span></span><br><span class="line"><span class="comment">//            mImageWidth = mBitmap.getWidth();</span></span><br><span class="line"><span class="comment">//            mImageHeight = mBitmap.getHeight();</span></span><br><span class="line"><span class="comment">//            mFaces = new FaceDetector.Face[NUMBER_OF_FACES];</span></span><br><span class="line"><span class="comment">//            mFaceDetector = new FaceDetector(mImageWidth, mImageHeight, NUMBER_OF_FACES);</span></span><br><span class="line"><span class="comment">//            mNumberOfFaceDetected = mFaceDetector.findFaces(mBitmap, mFaces);</span></span><br><span class="line"><span class="comment">//            invalidate();</span></span><br><span class="line"><span class="comment">//        &#125;</span></span><br><span class="line"><span class="comment">//    &#125;</span></span><br><span class="line"><span class="comment">//</span></span><br></pre></td></tr></table></figure></p>
+<p>//<br>//        #### 人脸画框<br>//<br>//    在 onDraw 中用 canvas 将检测到的人脸画上框并写上年龄。<br>//<br>//            <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//    @Override</span></span><br><span class="line"><span class="comment">//    protected void onDraw(Canvas canvas) &#123;</span></span><br><span class="line"><span class="comment">//        super.onDraw(canvas);</span></span><br><span class="line"><span class="comment">//        if(mBitmap != null) &#123;</span></span><br><span class="line"><span class="comment">//            canvas.drawBitmap(mBitmap, 0, 0, null);</span></span><br><span class="line"><span class="comment">//            Paint paint = new Paint();</span></span><br><span class="line"><span class="comment">//            paint.setColor(Color.WHITE);</span></span><br><span class="line"><span class="comment">//            paint.setStyle(Paint.Style.STROKE);</span></span><br><span class="line"><span class="comment">//            paint.setStrokeWidth(2);</span></span><br><span class="line"><span class="comment">//            paint.setTextSize(50);</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">//            for(int i=0; i &lt; mNumberOfFaceDetected; i++)&#123;</span></span><br><span class="line"><span class="comment">//                FaceDetector.Face face = mFaces[i];</span></span><br><span class="line"><span class="comment">//                PointF pointF = new PointF();</span></span><br><span class="line"><span class="comment">//                face.getMidPoint(pointF);</span></span><br><span class="line"><span class="comment">//                mEyesDistance = face.eyesDistance();</span></span><br><span class="line"><span class="comment">//                canvas.drawRect(</span></span><br><span class="line"><span class="comment">//                        (int)(pointF.x - mEyesDistance),</span></span><br><span class="line"><span class="comment">//                        (int)(pointF.y - mEyesDistance/2),</span></span><br><span class="line"><span class="comment">//                        (int)(pointF.x + mEyesDistance),</span></span><br><span class="line"><span class="comment">//                        (int)(pointF.y + mEyesDistance*3/2),</span></span><br><span class="line"><span class="comment">//                        paint);</span></span><br><span class="line"><span class="comment">//                canvas.drawText("28",pointF.x,pointF.y - mEyesDistance/2-5,paint);</span></span><br><span class="line"><span class="comment">//            &#125;</span></span><br><span class="line"><span class="comment">//        &#125;</span></span><br><span class="line"><span class="comment">//    &#125;</span></span><br><span class="line"><span class="comment">//</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="简单工厂模式"><a href="#简单工厂模式" class="headerlink" title="简单工厂模式"></a>简单工厂模式</h3><p>也称为静态工厂方法模式，由一个工厂对象决定创建出哪一种产品类的实例。</p>
+<p>简单工厂模式中有如下角色：</p>
+<ul>
+<li>工厂类：核心，负责创建所有实例的内部逻辑，由外界直接调用。</li>
+<li>抽象产品类：要创建所有对象的抽象父类，负责描述所有实例所共有的公共接口。</li>
+<li>具体产品类：要创建的产品。</li>
+</ul>
+<h4 id="简单示例"><a href="#简单示例" class="headerlink" title="简单示例"></a>简单示例</h4><p>1、抽象产品类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Computer</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> abstarct <span class="keyword">void</span> <span class="title">start</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>2、具体产品类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LenovaComputer</span> <span class="keyword">extends</span> <span class="title">Computer</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">start</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        ...</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HpComputer</span> <span class="keyword">extends</span> <span class="title">Computer</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">start</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        ...</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AsusComputer</span> <span class="keyword">extends</span> <span class="title">Computer</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">start</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        ...</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>3、工厂类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ComputerFactory</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Computer <span class="title">createComputer</span><span class="params">(String type)</span> </span>&#123;</span><br><span class="line">        Computer mComputer = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">switch</span> (type) &#123;</span><br><span class="line">            <span class="keyword">case</span> <span class="string">"lenovo"</span>:</span><br><span class="line">                mComputer = <span class="keyword">new</span> LenovoComputer();</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> <span class="string">"hp"</span>:</span><br><span class="line">                mComputer = <span class="keyword">new</span> HpComputer();</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> <span class="string">"asus"</span>:</span><br><span class="line">                mComputer = <span class="keyword">new</span> AsusComputer();</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> mComputer;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>它需要知道所有工厂类型，因此只适合工厂类负责创建的对象比较少的情况。</li>
+<li>避免直接实例化类，降低耦合性。</li>
+<li>增加新产品需要修改工厂，违背开放封闭原则。</li>
+</ul>
+<h3 id="工厂方法模式"><a href="#工厂方法模式" class="headerlink" title="工厂方法模式"></a>工厂方法模式</h3><p>定义一个用于创建对象的接口，使类的实例化延迟到子类。</p>
+<p>工厂方法有以下角色：</p>
+<ul>
+<li>抽象产品类。</li>
+<li>具体产品类。</li>
+<li>抽象工厂类：返回一个泛型的产品对象。</li>
+<li>具体工厂类：返回具体的产品对象。</li>
+</ul>
+<h4 id="简单示例-1"><a href="#简单示例-1" class="headerlink" title="简单示例"></a>简单示例</h4><p>抽象产品类和具体产品类同简单工厂一样。</p>
+<p>3、抽象工厂类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">ComputerFactory</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">abstract</span> &lt;T extends Computer&gt; <span class="function">T <span class="title">createComputer</span><span class="params">(Class&lt;T&gt; clz)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>4、具体工厂类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GDComputerFactory</span> <span class="keyword">extends</span> <span class="title">ComputerFactory</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> &lt;T extends Computer&gt; <span class="function">T <span class="title">createComputer</span><span class="params">(Class&lt;T&gt; clz)</span> </span>&#123;</span><br><span class="line">        Computer computer = <span class="keyword">null</span>;</span><br><span class="line">        String classname = clz.getName();</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            computer = (Computer) Class.forName(classname).newInstance();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> (T) computer;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>相比简单工厂，如果我们需要新增产品类，无需修改工厂类，直接创建产品即可。</li>
+</ul>
+<h3 id="建造者模式"><a href="#建造者模式" class="headerlink" title="建造者模式"></a>建造者模式</h3><p>将一个复杂对象的构建和它的表示分离，使得同样的构建过程可以创建不同的表示。</p>
+<p>建造者有以下角色：</p>
+<ul>
+<li>导演类：负责安排已有模块的安装顺序，最后通知建造者开始建造。</li>
+<li>建造者：抽象Builder类，用于规范产品的组建。</li>
+<li>具体建造者：实现抽象Builder类的所有方法，并返回建造好的对象。</li>
+<li>产品类。</li>
+</ul>
+<h4 id="简单示例-2"><a href="#简单示例-2" class="headerlink" title="简单示例"></a>简单示例</h4><p>1、产品类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Computer</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String mCpu;</span><br><span class="line">    <span class="keyword">private</span> Stiring mMainboard;</span><br><span class="line">    <span class="keyword">private</span> String mRam;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setmCpu</span><span class="params">(String mCpu)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.mCpu = mCpu;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setmMainboard</span><span class="params">(String mMainboard)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.mMainboard = mMainboard;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setmRam</span><span class="params">(String mRam)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.mRam = mRam;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>2、抽象建造者</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Builder</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">buildCpu</span><span class="params">(String cpu)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">buildMainboard</span><span class="params">(String mainboard)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">buildRam</span><span class="params">(String ram)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> Computer <span class="title">create</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>3、具体建造者</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MoonComputerBuilder</span> <span class="keyword">extends</span> <span class="title">Builder</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Computer mComputer = <span class="keyword">new</span> Computer();</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">buildCpu</span><span class="params">(String cpu)</span> </span>&#123;</span><br><span class="line">        mComputer.setmCpu(cpu);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">buildMainboard</span><span class="params">(String mainboard)</span> </span>&#123;</span><br><span class="line">        mComputer.setmMainboard(mainboard);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">buildRam</span><span class="params">(String ram)</span> </span>&#123;</span><br><span class="line">        mComputer.setmRam(ram);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Computer <span class="title">create</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> mComputer;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>4、导演类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Director</span> </span>&#123;</span><br><span class="line">    Builder mBuilder = <span class="keyword">null</span>;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Director</span> <span class="params">(Builder builder)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.mBuilder = builder;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> Computer <span class="title">createComputer</span><span class="params">(String cpu, String mainboard, String ram)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.mBuilder.buildCpu(cpu);</span><br><span class="line">        <span class="keyword">this</span>.mBuilder.buildMainboard(mainboard);</span><br><span class="line">        <span class="keyword">this</span>.mBuilder.buildRam(ram);</span><br><span class="line">        <span class="keyword">return</span> mBuilder.create();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>屏蔽产品内部组成细节。</li>
+<li>具体建造者类之间相互独立，容易扩展。</li>
+<li>会产生多余的建造者对象和导演类。</li>
+</ul>
+<h3 id="代理模式"><a href="#代理模式" class="headerlink" title="代理模式"></a>代理模式</h3><p>为其它对象提供一种代理以控制这个对象的访问。</p>
+<p>代理模式中有以下角色：</p>
+<p>抽象主题类：声明真实主题和代理的共同接口方法。<br>真实主题类。<br>代理类：持有对真实主题类的引用。<br>客户端类。<br>静态代理示例代码<br>1、抽象主题类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">IShop</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">buy</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>2、真实主题类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">JsonChao</span> <span class="keyword">implements</span> <span class="title">IShop</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span> </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">buy</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        ...</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>3、代理类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Purchasing</span> <span class="keyword">implements</span> <span class="title">IShop</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> IShop mShop;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Purchasing</span><span class="params">(IShop shop)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.mShop = shop;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Override</span> </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">buy</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        mShop.buy();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>4、客户端类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Clent</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        IShop jsonChao = <span class="keyword">new</span> JsonChao();</span><br><span class="line">        IShop purchasing = <span class="keyword">new</span> Purchasing(jsonChao);</span><br><span class="line">        purchasing.buy();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>动态代理<br>在代码运行时通过反射来动态地生成代理类的对象，并确定到底来代理谁。</p>
+<p>动态代理示例代码<br>改写静态代理的代理类和客户端类，如下所示：</p>
+<p>1、动态代理类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DynamicPurchasing</span> <span class="keyword">implements</span> <span class="title">InvocationHandler</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Object obj;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">DynamicPurchasing</span><span class="params">(Object obj)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.obj = obj;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Overrdie</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">invoke</span><span class="params">(Object proxy, Method method, Object[] args)</span> <span class="keyword">throws</span> Throwable </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> method.invoke(obj, args);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>2、客户端类<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Clent</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        IShop jsonChao = <span class="keyword">new</span> JsonChao();</span><br><span class="line">        DynamicPurchasing mDynamicPurchasing = <span class="keyword">new</span> DynamicPurchasing(jsonChao);</span><br><span class="line">        ClassLoader cl = jsonChao.getClass.getClassLoader();</span><br><span class="line">        IShop purchasing = Proxy.newProxyInstance(cl, <span class="keyword">new</span> Class[]&#123;IShop.class&#125;, mDynamicPurchasing);</span><br><span class="line">        purchasing.buy();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>真实主题类发生变化时，由于它实现了公用的接口，因此代理类不需要修改。</p>
+<h3 id="装饰模式"><a href="#装饰模式" class="headerlink" title="装饰模式"></a>装饰模式</h3><p>动态地给一个对象添加一些额外的职责。</p>
+<p>装饰模式有以下角色：</p>
+<p>抽象组件：接口/抽象类，被装饰的最原始的对象。<br>具体组件：被装饰的具体对象。<br>抽象装饰者：扩展抽象组件的功能。<br>具体装饰者：装饰者具体实现类。<br>示例代码<br>1、抽象组件<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Swordsman</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">attackMagic</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>2、具体组件<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">YangGuo</span> <span class="keyword">extends</span> <span class="title">Swordsman</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">attackMagic</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        ...</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>3、抽象装饰者</p>
+<p>抽象装饰者必须持有抽象组件的引用，以便扩展功能。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Master</span> <span class="keyword">extends</span> <span class="title">Swordsman</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Swordsman swordsman;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Master</span><span class="params">(Swordsman swordsman)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.swordman = swordman;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">attackMagic</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        swordsman.attackMagic();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>4、具体装饰者<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HongQiGong</span> <span class="keyword">extends</span> <span class="title">Master</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">HongQiGong</span><span class="params">(Swordsman swordsman)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.swordsman = swordsman;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">teachAttackMagic</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        ...</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">attackMagic</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.attackMagic();</span><br><span class="line">        teackAttackMagic();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>5、使用<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">YangGuo mYangGuo = <span class="keyword">new</span> YangGuo();</span><br><span class="line">HongQiGong mHongQiGong = <span class="keyword">new</span> HongQiGong(mYangGuo);</span><br><span class="line">mHongQiGong.attackMagic();</span><br></pre></td></tr></table></figure></p>
+<p>使用组合，动态地扩展对象的功能，在运行时能够使用不同的装饰器实现不同的行为。<br>比继承更易出错，旨在必要时使用。</p>
+<h3 id="外观模式（门面模式）"><a href="#外观模式（门面模式）" class="headerlink" title="外观模式（门面模式）"></a>外观模式（门面模式）</h3><p>一个子系统的内部和外部通信必须通过一个统一的对象进行。即提供一个高层的接口，方便子系统更易于使用。</p>
+<p>外观模式有以下角色：</p>
+<ul>
+<li>外观类：将客户端的请求代理给适当的子系统对象。</li>
+<li>子系统类：可以有一个或多个子系统，用于处理外观类指派的任务。注意子系统不含外观类的引用。</li>
+</ul>
+<h4 id="简单示例-3"><a href="#简单示例-3" class="headerlink" title="简单示例"></a>简单示例</h4><p>1、子系统类（这个有三个子系统）</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ZhaoShi</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">TaiJiQuan</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        ...</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">QiShanQuan</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        ...</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">ShengHuo</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        ...</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">NeiGong</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">JiuYang</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        ...</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">QianKun</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        ...</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">JingMai</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">JingMai</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        ...</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>2、外观类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ZhangWuJi</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> ZhaoShi zhaoShi;</span><br><span class="line">    <span class="keyword">private</span> JingMai jingMai;</span><br><span class="line">    pirvate Neigong neiGong;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">ZhangWuJi</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        zhaoShi = <span class="keyword">new</span> ZhaoShi();</span><br><span class="line">        jingMai = <span class="keyword">new</span> JingMai();</span><br><span class="line">        neiGong = <span class="keyword">new</span> NeiGong();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">qianKun</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        jingMai.JingMai();</span><br><span class="line">        neiGong.QianKun();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">qiShang</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        jingMai.JingMai();</span><br><span class="line">        neiGong.JiuYang();</span><br><span class="line">        zhaoShi.QiShangQuan();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>3、使用</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ZhangWuJi zhangWuJi = <span class="keyword">new</span> ZhangWuJi();</span><br><span class="line">zhangWuJi.QianKun();</span><br><span class="line">zhangWuJi.QiShang();</span><br></pre></td></tr></table></figure>
+<ul>
+<li>将对子系统的依赖转换为对外观类的依赖。</li>
+<li>对外部隐藏子系统的具体实现。</li>
+<li>这种外观特性增强了安全性。</li>
+</ul>
+<h4 id="享元模式"><a href="#享元模式" class="headerlink" title="享元模式"></a>享元模式</h4><p>使用共享对象有效支持大量细粒度（性质相似）的对象。</p>
+<p>额外的两个概念：</p>
+<ul>
+<li>1、内部状态：共享信息，不可改变。</li>
+<li>2、外部状态：依赖标记，可以改变。</li>
+</ul>
+<p>享元模式有以下角色：</p>
+<ul>
+<li>抽象享元角色：定义对象内部和外部状态的接口。</li>
+<li>具体享元角色：实现抽象享元角色的任务。</li>
+<li>享元工厂：管理对象池及创建享元对象。</li>
+</ul>
+<h3 id="简单示例-4"><a href="#简单示例-4" class="headerlink" title="简单示例"></a>简单示例</h3><p>1、抽象享元角色</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">IGoods</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">showGoodsPrice</span><span class="params">(String name)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>2、具体享元角色</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Goods</span> <span class="keyword">implements</span> <span class="title">IGoods</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> String price;</span><br><span class="line">    </span><br><span class="line">    Goods (String name) &#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">showGoodsPrice</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">        ...</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>3、享元工厂</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GoodsFactory</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Map&lt;String, Goods&gt; pool = <span class="keyword">new</span> HashMap&lt;String, Goods&gt;();</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Goods <span class="title">getGoods</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (pool.containsKey(name)) &#123;</span><br><span class="line">            <span class="keyword">return</span> pool.get(name);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            Goods goods = <span class="keyword">new</span> Goods(name);</span><br><span class="line">            pool.put(name, goods);</span><br><span class="line">            <span class="keyword">return</span> goods;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>4、使用</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Goods goods1 = GoodsFactory.getGoods(<span class="string">"Android进阶之光"</span>);</span><br><span class="line">goods1.showGoodsPrice(<span class="string">"普通版"</span>);</span><br><span class="line">Goods goods2 = GoodsFactory.getGoods(<span class="string">"Android进阶之光"</span>);</span><br><span class="line">goods1.showGoodsPrice(<span class="string">"普通版"</span>);</span><br><span class="line">Goods goods3 = GoodsFactory.getGoods(<span class="string">"Android进阶之光"</span>);</span><br><span class="line">goods1.showGoodsPrice(<span class="string">"签名版"</span>);</span><br></pre></td></tr></table></figure>
+<p>goods1为新创建的对象，后面的都是从对象池中取出的缓存对象。</p>
+<h3 id="适配器模式"><a href="#适配器模式" class="headerlink" title="适配器模式"></a>适配器模式</h3><p>将一个接口转换为另一个需要的接口。</p>
+<p>适配器有以下角色：</p>
+<ul>
+<li>要转换的接口。</li>
+<li>要转换的接口的实现类。</li>
+<li>转换后的接口。</li>
+<li>转换后的接口的实现类。</li>
+<li>适配器类。</li>
+</ul>
+<h4 id="简单示例-5"><a href="#简单示例-5" class="headerlink" title="简单示例"></a>简单示例</h4><p>1、要转换的接口（火鸡）</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Turkey</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">gobble</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">fly</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>2、要转换的接口的实现类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">WildTurkey</span> <span class="keyword">implements</span> <span class="title">Turkey</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">gobble</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        ...</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">fly</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        ...</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>3、转换后的接口（鸭子）</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Duck</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">quack</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">fly</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>4、转换后的接口的实现类。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MallardDuck</span> <span class="keyword">implements</span> <span class="title">Duck</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">quack</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        ...</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Overrdie</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">fly</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        ...</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>5、适配器类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TurkeyAdapter</span> <span class="keyword">implements</span> <span class="title">Duck</span> </span>&#123;</span><br><span class="line">    Turkey turkey;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">TurkeyAdapter</span><span class="params">(Turkey turkey)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.turkey = turkey;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">quack</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        turkey.gobble();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">fly</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 火鸡没有鸭子飞的远，因此多飞几次，达到适配鸭子fly的作用</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i;i &lt; <span class="number">5</span>;i++) &#123;</span><br><span class="line">            turkey.fly();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>6、使用</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">WildTurkey wildTurkey = <span class="keyword">new</span> WildTurkey();</span><br><span class="line">TurkeyAdapter turkeyAdapter = <span class="keyword">new</span> TurkeyAdapter(wildTurkey);</span><br><span class="line">turkeyAdapter.quack();</span><br><span class="line">turkeyAdapter.fly();</span><br></pre></td></tr></table></figure>
+<ul>
+<li>注重适度使用即可。</li>
+</ul>
+<h3 id="模板方法模式"><a href="#模板方法模式" class="headerlink" title="模板方法模式"></a>模板方法模式</h3><p>定义了一套算法框架，将某些步骤交给子类去实现。使得子类不需改变框架结构即可重写算法中的某些步骤。</p>
+<p>模板方法模式有以下角色：</p>
+<ul>
+<li>抽象类：定义了一套算法框架。</li>
+<li>具体实现类。</li>
+</ul>
+<h4 id="简单示例-6"><a href="#简单示例-6" class="headerlink" title="简单示例"></a>简单示例</h4><p>1、抽象类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">AbstractSwordsman</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">void</span> <span class="title">fighting</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        neigong();</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 这个是具体方法</span></span><br><span class="line">        jingmai();</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> (hasWeapons()) &#123;</span><br><span class="line">            weapons();</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        moves();</span><br><span class="line">        </span><br><span class="line">        hook();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">hook</span><span class="params">()</span> </span>&#123; &#125;;</span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="keyword">abstract</span> <span class="title">neigong</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="keyword">abstract</span> <span class="title">weapons</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="keyword">abstract</span> <span class="title">moves</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">jingmai</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        ...</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">boolean</span> <span class="title">hasWeapons</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> ture;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>2、具体实现类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ZhangWuJi</span> <span class="keyword">extends</span> <span class="title">AbstractSwordsman</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">neigong</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        ...</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Override</span> </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">weapons</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 没有武器，不做处理</span></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Override</span> </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">moves</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        ...</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">hasWeapons</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">punlc <span class="class"><span class="keyword">class</span> <span class="title">ZhangSanFeng</span> <span class="keyword">extends</span> <span class="title">AbstractSwordsman</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">neigong</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        ...</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Override</span> </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">weapons</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        ...</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Override</span> </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">moves</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        ...</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">hook</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 额外处理</span></span><br><span class="line">        ...</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>3、使用</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ZhangWuJi zhangWuJi = <span class="keyword">new</span> ZhangWuJi();</span><br><span class="line">zhangWuJi.fighting();</span><br><span class="line">ZhangSanFeng zhangSanFeng = <span class="keyword">new</span> ZhangSanFeng();</span><br><span class="line">zhangSanFeng.fighting();</span><br></pre></td></tr></table></figure>
+<ul>
+<li>可以使用hook方法实现子类对父类的反向控制。</li>
+<li>可以把核心或固定的逻辑搬移到基类，其它细节交给子类实现。</li>
+<li>每个不同的实现都需要定义一个子类，复用性小。</li>
+</ul>
+<h3 id="观察者模式（发布-订阅模式）"><a href="#观察者模式（发布-订阅模式）" class="headerlink" title="观察者模式（发布 - 订阅模式）"></a>观察者模式（发布 - 订阅模式）</h3><p>定义对象间的一种1对多的依赖关系，每当这个对象的状态改变时，其它的对象都会接收到通知并被自动更新。</p>
+<p>观察者模式有以下角色：</p>
+<ul>
+<li>抽象被观察者：将所有已注册的观察者对象保存在一个集合中。</li>
+<li>具体被观察者：当内部状态发生变化时，将会通知所有已注册的观察者。</li>
+<li>抽象观察者：定义了一个更新接口，当被观察者状态改变时更新自己。</li>
+<li>具体被观察者：实现抽象观察者的更新接口。</li>
+</ul>
+<h4 id="简单示例-7"><a href="#简单示例-7" class="headerlink" title="简单示例"></a>简单示例</h4><p>1、抽象观察者</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">observer</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">update</span><span class="params">(String message)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>2、具体观察者</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">WeXinUser</span> <span class="keyword">implements</span> <span class="title">observer</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">WeXinUser</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">update</span><span class="params">(String message)</span> </span>&#123;</span><br><span class="line">        ...</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>3、抽象被观察者</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">observable</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addWeXinUser</span><span class="params">(WeXinUser weXinUser)</span></span>;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">removeWeXinUser</span><span class="params">(WeXinUser weXinUser)</span></span>;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">notify</span><span class="params">(String message)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>4、具体被观察者</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Subscription</span> <span class="keyword">implements</span> <span class="title">observable</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> List&lt;WeXinUser&gt; mUserList = <span class="keyword">new</span> ArrayList();</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addWeXinUser</span><span class="params">(WeXinUser weXinUser)</span> </span>&#123;</span><br><span class="line">        mUserList.add(weXinUser);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">removeWeXinUser</span><span class="params">(WeXinUser weXinUser)</span> </span>&#123;</span><br><span class="line">        mUserList.remove(weXinUser);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">notify</span><span class="params">(String message)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span>(WeXinUser weXinUser : mUserList) &#123;</span><br><span class="line">            weXinUser.update(message);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>5、使用</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Subscription subscription = <span class="keyword">new</span> Subscription();</span><br><span class="line"></span><br><span class="line">WeXinUser hongYang = <span class="keyword">new</span> WeXinUser(<span class="string">"HongYang"</span>);</span><br><span class="line">WeXinUser rengYuGang = <span class="keyword">new</span> WeXinUser(<span class="string">"RengYuGang"</span>);</span><br><span class="line">WeXinUser liuWangShu = <span class="keyword">new</span> WeXinUser(<span class="string">"LiuWangShu"</span>);</span><br><span class="line"></span><br><span class="line">subscription.addWeiXinUser(hongYang);</span><br><span class="line">subscription.addWeiXinUser(rengYuGang);</span><br><span class="line">subscription.addWeiXinUser(liuWangShu);</span><br><span class="line">subscription.notify(<span class="string">"New article coming"</span>);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>实现了观察者和被观察者之间的抽象耦合，容易扩展。</li>
+<li>有利于建立一套触发机制。</li>
+<li>一个被观察者卡顿，会影响整体的执行效率。采用异步机制可解决此类问题。</li>
+</ul>
+<h3 id="组件化基础"><a href="#组件化基础" class="headerlink" title="组件化基础"></a>组件化基础</h3><h4 id="认识组件化"><a href="#认识组件化" class="headerlink" title="认识组件化"></a>认识组件化</h4><p><strong>多module划分为业务和基础功能</strong></p>
+<ul>
+<li><strong>组件</strong>：指的是单一的功能组件，如视频组件（VideoSDK）、支付组件（PaySDK）、路由组件（Router）等，每个组件都能单独抽出来制作成SDK。</li>
+<li><strong>模块</strong>: 指的是独立的业务模块，如直播模块（LiveModule）、首页模块（HomeModule）、即时通信模块（IMModule）等。模块相对于组件来说粒度更大，模块可能包含多种不同的组件。</li>
+</ul>
+<p><strong>组件化开发的好处：</strong></p>
+<ul>
+<li>避免重复造轮子，可以节省开发和维护的成本。</li>
+<li>可以通过组件和模块为业务基准合理地安排人力，提高开发效率。</li>
+<li>不同的项目可以共用一个组件或模块，确保整体技术方案的统一性。</li>
+<li>为未来插件化共用同一套底层模型做准备。</li>
+</ul>
+<p><strong>模块化开发的好处：</strong></p>
+<ul>
+<li>业务模块的解耦，业务移植更加简单。</li>
+<li>多团队根据业务内容进行并行开发和测试。</li>
+<li>单个业务可以单独编译打包，加快编译速度。</li>
+<li>多个App共用模块，降低了研发和维护成本。</li>
+</ul>
+<p><strong>两者的缺点：</strong></p>
+<ul>
+<li>旧项目重新适配组件化的开发需要相应的人力及时间成本。</li>
+</ul>
+<p><strong>两者的本质思想：</strong></p>
+<ul>
+<li>代码重用和业务解耦。</li>
+</ul>
+<p><strong>区别：</strong></p>
+<ul>
+<li>模块化是业务导向，组件化是功能导向。</li>
+</ul>
+<p>引申：</p>
+<p>项目方法数超过65535个时的解决方案：</p>
+<ul>
+<li>MultiDex分包。</li>
+<li>插件化。</li>
+</ul>
+<h4 id="依赖"><a href="#依赖" class="headerlink" title="依赖"></a>依赖</h4><p>AS独有的三种依赖方式：</p>
+<ul>
+<li><p><strong>Jar dependency：</strong> 通过Gradle配置引入lib文件夹中的所有.jar后缀的文件，还能引用.aar后缀的文件。</p>
+</li>
+<li><p><strong>Base module：</strong> 对应的是module dependency，实质上是将其打包成aar文件，方便其他库进行依赖。</p>
+</li>
+<li><p><strong>Library dependency：</strong> 第三方依赖通过其完成仓库索引依赖，仓库包含网络仓库和本地库。</p>
+<p>dependencies { compile fileTree（include：[‘*.jar’], dir: ‘libs’) compile project(‘:base’) annotationProcessor ‘com.alibaba:arouter-compiler:1.1.1’ }</p>
+</li>
+</ul>
+<p>一般情况下，AS定义使用dependencies包含全部资源引入。</p>
+<p><strong>注意：</strong></p>
+<ul>
+<li>读入自身目录使用的是fileTree。</li>
+<li>读入其他资源module使用的是”project“字段，而”：base“中冒号的意思是文件目录内与自己相同层级的其他module。</li>
+</ul>
+<h4 id="聚合和解耦"><a href="#聚合和解耦" class="headerlink" title="聚合和解耦"></a>聚合和解耦</h4><ul>
+<li>AS正是以依赖的方式给每个module之间提供了沟通和交流的渠道，从而形成聚合。</li>
+<li>聚合和解耦是项目架构的基础。</li>
+<li>组件化架构就是在文件层级上有效地控制沟通和个体独立性的做法。</li>
+</ul>
+<h4 id="重新认识AndroidManifest"><a href="#重新认识AndroidManifest" class="headerlink" title="重新认识AndroidManifest"></a>重新认识AndroidManifest</h4><p>问题：每个module都有一份配合的AndroidManifest文件来记载其信息，最终生成一个App的时候，其只有一份AndroidManifest来指导App应该如何配置，那么如何记录这么多个module独立的配置信息呢？</p>
+<p><strong>答案：将多个AndroidManifest合成一个</strong></p>
+<p>合成的生成地址目录为app/build/intermediates/manifest/full/debug/AndroidManifest.xml, intermediates文件夹包含的是App生成过程中产生的“中间文件”。</p>
+<p><strong>AndroidManifest属性变更</strong></p>
+<p><strong>1.注册Activity</strong></p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="built_in">application</span></span><br><span class="line">    android:<span class="built_in">name</span>=<span class="string">"material.com.top.app.GankApplication"</span></span><br><span class="line">    ...</span><br></pre></td></tr></table></figure>
+<p>name需要具体包名+属性名，这是因为AndroidManifest会引用多个module中的文件，需要知道具体路径，不然在编译期打包时会找不到每个文件的具体位置。</p>
+<p><strong>2.注册Application</strong></p>
+<p>如果功能module中有两个自定义Application，在解决冲突后，Application最终会载入后编译的module的Application。</p>
+<p><strong>3.权限声明</strong></p>
+<ul>
+<li>如果在一个功能module中声明所需要的权限，那么在主module中就会看到相应的权限。</li>
+<li>如果在其他module中都声明相同的权限，最终的AndroidManifest会合并这个重复声明的权限，所以相同的权限只会声明一次。</li>
+<li>如果考虑最终权限有可能被遗漏的问题，可以将全部的权限都在Base module中声明，这样全部权限都是有的。</li>
+</ul>
+<p><strong>4.shareUid</strong></p>
+<p>通过声明Shared User id，拥有同一个User id的多个App可以配置成运行在同一个进程中，所以默认可以互相访问任意数据。</p>
+<p>问题：如果只是在功能module中声明shareUid，那么最终的AndroidManifest会如何呢？</p>
+<p><strong>答案：只有在主module（Application module）中声明sharedUserId，才会最终打包到full AndroidManifest中。</strong></p>
+<p><strong>注意：</strong></p>
+<ul>
+<li>每个module打包aar时都会将versionCode和versionName补全。</li>
+</ul>
+<h4 id="你所不知道的Application"><a href="#你所不知道的Application" class="headerlink" title="你所不知道的Application"></a>你所不知道的Application</h4><p><strong>Applicaiton的基础和作用</strong></p>
+<p>Application是整个App的一个单例对象，并且其生命周期是最长的，相当于整个App的生命周期。</p>
+<p>Application中比较重要的方法：</p>
+<ul>
+<li>onTerminate——当终止应用程序对象时调用，不保证一定被调用，当程序被内核终止以便为其他应用程序释放资源时将不会提醒，并且不调用应用程序对象的onTerminate方法而直接终止进程。</li>
+<li>onLowMemory——当后台程序已经终止且资源还匮乏时会调用这个方法。好的应用程序会在此释放资源。</li>
+</ul>
+<p>Applicaiton提供的最好用的方法：</p>
+<ul>
+<li>registerActivityLifecycleCallbacks()和unregisterActivityLifecycleCallbacks()。</li>
+</ul>
+<p>作用：用于注册或注销对<strong>App内所有Activity的生命周期监听。</strong></p>
+<p><strong>组件化Application</strong></p>
+<p>如果Library项目中也定义了与主项目相同的属性（例如默认生成的android:icon 和android:theme)，则此时会合并失败。</p>
+<p>解决方式：使用tools：replace=“android:name”来声明Application是可被替换的。</p>
+<p>在full文件夹中的AndroidManifest查看最终编入的是哪个Application。</p>
+<h3 id="Jetpack"><a href="#Jetpack" class="headerlink" title="Jetpack"></a>Jetpack</h3><p><a href="https://juejin.im/post/6844903768614518798">Android Jetpack组件</a></p>
+--></p>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yorxika.github.io/2020/08/02/分割数组的最大值/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/touxiang.jpg">
+      <meta itemprop="name" content="HMF">
+      <meta itemprop="description" content="To your valor, my sword, and our victory together.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Nameless Site">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/08/02/分割数组的最大值/" class="post-title-link" itemprop="url">分割数组的最大值</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-08-02 01:04:58 / Modified: 01:12:38" itemprop="dateCreated datePublished" datetime="2020-08-02T01:04:58+08:00">2020-08-02</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法/Leetcode/" itemprop="url" rel="index"><span itemprop="name">Leetcode</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法/Leetcode/数组/" itemprop="url" rel="index"><span itemprop="name">数组</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>1.3k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>1 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>来自Leetcode第410题分割数组的最大值</p>
+<p>给定一个非负整数数组和一个整数 <em>m</em>，你需要将这个数组分成 <em>m</em> 个非空的连续子数组。设计一个算法使得这 <em>m</em> 个子数组各自和的最大值最小。<br></p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/08/02/分割数组的最大值/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yorxika.github.io/2020/08/02/恢复空格/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/touxiang.jpg">
+      <meta itemprop="name" content="HMF">
+      <meta itemprop="description" content="To your valor, my sword, and our victory together.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Nameless Site">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/08/02/恢复空格/" class="post-title-link" itemprop="url">恢复空格</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-08-02 00:44:30 / Modified: 00:56:50" itemprop="dateCreated datePublished" datetime="2020-08-02T00:44:30+08:00">2020-08-02</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法/Leetcode/" itemprop="url" rel="index"><span itemprop="name">Leetcode</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法/Leetcode/字符串/" itemprop="url" rel="index"><span itemprop="name">字符串</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>1.1k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>1 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>来自Leetcode面试题17.13 恢复空格</p>
+<p>哦，不！你不小心把一个长篇文章中的空格、标点都删掉了，并且大写也弄成了小写。像句子<code>&quot;I reset the computer. It still didn’t boot!&quot;</code>已经变成了<code>&quot;iresetthecomputeritstilldidntboot&quot;</code>。在处理标点符号和大小写之前，你得先把它断成词语。当然了，你有一本厚厚的词典<code>dictionary</code>，不过，有些词没在词典里。假设文章用<code>sentence</code>表示，设计一个算法，把文章断开，要求未识别的字符最少，返回未识别的字符数。</p>
+<p><strong>注意：</strong>本题相对原题稍作改动，只需返回未识别的字符数<br></p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/08/02/恢复空格/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yorxika.github.io/2020/08/02/最小区间/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/touxiang.jpg">
+      <meta itemprop="name" content="HMF">
+      <meta itemprop="description" content="To your valor, my sword, and our victory together.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Nameless Site">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/08/02/最小区间/" class="post-title-link" itemprop="url">最小区间</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-08-02 00:06:31 / Modified: 00:26:49" itemprop="dateCreated datePublished" datetime="2020-08-02T00:06:31+08:00">2020-08-02</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法/Leetcode/" itemprop="url" rel="index"><span itemprop="name">Leetcode</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法/Leetcode/数组/" itemprop="url" rel="index"><span itemprop="name">数组</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>2.9k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>3 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>来自Leetcode632题最小区间</p>
+<p>你有 <code>k</code> 个升序排列的整数数组。找到一个<strong>最小</strong>区间，使得 <code>k</code> 个列表中的每个列表至少有一个数包含在其中。</p>
+<p>我们定义如果 <code>b-a &lt; d-c</code> 或者在 <code>b-a == d-c</code> 时 <code>a &lt; c</code>，则区间 [a,b] 比 [c,d] 小。<br></p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/08/02/最小区间/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yorxika.github.io/2020/07/17/地下城游戏/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/touxiang.jpg">
+      <meta itemprop="name" content="HMF">
+      <meta itemprop="description" content="To your valor, my sword, and our victory together.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Nameless Site">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/07/17/地下城游戏/" class="post-title-link" itemprop="url">地下城游戏</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-07-17 00:23:59 / Modified: 00:41:11" itemprop="dateCreated datePublished" datetime="2020-07-17T00:23:59+08:00">2020-07-17</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法/Leetcode/" itemprop="url" rel="index"><span itemprop="name">Leetcode</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法/Leetcode/数组/" itemprop="url" rel="index"><span itemprop="name">数组</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>1.9k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>2 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>来自Leetcode第174题地下城游戏</p>
+<p>一些恶魔抓住了公主（<strong>P</strong>）并将她关在了地下城的右下角。地下城是由 M x N 个房间组成的二维网格。我们英勇的骑士（<strong>K</strong>）最初被安置在左上角的房间里，他必须穿过地下城并通过对抗恶魔来拯救公主。</p>
+<p>骑士的初始健康点数为一个正整数。如果他的健康点数在某一时刻降至 0 或以下，他会立即死亡。<br></p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/07/17/地下城游戏/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yorxika.github.io/2020/07/14/两个数组的交集II/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/touxiang.jpg">
+      <meta itemprop="name" content="HMF">
+      <meta itemprop="description" content="To your valor, my sword, and our victory together.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Nameless Site">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/07/14/两个数组的交集II/" class="post-title-link" itemprop="url">两个数组的交集II</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-07-14 01:01:31 / Modified: 01:08:11" itemprop="dateCreated datePublished" datetime="2020-07-14T01:01:31+08:00">2020-07-14</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法/Leetcode/" itemprop="url" rel="index"><span itemprop="name">Leetcode</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法/Leetcode/数组/" itemprop="url" rel="index"><span itemprop="name">数组</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>1.6k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>1 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>来自力扣第350题两个数组的交集II</p>
+<p>给定两个数组，编写一个函数来计算它们的交集。<br></p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/07/14/两个数组的交集II/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="http://yorxika.github.io/2020/05/18/和为K的子数组/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -397,609 +1263,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yorxika.github.io/2020/05/08/数组中的逆序对/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/touxiang.jpg">
-      <meta itemprop="name" content="HMF">
-      <meta itemprop="description" content="To your valor, my sword, and our victory together.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Nameless Site">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/05/08/数组中的逆序对/" class="post-title-link" itemprop="url">数组中的逆序对</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2020-05-08 21:26:14 / Modified: 21:43:39" itemprop="dateCreated datePublished" datetime="2020-05-08T21:26:14+08:00">2020-05-08</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/Leetcode/" itemprop="url" rel="index"><span itemprop="name">Leetcode</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/Leetcode/数学/" itemprop="url" rel="index"><span itemprop="name">数学</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>1.9k</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>2 mins.</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>来自Leetcode面试题51.数组中的逆序对</p>
-<p>在数组中的两个数字，如果前面一个数字大于后面的数字，则这两个数字组成一个逆序对。输入一个数组，求出这个数组中的逆序对的总数。<br></p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/05/08/数组中的逆序对/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yorxika.github.io/2020/05/08/最低票价/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/touxiang.jpg">
-      <meta itemprop="name" content="HMF">
-      <meta itemprop="description" content="To your valor, my sword, and our victory together.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Nameless Site">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/05/08/最低票价/" class="post-title-link" itemprop="url">最低票价</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2020-05-08 20:59:14 / Modified: 21:13:29" itemprop="dateCreated datePublished" datetime="2020-05-08T20:59:14+08:00">2020-05-08</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/Leetcode/" itemprop="url" rel="index"><span itemprop="name">Leetcode</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/Leetcode/数组/" itemprop="url" rel="index"><span itemprop="name">数组</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>1.8k</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>2 mins.</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>来自Leetcode第983题最低票价</p>
-<p>在一个火车旅行很受欢迎的国度，你提前一年计划了一些火车旅行。在接下来的一年里，你要旅行的日子将以一个名为 <code>days</code> 的数组给出。每一项是一个从 <code>1</code> 到 <code>365</code> 的整数。</p>
-<p>火车票有三种不同的销售方式：</p>
-<ul>
-<li>一张为期一天的通行证售价为 <code>costs[0]</code> 美元；</li>
-<li>一张为期七天的通行证售价为 <code>costs[1]</code> 美元；</li>
-<li>一张为期三十天的通行证售价为 <code>costs[2]</code> 美元。</li>
-</ul>
-<p>通行证允许数天无限制的旅行。 例如，如果我们在第 2 天获得一张为期 7 天的通行证，那么我们可以连着旅行 7 天：第 2 天、第 3 天、第 4 天、第 5 天、第 6 天、第 7 天和第 8 天。</p>
-<p>返回你想要完成在给定的列表 <code>days</code> 中列出的每一天的旅行所需要的最低消费。<br></p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/05/08/最低票价/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yorxika.github.io/2020/04/19/01矩阵/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/touxiang.jpg">
-      <meta itemprop="name" content="HMF">
-      <meta itemprop="description" content="To your valor, my sword, and our victory together.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Nameless Site">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/04/19/01矩阵/" class="post-title-link" itemprop="url">01矩阵</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2020-04-19 23:31:00 / Modified: 23:53:22" itemprop="dateCreated datePublished" datetime="2020-04-19T23:31:00+08:00">2020-04-19</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/Leetcode/" itemprop="url" rel="index"><span itemprop="name">Leetcode</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/Leetcode/数组/" itemprop="url" rel="index"><span itemprop="name">数组</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>2k</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>2 mins.</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>来自Leetcode第542题01矩阵</p>
-<p>给定一个由 0 和 1 组成的矩阵，找出每个元素到最近的 0 的距离。</p>
-<p>两个相邻元素间的距离为 1 。<br></p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/04/19/01矩阵/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yorxika.github.io/2020/04/13/外观队列/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/touxiang.jpg">
-      <meta itemprop="name" content="HMF">
-      <meta itemprop="description" content="To your valor, my sword, and our victory together.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Nameless Site">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/04/13/外观队列/" class="post-title-link" itemprop="url">外观数列</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2020-04-13 16:27:50 / Modified: 16:33:57" itemprop="dateCreated datePublished" datetime="2020-04-13T16:27:50+08:00">2020-04-13</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/Leetcode/" itemprop="url" rel="index"><span itemprop="name">Leetcode</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/Leetcode/字符串/" itemprop="url" rel="index"><span itemprop="name">字符串</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>965</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>1 mins.</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>来自Leetcode第38题外观数列</p>
-<p>「外观数列」是一个整数序列，从数字 1 开始，序列中的每一项都是对前一项的描述。前五项如下：</p>
-<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span>     <span class="number">1</span></span><br><span class="line"><span class="number">2.</span>     <span class="number">11</span></span><br><span class="line"><span class="number">3.</span>     <span class="number">21</span></span><br><span class="line"><span class="number">4.</span>     <span class="number">1211</span></span><br><span class="line"><span class="number">5.</span>     <span class="number">111221</span></span><br></pre></td></tr></table></figure>
-<p><code>1</code> 被读作 <code>&quot;one 1&quot;</code> (<code>&quot;一个一&quot;</code>) , 即 <code>11</code>。<br><code>11</code> 被读作 <code>&quot;two 1s&quot;</code> (<code>&quot;两个一&quot;</code>）, 即 <code>21</code>。<br><code>21</code> 被读作 <code>&quot;one 2&quot;</code>,  “<code>one 1&quot;</code> （<code>&quot;一个二&quot;</code> , <code>&quot;一个一&quot;</code>) , 即 <code>1211</code>。<br></p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/04/13/外观队列/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yorxika.github.io/2020/04/13/串联所有单词的子串/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/touxiang.jpg">
-      <meta itemprop="name" content="HMF">
-      <meta itemprop="description" content="To your valor, my sword, and our victory together.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Nameless Site">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/04/13/串联所有单词的子串/" class="post-title-link" itemprop="url">串联所有单词的子串</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2020-04-13 15:45:13 / Modified: 15:54:02" itemprop="dateCreated datePublished" datetime="2020-04-13T15:45:13+08:00">2020-04-13</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/Leetcode/" itemprop="url" rel="index"><span itemprop="name">Leetcode</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/Leetcode/字符串/" itemprop="url" rel="index"><span itemprop="name">字符串</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>2.2k</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>2 mins.</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>来自Leetcode第30题串联所有单词的子串</p>
-<p>给定一个字符串 <strong>s</strong> 和一些长度相同的单词 <strong>words。</strong>找出 <strong>s</strong> 中恰好可以由 <strong>words</strong> 中所有单词串联形成的子串的起始位置。</p>
-<p>注意子串要与 <strong>words</strong> 中的单词完全匹配，中间不能有其他字符，但不需要考虑 <strong>words</strong> 中单词串联的顺序。<br></p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/04/13/串联所有单词的子串/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yorxika.github.io/2020/04/06/LFU/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/touxiang.jpg">
-      <meta itemprop="name" content="HMF">
-      <meta itemprop="description" content="To your valor, my sword, and our victory together.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Nameless Site">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/04/06/LFU/" class="post-title-link" itemprop="url">LFU缓存</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2020-04-06 00:34:03 / Modified: 01:11:41" itemprop="dateCreated datePublished" datetime="2020-04-06T00:34:03+08:00">2020-04-06</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/Leetcode/" itemprop="url" rel="index"><span itemprop="name">Leetcode</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/Leetcode/数据结构设计/" itemprop="url" rel="index"><span itemprop="name">数据结构设计</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>10k</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>9 mins.</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>来源力扣第460题LFU缓存</p>
-<p>请你为 <a href="https://baike.baidu.com/item/缓存算法" target="_blank" rel="noopener">最不经常使用（LFU）</a>缓存算法设计并实现数据结构。它应该支持以下操作：<code>get</code> 和 <code>put</code>。</p>
-<ul>
-<li><code>get(key)</code> - 如果键存在于缓存中，则获取键的值（总是正数），否则返回 -1。</li>
-<li><code>put(key, value)</code> - 如果键不存在，请设置或插入值。当缓存达到其容量时，则应该在插入新项之前，使最不经常使用的项无效。在此问题中，当存在平局（即两个或更多个键具有相同使用频率）时，应该去除 <strong>最近</strong> 最少使用的键。</li></ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/04/06/LFU/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1071,7 +1334,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">234</span>
+          <span class="site-state-item-count">240</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -1084,7 +1347,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">65</span>
+        <span class="site-state-item-count">66</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -1133,12 +1396,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">736k</span>
+    <span title="Symbols count total">745k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">11:09</span>
+    <span title="Reading time total">11:18</span>
 </div><script color="255,255,255" opacity="0.5" zIndex="-1" count="180" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
 
         
