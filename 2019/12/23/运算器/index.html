@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.9.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yorxika.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="定点数运算及溢出检测 补码加法：[X＋Y]补 = [X]补＋ [Y]补 和的补码 = 补码的和   补码减法：[X−Y]补 = [X]补＋ [−Y]补 = [X]补−[Y]补 差的补码 = 补码的差">
+<meta name="keywords" content="组成原理">
+<meta property="og:type" content="article">
+<meta property="og:title" content="运算器">
+<meta property="og:url" content="http://yorxika.github.io/2019/12/23/运算器/index.html">
+<meta property="og:site_name" content="Nameless Site">
+<meta property="og:description" content="定点数运算及溢出检测 补码加法：[X＋Y]补 = [X]补＋ [Y]补 和的补码 = 补码的和   补码减法：[X−Y]补 = [X]补＋ [−Y]补 = [X]补−[Y]补 差的补码 = 补码的差">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/23/运算器/image-20191223010219114.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/23/运算器/image-20191226234848895.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/23/运算器/image-20191226235525221.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/23/运算器/image-20191223011539952.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/23/运算器/image-20191223011546598.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/23/运算器/image-20191223011554683.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/23/运算器/image-20191223011604477.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/23/运算器/image-20191223011617449.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/23/运算器/image-20191223011651720.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/23/运算器/image-20191223105629422.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/23/运算器/image-20191223105639405.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/23/运算器/image-20191223105649861.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/23/运算器/image-20191223105716737.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/23/运算器/image-20191223110749473.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/23/运算器/image-20191223110759842.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/23/运算器/image-20191223112447328.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/23/运算器/image-20191227001319627.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/23/运算器/image-20191227001414909.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/23/运算器/image-20191227001634066.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/23/运算器/image-20191227002149154.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/23/运算器/image-20191223112518818.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/23/运算器/image-20191223112531553.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/23/运算器/image-20191227003555284.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/23/运算器/image-20191227003638643.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/23/运算器/image-20191227003720937.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/23/运算器/image-20191223231843074.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/23/运算器/image-20191223231854975.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/23/运算器/image-20191223231901994.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/23/运算器/image-20191223231927917.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/23/运算器/image-20191223232007762.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/23/运算器/image-20191223232026608.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/23/运算器/image-20191223232033420.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/23/运算器/image-20191227005213203.png">
+<meta property="og:updated_time" content="2019-12-26T17:14:54.601Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="运算器">
+<meta name="twitter:description" content="定点数运算及溢出检测 补码加法：[X＋Y]补 = [X]补＋ [Y]补 和的补码 = 补码的和   补码减法：[X−Y]补 = [X]补＋ [−Y]补 = [X]补−[Y]补 差的补码 = 补码的差">
+<meta name="twitter:image" content="http://yorxika.github.io/2019/12/23/运算器/image-20191223010219114.png">
+
+<link rel="canonical" href="http://yorxika.github.io/2019/12/23/运算器/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>运算器 | Nameless Site</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="Nameless Site" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Nameless Site</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">But one day, you will stand before its decrepit gate,without really knowing why.</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+        <li class="menu-item menu-item-links">
+
+    <a href="/links/" rel="section"><i class="fa fa-link fa-fw"></i>links</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yorxika.github.io/2019/12/23/运算器/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/touxiang.jpg">
+      <meta itemprop="name" content="HMF">
+      <meta itemprop="description" content="To your valor, my sword, and our victory together.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Nameless Site">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          运算器
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-12-23 00:46:38" itemprop="dateCreated datePublished" datetime="2019-12-23T00:46:38+08:00">2019-12-23</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2019-12-27 01:14:54" itemprop="dateModified" datetime="2019-12-27T01:14:54+08:00">2019-12-27</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/学习笔记/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/学习笔记/计算机组成原理/" itemprop="url" rel="index"><span itemprop="name">计算机组成原理</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>6.3k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>6 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="定点数运算及溢出检测"><a href="#定点数运算及溢出检测" class="headerlink" title="定点数运算及溢出检测"></a>定点数运算及溢出检测</h2><ul>
+<li>补码加法：[X＋Y]补 = [X]补＋ [Y]补<ul>
+<li>和的补码 = 补码的和</li>
+</ul>
+</li>
+<li>补码减法：[X−Y]补 = [X]补＋ [−Y]补 = [X]补−[Y]补<ul>
+<li>差的补码 = 补码的差<a id="more"></a></li>
+<li>减法变加法，关键是求[−Y]补</li>
+</ul>
+</li>
+<li>求补公式：[−Y]补= [ [Y]补 ]补<ul>
+<li><strong>对 [Y]补逐位取反, 再在最低位加 1</strong></li>
+</ul>
+</li>
+</ul>
+<p><img src="/2019/12/23/运算器/image-20191223010219114.png" alt="image-20191223010219114"></p>
+<h3 id="单符号数溢出检测"><a href="#单符号数溢出检测" class="headerlink" title="单符号数溢出检测"></a>单符号数溢出检测</h3><h4 id="方法I"><a href="#方法I" class="headerlink" title="方法I"></a>方法I</h4><p>溢出只可能发生在同符号数相加时，包括[X]补与[Y]补； [X]补与[-Y]同号；<br>方法1：对操作数和运算结果的符号位进行检测 当结果的符号位与操作数的符号不相同时就表明发生了溢出 </p>
+<ul>
+<li>正正得负  负负得正</li>
+<li>设两数符号位为 f0 f1 ，和数符号位 fs</li>
+<li>溢出检测信号Overflow   (OF)<br>OF = !f0·!f1·fs + f0·f1·!fs</li>
+</ul>
+<h4 id="方法II"><a href="#方法II" class="headerlink" title="方法II"></a>方法II</h4><p>方法2：对最高数据位进位和符号进位进行检测 •设运算时最高数据位产生的进位为C1，符号位产生的进位为C0， 溢出检测电路为： V= C0 ^ C 1</p>
+<p><img src="/2019/12/23/运算器/image-20191226234848895.png" alt="image-20191226234848895"></p>
+<h4 id="方法III"><a href="#方法III" class="headerlink" title="方法III"></a>方法III</h4><p>方法3：用变型补码 [X]补 = Xf1Xf2. X1X2X3…Xn mod  2^n+2 溢出的判断:  V= Xf1 ^ Xf2</p>
+<p>例6 已知 X=- 10010  Y= -10101  求X+Y<br>解:   [X]补=1101110   [Y]补= 1101011<br>[X+Y]补=[X]补+[Y]补= 1101110  + 1101011 =1 10 10001<br>V= 1 ^ 0 =1 故发生溢出！</p>
+<h4 id="无符号数运算的溢出判断"><a href="#无符号数运算的溢出判断" class="headerlink" title="无符号数运算的溢出判断"></a>无符号数运算的溢出判断</h4><ul>
+<li>无符号数加法的溢出可用ALU的进位表示</li>
+<li>无符号数减法的溢出也可用带加/减功能的ALU的进位取反后表示。</li>
+</ul>
+<h2 id="定点数补码加减运算器设计"><a href="#定点数补码加减运算器设计" class="headerlink" title="定点数补码加减运算器设计"></a>定点数补码加减运算器设计</h2><h3 id="带进位链的一位全加器"><a href="#带进位链的一位全加器" class="headerlink" title="带进位链的一位全加器"></a>带进位链的一位全加器</h3><p>Si  =  Xi ⊕ Yi ⊕ Ci<br>Ci+1  =  Xi Yi  + (Xi ⊕ Yi )Ci</p>
+<p><img src="/2019/12/23/运算器/image-20191226235525221.png" alt="image-20191226235525221"></p>
+<ul>
+<li>n位加法器包含n个全加器</li>
+<li>将n个一位全加器串联</li>
+<li>低位进位输出连接到高位进位输入</li>
+</ul>
+<h4 id="串行加法器时间延迟"><a href="#串行加法器时间延迟" class="headerlink" title="串行加法器时间延迟"></a>串行加法器时间延迟</h4><p>n个全加器延迟，3n个门电路延迟？<br>考虑片内并行性，2n+1个门电路延迟</p>
+<h3 id="四位串行加-减法器设计"><a href="#四位串行加-减法器设计" class="headerlink" title="四位串行加/减法器设计"></a>四位串行加/减法器设计</h3><p>补码减法可以变加法<br>         [X]补 − [Y]补 = [X]补 + [−Y]补<br>关键是求[−Y]补<br>方法：将Y补连同符号位一起逐位取反末位加一<br>         [−Y]补= [ [Y]补 ]补             注意补码区间不对称？</p>
+<ul>
+<li>引入运算控制位 Sub<ul>
+<li>Sub=0 时作加法，送入加法器的是Y补    </li>
+<li>Sub=1 时作减法，送入加法器的是[−Y]补   <ul>
+<li>对 Y补 逐位取反，末位加一</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>[−Y]补= [ [Y]补 ]补<br>Input = Yi ^ Sub</p>
+<p><img src="/2019/12/23/运算器/image-20191223011539952.png" alt="image-20191223011539952"></p>
+<p><img src="/2019/12/23/运算器/image-20191223011546598.png" alt="image-20191223011546598"></p>
+<p><img src="/2019/12/23/运算器/image-20191223011554683.png" alt="image-20191223011554683"></p>
+<p><img src="/2019/12/23/运算器/image-20191223011604477.png" alt="image-20191223011604477"></p>
+<h3 id="并行加法器进位链-carry-lookahead"><a href="#并行加法器进位链-carry-lookahead" class="headerlink" title="并行加法器进位链(carry-lookahead)"></a>并行加法器进位链(carry-lookahead)</h3><p>Si = Xi⊕Yi⊕Ci-1<br>Ci = XiYi+(Xi⊕Yi)Ci-1<br>Gi = XiYi    进位生成函数 Generate<br>Pi = Xi⊕Yi    进位传递函数 Propagate<br>Ci = Gi + Pi·Ci-1<br>高位运算依赖于低位进位 -&gt; 计算不能并行</p>
+<p>Cn = Gn＋PnGn-1＋PnPn-1Gn-2＋PnPn-1Pn-2Gn-3 …＋PnPn-1…P1C0</p>
+<ul>
+<li>进位输出仅与最低位进位输入C0有关</li>
+<li>位数越长，进位链电路复杂度越高</li>
+<li>通常按照4位一组进行分组运算</li>
+</ul>
+<p><img src="/2019/12/23/运算器/image-20191223011617449.png" alt="image-20191223011617449"></p>
+<p><img src="/2019/12/23/运算器/image-20191223011651720.png" alt="image-20191223011651720"><br>①生成P*，G*需3T  -&gt;  ②生成C3/C12需2T -&gt;  ③求和需3T</p>
+<h2 id="原码一位乘法"><a href="#原码一位乘法" class="headerlink" title="原码一位乘法"></a>原码一位乘法</h2><ul>
+<li>符号单独运算：直接异或</li>
+<li>绝对值相乘：   仅需考虑数值部分的计算</li>
+</ul>
+<p><img src="/2019/12/23/运算器/image-20191223105629422.png" alt="image-20191223105629422"></p>
+<p><img src="/2019/12/23/运算器/image-20191223105639405.png" alt="image-20191223105639405"></p>
+<p><img src="/2019/12/23/运算器/image-20191223105649861.png" alt="image-20191223105649861"></p>
+<p><img src="/2019/12/23/运算器/image-20191223105716737.png" alt="image-20191223105716737"></p>
+<h2 id="补码一位乘法"><a href="#补码一位乘法" class="headerlink" title="补码一位乘法"></a>补码一位乘法</h2><p>设[X]补 = X0X1X2X3…Xn [Y]补 = Y0Y1Y2Y3…Yn<br>可证明：<br>   [X•Y]补 = [X]补•( 0.Y1Y2Y3…Yn ) –Y0• [X]补<br>进一步展开合并后可得：<br>   [x•y]补=[x] 补•Σ(yi+1 - yi)2^-i    ( 符号位参加运算 ) </p>
+<p>补码一位乘法的运算规则如下:<br>(1)如果yn+1=yn,部分积加0，部分积算术右移1位；<br>(2)如果yn+1yn=10,部分积加[x]补，部分积算术右移1位；<br>(3)如果yn+1yn=01,部分积加[-x]补，部分积算术右移1位. 重复进行n＋1步，但最后一步不移位。<br>包括一位符号位，所得乘积为2n＋1位，其中n为数据位位数. </p>
+<p>几个特殊问题的处理<br>(1) i=n时 ,yn+1= ？yn+1= 0<br>(2) yn+1 是哪个寄存器？在乘数寄存器Y后增加的一位<br>(3)算术右移的对象有哪些？   部分积和乘数寄存器均右移</p>
+<p><img src="/2019/12/23/运算器/image-20191223110749473.png" alt="image-20191223110749473"></p>
+<p><img src="/2019/12/23/运算器/image-20191223110759842.png" alt="image-20191223110759842"></p>
+<h2 id="乘法运算器设计"><a href="#乘法运算器设计" class="headerlink" title="乘法运算器设计"></a>乘法运算器设计</h2><p><img src="/2019/12/23/运算器/image-20191223112447328.png" alt="image-20191223112447328"></p>
+<h3 id="阵列乘法器"><a href="#阵列乘法器" class="headerlink" title="阵列乘法器"></a>阵列乘法器</h3><p>而对于相加数运算，就变成了一位乘法运算，一位乘法运算很简单，从真值表看，这就是一个简单的与逻辑，也就是逻辑与门就可以实现一位乘法，对于上一页的5*5的乘法运算，需要25个相加数，所以我们可以采用25个与门并发，如图所示，经过<strong>一级门电路延迟</strong>后，就可以得到所有的相加数，下面我们只需要考虑逐列相加的逻辑就可以实现乘法器</p>
+<p><img src="/2019/12/23/运算器/image-20191227001319627.png" alt="image-20191227001319627"></p>
+<ul>
+<li>与门实现一位乘法</li>
+<li>25个与门并发</li>
+<li>一级门延迟，生成所有相加数</li>
+</ul>
+<p><img src="/2019/12/23/运算器/image-20191227001414909.png" alt="image-20191227001414909"></p>
+<p>经过一级门电路延迟后，生成了所有相加数，这里X。。就是，将第二列用一个全加器进行相加，由于全加器有三个输入，所以这里进位位我们给一个零，当然大家也可以使用半加器完成，去掉进位输入，可以减少硬件成本，相加得到的结果就是乘积的P1位，进位输出横向向高位列传递，这就是所谓的横向进位阵列乘法器，将第三列的三个数用两个全加器串联进行运算，就可以得到P2，同样，全加器的进位输出都横向向左侧传递。，最后一个全加器进位输入为零，依次类推，得到P3，P4，P5，对于P6列，这个进位信号直接传递到下一层的全加器，同理得到P7，P。。。。。      如果采用斜向进位，就可以有另外一种连接方法。</p>
+<p>前面我们给出了横向进位和斜向进位两种阵列乘法器，首先我们来看看横向进位阵列乘法器，5*5的横向阵列乘法器包括4行全加器，每行5个，需要20个全加器，进位信号横向传递，每一行都是一个5位串行进位加法器，串行加法器的特点就是性能差，各全加器之间存在着进位依赖，所以这个全加器运算完毕后，这个才能运算，然后是这个，第一行运算完毕后，第二行才能开始运算，所以看上去所有全加器都只能串行工作，整个运算需要20个全加器时延。</p>
+<p>但仔细分析，这个横向进位阵列乘法器还存在这一定的并行性，首先是这个全加器运算，运算完毕后这个全加器运算，当第二个全加器运算完毕后，这两个全加器的输入就绪，两个全加器可以并发，当这两个全加器运算完毕后，这两个全加器运算，然后是这三个全加器并发，所以沿着对角线法线方向上的全加器是可以并发的，我们来看看乘法器的关键路径<br>(T是计算X1Y1，X0Y0的那个时延)</p>
+<p><img src="/2019/12/23/运算器/image-20191227001634066.png" alt="image-20191227001634066"></p>
+<p>斜向进位乘法器和横向进位乘法器结构有一些区别，加法器一共5行，每行4个全加器，横向进位是4行，每行5个，硬件电路成本相同，都是n。     由于斜向进位的引入，同一行的全加器可以并发，行与行之间有结果依赖，所以前面4行需要4个全加器延迟，也就是n-1个全加器延迟，最后一行由于采用的是横向进位，所以这部分如果不做优化，器时间延迟也是n-1个全加器延迟，电路运行的关键路径如下，一共需要。。。。。。。 斜式时间复杂度优于横向进位阵列乘法器，由3n个全加器延迟结标变成2n级别，性能明显由于横向进位阵列乘法器</p>
+<p><img src="/2019/12/23/运算器/image-20191227002149154.png" alt="image-20191227002149154"></p>
+<p>最后对比一下横向进位阵列乘法器，和斜向阵列乘法器，两个电路硬件成本都是n*n-1个全加器，只不过一个是4行5列，一个是5行4列但由于内部进位信号传递方式不同，直接导致性能差异加大，大约是1.5倍的差异， 不同结构硬件实现方式就和软件的算法一样，好的算法可以得到优秀的性能</p>
+<p><img src="/2019/12/23/运算器/image-20191223112518818.png" alt="image-20191223112518818"></p>
+<p><img src="/2019/12/23/运算器/image-20191223112531553.png" alt="image-20191223112531553"></p>
+<h3 id="计算机中的流水线"><a href="#计算机中的流水线" class="headerlink" title="计算机中的流水线"></a>计算机中的流水线</h3><ul>
+<li>流水思想：复杂问题分解成细粒度任务并发<ul>
+<li>乘法流水线，浮点流水线，指令流水线</li>
+<li>流水线 = 寄存器 + 组合逻辑 + 寄存器 + 组合逻辑 + 寄存器  …        数据通路串联</li>
+<li>流水线时钟频率取决于组合逻辑的关键路径</li>
+</ul>
+</li>
+</ul>
+<p><img src="/2019/12/23/运算器/image-20191227003555284.png" alt="image-20191227003555284"></p>
+<p>回到阵列乘法器上，如果简单的5*5将阵列乘法器看做4个5位串行加法器的级联，我们可以将运算过程细分为4个步骤，第一步计算Y+。。。。  得到部分积，为了简化设计，我们这里可以直接采用10位的加法器进行运算，不足的位补零即可， 第二部将第一步运算的结果累加上Y2X*4，*4是考虑权值对齐的问题，同理第三部。。。。第四部是。。。。。。完成第四部运算后10位加法器的运算结果就是最终的成绩，如果吧这里绿色的横线当做流水接口，实际上就可以演变成一个乘法流水线，这里流水接口本质上就是一堆寄存器，用于锁存当前步骤运算的部分积，，，以及后续步骤运算所需要的Yi*X。   后续我们实验中要求大家按照这个思路实现一个乘法流水线。</p>
+<p><img src="/2019/12/23/运算器/image-20191227003638643.png" alt="image-20191227003638643"></p>
+<p>刚刚我们给出的第一种流水线改造办法将乘法运算细分成了4部，实际上我们还可以按照横向进位阵列乘法器的关键路径进行流水细分，比如这里我们可以按照关键路径将乘法运算细分成11步，每一步中的全加器都可以完全并行，和刚刚介绍的方案1相比，这里流水线每一步的时间延迟更短，由10位全加器时延变成了一个全加器时延，流水线的时钟频率更高，流水线的性能更优。<br>这两种方法都是将乘法运算细分成若干更小的步骤，让后引入流水接口部件——寄存器锁存中间结果构成运算流水线，实际上浮点运算流水线也是采用了类似的方法。   真是计算机中的乘法器也是采用流水线实现的，目前大多采用布斯两位乘法+华莱士树的方式构成，如果你有兴趣可以研究一下。</p>
+<p><img src="/2019/12/23/运算器/image-20191227003720937.png" alt="image-20191227003720937"></p>
+<h3 id="变量与常数之间的乘法运算"><a href="#变量与常数之间的乘法运算" class="headerlink" title="变量与常数之间的乘法运算"></a>变量与常数之间的乘法运算</h3><ul>
+<li>整数乘法比移位和加法运算慢很多</li>
+<li>编译器在处理变量与常数相乘时，用其它快速运算指令代替乘法<pre><code>x\*20  -&gt;  (x&lt;&lt;4)+(x&lt;&lt;2)       乘法转换成了2次移位和1次加法
+x\*15  -&gt;  (x&lt;&lt;4) – x               乘法转换成了1次移位和1次减法
+</code></pre></li>
+<li>移位加减组合运算和直接相乘结果一样的（包括溢出）</li>
+<li>是否优化取决于组合运算周期数是否小于乘法开销</li>
+</ul>
+<h2 id="定点数除法"><a href="#定点数除法" class="headerlink" title="定点数除法"></a>定点数除法</h2><h3 id="恢复余数除法"><a href="#恢复余数除法" class="headerlink" title="恢复余数除法"></a>恢复余数除法</h3><ul>
+<li>如何判断是否够减<ul>
+<li>利用补码作减法，判断余数符号即可</li>
+</ul>
+</li>
+<li>余数为负数时，必须恢复余数<ul>
+<li>将余数加除数，恢复成原值</li>
+</ul>
+</li>
+<li>求下一位商，必须将余数左移一位，再与除数比较<ul>
+<li>手工运算将除数右移？</li>
+<li>注意这里余数放大了，最后结果要缩小</li>
+</ul>
+</li>
+<li>比较，上商（恢复），余数移位，再比较，<ul>
+<li>直到商的位数足够</li>
+</ul>
+</li>
+</ul>
+<p><img src="/2019/12/23/运算器/image-20191223231843074.png" alt="image-20191223231843074"></p>
+<p><img src="/2019/12/23/运算器/image-20191223231854975.png" alt="image-20191223231854975"></p>
+<p><img src="/2019/12/23/运算器/image-20191223231901994.png" alt="image-20191223231901994"></p>
+<p>问题：</p>
+<ul>
+<li>需要进行恢复余数的操作<ul>
+<li>余数是负数，必须恢复余数</li>
+<li>绝对值运算，余数不可能是负数</li>
+</ul>
+</li>
+<li>恢复余数的操作次数不确定<ul>
+<li>运算时间不固定</li>
+<li>最慢除法（每次都不够除），拖慢除法速度</li>
+</ul>
+</li>
+<li>实际应用通常采用<strong>不恢复余数除法</strong></li>
+</ul>
+<h3 id="不恢复余数除法"><a href="#不恢复余数除法" class="headerlink" title="不恢复余数除法"></a>不恢复余数除法</h3><ul>
+<li>n设某次余数为Ri，求下位商需将Ri左移一位，再减去除数Y进行比较，此过程可表示为<br>2Ri - Y</li>
+<li>余数Ri小于0时商上0，需要恢复余数，左移一位，再减除数Y比较<br>(2Ri - Y）+ Y = 2Ri<br>2*2Ri – Y =4Ri–Y = 2*(2Ri -Y) + Y</li>
+<li>不恢复余数法：余数Ri小于0时商上0，左移一位，再<strong>加</strong>除数Y比较</li>
+</ul>
+<p><img src="/2019/12/23/运算器/image-20191223231927917.png" alt="image-20191223231927917"></p>
+<p><img src="/2019/12/23/运算器/image-20191223232007762.png" alt="image-20191223232007762"></p>
+<p><img src="/2019/12/23/运算器/image-20191223232026608.png" alt="image-20191223232026608"></p>
+<ul>
+<li>n*n个CAS单元</li>
+<li>(n*n) ×4T</li>
+</ul>
+<p><img src="/2019/12/23/运算器/image-20191223232033420.png" alt="image-20191223232033420"></p>
+<h2 id="浮点数加减运算"><a href="#浮点数加减运算" class="headerlink" title="浮点数加减运算"></a>浮点数加减运算</h2><h3 id="规格化浮点数概念"><a href="#规格化浮点数概念" class="headerlink" title="规格化浮点数概念"></a>规格化浮点数概念</h3><ul>
+<li>由于浮点数是将数据的表示范围与精确度分别表示的数据表示方法，若不对浮点数的表示作出明确规定，同一个浮点数的表示就不唯一</li>
+<li>规格化浮点数是指把一个浮点数按指定的格式进行转换，</li>
+<li>由于浮点数是将数据的表示范围与精确度分别表示的数据表示方法，若不 对浮点数的表示作出明确规定，同一个浮点数的表示就不唯一，</li>
+<li>以浮点数一般格式为例，规格化浮点数的尾数形式为: 00.1… 或 11.0…。</li>
+</ul>
+<h3 id="规格化浮点数方法"><a href="#规格化浮点数方法" class="headerlink" title="规格化浮点数方法"></a>规格化浮点数方法</h3><ul>
+<li>当尾数结果为 00.0… 或 11.1，需要左规格化即将尾数向左移动， 每移动一次，阶码减1，直到尾数形式为 00.1… 或 11.0…。</li>
+<li>当尾数的结果为 01.… 或 10.， 表明尾数求和的结果 &gt; 1,此时仅 需要执行一次右移规格化， 阶码加 1 ,尾数形式即为00.1… 或 11.0…</li>
+</ul>
+<h3 id="浮点数加减运算方法及其步骤"><a href="#浮点数加减运算方法及其步骤" class="headerlink" title="浮点数加减运算方法及其步骤"></a>浮点数加减运算方法及其步骤</h3><ul>
+<li>对阶 <ul>
+<li>求阶差；</li>
+<li>右移阶码小的浮点数的尾数并同步增加其阶码，直至两数阶码相等。</li>
+</ul>
+</li>
+<li><p>尾数加/减 </p>
+<ul>
+<li>尾数加/减运算 （用对阶后的尾数） </li>
+</ul>
+</li>
+<li>结果规格化<ul>
+<li>尾数非零时，要求绝对值≥0.5，尾数MSB=1</li>
+<li>否则修改阶码并移动尾数，使其满足上述要求</li>
+<li>目的：保证浮点数的编码唯一性</li>
+<li>右移以实现规格化   向右规格化   右归   阶码+<ul>
+<li>右归时连同符号位进位位一起右移，阶码作加法 </li>
+</ul>
+</li>
+<li>左移以实现规格化   向左规格化   左归   阶码-<ul>
+<li>左归时LSB位补0，阶码作减法</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>舍入<ul>
+<li>右移规格化时可能丢失一些低位的数值位, 为提高精度,  可采取舍入的方法: </li>
+<li>0 舍 1 入 : 若右移出的是1则在最低位加1;<br><img src="/2019/12/23/运算器/image-20191227005213203.png" alt="image-20191227005213203"></li>
+<li>恒置 1 : 只要数字位1被移掉,就将最后一位恒置成1。</li>
+</ul>
+</li>
+<li>溢出处理 <ul>
+<li>浮点数的溢出标志:  阶码溢出 </li>
+<li>阶码上溢 ： 阶码的符号位为 01 </li>
+<li>阶码下溢 ： 阶码的符号位为 10</li>
+<li>尾数上溢   右归</li>
+<li>尾数下溢   左归</li>
+</ul>
+</li>
+</ul>
+<p>例1  两浮点数 x = 2^101×0.11011011，y = 2^111×(-0.10101100)。假设尾数在计算机中以补码表示，可存储10位尾数，2位符号位，阶码以补码表示，双符号位, 求 x + y。</p>
+<p>解：将x , y转换成浮点格式<br>     [x]浮 = 00101, 00.11011011<br>     [Y]浮 = 00111, 11.01010100<br>步骤1：对阶，阶差为 Ex − Ey = [Ex]补 + [−Ey]补<br>     [−Ey]补=11001  Ex−Ey＝00101＋11001＝11110 = -2 &lt; 0<br>         小阶对大阶， X阶码加2， 尾数右移2位<br>     [x]浮 = 00111,00.0011011011   保留位<br>     [x]浮 = 00111, 00.0011011011   保留位<br>     [Y]浮 = 00111, 11.01010100<br>步骤2：尾数求和<br>     [X+Y]浮 = 00111, 11.1000101011   保留位参与运算<br>步骤3：结果规格化<br>     [X+Y]浮 = 00110, 11.000101011     非规数，左归1位, 阶码减1，保留位？<br>步骤4：舍入处理<br>     [X+Y]浮 = 00110, 11.00010110   (0舍1如法)<br>     [X+Y]浮 = 00110, 11.00010101   (截去法)<br>步骤5：溢出判断<br>    [X+Y]浮 = 2110 x (-0.11101011)   无溢出</p>
+<p>特殊例子：<br>X=2^111 *  0.11111111，Y=2^111 * 0.10000001<br>                      [X]浮  =    0111, 0.1111 1111</p>
+<pre><code>       +         [Y]浮  =    0111, 0.1000 0001
+              [X+Y]浮  =    0111, 1.1000 0000
+          尾数上溢，右归一位，连同符号位进位位一起右移1位，阶码加1
+              [X+Y]浮 =    1000, 0.1100 0000     
+        阶码正溢出，运算结果上溢  
+</code></pre><p>X=2^-1000 * -0.11110000，Y=2^-1000 * 0.10000001<br>                     [X]浮  =    1000, 1.0001 0000</p>
+<pre><code>      +         [Y]浮  =    1000, 0.1000 0001
+            [X+Y]浮   =    1000, 1.1001 0001
+        尾数下溢，左归一位， 左移一位，阶码减1
+            [X+Y]浮  =    1000, 1.0010 0010     
+               1000+1111=0111 =7  
+        阶码负上溢，运算结果下溢
+</code></pre><h2 id="浮点数乘法运算"><a href="#浮点数乘法运算" class="headerlink" title="浮点数乘法运算"></a>浮点数乘法运算</h2><p>X=2^m * Mx        Y=2^n * My<br>        X * Y = ( 2^m * Mx ) * ( 2^n * My ) = 2^m+n * (Mx * My)<br>(1) 阶码相加<br>阶码相加可能产生溢出，要进行溢出判断，如溢出计算机要进行处理<br>(2) 尾数相乘<br>尾数相乘可得积的尾数，可按定点乘法运算方法运算<br>(3) 结果规格化<br>可按浮点加/减法运算规格化方式处理，舍入方式也相同</p>
+<h2 id="浮点数除法运算"><a href="#浮点数除法运算" class="headerlink" title="浮点数除法运算"></a>浮点数除法运算</h2><p>如：X=2^m * Mx        Y=2^n * My<br>        X / Y = ( 2^m * Mx ) / ( 2n * My ) = 2^m-n * (Mx / My)<br>尾数调整<br>如被除数尾数大于除数尾数 (绝对值)，则将被除数尾数右移一位，阶码+1<br>阶码求差<br>商的阶码等于被除数的阶码减去除数的阶码<br>尾数相除<br>以被除数的尾数除以除数的尾数以获得商的尾数，尾数相除与定点除法运算相同</p>
+<h2 id="习题"><a href="#习题" class="headerlink" title="习题"></a>习题</h2><p><strong>单符号位补码表示的两个同号数相加或异号数相减时，所得结果的符号位SF和进位标志CF进行（D ）运算为1时，表示运算的结果产生溢出</strong><br>A.与非    B.与        C.或        D.异或</p>
+<hr>
+<p><strong>若采用双符号位补码运算，运算结果的符号位为10，下列结论中错误的是 AB</strong><br>A.产生了上溢    B.运算结果溢出，结果为正数    C.产生了下溢    D.运算结果溢出，结果为负数</p>
+<p>计算机运算溢出检测机制，采用双符号位，00表示正号，11表示负号。如果进位将会导致符号位不一致，从而检测出溢出。结果的符号位为01时，称为上溢；为10时，称为下溢。</p>
+<hr>
+<p>以下说法正确的是<strong>ABCD</strong><br>A.n位小数的补码一位乘法（Booth算法），需做n+1次运算，第n+1次不移位<br>B.浮点运算可由阶码运算和尾数运算两个部分联合实现<br>C.补码加减交替法是一种不恢复余数法<br><strong>D.在定点小数补码一位除法中，为了避免溢出，被除数的绝对值一定要小于除数的绝对值</strong></p>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>Post author:  </strong>HMF
+  </li>
+  <li class="post-copyright-link">
+    <strong>Post link: </strong>
+    <a href="http://yorxika.github.io/2019/12/23/运算器/" title="运算器">http://yorxika.github.io/2019/12/23/运算器/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/组成原理/" rel="tag"><i class="fa fa-tag"></i> 组成原理</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2019/12/19/数据表示/" rel="prev" title="数据表示">
+      <i class="fa fa-chevron-left"></i> 数据表示
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2019/12/24/存储系统一/" rel="next" title="存储系统I">
+      存储系统I <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#定点数运算及溢出检测"><span class="nav-number">1.</span> <span class="nav-text">定点数运算及溢出检测</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#单符号数溢出检测"><span class="nav-number">1.1.</span> <span class="nav-text">单符号数溢出检测</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#方法I"><span class="nav-number">1.1.1.</span> <span class="nav-text">方法I</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#方法II"><span class="nav-number">1.1.2.</span> <span class="nav-text">方法II</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#方法III"><span class="nav-number">1.1.3.</span> <span class="nav-text">方法III</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#无符号数运算的溢出判断"><span class="nav-number">1.1.4.</span> <span class="nav-text">无符号数运算的溢出判断</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#定点数补码加减运算器设计"><span class="nav-number">2.</span> <span class="nav-text">定点数补码加减运算器设计</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#带进位链的一位全加器"><span class="nav-number">2.1.</span> <span class="nav-text">带进位链的一位全加器</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#串行加法器时间延迟"><span class="nav-number">2.1.1.</span> <span class="nav-text">串行加法器时间延迟</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四位串行加-减法器设计"><span class="nav-number">2.2.</span> <span class="nav-text">四位串行加/减法器设计</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#并行加法器进位链-carry-lookahead"><span class="nav-number">2.3.</span> <span class="nav-text">并行加法器进位链(carry-lookahead)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#原码一位乘法"><span class="nav-number">3.</span> <span class="nav-text">原码一位乘法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#补码一位乘法"><span class="nav-number">4.</span> <span class="nav-text">补码一位乘法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#乘法运算器设计"><span class="nav-number">5.</span> <span class="nav-text">乘法运算器设计</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#阵列乘法器"><span class="nav-number">5.1.</span> <span class="nav-text">阵列乘法器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#计算机中的流水线"><span class="nav-number">5.2.</span> <span class="nav-text">计算机中的流水线</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#变量与常数之间的乘法运算"><span class="nav-number">5.3.</span> <span class="nav-text">变量与常数之间的乘法运算</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#定点数除法"><span class="nav-number">6.</span> <span class="nav-text">定点数除法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#恢复余数除法"><span class="nav-number">6.1.</span> <span class="nav-text">恢复余数除法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#不恢复余数除法"><span class="nav-number">6.2.</span> <span class="nav-text">不恢复余数除法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#浮点数加减运算"><span class="nav-number">7.</span> <span class="nav-text">浮点数加减运算</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#规格化浮点数概念"><span class="nav-number">7.1.</span> <span class="nav-text">规格化浮点数概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#规格化浮点数方法"><span class="nav-number">7.2.</span> <span class="nav-text">规格化浮点数方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#浮点数加减运算方法及其步骤"><span class="nav-number">7.3.</span> <span class="nav-text">浮点数加减运算方法及其步骤</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#浮点数乘法运算"><span class="nav-number">8.</span> <span class="nav-text">浮点数乘法运算</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#浮点数除法运算"><span class="nav-number">9.</span> <span class="nav-text">浮点数除法运算</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#习题"><span class="nav-number">10.</span> <span class="nav-text">习题</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="HMF"
+      src="/images/touxiang.jpg">
+  <p class="site-author-name" itemprop="name">HMF</p>
+  <div class="site-description" itemprop="description">To your valor, my sword, and our victory together.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">243</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">25</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">67</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Yorxika" title="GitHub → https://github.com/Yorxika" rel="noopener" target="_blank"><i class="github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:alonede@qq.com" title="E-Mail → mailto:alonede@qq.com" rel="noopener" target="_blank"><i class="envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/LinMFeng" title="Twitter → https://twitter.com/LinMFeng" rel="noopener" target="_blank"><i class="twitter fa-fw"></i>Twitter</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=298 height=60 src="//music.163.com/outchain/player?type=2&id=509038&auto=0&height=32"></iframe>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">HMF</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="Symbols count total">952k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="Reading time total">14:26</span>
+</div><script color="255,255,255" opacity="0.5" zIndex="-1" count="180" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/pisces.js"></script>
+<script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+
+
+  
+
+
+
+
+  <script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+<script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.js"></script>
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : '0635d0bc6ad58e628693',
+      clientSecret: 'a02a3a1ab4874ccb117251539125fe3a1a4d43da',
+      repo        : 'blogtalk',
+      owner       : 'Yorxika',
+      admin       : ['Yorxika'],
+      id          : md5(window.location.pathname),
+        language: '',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/miku.model.json"},"display":{"position":"right","hOffset":40,"width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7},"log":false});</script></body>
+</html>

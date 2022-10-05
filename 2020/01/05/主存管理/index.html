@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.9.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yorxika.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="主存管理概述引言 现代操作系统将主存区分为物理主存和逻辑主存2类。物理主存是共享的物质基础。">
+<meta name="keywords" content="操作系统,内存">
+<meta property="og:type" content="article">
+<meta property="og:title" content="主存管理">
+<meta property="og:url" content="http://yorxika.github.io/2020/01/05/主存管理/index.html">
+<meta property="og:site_name" content="Nameless Site">
+<meta property="og:description" content="主存管理概述引言 现代操作系统将主存区分为物理主存和逻辑主存2类。物理主存是共享的物质基础。">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://yorxika.github.io/2020/01/05/主存管理/image-20200105085223070.png">
+<meta property="og:image" content="http://yorxika.github.io/2020/01/05/主存管理/image-20200105091248853.png">
+<meta property="og:image" content="http://yorxika.github.io/2020/01/05/主存管理/image-20200105091228936.png">
+<meta property="og:image" content="http://yorxika.github.io/2020/01/05/主存管理/image-20200105091048112.png">
+<meta property="og:image" content="http://yorxika.github.io/2020/01/05/主存管理/image-20200105091157055.png">
+<meta property="og:image" content="http://yorxika.github.io/2020/01/05/主存管理/image-20200105091701189.png">
+<meta property="og:updated_time" content="2020-01-05T01:20:04.661Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="主存管理">
+<meta name="twitter:description" content="主存管理概述引言 现代操作系统将主存区分为物理主存和逻辑主存2类。物理主存是共享的物质基础。">
+<meta name="twitter:image" content="http://yorxika.github.io/2020/01/05/主存管理/image-20200105085223070.png">
+
+<link rel="canonical" href="http://yorxika.github.io/2020/01/05/主存管理/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>主存管理 | Nameless Site</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="Nameless Site" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Nameless Site</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">But one day, you will stand before its decrepit gate,without really knowing why.</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+        <li class="menu-item menu-item-links">
+
+    <a href="/links/" rel="section"><i class="fa fa-link fa-fw"></i>links</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yorxika.github.io/2020/01/05/主存管理/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/touxiang.jpg">
+      <meta itemprop="name" content="HMF">
+      <meta itemprop="description" content="To your valor, my sword, and our victory together.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Nameless Site">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          主存管理
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-01-05 08:43:48 / Modified: 09:20:04" itemprop="dateCreated datePublished" datetime="2020-01-05T08:43:48+08:00">2020-01-05</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/学习笔记/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/学习笔记/操作系统/" itemprop="url" rel="index"><span itemprop="name">操作系统</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>2.4k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>2 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="主存管理概述"><a href="#主存管理概述" class="headerlink" title="主存管理概述"></a>主存管理概述</h2><h3 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h3><blockquote>
+<p>现代操作系统将主存区分为物理主存和逻辑主存2类。<br>物理主存是共享的物质基础。<br><a id="more"></a></p>
+</blockquote>
+<h3 id="主存共享方式—分片共享"><a href="#主存共享方式—分片共享" class="headerlink" title="主存共享方式—分片共享"></a>主存共享方式—分片共享</h3><ul>
+<li>大小不等的区域<br>① 分区存储管理<br>② 段式存储管理</li>
+<li>大小相等的区域<br>页式存储管理</li>
+<li>二者结合<br>段页式存储管理</li>
+</ul>
+<p>现代操作系统的主存管理必须实现主存分配、主存保护、虚拟主存等功能，即：</p>
+<ol>
+<li>将逻辑地址映射为物理主存地址</li>
+<li>在多用户之间分配物理主存</li>
+<li>对各用户区的信息提供保护措施</li>
+<li>扩充逻辑主存区</li>
+</ol>
+<h3 id="程序的逻辑组织"><a href="#程序的逻辑组织" class="headerlink" title="程序的逻辑组织"></a>程序的逻辑组织</h3><p>一维地址结构</p>
+<ul>
+<li>一个程序是一个连续、线性的地址结构；</li>
+<li>确定线性地址空间中的指令地址或操作数地址只需要一个信息。</li>
+</ul>
+<p>二维地址结构 </p>
+<ul>
+<li>一个程序由若干个分段组成，每个分段是一个连续的地址区； </li>
+<li>确定线性地址空间中的指令地址或操作数地址需要两个 信息，一是该信息所在的分段，另一个是该信息在段内的偏移量。</li>
+</ul>
+<p><img src="/2020/01/05/主存管理/image-20200105085223070.png" alt="image-20200105085223070"></p>
+<h2 id="主存管理功能"><a href="#主存管理功能" class="headerlink" title="主存管理功能"></a>主存管理功能</h2><h3 id="几个概念"><a href="#几个概念" class="headerlink" title="几个概念"></a>几个概念</h3><ul>
+<li>物理地址 (绝对地址、实地址)<br>物理地址是计算机主存单元的真实地址，又称为绝对地址或实地址。</li>
+<li>主存空间<br>物理地址的集合所对应的空间组成了主存空间。</li>
+<li>逻辑地址 (相对地址、虚地址)<br>用户的程序地址 (指令地址或操作数地址)均为逻辑地址。 </li>
+<li>程序地址空间<br>用户程序所有的逻辑地址集合对应的空间。</li>
+</ul>
+<h3 id="主存管理功能-1"><a href="#主存管理功能-1" class="headerlink" title="主存管理功能"></a>主存管理功能</h3><ul>
+<li>地址映射——实现逻辑地址到物理主存地址的映射</li>
+<li>主存分配 ——在多用户之间分配物理主存</li>
+<li>存储保护——对各用户区的信息提供保护措施</li>
+<li>主存扩充/虚拟主存——扩充逻辑主存区</li>
+</ul>
+<h4 id="地址映射"><a href="#地址映射" class="headerlink" title="地址映射"></a>地址映射</h4><p>什么是地址映射 ：将程序地址空间中使用的逻辑地址变换成主存中的物理地 址的过程，称为地址映射。</p>
+<p>地址映射的时机和类别<br>① 编程或编译时确定地址映射关系<br>在程序编写或程序编译时确定虚、实地址之间的对应关系，结果是一 个不能浮动的程序模块。<br>② 在程序装入时确定地址映射关系<br>在程序装入过程中随即进行的地址变换方式称为静态地址映射<br>在这种情况下，一个已开始执行的程序是无法在主存中移动的；同时，如果该程序因某种原因暂时放在辅存，若再调入主存时，还必须把它放回到主存的同一位置上。<br><img src="/2020/01/05/主存管理/image-20200105091248853.png" alt="image-20200105091248853"><br>③ 在程序运行时确定地址映射关系 在程序执行期间，随着每条指令和数据的访问自动地连续 地进行地址映射，这种地址变换方式称为动态地址映射。<br>经过动态重定位的程序，可以不经过任何改变而装入主存单元。<br>可满足以下目标：</p>
+<ol>
+<li>具有给用户程序分配一个主存区域的能力</li>
+<li>在改变系统设备时，具有不需要重新编程和重新编辑的能力</li>
+<li>具有在任何时刻，在主存可用空间中重新分配一个程序的能力</li>
+<li>对于一个用户程序，具有以间断方式分配主存的能力</li>
+<li>具有只装入用户程序的部分代码即可投入运行的能力</li>
+</ol>
+<p><img src="/2020/01/05/主存管理/image-20200105091228936.png" alt="image-20200105091228936"></p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>静态地址映射</th>
+<th>动态地址映射</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>在程序装入过程中进行地址映射</td>
+<td>在程序执行期间进行地址映射</td>
+</tr>
+<tr>
+<td>需软件(重定位装入程序)</td>
+<td>需硬件地址变换机构(重定位寄存器)</td>
+</tr>
+<tr>
+<td>需花费较多CPU时间</td>
+<td>地址变换快</td>
+</tr>
+<tr>
+<td>不灵活</td>
+<td>灵活</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="主存分配"><a href="#主存分配" class="headerlink" title="主存分配"></a>主存分配</h3><p>构造分配用的数据结构<br>主存资源信息块：等待队列；空闲区队列；主存分配程序</p>
+<p>制定策略<br>① 分配策略 —— 在众多个请求者中选择一个请求者的原则<br>② 放置策略 —— 在可用资源中，选择一个空闲区的原则<br>③ 调入策略 —— 决定信息装入主存的时机<br>预调策略：预先将信息调入主存<br>请调策略：当需要信息时，将信息调入主存<br>④ 淘汰策略 —— 在主存中没有可用的空闲区 (对某一程序 而言)时，决定哪些信息从主存中移走，即确定淘汰已占用的内存区的原则。</p>
+<h3 id="主存分配-1"><a href="#主存分配-1" class="headerlink" title="主存分配"></a>主存分配</h3><p>构造分配用的数据结构<br>主存资源信息块：等待队列；空闲区队列；主存分配程序</p>
+<p>制定策略<br>① 分配策略 —— 在众多个请求者中选择一个请求者的原则<br>② 放置策略 —— 在可用资源中，选择一个空闲区的原则<br>③ 调入策略 —— 决定信息装入主存的时机<br>预调策略：预先将信息调入主存<br>请调策略：当需要信息时，将信息调入主存<br>④ 淘汰策略 —— 在主存中没有可用的空闲区 (对某一程序 而言)时，决定哪些信息从主存中移走，即确定淘汰已占 用的内存区的原则。</p>
+<p>实施主存分配与回收</p>
+<h3 id="主存扩充"><a href="#主存扩充" class="headerlink" title="主存扩充"></a>主存扩充</h3><p>可行性 局部性特征</p>
+<p>实现方法</p>
+<ul>
+<li>程序的全部代码和数据存放在辅存中；</li>
+<li>将程序当前执行所涉及的那部分程序代码放入主存中；</li>
+<li>程序执行时，当所需信息不在主存，由操作系统和硬件相配合来完成主存从辅存中调入信息，程序继续执行。</li>
+</ul>
+<p>虚拟存储器：由操作系统和硬件相配合来完成主存和辅存之间的信息的动态调度。这样的计算机系统好像为用户提供了一个其存储容量比实际主存大得多的存储器，这个存储器称为虚拟存储器<br>虚拟存储器的核心</p>
+<ul>
+<li>逻辑地址与物理地址分开</li>
+<li>存储空间与虚地址空间分开</li>
+<li>提供地址变换机构 </li>
+</ul>
+<p>实现虚拟存储器的物质基础</p>
+<ul>
+<li>有相当容量的辅存： 足以存放应用程序的虚地址空间</li>
+<li>有一定容量的主存： 存放进入主存的多进程的信息</li>
+<li>地址变换机构</li>
+</ul>
+<h3 id="存储保护"><a href="#存储保护" class="headerlink" title="存储保护"></a>存储保护</h3><p>什么是存储保护 ：在多用户环境中，主存储器按区分配给各用户程序使用。 为了互不影响，必须由硬件 (软件配合)保证各用户程序只 能在给定的存储区域内活动，这种措施叫做存储保护。</p>
+<p>实现方法</p>
+<ol>
+<li>界地址保护<ol>
+<li>上下界防护  物理地址<br><img src="/2020/01/05/主存管理/image-20200105091048112.png" alt="image-20200105091048112"></li>
+<li>基地址、限长防护 逻辑地址<br><img src="/2020/01/05/主存管理/image-20200105091157055.png" alt="image-20200105091157055"></li>
+</ol>
+</li>
+<li>存储键保护</li>
+</ol>
+<h2 id="分区存储管理"><a href="#分区存储管理" class="headerlink" title="分区存储管理"></a>分区存储管理</h2><h3 id="动态分区分配"><a href="#动态分区分配" class="headerlink" title="动态分区分配"></a>动态分区分配</h3><p>什么是动态分区分配：在处理程序的过程中，建立分区，依用户请求的大小分配分区。</p>
+<p>分区分配数据结构<br>① 主存资源信息块 (M_RIB)<br>② 分区描述器 (PD)<br>flag： 为 0  —— 空闲区<br>     为 1  —— 已分配区<br>size： 分区大小<br>next：空闲区——自由主存队列中的勾链字<br>     已分配区——此项为零</p>
+<p>M_RIB</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>等待队列头指针</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>空闲区队列头指针</td>
+</tr>
+<tr>
+<td>主存分配程序入口地址</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>PD</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>分配标志</th>
+<th>flag</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>大小</td>
+<td>size</td>
+</tr>
+<tr>
+<td>勾链字</td>
+<td>next</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><img src="/2020/01/05/主存管理/image-20200105091701189.png" alt="image-20200105091701189"></p>
+<h3 id="分区的分配与回收"><a href="#分区的分配与回收" class="headerlink" title="分区的分配与回收"></a>分区的分配与回收</h3><p>分区分配思路<br>① 寻找空闲块<br>依申请者所要求的主存区的大小，分区分配程序在自由主存队列中找一个满足用户需要的空闲块；<br>② 若找到了所需的空闲区，有两种情况<br>ⅰ 空闲区与要求的大小相等，将该空闲区分配并从队列中摘除；<br>ⅱ 空闲区大于所要求的的大小，将空闲区分为两部分：一 部分成为已分配区，建立已分配区的描述器；剩下部分 仍为空闲区。返回所分配区域的首址；<br>③ 否则，告之不能满足要求。</p>
+<p>分区回收思路<br>① 检查释放分区 (即为回收分区)在主存中的邻接情况<br>若上、下邻接空闲区，则合并，成为一个连续的空闲区<br>② 若回收分区不与任何空闲区相邻接<br>建立一个新的空闲区，并加入到空闲区队列中。</p>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>Post author:  </strong>HMF
+  </li>
+  <li class="post-copyright-link">
+    <strong>Post link: </strong>
+    <a href="http://yorxika.github.io/2020/01/05/主存管理/" title="主存管理">http://yorxika.github.io/2020/01/05/主存管理/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/操作系统/" rel="tag"><i class="fa fa-tag"></i> 操作系统</a>
+              <a href="/tags/内存/" rel="tag"><i class="fa fa-tag"></i> 内存</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/01/04/处理机的调度/" rel="prev" title="处理机的调度">
+      <i class="fa fa-chevron-left"></i> 处理机的调度
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/01/07/算法导论考试理论部分/" rel="next" title="算法导论考试理论部分">
+      算法导论考试理论部分 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#主存管理概述"><span class="nav-number">1.</span> <span class="nav-text">主存管理概述</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#引言"><span class="nav-number">1.1.</span> <span class="nav-text">引言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#主存共享方式—分片共享"><span class="nav-number">1.2.</span> <span class="nav-text">主存共享方式—分片共享</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#程序的逻辑组织"><span class="nav-number">1.3.</span> <span class="nav-text">程序的逻辑组织</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#主存管理功能"><span class="nav-number">2.</span> <span class="nav-text">主存管理功能</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#几个概念"><span class="nav-number">2.1.</span> <span class="nav-text">几个概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#主存管理功能-1"><span class="nav-number">2.2.</span> <span class="nav-text">主存管理功能</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#地址映射"><span class="nav-number">2.2.1.</span> <span class="nav-text">地址映射</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#主存分配"><span class="nav-number">2.3.</span> <span class="nav-text">主存分配</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#主存分配-1"><span class="nav-number">2.4.</span> <span class="nav-text">主存分配</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#主存扩充"><span class="nav-number">2.5.</span> <span class="nav-text">主存扩充</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#存储保护"><span class="nav-number">2.6.</span> <span class="nav-text">存储保护</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分区存储管理"><span class="nav-number">3.</span> <span class="nav-text">分区存储管理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#动态分区分配"><span class="nav-number">3.1.</span> <span class="nav-text">动态分区分配</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分区的分配与回收"><span class="nav-number">3.2.</span> <span class="nav-text">分区的分配与回收</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="HMF"
+      src="/images/touxiang.jpg">
+  <p class="site-author-name" itemprop="name">HMF</p>
+  <div class="site-description" itemprop="description">To your valor, my sword, and our victory together.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">243</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">25</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">67</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Yorxika" title="GitHub → https://github.com/Yorxika" rel="noopener" target="_blank"><i class="github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:alonede@qq.com" title="E-Mail → mailto:alonede@qq.com" rel="noopener" target="_blank"><i class="envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/LinMFeng" title="Twitter → https://twitter.com/LinMFeng" rel="noopener" target="_blank"><i class="twitter fa-fw"></i>Twitter</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=298 height=60 src="//music.163.com/outchain/player?type=2&id=509038&auto=0&height=32"></iframe>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">HMF</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="Symbols count total">952k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="Reading time total">14:26</span>
+</div><script color="255,255,255" opacity="0.5" zIndex="-1" count="180" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/pisces.js"></script>
+<script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+
+
+  
+
+
+
+
+  <script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+<script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.js"></script>
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : '0635d0bc6ad58e628693',
+      clientSecret: 'a02a3a1ab4874ccb117251539125fe3a1a4d43da',
+      repo        : 'blogtalk',
+      owner       : 'Yorxika',
+      admin       : ['Yorxika'],
+      id          : md5(window.location.pathname),
+        language: '',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/miku.model.json"},"display":{"position":"right","hOffset":40,"width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7},"log":false});</script></body>
+</html>

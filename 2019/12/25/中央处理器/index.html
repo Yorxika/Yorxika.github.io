@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.9.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yorxika.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="CPU组成与功能CPU概述">
+<meta name="keywords" content="组成原理">
+<meta property="og:type" content="article">
+<meta property="og:title" content="中央处理器">
+<meta property="og:url" content="http://yorxika.github.io/2019/12/25/中央处理器/index.html">
+<meta property="og:site_name" content="Nameless Site">
+<meta property="og:description" content="CPU组成与功能CPU概述">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/25/中央处理器/image-20191225231349628.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/25/中央处理器/image-20191225231525021.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/25/中央处理器/image-20191225233819137.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/25/中央处理器/image-20191225233848478.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/25/中央处理器/image-20191225233919390.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/25/中央处理器/image-20191225235209491.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/25/中央处理器/image-20191225235241019.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/25/中央处理器/image-20191225235310044.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/25/中央处理器/image-20191226001010996.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/25/中央处理器/image-20191226001033946.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/25/中央处理器/image-20191226001138799.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/25/中央处理器/image-20191226001211781.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/25/中央处理器/image-20191226001239185.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/25/中央处理器/image-20191226002209956.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/25/中央处理器/image-20191226002222707.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/25/中央处理器/image-20191226002311808.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/25/中央处理器/image-20191226003023840.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/25/中央处理器/image-20191226003041973.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/25/中央处理器/image-20191226003103363.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/25/中央处理器/image-20191226003124517.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/25/中央处理器/image-20191226004240269.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/25/中央处理器/image-20191226004314609.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/25/中央处理器/image-20191226004328026.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/25/中央处理器/image-20191226004422271.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/25/中央处理器/image-20191226004440469.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/25/中央处理器/image-20191226004449528.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/25/中央处理器/image-20191226005355693.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/25/中央处理器/image-20191226005414350.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/25/中央处理器/image-20191226005443176.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/25/中央处理器/image-20191226141854193.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/25/中央处理器/image-20191226142125377.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/25/中央处理器/image-20191226142140226.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/25/中央处理器/image-20191226143130682.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/25/中央处理器/image-20191226144718065.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/25/中央处理器/image-20191226145046465.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/25/中央处理器/image-20191226145128307.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/25/中央处理器/image-20191226151355789.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/25/中央处理器/image-20191226151416087.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/25/中央处理器/image-20191226151503460.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/25/中央处理器/image-20191226151635760.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/25/中央处理器/image-20191226151658900.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/25/中央处理器/image-20191226151719963.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/25/中央处理器/image-20191226151736211.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/25/中央处理器/image-20191226151829362.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/25/中央处理器/image-20191226153829403.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/25/中央处理器/image-20191226153856881.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/25/中央处理器/image-20191226153913682.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/25/中央处理器/image-20191226154005989.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/25/中央处理器/image-20191226154026467.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/25/中央处理器/image-20191226154040788.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/25/中央处理器/image-20191226154127994.png">
+<meta property="og:updated_time" content="2019-12-26T08:39:52.056Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="中央处理器">
+<meta name="twitter:description" content="CPU组成与功能CPU概述">
+<meta name="twitter:image" content="http://yorxika.github.io/2019/12/25/中央处理器/image-20191225231349628.png">
+
+<link rel="canonical" href="http://yorxika.github.io/2019/12/25/中央处理器/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>中央处理器 | Nameless Site</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="Nameless Site" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Nameless Site</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">But one day, you will stand before its decrepit gate,without really knowing why.</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+        <li class="menu-item menu-item-links">
+
+    <a href="/links/" rel="section"><i class="fa fa-link fa-fw"></i>links</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yorxika.github.io/2019/12/25/中央处理器/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/touxiang.jpg">
+      <meta itemprop="name" content="HMF">
+      <meta itemprop="description" content="To your valor, my sword, and our victory together.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Nameless Site">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          中央处理器
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-12-25 23:03:54" itemprop="dateCreated datePublished" datetime="2019-12-25T23:03:54+08:00">2019-12-25</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2019-12-26 16:39:52" itemprop="dateModified" datetime="2019-12-26T16:39:52+08:00">2019-12-26</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/学习笔记/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/学习笔记/计算机组成原理/" itemprop="url" rel="index"><span itemprop="name">计算机组成原理</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>3.2k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>3 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="CPU组成与功能"><a href="#CPU组成与功能" class="headerlink" title="CPU组成与功能"></a>CPU组成与功能</h2><h3 id="CPU概述"><a href="#CPU概述" class="headerlink" title="CPU概述"></a>CPU概述</h3><a id="more"></a>
+<p><img src="/2019/12/25/中央处理器/image-20191225231349628.png" alt="image-20191225231349628"></p>
+<h3 id="CPU基本组成"><a href="#CPU基本组成" class="headerlink" title="CPU基本组成"></a>CPU基本组成</h3><ul>
+<li>运算器 数据加工</li>
+<li>控制器 程序执行/执行执行<ul>
+<li>取指令 Mem[PC++] -&gt; IR</li>
+<li>执行指令 <ul>
+<li>指令字 -&gt; 控制信号序列</li>
+<li>信号序列 -&gt; 数据通路</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><img src="/2019/12/25/中央处理器/image-20191225231525021.png" alt="image-20191225231525021"></p>
+<h3 id="CPU主要功能"><a href="#CPU主要功能" class="headerlink" title="CPU主要功能"></a>CPU主要功能</h3><p>取指令并执行指令的部件———CPU</p>
+<ul>
+<li>数据加工:  算术/逻辑运算  运算器</li>
+<li>程序控制:  程序中指令执行顺序控制</li>
+<li>操作控制:  将机器指令翻译成执行部件所需的操作控制信号</li>
+<li>时序控制:  控制操作信号的产生时间、持续时间</li>
+<li>异常控制:  异常处理，外设交互<br>后4个为控制器功能</li>
+</ul>
+<h3 id="主要寄存器"><a href="#主要寄存器" class="headerlink" title="主要寄存器"></a>主要寄存器</h3><ul>
+<li>PC (Program Counter)———程序计数器 X86：EIP MIPS：PC</li>
+<li>IR  (Instruction Register)———指令寄存器 [可选]</li>
+<li>AR  (Address Register)———地址寄存器 MAR [可选]</li>
+<li>DR  (Data Register)———数据缓冲寄存器 MDR [可选]</li>
+<li>AC  (Accumulate Count)———累加寄存器 [可选]</li>
+<li>PSW (Program Status Word)———程序状态字 [可选]<ul>
+<li>X86 EFLAGS   MIPS：无</li>
+</ul>
+</li>
+</ul>
+<h3 id="操作控制器"><a href="#操作控制器" class="headerlink" title="操作控制器"></a>操作控制器</h3><p>取指令，将机器指令译码并生成执行部件控制信号序列 ，建立正确的数据 通路，从而完成指令的正确执行。</p>
+<ul>
+<li>硬布线控制器 (时序逻辑型)  (硬件实现)</li>
+<li>微程序控制器 (存储程序型)  (软件实现)</li>
+</ul>
+<h2 id="数据通路"><a href="#数据通路" class="headerlink" title="数据通路"></a>数据通路</h2><p>数据通路———执行部件间传送信息的路径。</p>
+<ul>
+<li>通路的建立由控制信号控制，受时钟驱动；</li>
+<li>不同指令、同一指令在执行的不同阶段的数据通路不同；</li>
+<li>数据通路分类：共享通路（总线）、专用通路<ul>
+<li>指令执行流程、执行效率</li>
+<li>微操作控制信号的时序安排</li>
+</ul>
+</li>
+</ul>
+<h2 id="数据通路与总线结构"><a href="#数据通路与总线结构" class="headerlink" title="数据通路与总线结构"></a>数据通路与总线结构</h2><p>数据通路分类：</p>
+<ul>
+<li>共享通路（总线型）<ul>
+<li>主要部件都连接在公共总线上，各部件间通过总线进行数据传输</li>
+<li>结构简单，实现容易，但并发性较差，需分时使用总线，效率低</li>
+</ul>
+</li>
+<li>专用通路<ul>
+<li>并发度高，性能佳，设计复杂，成本高</li>
+<li>可以看做多总线结构</li>
+</ul>
+</li>
+</ul>
+<p>单总线数据通路：<br><img src="/2019/12/25/中央处理器/image-20191225233819137.png" alt="image-20191225233819137"></p>
+<p>双总线数据通路：<br><img src="/2019/12/25/中央处理器/image-20191225233848478.png" alt="image-20191225233848478"></p>
+<p>三总线数据通路：<br><img src="/2019/12/25/中央处理器/image-20191225233919390.png" alt="image-20191225233919390"></p>
+<h2 id="数据通路实例"><a href="#数据通路实例" class="headerlink" title="数据通路实例"></a>数据通路实例</h2><p>单总线CPU：<br><img src="/2019/12/25/中央处理器/image-20191225235209491.png" alt="image-20191225235209491"></p>
+<p>多总线CPU：<br><img src="/2019/12/25/中央处理器/image-20191225235241019.png" alt="image-20191225235241019"></p>
+<p>专用通路 单周期MIPS：<br><img src="/2019/12/25/中央处理器/image-20191225235310044.png" alt="image-20191225235310044"></p>
+<h2 id="指令周期"><a href="#指令周期" class="headerlink" title="指令周期"></a>指令周期</h2><p>指令执行一般流程：<br><img src="/2019/12/25/中央处理器/image-20191226001010996.png" alt="image-20191226001010996"></p>
+<p>指令周期基本概念：<br><img src="/2019/12/25/中央处理器/image-20191226001033946.png" alt="image-20191226001033946"></p>
+<p>指令控制同步：<br>不同指令功能不同，复杂度不同，如何进行时间控制？</p>
+<ul>
+<li>定长指令周期：早期三级时序系统<ul>
+<li>机器周期数固定，节拍数固定，按机器周期同步，mips单周期</li>
+</ul>
+</li>
+<li>变长指令周期：现代时序系统<ul>
+<li>机器周期数可变，节拍数可变，按时钟周期同步，mips多周期</li>
+</ul>
+</li>
+</ul>
+<p>早期三级时序系统<br><img src="/2019/12/25/中央处理器/image-20191226001138799.png" alt="image-20191226001138799"></p>
+<p>时序产生与控制器：<br><img src="/2019/12/25/中央处理器/image-20191226001211781.png" alt="image-20191226001211781"></p>
+<p>现代时序系统：<br><img src="/2019/12/25/中央处理器/image-20191226001239185.png" alt="image-20191226001239185"></p>
+<h2 id="总线结构与CPU指令周期"><a href="#总线结构与CPU指令周期" class="headerlink" title="总线结构与CPU指令周期"></a>总线结构与CPU指令周期</h2><p><img src="/2019/12/25/中央处理器/image-20191226002209956.png" alt="image-20191226002209956"></p>
+<h3 id="取指令数据通路"><a href="#取指令数据通路" class="headerlink" title="取指令数据通路"></a>取指令数据通路</h3><p><img src="/2019/12/25/中央处理器/image-20191226002222707.png" alt="image-20191226002222707"></p>
+<h3 id="LOAD指令执行数据通路"><a href="#LOAD指令执行数据通路" class="headerlink" title="LOAD指令执行数据通路"></a>LOAD指令执行数据通路</h3><p><img src="/2019/12/25/中央处理器/image-20191226002311808.png" alt="image-20191226002311808"></p>
+<h3 id="MOVE指令执行数据通路"><a href="#MOVE指令执行数据通路" class="headerlink" title="MOVE指令执行数据通路"></a>MOVE指令执行数据通路</h3><p><img src="/2019/12/25/中央处理器/image-20191226003023840.png" alt="image-20191226003023840"></p>
+<h3 id="ADD指令执行数据通路"><a href="#ADD指令执行数据通路" class="headerlink" title="ADD指令执行数据通路"></a>ADD指令执行数据通路</h3><p><img src="/2019/12/25/中央处理器/image-20191226003041973.png" alt="image-20191226003041973"></p>
+<h3 id="STORE指令执行数据通路"><a href="#STORE指令执行数据通路" class="headerlink" title="STORE指令执行数据通路"></a>STORE指令执行数据通路</h3><p><img src="/2019/12/25/中央处理器/image-20191226003103363.png" alt="image-20191226003103363"></p>
+<h3 id="JMP指令执行数据通路"><a href="#JMP指令执行数据通路" class="headerlink" title="JMP指令执行数据通路"></a>JMP指令执行数据通路</h3><p><img src="/2019/12/25/中央处理器/image-20191226003124517.png" alt="image-20191226003124517"></p>
+<h2 id="硬布线控制器设计I"><a href="#硬布线控制器设计I" class="headerlink" title="硬布线控制器设计I"></a>硬布线控制器设计I</h2><h3 id="基本原理"><a href="#基本原理" class="headerlink" title="基本原理"></a>基本原理</h3><ul>
+<li>将控制器看成产生固定时序控制信号的逻辑电路</li>
+<li>输入信号：指令译码，时钟信号，反馈信号</li>
+<li>输出信号：功能部件控制信号序列</li>
+<li>设计目标：最少元件，最快速度</li>
+<li>理论基础：布尔代数</li>
+<li>组成器件：门电路，触发器</li>
+</ul>
+<p><img src="/2019/12/25/中央处理器/image-20191226004240269.png" alt="image-20191226004240269"></p>
+<h3 id="单总线结构CPU指令周期"><a href="#单总线结构CPU指令周期" class="headerlink" title="单总线结构CPU指令周期"></a>单总线结构CPU指令周期</h3><p><img src="/2019/12/25/中央处理器/image-20191226004314609.png" alt="image-20191226004314609"></p>
+<p><img src="/2019/12/25/中央处理器/image-20191226004328026.png" alt="image-20191226004328026"></p>
+<h3 id="时序产生器状态机与控制器基本架构"><a href="#时序产生器状态机与控制器基本架构" class="headerlink" title="时序产生器状态机与控制器基本架构"></a>时序产生器状态机与控制器基本架构</h3><p><img src="/2019/12/25/中央处理器/image-20191226004422271.png" alt="image-20191226004422271"></p>
+<p><img src="/2019/12/25/中央处理器/image-20191226004440469.png" alt="image-20191226004440469"></p>
+<p><img src="/2019/12/25/中央处理器/image-20191226004449528.png" alt="image-20191226004449528"></p>
+<p>固定指令周期硬布线控制器设计过程</p>
+<ol>
+<li>设计三级时序产生器： 所有指令固定机器周期数，节拍数，</li>
+<li>列出所有机器指令的指令周期流程图，明确每个节拍的控制信号；</li>
+<li>找出产生同一微操作控制信号的条件；</li>
+<li>写出各微操作控制信号的布尔表达式；</li>
+<li>化简各表达式；</li>
+<li>利用组合逻辑电路实现。</li>
+</ol>
+<h2 id="硬布线控制器设计II"><a href="#硬布线控制器设计II" class="headerlink" title="硬布线控制器设计II"></a>硬布线控制器设计II</h2><p>多周期</p>
+<p><img src="/2019/12/25/中央处理器/image-20191226005355693.png" alt="image-20191226005355693"></p>
+<p><img src="/2019/12/25/中央处理器/image-20191226005414350.png" alt="image-20191226005414350"></p>
+<p>有限状态机真值表：<br><img src="/2019/12/25/中央处理器/image-20191226005443176.png" alt="image-20191226005443176"></p>
+<p>可变周期硬布线控制器设计步骤</p>
+<ol>
+<li>列出所有机器指令的指令周 期流程图，明确每个节拍的 控制信号；</li>
+<li>绘制指令执行状态转换图</li>
+<li>根据状态转换图构建状态机 真值表，实现有限状态机组 合逻辑</li>
+<li>实现控制器组合逻辑电路</li>
+</ol>
+<h2 id="微程序控制器"><a href="#微程序控制器" class="headerlink" title="微程序控制器"></a>微程序控制器</h2><p><img src="/2019/12/25/中央处理器/image-20191226141854193.png" alt="image-20191226141854193"></p>
+<p>工作原理：</p>
+<ul>
+<li>微程序是利用软件方法来设计硬件的技术</li>
+<li>将完成指令所需的控制信号按格式编写成微指令，存放到控制存储器<ul>
+<li>一条机器指令对应一段微程序（多条微指令）</li>
+<li>指令取指执行 -&gt; 微程序的执行 -&gt; 执行多条微指令 -&gt; 依次生成控制信号</li>
+</ul>
+</li>
+<li>存储技术和程序设计相结合，回避复杂的同步时序逻辑设计</li>
+</ul>
+<p>单总线CPU微指令构造</p>
+<ul>
+<li>操作控制字段： 存储操作控制信号<ul>
+<li>每一位对应一个控制信号，也称微命令，可同时给出多个操作信号</li>
+</ul>
+</li>
+<li>顺序控制字段： 用于控制微程序的执行顺序<ul>
+<li>判别逻辑为零，下一条微指令地址从下址字段获取，否则按约定规则生成</li>
+</ul>
+</li>
+</ul>
+<p><img src="/2019/12/25/中央处理器/image-20191226142125377.png" alt="image-20191226142125377"></p>
+<p><img src="/2019/12/25/中央处理器/image-20191226142140226.png" alt="image-20191226142140226"></p>
+<p>优劣：</p>
+<ul>
+<li>速度慢 访存频繁、成本低廉</li>
+<li>设计规整，设计简单，易于修改、扩展指令系统功能<ul>
+<li>适合CISC等功能较复杂的系列机 X86、IBM S/360、 DEC VAX</li>
+<li>可写控存方便修复出厂故障 Intel Core 2 、Intel Xeon</li>
+</ul>
+</li>
+<li>硬布线控制器执行速度快，但设计复杂，代价昂贵，不便于修改<ul>
+<li>适合RISC计算机，如MIPS，ARM</li>
+</ul>
+</li>
+</ul>
+<h2 id="微程序设计"><a href="#微程序设计" class="headerlink" title="微程序设计"></a>微程序设计</h2><ul>
+<li>一条微指令对应一个时钟周期</li>
+<li>微指令操作控制字段的信号在该时钟周期内有效</li>
+<li>指令需要多少时钟周期就包括多少微指令</li>
+</ul>
+<p><img src="/2019/12/25/中央处理器/image-20191226143130682.png" alt="image-20191226143130682"></p>
+<h2 id="微指令格式"><a href="#微指令格式" class="headerlink" title="微指令格式"></a>微指令格式</h2><p>设计原则：</p>
+<ul>
+<li>有利于缩短微指令字长度</li>
+<li>有利于减少控制存储器容量</li>
+<li>有利于提高微程序执行速度</li>
+<li>有利于对微指令进行修改</li>
+<li>有利于提高微程序设计的灵活性</li>
+</ul>
+<p>直接表示简单直观，便于输出控制，微指令长度太长，控存容量大，如何压缩微指令长度？</p>
+<ul>
+<li>改直接表示为编码表示 （压缩互斥性微指令）</li>
+<li>去掉下址字段，采用 μPC = μPC +1 的方式生成微指令地址</li>
+<li>改水平型微指令为垂直型微指令 （牺牲并行性）</li>
+</ul>
+<p><img src="/2019/12/25/中央处理器/image-20191226144718065.png" alt="image-20191226144718065"></p>
+<p>如果互斥的输出控制信号8个，编码后长度多少？<br>至少为4，预留一个状态表示所有状态输出为0</p>
+<p><img src="/2019/12/25/中央处理器/image-20191226145046465.png" alt="image-20191226145046465"></p>
+<p>垂直型微指令：<br><img src="/2019/12/25/中央处理器/image-20191226145128307.png" alt="image-20191226145128307"></p>
+<ul>
+<li>水平型微指令<ul>
+<li>并行操作能力强，效率高，灵活性强，</li>
+<li>微指令字较长，微程序短，控存容量大，性能佳</li>
+</ul>
+</li>
+<li>垂直型微指令<ul>
+<li>字长短，微程序长，控存容量小，性能差</li>
+<li>垂直型与指令相似，易于掌握</li>
+<li>基本被淘汰</li>
+</ul>
+</li>
+</ul>
+<h2 id="单周期MIPS-CPU"><a href="#单周期MIPS-CPU" class="headerlink" title="单周期MIPS CPU"></a>单周期MIPS CPU</h2><p>MIPS CPU控制器设计：</p>
+<ul>
+<li>定长指令周期：单周期实现<ul>
+<li>所有指令均在一个时钟周期内完成， CPI=1</li>
+<li>性能取决于最慢的指令，时钟周期过长</li>
+</ul>
+</li>
+<li>变长指令周期：多周期实现<ul>
+<li>缩短时钟周期，复用器件或数据通路</li>
+<li>可支持流水操作，提升性能</li>
+</ul>
+</li>
+</ul>
+<p>R型指令格式<br><img src="/2019/12/25/中央处理器/image-20191226151355789.png" alt="image-20191226151355789"></p>
+<p>I型指令格式<br><img src="/2019/12/25/中央处理器/image-20191226151416087.png" alt="image-20191226151416087"></p>
+<p>数据通路：<br><img src="/2019/12/25/中央处理器/image-20191226151503460.png" alt="image-20191226151503460"></p>
+<p> R型指令数据通路建立过程<br><img src="/2019/12/25/中央处理器/image-20191226151635760.png" alt="image-20191226151635760"></p>
+<p>LW指令数据通路建立过程<br><img src="/2019/12/25/中央处理器/image-20191226151658900.png" alt="image-20191226151658900"></p>
+<p>SW指令数据通路建立过程<br><img src="/2019/12/25/中央处理器/image-20191226151719963.png" alt="image-20191226151719963"></p>
+<p>BEQ指令数据通路建立过程<br><img src="/2019/12/25/中央处理器/image-20191226151736211.png" alt="image-20191226151736211"></p>
+<p>MIPS控制器设计：</p>
+<ul>
+<li>单周期控制器无时序逻辑，纯组合逻辑电路</li>
+<li>输入信号<ul>
+<li>指令字Opcode，Func字段（12位）</li>
+</ul>
+</li>
+<li>输出信号<ul>
+<li>多路选择器选择信号</li>
+<li>内存访问控制信号</li>
+<li>寄存器写使能信号</li>
+</ul>
+</li>
+</ul>
+<p><img src="/2019/12/25/中央处理器/image-20191226151829362.png" alt="image-20191226151829362"></p>
+<h2 id="多周期MIPS-CPU"><a href="#多周期MIPS-CPU" class="headerlink" title="多周期MIPS CPU"></a>多周期MIPS CPU</h2><p>多周期MIPS数据通路特点</p>
+<ul>
+<li>不再区分指令存储器和数据存储器，分时使用部分功能部件</li>
+<li>主要功能单元输出端增加寄存器锁存数据</li>
+<li>传输通路延迟变小，时钟周期变短</li>
+</ul>
+<p>多周期MIPS CPU数据通路：<br><img src="/2019/12/25/中央处理器/image-20191226153829403.png" alt="image-20191226153829403"></p>
+<p>多周期MIPS取指令阶段T1<br><img src="/2019/12/25/中央处理器/image-20191226153856881.png" alt="image-20191226153856881"></p>
+<p>多周期MIPS取指令阶段T2<br><img src="/2019/12/25/中央处理器/image-20191226153913682.png" alt="image-20191226153913682"></p>
+<p>R型指令执行状态周期T3~T4<br><img src="/2019/12/25/中央处理器/image-20191226154005989.png" alt="image-20191226154005989"></p>
+<p>LW指令执行状态周期T3~T5<br><img src="/2019/12/25/中央处理器/image-20191226154026467.png" alt="image-20191226154026467"></p>
+<p>Beq指令执行状态周期T3<br><img src="/2019/12/25/中央处理器/image-20191226154040788.png" alt="image-20191226154040788"></p>
+<p>多周期状态转换图<br><img src="/2019/12/25/中央处理器/image-20191226154127994.png" alt="image-20191226154127994"></p>
+<h2 id="习题"><a href="#习题" class="headerlink" title="习题"></a>习题</h2><p>冯•诺依曼计算机中指令和数据均以二进制形式存放在存储器中，CPU依据（<strong>指令和数据的访问时间不同</strong> ）来区分它们</p>
+<p>虽然指令和数据都是以二进制形式存放在存储器中，但 CPU 可以根据指令周期的不同阶段来区分是指令还是数据，通常在取指阶段取出的是指令，在执行阶段取出的是数据。本题容易误选 A ，需要清楚的是， CPU 只有在确定取出的是指令之后，才会将其操作码送去译码，因此，不可能依据译码的结果来区分指令和数据。</p>
+<hr>
+<p>某计算机指令集中包含有RR型运算指令、访存指令Load、Store、分支指令Branch和跳转指令Jump。若采用单周期数据通路实现该指令系统，若指令存储器和数据存储器的时延都是3ns;ALU时延为2ns;寄存器文件读写时延都是1ns。在不考虑多路复用器、控制单元、PC、符号扩展单元和传输线路等延迟的情况下，该计算机时钟周期至少为<strong>10ns</strong></p>
+<p>单周期取指令3ns，访问寄存器文件1ns，计算需要ALU2ns，然后写入数据存储器3ns，然后在写回寄存器1ns</p>
+<hr>
+<p>下列有关指令周期的叙述中，正确的是（<strong>ACD</strong>）。（多选）<br>A.单周期CPU中的指令周期就是一个时钟周期<br>B.乘法指令和加法指令的指令周期总是一样长<br>C.指令周期的第一个阶段一定是取指令阶段<br>D.一个指令周期可由若干个机器周期或时钟周期组成</p>
+<hr>
+<p>下列寄存器中，对汇编语言程序员不透明的是（<strong>C</strong>）（单选）<br>A.程序计数器(PC)<br>B.存储器地址寄存器(MAR)<br>C.条件状态寄存器<br>D.存储器数据寄存器(MDR)</p>
+<hr>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>Post author:  </strong>HMF
+  </li>
+  <li class="post-copyright-link">
+    <strong>Post link: </strong>
+    <a href="http://yorxika.github.io/2019/12/25/中央处理器/" title="中央处理器">http://yorxika.github.io/2019/12/25/中央处理器/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/组成原理/" rel="tag"><i class="fa fa-tag"></i> 组成原理</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2019/12/25/指令系统/" rel="prev" title="指令系统">
+      <i class="fa fa-chevron-left"></i> 指令系统
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2019/12/26/系统总线/" rel="next" title="系统总线">
+      系统总线 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#CPU组成与功能"><span class="nav-number">1.</span> <span class="nav-text">CPU组成与功能</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#CPU概述"><span class="nav-number">1.1.</span> <span class="nav-text">CPU概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CPU基本组成"><span class="nav-number">1.2.</span> <span class="nav-text">CPU基本组成</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CPU主要功能"><span class="nav-number">1.3.</span> <span class="nav-text">CPU主要功能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#主要寄存器"><span class="nav-number">1.4.</span> <span class="nav-text">主要寄存器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#操作控制器"><span class="nav-number">1.5.</span> <span class="nav-text">操作控制器</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据通路"><span class="nav-number">2.</span> <span class="nav-text">数据通路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据通路与总线结构"><span class="nav-number">3.</span> <span class="nav-text">数据通路与总线结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据通路实例"><span class="nav-number">4.</span> <span class="nav-text">数据通路实例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#指令周期"><span class="nav-number">5.</span> <span class="nav-text">指令周期</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总线结构与CPU指令周期"><span class="nav-number">6.</span> <span class="nav-text">总线结构与CPU指令周期</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#取指令数据通路"><span class="nav-number">6.1.</span> <span class="nav-text">取指令数据通路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#LOAD指令执行数据通路"><span class="nav-number">6.2.</span> <span class="nav-text">LOAD指令执行数据通路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MOVE指令执行数据通路"><span class="nav-number">6.3.</span> <span class="nav-text">MOVE指令执行数据通路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ADD指令执行数据通路"><span class="nav-number">6.4.</span> <span class="nav-text">ADD指令执行数据通路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#STORE指令执行数据通路"><span class="nav-number">6.5.</span> <span class="nav-text">STORE指令执行数据通路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JMP指令执行数据通路"><span class="nav-number">6.6.</span> <span class="nav-text">JMP指令执行数据通路</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#硬布线控制器设计I"><span class="nav-number">7.</span> <span class="nav-text">硬布线控制器设计I</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基本原理"><span class="nav-number">7.1.</span> <span class="nav-text">基本原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#单总线结构CPU指令周期"><span class="nav-number">7.2.</span> <span class="nav-text">单总线结构CPU指令周期</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#时序产生器状态机与控制器基本架构"><span class="nav-number">7.3.</span> <span class="nav-text">时序产生器状态机与控制器基本架构</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#硬布线控制器设计II"><span class="nav-number">8.</span> <span class="nav-text">硬布线控制器设计II</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#微程序控制器"><span class="nav-number">9.</span> <span class="nav-text">微程序控制器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#微程序设计"><span class="nav-number">10.</span> <span class="nav-text">微程序设计</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#微指令格式"><span class="nav-number">11.</span> <span class="nav-text">微指令格式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#单周期MIPS-CPU"><span class="nav-number">12.</span> <span class="nav-text">单周期MIPS CPU</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多周期MIPS-CPU"><span class="nav-number">13.</span> <span class="nav-text">多周期MIPS CPU</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#习题"><span class="nav-number">14.</span> <span class="nav-text">习题</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="HMF"
+      src="/images/touxiang.jpg">
+  <p class="site-author-name" itemprop="name">HMF</p>
+  <div class="site-description" itemprop="description">To your valor, my sword, and our victory together.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">243</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">25</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">67</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Yorxika" title="GitHub → https://github.com/Yorxika" rel="noopener" target="_blank"><i class="github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:alonede@qq.com" title="E-Mail → mailto:alonede@qq.com" rel="noopener" target="_blank"><i class="envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/LinMFeng" title="Twitter → https://twitter.com/LinMFeng" rel="noopener" target="_blank"><i class="twitter fa-fw"></i>Twitter</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=298 height=60 src="//music.163.com/outchain/player?type=2&id=509038&auto=0&height=32"></iframe>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">HMF</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="Symbols count total">952k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="Reading time total">14:26</span>
+</div><script color="255,255,255" opacity="0.5" zIndex="-1" count="180" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/pisces.js"></script>
+<script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+
+
+  
+
+
+
+
+  <script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+<script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.js"></script>
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : '0635d0bc6ad58e628693',
+      clientSecret: 'a02a3a1ab4874ccb117251539125fe3a1a4d43da',
+      repo        : 'blogtalk',
+      owner       : 'Yorxika',
+      admin       : ['Yorxika'],
+      id          : md5(window.location.pathname),
+        language: '',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/miku.model.json"},"display":{"position":"right","hOffset":40,"width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7},"log":false});</script></body>
+</html>

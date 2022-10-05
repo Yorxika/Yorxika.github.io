@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.9.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yorxika.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="进程引入顺序程序及特点 计算：程序的一次执行过程称为一个计算，它由许多简单操作所组成。 程序的顺序执行：一个计算的若干操作必须按照严格的先后次序顺序地执行，这类计算过程就是程序的顺序执行过程。">
+<meta name="keywords" content="操作系统,进程">
+<meta property="og:type" content="article">
+<meta property="og:title" content="进程及进程管理">
+<meta property="og:url" content="http://yorxika.github.io/2020/01/04/进程及进程管理/index.html">
+<meta property="og:site_name" content="Nameless Site">
+<meta property="og:description" content="进程引入顺序程序及特点 计算：程序的一次执行过程称为一个计算，它由许多简单操作所组成。 程序的顺序执行：一个计算的若干操作必须按照严格的先后次序顺序地执行，这类计算过程就是程序的顺序执行过程。">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://yorxika.github.io/2020/01/04/进程及进程管理/image-20200104193543416.png">
+<meta property="og:image" content="http://yorxika.github.io/2020/01/04/进程及进程管理/image-20200104193922671.png">
+<meta property="og:image" content="http://yorxika.github.io/2020/01/04/进程及进程管理/image-20200104194258703.png">
+<meta property="og:image" content="http://yorxika.github.io/2020/01/04/进程及进程管理/image-20200104202215510.png">
+<meta property="og:image" content="http://yorxika.github.io/2020/01/04/进程及进程管理/image-20200104202506290.png">
+<meta property="og:image" content="http://yorxika.github.io/2020/01/04/进程及进程管理/image-20200104202546621.png">
+<meta property="og:image" content="http://yorxika.github.io/2020/01/04/进程及进程管理/image-20200104203133664.png">
+<meta property="og:image" content="http://yorxika.github.io/2020/01/04/进程及进程管理/image-20200104204241996.png">
+<meta property="og:image" content="http://yorxika.github.io/2020/01/04/进程及进程管理/image-20200104204715905.png">
+<meta property="og:image" content="http://yorxika.github.io/2020/01/04/进程及进程管理/image-20200104204758996.png">
+<meta property="og:updated_time" content="2020-01-04T14:20:37.510Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="进程及进程管理">
+<meta name="twitter:description" content="进程引入顺序程序及特点 计算：程序的一次执行过程称为一个计算，它由许多简单操作所组成。 程序的顺序执行：一个计算的若干操作必须按照严格的先后次序顺序地执行，这类计算过程就是程序的顺序执行过程。">
+<meta name="twitter:image" content="http://yorxika.github.io/2020/01/04/进程及进程管理/image-20200104193543416.png">
+
+<link rel="canonical" href="http://yorxika.github.io/2020/01/04/进程及进程管理/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>进程及进程管理 | Nameless Site</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="Nameless Site" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Nameless Site</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">But one day, you will stand before its decrepit gate,without really knowing why.</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+        <li class="menu-item menu-item-links">
+
+    <a href="/links/" rel="section"><i class="fa fa-link fa-fw"></i>links</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yorxika.github.io/2020/01/04/进程及进程管理/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/touxiang.jpg">
+      <meta itemprop="name" content="HMF">
+      <meta itemprop="description" content="To your valor, my sword, and our victory together.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Nameless Site">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          进程及进程管理
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-01-04 19:13:08 / Modified: 22:20:37" itemprop="dateCreated datePublished" datetime="2020-01-04T19:13:08+08:00">2020-01-04</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/学习笔记/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/学习笔记/操作系统/" itemprop="url" rel="index"><span itemprop="name">操作系统</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>7.6k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>7 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="进程引入"><a href="#进程引入" class="headerlink" title="进程引入"></a>进程引入</h2><h3 id="顺序程序及特点"><a href="#顺序程序及特点" class="headerlink" title="顺序程序及特点"></a>顺序程序及特点</h3><ul>
+<li>计算：程序的一次执行过程称为一个计算，它由许多简单操作所组成。</li>
+<li>程序的顺序执行：一个计算的若干操作必须按照严格的先后次序顺序地执行，这类计算过程就是程序的顺序执行过程。<a id="more"></a></li>
+</ul>
+<p>单道系统的工作情况：对用户作业的处理 —— 首先输入用户的程序和数据；然后进行计算；最后打印计 算结果，即有三个顺序执行的操作。 I：输入操作 C：计算操作 P：输出操作</p>
+<p>特点：</p>
+<ul>
+<li>顺序性 —— 处理机的操作严格按照程序所规定的 顺序执行。</li>
+<li>封闭性 —— 程序一旦开始执行，其计算结果不受 外界因素的影响。</li>
+<li>可再现性 —— 程序执行的结果与它的执行速度无 关 (即与时间无关)，而只与初始条件有关。</li>
+</ul>
+<h3 id="并发程序"><a href="#并发程序" class="headerlink" title="并发程序"></a>并发程序</h3><p>若干个程序段同时在系统中运行，这些程序段的执行在时间上是重叠的，一个程序段的执行尚未结束，另一个程序段的执行已经开始，即使这种重叠是很小的一部分，也称这几个程序段是并发执行的。</p>
+<p>特点：</p>
+<ul>
+<li>失去程序的封闭性和可再现性<br> 若一个程序的执行可以改变另一个程序的变量，那么，后 者的输出就可能有赖于各程序执行的相对速度，即失去了 程序的封闭性特点。 </li>
+<li>程序与计算不再一一对应<br>一个程序可以对应多个计算。</li>
+<li>程序并发执行的相互制约<ul>
+<li>间接的相互制约关系 —— 资源共享</li>
+<li>直接的相互制约关系 —— 公共变量</li>
+</ul>
+</li>
+</ul>
+<h3 id="与时间有关的错误"><a href="#与时间有关的错误" class="headerlink" title="与时间有关的错误"></a>与时间有关的错误</h3><p>程序并发执行时，若共享了公共变量，其执行结果与各并发程序的相对速度有关，即给定相同的初始条件，若不加以控制，也可能得到不同的结果，此为与时间有关的错误。<br>为了保证得到唯一的正确结果，需要实现并发程序执行时的<strong>互斥和同步</strong>。</p>
+<h2 id="进程概念"><a href="#进程概念" class="headerlink" title="进程概念"></a>进程概念</h2><h3 id="进程定义"><a href="#进程定义" class="headerlink" title="进程定义"></a>进程定义</h3><p>什么是进程？<br>所谓进程，就是一个程序在给定活动空间和初始环境下， 在一个处理机上的执行过程。</p>
+<p>进程与程序的区别</p>
+<ul>
+<li>程序是指令的有序计合，是一个静态的概念，进程是程序在处理及上的一次执行过程，是动态的概念；</li>
+<li>进程是一个独立运行的活动单位，能与其他进程并行的活动；</li>
+<li>进程是竞争计算机系统资源的基本单位，也是进行处理机调度的基本单位；</li>
+<li>一个程序可以对应多个进程，一个进程至少包含一个程序。</li>
+</ul>
+<h3 id="进程的状态"><a href="#进程的状态" class="headerlink" title="进程的状态"></a>进程的状态</h3><p>进程的基本状态 </p>
+<ul>
+<li>运行状态(running) 该进程已获得运行所必需的资源，它的程序正在处理机上 执行。</li>
+<li>等待状态(wait) 进程正等待着某一事件的发生而暂时停止执行。这时， 即使给它CPU控制权，它也无法执行。 </li>
+<li>就绪状态(ready) 进程已获得除CPU之外的运行所必需的资源，一旦得到 CPU控制权，立即可以运行。</li>
+</ul>
+<p><img src="/2020/01/04/进程及进程管理/image-20200104193543416.png" alt="image-20200104193543416"></p>
+<h3 id="进程描述"><a href="#进程描述" class="headerlink" title="进程描述"></a>进程描述</h3><p>什么是进程控制块<br>描述进程与其他进程、系统资源的关系以及进程在各个不同时期所处的状态的数据结构，称为进程控制块 PCB (process control block)。 </p>
+<p>进程的组成</p>
+<ul>
+<li>程序与数据<br> 描述进程本身所应完成的功能</li>
+<li><p>PCB<br> 进程的动态特征，该进程与其他进 程和系统资源的关系。</p>
+<p> <img src="/2020/01/04/进程及进程管理/image-20200104193922671.png" alt="image-20200104193922671"></p>
+</li>
+</ul>
+<p>进程控制块的主要内容</p>
+<ul>
+<li>进程标识符 进程符号名或内部 id号 </li>
+<li>进程当前状态 本进程目前处于何种状态</li>
+<li>当前队列指针next 该项登记了处于同一状态的下一个进程的 PCB地址。 </li>
+<li>进程优先级 反映了进程要求CPU的紧迫程度。 </li>
+<li>CPU现场保护区 当进程由于某种原因释放处理机时，CPU现场信息被保存在PCB的该区域中。 </li>
+<li>通信信息 进程间进行通信时所记录的有关信息。 </li>
+<li>家族联系 指明本进程与家族的联系 </li>
+<li>占有资源清单</li>
+</ul>
+<p><img src="/2020/01/04/进程及进程管理/image-20200104194258703.png" alt="image-20200104194258703"></p>
+<h2 id="进程控制"><a href="#进程控制" class="headerlink" title="进程控制"></a>进程控制</h2><p>进程控制的职责 ：对系统中的进程实施有效的管理，负责进程状态的改变。<br>常用的进程控制原语：创建原语creat、撤消原语kill、阻塞原语susp、唤醒原语wakeup</p>
+<h2 id="进程之间的约束关系"><a href="#进程之间的约束关系" class="headerlink" title="进程之间的约束关系"></a>进程之间的约束关系</h2><h3 id="进程竞争与合作"><a href="#进程竞争与合作" class="headerlink" title="进程竞争与合作"></a>进程竞争与合作</h3><p>进程之间的约束关系可分为两种情况：</p>
+<ul>
+<li>由于竞争系统资源而引起的间接相互制约关系</li>
+<li>由于进程之间存在共享数据而引起的直接相互制约关系<ul>
+<li>进程协作：信息共享和并行处理</li>
+</ul>
+</li>
+</ul>
+<h3 id="进程互斥"><a href="#进程互斥" class="headerlink" title="进程互斥"></a>进程互斥</h3><p>临界资源：一次仅允许一个进程使用的<strong>资源</strong>称为临界资源。 硬件：如输入机、打印机、磁带机等 软件：如公用变量、数据、表格、队列等 。</p>
+<p>临界区是进程中对公共变量 (或存储区)进行审查与修改的<strong>程序段</strong>，称为相对于该公共变量的临界区。<br>注意：</p>
+<ul>
+<li>临界区是针对某一临界资源而言的</li>
+<li>相对于某临界资源的临界区个数就是共享该临界资源的进程个数</li>
+<li>相对于同一个公共变量的若干个临界区，必须是互斥地进入</li>
+</ul>
+<p>互斥：在操作系统中，当某一进程正在访问某一存储区域时，就 不允许其他进程来读出或者修改存储区的内容，否则，就 会发生后果无法估计的错误。进程间的这种相互制约关系 称为互斥。</p>
+<h3 id="进程同步"><a href="#进程同步" class="headerlink" title="进程同步"></a>进程同步</h3><p>什么是进程同步：并发进程在一些关键点上可能需要互相等待与互通消息， 这种相互制约的等待与互通消息称为进程同步。 同步意味着两个或多个进程之间根据它们一致同意的协议进行相互作用。同步的实质是使各合作进程的行为保持某种一致性或不变关系。</p>
+<p>进程同步示例：</p>
+<ul>
+<li>病员就诊</li>
+<li>共享缓冲区的计算进程与打印进程的同步</li>
+</ul>
+<h2 id="同步机构"><a href="#同步机构" class="headerlink" title="同步机构"></a>同步机构</h2><h3 id="锁和上锁、开锁操作"><a href="#锁和上锁、开锁操作" class="headerlink" title="锁和上锁、开锁操作"></a>锁和上锁、开锁操作</h3><p>什么是锁：用变量w代表某种资源的状态，w称为“锁” 。用<strong>1</strong>表示资源已经被<strong>占用</strong>。</p>
+<p>上锁操作和开锁操作</p>
+<ul>
+<li>检测w的值 (是0还是1)；</li>
+<li>如果w的值为1，继续检测；</li>
+<li>如果w的值为0，将锁位置1 (表示占用资源)，进入临界区执行。 (此为上锁操作)</li>
+<li>临界资源使用完毕，将锁位置0。 (此为开锁操作)</li>
+</ul>
+<h3 id="信号灯和P、V操作"><a href="#信号灯和P、V操作" class="headerlink" title="信号灯和P、V操作"></a>信号灯和P、V操作</h3><p>什么是信号灯<br>信号灯是一个确定的二元组 (s，q)，s是一个具有非负初值的整型变量，q是一个初始状态为空的队列。操作系统利用信号灯的状态对并发进程和共享资源进行控制和管理。<br><strong>信号灯是整型变量。</strong><br>变量值 ≥ 0 时，表示绿灯，进程执行； 变量值 ＜ 0 时，表示红灯，进程停止执行。<br>注意：创建信号灯时，应准确说明信号灯 s 的意义和初值<br><strong>(这个初值绝不能为负值)</strong>。</p>
+<p>P 操作 定义：对信号灯s的 p操作记为 p(s)。p(s)是一个不可分割的原语操作，即取信号灯值减1，若相减结果为负，则调用p(s)的进程被阻，并插入到<br>该信号灯的等待队列中，否则可以继续执行。 </p>
+<p>V 操作 定义：对信号灯s的 v操作记为 v(s)。v(s)是一个不可分割的原语操作，即取信号灯值加1，若相加结果大于零，进程继续执行，否则，要帮助唤醒在信号灯等待队列上的一个进程。 </p>
+<h2 id="同步机构-1"><a href="#同步机构-1" class="headerlink" title="同步机构"></a>同步机构</h2><h3 id="生产者消费者问题"><a href="#生产者消费者问题" class="headerlink" title="生产者消费者问题"></a>生产者消费者问题</h3><p>生产者与消费者的同步关系</p>
+<ul>
+<li>生产者：<ul>
+<li>当有界缓冲区中无空位置时，要等待； </li>
+<li>向有界缓冲区放入物品后，要发消息。 </li>
+</ul>
+</li>
+<li>消费者：<ul>
+<li>当有界缓冲区中无物品时，要等待；</li>
+<li>从有界缓冲区取出物品后，要发消息。</li>
+</ul>
+</li>
+</ul>
+<p>信号灯设置</p>
+<ul>
+<li>两个同步信号灯——<ul>
+<li>sb ：表示空缓冲区的数目，初值 = n </li>
+<li>sa ： 表示满缓冲区 (即信息)的数目，初值 = 0</li>
+</ul>
+</li>
+<li>一个互斥信号灯——<ul>
+<li>mutex：表示有界缓冲区是否被占用，初值 = 1</li>
+</ul>
+</li>
+</ul>
+<p>程序描述<br>程序 prod_cons<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">main( )</span><br><span class="line">&#123;</span><br><span class="line">   <span class="keyword">int</span> sa=<span class="number">0</span>； ∕/满缓冲区数目  </span><br><span class="line">   <span class="keyword">int</span> sb=n； ∕/空缓冲区数目</span><br><span class="line">   <span class="keyword">int</span>  mutex=<span class="number">1</span>； ∕/对有界缓冲区进行操作 </span><br><span class="line">   cobegin </span><br><span class="line">   p1 ( )； p2 ( )；… pm ( )； </span><br><span class="line">   c1 ( )； c2 ( )；… ck ( )； </span><br><span class="line">   coend</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">pi( )                                                     </span><br><span class="line">&#123;</span><br><span class="line">   <span class="keyword">while</span>(生产未完成)</span><br><span class="line">   &#123;</span><br><span class="line">      M</span><br><span class="line">      生产一个产品;</span><br><span class="line">      p(sb)；</span><br><span class="line">      p(mutex)； </span><br><span class="line">      送一个产品到有界缓冲区；</span><br><span class="line">      v(mutex)；</span><br><span class="line">      v(sa)；</span><br><span class="line">   &#125;  </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">cj( ) </span><br><span class="line">&#123; </span><br><span class="line">   <span class="keyword">while</span>(还要继续消费)</span><br><span class="line">   &#123;</span><br><span class="line">        p(sa)； </span><br><span class="line">        p(mutex)；</span><br><span class="line">        从有界缓冲区中取产品</span><br><span class="line">        v(mutex)； </span><br><span class="line">        v(sb)； </span><br><span class="line">        消费一个产品； </span><br><span class="line">        M</span><br></pre></td></tr></table></figure></p>
+<h3 id="理发师睡觉问题"><a href="#理发师睡觉问题" class="headerlink" title="理发师睡觉问题"></a>理发师睡觉问题</h3><p>理发店里有一位理发师、一把理发椅和n把供等候理发的顾客坐的椅子。如果没有顾客，则理发师便在理发椅上睡觉。当一个顾客到来时，他必须先叫醒理发师，如果理发师正在理发时又有顾客来到，则如果有空椅子可坐，他们就坐下来等。如果没有空椅子，他就离开。</p>
+<ul>
+<li><p>一个理发师，一把理发椅，n把等候理发的顾客椅子。 </p>
+<ul>
+<li>如果没有顾客，则理发师在理发椅上睡觉；</li>
+<li>当有一个顾客到达时，首先看理发师在干什么， 如果理发师在睡觉，则唤醒理发师理发； 如果理发师正在理发，则查看是否有空的顾客椅子可 坐； 如果有顾客椅子可坐，则坐下等待，如果没有，则 离开。 </li>
+<li>理发师为一位顾客理完发后，查看是否有人在等待， 如果有则唤醒下一位顾客理发，没有则理发师去睡觉。</li>
+</ul>
+</li>
+<li><p>理发师和顾客之间的同步关系<br> 当理发师睡觉时，顾客进来需要唤醒理发师为其理发；<br> 当有顾客时理发师为其理发，没有的时候理发师睡觉。</p>
+</li>
+<li>理发师与顾客、顾客与顾客之间的互斥关系<br> 由于每次理发师只能为1个人理发，且可供等侯的椅子只有n把，即理发师和椅子是临界资源，顾客之间是互斥的关系。</li>
+</ul>
+<p>信号灯设置<br>引入3个信号量和一个控制变量： </p>
+<ul>
+<li>控制变量waiting用来记录等候理发的顾客数，初值均为0; 进入理发店的顾客必须先看等候的顾客数，如果少于椅子数， 他留下来等，否则他就离开。</li>
+<li>信号量customers用来记录等候理发的顾客数，并用作阻塞理发师进程，初值为0; </li>
+<li>信号量barbers用来记录正在等候顾客的理发师数，并用作 阻塞顾客进程，初值为0; </li>
+<li>信号量mutex用于互斥，初值为1. </li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta"># <span class="meta-keyword">define</span> CHAIRS 5 <span class="comment">/*为等待的顾客准备的椅子数*/</span> </span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">int</span> semaphone ; <span class="comment">/*信号灯类型*/</span> </span><br><span class="line">semaphore customers=<span class="number">0</span>; <span class="comment">/*等待服务的顾客数*/</span> </span><br><span class="line">semaphore barbers=<span class="number">0</span>; <span class="comment">/*等待顾客的理发师数*/</span> </span><br><span class="line">semaphore mutex=<span class="number">1</span>; <span class="comment">/*用于互斥*/</span></span><br><span class="line"><span class="keyword">int</span> waiting=<span class="number">0</span>; <span class="comment">/*等待的顾客(还没理发的)，waiting是一个共享变量，对它操作时必须加锁，用mutex加以保护*/</span></span><br><span class="line"></span><br><span class="line">main() </span><br><span class="line">&#123;   </span><br><span class="line">   …… </span><br><span class="line">   cobegin </span><br><span class="line">      barber（）； </span><br><span class="line">      customers（）； </span><br><span class="line">   coend </span><br><span class="line">   …… </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">barber</span><span class="params">(<span class="keyword">void</span>)</span> </span></span><br><span class="line"><span class="function"></span>&#123; </span><br><span class="line">   <span class="keyword">while</span>(TRUE) <span class="comment">/*理完1人,还有顾客吗?*/</span> </span><br><span class="line">   &#123; </span><br><span class="line">      p(customers); <span class="comment">/*如果顾客数是0，则理发师睡眠*/</span> </span><br><span class="line">      p(mutex); <span class="comment">/*要求进程等待*/</span> </span><br><span class="line">         waiting=waiting<span class="number">-1</span>; <span class="comment">/*等待顾客数减1*/</span> </span><br><span class="line">      v(barbers); <span class="comment">/*一个理发师现在开始理发了*/</span> </span><br><span class="line">      v(mutex); <span class="comment">/*释放等待*/</span> </span><br><span class="line">      cut_hair(); <span class="comment">/*理发(非临界区操作)*/</span> </span><br><span class="line">   &#125; </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">customers</span><span class="params">(<span class="keyword">void</span>)</span> </span></span><br><span class="line"><span class="function"></span>&#123;       </span><br><span class="line">   p(mutex);<span class="comment">/*进入临界区*/</span> </span><br><span class="line">   <span class="keyword">if</span> (waiting &lt; CHAIRS) </span><br><span class="line">   &#123;<span class="comment">/*如果没有空椅子，就离开*/</span> </span><br><span class="line">      waiting = waiting + <span class="number">1</span>;<span class="comment">/*等待顾客数加1*/</span> </span><br><span class="line">      v(customers); <span class="comment">/*如果必要的话，唤醒理发师*/</span> </span><br><span class="line">      v(mutex); <span class="comment">/*释放访问等待*/</span> </span><br><span class="line">      p(barbers); <span class="comment">/*无理发师, 顾客坐着养神*/</span> </span><br><span class="line">      get_haircut();<span class="comment">/*一个顾客坐下等理发*/</span> </span><br><span class="line">   &#125; </span><br><span class="line">   <span class="keyword">else</span> </span><br><span class="line">      v(mutex); <span class="comment">/*店里人满了，走吧*/</span> </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="进程通信"><a href="#进程通信" class="headerlink" title="进程通信"></a>进程通信</h2><p>进程通信(Interprocess Communication, IPC)是指进程之间直 接以较高的效率传递较多数据的信息交互方式。</p>
+<p>IPC机制：指消息（message）从一个进程的地址空间拷贝到另一个进程 的地址空间的过程，而不使用共享存储器。</p>
+<p><img src="/2020/01/04/进程及进程管理/image-20200104202215510.png" alt="image-20200104202215510"></p>
+<h3 id="进程通信方式"><a href="#进程通信方式" class="headerlink" title="进程通信方式"></a>进程通信方式</h3><p>消息缓冲通信 </p>
+<ul>
+<li>在消息通信中，接收方和发送方之间有明确的协议和消息格式 。<ul>
+<li>大多数使用消息头：发送/接收进程的ID、被传消息的字节数……</li>
+</ul>
+</li>
+<li>消息缓冲通信方式包括消息缓冲、发送原语和接收原语。<ul>
+<li>发送进程先形成一个消息缓冲区（含消息头和消息内容），然后用发送原语发出。</li>
+<li>接收进程在接收前，在本进程的主存空间设置一个接收区，然后用接收原语接收。</li>
+</ul>
+</li>
+</ul>
+<p>信箱通信</p>
+<ul>
+<li>在信箱通信中，需要定义信箱结构，还包括消息发送和接收功能模块，提供发送原语和接收原语。</li>
+<li>信箱通信中，所使用的信箱可以位于用户空间中，是接收进程地址空间的一部分；也可以放置在操作系统的空间中。</li>
+</ul>
+<p>使用用户空间中的信箱实现消息传递<br>信箱由用户管理，进程可以直接访问信息<br><img src="/2020/01/04/进程及进程管理/image-20200104202506290.png" alt="image-20200104202506290"><br>缺点：</p>
+<ul>
+<li>编译器和加载程序必须为每一个进程分配信箱空间 ；</li>
+<li>接收进程有可能覆盖信息的部分内容，从而造成错误。</li>
+</ul>
+<p>使用系统空间中的信箱实现消息传递<br>信箱由OS管理，任何进程不能直接访问<br><img src="/2020/01/04/进程及进程管理/image-20200104202546621.png" alt="image-20200104202546621"><br>缺点：要求OS为所有的进程分配主存信箱，受系统限制，可 能对通信进程数限制。</p>
+<h2 id="线程概念及特点"><a href="#线程概念及特点" class="headerlink" title="线程概念及特点"></a>线程概念及特点</h2><p>为什么引入线程？</p>
+<ul>
+<li>为了避免多处理机系统在进行远程访问期间的等待现象。</li>
+<li>线程就是进程的一个执行路径，一个进程可以有多条执行路径。这样，一个进程内部就有多个可 以独立活动的单位，可以加快进程处理的速度， 进一步提升并行处理能力。</li>
+</ul>
+<p>线程 定义：线程是比进程更小的活动单位，它是进程中的一个执行路径。</p>
+<p>线程可以这样来描述</p>
+<ul>
+<li>进程中的一条执行路径；</li>
+<li>它有自己私用的堆栈和处理机执行环境 ；</li>
+<li>它与父进程共享分配给父进程的主存；</li>
+<li>它是单个进程所创建的许多个同时存在的线程中的一个。</li>
+</ul>
+<p>线程的特点</p>
+<ul>
+<li>线程是比进程更小的活动单位，它是进程中的一个执 行路径。创建一个线程比创建一个进程开销要小得多。</li>
+<li>实现线程间通信十分方便，因为一个进程创建的多个 线程可以共享地址区域和数据。</li>
+<li>线程是一个动态的概念。</li>
+<li>在进程内创建多线程，可以提高系统的并行处理能力， 加快进程的处理速度。</li>
+</ul>
+<p>进程是任务调度的单位，也是系统资源的分配单位；而线程是进程中的一条执行路径，当系统支持多线程处理时，线程是任务调度的单位，但不是系统资源的分配单位。线程完全继承父进程占有的资源，当它活动时，具有自己的运行现场。</p>
+<p><img src="/2020/01/04/进程及进程管理/image-20200104203133664.png" alt="image-20200104203133664"></p>
+<p>用户线程和内核线程</p>
+<ul>
+<li>用户线程 <ul>
+<li>在内核的支持下，在用户层通过线程库实现 </li>
+<li>创建和调度在用户空间进行，无需内核干预 </li>
+<li>优点：能快速创建和管理 </li>
+<li>缺点：如果内核是单线程的，一旦一个用户线程执行了等待的系统调用，则整个进程阻塞 </li>
+</ul>
+</li>
+<li>内核线程 <ul>
+<li>由OS管理，创建和调度在OS主存空间内完成 </li>
+<li>当一个线程执行时阻塞，内核能调度另一个线 程运行</li>
+</ul>
+</li>
+</ul>
+<h2 id="操作系统的并发机制实例"><a href="#操作系统的并发机制实例" class="headerlink" title="操作系统的并发机制实例"></a>操作系统的并发机制实例</h2><h3 id="创建进程及应用实例"><a href="#创建进程及应用实例" class="headerlink" title="创建进程及应用实例"></a>创建进程及应用实例</h3><p>调用形式 （UNIX/LINUX系统）：pid=fork();<br>功能：创建一个子进程，被创建的子进程是父进程的进程映像的一个副本 (除proc结构外)，在UNIX系统中，除了0#进程外，其它进程都是通过调用进程创建系统调用创建的。</p>
+<p>系统调用 fork 完成的操作<br>UNIX/Linux系统的核心为系统调用fork 完成下列操作：<br>① 为新进程分配一个新的pcb结构；<br>② 为子进程赋一个唯一的进程标识号 (PID)；<br>③ 做一个父进程上下文的逻辑副本。由于进程的正文区 (代码段)可被几个进程所共享，所以核心只要增加某个正文区的引用数即可，而不是真的将该区拷贝到一个新的内存物理区。这就意味着父子进程将执行相同的代码。数据段和堆栈段属于进程的私有数据，需要拷贝到 新的内存区中。<br>④ 增加d与该进程相关联的文件表和索引节点表的引用数。这就意味 着父进程打开的文件子进程可以继续使用。<br>⑤ 对父进程返回子进程的进程号，对子进程返回零。</p>
+<p>如何启动一个新的程序的执行？</p>
+<ul>
+<li>父进程为了启动一个新的程序的执行，在 UNIX/LINUX系统中需要用到exec()类函数</li>
+<li>Exec()类函数很多 作用是根据参数指定的文件名找到可执行文件 ，并用它来取代调用进程的内容，即在调用进 程内部执行一个可执行文件。</li>
+</ul>
+<h3 id="创建线程及应用实例"><a href="#创建线程及应用实例" class="headerlink" title="创建线程及应用实例"></a>创建线程及应用实例</h3><ul>
+<li>LINUX下的多线程程序，需要使用pthread.h，连接时需要使用库libpthread.a。</li>
+<li>Clone( )是LINUX特有的系统调用，用来实现 pthread。与fork( )类似。</li>
+</ul>
+<p>调用形式 ：<code>pthread_create(pthread_t *thread, pthread_attr_t *attr, void *(*start_routine)(void *), void *arg);</code></p>
+<p>等待进程终止 wait(); waitpid();<br>① wait() 语法格式<br>pid=wait(stat_addr);<br>wait()函数使父进程暂停执行，直到它的一个子进程结束为止，该函数的返回值是终止运行的子进程的PID。参数status所指向的变量存放子进程的退出码，即从子进程的main函数返回的值或子进程中exit()函数的参数。如果status不是一个空指针，状态信息将被写入它指向的变量。<br>② waitpid() 语法格式<br>pid=wait(stat_addr);<br>waitpid(pid_t pid,int * status,int options)<br>用来等待子进程的结束，但它用于等待某个特定进程结束。参数pid指明要等待的子进程的PID，参数status的含义与wait()函数中的status相同。</p>
+<h2 id="进程调度"><a href="#进程调度" class="headerlink" title="进程调度"></a>进程调度</h2><h3 id="进程调度的功能"><a href="#进程调度的功能" class="headerlink" title="进程调度的功能"></a>进程调度的功能</h3><p>调度：在众多处于就绪状态的进程中，按一定的原则选择一个进程。</p>
+<p>分派：当处理机空闲时，移出就绪队列中第一个进程，并赋予它使用处理机的权利。</p>
+<p><img src="/2020/01/04/进程及进程管理/image-20200104204241996.png" alt="image-20200104204241996"></p>
+<p>进程调度的功能</p>
+<ul>
+<li>记录进程的有关情况</li>
+<li>决定调度策略<ul>
+<li>优先调度<br>就绪队列按进程优先级高低排序</li>
+<li>先来先服务<br>就绪队列按进程来到的先后次序排序</li>
+</ul>
+</li>
+<li>实施处理机的分配和回收</li>
+</ul>
+<p>进程调度的方式</p>
+<ul>
+<li>什么是调度方式：当一进程正在处理机上执行时，若有某个更为“重要而紧迫” 的进程需要运行，系统如何分配处理机。</li>
+<li>非剥夺方式：当“重要而紧迫”的进程来到时，让正在执行的进程继续执行，直到该进程完成或发生某事件而进入“完成”或“阻塞” 状态时，才把处理机分配给“重要而紧迫”的进程。 </li>
+<li>剥夺方式 当“重要而紧迫”的进程来到时，便暂停正在执行的进程， 立即把处理机分配给优先级更高的进程。</li>
+</ul>
+<h3 id="进程调度算法"><a href="#进程调度算法" class="headerlink" title="进程调度算法"></a>进程调度算法</h3><h4 id="进程优先数调度算法"><a href="#进程优先数调度算法" class="headerlink" title="进程优先数调度算法"></a>进程优先数调度算法</h4><p>什么是进程优先数调度算法<br>预先确定各进程的优先数，系统把处理机的使用权赋予就绪队列中具备最高优先权 (优先数和一定的优先级相对应) 的就绪进程。</p>
+<p>优先数的分类及确定</p>
+<ul>
+<li>静态优先数<br>在进程被创建时确定，且一经确定后在整个进程运行 期间不再改变。</li>
+<li>静态优先数的确定<ul>
+<li>优先数根据进程所需使用的资源来计算</li>
+<li>优先数基于程序运行时间的估计</li>
+<li>优先数基于进程的类型</li>
+</ul>
+</li>
+<li>动态优先数<br>进程优先数在进程运行期间可以改变。</li>
+<li>动态优先数的确定<ul>
+<li>进程使用CPU超过一定数值时，降低优先数</li>
+<li>进程I/O操作后，增加优先数</li>
+<li>进程等待时间超过一定数值时，提高优先数</li>
+</ul>
+</li>
+</ul>
+<h4 id="循环轮转调度算法"><a href="#循环轮转调度算法" class="headerlink" title="循环轮转调度算法"></a>循环轮转调度算法</h4><p>什么是循环轮转调度算法<br>当CPU空闲时，选取就绪队列首元素，赋予一个时间片，当时间片用完时，该进程转为就绪态并进入就绪队列末端。</p>
+<p><img src="/2020/01/04/进程及进程管理/image-20200104204715905.png" alt="image-20200104204715905"></p>
+<p>简单循环轮转调度算法<br>就绪队列中的所有进程以等速度向前进展。<br>q = t/n<br>t 为用户所能接受的响应时间，n为进入系统的进程数目。</p>
+<p>循环轮转调度算法的发展</p>
+<ul>
+<li>可变时间片轮转调度</li>
+<li>多重时间片循环调度</li>
+</ul>
+<h3 id="调度用的进程状态变迁图"><a href="#调度用的进程状态变迁图" class="headerlink" title="调度用的进程状态变迁图"></a>调度用的进程状态变迁图</h3><p><img src="/2020/01/04/进程及进程管理/image-20200104204758996.png" alt="image-20200104204758996"></p>
+<ul>
+<li>进程状态<ul>
+<li>运行状态</li>
+<li>低优先就绪状态</li>
+<li>高优先就绪状态</li>
+<li>因I/O而等待状态</li>
+</ul>
+</li>
+<li>队列结构<ul>
+<li>低优先就绪队列</li>
+<li>高优先就绪队列</li>
+<li>因I/O而等待队列</li>
+</ul>
+</li>
+<li>进程调度算法<br> 优先调度与时间片调度相结合的调度算法<ul>
+<li>当CPU空闲时，若高优先就绪队列非空，则从高优先就绪队列中选择一个进程运行，分配时间片为100ms。</li>
+<li>当CPU空闲时，若高优先就绪队列为空，则从低优先就绪队列中选择一个进程运行，分配时间片为500ms。</li>
+</ul>
+</li>
+<li>调度效果<br>优先照顾I∕O量大的进程；适当照顾计算量大的进程。</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>Post author:  </strong>HMF
+  </li>
+  <li class="post-copyright-link">
+    <strong>Post link: </strong>
+    <a href="http://yorxika.github.io/2020/01/04/进程及进程管理/" title="进程及进程管理">http://yorxika.github.io/2020/01/04/进程及进程管理/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/操作系统/" rel="tag"><i class="fa fa-tag"></i> 操作系统</a>
+              <a href="/tags/进程/" rel="tag"><i class="fa fa-tag"></i> 进程</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/01/02/CH1-算法/" rel="prev" title="CH1 算法">
+      <i class="fa fa-chevron-left"></i> CH1 算法
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/01/04/资源分配与调度/" rel="next" title="资源分配与调度">
+      资源分配与调度 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#进程引入"><span class="nav-number">1.</span> <span class="nav-text">进程引入</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#顺序程序及特点"><span class="nav-number">1.1.</span> <span class="nav-text">顺序程序及特点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#并发程序"><span class="nav-number">1.2.</span> <span class="nav-text">并发程序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#与时间有关的错误"><span class="nav-number">1.3.</span> <span class="nav-text">与时间有关的错误</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#进程概念"><span class="nav-number">2.</span> <span class="nav-text">进程概念</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#进程定义"><span class="nav-number">2.1.</span> <span class="nav-text">进程定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#进程的状态"><span class="nav-number">2.2.</span> <span class="nav-text">进程的状态</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#进程描述"><span class="nav-number">2.3.</span> <span class="nav-text">进程描述</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#进程控制"><span class="nav-number">3.</span> <span class="nav-text">进程控制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#进程之间的约束关系"><span class="nav-number">4.</span> <span class="nav-text">进程之间的约束关系</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#进程竞争与合作"><span class="nav-number">4.1.</span> <span class="nav-text">进程竞争与合作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#进程互斥"><span class="nav-number">4.2.</span> <span class="nav-text">进程互斥</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#进程同步"><span class="nav-number">4.3.</span> <span class="nav-text">进程同步</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#同步机构"><span class="nav-number">5.</span> <span class="nav-text">同步机构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#锁和上锁、开锁操作"><span class="nav-number">5.1.</span> <span class="nav-text">锁和上锁、开锁操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#信号灯和P、V操作"><span class="nav-number">5.2.</span> <span class="nav-text">信号灯和P、V操作</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#同步机构-1"><span class="nav-number">6.</span> <span class="nav-text">同步机构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#生产者消费者问题"><span class="nav-number">6.1.</span> <span class="nav-text">生产者消费者问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#理发师睡觉问题"><span class="nav-number">6.2.</span> <span class="nav-text">理发师睡觉问题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#进程通信"><span class="nav-number">7.</span> <span class="nav-text">进程通信</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#进程通信方式"><span class="nav-number">7.1.</span> <span class="nav-text">进程通信方式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#线程概念及特点"><span class="nav-number">8.</span> <span class="nav-text">线程概念及特点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#操作系统的并发机制实例"><span class="nav-number">9.</span> <span class="nav-text">操作系统的并发机制实例</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#创建进程及应用实例"><span class="nav-number">9.1.</span> <span class="nav-text">创建进程及应用实例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建线程及应用实例"><span class="nav-number">9.2.</span> <span class="nav-text">创建线程及应用实例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#进程调度"><span class="nav-number">10.</span> <span class="nav-text">进程调度</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#进程调度的功能"><span class="nav-number">10.1.</span> <span class="nav-text">进程调度的功能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#进程调度算法"><span class="nav-number">10.2.</span> <span class="nav-text">进程调度算法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#进程优先数调度算法"><span class="nav-number">10.2.1.</span> <span class="nav-text">进程优先数调度算法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#循环轮转调度算法"><span class="nav-number">10.2.2.</span> <span class="nav-text">循环轮转调度算法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#调度用的进程状态变迁图"><span class="nav-number">10.3.</span> <span class="nav-text">调度用的进程状态变迁图</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="HMF"
+      src="/images/touxiang.jpg">
+  <p class="site-author-name" itemprop="name">HMF</p>
+  <div class="site-description" itemprop="description">To your valor, my sword, and our victory together.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">243</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">25</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">67</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Yorxika" title="GitHub → https://github.com/Yorxika" rel="noopener" target="_blank"><i class="github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:alonede@qq.com" title="E-Mail → mailto:alonede@qq.com" rel="noopener" target="_blank"><i class="envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/LinMFeng" title="Twitter → https://twitter.com/LinMFeng" rel="noopener" target="_blank"><i class="twitter fa-fw"></i>Twitter</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=298 height=60 src="//music.163.com/outchain/player?type=2&id=509038&auto=0&height=32"></iframe>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">HMF</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="Symbols count total">952k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="Reading time total">14:26</span>
+</div><script color="255,255,255" opacity="0.5" zIndex="-1" count="180" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/pisces.js"></script>
+<script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+
+
+  
+
+
+
+
+  <script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+<script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.js"></script>
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : '0635d0bc6ad58e628693',
+      clientSecret: 'a02a3a1ab4874ccb117251539125fe3a1a4d43da',
+      repo        : 'blogtalk',
+      owner       : 'Yorxika',
+      admin       : ['Yorxika'],
+      id          : md5(window.location.pathname),
+        language: '',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/miku.model.json"},"display":{"position":"right","hOffset":40,"width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7},"log":false});</script></body>
+</html>

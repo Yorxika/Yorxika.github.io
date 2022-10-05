@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.9.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yorxika.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="处理机的多级调度 作业调度(宏观)：决定哪些程序调入计算机系统 进程调度(微观)：决定哪个（些）进程占用CPU，使用多长时间等">
+<meta name="keywords" content="操作系统">
+<meta property="og:type" content="article">
+<meta property="og:title" content="处理机的调度">
+<meta property="og:url" content="http://yorxika.github.io/2020/01/04/处理机的调度/index.html">
+<meta property="og:site_name" content="Nameless Site">
+<meta property="og:description" content="处理机的多级调度 作业调度(宏观)：决定哪些程序调入计算机系统 进程调度(微观)：决定哪个（些）进程占用CPU，使用多长时间等">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://yorxika.github.io/2020/01/04/处理机的调度/image-20200104223306933.png">
+<meta property="og:image" content="http://yorxika.github.io/2020/01/04/处理机的调度/image-20200104225107056.png">
+<meta property="og:image" content="http://yorxika.github.io/2020/01/04/处理机的调度/image-20200104225428235.png">
+<meta property="og:image" content="http://yorxika.github.io/2020/01/04/处理机的调度/500fd9f9d72a6059d09c84e42334349b023bba44@wm_1,g_7,k_d2F0ZXIvYmFpa2U4MA==,xp_5,yp_5.jfif">
+<meta property="og:updated_time" content="2020-01-04T15:42:20.633Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="处理机的调度">
+<meta name="twitter:description" content="处理机的多级调度 作业调度(宏观)：决定哪些程序调入计算机系统 进程调度(微观)：决定哪个（些）进程占用CPU，使用多长时间等">
+<meta name="twitter:image" content="http://yorxika.github.io/2020/01/04/处理机的调度/image-20200104223306933.png">
+
+<link rel="canonical" href="http://yorxika.github.io/2020/01/04/处理机的调度/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>处理机的调度 | Nameless Site</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="Nameless Site" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Nameless Site</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">But one day, you will stand before its decrepit gate,without really knowing why.</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+        <li class="menu-item menu-item-links">
+
+    <a href="/links/" rel="section"><i class="fa fa-link fa-fw"></i>links</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yorxika.github.io/2020/01/04/处理机的调度/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/touxiang.jpg">
+      <meta itemprop="name" content="HMF">
+      <meta itemprop="description" content="To your valor, my sword, and our victory together.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Nameless Site">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          处理机的调度
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-01-04 22:18:12 / Modified: 23:42:20" itemprop="dateCreated datePublished" datetime="2020-01-04T22:18:12+08:00">2020-01-04</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/学习笔记/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/学习笔记/操作系统/" itemprop="url" rel="index"><span itemprop="name">操作系统</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>5.7k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>5 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="处理机的多级调度"><a href="#处理机的多级调度" class="headerlink" title="处理机的多级调度"></a>处理机的多级调度</h2><ul>
+<li>作业调度(宏观)：决定哪些程序调入计算机系统</li>
+<li>进程调度(微观)：决定哪个（些）进程占用CPU，使用多长时间等<a id="more"></a>
+<h2 id="作业调度"><a href="#作业调度" class="headerlink" title="作业调度"></a>作业调度</h2></li>
+</ul>
+<h3 id="作业及作业调度的功能"><a href="#作业及作业调度的功能" class="headerlink" title="作业及作业调度的功能"></a>作业及作业调度的功能</h3><p>一般来说，计算机系统把用户要求处理的一项工作称为一个作业。</p>
+<p>作业有四种状态：<br>1.提交状态 用户将程序和数据提交计算中心；<br>2.后备状态 将作业录入到后援存储设备；<br>3.执行状态 作业调入计算机系统内存；<br>4.完成状态 作业计算完成的善后处理。</p>
+<p><img src="/2020/01/04/处理机的调度/image-20200104223306933.png" alt="image-20200104223306933"></p>
+<p>作业调度的主要任务是完成作业从后备状态到执行状态和从执行状态到完成状态的转变。<br>功能：<br>1.确定数据结构，记录已进入系统的各作业的情况（JCB，Job Control Block）；<br>2.按一定的调度算法，从后备作业中选择一个或几个作业进入内存；<br>3.分配资源，为被选中的作业创建进程，并为其申请系统资源；<br>4.作业结束后作善后处理。</p>
+<p>每个作业进入系统时由系统为其建立一个作业控制块JCB（Job Control Block)，它是存放作业控制和管理信息的数据结构，主要信息见下表。</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">作业名</th>
+<th style="text-align:center"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">资源要求</td>
+<td style="text-align:center">估计运行时间</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center">最迟完成时间</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center">要求的主存量</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center">要求外设的类型及台数</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center">要求文件量和输出量</td>
+</tr>
+<tr>
+<td style="text-align:center">资源使用情况</td>
+<td style="text-align:center">进入系统的时间</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center">开始运行的时间</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center">已运行的时间</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center">内存地址</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center">外设台号</td>
+</tr>
+<tr>
+<td style="text-align:center">类型</td>
+<td style="text-align:center">控制方式</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center">作业类型</td>
+</tr>
+<tr>
+<td style="text-align:center">优先级</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">状态数</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="性能的衡量"><a href="#性能的衡量" class="headerlink" title="性能的衡量"></a>性能的衡量</h3><p>作业调度算法规定了从后备作业中选择作业进入系统内存的原则。</p>
+<p>确定调度算法时应考虑的因素<br>1.应与系统的整体设计目标一致<br>2.考虑系统中各种资源的负载均匀<br>3.保证作业的执行<br>4.对一些专用资源的使用特性的考虑</p>
+<p>平均周转时间和带权平均周转时间<br><img src="/2020/01/04/处理机的调度/image-20200104225107056.png" alt="image-20200104225107056"></p>
+<h3 id="作业调度算法"><a href="#作业调度算法" class="headerlink" title="作业调度算法"></a>作业调度算法</h3><ul>
+<li><p>先来先服务调度算法（FCFS）</p>
+<ul>
+<li>先来先服务算法是按作业来到的先后次序进行调度的，换句话说，调度程序每次选择的作业是等待时间最久的，而不管作业的运行时间的长短。这种调度算法突出的优点是实现简单，效率较低，在一些实际的系统和一般应用程序中采用这种算法的较多。</li>
+</ul>
+</li>
+<li>短作业优先调度算法（SJF）<ul>
+<li>短作业优先调度算法考虑作业的运行时间，每次总是选择一个运行时间最小的作业调入内存（系统） </li>
+<li>在一般情况下这种调度算法比先来先服务调度算法的效率要高一些。实现相对先来先服务调度算法要困难些，如果作业的到来顺序及运行时间不合适，会出现饿死现象。</li>
+</ul>
+</li>
+<li>响应比高者优先调度算法<ul>
+<li>先来先服务和短作业优先算法都有其片面性，先来先服务调度算法只考虑作业的等待时间，而忽视了作业的运行时间，短作业优先算法则相反，只考虑了作业的运行时间，而忽视了作业的等待时间。响应比高者优先调度算法是介于这两种算法之间的一种拆衷的算法。<br><img src="/2020/01/04/处理机的调度/image-20200104225428235.png" alt="image-20200104225428235"></li>
+<li>响应比高者优先调度算法从理论上讲是比较完备的，但需要作业调度程序：<ul>
+<li>统计作业的等待时间</li>
+<li>使用用户估计的运行时间</li>
+<li>作浮点运算（这是系统程序最忌讳的）</li>
+<li>复杂，开销大</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>优先数调度算法（Priority Scheduling）<ul>
+<li>优先数调度算法是终合考虑各方面的因素（作业等待时间、运行时间、缓急程度，系统资源使用等），给每个作业设置一个优先数，调度程序总是选择一个优先数最大（或者最小）的作业调入（系统）内存。</li>
+<li>这种算法的关键：<ul>
+<li>如何终合考虑多种因素及其关系确定优先数</li>
+<li>优先数是否动态变化</li>
+<li>优先数什么时候变化</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="进程-线程调度"><a href="#进程-线程调度" class="headerlink" title="进程/线程调度"></a>进程/线程调度</h2><h3 id="进程调度-分派"><a href="#进程调度-分派" class="headerlink" title="进程调度/分派"></a>进程调度/分派</h3><p>处理机分配由调度和分派两个功能组成：</p>
+<ul>
+<li>调度：依照确定的策略将一批进程排序，排在首位的进程一定是满足调度原则，可被选择的进程；组织和维护就绪进程队列。包括确定调度算法、按调度算法组织和维护就绪进程队列。</li>
+<li>分派：是指当处理机空闲时，从就绪队列队首中移一个PCB，并将该进程投入运行。  </li>
+</ul>
+<p>调度与进程控制和进程通信的功能有密切的联系，当一个进程阻塞时，这种进程将进入相应的等待队列中，并让出CPU，调用进程分派程序选择一个就绪进程占用CPU；当一进程被唤醒时，这种进程将插入到就绪进程队列中。<br>在一般的操作系统教材中把上述功能称为进程调度。</p>
+<p>功能：</p>
+<ul>
+<li>记录和保持系统中所有进程的有关情况和状态特征<br>进程调度的信息记录在PCB中，包括进程的状态、调度优先级（优先数）、就绪进程队列等。</li>
+<li>决定分配（处理机）策略<ul>
+<li>先来先服务</li>
+<li>优先数调度策略</li>
+<li>调度策略的不同，组织就绪进程队列的方式不同</li>
+</ul>
+</li>
+<li>实施处理机的分配和回收<ul>
+<li>调度算法的选择（调度算法）<ul>
+<li>先来先服务算法（FCFS）</li>
+<li>短进程优先算法（SPF）</li>
+<li>高响应比优先调度算法（HRRN）</li>
+<li><strong>优先级调度算法（PSA）</strong></li>
+<li><strong>基于时间片的轮转调度算法（RR）</strong></li>
+</ul>
+</li>
+<li>调度时机的选择（调度时机）<br>和调度方式相关</li>
+<li>实施进程调度（调度程序）</li>
+</ul>
+</li>
+</ul>
+<p>进程调度方式<br>若一个进程正在处理机上运行，若有一个更为紧迫的进程来到，系统的处理方式有：<br>(1) 非剥夺方式(不可抢先，non-preemptive)：进程已执行，若一个更为紧迫的进程来到，必须该进程执行完或时间片到，才让更紧迫的进程执行。<br>(2) 可剥夺方式(可抢先，preemptive)：有更紧迫的进程到来，中止当前进程的执行，立即让更紧迫的进程执行。</p>
+<h3 id="进程调度算法"><a href="#进程调度算法" class="headerlink" title="进程调度算法"></a>进程调度算法</h3><h4 id="进程优先数调度算法"><a href="#进程优先数调度算法" class="headerlink" title="进程优先数调度算法"></a>进程优先数调度算法</h4><ul>
+<li>优先数调度算法赋予每个进程一个优先数，在处理机空闲时，进程调度程序就从就绪进程中选择一个优先数最大（或者最小）的进程占用CPU。</li>
+<li>如何确定进程的优先数？</li>
+<li>优先数是固定的，还是随着该进程运行的情况的变化而变化？</li>
+</ul>
+<p>进程优先数调度算法优先数的确定</p>
+<ul>
+<li>静态优先数<ul>
+<li>进程的优先数在进程创建时确定后就不再变化。</li>
+<li>系统确定（运行时间、使用资源，进程的类型）</li>
+<li>用户确定（紧迫程度，计费有关）</li>
+<li>系统与用户结合</li>
+<li>缺点：很多计算优先数所依赖的特征都将随进程的推进改变，静态优先数并非自始至终都能准确地反映出这些特性。</li>
+</ul>
+</li>
+<li>动态进程优先数<ul>
+<li>系统在运行的过程中，根据系统的设计目标，不断地调整进程的优先数，这种方法的优点是能比较客观地反映进程的实际情况和保证达到系统设计目标。</li>
+</ul>
+</li>
+</ul>
+<h4 id="循环轮转调度算法（Round-Robin）"><a href="#循环轮转调度算法（Round-Robin）" class="headerlink" title="循环轮转调度算法（Round Robin）"></a>循环轮转调度算法（Round Robin）</h4><ul>
+<li>把系统的响应时间分成若干时间片（ Time Quantum or Time Slice）</li>
+<li>进程被调度到后，占用一个时间片</li>
+<li>多个进程循环轮转占用CPU</li>
+</ul>
+<p>时间片长度的选择</p>
+<ul>
+<li>轮转法的性能取决于时间片（记为q,q = t / n ,t 为用户能接收的响应时间，n为进入系统的进程数）长度的选择，进程间在CPU上的切换需要时间。</li>
+<li>q足够大到每一进程执行完，FCFS (先到先服务)</li>
+<li>q 适当 ––– 进程均匀执行</li>
+<li>q 太小 ––– 开销太大，有切换时间，CPU利用率低。</li>
+<li>通常来说，选择时间片为10~100毫秒左右比较适宜，上下文切换时间少于10微秒。</li>
+</ul>
+<p>与时间片大小有关的因素</p>
+<ul>
+<li>系统响应时间(进程等待时间)</li>
+<li>就绪进程个数（就绪队列长度）</li>
+<li>轮换时间 (切换时间) </li>
+</ul>
+<p>简单循环轮转虽然比较简单，但由于采用固定时间片和仅有一个就绪队列，可对其进行改性：</p>
+<ul>
+<li>将固定时间片改为可变时间片</li>
+<li>将单就绪队列改为多就绪队列</li>
+</ul>
+<h4 id="多级反馈队列"><a href="#多级反馈队列" class="headerlink" title="多级反馈队列"></a>多级反馈队列</h4><p>设有N个队列（Q1,Q2….QN），其中各个队列对于处理机的优先级是不一样的，也就是说位于各个队列中的作业(进程)的优先级也是不一样的。一般来说，优先级Priority(Q1) &gt; Priority(Q2) &gt; … &gt; Priority(QN)。怎么讲，位于Q1中的任何一个作业(进程)都要比Q2中的任何一个作业(进程)相对于CPU的优先级要高（也就是说，Q1中的作业一定要比Q2中的作业先被处理机调度），依次类推其它的队列。</p>
+<p>对于优先级最低的队列来说，里面是遵循时间片轮转法。也就是说，位于队列QN中有M个作业，它们的运行时间是通过QN这个队列所设定的时间片来确定的；对于其他队列，遵循的是先来先服务算法，每一进程分配一定的时间片，若时间片运行完时进程未结束，则进入下一优先级队列的末尾。</p>
+<p>各个队列的时间片是一样的吗？不一样，这就是该算法设计的精妙之处。各个队列的时间片是随着优先级的增加而减少的，也就是说，优先级越高的队列中它的时间片就越短。同时，为了便于那些超大作业的完成，最后一个队列QN(优先级最低的队列)的时间片一般很大(不需要考虑这个问题)。</p>
+<p>算法描述：<br>1、进程在进入待调度的队列等待时，首先进入优先级最高的Q1等待。<br>2、首先调度优先级高的队列中的进程。若高优先级中队列中已没有调度的进程，则调度次优先级队列中的进程。例如：Q1,Q2,Q3三个队列，当且仅当在Q1中没有进程等待时才去调度Q2，同理，只有Q1,Q2都为空时才会去调度Q3。<br>3、对于同一个队列中的各个进程，按照FCFS分配时间片调度。比如Q1队列的时间片为N，那么Q1中的作业在经历了N个时间片后若还没有完成，则进入Q2队列等待，若Q2的时间片用完后作业还不能完成，一直进入下一级队列，直至完成。<br>4、在最后一个队列QN中的各个进程，按照时间片轮转分配时间片调度。<br>5、在低优先级的队列中的进程在运行时，又有新到达的作业，此时须立即把正在运行的进程放回当前队列的队尾，然后把处理机分给高优先级进程。换而言之，任何时刻，只有当第1~i-1队列全部为空时，才会去执行第i队列的进程（抢占式）。特别说明，当再度运行到当前队列的该进程时，仅分配上次还未完成的时间片，不再分配该队列对应的完整时间片。</p>
+<p><img src="/2020/01/04/处理机的调度/500fd9f9d72a6059d09c84e42334349b023bba44@wm_1,g_7,k_d2F0ZXIvYmFpa2U4MA==,xp_5,yp_5.jfif" alt="img"></p>
+<h2 id="UNIX系统进程调度"><a href="#UNIX系统进程调度" class="headerlink" title="UNIX系统进程调度"></a>UNIX系统进程调度</h2><p>优先数的确定</p>
+<ul>
+<li>系统设置<br>在sleep（）中设置将要进入睡眠状态进程的优先数，如果是等待较紧迫的事件，优先数设置较小，一般为负数，当该进程被唤醒后，就以系统给它设置的优先数去参与处理机的竟争。例如0＃进程（－100优先数）；<br> +所有处于用户态运行进程同步（一般情况下为大于0）。</li>
+<li>优先数的计算<br>p_pri = min{127, (p_cpu/16+p_nice+PUSER)}<br>其中：<br>p_cpu:  进程占用CPU的程度<br>p_nice: 用户通过系统调用nice(priority)设置的进程优先数<br>PUSER: 常数，其值为100</li>
+</ul>
+<h2 id="Linux系统的进程调度"><a href="#Linux系统的进程调度" class="headerlink" title="Linux系统的进程调度"></a>Linux系统的进程调度</h2><h3 id="Linux进程调度目标和特点"><a href="#Linux进程调度目标和特点" class="headerlink" title="Linux进程调度目标和特点"></a>Linux进程调度目标和特点</h3><ul>
+<li>进程调度程序是内核的组成部分，负责选择下一个要运行的进程。</li>
+<li>进程调度可看作在可运行态进程之间分配有限的处理器间资源的内核子系统。</li>
+<li>进程调度程序是如Linux这样的多任务操作系统的基础。</li>
+<li>Linux进程调度策略<ul>
+<li>基于动态优先级和可变时间片的调度</li>
+<li>调度方式为可抢占式调度</li>
+</ul>
+</li>
+</ul>
+<p>调度目标</p>
+<ul>
+<li>实现算法复杂度为O(1)级的调度<ul>
+<li>进程调度算法保证在恒定的时间内完成</li>
+<li>算法执行时间与系统中处于就绪(可运行)状态的进程个数无关</li>
+</ul>
+</li>
+<li>提高交互性能<ul>
+<li>提高交互性能，保证系统能快速响应</li>
+</ul>
+</li>
+<li>保证公平<ul>
+<li>在合理设定的时间范围内，没有进程会出现饥饿状态，</li>
+<li>也不会有进程获得大量的时间片 </li>
+</ul>
+</li>
+<li>实现对称多处理器（SMP）可扩展性</li>
+</ul>
+<p>I/O消耗型和处理器消耗型的进程</p>
+<ul>
+<li>I/O消耗型进程<br>   大部分时间是使用外部设备，交互式进程具有此特征</li>
+<li>处理器消耗型进程<br>   大部分时间是使用CPU，计算进程具有此特征</li>
+</ul>
+<p>交互式的程序都是I/O消耗型的。<br>Linux为了保证交互式应用，优化了进程的响应，更倾向于优先调度I/O消耗型进程，但并未忽略处理器消耗型程序。</p>
+<p>进程调度的特点</p>
+<ul>
+<li>Linux系统实现了基于进程过去行为的启发式算法；</li>
+<li>Linux系统选择优先级高的进程先运行，相同优先级的进程按循环方式调度；</li>
+<li>动态优先级依进程占有CPU的情况、休眠时间的长短来增、减 ；</li>
+<li>系统根据进程优先级调整分配给它的时间片； </li>
+<li>实施可抢占调度方式 </li>
+</ul>
+<p>动态优先级</p>
+<ul>
+<li>基于优先级的调度<br>优先级高的进程先运行，低的后运行，相同优先级的进程按轮转方式进行调度。</li>
+<li>静态优先级<ul>
+<li>静态优先级在进程创建时确定，新创建的进程继承父进程的静态优先级;</li>
+<li>静态优先级的取值范围是100(最高优先级)  139(最低优先级)，取值越小，优先级越高;</li>
+<li>用户可以通过系统调用改变nice值，从而改变自己拥有的静态优先级。</li>
+</ul>
+</li>
+<li>动态优先级<ul>
+<li>每个进程有一个动态优先级，它是进程调度程序选择可运行进程所使用的参数，<br>其取值范围是100(最高优先级) ~ 139(最低优先级) </li>
+<li>动态优先级的计算<br> 动态优先级 = max(100，min(静态优先级－ bonus + 5，139))<br> bonus是范围 0 ～ 10的值，<pre><code>          值小于5表示降低动态优先级以示惩罚
+          值大于5表示增加动态优先级以示奖励
+</code></pre>进程调度使用的是动态优先级，通过effective_prio( )函    数来计算一个进程的动态优先级。</li>
+</ul>
+</li>
+</ul>
+<p>确定I/O消耗型和处理器消耗型进程的方法</p>
+<ul>
+<li>依据 —— 进程睡眠时间的长短<br>   若进程睡眠时间长 —— I/O消耗型<br>   若进程睡眠时间短 ——处理器消耗型</li>
+<li>方法<br>   Linux记录进程睡眠和执行时间 (存放在task_struct的sleep_avg域中)，范围：0 ～ MAX_SLEEP_AVG，默认值为10ms<ul>
+<li>当进程从开始休眠到要恢复执行这一时间内，sleep_avg增加，直到达到MAX_SLEEP_AVG为止；</li>
+<li>进程每执行一个时钟节拍， sleep_avg递减，直到0为止</li>
+</ul>
+</li>
+</ul>
+<p>进程休眠时间与bonus值的关系</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>平均休眠时间</th>
+<th>bonus值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>大于或等于0，  小于 100ms</td>
+<td>0</td>
+</tr>
+<tr>
+<td>大于或等于100，小于 200ms</td>
+<td>1</td>
+</tr>
+<tr>
+<td>大于或等于200，小于 300ms</td>
+<td>2</td>
+</tr>
+<tr>
+<td>大于或等于300，小于 400ms</td>
+<td>3</td>
+</tr>
+<tr>
+<td>大于或等于400，小于 500ms</td>
+<td>4</td>
+</tr>
+<tr>
+<td>大于或等于600，小于 700ms</td>
+<td>6</td>
+</tr>
+<tr>
+<td>大于或等于700，小于 800ms</td>
+<td>7</td>
+</tr>
+<tr>
+<td>大于或等于800，小于 900ms</td>
+<td>8</td>
+</tr>
+<tr>
+<td>大于或等于900，小于 1000ms</td>
+<td>9</td>
+</tr>
+<tr>
+<td>大于1s</td>
+<td>10</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>可变时间片<br>Linux系统的目标</p>
+<ul>
+<li>对交互式进程,系统提供较长的时间片</li>
+<li>调度程序根据进程的优先级动态调整分配给它的时间片</li>
+</ul>
+<p>时间片处理的时机</p>
+<ul>
+<li>创建新进程时的处理<ul>
+<li>新创建的子进程和父进程均分父进程剩余的时间片 </li>
+</ul>
+</li>
+<li>进程用完时间片时的处理<ul>
+<li>当一个进程的时间片用完时，依任务的静态优先级重新计算时间片；</li>
+<li>task_timeslice()函数为给定任务返回一个新的时间片</li>
+</ul>
+</li>
+</ul>
+<p>时间片的使用</p>
+<ul>
+<li>一个进程拥有的时间片可分多次使用，放弃CPU时进入活动队列</li>
+<li>当一个进程的时间片耗尽时，认为是过期进程，进入过期队列</li>
+</ul>
+<p>时间片的计算</p>
+<ul>
+<li>基本时间片<pre><code>静态优先级本质上决定了进程的基本时间片
+ (140 －静态优先级) ×20    若静态优先级 ＜ 120
+ (140 －静态优先级) ×5      若静态优先级 ≥ 120
+静态优先级越高(值越小)，基本时间片越长。
+</code></pre></li>
+</ul>
+<p>活动队列和过期队列<br>每个处理器维护两个优先级数组—— 活动数组和过期数组</p>
+<ul>
+<li>活动数组上的可执行队列中的进程都有剩余时间片</li>
+<li>过期数组上的可执行队列中的进程都已耗尽时间片<br>   当一个进程的时间片耗尽时，被移至过期队列中；<br>   当活动数组上的可执行队列中的所有进程都已耗尽时时间片，这时，在活动数组和过期数组之间切换指针。</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>Post author:  </strong>HMF
+  </li>
+  <li class="post-copyright-link">
+    <strong>Post link: </strong>
+    <a href="http://yorxika.github.io/2020/01/04/处理机的调度/" title="处理机的调度">http://yorxika.github.io/2020/01/04/处理机的调度/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/操作系统/" rel="tag"><i class="fa fa-tag"></i> 操作系统</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/01/04/资源分配与调度/" rel="prev" title="资源分配与调度">
+      <i class="fa fa-chevron-left"></i> 资源分配与调度
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/01/05/主存管理/" rel="next" title="主存管理">
+      主存管理 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#处理机的多级调度"><span class="nav-number">1.</span> <span class="nav-text">处理机的多级调度</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#作业调度"><span class="nav-number">2.</span> <span class="nav-text">作业调度</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#作业及作业调度的功能"><span class="nav-number">2.1.</span> <span class="nav-text">作业及作业调度的功能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#性能的衡量"><span class="nav-number">2.2.</span> <span class="nav-text">性能的衡量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#作业调度算法"><span class="nav-number">2.3.</span> <span class="nav-text">作业调度算法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#进程-线程调度"><span class="nav-number">3.</span> <span class="nav-text">进程/线程调度</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#进程调度-分派"><span class="nav-number">3.1.</span> <span class="nav-text">进程调度/分派</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#进程调度算法"><span class="nav-number">3.2.</span> <span class="nav-text">进程调度算法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#进程优先数调度算法"><span class="nav-number">3.2.1.</span> <span class="nav-text">进程优先数调度算法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#循环轮转调度算法（Round-Robin）"><span class="nav-number">3.2.2.</span> <span class="nav-text">循环轮转调度算法（Round Robin）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#多级反馈队列"><span class="nav-number">3.2.3.</span> <span class="nav-text">多级反馈队列</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#UNIX系统进程调度"><span class="nav-number">4.</span> <span class="nav-text">UNIX系统进程调度</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Linux系统的进程调度"><span class="nav-number">5.</span> <span class="nav-text">Linux系统的进程调度</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Linux进程调度目标和特点"><span class="nav-number">5.1.</span> <span class="nav-text">Linux进程调度目标和特点</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="HMF"
+      src="/images/touxiang.jpg">
+  <p class="site-author-name" itemprop="name">HMF</p>
+  <div class="site-description" itemprop="description">To your valor, my sword, and our victory together.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">243</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">25</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">67</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Yorxika" title="GitHub → https://github.com/Yorxika" rel="noopener" target="_blank"><i class="github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:alonede@qq.com" title="E-Mail → mailto:alonede@qq.com" rel="noopener" target="_blank"><i class="envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/LinMFeng" title="Twitter → https://twitter.com/LinMFeng" rel="noopener" target="_blank"><i class="twitter fa-fw"></i>Twitter</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=298 height=60 src="//music.163.com/outchain/player?type=2&id=509038&auto=0&height=32"></iframe>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">HMF</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="Symbols count total">952k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="Reading time total">14:26</span>
+</div><script color="255,255,255" opacity="0.5" zIndex="-1" count="180" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/pisces.js"></script>
+<script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+
+
+  
+
+
+
+
+  <script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+<script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.js"></script>
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : '0635d0bc6ad58e628693',
+      clientSecret: 'a02a3a1ab4874ccb117251539125fe3a1a4d43da',
+      repo        : 'blogtalk',
+      owner       : 'Yorxika',
+      admin       : ['Yorxika'],
+      id          : md5(window.location.pathname),
+        language: '',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/miku.model.json"},"display":{"position":"right","hOffset":40,"width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7},"log":false});</script></body>
+</html>

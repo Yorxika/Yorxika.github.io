@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.9.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yorxika.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="输入输出接口概述输入/输出系统组成：外部设备、接口部件、总线以及相应的管理软件统称为计算机的 输入/输出系统，简称I/O系统。">
+<meta name="keywords" content="组成原理">
+<meta property="og:type" content="article">
+<meta property="og:title" content="输入输出系统">
+<meta property="og:url" content="http://yorxika.github.io/2019/12/26/输入输出系统/index.html">
+<meta property="og:site_name" content="Nameless Site">
+<meta property="og:description" content="输入输出接口概述输入/输出系统组成：外部设备、接口部件、总线以及相应的管理软件统称为计算机的 输入/输出系统，简称I/O系统。">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/26/输入输出系统/image-20191226193057280.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/26/输入输出系统/image-20191226194626791.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/26/输入输出系统/image-20191226200348777.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/26/输入输出系统/image-20191226200930087.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/26/输入输出系统/image-20191226201407259.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/26/输入输出系统/image-20191226201438871.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/26/输入输出系统/image-20191226202606347.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/26/输入输出系统/image-20191226202653346.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/26/输入输出系统/image-20191226202732946.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/26/输入输出系统/image-20191226202757677.png">
+<meta property="og:updated_time" content="2019-12-26T12:51:55.245Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="输入输出系统">
+<meta name="twitter:description" content="输入输出接口概述输入/输出系统组成：外部设备、接口部件、总线以及相应的管理软件统称为计算机的 输入/输出系统，简称I/O系统。">
+<meta name="twitter:image" content="http://yorxika.github.io/2019/12/26/输入输出系统/image-20191226193057280.png">
+
+<link rel="canonical" href="http://yorxika.github.io/2019/12/26/输入输出系统/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>输入输出系统 | Nameless Site</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="Nameless Site" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Nameless Site</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">But one day, you will stand before its decrepit gate,without really knowing why.</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+        <li class="menu-item menu-item-links">
+
+    <a href="/links/" rel="section"><i class="fa fa-link fa-fw"></i>links</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yorxika.github.io/2019/12/26/输入输出系统/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/touxiang.jpg">
+      <meta itemprop="name" content="HMF">
+      <meta itemprop="description" content="To your valor, my sword, and our victory together.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Nameless Site">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          输入输出系统
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2019-12-26 19:22:46 / Modified: 20:51:55" itemprop="dateCreated datePublished" datetime="2019-12-26T19:22:46+08:00">2019-12-26</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/学习笔记/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/学习笔记/计算机组成原理/" itemprop="url" rel="index"><span itemprop="name">计算机组成原理</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>5.4k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>5 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="输入输出接口概述"><a href="#输入输出接口概述" class="headerlink" title="输入输出接口概述"></a>输入输出接口概述</h2><p>输入/输出系统组成：外部设备、接口部件、总线以及相应的管理软件统称为计算机的 输入/输出系统，简称I/O系统。<a id="more"></a><br><img src="/2019/12/26/输入输出系统/image-20191226193057280.png" alt="image-20191226193057280"></p>
+<p>I/O系统基本功能：</p>
+<ul>
+<li>完成计算机内部二进制信息与外部多种信息形式间的交流；</li>
+<li>保证CPU能够正确选择输入输出设备并实现对其控制，传输大量数据、 避免数据出错；</li>
+<li>利用数据缓冲、选择合适的数据传送方式等，实现主机与外设间 速度的匹配。</li>
+</ul>
+<p>I/O系统特点：</p>
+<ul>
+<li>异步性：外围设备相对于处理机通常是异步工作的；</li>
+<li>实时性：当外围设备与处理机交互时，由于设备的类型不同，它们的工 作步调是不同的，处理机必须按照不同设备所要求传送方式和传输速率 不失时机地为设备提供服务，这就要求实时性控制；</li>
+<li>与设备无关性：各种外部设备必须根据其特点和要求选择一种标准接口 和处理机进行连接，它们之间的差别必须由设备本身的控制器通过硬件 和软件来填补；这样，处理机本身无须了解外设的具体细节，可以采用 统一的硬件和软件对其管理。</li>
+</ul>
+<h3 id="输入-输出设备同CPU交换数据的过程"><a href="#输入-输出设备同CPU交换数据的过程" class="headerlink" title="输入/输出设备同CPU交换数据的过程"></a>输入/输出设备同CPU交换数据的过程</h3><p>输入过程：</p>
+<ul>
+<li>CPU把一个地址值放在地址总线上，这一步将选择某一输入设备；</li>
+<li>CPU等候输入设备的数据成为有效；</li>
+<li>CPU从数据总线读入数据，并放在一个相应的寄存器中</li>
+</ul>
+<p>输出过程：</p>
+<ul>
+<li>CPU把一个地址值放在地址总线上，选择输出设备</li>
+<li>CPU把数据放在数据总线上；</li>
+<li>输出设备认为数据有效，从而把数据取走</li>
+</ul>
+<h3 id="I-O系统性能"><a href="#I-O系统性能" class="headerlink" title="I/O系统性能"></a>I/O系统性能</h3><p>按照主要完成的工作可以分为以下二类：存储 I/O  通信 I/O</p>
+<p>I/O系统的性能对CPU的性能有很大的影响，若两者的性能不匹配，I/O系统就有可能成为整个系统的瓶颈。</p>
+<p>评价I/O系统性能的主要参数：</p>
+<ul>
+<li>连接特性：哪些I/O设备可以和计算机系统相连接</li>
+<li>I/O系统的容量：I/O系统可以容纳的I/O设备数 </li>
+<li>响应时间和吞吐率等</li>
+<li>系统的响应时间：从用户输入命令开始，到得到结果所花费的时间； 由I/O系统的响应时间和CPU的处理时间两部分构成，单位通常用秒（s）表示。</li>
+<li>I/O的吞吐率：单位时间完成的I/O操作次数，单位通常用IOP表示。</li>
+</ul>
+<h2 id="输入输出方式"><a href="#输入输出方式" class="headerlink" title="输入输出方式"></a>输入输出方式</h2><p>输入/输出方式：</p>
+<ul>
+<li>无条件I/O方式</li>
+<li>程序控制I/O方式</li>
+<li>中断I/O方式</li>
+<li>DMA（Direct Memory Access）方式</li>
+<li>通道方式</li>
+<li>I/O处理机方式</li>
+</ul>
+<h3 id="无条件I-O方式"><a href="#无条件I-O方式" class="headerlink" title="无条件I/O方式"></a>无条件I/O方式</h3><ul>
+<li>在程序的适当位置直接安排 I/O指令，当程序执行到这些 I/O指令时，CPU默认外设始终是准备就绪的（I/O总是准备好接收CPU的输出数据，或 总是准备好向CPU输入数据）， 无需检查I/O的状态，就进行数据的传输；</li>
+<li>硬件接口电路和软件控制程序都比较简单。输入时，必须确保CPU执行 I/O指令读取数据时，外设已将数据 准备好；输出时，必须确保外部设备 的数据锁存器为空，即外设已将上次 的数据取走，等待接收新的数据，否 则会导致数据传送出错，但一般的外设难以满足这种要求。</li>
+</ul>
+<h3 id="程序控制方式"><a href="#程序控制方式" class="headerlink" title="程序控制方式"></a>程序控制方式</h3><p>一种早期计算机采用的输入/输出方式，数据在计算机和外设之 间的传送全部靠计算机程序控制；计算机执行I/O指令时，先获取外设状态，并根据外设的状态决定下一步操作。</p>
+<p>程序查询的I/O原理：</p>
+<ul>
+<li>程序先向I/O设备发出I/O命令字； </li>
+<li>读取I/O设备工作状态信息； </li>
+<li>检查状态字中的标志，看是否可以进行数据交换； </li>
+<li>若设备未准备就绪，则返回到上步，重复查询；否则，发出设备准备就绪信号； </li>
+<li>CPU与I/O接口的数据缓冲寄存器进行数据交换，与此同时，将接口中的状态标志复位<br><img src="/2019/12/26/输入输出系统/image-20191226194626791.png" alt="image-20191226194626791"></li>
+</ul>
+<p>设备状态字寄存器：</p>
+<ul>
+<li>用来标志设备的工作状态，以便接口对外部设备进行监视。 </li>
+<li>CPU通过程序查询设备状态位来判断设备的状态。 </li>
+<li>因此，设备状态寄存器是设备对主机的窗口，主机通过它了解设备的 状态，并对设备设置操作方式。 </li>
+<li>设备状态寄存器又叫设备状态字（DSW）是设备所有状态的集合，每 种状态均用一个触发器来表示。</li>
+</ul>
+<p>特点：何时对何设备进行输入输出操作完全受CPU控制， 外围设备与CPU处于异步工作关系，数据的输入/输出都要经过CPU。<br>优点：计算机和外设之间能够同步，控制简单，硬件简单。<br>缺点：CPU的大量时间用来查询外设的状态</p>
+<h3 id="中断I-O方式"><a href="#中断I-O方式" class="headerlink" title="中断I/O方式"></a>中断I/O方式</h3><ul>
+<li>当外设准备好后，主动通知CPU并进行接收或输出数据的方法；</li>
+<li>CPU接到外设的通知后暂停现行的工作，转入中断服务程序，和外设交换数据， 等中断程序处理完毕后，再返回到被中断的原程序中继续以前被暂停的工作。</li>
+</ul>
+<p>优点：节约CPU时间，实时性好。<br>缺点：控制电路相对复杂，服务开销较大（现场和断点的保护）。<br>应用场合：实时性要求高，且数据传输量又不大的场合</p>
+<h3 id="DMA方式"><a href="#DMA方式" class="headerlink" title="DMA方式"></a>DMA方式</h3><ul>
+<li>是一种完全由硬件执行的I/O交换方式</li>
+<li>当外设准备好后，通知DMA控制器，DMA控制器从CPU接管总线，并完成外 设和内存之间的大量数据传输；传输完成后DMA控制器将总线控制权交还给 CPU，整个数据交换的过程不需要CPU参与。</li>
+</ul>
+<p>优点：既有中断的优点，同时又降低了服务开销。<br>缺点：控制电路更加复杂。<br>应用场合：高速、大批量数据传输。</p>
+<h3 id="通道和I-O处理机方式"><a href="#通道和I-O处理机方式" class="headerlink" title="通道和I/O处理机方式"></a>通道和I/O处理机方式</h3><ul>
+<li>复杂的计算机系统中，外围设备的台数一般比较多，设备的种类、工作方式 和工作速度的差别很大，为了把对外围设备的管理工作从CPU中分离出来，采 用通道或I/O处理机方式。</li>
+<li>通道是能够专门执行I/O指令的处理机，它可以实现对外围设备的统一管理， 以及外设与主存之间的数据传输。</li>
+<li>I/O处理机是通道方式的进一步发展，它的结构更接近于一般处理机。</li>
+</ul>
+<h2 id="中断请求与响应"><a href="#中断请求与响应" class="headerlink" title="中断请求与响应"></a>中断请求与响应</h2><p>中断：是指CPU在正常运行程序时，由于内部/外部事 件（或由程序）引起CPU中断正在运行的程序，而转到 为中断事件服务的程序中去，服务完毕，再返回执行原 程序的这一过程。<br>中断的特征：具有随机性。</p>
+<p>中断的作用：</p>
+<ul>
+<li>实现主机与外设之间的并行工作</li>
+<li>故障处理：中断系统能使计算机在运行过程中出现故障的时候， 调用相应的中断服务程序处理故障。</li>
+<li><p>实时处理<br><img src="/2019/12/26/输入输出系统/image-20191226200348777.png" alt="image-20191226200348777"></p>
+<h3 id="中断的类型"><a href="#中断的类型" class="headerlink" title="中断的类型"></a>中断的类型</h3><ul>
+<li>内部中断</li>
+<li>软件中断</li>
+<li>异常<ul>
+<li>故障(Fault)</li>
+<li>自陷(Trap)</li>
+<li>终止(Abort)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>外部中断</p>
+<ul>
+<li>可屏蔽中断INTR</li>
+<li>不可屏蔽中断NMI</li>
+</ul>
+</li>
+<li><p>内部中断：来自于CPU内部的指令中断请求，分为软件中断和异常。</p>
+</li>
+<li>外部中断：中断请求来自CPU外部，又分为可屏蔽和不可屏蔽中断。</li>
+<li>不可屏蔽中断NMI：由系统内部硬件引发的中断，优先级高于外部硬 件中断，且不受中断允许标志位的影响，所以是不可屏蔽中断。</li>
+<li>可屏蔽中断：由外设通过中断请求线向处理器申请而产生的中断，处 理器可以用指令来屏蔽（禁止），即不响应它的中断请求。</li>
+</ul>
+<h3 id="中断系统的基本功能"><a href="#中断系统的基本功能" class="headerlink" title="中断系统的基本功能"></a>中断系统的基本功能</h3><ul>
+<li>中断请求信号保持与清楚</li>
+<li>中断优先级</li>
+<li>中断源识别</li>
+<li>中断的处理</li>
+<li>中断控制</li>
+</ul>
+<h4 id="中断请求信号保持与清除"><a href="#中断请求信号保持与清除" class="headerlink" title="中断请求信号保持与清除"></a>中断请求信号保持与清除</h4><ul>
+<li>中断号：是系统分配给每个中断源的代号，以便识别和处理。中断号在中断处理过程中起到很重要的作用。</li>
+<li>中断号的获取：CPU对系统中不同类型的中断源，获取它们的中断号 的方法是不同的。</li>
+</ul>
+<p><img src="/2019/12/26/输入输出系统/image-20191226200930087.png" alt="image-20191226200930087"></p>
+<h4 id="中断控制"><a href="#中断控制" class="headerlink" title="中断控制"></a>中断控制</h4><p>中断触发方式：是指外设以什么逻辑信号去申请中断，即边沿触发和电 平触发两种方式。<br>中断排队方式：当系统有多个中断源时，就可能出现同时有几个中断源 都申请中断，而处理器在一个时刻只能响应并处理一个中断请求；为此， 要进行中断排队。处理器按“优先级高的先服务”的原则提供服务。</p>
+<ul>
+<li>按优先级排队：根据任务的轻重缓急，给每个中断源指定CPU响应的 优先级，任务紧急的先响应，可以暂缓的后响应。 </li>
+<li>循环轮流排队：不分级别高低，CPU轮流响应各个中断源的中断请求。</li>
+</ul>
+<p>中断嵌套：</p>
+<ul>
+<li>当CPU正在处理某个中断时，会出现优先级更高的 中断源申请中断；为了使更紧急的、级别更高的中断源及时得到服务，需要暂时打断（挂起）当前正 在执行的中断服务程序，去处理级别更高的中断请 求，处理完成后再返回被打断了的中断服务程序继 续执行。 </li>
+<li>但级别相同或级别低的中断源不能打断级别高的中 断服务，这就是所谓的中断嵌套。 </li>
+<li>可屏蔽中断可以进行中断嵌套。NMI不可以进行中断嵌套。</li>
+</ul>
+<p>中断屏蔽：</p>
+<ul>
+<li>处理器用指令来控制中断屏蔽触 发器的状态，从而控制是否接受 某个特殊外设的中断请求。</li>
+<li>处理器内部也有一个中断允许触 发器，只有当其为“1”（即开中 断），CPU才能响应外部中断。</li>
+</ul>
+<p>中断优先级：是指CPU响应和处理中断请求的先后次序<br>为了兼顾中断响应的时效与配置的灵活，通常采用两套机制结合组成 中断优先序管理体系：</p>
+<ul>
+<li>硬件响应优先序：未被屏蔽的几个中断源同时提出申请时， CPU选择服务对象的顺序由硬件电路实现，用户不能修改。 </li>
+<li>软件服务优先序：在各中断服务程序开头，用软件设置自己 的中断屏蔽字，以此改变实际服务顺序。</li>
+</ul>
+<h4 id="中断处理"><a href="#中断处理" class="headerlink" title="中断处理"></a>中断处理</h4><ul>
+<li>中断响应周期：当CPU收到外设的中断请求后，如果当前一条指令已执行完，且允许中断， CPU进入中断响应周期，发出中断应 答信号完成一个中断响应周期。</li>
+<li>中断响应：读取中断源的中断号，完成中断申请与中断响应的握手过程。</li>
+</ul>
+<p>中断处理：</p>
+<ul>
+<li>标志位的处理与断点保存<br>处理器获得外部中断源的中断号后，保存断点（返回地址），关闭中断，保护现场。</li>
+<li>向中断服务程序转移并执行中断服务程序</li>
+<li><p>返回断点<br>中断服务程序执行完毕后，恢复断点和现场， 要返回主程序。</p>
+<p>单级中断处理流程：<br><img src="/2019/12/26/输入输出系统/image-20191226201407259.png" alt="image-20191226201407259"></p>
+<p>多级中断处理流程：<br><img src="/2019/12/26/输入输出系统/image-20191226201438871.png" alt="image-20191226201438871"></p>
+<h2 id="DMA方式-1"><a href="#DMA方式-1" class="headerlink" title="DMA方式"></a>DMA方式</h2></li>
+</ul>
+<p>DMA方式的基本原理：数据的传送不经过CPU，由DMA控制器实现内存和外设、外设和外 设之间的直接快速传送。<br>用于需要高速大批量数据传送的系统中。<br><img src="/2019/12/26/输入输出系统/image-20191226202606347.png" alt="image-20191226202606347"></p>
+<p>DMA传输计算机系统构成：</p>
+<ul>
+<li>DMA控制器作为主设备之一<br><img src="/2019/12/26/输入输出系统/image-20191226202653346.png" alt="image-20191226202653346"></li>
+<li>DMA控制器与I0接口集成<br><img src="/2019/12/26/输入输出系统/image-20191226202732946.png" alt="image-20191226202732946"></li>
+<li>DMA控制器提供专门I/O中间<br><img src="/2019/12/26/输入输出系统/image-20191226202757677.png" alt="image-20191226202757677"></li>
+</ul>
+<p>DMA控制器(DMAC)：<br>DMA控制器的两种工作状态</p>
+<ul>
+<li>被动态（受控器）：未取得总线控制权，受CPU的控制。</li>
+<li>主动态（主控器）：接管并取得总线控制权，取代CPU而成为系统的主控者。</li>
+</ul>
+<h3 id="DMA传输步骤"><a href="#DMA传输步骤" class="headerlink" title="DMA传输步骤"></a>DMA传输步骤</h3><ul>
+<li>申请阶段：一个设备接口试图通过总线直接向另一个设备发送数据(一般是大批量的数据)，它会先向 CPU发送DMA请求信号；</li>
+<li>响应阶段：CPU收到DMA请求信号后，在当前的总线周期结束后，会按DMA信号的优先级和提出 DMA请求的先后顺序响应DMA信号；</li>
+<li>数据传送阶段 CPU对某个设备接口响应DMA请求时，会让出总线控制权；于是在DMA控制器的管理下，外设和存储器直接进行数据交换，而不需CPU干预；</li>
+<li>传送结束阶段 ：数据传送完毕后，设备接口会向CPU发送DMA结 束信号，交还总线控制权。</li>
+</ul>
+<h3 id="DMA操作类型"><a href="#DMA操作类型" class="headerlink" title="DMA操作类型"></a>DMA操作类型</h3><ul>
+<li>数据传送：把源地址的数据传输到目的地址去（存储器或I/O）。</li>
+<li>数据校验：不进行数据传输，只对数据块内部的每个字节进行某种校验； 这种数据校验一般安排在读数据块之后，以便校验所读的数据是否有效。</li>
+<li>数据检索：不进行数据传输，只是在指定的内存区域内查找某个关键字节 或某几个数据位是否存在</li>
+</ul>
+<h3 id="DMA操作方式"><a href="#DMA操作方式" class="headerlink" title="DMA操作方式"></a>DMA操作方式</h3><ul>
+<li>单字节传输模式：每次DMA操作传送一个字节后，接着释放总线。</li>
+<li>块传输模式：连续传送多个字节，每传输一个字节，当前字节计数器 减1，当前地址寄存器加1或减1，直到所要求的字节数传输完（当前 字节计数器减至0），然后释放总线。</li>
+<li>请求传输模式：DMA控制器要询问外设，当外设请求信号无效时， 暂停传输（不释放总线）；当请求信号再次有效后，继续进行传输。</li>
+<li>级联传输模式：多片DMA控制器级联，构成主从式DMA系统。</li>
+</ul>
+<h3 id="DMA传输模式"><a href="#DMA传输模式" class="headerlink" title="DMA传输模式"></a>DMA传输模式</h3><h4 id="停止CPU访问内存"><a href="#停止CPU访问内存" class="headerlink" title="停止CPU访问内存"></a>停止CPU访问内存</h4><p>当需要传送一批数据时，DMA控制器首先要求CPU放弃对总线的控制权；然后开始进行数据传送。在一批数据传送完毕后，DMA控制器通知CPU可以使用内存，并把总线控制权交还给CPU。<br>在这种DMA传送过程中，CPU基本处于不工作状态或者说保持状态。<br>优点：控制简单，它适用于数据传输率很高的设备进行成组传送。<br>缺点：在DMA控制器访内存阶段，内存的效能没有充分发挥，相当一部分内存 工作周期是空闲的。这是因为，传送两个数据之间的间隔一般总是大于内 存存储周期，即使高速I/O设备也是如此。 </p>
+<h4 id="请求传输模式——周期挪用"><a href="#请求传输模式——周期挪用" class="headerlink" title="请求传输模式——周期挪用"></a>请求传输模式——周期挪用</h4><p>当I/O设备没有DMA请求时，CPU按程序要求访问内存；一旦I/O设备有DMA请求，则由I/O设备挪用一个或几个内存周期。<br>I/O设备要求DMA传送时可能遇到两种情况： </p>
+<ul>
+<li>当CPU不需要访内时，此时I/O访内与CPU访内没有冲突，即 I/O设备挪用一二个内存周期对CPU执行程序没有任何影响； </li>
+<li>CPU也同时要求访问内存，这就产生了访存冲突，在这种情况 下I/O设备访存优先。<br>优点：既实现了I/O传送，又较好地发挥了内存和CPU的效率，是一种广泛采 用的方法。<br>缺点：I/O设备每一次周期挪用都有申请、建立、归还总线控制权的过程，所 以传送一个字对内存来说要占用一个周期，但对DMA控制器来说一般要2-5个内存周期；因此，周期挪用方法适用于I/O设备读写周期大于内存存储周期的 情况。</li>
+</ul>
+<h4 id="请求传输模式——DMA与CPU交替访存"><a href="#请求传输模式——DMA与CPU交替访存" class="headerlink" title="请求传输模式——DMA与CPU交替访存"></a>请求传输模式——DMA与CPU交替访存</h4><p>如果CPU的工作周期比内存存取周期长很多，此时采用交替访存的方法，可以使DMA传送和CPU同时发挥最高的效率。<br>这种方式不需要总线使用权的申请、建立和归还过 程，总线使用权是通过分 时进行的，这种总线控制权的转移几乎不需要什么时间，所以对DMA传送来讲效率是很高的。<br>这种传送方式又称为”透明的DMA”方式，在透 明的DMA方式下工作，CPU既不停止主程序的 运行，也不进入等待状态，同样是一种高效率的 工作方式。<br>缺点：相应的硬件逻辑也就更加复杂。 </p>
+<h2 id="习题"><a href="#习题" class="headerlink" title="习题"></a>习题</h2><p>采用DMA方式传送数据时，每传送一个数据就要用一个（<strong>存储周期</strong>）时间。</p>
+<hr>
+<p>通道对CPU的请求形式是(<strong>中断</strong>)</p>
+<hr>
+<p>描述PCI总线中基本概念正确的句子是（<strong>ACD</strong>）。<br>A.HOST 总线不仅连接主存，还可以连接多个CPU<br>B.以桥连接实现的PCI总线结构不允许许多条总线并行工作<br>C.PCI 总线体系中有三种桥，它们都是PCI 设备<br>D.桥的作用可使所有的存取都按CPU 的需要出现在总线上</p>
+<hr>
+<p>中断向量地址是<strong>中断服务例行程序入口地址的指示器</strong></p>
+<hr>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>Post author:  </strong>HMF
+  </li>
+  <li class="post-copyright-link">
+    <strong>Post link: </strong>
+    <a href="http://yorxika.github.io/2019/12/26/输入输出系统/" title="输入输出系统">http://yorxika.github.io/2019/12/26/输入输出系统/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/组成原理/" rel="tag"><i class="fa fa-tag"></i> 组成原理</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2019/12/26/系统总线/" rel="prev" title="系统总线">
+      <i class="fa fa-chevron-left"></i> 系统总线
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2019/12/26/一些讨论/" rel="next" title="一些讨论">
+      一些讨论 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#输入输出接口概述"><span class="nav-number">1.</span> <span class="nav-text">输入输出接口概述</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#输入-输出设备同CPU交换数据的过程"><span class="nav-number">1.1.</span> <span class="nav-text">输入/输出设备同CPU交换数据的过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#I-O系统性能"><span class="nav-number">1.2.</span> <span class="nav-text">I/O系统性能</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#输入输出方式"><span class="nav-number">2.</span> <span class="nav-text">输入输出方式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#无条件I-O方式"><span class="nav-number">2.1.</span> <span class="nav-text">无条件I/O方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#程序控制方式"><span class="nav-number">2.2.</span> <span class="nav-text">程序控制方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#中断I-O方式"><span class="nav-number">2.3.</span> <span class="nav-text">中断I/O方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DMA方式"><span class="nav-number">2.4.</span> <span class="nav-text">DMA方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#通道和I-O处理机方式"><span class="nav-number">2.5.</span> <span class="nav-text">通道和I/O处理机方式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#中断请求与响应"><span class="nav-number">3.</span> <span class="nav-text">中断请求与响应</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#中断的类型"><span class="nav-number">3.1.</span> <span class="nav-text">中断的类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#中断系统的基本功能"><span class="nav-number">3.2.</span> <span class="nav-text">中断系统的基本功能</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#中断请求信号保持与清除"><span class="nav-number">3.2.1.</span> <span class="nav-text">中断请求信号保持与清除</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#中断控制"><span class="nav-number">3.2.2.</span> <span class="nav-text">中断控制</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#中断处理"><span class="nav-number">3.2.3.</span> <span class="nav-text">中断处理</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DMA方式-1"><span class="nav-number">4.</span> <span class="nav-text">DMA方式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#DMA传输步骤"><span class="nav-number">4.1.</span> <span class="nav-text">DMA传输步骤</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DMA操作类型"><span class="nav-number">4.2.</span> <span class="nav-text">DMA操作类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DMA操作方式"><span class="nav-number">4.3.</span> <span class="nav-text">DMA操作方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DMA传输模式"><span class="nav-number">4.4.</span> <span class="nav-text">DMA传输模式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#停止CPU访问内存"><span class="nav-number">4.4.1.</span> <span class="nav-text">停止CPU访问内存</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#请求传输模式——周期挪用"><span class="nav-number">4.4.2.</span> <span class="nav-text">请求传输模式——周期挪用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#请求传输模式——DMA与CPU交替访存"><span class="nav-number">4.4.3.</span> <span class="nav-text">请求传输模式——DMA与CPU交替访存</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#习题"><span class="nav-number">5.</span> <span class="nav-text">习题</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="HMF"
+      src="/images/touxiang.jpg">
+  <p class="site-author-name" itemprop="name">HMF</p>
+  <div class="site-description" itemprop="description">To your valor, my sword, and our victory together.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">243</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">25</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">67</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Yorxika" title="GitHub → https://github.com/Yorxika" rel="noopener" target="_blank"><i class="github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:alonede@qq.com" title="E-Mail → mailto:alonede@qq.com" rel="noopener" target="_blank"><i class="envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/LinMFeng" title="Twitter → https://twitter.com/LinMFeng" rel="noopener" target="_blank"><i class="twitter fa-fw"></i>Twitter</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=298 height=60 src="//music.163.com/outchain/player?type=2&id=509038&auto=0&height=32"></iframe>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">HMF</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="Symbols count total">952k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="Reading time total">14:26</span>
+</div><script color="255,255,255" opacity="0.5" zIndex="-1" count="180" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/pisces.js"></script>
+<script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+
+
+  
+
+
+
+
+  <script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+<script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.js"></script>
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : '0635d0bc6ad58e628693',
+      clientSecret: 'a02a3a1ab4874ccb117251539125fe3a1a4d43da',
+      repo        : 'blogtalk',
+      owner       : 'Yorxika',
+      admin       : ['Yorxika'],
+      id          : md5(window.location.pathname),
+        language: '',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/miku.model.json"},"display":{"position":"right","hOffset":40,"width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7},"log":false});</script></body>
+</html>

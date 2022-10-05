@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.9.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yorxika.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="总线的特性及其应用总线的概念：是计算机体系结构的重要组成部分，通过它可以将计算机系统中各个功能部件连接起来，构成一个完整的系统。">
+<meta name="keywords" content="组成原理">
+<meta property="og:type" content="article">
+<meta property="og:title" content="系统总线">
+<meta property="og:url" content="http://yorxika.github.io/2019/12/26/系统总线/index.html">
+<meta property="og:site_name" content="Nameless Site">
+<meta property="og:description" content="总线的特性及其应用总线的概念：是计算机体系结构的重要组成部分，通过它可以将计算机系统中各个功能部件连接起来，构成一个完整的系统。">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/26/系统总线/image-20191226170508498.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/26/系统总线/image-20191226171940833.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/26/系统总线/image-20191226172026248.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/26/系统总线/image-20191226172053836.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/26/系统总线/image-20191226172131126.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/26/系统总线/image-20191226172214936.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/26/系统总线/image-20191226173643508.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/26/系统总线/image-20191226173726362.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/26/系统总线/image-20191226173902376.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/26/系统总线/image-20191226174007685.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/26/系统总线/image-20191226174058360.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/26/系统总线/image-20191226180444002.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/26/系统总线/image-20191226180527801.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/26/系统总线/image-20191226180559822.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/26/系统总线/image-20191226180630424.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/26/系统总线/image-20191226180817639.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/26/系统总线/image-20191226180907659.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/26/系统总线/image-20191226181128289.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/26/系统总线/image-20191226181323636.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/26/系统总线/image-20191226181340500.png">
+<meta property="og:updated_time" content="2019-12-26T10:35:14.130Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="系统总线">
+<meta name="twitter:description" content="总线的特性及其应用总线的概念：是计算机体系结构的重要组成部分，通过它可以将计算机系统中各个功能部件连接起来，构成一个完整的系统。">
+<meta name="twitter:image" content="http://yorxika.github.io/2019/12/26/系统总线/image-20191226170508498.png">
+
+<link rel="canonical" href="http://yorxika.github.io/2019/12/26/系统总线/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>系统总线 | Nameless Site</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="Nameless Site" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Nameless Site</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">But one day, you will stand before its decrepit gate,without really knowing why.</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+        <li class="menu-item menu-item-links">
+
+    <a href="/links/" rel="section"><i class="fa fa-link fa-fw"></i>links</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yorxika.github.io/2019/12/26/系统总线/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/touxiang.jpg">
+      <meta itemprop="name" content="HMF">
+      <meta itemprop="description" content="To your valor, my sword, and our victory together.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Nameless Site">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          系统总线
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2019-12-26 16:40:21 / Modified: 18:35:14" itemprop="dateCreated datePublished" datetime="2019-12-26T16:40:21+08:00">2019-12-26</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/学习笔记/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/学习笔记/计算机组成原理/" itemprop="url" rel="index"><span itemprop="name">计算机组成原理</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>4.6k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>4 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="总线的特性及其应用"><a href="#总线的特性及其应用" class="headerlink" title="总线的特性及其应用"></a>总线的特性及其应用</h2><p>总线的概念：是计算机体系结构的重要组成部分，通过它可以将计算机系统中各个功能部件连接起来，构成一个完整的系统。<br><a id="more"></a><br>总线的作用：</p>
+<ul>
+<li>是各功能部件间传递各类信息的通道；</li>
+<li>是系统中各部件间的物理接口，能够减少各部件通信的复杂程度； </li>
+<li>提供信息交换时所需的数据、地址、时序和控制信息； </li>
+<li>提供一个共同遵循的协议或标准； </li>
+<li>不应成为整个计算机性能的瓶颈； </li>
+<li>方便计算机系统的集成、扩展和进化。</li>
+</ul>
+<p>总线的分类：总线分类的方式有很多，如被分为外部总线和内部 总线、系统总线和非系统总线、片内总线和PCB板级总线、串行总线 和并行总线、高速总线和低速总线、同步总线和异步总线，专用总线 和通用总线等等。</p>
+<h3 id="按用途分"><a href="#按用途分" class="headerlink" title="按用途分"></a>按用途分</h3><ul>
+<li>存储总线：短距离、 高速总线，与存储器 的特性相匹配，尽最 大可能提高处理器与 存储器之间的数据带 宽，针对Cache块数 据传输进行性能优化；</li>
+<li>系统总线：又称内 部总线或板级总线， 是计算机系统中最 重要的总线，也是 连接存储总线和I/O 总线的中间总线；</li>
+<li>I/O总线：通常连 接距离较远、速度 相对较慢，用于连 接多种外部设备， 同时与系统总线或 存储总线连接。</li>
+</ul>
+<h3 id="按位置分"><a href="#按位置分" class="headerlink" title="按位置分"></a>按位置分</h3><p>按照总线所在的位置，总线可以分为：</p>
+<ul>
+<li>外部总线：USB、火线（IEEE-1394）等</li>
+<li>内部总线：PCI、AGP等</li>
+<li>片内总线：AMBA</li>
+</ul>
+<h3 id="总线的组成"><a href="#总线的组成" class="headerlink" title="总线的组成"></a>总线的组成</h3><ul>
+<li>数据总线：用于传送数据信息，通常是双向三态形式的总线；</li>
+<li>地址总线：专门用来传送地址，地址总线总是单向三态的;</li>
+<li>控制总线：用来传送控制信号和时序信号。</li>
+<li>电源线和地</li>
+</ul>
+<h2 id="总线性能和总线事物"><a href="#总线性能和总线事物" class="headerlink" title="总线性能和总线事物"></a>总线性能和总线事物</h2><h3 id="总线性能参数："><a href="#总线性能参数：" class="headerlink" title="总线性能参数："></a>总线性能参数：</h3><p>总线性能参数：</p>
+<ul>
+<li>总线频率：反映总线工作的速率（f），通常单位是MHz； </li>
+<li>总线宽度：数据总线的位数（w），单位是b（位）， 是微型计算机的一个重要指标，通常与处理器的字长相一致； </li>
+<li>总线传输速率：总线上可传输的数据总量（BW），单位是MB/s； 总线传输速率＝（总线宽度÷8位）×总线频率 BW = （w÷8）× f </li>
+<li>同步方式：同步、异步</li>
+<li>多路复用：地址线和数据线能否共用一条物理线；</li>
+<li>信号线数量：数据线、控制线和地址线的总和；</li>
+<li>总线控制方式：传输方式、配置方式、中断分配和仲裁方式等。</li>
+</ul>
+<h3 id="总线事物"><a href="#总线事物" class="headerlink" title="总线事物"></a>总线事物</h3><ul>
+<li>总线事务：从请求总线到完成总线使用的操作序列称 为总线事务（Bus Transaction），它是在一个总线周 期中发生的一系列活动。</li>
+<li>典型的总线事务包括：请求操作、裁决操作、地址传 输、数据传输和总线释放。</li>
+</ul>
+<p>主设备（master）：能够提出申请并获得总线控制权的设备；<br>从设备（slave）   ：只能被动接受总线控制传送数据的设备。</p>
+<p><img src="/2019/12/26/系统总线/image-20191226170508498.png" alt="image-20191226170508498"></p>
+<h3 id="总线传输过程"><a href="#总线传输过程" class="headerlink" title="总线传输过程"></a>总线传输过程</h3><ul>
+<li>总线传输：在主设备（如CPU、DMA控制器等）控制 下通过总线进行的信息传送（数据读写）操作。 </li>
+<li>总线完成一次数据传输操作，一般经过如下四个阶段：<ul>
+<li>申请与仲裁阶段</li>
+<li>寻址阶段</li>
+<li>传输阶段</li>
+<li>结束阶段</li>
+</ul>
+</li>
+</ul>
+<p>常见总线操作：</p>
+<ul>
+<li>读操作（Read）</li>
+<li>写操作（Write）</li>
+<li>读修改写操作（Read-modify-Write）</li>
+<li>写后读操作（Read-after-Write）</li>
+<li>块操作（Block）等</li>
+</ul>
+<h2 id="总线连接方式"><a href="#总线连接方式" class="headerlink" title="总线连接方式"></a>总线连接方式</h2><h3 id="单总线结构"><a href="#单总线结构" class="headerlink" title="单总线结构"></a>单总线结构</h3><ul>
+<li>访问存储器和访问外设指令相同，由地址来区分；</li>
+<li>总线简单，使用灵活，易于扩展；</li>
+<li>任意两设备之间理论上都可以直接交换信息；</li>
+<li>所有设备分时工作，仅适用于慢速的计算机系统中。</li>
+</ul>
+<p><img src="/2019/12/26/系统总线/image-20191226171940833.png" alt="image-20191226171940833"></p>
+<h3 id="双级总线结构"><a href="#双级总线结构" class="headerlink" title="双级总线结构"></a>双级总线结构</h3><ul>
+<li>由于外设和内存分处于不同的总线，需要增加I/O指令；</li>
+<li>存储总线的增加减轻了系统总线的负担，提高了并行性； </li>
+<li>仍然保持了单总线结构的系统简单、易于扩充的优点。</li>
+</ul>
+<p><img src="/2019/12/26/系统总线/image-20191226172026248.png" alt="image-20191226172026248"></p>
+<h3 id="多级总线结构"><a href="#多级总线结构" class="headerlink" title="多级总线结构"></a>多级总线结构</h3><ul>
+<li>在双级总线结构的基础上增加I/O总线构成； </li>
+<li>并行性进一步提高，并可以通过增加通道或IO处理机来分担部分CPU 的I/O功能，但是总线结构得越来越复杂。</li>
+</ul>
+<p><img src="/2019/12/26/系统总线/image-20191226172053836.png" alt="image-20191226172053836"></p>
+<h3 id="总线示例"><a href="#总线示例" class="headerlink" title="总线示例"></a>总线示例</h3><h4 id="多级总线示例"><a href="#多级总线示例" class="headerlink" title="多级总线示例"></a>多级总线示例</h4><p>总线桥：是不同速率总线 之间的连接器件，起信号 速度缓冲、电平转换、控 制协议转换等作用。</p>
+<p><img src="/2019/12/26/系统总线/image-20191226172131126.png" alt="image-20191226172131126"></p>
+<h4 id="单级总线示例"><a href="#单级总线示例" class="headerlink" title="单级总线示例"></a>单级总线示例</h4><p><img src="/2019/12/26/系统总线/image-20191226172214936.png" alt="image-20191226172214936"></p>
+<h3 id="总线结构对计算机系统性能的影响"><a href="#总线结构对计算机系统性能的影响" class="headerlink" title="总线结构对计算机系统性能的影响"></a>总线结构对计算机系统性能的影响</h3><ul>
+<li>对最大存储容量的影响：单总线结构有影响，双总线和多总线结构没有；</li>
+<li>对指令系统的影响：双总线和多总线结构需要增加IO指令；</li>
+<li>吞吐量：单总线结构的吞吐量小，多总线结构的吞吐量大，双总线结 构的吞吐量居中</li>
+</ul>
+<h2 id="总线仲裁和数据传输方式"><a href="#总线仲裁和数据传输方式" class="headerlink" title="总线仲裁和数据传输方式"></a>总线仲裁和数据传输方式</h2><h3 id="菊花链式串行总线仲裁"><a href="#菊花链式串行总线仲裁" class="headerlink" title="菊花链式串行总线仲裁"></a>菊花链式串行总线仲裁</h3><p><img src="/2019/12/26/系统总线/image-20191226173643508.png" alt="image-20191226173643508"></p>
+<h3 id="集中式并行总线仲裁"><a href="#集中式并行总线仲裁" class="headerlink" title="集中式并行总线仲裁"></a>集中式并行总线仲裁</h3><p><img src="/2019/12/26/系统总线/image-20191226173726362.png" alt="image-20191226173726362"></p>
+<h3 id="常见总线仲裁策略"><a href="#常见总线仲裁策略" class="headerlink" title="常见总线仲裁策略"></a>常见总线仲裁策略</h3><ul>
+<li>固定优先级总线仲裁</li>
+<li>轮叫式总线仲裁（Round Robin）</li>
+<li>LRG总线仲裁（Least Recently Granted）</li>
+<li>混合式总线仲裁</li>
+</ul>
+<h3 id="总线时序"><a href="#总线时序" class="headerlink" title="总线时序"></a>总线时序</h3><h4 id="同步定时"><a href="#同步定时" class="headerlink" title="同步定时"></a>同步定时</h4><p>同步定时：信息传送由公共时钟控制，总线中包含时钟线。</p>
+<p><img src="/2019/12/26/系统总线/image-20191226173902376.png" alt="image-20191226173902376"></p>
+<ul>
+<li>优点：时序关系简单，实现简单。</li>
+<li>缺点：在设备速度不一致时按最坏情况确定， 传输线不能太长（时钟相移）。 </li>
+</ul>
+<h4 id="异步定时"><a href="#异步定时" class="headerlink" title="异步定时"></a>异步定时</h4><p>异步定时：信息传送的每一个操作都是由主设备或从设备特定信号的 跳变所确定，总线上每一个事件的发生取决于前一个事件的发生。</p>
+<p><img src="/2019/12/26/系统总线/image-20191226174007685.png" alt="image-20191226174007685"></p>
+<ul>
+<li>优点：数据传输可靠，适用于传输周期不同的设备， 对通讯线的长度没有严格的要求。 </li>
+<li>缺点：速度较慢。</li>
+</ul>
+<h4 id="半同步定时"><a href="#半同步定时" class="headerlink" title="半同步定时"></a>半同步定时</h4><p>半同步定时：总线上各操作之间的时间间隔可以变化，但仅允许为公 共时钟周期的整数倍。信号的出现、采样和结束仍以公共时钟为基准。</p>
+<p><img src="/2019/12/26/系统总线/image-20191226174058360.png" alt="image-20191226174058360"></p>
+<h3 id="数据传输"><a href="#数据传输" class="headerlink" title="数据传输"></a>数据传输</h3><h4 id="并行传送"><a href="#并行传送" class="headerlink" title="并行传送"></a>并行传送</h4><ul>
+<li>同时并行传送的二进位数就是数据宽度；</li>
+<li>通常采用应答式的联络信号来协调双方的数据传送操作。</li>
+</ul>
+<h4 id="串行传送"><a href="#串行传送" class="headerlink" title="串行传送"></a>串行传送</h4><ul>
+<li>只使用一根传输线，采用脉冲方式传送信息；</li>
+<li>每次传送1位信息；</li>
+<li>一次新的传送，一定是以一个电平的跳变开始。</li>
+</ul>
+<h4 id="串并传送"><a href="#串并传送" class="headerlink" title="串并传送"></a>串并传送</h4><ul>
+<li>一次传送多个二进制位，但是同时传送的二进制位数小于数据宽度；</li>
+<li>按照串行的方式将整个数据宽度传送完。</li>
+</ul>
+<h2 id="总线标准"><a href="#总线标准" class="headerlink" title="总线标准"></a>总线标准</h2><p>总线标准：计算机系统的各部件之间利用总线进行信 息传输时应遵守的协议和规范，包括硬件 和软件两个方面。</p>
+<h3 id="常见总线标准"><a href="#常见总线标准" class="headerlink" title="常见总线标准"></a>常见总线标准</h3><ul>
+<li>ISA（Industrial Standard Architecture）：最早制定的总线技术标 准，总线宽度8/16位，总线频率5~8MHz，总线带宽5~8MB/s。<br><img src="/2019/12/26/系统总线/image-20191226180444002.png" alt="image-20191226180444002"></li>
+<li>EISA（Extended Industry Standard Architecture）总线：在ISA总 线的基础上为32位微机开发。</li>
+<li>VESA（Video Electronics Standard Association)总线：1992年推， 它的推出为微机系统总线体系结构的革新奠定了基础，该总线系统考 虑到CPU与主存和Cache的直接相连。标准定义了32位数据线，且可 通过扩展槽扩展到64位，使用33MHz时钟频率，最大传输率为 128MB/s~132MB/s。</li>
+<li>PCI（Peripheral Component Interconnect）总线：PCI是由Intel 公司1991年推出的总线规范，用于取代ISA；不同于ISA总线，PCI总 线的地址总线与数据总线是分时复用的，支持插即用。<ul>
+<li>PCI总线支持10台外设，总线宽度32/64位，总线时钟 频率33.3MHz/66MHz，最大数据传输速率 133/264 MB/s，时钟同步方式，且与CPU的时钟频率无关。</li>
+<li>插即用：是指当板卡插入系统时，系统会自动对板卡所需资源进行分 配，如基地址、中断号等，并自动寻找相应的驱动程序；而不象旧的 ISA板卡，需要进行复杂的手动配置。<br><img src="/2019/12/26/系统总线/image-20191226180527801.png" alt="image-20191226180527801"></li>
+</ul>
+</li>
+<li>AGP（Accelerated Graphics Port）总线：是Intel公司1997年推出 的一种3D标准图像接口， 基于PCI2.1版规范并进 行扩充修改而成，它采 用点对点通道方式，能 够提供四倍于PCI的传输 速度。<br><img src="/2019/12/26/系统总线/image-20191226180559822.png" alt="image-20191226180559822"></li>
+<li>PCIe（Peripheral Component Interconnect Express）总线：是 Intel公司2001年推出的一种高速串行计算机扩展总线标准，用于替 代PCI、PCI-X和AGP总线。<ul>
+<li>PCIe相比以前的标准，有许多改进之外，包括：更高的最大 系统总线吞吐量，更低的I/O引脚数量和更小的物理尺寸，更 好的总线设备性能缩放，更详细的错误检测和报告机制； PCIe标准的更新版本为I/O虚拟化提供了硬件支持。</li>
+<li>PCIe有多种不同速度的接口模式，包括：1X、2X、4X、8X、 16X 以及更高速的32X；PCIe 1X 模式的传输速率可以达到 250MB/s，PCIe 2.0 X16 接口能够提供8GB/s的总线带宽。<br><img src="/2019/12/26/系统总线/image-20191226180630424.png" alt="image-20191226180630424"></li>
+</ul>
+</li>
+<li>USB（Universal Serial Bus）总线：是由Intel、Compaq、IBM、 Microsoft等多家公司1994年联合提出的一种通用串行总线。<ul>
+<li>采用四线电缆，其中两根是用来传送数据的串行通道，另两根 为下游设备提供电源<br><img src="/2019/12/26/系统总线/image-20191226180817639.png" alt="image-20191226180817639"> </li>
+<li>采用级联星型拓扑，由三个基本部分组成：主机（Host），集 线器（Hub）和功能设备<br><img src="/2019/12/26/系统总线/image-20191226180907659.png" alt="image-20191226180907659"></li>
+<li>USB 1.1 总线带宽为12Mbps（1.5MB/s），可接入多达127 个设备。</li>
+<li>USB 3.1 Gen2 最大传输速率可达10Gbps（1280MB/s）。</li>
+<li>USB自推出后，已成功替代串口和并口，并成为个人电脑和大 量智能设备的必配的接口之一。</li>
+</ul>
+</li>
+<li>AMBA（Advanced Microcontroller Bus Architecture）总线：是 ARM公司推出的片上总线；AMBA提供了一种特殊的机制，可将RISC 处理器集成在其它IP核和外设中。<br>AMBA 2.0 标准定义了三组总线<ul>
+<li>AHB（Advanced High-Performance Bus）：AMBA高性能总线<br>AHB总线：属于高性能、高时钟频率的系统总线，主要特点包括流水 线操作、数据突发传输（Burst Transfer）、可支持多个总线主设备 （最多16个）、单时钟沿触发操作、总线宽度32、64、128位（最高 可达1024位，但推荐不要超过256位)。</li>
+<li>ASB（Advanced System Bus）：AMBA系统总线<br>ASB总线：与AHB相比数据宽度要小一些，支持8、16、32位，且为三 态、双向总线。</li>
+<li>APB（Advanced Peripheral Bus）：AMBA外设总线<br>APB总线：是本地二级总线，通过桥和AHB/ASB相连。它主要是为了满 足不需要高性能流水线接口或不需要高带宽接口的设备的互连。<br>AMBA总线结构：<br><img src="/2019/12/26/系统总线/image-20191226181128289.png" alt="image-20191226181128289"></li>
+</ul>
+</li>
+<li>AMBA 4.0 是最新增添到AMBA系列中的规范，增加了三个新接口 协议（Advanced eXtensible Interface）：AXI4有助于最大化性 能和能效、AXI4-Lite和AXI4-Stream是 FPGA中实现的理想选择。<img src="/2019/12/26/系统总线/image-20191226181323636.png" alt="image-20191226181323636"></li>
+</ul>
+<p>特点：</p>
+<ul>
+<li>独立的读地址、写地址、读数据、写数据和写确认5个通道</li>
+<li>支持乱序传输</li>
+<li>支持固定模式突发传输， 主要用于I/O接口</li>
+<li>支持系统高速缓存</li>
+<li>持增强保护功能</li>
+<li>互斥访问（用于semaphore操作</li>
+<li>寄存器分片以便于高频操<br>AXI4总线结构：<br><img src="/2019/12/26/系统总线/image-20191226181340500.png" alt="image-20191226181340500"><ul>
+<li>InfiniBand总线：是由InfiniBand行业协会推出的，该协会的主要成员 包括Compaq、Dell、HP、IBM、Intel、Microsoft和Sun等公司。</li>
+</ul>
+</li>
+<li>InfiniBand是PCI总线的替代品，采用了与PCI完全不同的架构， 具有极高带宽和灵活的扩展能力，理论带宽分别可以达到 500MB/s、2GB/s和6GB/s。</li>
+<li>InfiniBand解决了PCI总线中设备的距离问题，外部设备可以放 到距离服务器很远的地方工作（如果使用的是光缆，最远距离 可以达到0.3~10千米）。</li>
+</ul>
+<h2 id="习题"><a href="#习题" class="headerlink" title="习题"></a>习题</h2><p>系统总线地址的功能是（<strong>指定主存和I / O设备接口电路的地址</strong>）。</p>
+<hr>
+<p>异步控制常用于（<strong>在单总线结构计算机中访问主存与外围设备时 </strong>）作为其主要控制方式。</p>
+<hr>
+<p>描述PCI总线中基本概念正确的句子是（<strong>BCD</strong>）。<br>A.PCI设备一定是主设备<br>B.PCI总线的基本传输机制是猝发式（Burst）传送<br>C.PCI总线是一个与处理器无关的高速外围总线<br>D.系统中可以有多条PCI总线</p>
+<hr>
+<p>下面叙述中，不正确的是（<strong>ABD</strong>）。<br>A.总线一定要和接口相连<br>B.总线始终由CPU控制和管理<br>C.接口一定要和总线相连<br>D.通道可以替代接口</p>
+<hr>
+<p>计算机使用总线结构的主要优点是便于实现积木化，同时（<strong>减少了信息传输线的条数</strong>）</p>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>Post author:  </strong>HMF
+  </li>
+  <li class="post-copyright-link">
+    <strong>Post link: </strong>
+    <a href="http://yorxika.github.io/2019/12/26/系统总线/" title="系统总线">http://yorxika.github.io/2019/12/26/系统总线/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/组成原理/" rel="tag"><i class="fa fa-tag"></i> 组成原理</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2019/12/25/中央处理器/" rel="prev" title="中央处理器">
+      <i class="fa fa-chevron-left"></i> 中央处理器
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2019/12/26/输入输出系统/" rel="next" title="输入输出系统">
+      输入输出系统 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#总线的特性及其应用"><span class="nav-number">1.</span> <span class="nav-text">总线的特性及其应用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#按用途分"><span class="nav-number">1.1.</span> <span class="nav-text">按用途分</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#按位置分"><span class="nav-number">1.2.</span> <span class="nav-text">按位置分</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总线的组成"><span class="nav-number">1.3.</span> <span class="nav-text">总线的组成</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总线性能和总线事物"><span class="nav-number">2.</span> <span class="nav-text">总线性能和总线事物</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#总线性能参数："><span class="nav-number">2.1.</span> <span class="nav-text">总线性能参数：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总线事物"><span class="nav-number">2.2.</span> <span class="nav-text">总线事物</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总线传输过程"><span class="nav-number">2.3.</span> <span class="nav-text">总线传输过程</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总线连接方式"><span class="nav-number">3.</span> <span class="nav-text">总线连接方式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#单总线结构"><span class="nav-number">3.1.</span> <span class="nav-text">单总线结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#双级总线结构"><span class="nav-number">3.2.</span> <span class="nav-text">双级总线结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多级总线结构"><span class="nav-number">3.3.</span> <span class="nav-text">多级总线结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总线示例"><span class="nav-number">3.4.</span> <span class="nav-text">总线示例</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#多级总线示例"><span class="nav-number">3.4.1.</span> <span class="nav-text">多级总线示例</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#单级总线示例"><span class="nav-number">3.4.2.</span> <span class="nav-text">单级总线示例</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总线结构对计算机系统性能的影响"><span class="nav-number">3.5.</span> <span class="nav-text">总线结构对计算机系统性能的影响</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总线仲裁和数据传输方式"><span class="nav-number">4.</span> <span class="nav-text">总线仲裁和数据传输方式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#菊花链式串行总线仲裁"><span class="nav-number">4.1.</span> <span class="nav-text">菊花链式串行总线仲裁</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#集中式并行总线仲裁"><span class="nav-number">4.2.</span> <span class="nav-text">集中式并行总线仲裁</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常见总线仲裁策略"><span class="nav-number">4.3.</span> <span class="nav-text">常见总线仲裁策略</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总线时序"><span class="nav-number">4.4.</span> <span class="nav-text">总线时序</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#同步定时"><span class="nav-number">4.4.1.</span> <span class="nav-text">同步定时</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#异步定时"><span class="nav-number">4.4.2.</span> <span class="nav-text">异步定时</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#半同步定时"><span class="nav-number">4.4.3.</span> <span class="nav-text">半同步定时</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据传输"><span class="nav-number">4.5.</span> <span class="nav-text">数据传输</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#并行传送"><span class="nav-number">4.5.1.</span> <span class="nav-text">并行传送</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#串行传送"><span class="nav-number">4.5.2.</span> <span class="nav-text">串行传送</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#串并传送"><span class="nav-number">4.5.3.</span> <span class="nav-text">串并传送</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总线标准"><span class="nav-number">5.</span> <span class="nav-text">总线标准</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#常见总线标准"><span class="nav-number">5.1.</span> <span class="nav-text">常见总线标准</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#习题"><span class="nav-number">6.</span> <span class="nav-text">习题</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="HMF"
+      src="/images/touxiang.jpg">
+  <p class="site-author-name" itemprop="name">HMF</p>
+  <div class="site-description" itemprop="description">To your valor, my sword, and our victory together.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">243</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">25</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">67</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Yorxika" title="GitHub → https://github.com/Yorxika" rel="noopener" target="_blank"><i class="github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:alonede@qq.com" title="E-Mail → mailto:alonede@qq.com" rel="noopener" target="_blank"><i class="envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/LinMFeng" title="Twitter → https://twitter.com/LinMFeng" rel="noopener" target="_blank"><i class="twitter fa-fw"></i>Twitter</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=298 height=60 src="//music.163.com/outchain/player?type=2&id=509038&auto=0&height=32"></iframe>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">HMF</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="Symbols count total">952k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="Reading time total">14:26</span>
+</div><script color="255,255,255" opacity="0.5" zIndex="-1" count="180" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/pisces.js"></script>
+<script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+
+
+  
+
+
+
+
+  <script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+<script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.js"></script>
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : '0635d0bc6ad58e628693',
+      clientSecret: 'a02a3a1ab4874ccb117251539125fe3a1a4d43da',
+      repo        : 'blogtalk',
+      owner       : 'Yorxika',
+      admin       : ['Yorxika'],
+      id          : md5(window.location.pathname),
+        language: '',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/miku.model.json"},"display":{"position":"right","hOffset":40,"width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7},"log":false});</script></body>
+</html>

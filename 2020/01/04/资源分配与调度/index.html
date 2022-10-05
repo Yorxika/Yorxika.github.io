@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.9.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yorxika.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="资源管理概述资源 ：应用程序执行时所需要的全部硬件、软件和数据。  为什么要对资源进行管理？   管理好各种资源是计算机系统的重要职责。">
+<meta name="keywords" content="操作系统">
+<meta property="og:type" content="article">
+<meta property="og:title" content="资源分配与调度">
+<meta property="og:url" content="http://yorxika.github.io/2020/01/04/资源分配与调度/index.html">
+<meta property="og:site_name" content="Nameless Site">
+<meta property="og:description" content="资源管理概述资源 ：应用程序执行时所需要的全部硬件、软件和数据。  为什么要对资源进行管理？   管理好各种资源是计算机系统的重要职责。">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://yorxika.github.io/2020/01/04/资源分配与调度/image-20200104211547478.png">
+<meta property="og:image" content="http://yorxika.github.io/2020/01/04/资源分配与调度/image-20200104211709887.png">
+<meta property="og:image" content="http://yorxika.github.io/2020/01/04/资源分配与调度/image-20200104212028817.png">
+<meta property="og:image" content="http://yorxika.github.io/2020/01/04/资源分配与调度/20180317174724920.png">
+<meta property="og:updated_time" content="2020-01-04T15:40:00.362Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="资源分配与调度">
+<meta name="twitter:description" content="资源管理概述资源 ：应用程序执行时所需要的全部硬件、软件和数据。  为什么要对资源进行管理？   管理好各种资源是计算机系统的重要职责。">
+<meta name="twitter:image" content="http://yorxika.github.io/2020/01/04/资源分配与调度/image-20200104211547478.png">
+
+<link rel="canonical" href="http://yorxika.github.io/2020/01/04/资源分配与调度/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>资源分配与调度 | Nameless Site</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="Nameless Site" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Nameless Site</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">But one day, you will stand before its decrepit gate,without really knowing why.</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+        <li class="menu-item menu-item-links">
+
+    <a href="/links/" rel="section"><i class="fa fa-link fa-fw"></i>links</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yorxika.github.io/2020/01/04/资源分配与调度/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/touxiang.jpg">
+      <meta itemprop="name" content="HMF">
+      <meta itemprop="description" content="To your valor, my sword, and our victory together.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Nameless Site">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          资源分配与调度
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-01-04 20:53:01 / Modified: 23:40:00" itemprop="dateCreated datePublished" datetime="2020-01-04T20:53:01+08:00">2020-01-04</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/学习笔记/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/学习笔记/操作系统/" itemprop="url" rel="index"><span itemprop="name">操作系统</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>4.5k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>4 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="资源管理概述"><a href="#资源管理概述" class="headerlink" title="资源管理概述"></a>资源管理概述</h2><p>资源 ：应用程序执行时所需要的全部硬件、软件和数据。 </p>
+<p>为什么要对资源进行管理？ </p>
+<ul>
+<li>管理好各种资源是计算机系统的重要职责。 <a id="more"></a></li>
+<li>随着软硬件的发展，操作系统要管理的软硬件资源和种类越来越多； </li>
+<li>用户的需求和应用量也在不断增长。</li>
+</ul>
+<p>资源管理的目标</p>
+<ul>
+<li>保证资源的高利用率。 </li>
+<li>在“合理”时间内使所有顾客有获得所需资源的机会。 </li>
+<li>对不可共享的资源实施互斥使用。</li>
+<li>防止由资源分配不当而引起的死锁。</li>
+<li>这些目标之间需要<strong>平衡</strong>！</li>
+</ul>
+<p>资源管理的任务</p>
+<ul>
+<li>资源数据结构的描述<br>应包含该类资源最小分配单位的描述信息，如资源的物理名、逻辑名、类型、地址、分配状态等信息。 </li>
+<li>确定资源的分配原则 (调度原则)<br>决定资源应分给谁，何时分配，分配多少等问题。</li>
+<li>实施资源分配<br>执行资源分配；资源收回工作。 </li>
+<li>存取控制和安全保护<br>对资源的存取进行控制并对资源实施安全保护措施。</li>
+</ul>
+<p>资源资源的静态分配和动态分配</p>
+<ul>
+<li>资源的静态分配<br>系统对作业一级采用资源静态分配方法。系统在调度作业时，根据作业所需资源进行分配；并在作业运行完毕 时，收回所分配的全部资源。这种分配通常称为资源的静态分配。 </li>
+<li>资源的动态分配<br>系统对进程一级采用资源动态分配方法。 系统在进程运行中，根据进程提出的资源需求，进行资源的动态分配和回收。这种分配通常称为资源的动态分配。</li>
+</ul>
+<p>虚拟资源<br>操作系统对资源区分二种不同的概念</p>
+<ul>
+<li>物理资源 (实资源)</li>
+<li>虚拟资源 (逻辑资源) ：用户使用的逻辑资源，这是经过操作系统改造的、使用方便的虚资源，而不是物理的、 实际的资源。</li>
+</ul>
+<p>目的</p>
+<ul>
+<li>方便用户使用</li>
+<li>资源可动态分配，提高资源利用率</li>
+</ul>
+<p>计算机系统中的物理资源与虚拟资源分析</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>资源表格</th>
+<th>物理资源</th>
+<th>虚拟(逻辑)</th>
+<th>映射</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>处理机</td>
+<td>CPU</td>
+<td>进程</td>
+<td>进程调度</td>
+</tr>
+<tr>
+<td>存储器</td>
+<td>主存</td>
+<td>虚存（程序地址空间）</td>
+<td>地址映射</td>
+</tr>
+<tr>
+<td>设备</td>
+<td>外部设备</td>
+<td>逻辑设备、虚拟设备</td>
+<td>设备分配、动态映射</td>
+</tr>
+<tr>
+<td>信息</td>
+<td>文件物理结构</td>
+<td>文件逻辑结构</td>
+<td>磁盘空间分配、文件目录查找</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="资源分配结构和策略"><a href="#资源分配结构和策略" class="headerlink" title="资源分配结构和策略"></a>资源分配结构和策略</h2><p>资源管理的实质</p>
+<ul>
+<li>资源管理的实质是<strong>资源管理的机制</strong>和<strong>资源管理的策略</strong>。</li>
+<li>机制：进行资源分配所必须的基本设施和部件，包括描述资源状态的数据结构、保证不可共享资源互斥使用的同步机构以及对不能立即得到满足的资源请求进行排队的各种资源队列的结构。</li>
+<li>策略：给出了实现该功能的内涵，设计资源分配的原则。</li>
+</ul>
+<h3 id="资源分配的机构"><a href="#资源分配的机构" class="headerlink" title="资源分配的机构"></a>资源分配的机构</h3><h4 id="资源描述器"><a href="#资源描述器" class="headerlink" title="资源描述器"></a>资源描述器</h4><p>资源描述器 定义：描述描述各类资源的最小分配单位的数 据结构称为资源描述器 rd（resource descriptor）。 如：主存分区分配方法中， 最小分配单位为主存分区。</p>
+<p>资源描述器内容 ：资源名、资源类型、最小分配单位的大 小、地址、分配标志、描述器链接信息、 存取权限、密级、存取时间。</p>
+<ul>
+<li>若它具有N个资源分配器，则有N个资源描述器。这些描述器的组织是个重要问题。</li>
+<li>描述器的组织方式取决于资源分配单位的数量和数量是否可变这一特征。<ul>
+<li>如果数量不可变，使用表结构。</li>
+<li>如果数量可变，使用队列结构。</li>
+<li>如果数目变化范围可知且不大，使用数组。</li>
+</ul>
+</li>
+</ul>
+<h4 id="资源信息块（rib-resource-information-block）"><a href="#资源信息块（rib-resource-information-block）" class="headerlink" title="资源信息块（rib, resource information block）"></a>资源信息块（rib, resource information block）</h4><p>资源信息块定义：描述某类资源的请求者、可用资源和该类资源分配程序等必要信息的数据结构。</p>
+<p>资源信息块内容<img src="/2020/01/04/资源分配与调度/image-20200104211547478.png" alt="image-20200104211547478"></p>
+<p>资源信息块示例：<img src="/2020/01/04/资源分配与调度/image-20200104211709887.png" alt="image-20200104211709887"></p>
+<h3 id="资源分配策略"><a href="#资源分配策略" class="headerlink" title="资源分配策略"></a>资源分配策略</h3><ul>
+<li>对某类资源而言，在多个资源有多个请求者申请的情况下，资源分配的策略包括<strong>选择请求者的策略</strong>和<strong>选择资源的策略</strong>两种。</li>
+<li>选择请求者的策略：即资源分配策略，即在众多请求者中选一个满足条件的请求者的原则。</li>
+<li>选择资源的策略：是在同等资源间选择一个满足条件的资源的原则。</li>
+<li>具体实现：体现在队列的排队原则上。</li>
+</ul>
+<p>资源分配的时机</p>
+<ul>
+<li>请求者发出一个明确的资源请求命令时；</li>
+<li>当处理机空闲时；</li>
+<li>当一个存储区被释放变为空闲时；</li>
+<li>当一个外存设备发生完成中断时。</li>
+</ul>
+<p>常用的资源分配策略</p>
+<ul>
+<li>先请求先服务<ul>
+<li>每一个新产生的请求均排在队尾； </li>
+<li>当资源可用时，取队首元素，并满足其需要。 排序原则：按请求的先后次序排序。（有饿死现象！）<br><img src="/2020/01/04/资源分配与调度/image-20200104212028817.png" alt="image-20200104212028817"></li>
+</ul>
+</li>
+<li>优先调度<ul>
+<li>对每一个进程指定一个优先级，优先级反映了进程要求处理的紧迫程度；</li>
+<li>每一个新产生的请求，按其优先级的高低插到相应的位置；</li>
+<li>当资源可用时，取队首元素，并满足其需要。<br>排序原则：按优先级的高低排序。</li>
+</ul>
+</li>
+<li>针对设备特性的调度策略<ul>
+<li>移臂调度 ：总是选取与当前移动臂前进方向上最近的那个I/O请求，<br>使移臂距离最短。</li>
+<li>旋转调度 ：总是选取与当前读写头最近的那个I/O请求，使旋转圈 数最少。</li>
+</ul>
+</li>
+</ul>
+<p>几种移臂调度算法</p>
+<ul>
+<li>最短寻道时间优先算法（SSTF） <ul>
+<li>从等待访问者中挑选寻找时间最短的那个请求先执行 </li>
+<li>缺点：可能会引起读写头在盘面上的大范围移 动，可能会推迟请求的服务导致无限拖延 </li>
+</ul>
+</li>
+<li>扫描算法（SCAN，即电梯调度算法） <ul>
+<li>磁头前进方向上的最短查找时间优先算法 </li>
+<li>很大程度上消除了SSTF的不公平性</li>
+<li>不仅要己组读写磁头的位置，还必须记住移动臂的当前前进方向</li>
+<li>当磁头刚从里向外移动过某一磁道时，恰有一进程访问此磁道，必须等待。</li>
+</ul>
+</li>
+<li>循环扫描算法(CSCAN)<ul>
+<li>规定磁头单向移动，如果只是从里向外移动，当磁头移到最外的磁道并访问时，磁头立即返回到最里的欲访问磁道，即将最小磁道号紧接着最大磁道号循环，进行循环扫描。</li>
+</ul>
+</li>
+</ul>
+<h2 id="死锁"><a href="#死锁" class="headerlink" title="死锁"></a>死锁</h2><h3 id="死锁及起因"><a href="#死锁及起因" class="headerlink" title="死锁及起因"></a>死锁及起因</h3><p>什么是死锁<br>在两个或多个并发进程中，如果每个进程持有某种资源而又都等待着别的进程释放它或它们现在保持着的资源，否 则就不能向前推进。此时，称这一组进程产生了死锁。</p>
+<p>引起死锁的原因</p>
+<ul>
+<li>系统资源不足</li>
+<li>进程推进顺序非法</li>
+</ul>
+<p>产生死锁的必要条件</p>
+<ul>
+<li>互斥条件<br>涉及的资源是非共享的，即为临界资源。</li>
+<li>不剥夺条件<br>进程所获得的资源在未使用完毕之前，不能被其他进程强行夺走。</li>
+<li>部分分配<br>进程每次申请它所需要的一部分资源。在等待一新资源的 同时，进程继续占用已分配到的资源。 </li>
+<li><p>环路条件<br>存在一种进程的循环链，链中的每一个进程已获得的资 源同时被链中下一个进程所请求。 </p>
+<p><img src="/2020/01/04/资源分配与调度/20180317174724920.png" alt="img"><br>利用资源分配图可判断死锁。<br>若图没有环，系统没有发生死锁；如果图有环，可能存在死锁。如果环涉及一组资源类型，而每个资源类型只有一个实例，呢么有环就意味着出现死锁，即环所涉及的进程发生了死锁。在这种情况下，环就是死锁存在的充分必要条件。</p>
+</li>
+</ul>
+<p>解决死锁问题的策略——破坏产生死锁的四个必要条件之一</p>
+<ul>
+<li>采用静态资源分配方法——预防死锁。</li>
+<li>采用有控资源分配方法——避免死锁</li>
+<li>死锁的检测与忽略</li>
+</ul>
+<h3 id="死锁的预防"><a href="#死锁的预防" class="headerlink" title="死锁的预防"></a>死锁的预防</h3><ul>
+<li>破坏互斥条件<ul>
+<li>就是在系统里取消互斥。若资源不被一个进程独占使用，那么死锁是肯定不会发生的。但一般“互斥”条件是无法破坏的。因此，在死锁预防里主要是破坏其他三个必要条件，而不去涉及破坏“互斥”条件。</li>
+</ul>
+</li>
+<li>破坏请求并保持条件<ul>
+<li>在系统中不允许进程在已获得某种资源的情况下，申请其他资源。即要想出一个办法，阻止进程在持有资源的同时申请其他资源。有两种方法：</li>
+<li>方法一：所有进程在运行之前，必须一次性地申请在整个运行过程中所需的全部资源。这样，该进程在整个运行期间，便不会再提出资源请求，从而破坏了“请求”条件。系统在分配资源时，只要有一种资源不能满足进程的要求，即使其它所需的各资源都空闲也不分配给该进程，而让该进程等待。由于该进程在等待期间未占有任何资源，于是破坏了“保持”条件。</li>
+<li>该方法优点：简单、易行且安全。</li>
+<li>缺点：<br>a.资源被严重浪费，严重恶化了资源的利用率。<br>b.使进程经常会发生饥饿现象。</li>
+<li>方法二：要求每个进程提出新的资源申请前，释放它所占有的资源，然后再尝试一次获得所需的全部资源。</li>
+</ul>
+</li>
+<li>破环不可抢占条件<ul>
+<li>允许对资源实行抢占。</li>
+<li>方法一：如果占有某些资源的一个进程进行进一步资源请求被拒绝，则该进程必须释放它最初占有的资源，如果有必要，可再次请求这些资源和另外的资源。</li>
+<li>方法二：如果一个进程请求当前被另一个进程占有的一个资源，则操作系统可以抢占另一个进程，要求它释放资源。只有在任意两个进程的优先级都不相同的条件下，该方法才能预防死锁。</li>
+</ul>
+</li>
+<li><p>破坏环路等待条件</p>
+<ul>
+<li>保证每一个进程在任何时刻只能占用一个资源，若要请求另外一个资源，它必须先释放第一个资源。</li>
+<li>将系统中的所有资源统一编号，进程可在任何时刻提出资源申请，但所有申请必须按照资源的编号顺序（升序）提出。这样做就能保证系统不出现死锁。</li>
+</ul>
+</li>
+<li><p>静态预防死锁的方法</p>
+<ul>
+<li>在作业调度时为选中的作业分配它所需要的所有资源，当资源一旦分配给该作业后，在其整个运行期间这些资源为它独占。</li>
+<li>一个用户在作业运行之前可能提不出其作业将要使用的全部设备</li>
+<li>用户作业的所有资源满足后才投入运行，实际上某些资源可能要到运行后期才会用到</li>
+<li>一个作业运行期间，某些设备的使用时间很少，甚至不会用到。 </li>
+</ul>
+</li>
+<li>动态避免死锁的方法<ul>
+<li>有序资源分配法<br>系统中所有资源都给定一个唯一的编号，所有分配请求必须以上升的次序进行。当遵守上升次序的规则时，若资源可用，则予以分配；否则，请求者等待。（缺点：资源浪费！当有资源序列1234，实际访问序列为4321时，需要先请求1，在2，在3、4，但是123是较长时间后运行的，造成了资源的浪费。）</li>
+<li>银行家算法<br>申请者事先说明对各类资源的最大需求量。在进程活动期间动态申请某类资源时，由系统审查现有该类资源的数目是否能满足当前进程的最大需求量，如能满足就予以分配，否则拒绝（缺点：要求每个进程必须事先说明对各类资源的最大需求，而且在系统运行过程中，考察每个进程对各类资源的申请需要花费较多的时间。此外，由于银行家算法总是考虑最坏情况，有时为了避免死锁，可能拒绝某一请求，实际上，即使该请求得到满足也不会出现死锁。<strong>过于谨慎</strong>以及<strong>开销较大</strong>是银行家算法的主要障碍）</li>
+</ul>
+</li>
+</ul>
+<h3 id="死锁的检测和恢复"><a href="#死锁的检测和恢复" class="headerlink" title="死锁的检测和恢复"></a>死锁的检测和恢复</h3><h4 id="死锁检测"><a href="#死锁检测" class="headerlink" title="死锁检测"></a>死锁检测</h4><p>首先针对每种资源类型只有一个实例的情况。</p>
+<p>构建资源分配图，采用深度优先遍历算法确定是否存在环路：依次将每一个节点作为一棵树的根节点，并进行深度优先搜索，如果再次碰到已经遇到过的节点，那么就算找到了一个环。如果从任何给定的节点出发的弧都被穷举了，那么就回溯到前面的节点。如果回溯到根并且不能再深入下去，那么从当前节点出发的子图中就不包含任何环。如果所有的节点都是如此，那么整个图就不存在环也就是说系统不存在死锁。</p>
+<p>第二种情况是每种资源类型还有多个实例的情况。</p>
+<p>构建向量矩阵，利用向量矩阵算法模拟资源分配。这种算法的第一步是寻找可以运行完毕的进程Pi，该进程的特点是它有资源请求并且该请求可被当前的可用资源满足(R矩阵第i行向量小于A)。这一选中的进程随后就被运行完毕，在这段时间内它释放自己持有的所有资源并将它们返回到可用资源库中（将C矩阵的第i行向量加到A）。然后这一进程被标记为完成。如果所有的进程最终都能运行完毕的话，就不存在死锁的情况。</p>
+<p>假设n个进程，m种资源：</p>
+<p>E=（E1,E2,…,Em）现有资源向量，</p>
+<p>A=（A1,A2,…,Am）可用资源向量，</p>
+<p>Cn*m当前分配矩阵，Rn*m请求矩阵，C(ij)表示进程i所持有的资源j的数量，R(ij)表示进程i所需要的资源j的数量。</p>
+<p>Ej=Aj+C11+C21+……+Cn1</p>
+<p>死锁检测：算法复杂，开销很大<br>忽略则后患无穷</p>
+<h4 id="死锁恢复"><a href="#死锁恢复" class="headerlink" title="死锁恢复"></a>死锁恢复</h4><p>抢占：不通知原进程的情况下，将某一资源从一个进程强行取走给另一个进程使用，接着送回。</p>
+<p>回滚：周期性对进程进行检查点检查，即将进程的状态写入一个文件以备以后重启，包括存储映象、资源状态，即哪些资源分配给了哪些进程。新的检查点不覆盖原有的文件，而是写到新文件中。检测到死锁时，从一个较早的检查点开始，将该进程复位到更早的状态。</p>
+<p>杀死进程：杀死环中的一个或多个进程；杀死一个环外的进程以释放该进程的资源。（最好杀死可以从头开始重新运行且不会带来副作用的进程）</p>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>Post author:  </strong>HMF
+  </li>
+  <li class="post-copyright-link">
+    <strong>Post link: </strong>
+    <a href="http://yorxika.github.io/2020/01/04/资源分配与调度/" title="资源分配与调度">http://yorxika.github.io/2020/01/04/资源分配与调度/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/操作系统/" rel="tag"><i class="fa fa-tag"></i> 操作系统</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/01/04/进程及进程管理/" rel="prev" title="进程及进程管理">
+      <i class="fa fa-chevron-left"></i> 进程及进程管理
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/01/04/处理机的调度/" rel="next" title="处理机的调度">
+      处理机的调度 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#资源管理概述"><span class="nav-number">1.</span> <span class="nav-text">资源管理概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#资源分配结构和策略"><span class="nav-number">2.</span> <span class="nav-text">资源分配结构和策略</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#资源分配的机构"><span class="nav-number">2.1.</span> <span class="nav-text">资源分配的机构</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#资源描述器"><span class="nav-number">2.1.1.</span> <span class="nav-text">资源描述器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#资源信息块（rib-resource-information-block）"><span class="nav-number">2.1.2.</span> <span class="nav-text">资源信息块（rib, resource information block）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#资源分配策略"><span class="nav-number">2.2.</span> <span class="nav-text">资源分配策略</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#死锁"><span class="nav-number">3.</span> <span class="nav-text">死锁</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#死锁及起因"><span class="nav-number">3.1.</span> <span class="nav-text">死锁及起因</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#死锁的预防"><span class="nav-number">3.2.</span> <span class="nav-text">死锁的预防</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#死锁的检测和恢复"><span class="nav-number">3.3.</span> <span class="nav-text">死锁的检测和恢复</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#死锁检测"><span class="nav-number">3.3.1.</span> <span class="nav-text">死锁检测</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#死锁恢复"><span class="nav-number">3.3.2.</span> <span class="nav-text">死锁恢复</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="HMF"
+      src="/images/touxiang.jpg">
+  <p class="site-author-name" itemprop="name">HMF</p>
+  <div class="site-description" itemprop="description">To your valor, my sword, and our victory together.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">243</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">25</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">67</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Yorxika" title="GitHub → https://github.com/Yorxika" rel="noopener" target="_blank"><i class="github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:alonede@qq.com" title="E-Mail → mailto:alonede@qq.com" rel="noopener" target="_blank"><i class="envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/LinMFeng" title="Twitter → https://twitter.com/LinMFeng" rel="noopener" target="_blank"><i class="twitter fa-fw"></i>Twitter</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=298 height=60 src="//music.163.com/outchain/player?type=2&id=509038&auto=0&height=32"></iframe>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">HMF</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="Symbols count total">952k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="Reading time total">14:26</span>
+</div><script color="255,255,255" opacity="0.5" zIndex="-1" count="180" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/pisces.js"></script>
+<script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+
+
+  
+
+
+
+
+  <script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+<script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.js"></script>
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : '0635d0bc6ad58e628693',
+      clientSecret: 'a02a3a1ab4874ccb117251539125fe3a1a4d43da',
+      repo        : 'blogtalk',
+      owner       : 'Yorxika',
+      admin       : ['Yorxika'],
+      id          : md5(window.location.pathname),
+        language: '',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/miku.model.json"},"display":{"position":"right","hOffset":40,"width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7},"log":false});</script></body>
+</html>
