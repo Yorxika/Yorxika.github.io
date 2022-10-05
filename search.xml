@@ -12129,8 +12129,8 @@ e[i,j]=e[i,r−1]+e[r+1,j]+w[i,j]
       </categories>
       <tags>
         <tag>Leetcode</tag>
-        <tag>cache</tag>
         <tag>设计</tag>
+        <tag>cache</tag>
       </tags>
   </entry>
   <entry>
@@ -13529,8 +13529,8 @@ public Node(int _val,List&lt;Node&gt; _neighbors) {
         <category>数组</category>
       </categories>
       <tags>
-        <tag>Leetcode</tag>
         <tag>贪心</tag>
+        <tag>Leetcode</tag>
       </tags>
   </entry>
   <entry>
@@ -13577,8 +13577,8 @@ public Node(int _val,List&lt;Node&gt; _neighbors) {
       </categories>
       <tags>
         <tag>动态规划</tag>
-        <tag>Leetcode</tag>
         <tag>贪心</tag>
+        <tag>Leetcode</tag>
         <tag>回溯</tag>
       </tags>
   </entry>
@@ -14990,8 +14990,8 @@ public Node(int _val,List&lt;Node&gt; _neighbors) {
         <category>链表</category>
       </categories>
       <tags>
-        <tag>Leetcode</tag>
         <tag>贪心</tag>
+        <tag>Leetcode</tag>
         <tag>链表</tag>
         <tag>归并</tag>
         <tag>优先队列</tag>
@@ -15415,8 +15415,8 @@ public Node(int _val,List&lt;Node&gt; _neighbors) {
         <category>数学</category>
       </categories>
       <tags>
-        <tag>Leetcode</tag>
         <tag>贪心</tag>
+        <tag>Leetcode</tag>
       </tags>
   </entry>
   <entry>
