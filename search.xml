@@ -12961,8 +12961,8 @@ public Node(int _val,List&lt;Node&gt; _neighbors) {
       </categories>
       <tags>
         <tag>Leetcode</tag>
-        <tag>数学</tag>
         <tag>哈希</tag>
+        <tag>数学</tag>
         <tag>数组</tag>
       </tags>
   </entry>
