@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>与自己和解</title>
+    <url>/2022/10/05/2022-10-05/</url>
+    <content><![CDATA[<p>始于2022-10-05 22:21。</p>
+<p>总是要与自己和解，与世界和解，那么我什么时候才会和解呢？</p>
+]]></content>
+      <categories>
+        <category>杂谈</category>
+      </categories>
+      <tags>
+        <tag>杂谈</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>日寄</title>
     <url>/2022/10/03/2002-10-02/</url>
     <content><![CDATA[<p>始于2022-10-02 23时。</p>
@@ -12948,8 +12961,8 @@ public Node(int _val,List&lt;Node&gt; _neighbors) {
       </categories>
       <tags>
         <tag>Leetcode</tag>
-        <tag>哈希</tag>
         <tag>数学</tag>
+        <tag>哈希</tag>
         <tag>数组</tag>
       </tags>
   </entry>

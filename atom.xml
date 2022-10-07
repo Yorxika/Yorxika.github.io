@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yorxika.github.io/"/>
-  <updated>2022-10-03T15:07:10.206Z</updated>
+  <updated>2022-10-05T14:22:19.453Z</updated>
   <id>http://yorxika.github.io/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>与自己和解</title>
+    <link href="http://yorxika.github.io/2022/10/05/2022-10-05/"/>
+    <id>http://yorxika.github.io/2022/10/05/2022-10-05/</id>
+    <published>2022-10-05T14:20:54.000Z</published>
+    <updated>2022-10-05T14:22:19.453Z</updated>
+    
+    <content type="html"><![CDATA[<p>始于2022-10-05 22:21。</p><p>总是要与自己和解，与世界和解，那么我什么时候才会和解呢？</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;始于2022-10-05 22:21。&lt;/p&gt;
+&lt;p&gt;总是要与自己和解，与世界和解，那么我什么时候才会和解呢？&lt;/p&gt;
+
+      
+    
+    </summary>
+    
+    
+      <category term="杂谈" scheme="http://yorxika.github.io/categories/%E6%9D%82%E8%B0%88/"/>
+    
+    
+      <category term="杂谈" scheme="http://yorxika.github.io/tags/%E6%9D%82%E8%B0%88/"/>
+    
+  </entry>
   
   <entry>
     <title>日寄</title>
@@ -2987,31 +3015,6 @@
       <category term="操作系统" scheme="http://yorxika.github.io/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
     
       <category term="进程" scheme="http://yorxika.github.io/tags/%E8%BF%9B%E7%A8%8B/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>CH1 算法</title>
-    <link href="http://yorxika.github.io/2020/01/02/CH1-%E7%AE%97%E6%B3%95/"/>
-    <id>http://yorxika.github.io/2020/01/02/CH1-%E7%AE%97%E6%B3%95/</id>
-    <published>2020-01-02T00:48:56.000Z</published>
-    <updated>2020-01-02T00:58:16.006Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="算法导论"><a href="#算法导论" class="headerlink" title="算法导论"></a>算法导论</h2><h3 id="What-are-algorithms"><a href="#What-are-algorithms" class="headerlink" title="What are algorithms?"></a>What are algorithms?</h3><p>非形式地说，算法就是任何良定义（well-defined）的计算过程，该过程取某个值或值的集合作为输入（input），并产生某个值或者值的集合作为输出（output）。 <a id="more"></a></p><ul><li>算法就是把输入转换成输出的计算步骤。     </li><li>在计算机科学中，算法是使用计算机解一类问题的精确、有效方法的代名词；        </li><li>算法是一组有穷的规则，它规定了解决某一特定类型问题 的一系列运算。 （选自《计算机算法基础》） </li></ul><ul><li>算法由运算组成 <ul><li>算术运算、逻辑运算、关系运算、赋值运算、过程调用 </li></ul></li><li>算法有其特殊性 <ul><li>解决不同问题的算法是不相同的，没有万能的算法 </li></ul></li><li>算法是有穷的计算过程 <ul><li>静态上：规则/运算/语句的数量有穷 </li><li>动态上：计算过程/计算时间有限 </li></ul></li></ul><h3 id="作为一种技术的算法"><a href="#作为一种技术的算法" class="headerlink" title="作为一种技术的算法"></a>作为一种技术的算法</h3><ul><li>算法不仅强调其正确性 </li><li>算法也有好坏之分    <ul><li>效率（Efficiency）对于算法的有效性有非常重要的影响。     </li><li>现实应用中，时间和空间都是有限的资源，因此我们应选择时间和空间方面有效的算法来求解问题 </li></ul></li></ul><h2 id="算法基础"><a href="#算法基础" class="headerlink" title="算法基础"></a>算法基础</h2><h3 id="循环不变式"><a href="#循环不变式" class="headerlink" title="循环不变式"></a>循环不变式</h3><p>INSERTION-SORT 的for循环中，循环变量为j（j代表当前正要被插入到<br>序列中的元素的下标）。循环过程具有以下性质：<br>        <strong>子数组A[1~j-1]是已经被排好序的子序列。 </strong><br>这一性质，在j被赋予初值2，首次进入循环之前成立，而且每次循环之<br>后（j加了1）、进入下一次循环之前也成立。<br>   ——把这种在第一次进入循环之前成立、每次循环之后还成立的关系称为“循环不变式”或“循环不变性质” 。  </p><ul><li>插入排序for循环的循环不变式可以描述为：在第1~8行的for循环的每次迭代开始时，子数组A[1~j-1]由原来在 A[1~j-1]中的元素组成，且已按序排列。 </li></ul><p>可以利用循环不变关系证明循环的正确性。<br>分三步走：<br>1）初始化：证明初始状态时循环不变式成立，即证明循环不变式在循 环开始之前为真；<br>2）保持：证明每次循环之后、下一次循环开始之前循环不变式仍为真；<br>3）终止：证明循环可以在有限次循环之后终止。<br>证明循环正确性的思路：<br>第1）和2）步类似于数学归纳法的证明策略<br>第3）步保证算法可以终止<br>如果1）~3）都满足，则说明循环过程正确 </p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;算法导论&quot;&gt;&lt;a href=&quot;#算法导论&quot; class=&quot;headerlink&quot; title=&quot;算法导论&quot;&gt;&lt;/a&gt;算法导论&lt;/h2&gt;&lt;h3 id=&quot;What-are-algorithms&quot;&gt;&lt;a href=&quot;#What-are-algorithms&quot; class=&quot;headerlink&quot; title=&quot;What are algorithms?&quot;&gt;&lt;/a&gt;What are algorithms?&lt;/h3&gt;&lt;p&gt;非形式地说，算法就是任何良定义（well-defined）的计算过程，该过程取某个值或值的集合作为输入（input），并产生某个值或者值的集合作为输出（output）。&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="学习笔记" scheme="http://yorxika.github.io/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
-    
-      <category term="算法导论" scheme="http://yorxika.github.io/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%AE%97%E6%B3%95%E5%AF%BC%E8%AE%BA/"/>
-    
-    
-      <category term="算法" scheme="http://yorxika.github.io/tags/%E7%AE%97%E6%B3%95/"/>
     
   </entry>
   
