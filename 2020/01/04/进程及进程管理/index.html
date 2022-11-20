@@ -19,7 +19,7 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"yorxika.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"yorxika.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","width":270,"display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
   <meta name="description" content="进程引入顺序程序及特点 计算：程序的一次执行过程称为一个计算，它由许多简单操作所组成。 程序的顺序执行：一个计算的若干操作必须按照严格的先后次序顺序地执行，这类计算过程就是程序的顺序执行过程。">
@@ -29,23 +29,23 @@
 <meta property="og:site_name" content="Nameless Site">
 <meta property="og:description" content="进程引入顺序程序及特点 计算：程序的一次执行过程称为一个计算，它由许多简单操作所组成。 程序的顺序执行：一个计算的若干操作必须按照严格的先后次序顺序地执行，这类计算过程就是程序的顺序执行过程。">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://yorxika.github.io/2020/01/04/%E8%BF%9B%E7%A8%8B%E5%8F%8A%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/image-20200104193543416.png">
-<meta property="og:image" content="http://yorxika.github.io/2020/01/04/%E8%BF%9B%E7%A8%8B%E5%8F%8A%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/image-20200104193922671.png">
-<meta property="og:image" content="http://yorxika.github.io/2020/01/04/%E8%BF%9B%E7%A8%8B%E5%8F%8A%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/image-20200104194258703.png">
-<meta property="og:image" content="http://yorxika.github.io/2020/01/04/%E8%BF%9B%E7%A8%8B%E5%8F%8A%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/image-20200104202215510.png">
-<meta property="og:image" content="http://yorxika.github.io/2020/01/04/%E8%BF%9B%E7%A8%8B%E5%8F%8A%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/image-20200104202506290.png">
-<meta property="og:image" content="http://yorxika.github.io/2020/01/04/%E8%BF%9B%E7%A8%8B%E5%8F%8A%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/image-20200104202546621.png">
-<meta property="og:image" content="http://yorxika.github.io/2020/01/04/%E8%BF%9B%E7%A8%8B%E5%8F%8A%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/image-20200104203133664.png">
-<meta property="og:image" content="http://yorxika.github.io/2020/01/04/%E8%BF%9B%E7%A8%8B%E5%8F%8A%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/image-20200104204241996.png">
-<meta property="og:image" content="http://yorxika.github.io/2020/01/04/%E8%BF%9B%E7%A8%8B%E5%8F%8A%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/image-20200104204715905.png">
-<meta property="og:image" content="http://yorxika.github.io/2020/01/04/%E8%BF%9B%E7%A8%8B%E5%8F%8A%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/image-20200104204758996.png">
+<meta property="og:image" content="http://yorxika.github.io/2020/01/04/%E8%BF%9B%E7%A8%8B%E5%8F%8A%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/01/04/%E8%BF%9B%E7%A8%8B%E5%8F%8A%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/image-20200104193543416.png">
+<meta property="og:image" content="http://yorxika.github.io/2020/01/04/%E8%BF%9B%E7%A8%8B%E5%8F%8A%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/01/04/%E8%BF%9B%E7%A8%8B%E5%8F%8A%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/image-20200104193922671.png">
+<meta property="og:image" content="http://yorxika.github.io/2020/01/04/%E8%BF%9B%E7%A8%8B%E5%8F%8A%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/01/04/%E8%BF%9B%E7%A8%8B%E5%8F%8A%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/image-20200104194258703.png">
+<meta property="og:image" content="http://yorxika.github.io/2020/01/04/%E8%BF%9B%E7%A8%8B%E5%8F%8A%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/01/04/%E8%BF%9B%E7%A8%8B%E5%8F%8A%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/image-20200104202215510.png">
+<meta property="og:image" content="http://yorxika.github.io/2020/01/04/%E8%BF%9B%E7%A8%8B%E5%8F%8A%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/01/04/%E8%BF%9B%E7%A8%8B%E5%8F%8A%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/image-20200104202506290.png">
+<meta property="og:image" content="http://yorxika.github.io/2020/01/04/%E8%BF%9B%E7%A8%8B%E5%8F%8A%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/01/04/%E8%BF%9B%E7%A8%8B%E5%8F%8A%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/image-20200104202546621.png">
+<meta property="og:image" content="http://yorxika.github.io/2020/01/04/%E8%BF%9B%E7%A8%8B%E5%8F%8A%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/01/04/%E8%BF%9B%E7%A8%8B%E5%8F%8A%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/image-20200104203133664.png">
+<meta property="og:image" content="http://yorxika.github.io/2020/01/04/%E8%BF%9B%E7%A8%8B%E5%8F%8A%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/01/04/%E8%BF%9B%E7%A8%8B%E5%8F%8A%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/image-20200104204241996.png">
+<meta property="og:image" content="http://yorxika.github.io/2020/01/04/%E8%BF%9B%E7%A8%8B%E5%8F%8A%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/01/04/%E8%BF%9B%E7%A8%8B%E5%8F%8A%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/image-20200104204715905.png">
+<meta property="og:image" content="http://yorxika.github.io/2020/01/04/%E8%BF%9B%E7%A8%8B%E5%8F%8A%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/01/04/%E8%BF%9B%E7%A8%8B%E5%8F%8A%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/image-20200104204758996.png">
 <meta property="article:published_time" content="2020-01-04T11:13:08.000Z">
 <meta property="article:modified_time" content="2020-01-04T14:20:37.000Z">
 <meta property="article:author" content="HMF">
 <meta property="article:tag" content="操作系统">
 <meta property="article:tag" content="进程">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://yorxika.github.io/2020/01/04/%E8%BF%9B%E7%A8%8B%E5%8F%8A%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/image-20200104193543416.png">
+<meta name="twitter:image" content="http://yorxika.github.io/2020/01/04/%E8%BF%9B%E7%A8%8B%E5%8F%8A%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/01/04/%E8%BF%9B%E7%A8%8B%E5%8F%8A%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/image-20200104193543416.png">
 
 <link rel="canonical" href="http://yorxika.github.io/2020/01/04/%E8%BF%9B%E7%A8%8B%E5%8F%8A%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/">
 
@@ -314,13 +314,13 @@
 <li>等待状态(wait) 进程正等待着某一事件的发生而暂时停止执行。这时， 即使给它CPU控制权，它也无法执行。 </li>
 <li>就绪状态(ready) 进程已获得除CPU之外的运行所必需的资源，一旦得到 CPU控制权，立即可以运行。</li>
 </ul>
-<p><img src="/2020/01/04/%E8%BF%9B%E7%A8%8B%E5%8F%8A%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/image-20200104193543416.png" alt="image-20200104193543416"></p>
+<p><img src="/2020/01/04/%E8%BF%9B%E7%A8%8B%E5%8F%8A%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/01/04/%E8%BF%9B%E7%A8%8B%E5%8F%8A%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/image-20200104193543416.png" alt="image-20200104193543416"></p>
 <h3 id="进程描述"><a href="#进程描述" class="headerlink" title="进程描述"></a>进程描述</h3><p>什么是进程控制块<br>描述进程与其他进程、系统资源的关系以及进程在各个不同时期所处的状态的数据结构，称为进程控制块 PCB (process control block)。 </p>
 <p>进程的组成</p>
 <ul>
 <li>程序与数据<br> 描述进程本身所应完成的功能</li>
 <li><p>PCB<br> 进程的动态特征，该进程与其他进 程和系统资源的关系。</p>
-<p> <img src="/2020/01/04/%E8%BF%9B%E7%A8%8B%E5%8F%8A%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/image-20200104193922671.png" alt="image-20200104193922671"></p>
+<p> <img src="/2020/01/04/%E8%BF%9B%E7%A8%8B%E5%8F%8A%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/01/04/%E8%BF%9B%E7%A8%8B%E5%8F%8A%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/image-20200104193922671.png" alt="image-20200104193922671"></p>
 </li>
 </ul>
 <p>进程控制块的主要内容</p>
@@ -334,7 +334,7 @@
 <li>家族联系 指明本进程与家族的联系 </li>
 <li>占有资源清单</li>
 </ul>
-<p><img src="/2020/01/04/%E8%BF%9B%E7%A8%8B%E5%8F%8A%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/image-20200104194258703.png" alt="image-20200104194258703"></p>
+<p><img src="/2020/01/04/%E8%BF%9B%E7%A8%8B%E5%8F%8A%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/01/04/%E8%BF%9B%E7%A8%8B%E5%8F%8A%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/image-20200104194258703.png" alt="image-20200104194258703"></p>
 <h2 id="进程控制"><a href="#进程控制" class="headerlink" title="进程控制"></a>进程控制</h2><p>进程控制的职责 ：对系统中的进程实施有效的管理，负责进程状态的改变。<br>常用的进程控制原语：创建原语creat、撤消原语kill、阻塞原语susp、唤醒原语wakeup</p>
 <h2 id="进程之间的约束关系"><a href="#进程之间的约束关系" class="headerlink" title="进程之间的约束关系"></a>进程之间的约束关系</h2><h3 id="进程竞争与合作"><a href="#进程竞争与合作" class="headerlink" title="进程竞争与合作"></a>进程竞争与合作</h3><p>进程之间的约束关系可分为两种情况：</p>
 <ul>
@@ -418,7 +418,7 @@
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta"># <span class="keyword">define</span> CHAIRS 5 <span class="comment">/*为等待的顾客准备的椅子数*/</span> </span></span><br><span class="line"><span class="keyword">typedef</span> <span class="type">int</span> semaphone ; <span class="comment">/*信号灯类型*/</span> </span><br><span class="line">semaphore customers=<span class="number">0</span>; <span class="comment">/*等待服务的顾客数*/</span> </span><br><span class="line">semaphore barbers=<span class="number">0</span>; <span class="comment">/*等待顾客的理发师数*/</span> </span><br><span class="line">semaphore mutex=<span class="number">1</span>; <span class="comment">/*用于互斥*/</span></span><br><span class="line"><span class="type">int</span> waiting=<span class="number">0</span>; <span class="comment">/*等待的顾客(还没理发的)，waiting是一个共享变量，对它操作时必须加锁，用mutex加以保护*/</span></span><br><span class="line"></span><br><span class="line">main() </span><br><span class="line">&#123;   </span><br><span class="line">   …… </span><br><span class="line">   cobegin </span><br><span class="line">      barber（）； </span><br><span class="line">      customers（）； </span><br><span class="line">   coend </span><br><span class="line">   …… </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">barber</span><span class="params">(<span class="type">void</span>)</span> </span><br><span class="line">&#123; </span><br><span class="line">   <span class="keyword">while</span>(TRUE) <span class="comment">/*理完1人,还有顾客吗?*/</span> </span><br><span class="line">   &#123; </span><br><span class="line">      p(customers); <span class="comment">/*如果顾客数是0，则理发师睡眠*/</span> </span><br><span class="line">      p(mutex); <span class="comment">/*要求进程等待*/</span> </span><br><span class="line">         waiting=waiting<span class="number">-1</span>; <span class="comment">/*等待顾客数减1*/</span> </span><br><span class="line">      v(barbers); <span class="comment">/*一个理发师现在开始理发了*/</span> </span><br><span class="line">      v(mutex); <span class="comment">/*释放等待*/</span> </span><br><span class="line">      cut_hair(); <span class="comment">/*理发(非临界区操作)*/</span> </span><br><span class="line">   &#125; </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">customers</span><span class="params">(<span class="type">void</span>)</span> </span><br><span class="line">&#123;       </span><br><span class="line">   p(mutex);<span class="comment">/*进入临界区*/</span> </span><br><span class="line">   <span class="keyword">if</span> (waiting &lt; CHAIRS) </span><br><span class="line">   &#123;<span class="comment">/*如果没有空椅子，就离开*/</span> </span><br><span class="line">      waiting = waiting + <span class="number">1</span>;<span class="comment">/*等待顾客数加1*/</span> </span><br><span class="line">      v(customers); <span class="comment">/*如果必要的话，唤醒理发师*/</span> </span><br><span class="line">      v(mutex); <span class="comment">/*释放访问等待*/</span> </span><br><span class="line">      p(barbers); <span class="comment">/*无理发师, 顾客坐着养神*/</span> </span><br><span class="line">      get_haircut();<span class="comment">/*一个顾客坐下等理发*/</span> </span><br><span class="line">   &#125; </span><br><span class="line">   <span class="keyword">else</span> </span><br><span class="line">      v(mutex); <span class="comment">/*店里人满了，走吧*/</span> </span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
 <h2 id="进程通信"><a href="#进程通信" class="headerlink" title="进程通信"></a>进程通信</h2><p>进程通信(Interprocess Communication, IPC)是指进程之间直 接以较高的效率传递较多数据的信息交互方式。</p>
 <p>IPC机制：指消息（message）从一个进程的地址空间拷贝到另一个进程 的地址空间的过程，而不使用共享存储器。</p>
-<p><img src="/2020/01/04/%E8%BF%9B%E7%A8%8B%E5%8F%8A%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/image-20200104202215510.png" alt="image-20200104202215510"></p>
+<p><img src="/2020/01/04/%E8%BF%9B%E7%A8%8B%E5%8F%8A%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/01/04/%E8%BF%9B%E7%A8%8B%E5%8F%8A%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/image-20200104202215510.png" alt="image-20200104202215510"></p>
 <h3 id="进程通信方式"><a href="#进程通信方式" class="headerlink" title="进程通信方式"></a>进程通信方式</h3><p>消息缓冲通信 </p>
 <ul>
 <li>在消息通信中，接收方和发送方之间有明确的协议和消息格式 。<ul>
@@ -436,12 +436,12 @@
 <li>在信箱通信中，需要定义信箱结构，还包括消息发送和接收功能模块，提供发送原语和接收原语。</li>
 <li>信箱通信中，所使用的信箱可以位于用户空间中，是接收进程地址空间的一部分；也可以放置在操作系统的空间中。</li>
 </ul>
-<p>使用用户空间中的信箱实现消息传递<br>信箱由用户管理，进程可以直接访问信息<br><img src="/2020/01/04/%E8%BF%9B%E7%A8%8B%E5%8F%8A%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/image-20200104202506290.png" alt="image-20200104202506290"><br>缺点：</p>
+<p>使用用户空间中的信箱实现消息传递<br>信箱由用户管理，进程可以直接访问信息<br><img src="/2020/01/04/%E8%BF%9B%E7%A8%8B%E5%8F%8A%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/01/04/%E8%BF%9B%E7%A8%8B%E5%8F%8A%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/image-20200104202506290.png" alt="image-20200104202506290"><br>缺点：</p>
 <ul>
 <li>编译器和加载程序必须为每一个进程分配信箱空间 ；</li>
 <li>接收进程有可能覆盖信息的部分内容，从而造成错误。</li>
 </ul>
-<p>使用系统空间中的信箱实现消息传递<br>信箱由OS管理，任何进程不能直接访问<br><img src="/2020/01/04/%E8%BF%9B%E7%A8%8B%E5%8F%8A%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/image-20200104202546621.png" alt="image-20200104202546621"><br>缺点：要求OS为所有的进程分配主存信箱，受系统限制，可 能对通信进程数限制。</p>
+<p>使用系统空间中的信箱实现消息传递<br>信箱由OS管理，任何进程不能直接访问<br><img src="/2020/01/04/%E8%BF%9B%E7%A8%8B%E5%8F%8A%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/01/04/%E8%BF%9B%E7%A8%8B%E5%8F%8A%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/image-20200104202546621.png" alt="image-20200104202546621"><br>缺点：要求OS为所有的进程分配主存信箱，受系统限制，可 能对通信进程数限制。</p>
 <h2 id="线程概念及特点"><a href="#线程概念及特点" class="headerlink" title="线程概念及特点"></a>线程概念及特点</h2><p>为什么引入线程？</p>
 <ul>
 <li>为了避免多处理机系统在进行远程访问期间的等待现象。</li>
@@ -463,7 +463,7 @@
 <li>在进程内创建多线程，可以提高系统的并行处理能力， 加快进程的处理速度。</li>
 </ul>
 <p>进程是任务调度的单位，也是系统资源的分配单位；而线程是进程中的一条执行路径，当系统支持多线程处理时，线程是任务调度的单位，但不是系统资源的分配单位。线程完全继承父进程占有的资源，当它活动时，具有自己的运行现场。</p>
-<p><img src="/2020/01/04/%E8%BF%9B%E7%A8%8B%E5%8F%8A%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/image-20200104203133664.png" alt="image-20200104203133664"></p>
+<p><img src="/2020/01/04/%E8%BF%9B%E7%A8%8B%E5%8F%8A%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/01/04/%E8%BF%9B%E7%A8%8B%E5%8F%8A%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/image-20200104203133664.png" alt="image-20200104203133664"></p>
 <p>用户线程和内核线程</p>
 <ul>
 <li>用户线程 <ul>
@@ -494,7 +494,7 @@
 <p>等待进程终止 wait(); waitpid();<br>① wait() 语法格式<br>pid=wait(stat_addr);<br>wait()函数使父进程暂停执行，直到它的一个子进程结束为止，该函数的返回值是终止运行的子进程的PID。参数status所指向的变量存放子进程的退出码，即从子进程的main函数返回的值或子进程中exit()函数的参数。如果status不是一个空指针，状态信息将被写入它指向的变量。<br>② waitpid() 语法格式<br>pid=wait(stat_addr);<br>waitpid(pid_t pid,int * status,int options)<br>用来等待子进程的结束，但它用于等待某个特定进程结束。参数pid指明要等待的子进程的PID，参数status的含义与wait()函数中的status相同。</p>
 <h2 id="进程调度"><a href="#进程调度" class="headerlink" title="进程调度"></a>进程调度</h2><h3 id="进程调度的功能"><a href="#进程调度的功能" class="headerlink" title="进程调度的功能"></a>进程调度的功能</h3><p>调度：在众多处于就绪状态的进程中，按一定的原则选择一个进程。</p>
 <p>分派：当处理机空闲时，移出就绪队列中第一个进程，并赋予它使用处理机的权利。</p>
-<p><img src="/2020/01/04/%E8%BF%9B%E7%A8%8B%E5%8F%8A%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/image-20200104204241996.png" alt="image-20200104204241996"></p>
+<p><img src="/2020/01/04/%E8%BF%9B%E7%A8%8B%E5%8F%8A%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/01/04/%E8%BF%9B%E7%A8%8B%E5%8F%8A%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/image-20200104204241996.png" alt="image-20200104204241996"></p>
 <p>进程调度的功能</p>
 <ul>
 <li>记录进程的有关情况</li>
@@ -530,14 +530,14 @@
 </li>
 </ul>
 <h4 id="循环轮转调度算法"><a href="#循环轮转调度算法" class="headerlink" title="循环轮转调度算法"></a>循环轮转调度算法</h4><p>什么是循环轮转调度算法<br>当CPU空闲时，选取就绪队列首元素，赋予一个时间片，当时间片用完时，该进程转为就绪态并进入就绪队列末端。</p>
-<p><img src="/2020/01/04/%E8%BF%9B%E7%A8%8B%E5%8F%8A%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/image-20200104204715905.png" alt="image-20200104204715905"></p>
+<p><img src="/2020/01/04/%E8%BF%9B%E7%A8%8B%E5%8F%8A%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/01/04/%E8%BF%9B%E7%A8%8B%E5%8F%8A%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/image-20200104204715905.png" alt="image-20200104204715905"></p>
 <p>简单循环轮转调度算法<br>就绪队列中的所有进程以等速度向前进展。<br>q = t/n<br>t 为用户所能接受的响应时间，n为进入系统的进程数目。</p>
 <p>循环轮转调度算法的发展</p>
 <ul>
 <li>可变时间片轮转调度</li>
 <li>多重时间片循环调度</li>
 </ul>
-<h3 id="调度用的进程状态变迁图"><a href="#调度用的进程状态变迁图" class="headerlink" title="调度用的进程状态变迁图"></a>调度用的进程状态变迁图</h3><p><img src="/2020/01/04/%E8%BF%9B%E7%A8%8B%E5%8F%8A%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/image-20200104204758996.png" alt="image-20200104204758996"></p>
+<h3 id="调度用的进程状态变迁图"><a href="#调度用的进程状态变迁图" class="headerlink" title="调度用的进程状态变迁图"></a>调度用的进程状态变迁图</h3><p><img src="/2020/01/04/%E8%BF%9B%E7%A8%8B%E5%8F%8A%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/01/04/%E8%BF%9B%E7%A8%8B%E5%8F%8A%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/image-20200104204758996.png" alt="image-20200104204758996"></p>
 <ul>
 <li>进程状态<ul>
 <li>运行状态</li>
@@ -709,7 +709,9 @@
 
       </div>
 
-<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=298 height=60 src="//music.163.com/outchain/player?type=2&id=509038&auto=0&height=32"></iframe>
+<div id="music163">
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=300 height=370 src="//music.163.com/outchain/player?type=0&id=7760409930&auto=1&height=430"></iframe>
+</div>
 
     </div>
   </aside>

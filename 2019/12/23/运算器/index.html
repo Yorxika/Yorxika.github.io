@@ -19,7 +19,7 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"yorxika.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"yorxika.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","width":270,"display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
   <meta name="description" content="定点数运算及溢出检测 补码加法：[X＋Y]补 &#x3D; [X]补＋ [Y]补 和的补码 &#x3D; 补码的和   补码减法：[X−Y]补 &#x3D; [X]补＋ [−Y]补 &#x3D; [X]补−[Y]补 差的补码 &#x3D; 补码的差">
@@ -29,45 +29,45 @@
 <meta property="og:site_name" content="Nameless Site">
 <meta property="og:description" content="定点数运算及溢出检测 补码加法：[X＋Y]补 &#x3D; [X]补＋ [Y]补 和的补码 &#x3D; 补码的和   补码减法：[X−Y]补 &#x3D; [X]补＋ [−Y]补 &#x3D; [X]补−[Y]补 差的补码 &#x3D; 补码的差">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://yorxika.github.io/2019/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/image-20191223010219114.png">
-<meta property="og:image" content="http://yorxika.github.io/2019/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/image-20191226234848895.png">
-<meta property="og:image" content="http://yorxika.github.io/2019/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/image-20191226235525221.png">
-<meta property="og:image" content="http://yorxika.github.io/2019/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/image-20191223011539952.png">
-<meta property="og:image" content="http://yorxika.github.io/2019/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/image-20191223011546598.png">
-<meta property="og:image" content="http://yorxika.github.io/2019/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/image-20191223011554683.png">
-<meta property="og:image" content="http://yorxika.github.io/2019/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/image-20191223011604477.png">
-<meta property="og:image" content="http://yorxika.github.io/2019/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/image-20191223011617449.png">
-<meta property="og:image" content="http://yorxika.github.io/2019/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/image-20191223011651720.png">
-<meta property="og:image" content="http://yorxika.github.io/2019/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/image-20191223105629422.png">
-<meta property="og:image" content="http://yorxika.github.io/2019/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/image-20191223105639405.png">
-<meta property="og:image" content="http://yorxika.github.io/2019/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/image-20191223105649861.png">
-<meta property="og:image" content="http://yorxika.github.io/2019/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/image-20191223105716737.png">
-<meta property="og:image" content="http://yorxika.github.io/2019/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/image-20191223110749473.png">
-<meta property="og:image" content="http://yorxika.github.io/2019/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/image-20191223110759842.png">
-<meta property="og:image" content="http://yorxika.github.io/2019/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/image-20191223112447328.png">
-<meta property="og:image" content="http://yorxika.github.io/2019/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/image-20191227001319627.png">
-<meta property="og:image" content="http://yorxika.github.io/2019/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/image-20191227001414909.png">
-<meta property="og:image" content="http://yorxika.github.io/2019/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/image-20191227001634066.png">
-<meta property="og:image" content="http://yorxika.github.io/2019/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/image-20191227002149154.png">
-<meta property="og:image" content="http://yorxika.github.io/2019/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/image-20191223112518818.png">
-<meta property="og:image" content="http://yorxika.github.io/2019/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/image-20191223112531553.png">
-<meta property="og:image" content="http://yorxika.github.io/2019/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/image-20191227003555284.png">
-<meta property="og:image" content="http://yorxika.github.io/2019/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/image-20191227003638643.png">
-<meta property="og:image" content="http://yorxika.github.io/2019/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/image-20191227003720937.png">
-<meta property="og:image" content="http://yorxika.github.io/2019/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/image-20191223231843074.png">
-<meta property="og:image" content="http://yorxika.github.io/2019/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/image-20191223231854975.png">
-<meta property="og:image" content="http://yorxika.github.io/2019/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/image-20191223231901994.png">
-<meta property="og:image" content="http://yorxika.github.io/2019/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/image-20191223231927917.png">
-<meta property="og:image" content="http://yorxika.github.io/2019/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/image-20191223232007762.png">
-<meta property="og:image" content="http://yorxika.github.io/2019/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/image-20191223232026608.png">
-<meta property="og:image" content="http://yorxika.github.io/2019/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/image-20191223232033420.png">
-<meta property="og:image" content="http://yorxika.github.io/2019/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/image-20191227005213203.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/image-20191223010219114.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/image-20191226234848895.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/image-20191226235525221.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/image-20191223011539952.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/image-20191223011546598.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/image-20191223011554683.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/image-20191223011604477.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/image-20191223011617449.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/image-20191223011651720.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/image-20191223105629422.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/image-20191223105639405.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/image-20191223105649861.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/image-20191223105716737.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/image-20191223110749473.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/image-20191223110759842.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/image-20191223112447328.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/image-20191227001319627.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/image-20191227001414909.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/image-20191227001634066.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/image-20191227002149154.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/image-20191223112518818.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/image-20191223112531553.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/image-20191227003555284.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/image-20191227003638643.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/image-20191227003720937.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/image-20191223231843074.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/image-20191223231854975.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/image-20191223231901994.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/image-20191223231927917.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/image-20191223232007762.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/image-20191223232026608.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/image-20191223232033420.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/image-20191227005213203.png">
 <meta property="article:published_time" content="2019-12-22T16:46:38.000Z">
 <meta property="article:modified_time" content="2019-12-26T17:14:54.000Z">
 <meta property="article:author" content="HMF">
 <meta property="article:tag" content="组成原理">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://yorxika.github.io/2019/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/image-20191223010219114.png">
+<meta name="twitter:image" content="http://yorxika.github.io/2019/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/image-20191223010219114.png">
 
 <link rel="canonical" href="http://yorxika.github.io/2019/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/">
 
@@ -320,7 +320,7 @@
 </ul>
 </li>
 </ul>
-<p><img src="/2019/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/image-20191223010219114.png" alt="image-20191223010219114"></p>
+<p><img src="/2019/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/image-20191223010219114.png" alt="image-20191223010219114"></p>
 <h3 id="单符号数溢出检测"><a href="#单符号数溢出检测" class="headerlink" title="单符号数溢出检测"></a>单符号数溢出检测</h3><h4 id="方法I"><a href="#方法I" class="headerlink" title="方法I"></a>方法I</h4><p>溢出只可能发生在同符号数相加时，包括[X]补与[Y]补； [X]补与[-Y]同号；<br>方法1：对操作数和运算结果的符号位进行检测 当结果的符号位与操作数的符号不相同时就表明发生了溢出 </p>
 <ul>
 <li>正正得负  负负得正</li>
@@ -328,7 +328,7 @@
 <li>溢出检测信号Overflow   (OF)<br>OF = !f0·!f1·fs + f0·f1·!fs</li>
 </ul>
 <h4 id="方法II"><a href="#方法II" class="headerlink" title="方法II"></a>方法II</h4><p>方法2：对最高数据位进位和符号进位进行检测 •设运算时最高数据位产生的进位为C1，符号位产生的进位为C0， 溢出检测电路为： V= C0 ^ C 1</p>
-<p><img src="/2019/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/image-20191226234848895.png" alt="image-20191226234848895"></p>
+<p><img src="/2019/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/image-20191226234848895.png" alt="image-20191226234848895"></p>
 <h4 id="方法III"><a href="#方法III" class="headerlink" title="方法III"></a>方法III</h4><p>方法3：用变型补码 [X]补 = Xf1Xf2. X1X2X3…Xn mod  2^n+2 溢出的判断:  V= Xf1 ^ Xf2</p>
 <p>例6 已知 X=- 10010  Y= -10101  求X+Y<br>解:   [X]补=1101110   [Y]补= 1101011<br>[X+Y]补=[X]补+[Y]补= 1101110  + 1101011 =1 10 10001<br>V= 1 ^ 0 =1 故发生溢出！</p>
 <h4 id="无符号数运算的溢出判断"><a href="#无符号数运算的溢出判断" class="headerlink" title="无符号数运算的溢出判断"></a>无符号数运算的溢出判断</h4><ul>
@@ -336,7 +336,7 @@
 <li>无符号数减法的溢出也可用带加/减功能的ALU的进位取反后表示。</li>
 </ul>
 <h2 id="定点数补码加减运算器设计"><a href="#定点数补码加减运算器设计" class="headerlink" title="定点数补码加减运算器设计"></a>定点数补码加减运算器设计</h2><h3 id="带进位链的一位全加器"><a href="#带进位链的一位全加器" class="headerlink" title="带进位链的一位全加器"></a>带进位链的一位全加器</h3><p>Si  =  Xi ⊕ Yi ⊕ Ci<br>Ci+1  =  Xi Yi  + (Xi ⊕ Yi )Ci</p>
-<p><img src="/2019/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/image-20191226235525221.png" alt="image-20191226235525221"></p>
+<p><img src="/2019/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/image-20191226235525221.png" alt="image-20191226235525221"></p>
 <ul>
 <li>n位加法器包含n个全加器</li>
 <li>将n个一位全加器串联</li>
@@ -355,10 +355,10 @@
 </li>
 </ul>
 <p>[−Y]补= [ [Y]补 ]补<br>Input = Yi ^ Sub</p>
-<p><img src="/2019/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/image-20191223011539952.png" alt="image-20191223011539952"></p>
-<p><img src="/2019/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/image-20191223011546598.png" alt="image-20191223011546598"></p>
-<p><img src="/2019/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/image-20191223011554683.png" alt="image-20191223011554683"></p>
-<p><img src="/2019/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/image-20191223011604477.png" alt="image-20191223011604477"></p>
+<p><img src="/2019/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/image-20191223011539952.png" alt="image-20191223011539952"></p>
+<p><img src="/2019/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/image-20191223011546598.png" alt="image-20191223011546598"></p>
+<p><img src="/2019/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/image-20191223011554683.png" alt="image-20191223011554683"></p>
+<p><img src="/2019/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/image-20191223011604477.png" alt="image-20191223011604477"></p>
 <h3 id="并行加法器进位链-carry-lookahead"><a href="#并行加法器进位链-carry-lookahead" class="headerlink" title="并行加法器进位链(carry-lookahead)"></a>并行加法器进位链(carry-lookahead)</h3><p>Si = Xi⊕Yi⊕Ci-1<br>Ci = XiYi+(Xi⊕Yi)Ci-1<br>Gi = XiYi    进位生成函数 Generate<br>Pi = Xi⊕Yi    进位传递函数 Propagate<br>Ci = Gi + Pi·Ci-1<br>高位运算依赖于低位进位 -&gt; 计算不能并行</p>
 <p>Cn = Gn＋PnGn-1＋PnPn-1Gn-2＋PnPn-1Pn-2Gn-3 …＋PnPn-1…P1C0</p>
 <ul>
@@ -366,39 +366,39 @@
 <li>位数越长，进位链电路复杂度越高</li>
 <li>通常按照4位一组进行分组运算</li>
 </ul>
-<p><img src="/2019/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/image-20191223011617449.png" alt="image-20191223011617449"></p>
-<p><img src="/2019/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/image-20191223011651720.png" alt="image-20191223011651720"><br>①生成P*，G*需3T  -&gt;  ②生成C3/C12需2T -&gt;  ③求和需3T</p>
+<p><img src="/2019/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/image-20191223011617449.png" alt="image-20191223011617449"></p>
+<p><img src="/2019/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/image-20191223011651720.png" alt="image-20191223011651720"><br>①生成P*，G*需3T  -&gt;  ②生成C3/C12需2T -&gt;  ③求和需3T</p>
 <h2 id="原码一位乘法"><a href="#原码一位乘法" class="headerlink" title="原码一位乘法"></a>原码一位乘法</h2><ul>
 <li>符号单独运算：直接异或</li>
 <li>绝对值相乘：   仅需考虑数值部分的计算</li>
 </ul>
-<p><img src="/2019/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/image-20191223105629422.png" alt="image-20191223105629422"></p>
-<p><img src="/2019/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/image-20191223105639405.png" alt="image-20191223105639405"></p>
-<p><img src="/2019/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/image-20191223105649861.png" alt="image-20191223105649861"></p>
-<p><img src="/2019/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/image-20191223105716737.png" alt="image-20191223105716737"></p>
+<p><img src="/2019/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/image-20191223105629422.png" alt="image-20191223105629422"></p>
+<p><img src="/2019/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/image-20191223105639405.png" alt="image-20191223105639405"></p>
+<p><img src="/2019/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/image-20191223105649861.png" alt="image-20191223105649861"></p>
+<p><img src="/2019/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/image-20191223105716737.png" alt="image-20191223105716737"></p>
 <h2 id="补码一位乘法"><a href="#补码一位乘法" class="headerlink" title="补码一位乘法"></a>补码一位乘法</h2><p>设[X]补 = X0X1X2X3…Xn [Y]补 = Y0Y1Y2Y3…Yn<br>可证明：<br>   [X•Y]补 = [X]补•( 0.Y1Y2Y3…Yn ) –Y0• [X]补<br>进一步展开合并后可得：<br>   [x•y]补=[x] 补•Σ(yi+1 - yi)2^-i    ( 符号位参加运算 ) </p>
 <p>补码一位乘法的运算规则如下:<br>(1)如果yn+1=yn,部分积加0，部分积算术右移1位；<br>(2)如果yn+1yn=10,部分积加[x]补，部分积算术右移1位；<br>(3)如果yn+1yn=01,部分积加[-x]补，部分积算术右移1位. 重复进行n＋1步，但最后一步不移位。<br>包括一位符号位，所得乘积为2n＋1位，其中n为数据位位数. </p>
 <p>几个特殊问题的处理<br>(1) i=n时 ,yn+1= ？yn+1= 0<br>(2) yn+1 是哪个寄存器？在乘数寄存器Y后增加的一位<br>(3)算术右移的对象有哪些？   部分积和乘数寄存器均右移</p>
-<p><img src="/2019/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/image-20191223110749473.png" alt="image-20191223110749473"></p>
-<p><img src="/2019/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/image-20191223110759842.png" alt="image-20191223110759842"></p>
-<h2 id="乘法运算器设计"><a href="#乘法运算器设计" class="headerlink" title="乘法运算器设计"></a>乘法运算器设计</h2><p><img src="/2019/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/image-20191223112447328.png" alt="image-20191223112447328"></p>
+<p><img src="/2019/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/image-20191223110749473.png" alt="image-20191223110749473"></p>
+<p><img src="/2019/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/image-20191223110759842.png" alt="image-20191223110759842"></p>
+<h2 id="乘法运算器设计"><a href="#乘法运算器设计" class="headerlink" title="乘法运算器设计"></a>乘法运算器设计</h2><p><img src="/2019/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/image-20191223112447328.png" alt="image-20191223112447328"></p>
 <h3 id="阵列乘法器"><a href="#阵列乘法器" class="headerlink" title="阵列乘法器"></a>阵列乘法器</h3><p>而对于相加数运算，就变成了一位乘法运算，一位乘法运算很简单，从真值表看，这就是一个简单的与逻辑，也就是逻辑与门就可以实现一位乘法，对于上一页的5*5的乘法运算，需要25个相加数，所以我们可以采用25个与门并发，如图所示，经过<strong>一级门电路延迟</strong>后，就可以得到所有的相加数，下面我们只需要考虑逐列相加的逻辑就可以实现乘法器</p>
-<p><img src="/2019/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/image-20191227001319627.png" alt="image-20191227001319627"></p>
+<p><img src="/2019/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/image-20191227001319627.png" alt="image-20191227001319627"></p>
 <ul>
 <li>与门实现一位乘法</li>
 <li>25个与门并发</li>
 <li>一级门延迟，生成所有相加数</li>
 </ul>
-<p><img src="/2019/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/image-20191227001414909.png" alt="image-20191227001414909"></p>
+<p><img src="/2019/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/image-20191227001414909.png" alt="image-20191227001414909"></p>
 <p>经过一级门电路延迟后，生成了所有相加数，这里X。。就是，将第二列用一个全加器进行相加，由于全加器有三个输入，所以这里进位位我们给一个零，当然大家也可以使用半加器完成，去掉进位输入，可以减少硬件成本，相加得到的结果就是乘积的P1位，进位输出横向向高位列传递，这就是所谓的横向进位阵列乘法器，将第三列的三个数用两个全加器串联进行运算，就可以得到P2，同样，全加器的进位输出都横向向左侧传递。，最后一个全加器进位输入为零，依次类推，得到P3，P4，P5，对于P6列，这个进位信号直接传递到下一层的全加器，同理得到P7，P。。。。。      如果采用斜向进位，就可以有另外一种连接方法。</p>
 <p>前面我们给出了横向进位和斜向进位两种阵列乘法器，首先我们来看看横向进位阵列乘法器，5*5的横向阵列乘法器包括4行全加器，每行5个，需要20个全加器，进位信号横向传递，每一行都是一个5位串行进位加法器，串行加法器的特点就是性能差，各全加器之间存在着进位依赖，所以这个全加器运算完毕后，这个才能运算，然后是这个，第一行运算完毕后，第二行才能开始运算，所以看上去所有全加器都只能串行工作，整个运算需要20个全加器时延。</p>
 <p>但仔细分析，这个横向进位阵列乘法器还存在这一定的并行性，首先是这个全加器运算，运算完毕后这个全加器运算，当第二个全加器运算完毕后，这两个全加器的输入就绪，两个全加器可以并发，当这两个全加器运算完毕后，这两个全加器运算，然后是这三个全加器并发，所以沿着对角线法线方向上的全加器是可以并发的，我们来看看乘法器的关键路径<br>(T是计算X1Y1，X0Y0的那个时延)</p>
-<p><img src="/2019/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/image-20191227001634066.png" alt="image-20191227001634066"></p>
+<p><img src="/2019/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/image-20191227001634066.png" alt="image-20191227001634066"></p>
 <p>斜向进位乘法器和横向进位乘法器结构有一些区别，加法器一共5行，每行4个全加器，横向进位是4行，每行5个，硬件电路成本相同，都是n。     由于斜向进位的引入，同一行的全加器可以并发，行与行之间有结果依赖，所以前面4行需要4个全加器延迟，也就是n-1个全加器延迟，最后一行由于采用的是横向进位，所以这部分如果不做优化，器时间延迟也是n-1个全加器延迟，电路运行的关键路径如下，一共需要。。。。。。。 斜式时间复杂度优于横向进位阵列乘法器，由3n个全加器延迟结标变成2n级别，性能明显由于横向进位阵列乘法器</p>
-<p><img src="/2019/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/image-20191227002149154.png" alt="image-20191227002149154"></p>
+<p><img src="/2019/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/image-20191227002149154.png" alt="image-20191227002149154"></p>
 <p>最后对比一下横向进位阵列乘法器，和斜向阵列乘法器，两个电路硬件成本都是n*n-1个全加器，只不过一个是4行5列，一个是5行4列但由于内部进位信号传递方式不同，直接导致性能差异加大，大约是1.5倍的差异， 不同结构硬件实现方式就和软件的算法一样，好的算法可以得到优秀的性能</p>
-<p><img src="/2019/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/image-20191223112518818.png" alt="image-20191223112518818"></p>
-<p><img src="/2019/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/image-20191223112531553.png" alt="image-20191223112531553"></p>
+<p><img src="/2019/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/image-20191223112518818.png" alt="image-20191223112518818"></p>
+<p><img src="/2019/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/image-20191223112531553.png" alt="image-20191223112531553"></p>
 <h3 id="计算机中的流水线"><a href="#计算机中的流水线" class="headerlink" title="计算机中的流水线"></a>计算机中的流水线</h3><ul>
 <li>流水思想：复杂问题分解成细粒度任务并发<ul>
 <li>乘法流水线，浮点流水线，指令流水线</li>
@@ -407,11 +407,11 @@
 </ul>
 </li>
 </ul>
-<p><img src="/2019/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/image-20191227003555284.png" alt="image-20191227003555284"></p>
+<p><img src="/2019/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/image-20191227003555284.png" alt="image-20191227003555284"></p>
 <p>回到阵列乘法器上，如果简单的5*5将阵列乘法器看做4个5位串行加法器的级联，我们可以将运算过程细分为4个步骤，第一步计算Y+。。。。  得到部分积，为了简化设计，我们这里可以直接采用10位的加法器进行运算，不足的位补零即可， 第二部将第一步运算的结果累加上Y2X*4，*4是考虑权值对齐的问题，同理第三部。。。。第四部是。。。。。。完成第四部运算后10位加法器的运算结果就是最终的成绩，如果吧这里绿色的横线当做流水接口，实际上就可以演变成一个乘法流水线，这里流水接口本质上就是一堆寄存器，用于锁存当前步骤运算的部分积，，，以及后续步骤运算所需要的Yi*X。   后续我们实验中要求大家按照这个思路实现一个乘法流水线。</p>
-<p><img src="/2019/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/image-20191227003638643.png" alt="image-20191227003638643"></p>
+<p><img src="/2019/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/image-20191227003638643.png" alt="image-20191227003638643"></p>
 <p>刚刚我们给出的第一种流水线改造办法将乘法运算细分成了4部，实际上我们还可以按照横向进位阵列乘法器的关键路径进行流水细分，比如这里我们可以按照关键路径将乘法运算细分成11步，每一步中的全加器都可以完全并行，和刚刚介绍的方案1相比，这里流水线每一步的时间延迟更短，由10位全加器时延变成了一个全加器时延，流水线的时钟频率更高，流水线的性能更优。<br>这两种方法都是将乘法运算细分成若干更小的步骤，让后引入流水接口部件——寄存器锁存中间结果构成运算流水线，实际上浮点运算流水线也是采用了类似的方法。   真是计算机中的乘法器也是采用流水线实现的，目前大多采用布斯两位乘法+华莱士树的方式构成，如果你有兴趣可以研究一下。</p>
-<p><img src="/2019/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/image-20191227003720937.png" alt="image-20191227003720937"></p>
+<p><img src="/2019/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/image-20191227003720937.png" alt="image-20191227003720937"></p>
 <h3 id="变量与常数之间的乘法运算"><a href="#变量与常数之间的乘法运算" class="headerlink" title="变量与常数之间的乘法运算"></a>变量与常数之间的乘法运算</h3><ul>
 <li>整数乘法比移位和加法运算慢很多</li>
 <li>编译器在处理变量与常数相乘时，用其它快速运算指令代替乘法<pre><code>x\*20  -&gt;  (x&lt;&lt;4)+(x&lt;&lt;2)       乘法转换成了2次移位和1次加法
@@ -439,9 +439,9 @@ x\*15  -&gt;  (x&lt;&lt;4) – x               乘法转换成了1次移位和1�
 </ul>
 </li>
 </ul>
-<p><img src="/2019/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/image-20191223231843074.png" alt="image-20191223231843074"></p>
-<p><img src="/2019/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/image-20191223231854975.png" alt="image-20191223231854975"></p>
-<p><img src="/2019/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/image-20191223231901994.png" alt="image-20191223231901994"></p>
+<p><img src="/2019/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/image-20191223231843074.png" alt="image-20191223231843074"></p>
+<p><img src="/2019/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/image-20191223231854975.png" alt="image-20191223231854975"></p>
+<p><img src="/2019/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/image-20191223231901994.png" alt="image-20191223231901994"></p>
 <p>问题：</p>
 <ul>
 <li>需要进行恢复余数的操作<ul>
@@ -461,14 +461,14 @@ x\*15  -&gt;  (x&lt;&lt;4) – x               乘法转换成了1次移位和1�
 <li>余数Ri小于0时商上0，需要恢复余数，左移一位，再减除数Y比较<br>(2Ri - Y）+ Y = 2Ri<br>2*2Ri – Y =4Ri–Y = 2*(2Ri -Y) + Y</li>
 <li>不恢复余数法：余数Ri小于0时商上0，左移一位，再<strong>加</strong>除数Y比较</li>
 </ul>
-<p><img src="/2019/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/image-20191223231927917.png" alt="image-20191223231927917"></p>
-<p><img src="/2019/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/image-20191223232007762.png" alt="image-20191223232007762"></p>
-<p><img src="/2019/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/image-20191223232026608.png" alt="image-20191223232026608"></p>
+<p><img src="/2019/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/image-20191223231927917.png" alt="image-20191223231927917"></p>
+<p><img src="/2019/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/image-20191223232007762.png" alt="image-20191223232007762"></p>
+<p><img src="/2019/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/image-20191223232026608.png" alt="image-20191223232026608"></p>
 <ul>
 <li>n*n个CAS单元</li>
 <li>(n*n) ×4T</li>
 </ul>
-<p><img src="/2019/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/image-20191223232033420.png" alt="image-20191223232033420"></p>
+<p><img src="/2019/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/image-20191223232033420.png" alt="image-20191223232033420"></p>
 <h2 id="浮点数加减运算"><a href="#浮点数加减运算" class="headerlink" title="浮点数加减运算"></a>浮点数加减运算</h2><h3 id="规格化浮点数概念"><a href="#规格化浮点数概念" class="headerlink" title="规格化浮点数概念"></a>规格化浮点数概念</h3><ul>
 <li>由于浮点数是将数据的表示范围与精确度分别表示的数据表示方法，若不对浮点数的表示作出明确规定，同一个浮点数的表示就不唯一</li>
 <li>规格化浮点数是指把一个浮点数按指定的格式进行转换，</li>
@@ -506,7 +506,7 @@ x\*15  -&gt;  (x&lt;&lt;4) – x               乘法转换成了1次移位和1�
 </li>
 <li>舍入<ul>
 <li>右移规格化时可能丢失一些低位的数值位, 为提高精度,  可采取舍入的方法: </li>
-<li>0 舍 1 入 : 若右移出的是1则在最低位加1;<br><img src="/2019/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/image-20191227005213203.png" alt="image-20191227005213203"></li>
+<li>0 舍 1 入 : 若右移出的是1则在最低位加1;<br><img src="/2019/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/image-20191227005213203.png" alt="image-20191227005213203"></li>
 <li>恒置 1 : 只要数字位1被移掉,就将最后一位恒置成1。</li>
 </ul>
 </li>
@@ -691,7 +691,9 @@ x\*15  -&gt;  (x&lt;&lt;4) – x               乘法转换成了1次移位和1�
 
       </div>
 
-<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=298 height=60 src="//music.163.com/outchain/player?type=2&id=509038&auto=0&height=32"></iframe>
+<div id="music163">
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=300 height=370 src="//music.163.com/outchain/player?type=0&id=7760409930&auto=1&height=430"></iframe>
+</div>
 
     </div>
   </aside>

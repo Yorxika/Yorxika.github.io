@@ -19,7 +19,7 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"yorxika.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"yorxika.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","width":270,"display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
   <meta name="description" content="存储系统层次结构基本存储体系存储程序                                                  —-&gt; 内存1) 输入设备将程序与数据写入主存；   ^2) CPU取指令;                                           |3) CPU执行指令期间读数据；                |4) CPU写回运算结果；">
@@ -29,40 +29,40 @@
 <meta property="og:site_name" content="Nameless Site">
 <meta property="og:description" content="存储系统层次结构基本存储体系存储程序                                                  —-&gt; 内存1) 输入设备将程序与数据写入主存；   ^2) CPU取指令;                                           |3) CPU执行指令期间读数据；                |4) CPU写回运算结果；">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://yorxika.github.io/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/image-20191224143440462.png">
-<meta property="og:image" content="http://yorxika.github.io/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/image-20191227012511278.png">
-<meta property="og:image" content="http://yorxika.github.io/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/image-20191224151529700.png">
-<meta property="og:image" content="http://yorxika.github.io/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/image-20191224151536995.png">
-<meta property="og:image" content="http://yorxika.github.io/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/image-20191224151700729.png">
-<meta property="og:image" content="http://yorxika.github.io/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/image-20191224151728347.png">
-<meta property="og:image" content="http://yorxika.github.io/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/image-20191224154646533.png">
-<meta property="og:image" content="http://yorxika.github.io/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/image-20191224154652629.png">
-<meta property="og:image" content="http://yorxika.github.io/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/image-20191224154658914.png">
-<meta property="og:image" content="http://yorxika.github.io/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/image-20191224154704558.png">
-<meta property="og:image" content="http://yorxika.github.io/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/image-20191224154711826.png">
-<meta property="og:image" content="http://yorxika.github.io/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/image-20191224154729278.png">
-<meta property="og:image" content="http://yorxika.github.io/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/image-20191224154739209.png">
-<meta property="og:image" content="http://yorxika.github.io/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/image-20191224162301973.png">
-<meta property="og:image" content="http://yorxika.github.io/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/image-20191224162316869.png">
-<meta property="og:image" content="http://yorxika.github.io/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/image-20191224162327920.png">
-<meta property="og:image" content="http://yorxika.github.io/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/image-20191224162336607.png">
-<meta property="og:image" content="http://yorxika.github.io/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/image-20191224162343371.png">
-<meta property="og:image" content="http://yorxika.github.io/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/image-20191224162351879.png">
-<meta property="og:image" content="http://yorxika.github.io/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/image-20191224162357494.png">
-<meta property="og:image" content="http://yorxika.github.io/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/image-20191224162402845.png">
-<meta property="og:image" content="http://yorxika.github.io/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/image-20191224162410001.png">
-<meta property="og:image" content="http://yorxika.github.io/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/image-20191224161733688.png">
-<meta property="og:image" content="http://yorxika.github.io/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/image-20191227012839226.png">
-<meta property="og:image" content="http://yorxika.github.io/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/image-20191227012958630.png">
-<meta property="og:image" content="http://yorxika.github.io/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/image-20191227013302066.png">
-<meta property="og:image" content="http://yorxika.github.io/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/image-20191224162032635.png">
-<meta property="og:image" content="http://yorxika.github.io/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/3814779_1478420350406_9D7738A42D1C889AE8A3BA51F1DEF7AC.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/image-20191224143440462.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/image-20191227012511278.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/image-20191224151529700.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/image-20191224151536995.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/image-20191224151700729.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/image-20191224151728347.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/image-20191224154646533.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/image-20191224154652629.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/image-20191224154658914.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/image-20191224154704558.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/image-20191224154711826.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/image-20191224154729278.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/image-20191224154739209.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/image-20191224162301973.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/image-20191224162316869.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/image-20191224162327920.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/image-20191224162336607.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/image-20191224162343371.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/image-20191224162351879.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/image-20191224162357494.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/image-20191224162402845.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/image-20191224162410001.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/image-20191224161733688.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/image-20191227012839226.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/image-20191227012958630.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/image-20191227013302066.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/image-20191224162032635.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/3814779_1478420350406_9D7738A42D1C889AE8A3BA51F1DEF7AC.png">
 <meta property="article:published_time" content="2019-12-24T06:24:30.000Z">
 <meta property="article:modified_time" content="2019-12-26T17:34:34.000Z">
 <meta property="article:author" content="HMF">
 <meta property="article:tag" content="组成原理">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://yorxika.github.io/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/image-20191224143440462.png">
+<meta name="twitter:image" content="http://yorxika.github.io/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/image-20191224143440462.png">
 
 <link rel="canonical" href="http://yorxika.github.io/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/">
 
@@ -306,9 +306,9 @@
 <li>存在制约主存容量的技术因素</li>
 <li>应用对主存的需求不断扩大</li>
 </ul>
-<p><img src="/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/image-20191224143440462.png" alt="image-20191224143440462"></p>
+<p><img src="/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/image-20191224143440462.png" alt="image-20191224143440462"></p>
 <p>哈佛结构：是一种将指令储存和数据储存分开的存储器结构，可支持：数据和指令并行储存、指令 预取，提高处理器的执行效率；另外，指令和数据可有不同的数据宽度，如Microchip 公司的PIC16芯片的程序指令是14位宽度，而数据是8位宽度。<br>目前使用哈佛结构的：PIC系列、摩托罗拉公司的MC68系列、Zilog公司的Z8系列、 ATMEL公司的AVR系列和ARM公司的ARM9、ARM10和ARM11。</p>
-<p><img src="/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/image-20191227012511278.png" alt="image-20191227012511278"></p>
+<p><img src="/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/image-20191227012511278.png" alt="image-20191227012511278"></p>
 <h3 id="存储体系层次化结构的理论基础"><a href="#存储体系层次化结构的理论基础" class="headerlink" title="存储体系层次化结构的理论基础"></a>存储体系层次化结构的理论基础</h3><p>局部性原理 </p>
 <ul>
 <li>时间局部性: <ul>
@@ -332,51 +332,51 @@
 </ul>
 </li>
 </ul>
-<p><img src="/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/image-20191224151529700.png" alt="image-20191224151529700"></p>
-<p><img src="/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/image-20191224151536995.png" alt="image-20191224151536995"></p>
+<p><img src="/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/image-20191224151529700.png" alt="image-20191224151529700"></p>
+<p><img src="/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/image-20191224151536995.png" alt="image-20191224151536995"></p>
 <p>边界对齐与存储地址的关系（以32位为例）</p>
 <ul>
 <li>双字长数据边界对齐的起始地址的最末三位为000(8字节整数倍；</li>
 <li>单字长边界对齐的起始地址的末二位为00(4字节整数倍)；</li>
 <li>半字长边界对齐的起始地址的最末一位为0(２字节整数倍)。</li>
 </ul>
-<p><img src="/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/image-20191224151700729.png" alt="image-20191224151700729"></p>
-<p><img src="/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/image-20191224151728347.png" alt="image-20191224151728347"></p>
-<h2 id="静态存储器工作原理"><a href="#静态存储器工作原理" class="headerlink" title="静态存储器工作原理"></a>静态存储器工作原理</h2><p><img src="/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/image-20191224154646533.png" alt="image-20191224154646533"></p>
-<p><img src="/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/image-20191224154652629.png" alt="image-20191224154652629"></p>
-<p><img src="/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/image-20191224154658914.png" alt="image-20191224154658914"></p>
-<p><img src="/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/image-20191224154704558.png" alt="image-20191224154704558"></p>
-<p><img src="/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/image-20191224154711826.png" alt="image-20191224154711826"></p>
-<p><img src="/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/image-20191224154729278.png" alt="image-20191224154729278"></p>
-<p><img src="/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/image-20191224154739209.png" alt="image-20191224154739209"></p>
+<p><img src="/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/image-20191224151700729.png" alt="image-20191224151700729"></p>
+<p><img src="/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/image-20191224151728347.png" alt="image-20191224151728347"></p>
+<h2 id="静态存储器工作原理"><a href="#静态存储器工作原理" class="headerlink" title="静态存储器工作原理"></a>静态存储器工作原理</h2><p><img src="/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/image-20191224154646533.png" alt="image-20191224154646533"></p>
+<p><img src="/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/image-20191224154652629.png" alt="image-20191224154652629"></p>
+<p><img src="/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/image-20191224154658914.png" alt="image-20191224154658914"></p>
+<p><img src="/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/image-20191224154704558.png" alt="image-20191224154704558"></p>
+<p><img src="/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/image-20191224154711826.png" alt="image-20191224154711826"></p>
+<p><img src="/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/image-20191224154729278.png" alt="image-20191224154729278"></p>
+<p><img src="/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/image-20191224154739209.png" alt="image-20191224154739209"></p>
 <h2 id="动态存储器工作原理"><a href="#动态存储器工作原理" class="headerlink" title="动态存储器工作原理"></a>动态存储器工作原理</h2><p>SRAM存储单元不足：</p>
 <ul>
 <li>晶体管过多</li>
 <li>存储密度低</li>
 <li>功耗大</li>
 </ul>
-<p><img src="/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/image-20191224162301973.png" alt="image-20191224162301973"></p>
-<p><img src="/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/image-20191224162316869.png" alt="image-20191224162316869"></p>
-<p><img src="/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/image-20191224162327920.png" alt="image-20191224162327920"></p>
-<p><img src="/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/image-20191224162336607.png" alt="image-20191224162336607"></p>
-<p><img src="/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/image-20191224162343371.png" alt="image-20191224162343371"></p>
-<p><img src="/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/image-20191224162351879.png" alt="image-20191224162351879"></p>
-<p><img src="/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/image-20191224162357494.png" alt="image-20191224162357494"></p>
-<p><img src="/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/image-20191224162402845.png" alt="image-20191224162402845"></p>
-<p><img src="/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/image-20191224162410001.png" alt="image-20191224162410001"></p>
-<h2 id="存储拓展"><a href="#存储拓展" class="headerlink" title="存储拓展"></a>存储拓展</h2><p><img src="/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/image-20191224161733688.png" alt="image-20191224161733688"></p>
+<p><img src="/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/image-20191224162301973.png" alt="image-20191224162301973"></p>
+<p><img src="/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/image-20191224162316869.png" alt="image-20191224162316869"></p>
+<p><img src="/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/image-20191224162327920.png" alt="image-20191224162327920"></p>
+<p><img src="/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/image-20191224162336607.png" alt="image-20191224162336607"></p>
+<p><img src="/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/image-20191224162343371.png" alt="image-20191224162343371"></p>
+<p><img src="/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/image-20191224162351879.png" alt="image-20191224162351879"></p>
+<p><img src="/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/image-20191224162357494.png" alt="image-20191224162357494"></p>
+<p><img src="/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/image-20191224162402845.png" alt="image-20191224162402845"></p>
+<p><img src="/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/image-20191224162410001.png" alt="image-20191224162410001"></p>
+<h2 id="存储拓展"><a href="#存储拓展" class="headerlink" title="存储拓展"></a>存储拓展</h2><p><img src="/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/image-20191224161733688.png" alt="image-20191224161733688"></p>
 <p>位拓展举例： 用16K * 8 的存储芯片构建16K * 32的存储器</p>
 <p>所需芯片数量： 16K*32/(16K*8) = 4<br>所有存储芯片并行工作，贡献32位数据中的不同8位</p>
-<p><img src="/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/image-20191227012839226.png" alt="image-20191227012839226"></p>
+<p><img src="/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/image-20191227012839226.png" alt="image-20191227012839226"></p>
 <hr>
 <p>字扩展举例:  用16K* 8 的存储芯片构建128k* 8的存储器</p>
 <p>所需芯片数量： 128K * 8/ (16K*8) = 8<br>128k存储器 -&gt; 17根地址线<br>16K的存储 -&gt; 14根地址线<br>多余的3根地址线 作为片选译码输入</p>
-<p><img src="/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/image-20191227012958630.png" alt="image-20191227012958630"></p>
+<p><img src="/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/image-20191227012958630.png" alt="image-20191227012958630"></p>
 <hr>
 <p>用16K* 8 的存储芯片构建128K*  8的存储器，其中08000H~0BFFFH存储空间保留不用</p>
-<p>所需芯片数量： (128K-16k )* 8/ (16K*8) = 7<br><img src="/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/image-20191227013302066.png" alt="image-20191227013302066"></p>
+<p>所需芯片数量： (128K-16k )* 8/ (16K*8) = 7<br><img src="/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/image-20191227013302066.png" alt="image-20191227013302066"></p>
 <hr>
-<p><img src="/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/image-20191224162032635.png" alt="image-20191224162032635"></p>
+<p><img src="/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/image-20191224162032635.png" alt="image-20191224162032635"></p>
 <h2 id="习题"><a href="#习题" class="headerlink" title="习题"></a>习题</h2><p>字位结构为256Kｘ4位SRAM存储芯片，其地址引脚与数据引脚之和为：22</p>
 <p>256K 需要18根，4位4根</p>
 <hr>
@@ -394,7 +394,7 @@
 <p>不需要定时刷新的半导体存储器芯片是<strong>ACD</strong><br>A.SRAM    B.DRAM    C.Flash Memory    D.EPROM</p>
 <hr>
 <p>某计算机存储器按字节变址，采用小端方式存放数据。假定编译器规定int 型和 short 型长度分别为 32 位和 16 位，并且数据按边界对齐存储。某 C 语言程序段如下：</p>
-<p><img src="/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/3814779_1478420350406_9D7738A42D1C889AE8A3BA51F1DEF7AC.png" alt="img"></p>
+<p><img src="/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/3814779_1478420350406_9D7738A42D1C889AE8A3BA51F1DEF7AC.png" alt="img"></p>
 <p>若record 变量的首地址为 0xC008，则地址 0xC008 中内容及 record.c 的地址是0x11 0xC00E</p>
 <hr>
 <p>计算机字长32位，主存容量为128MB，按<strong>字</strong>编址，其寻址范围为<strong>0~128M-1</strong></p>
@@ -555,7 +555,9 @@
 
       </div>
 
-<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=298 height=60 src="//music.163.com/outchain/player?type=2&id=509038&auto=0&height=32"></iframe>
+<div id="music163">
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=300 height=370 src="//music.163.com/outchain/player?type=0&id=7760409930&auto=1&height=430"></iframe>
+</div>
 
     </div>
   </aside>

@@ -19,7 +19,7 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"yorxika.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"yorxika.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","width":270,"display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
   <meta name="description" content="指令系统概述及指令格式指令的基本概念 指令 计算机能直接识别、执行的操作命令（机器指令）； 冯诺依曼结构计算机 “程序控制”原理实现的载体；   指令系统（指令集）">
@@ -29,41 +29,41 @@
 <meta property="og:site_name" content="Nameless Site">
 <meta property="og:description" content="指令系统概述及指令格式指令的基本概念 指令 计算机能直接识别、执行的操作命令（机器指令）； 冯诺依曼结构计算机 “程序控制”原理实现的载体；   指令系统（指令集）">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://yorxika.github.io/2019/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/image-20191225115956648.png">
-<meta property="og:image" content="http://yorxika.github.io/2019/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/image-20191225120008896.png">
-<meta property="og:image" content="http://yorxika.github.io/2019/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/image-20191225120247603.png">
-<meta property="og:image" content="http://yorxika.github.io/2019/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/image-20191225123815326.png">
-<meta property="og:image" content="http://yorxika.github.io/2019/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/image-20191225130335074.png">
-<meta property="og:image" content="http://yorxika.github.io/2019/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/image-20191225130635792.png">
-<meta property="og:image" content="http://yorxika.github.io/2019/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/image-20191225131913595.png">
-<meta property="og:image" content="http://yorxika.github.io/2019/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/image-20191225131937862.png">
-<meta property="og:image" content="http://yorxika.github.io/2019/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/image-20191225132001888.png">
-<meta property="og:image" content="http://yorxika.github.io/2019/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/image-20191225143633747.png">
-<meta property="og:image" content="http://yorxika.github.io/2019/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/image-20191225143652075.png">
-<meta property="og:image" content="http://yorxika.github.io/2019/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/image-20191225143724205.png">
-<meta property="og:image" content="http://yorxika.github.io/2019/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/image-20191225143754663.png">
-<meta property="og:image" content="http://yorxika.github.io/2019/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/image-20191225143826805.png">
-<meta property="og:image" content="http://yorxika.github.io/2019/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/image-20191225143858053.png">
-<meta property="og:image" content="http://yorxika.github.io/2019/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/image-20191225143956018.png">
-<meta property="og:image" content="http://yorxika.github.io/2019/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/image-20191225144037090.png">
-<meta property="og:image" content="http://yorxika.github.io/2019/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/image-20191225145613421.png">
-<meta property="og:image" content="http://yorxika.github.io/2019/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/image-20191225145707263.png">
-<meta property="og:image" content="http://yorxika.github.io/2019/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/image-20191225145743811.png">
-<meta property="og:image" content="http://yorxika.github.io/2019/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/image-20191225145805858.png">
-<meta property="og:image" content="http://yorxika.github.io/2019/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/image-20191225145825365.png">
-<meta property="og:image" content="http://yorxika.github.io/2019/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/image-20191225145843032.png">
-<meta property="og:image" content="http://yorxika.github.io/2019/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/image-20191225145942182.png">
-<meta property="og:image" content="http://yorxika.github.io/2019/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/image-20191225150005890.png">
-<meta property="og:image" content="http://yorxika.github.io/2019/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/image-20191225150028541.png">
-<meta property="og:image" content="http://yorxika.github.io/2019/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/image-20191225150115338.png">
-<meta property="og:image" content="http://yorxika.github.io/2019/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/image-20191225150151595.png">
-<meta property="og:image" content="http://yorxika.github.io/2019/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/image-20191225150223733.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/image-20191225115956648.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/image-20191225120008896.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/image-20191225120247603.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/image-20191225123815326.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/image-20191225130335074.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/image-20191225130635792.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/image-20191225131913595.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/image-20191225131937862.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/image-20191225132001888.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/image-20191225143633747.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/image-20191225143652075.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/image-20191225143724205.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/image-20191225143754663.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/image-20191225143826805.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/image-20191225143858053.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/image-20191225143956018.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/image-20191225144037090.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/image-20191225145613421.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/image-20191225145707263.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/image-20191225145743811.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/image-20191225145805858.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/image-20191225145825365.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/image-20191225145843032.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/image-20191225145942182.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/image-20191225150005890.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/image-20191225150028541.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/image-20191225150115338.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/image-20191225150151595.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/image-20191225150223733.png">
 <meta property="article:published_time" content="2019-12-25T03:43:24.000Z">
 <meta property="article:modified_time" content="2019-12-26T17:18:30.000Z">
 <meta property="article:author" content="HMF">
 <meta property="article:tag" content="组成原理">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://yorxika.github.io/2019/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/image-20191225115956648.png">
+<meta name="twitter:image" content="http://yorxika.github.io/2019/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/image-20191225115956648.png">
 
 <link rel="canonical" href="http://yorxika.github.io/2019/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/">
 
@@ -326,8 +326,8 @@
 </ul>
 </li>
 </ul>
-<h3 id="指令分类"><a href="#指令分类" class="headerlink" title="指令分类"></a>指令分类</h3><p><img src="/2019/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/image-20191225115956648.png" alt="image-20191225115956648"></p>
-<p><img src="/2019/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/image-20191225120008896.png" alt="image-20191225120008896"></p>
+<h3 id="指令分类"><a href="#指令分类" class="headerlink" title="指令分类"></a>指令分类</h3><p><img src="/2019/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/image-20191225115956648.png" alt="image-20191225115956648"></p>
+<p><img src="/2019/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/image-20191225120008896.png" alt="image-20191225120008896"></p>
 <p>根据指令中操作数的物理位置分类:</p>
 <ul>
 <li>存储器－存储器（SS）型</li>
@@ -341,7 +341,7 @@
 <li>位运算指令 NOT、AND、OR、SHL、SAL等 </li>
 <li>控制转移指令 JMP 、JNE、CALL、RET等</li>
 </ul>
-<h3 id="指令格式"><a href="#指令格式" class="headerlink" title="指令格式"></a>指令格式</h3><p><img src="/2019/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/image-20191225120247603.png" alt="image-20191225120247603"></p>
+<h3 id="指令格式"><a href="#指令格式" class="headerlink" title="指令格式"></a>指令格式</h3><p><img src="/2019/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/image-20191225120247603.png" alt="image-20191225120247603"></p>
 <ul>
 <li>操作码字段的位数与支持的最大指令数量有关 <ul>
 <li>对于定长操作码而言，LengthOP =⌈log2 n⌉</li>
@@ -359,7 +359,7 @@
 </ul>
 </li>
 </ul>
-<p>跳跃寻址：<br><img src="/2019/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/image-20191225123815326.png" alt="image-20191225123815326"></p>
+<p>跳跃寻址：<br><img src="/2019/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/image-20191225123815326.png" alt="image-20191225123815326"></p>
 <h2 id="操作数寻址方式"><a href="#操作数寻址方式" class="headerlink" title="操作数寻址方式"></a>操作数寻址方式</h2><h3 id="立即数寻址"><a href="#立即数寻址" class="headerlink" title="立即数寻址"></a>立即数寻址</h3><p>地址码字段是操作数本身<br>例 MOV  AX,200H    （ AX &lt;-  200H）<br>特点：</p>
 <ul>
 <li>取指操作将数据与指令一并读入CPU内部的寄存器，指令执行速度快 </li>
@@ -389,7 +389,7 @@
 <li>解决了直接寻址方式下地址字段的位数限制访存范围大小的问题</li>
 </ul>
 <h3 id="相对寻址"><a href="#相对寻址" class="headerlink" title="相对寻址"></a>相对寻址</h3><p>E=D + (PC), D为指令中地址字段的值特点：</p>
-<p><img src="/2019/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/image-20191225130335074.png" alt="image-20191225130335074"></p>
+<p><img src="/2019/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/image-20191225130335074.png" alt="image-20191225130335074"></p>
 <ul>
 <li>注意PC的改变对计算E的影响，如 本例中E = 200 + 2000 + 2 </li>
 <li>可节省指令中的地址位数，便于程序在内存中成块移动</li>
@@ -405,7 +405,7 @@
 <li>不改变指令即可改变数据的有效地址，可在循环中使用 </li>
 <li>在字符串处理，向量运算等等成批数据处理中非常有用</li>
 </ul>
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p><img src="/2019/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/image-20191225130635792.png" alt="image-20191225130635792"></p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p><img src="/2019/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/image-20191225130635792.png" alt="image-20191225130635792"></p>
 <h2 id="指令格式设计"><a href="#指令格式设计" class="headerlink" title="指令格式设计"></a>指令格式设计</h2><h3 id="指令格式设计主要内容"><a href="#指令格式设计主要内容" class="headerlink" title="指令格式设计主要内容"></a>指令格式设计主要内容</h3><ul>
 <li>根据指令数量的要求及是否支持操作码扩展，确定操作码字段的位数</li>
 <li>根据对操作数的要求确定地址码字段的个数 </li>
@@ -413,11 +413,11 @@
 <li>确定采用定长指令还是变长指令</li>
 </ul>
 <h3 id="指令格式设计举例"><a href="#指令格式设计举例" class="headerlink" title="指令格式设计举例"></a>指令格式设计举例</h3><p>某机字长32位，采用三地址指令，支持8种寻址操作，完成60种操作，各 寻址方式均可在2K主存范围内取得操作数，并可在1K范围内保存运算结果。 问应采用什么样的指令格式？指令字长最少应为多少位？执行一条指令最多要 访问多少次主存？</p>
-<p><img src="/2019/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/image-20191225131913595.png" alt="image-20191225131913595"></p>
+<p><img src="/2019/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/image-20191225131913595.png" alt="image-20191225131913595"></p>
 <hr>
 <p>字长16位，主存64K，指令单字长单地址，80条指令。寻址方式有直接、 间接、相对、变址。请设计指令格式</p>
-<p><img src="/2019/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/image-20191225131937862.png" alt="image-20191225131937862"></p>
-<p><img src="/2019/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/image-20191225132001888.png" alt="image-20191225132001888"></p>
+<p><img src="/2019/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/image-20191225131937862.png" alt="image-20191225131937862"></p>
+<p><img src="/2019/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/image-20191225132001888.png" alt="image-20191225132001888"></p>
 <hr>
 <p>设某指令系统指令字长16位，每个地址码为6位。若要求设计二地址指令15 条、一地址指令34条，问最多还可设计多少条零地址指令？<br>解: OP(4) A1(6) A2(6)<br>操作码按从短码到长码进行扩展编码<br>假定二地址指令编码: (0000 – 1110)  共15条，1111作为扩展标识； 则一地址指令编码的全集可表示为: 1111 000000 – 111111(假定扩向A1)； 因一地址指令只需34条，可将全集中多余的30种编码作为向零地址指 令扩展的标识，假定为: 100010 – 111111 故最多可支持的故零地址指令数为： 30*2^6 条</p>
 <h2 id="MIPS-指令概述"><a href="#MIPS-指令概述" class="headerlink" title="MIPS 指令概述"></a>MIPS 指令概述</h2><h3 id="MIPS-指令概述-1"><a href="#MIPS-指令概述-1" class="headerlink" title="MIPS 指令概述"></a>MIPS 指令概述</h3><ul>
@@ -433,17 +433,17 @@
 <li>易于编译器开发 </li>
 <li>MIPS指令的寻址方式非常简单，每条指令的操作也非常简单</li>
 </ul>
-<h3 id="MIPS指令格式概述"><a href="#MIPS指令格式概述" class="headerlink" title="MIPS指令格式概述"></a>MIPS指令格式概述</h3><p><img src="/2019/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/image-20191225143633747.png" alt="image-20191225143633747"></p>
-<h3 id="MIPS-寄存器"><a href="#MIPS-寄存器" class="headerlink" title="MIPS 寄存器"></a>MIPS 寄存器</h3><p><img src="/2019/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/image-20191225143652075.png" alt="image-20191225143652075"></p>
+<h3 id="MIPS指令格式概述"><a href="#MIPS指令格式概述" class="headerlink" title="MIPS指令格式概述"></a>MIPS指令格式概述</h3><p><img src="/2019/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/image-20191225143633747.png" alt="image-20191225143633747"></p>
+<h3 id="MIPS-寄存器"><a href="#MIPS-寄存器" class="headerlink" title="MIPS 寄存器"></a>MIPS 寄存器</h3><p><img src="/2019/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/image-20191225143652075.png" alt="image-20191225143652075"></p>
 <h3 id="MIPS-寻址方式"><a href="#MIPS-寻址方式" class="headerlink" title="MIPS 寻址方式"></a>MIPS 寻址方式</h3><ul>
-<li>在MIPS32指令集中，不单设寻址方式说明字段<br><img src="/2019/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/image-20191225143724205.png" alt="image-20191225143724205"></li>
-<li>立即数寻址 ( Immediate addressing)<br><img src="/2019/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/image-20191225143754663.png" alt="image-20191225143754663"></li>
-<li>寄存器直接寻址(Register Addressing)<br><img src="/2019/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/image-20191225143826805.png" alt="image-20191225143826805"></li>
-<li>基址寻址(Basic Addressing)<br><img src="/2019/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/image-20191225143858053.png" alt="image-20191225143858053"><br>使用基址寻址的指令：lw ,sw, lh, sh, lb, lbu等<br>LB rt , offset (base)</li>
-<li>相对寻址<br><img src="/2019/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/image-20191225143956018.png" alt="image-20191225143956018"><br>使用相对寻址的指令：beq, bne<br>if (GRP[rs] == GPR[rt]) PC = PC + 4 + BranchAddr</li>
-<li>伪直接寻址(页面寻址)<br><img src="/2019/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/image-20191225144037090.png" alt="image-20191225144037090"><br>使用伪直接寻址的指令：j, jal</li>
+<li>在MIPS32指令集中，不单设寻址方式说明字段<br><img src="/2019/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/image-20191225143724205.png" alt="image-20191225143724205"></li>
+<li>立即数寻址 ( Immediate addressing)<br><img src="/2019/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/image-20191225143754663.png" alt="image-20191225143754663"></li>
+<li>寄存器直接寻址(Register Addressing)<br><img src="/2019/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/image-20191225143826805.png" alt="image-20191225143826805"></li>
+<li>基址寻址(Basic Addressing)<br><img src="/2019/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/image-20191225143858053.png" alt="image-20191225143858053"><br>使用基址寻址的指令：lw ,sw, lh, sh, lb, lbu等<br>LB rt , offset (base)</li>
+<li>相对寻址<br><img src="/2019/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/image-20191225143956018.png" alt="image-20191225143956018"><br>使用相对寻址的指令：beq, bne<br>if (GRP[rs] == GPR[rt]) PC = PC + 4 + BranchAddr</li>
+<li>伪直接寻址(页面寻址)<br><img src="/2019/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/image-20191225144037090.png" alt="image-20191225144037090"><br>使用伪直接寻址的指令：j, jal</li>
 </ul>
-<h2 id="MIPS指令详解"><a href="#MIPS指令详解" class="headerlink" title="MIPS指令详解"></a>MIPS指令详解</h2><h3 id="R型指令"><a href="#R型指令" class="headerlink" title="R型指令"></a>R型指令</h3><p><img src="/2019/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/image-20191225145613421.png" alt="image-20191225145613421"></p>
+<h2 id="MIPS指令详解"><a href="#MIPS指令详解" class="headerlink" title="MIPS指令详解"></a>MIPS指令详解</h2><h3 id="R型指令"><a href="#R型指令" class="headerlink" title="R型指令"></a>R型指令</h3><p><img src="/2019/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/image-20191225145613421.png" alt="image-20191225145613421"></p>
 <p>操作数和保存结果均通过寄存器进行； </p>
 <ul>
 <li>op：操作码，所有R型指令中都全为0； </li>
@@ -453,11 +453,11 @@
 <li>shamt：常数，在移位指令中使用； </li>
 <li>funct：功能码，指定指令的具体功能；</li>
 </ul>
-<p><img src="/2019/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/image-20191225145707263.png" alt="image-20191225145707263"></p>
-<h4 id="3寄存器R型指令"><a href="#3寄存器R型指令" class="headerlink" title="3寄存器R型指令"></a>3寄存器R型指令</h4><p><img src="/2019/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/image-20191225145743811.png" alt="image-20191225145743811"></p>
-<h4 id="2寄存器R型指令"><a href="#2寄存器R型指令" class="headerlink" title="2寄存器R型指令"></a>2寄存器R型指令</h4><p><img src="/2019/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/image-20191225145805858.png" alt="image-20191225145805858"></p>
-<h4 id="1寄存器R型指令"><a href="#1寄存器R型指令" class="headerlink" title="1寄存器R型指令"></a>1寄存器R型指令</h4><p><img src="/2019/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/image-20191225145825365.png" alt="image-20191225145825365"></p>
-<h3 id="I型指令"><a href="#I型指令" class="headerlink" title="I型指令"></a>I型指令</h3><p><img src="/2019/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/image-20191225145843032.png" alt="image-20191225145843032"></p>
+<p><img src="/2019/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/image-20191225145707263.png" alt="image-20191225145707263"></p>
+<h4 id="3寄存器R型指令"><a href="#3寄存器R型指令" class="headerlink" title="3寄存器R型指令"></a>3寄存器R型指令</h4><p><img src="/2019/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/image-20191225145743811.png" alt="image-20191225145743811"></p>
+<h4 id="2寄存器R型指令"><a href="#2寄存器R型指令" class="headerlink" title="2寄存器R型指令"></a>2寄存器R型指令</h4><p><img src="/2019/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/image-20191225145805858.png" alt="image-20191225145805858"></p>
+<h4 id="1寄存器R型指令"><a href="#1寄存器R型指令" class="headerlink" title="1寄存器R型指令"></a>1寄存器R型指令</h4><p><img src="/2019/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/image-20191225145825365.png" alt="image-20191225145825365"></p>
+<h3 id="I型指令"><a href="#I型指令" class="headerlink" title="I型指令"></a>I型指令</h3><p><img src="/2019/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/image-20191225145843032.png" alt="image-20191225145843032"></p>
 <p>操作数中涉及立即数，结果保存到寄存器； </p>
 <ul>
 <li>op：标识指令的操作功能； </li>
@@ -465,12 +465,12 @@
 <li>rt：目的寄存器编号，用来保存运算结果； </li>
 <li>imm：第2个源操作数，立即数；</li>
 </ul>
-<p><img src="/2019/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/image-20191225145942182.png" alt="image-20191225145942182"></p>
-<h4 id="面向运算的I型指令"><a href="#面向运算的I型指令" class="headerlink" title="面向运算的I型指令"></a>面向运算的I型指令</h4><p><img src="/2019/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/image-20191225150005890.png" alt="image-20191225150005890"></p>
-<h4 id="面向访存的I型指令"><a href="#面向访存的I型指令" class="headerlink" title="面向访存的I型指令"></a>面向访存的I型指令</h4><p><img src="/2019/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/image-20191225150028541.png" alt="image-20191225150028541"></p>
-<h4 id="面向数位设置的I型指令"><a href="#面向数位设置的I型指令" class="headerlink" title="面向数位设置的I型指令"></a>面向数位设置的I型指令</h4><p><img src="/2019/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/image-20191225150115338.png" alt="image-20191225150115338"></p>
-<h4 id="面向条件转移-分支-的I型指令"><a href="#面向条件转移-分支-的I型指令" class="headerlink" title="面向条件转移(分支)的I型指令"></a>面向条件转移(分支)的I型指令</h4><p><img src="/2019/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/image-20191225150151595.png" alt="image-20191225150151595"></p>
-<h3 id="J型指令"><a href="#J型指令" class="headerlink" title="J型指令"></a>J型指令</h3><p><img src="/2019/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/image-20191225150223733.png" alt="image-20191225150223733"></p>
+<p><img src="/2019/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/image-20191225145942182.png" alt="image-20191225145942182"></p>
+<h4 id="面向运算的I型指令"><a href="#面向运算的I型指令" class="headerlink" title="面向运算的I型指令"></a>面向运算的I型指令</h4><p><img src="/2019/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/image-20191225150005890.png" alt="image-20191225150005890"></p>
+<h4 id="面向访存的I型指令"><a href="#面向访存的I型指令" class="headerlink" title="面向访存的I型指令"></a>面向访存的I型指令</h4><p><img src="/2019/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/image-20191225150028541.png" alt="image-20191225150028541"></p>
+<h4 id="面向数位设置的I型指令"><a href="#面向数位设置的I型指令" class="headerlink" title="面向数位设置的I型指令"></a>面向数位设置的I型指令</h4><p><img src="/2019/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/image-20191225150115338.png" alt="image-20191225150115338"></p>
+<h4 id="面向条件转移-分支-的I型指令"><a href="#面向条件转移-分支-的I型指令" class="headerlink" title="面向条件转移(分支)的I型指令"></a>面向条件转移(分支)的I型指令</h4><p><img src="/2019/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/image-20191225150151595.png" alt="image-20191225150151595"></p>
+<h3 id="J型指令"><a href="#J型指令" class="headerlink" title="J型指令"></a>J型指令</h3><p><img src="/2019/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/12/25/%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/image-20191225150223733.png" alt="image-20191225150223733"></p>
 <h2 id="习题"><a href="#习题" class="headerlink" title="习题"></a>习题</h2>
     </div>
 
@@ -620,7 +620,9 @@
 
       </div>
 
-<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=298 height=60 src="//music.163.com/outchain/player?type=2&id=509038&auto=0&height=32"></iframe>
+<div id="music163">
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=300 height=370 src="//music.163.com/outchain/player?type=0&id=7760409930&auto=1&height=430"></iframe>
+</div>
 
     </div>
   </aside>

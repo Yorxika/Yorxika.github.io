@@ -19,7 +19,7 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"yorxika.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"yorxika.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","width":270,"display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
   <meta name="description" content="总线的特性及其应用总线的概念：是计算机体系结构的重要组成部分，通过它可以将计算机系统中各个功能部件连接起来，构成一个完整的系统。">
@@ -29,32 +29,32 @@
 <meta property="og:site_name" content="Nameless Site">
 <meta property="og:description" content="总线的特性及其应用总线的概念：是计算机体系结构的重要组成部分，通过它可以将计算机系统中各个功能部件连接起来，构成一个完整的系统。">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://yorxika.github.io/2019/12/26/%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BA%BF/image-20191226170508498.png">
-<meta property="og:image" content="http://yorxika.github.io/2019/12/26/%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BA%BF/image-20191226171940833.png">
-<meta property="og:image" content="http://yorxika.github.io/2019/12/26/%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BA%BF/image-20191226172026248.png">
-<meta property="og:image" content="http://yorxika.github.io/2019/12/26/%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BA%BF/image-20191226172053836.png">
-<meta property="og:image" content="http://yorxika.github.io/2019/12/26/%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BA%BF/image-20191226172131126.png">
-<meta property="og:image" content="http://yorxika.github.io/2019/12/26/%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BA%BF/image-20191226172214936.png">
-<meta property="og:image" content="http://yorxika.github.io/2019/12/26/%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BA%BF/image-20191226173643508.png">
-<meta property="og:image" content="http://yorxika.github.io/2019/12/26/%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BA%BF/image-20191226173726362.png">
-<meta property="og:image" content="http://yorxika.github.io/2019/12/26/%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BA%BF/image-20191226173902376.png">
-<meta property="og:image" content="http://yorxika.github.io/2019/12/26/%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BA%BF/image-20191226174007685.png">
-<meta property="og:image" content="http://yorxika.github.io/2019/12/26/%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BA%BF/image-20191226174058360.png">
-<meta property="og:image" content="http://yorxika.github.io/2019/12/26/%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BA%BF/image-20191226180444002.png">
-<meta property="og:image" content="http://yorxika.github.io/2019/12/26/%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BA%BF/image-20191226180527801.png">
-<meta property="og:image" content="http://yorxika.github.io/2019/12/26/%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BA%BF/image-20191226180559822.png">
-<meta property="og:image" content="http://yorxika.github.io/2019/12/26/%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BA%BF/image-20191226180630424.png">
-<meta property="og:image" content="http://yorxika.github.io/2019/12/26/%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BA%BF/image-20191226180817639.png">
-<meta property="og:image" content="http://yorxika.github.io/2019/12/26/%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BA%BF/image-20191226180907659.png">
-<meta property="og:image" content="http://yorxika.github.io/2019/12/26/%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BA%BF/image-20191226181128289.png">
-<meta property="og:image" content="http://yorxika.github.io/2019/12/26/%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BA%BF/image-20191226181323636.png">
-<meta property="og:image" content="http://yorxika.github.io/2019/12/26/%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BA%BF/image-20191226181340500.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/26/%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BA%BF/12/26/%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BA%BF/image-20191226170508498.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/26/%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BA%BF/12/26/%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BA%BF/image-20191226171940833.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/26/%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BA%BF/12/26/%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BA%BF/image-20191226172026248.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/26/%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BA%BF/12/26/%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BA%BF/image-20191226172053836.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/26/%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BA%BF/12/26/%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BA%BF/image-20191226172131126.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/26/%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BA%BF/12/26/%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BA%BF/image-20191226172214936.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/26/%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BA%BF/12/26/%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BA%BF/image-20191226173643508.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/26/%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BA%BF/12/26/%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BA%BF/image-20191226173726362.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/26/%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BA%BF/12/26/%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BA%BF/image-20191226173902376.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/26/%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BA%BF/12/26/%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BA%BF/image-20191226174007685.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/26/%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BA%BF/12/26/%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BA%BF/image-20191226174058360.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/26/%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BA%BF/12/26/%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BA%BF/image-20191226180444002.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/26/%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BA%BF/12/26/%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BA%BF/image-20191226180527801.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/26/%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BA%BF/12/26/%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BA%BF/image-20191226180559822.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/26/%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BA%BF/12/26/%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BA%BF/image-20191226180630424.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/26/%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BA%BF/12/26/%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BA%BF/image-20191226180817639.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/26/%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BA%BF/12/26/%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BA%BF/image-20191226180907659.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/26/%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BA%BF/12/26/%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BA%BF/image-20191226181128289.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/26/%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BA%BF/12/26/%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BA%BF/image-20191226181323636.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/26/%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BA%BF/12/26/%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BA%BF/image-20191226181340500.png">
 <meta property="article:published_time" content="2019-12-26T08:40:21.000Z">
 <meta property="article:modified_time" content="2019-12-26T10:35:14.000Z">
 <meta property="article:author" content="HMF">
 <meta property="article:tag" content="组成原理">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://yorxika.github.io/2019/12/26/%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BA%BF/image-20191226170508498.png">
+<meta name="twitter:image" content="http://yorxika.github.io/2019/12/26/%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BA%BF/12/26/%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BA%BF/image-20191226170508498.png">
 
 <link rel="canonical" href="http://yorxika.github.io/2019/12/26/%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BA%BF/">
 
@@ -328,7 +328,7 @@
 <li>典型的总线事务包括：请求操作、裁决操作、地址传 输、数据传输和总线释放。</li>
 </ul>
 <p>主设备（master）：能够提出申请并获得总线控制权的设备；<br>从设备（slave）   ：只能被动接受总线控制传送数据的设备。</p>
-<p><img src="/2019/12/26/%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BA%BF/image-20191226170508498.png" alt="image-20191226170508498"></p>
+<p><img src="/2019/12/26/%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BA%BF/12/26/%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BA%BF/image-20191226170508498.png" alt="image-20191226170508498"></p>
 <h3 id="总线传输过程"><a href="#总线传输过程" class="headerlink" title="总线传输过程"></a>总线传输过程</h3><ul>
 <li>总线传输：在主设备（如CPU、DMA控制器等）控制 下通过总线进行的信息传送（数据读写）操作。 </li>
 <li>总线完成一次数据传输操作，一般经过如下四个阶段：<ul>
@@ -353,28 +353,28 @@
 <li>任意两设备之间理论上都可以直接交换信息；</li>
 <li>所有设备分时工作，仅适用于慢速的计算机系统中。</li>
 </ul>
-<p><img src="/2019/12/26/%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BA%BF/image-20191226171940833.png" alt="image-20191226171940833"></p>
+<p><img src="/2019/12/26/%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BA%BF/12/26/%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BA%BF/image-20191226171940833.png" alt="image-20191226171940833"></p>
 <h3 id="双级总线结构"><a href="#双级总线结构" class="headerlink" title="双级总线结构"></a>双级总线结构</h3><ul>
 <li>由于外设和内存分处于不同的总线，需要增加I/O指令；</li>
 <li>存储总线的增加减轻了系统总线的负担，提高了并行性； </li>
 <li>仍然保持了单总线结构的系统简单、易于扩充的优点。</li>
 </ul>
-<p><img src="/2019/12/26/%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BA%BF/image-20191226172026248.png" alt="image-20191226172026248"></p>
+<p><img src="/2019/12/26/%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BA%BF/12/26/%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BA%BF/image-20191226172026248.png" alt="image-20191226172026248"></p>
 <h3 id="多级总线结构"><a href="#多级总线结构" class="headerlink" title="多级总线结构"></a>多级总线结构</h3><ul>
 <li>在双级总线结构的基础上增加I/O总线构成； </li>
 <li>并行性进一步提高，并可以通过增加通道或IO处理机来分担部分CPU 的I/O功能，但是总线结构得越来越复杂。</li>
 </ul>
-<p><img src="/2019/12/26/%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BA%BF/image-20191226172053836.png" alt="image-20191226172053836"></p>
+<p><img src="/2019/12/26/%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BA%BF/12/26/%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BA%BF/image-20191226172053836.png" alt="image-20191226172053836"></p>
 <h3 id="总线示例"><a href="#总线示例" class="headerlink" title="总线示例"></a>总线示例</h3><h4 id="多级总线示例"><a href="#多级总线示例" class="headerlink" title="多级总线示例"></a>多级总线示例</h4><p>总线桥：是不同速率总线 之间的连接器件，起信号 速度缓冲、电平转换、控 制协议转换等作用。</p>
-<p><img src="/2019/12/26/%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BA%BF/image-20191226172131126.png" alt="image-20191226172131126"></p>
-<h4 id="单级总线示例"><a href="#单级总线示例" class="headerlink" title="单级总线示例"></a>单级总线示例</h4><p><img src="/2019/12/26/%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BA%BF/image-20191226172214936.png" alt="image-20191226172214936"></p>
+<p><img src="/2019/12/26/%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BA%BF/12/26/%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BA%BF/image-20191226172131126.png" alt="image-20191226172131126"></p>
+<h4 id="单级总线示例"><a href="#单级总线示例" class="headerlink" title="单级总线示例"></a>单级总线示例</h4><p><img src="/2019/12/26/%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BA%BF/12/26/%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BA%BF/image-20191226172214936.png" alt="image-20191226172214936"></p>
 <h3 id="总线结构对计算机系统性能的影响"><a href="#总线结构对计算机系统性能的影响" class="headerlink" title="总线结构对计算机系统性能的影响"></a>总线结构对计算机系统性能的影响</h3><ul>
 <li>对最大存储容量的影响：单总线结构有影响，双总线和多总线结构没有；</li>
 <li>对指令系统的影响：双总线和多总线结构需要增加IO指令；</li>
 <li>吞吐量：单总线结构的吞吐量小，多总线结构的吞吐量大，双总线结 构的吞吐量居中</li>
 </ul>
-<h2 id="总线仲裁和数据传输方式"><a href="#总线仲裁和数据传输方式" class="headerlink" title="总线仲裁和数据传输方式"></a>总线仲裁和数据传输方式</h2><h3 id="菊花链式串行总线仲裁"><a href="#菊花链式串行总线仲裁" class="headerlink" title="菊花链式串行总线仲裁"></a>菊花链式串行总线仲裁</h3><p><img src="/2019/12/26/%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BA%BF/image-20191226173643508.png" alt="image-20191226173643508"></p>
-<h3 id="集中式并行总线仲裁"><a href="#集中式并行总线仲裁" class="headerlink" title="集中式并行总线仲裁"></a>集中式并行总线仲裁</h3><p><img src="/2019/12/26/%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BA%BF/image-20191226173726362.png" alt="image-20191226173726362"></p>
+<h2 id="总线仲裁和数据传输方式"><a href="#总线仲裁和数据传输方式" class="headerlink" title="总线仲裁和数据传输方式"></a>总线仲裁和数据传输方式</h2><h3 id="菊花链式串行总线仲裁"><a href="#菊花链式串行总线仲裁" class="headerlink" title="菊花链式串行总线仲裁"></a>菊花链式串行总线仲裁</h3><p><img src="/2019/12/26/%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BA%BF/12/26/%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BA%BF/image-20191226173643508.png" alt="image-20191226173643508"></p>
+<h3 id="集中式并行总线仲裁"><a href="#集中式并行总线仲裁" class="headerlink" title="集中式并行总线仲裁"></a>集中式并行总线仲裁</h3><p><img src="/2019/12/26/%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BA%BF/12/26/%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BA%BF/image-20191226173726362.png" alt="image-20191226173726362"></p>
 <h3 id="常见总线仲裁策略"><a href="#常见总线仲裁策略" class="headerlink" title="常见总线仲裁策略"></a>常见总线仲裁策略</h3><ul>
 <li>固定优先级总线仲裁</li>
 <li>轮叫式总线仲裁（Round Robin）</li>
@@ -382,19 +382,19 @@
 <li>混合式总线仲裁</li>
 </ul>
 <h3 id="总线时序"><a href="#总线时序" class="headerlink" title="总线时序"></a>总线时序</h3><h4 id="同步定时"><a href="#同步定时" class="headerlink" title="同步定时"></a>同步定时</h4><p>同步定时：信息传送由公共时钟控制，总线中包含时钟线。</p>
-<p><img src="/2019/12/26/%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BA%BF/image-20191226173902376.png" alt="image-20191226173902376"></p>
+<p><img src="/2019/12/26/%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BA%BF/12/26/%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BA%BF/image-20191226173902376.png" alt="image-20191226173902376"></p>
 <ul>
 <li>优点：时序关系简单，实现简单。</li>
 <li>缺点：在设备速度不一致时按最坏情况确定， 传输线不能太长（时钟相移）。 </li>
 </ul>
 <h4 id="异步定时"><a href="#异步定时" class="headerlink" title="异步定时"></a>异步定时</h4><p>异步定时：信息传送的每一个操作都是由主设备或从设备特定信号的 跳变所确定，总线上每一个事件的发生取决于前一个事件的发生。</p>
-<p><img src="/2019/12/26/%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BA%BF/image-20191226174007685.png" alt="image-20191226174007685"></p>
+<p><img src="/2019/12/26/%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BA%BF/12/26/%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BA%BF/image-20191226174007685.png" alt="image-20191226174007685"></p>
 <ul>
 <li>优点：数据传输可靠，适用于传输周期不同的设备， 对通讯线的长度没有严格的要求。 </li>
 <li>缺点：速度较慢。</li>
 </ul>
 <h4 id="半同步定时"><a href="#半同步定时" class="headerlink" title="半同步定时"></a>半同步定时</h4><p>半同步定时：总线上各操作之间的时间间隔可以变化，但仅允许为公 共时钟周期的整数倍。信号的出现、采样和结束仍以公共时钟为基准。</p>
-<p><img src="/2019/12/26/%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BA%BF/image-20191226174058360.png" alt="image-20191226174058360"></p>
+<p><img src="/2019/12/26/%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BA%BF/12/26/%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BA%BF/image-20191226174058360.png" alt="image-20191226174058360"></p>
 <h3 id="数据传输"><a href="#数据传输" class="headerlink" title="数据传输"></a>数据传输</h3><h4 id="并行传送"><a href="#并行传送" class="headerlink" title="并行传送"></a>并行传送</h4><ul>
 <li>同时并行传送的二进位数就是数据宽度；</li>
 <li>通常采用应答式的联络信号来协调双方的数据传送操作。</li>
@@ -410,23 +410,23 @@
 </ul>
 <h2 id="总线标准"><a href="#总线标准" class="headerlink" title="总线标准"></a>总线标准</h2><p>总线标准：计算机系统的各部件之间利用总线进行信 息传输时应遵守的协议和规范，包括硬件 和软件两个方面。</p>
 <h3 id="常见总线标准"><a href="#常见总线标准" class="headerlink" title="常见总线标准"></a>常见总线标准</h3><ul>
-<li>ISA（Industrial Standard Architecture）：最早制定的总线技术标 准，总线宽度8/16位，总线频率5~8MHz，总线带宽5~8MB/s。<br><img src="/2019/12/26/%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BA%BF/image-20191226180444002.png" alt="image-20191226180444002"></li>
+<li>ISA（Industrial Standard Architecture）：最早制定的总线技术标 准，总线宽度8/16位，总线频率5~8MHz，总线带宽5~8MB/s。<br><img src="/2019/12/26/%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BA%BF/12/26/%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BA%BF/image-20191226180444002.png" alt="image-20191226180444002"></li>
 <li>EISA（Extended Industry Standard Architecture）总线：在ISA总 线的基础上为32位微机开发。</li>
 <li>VESA（Video Electronics Standard Association)总线：1992年推， 它的推出为微机系统总线体系结构的革新奠定了基础，该总线系统考 虑到CPU与主存和Cache的直接相连。标准定义了32位数据线，且可 通过扩展槽扩展到64位，使用33MHz时钟频率，最大传输率为 128MB/s~132MB/s。</li>
 <li>PCI（Peripheral Component Interconnect）总线：PCI是由Intel 公司1991年推出的总线规范，用于取代ISA；不同于ISA总线，PCI总 线的地址总线与数据总线是分时复用的，支持插即用。<ul>
 <li>PCI总线支持10台外设，总线宽度32/64位，总线时钟 频率33.3MHz/66MHz，最大数据传输速率 133/264 MB/s，时钟同步方式，且与CPU的时钟频率无关。</li>
-<li>插即用：是指当板卡插入系统时，系统会自动对板卡所需资源进行分 配，如基地址、中断号等，并自动寻找相应的驱动程序；而不象旧的 ISA板卡，需要进行复杂的手动配置。<br><img src="/2019/12/26/%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BA%BF/image-20191226180527801.png" alt="image-20191226180527801"></li>
+<li>插即用：是指当板卡插入系统时，系统会自动对板卡所需资源进行分 配，如基地址、中断号等，并自动寻找相应的驱动程序；而不象旧的 ISA板卡，需要进行复杂的手动配置。<br><img src="/2019/12/26/%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BA%BF/12/26/%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BA%BF/image-20191226180527801.png" alt="image-20191226180527801"></li>
 </ul>
 </li>
-<li>AGP（Accelerated Graphics Port）总线：是Intel公司1997年推出 的一种3D标准图像接口， 基于PCI2.1版规范并进 行扩充修改而成，它采 用点对点通道方式，能 够提供四倍于PCI的传输 速度。<br><img src="/2019/12/26/%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BA%BF/image-20191226180559822.png" alt="image-20191226180559822"></li>
+<li>AGP（Accelerated Graphics Port）总线：是Intel公司1997年推出 的一种3D标准图像接口， 基于PCI2.1版规范并进 行扩充修改而成，它采 用点对点通道方式，能 够提供四倍于PCI的传输 速度。<br><img src="/2019/12/26/%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BA%BF/12/26/%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BA%BF/image-20191226180559822.png" alt="image-20191226180559822"></li>
 <li>PCIe（Peripheral Component Interconnect Express）总线：是 Intel公司2001年推出的一种高速串行计算机扩展总线标准，用于替 代PCI、PCI-X和AGP总线。<ul>
 <li>PCIe相比以前的标准，有许多改进之外，包括：更高的最大 系统总线吞吐量，更低的I/O引脚数量和更小的物理尺寸，更 好的总线设备性能缩放，更详细的错误检测和报告机制； PCIe标准的更新版本为I/O虚拟化提供了硬件支持。</li>
-<li>PCIe有多种不同速度的接口模式，包括：1X、2X、4X、8X、 16X 以及更高速的32X；PCIe 1X 模式的传输速率可以达到 250MB/s，PCIe 2.0 X16 接口能够提供8GB/s的总线带宽。<br><img src="/2019/12/26/%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BA%BF/image-20191226180630424.png" alt="image-20191226180630424"></li>
+<li>PCIe有多种不同速度的接口模式，包括：1X、2X、4X、8X、 16X 以及更高速的32X；PCIe 1X 模式的传输速率可以达到 250MB/s，PCIe 2.0 X16 接口能够提供8GB/s的总线带宽。<br><img src="/2019/12/26/%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BA%BF/12/26/%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BA%BF/image-20191226180630424.png" alt="image-20191226180630424"></li>
 </ul>
 </li>
 <li>USB（Universal Serial Bus）总线：是由Intel、Compaq、IBM、 Microsoft等多家公司1994年联合提出的一种通用串行总线。<ul>
-<li>采用四线电缆，其中两根是用来传送数据的串行通道，另两根 为下游设备提供电源<br><img src="/2019/12/26/%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BA%BF/image-20191226180817639.png" alt="image-20191226180817639"> </li>
-<li>采用级联星型拓扑，由三个基本部分组成：主机（Host），集 线器（Hub）和功能设备<br><img src="/2019/12/26/%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BA%BF/image-20191226180907659.png" alt="image-20191226180907659"></li>
+<li>采用四线电缆，其中两根是用来传送数据的串行通道，另两根 为下游设备提供电源<br><img src="/2019/12/26/%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BA%BF/12/26/%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BA%BF/image-20191226180817639.png" alt="image-20191226180817639"> </li>
+<li>采用级联星型拓扑，由三个基本部分组成：主机（Host），集 线器（Hub）和功能设备<br><img src="/2019/12/26/%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BA%BF/12/26/%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BA%BF/image-20191226180907659.png" alt="image-20191226180907659"></li>
 <li>USB 1.1 总线带宽为12Mbps（1.5MB/s），可接入多达127 个设备。</li>
 <li>USB 3.1 Gen2 最大传输速率可达10Gbps（1280MB/s）。</li>
 <li>USB自推出后，已成功替代串口和并口，并成为个人电脑和大 量智能设备的必配的接口之一。</li>
@@ -435,10 +435,10 @@
 <li>AMBA（Advanced Microcontroller Bus Architecture）总线：是 ARM公司推出的片上总线；AMBA提供了一种特殊的机制，可将RISC 处理器集成在其它IP核和外设中。<br>AMBA 2.0 标准定义了三组总线<ul>
 <li>AHB（Advanced High-Performance Bus）：AMBA高性能总线<br>AHB总线：属于高性能、高时钟频率的系统总线，主要特点包括流水 线操作、数据突发传输（Burst Transfer）、可支持多个总线主设备 （最多16个）、单时钟沿触发操作、总线宽度32、64、128位（最高 可达1024位，但推荐不要超过256位)。</li>
 <li>ASB（Advanced System Bus）：AMBA系统总线<br>ASB总线：与AHB相比数据宽度要小一些，支持8、16、32位，且为三 态、双向总线。</li>
-<li>APB（Advanced Peripheral Bus）：AMBA外设总线<br>APB总线：是本地二级总线，通过桥和AHB/ASB相连。它主要是为了满 足不需要高性能流水线接口或不需要高带宽接口的设备的互连。<br>AMBA总线结构：<br><img src="/2019/12/26/%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BA%BF/image-20191226181128289.png" alt="image-20191226181128289"></li>
+<li>APB（Advanced Peripheral Bus）：AMBA外设总线<br>APB总线：是本地二级总线，通过桥和AHB/ASB相连。它主要是为了满 足不需要高性能流水线接口或不需要高带宽接口的设备的互连。<br>AMBA总线结构：<br><img src="/2019/12/26/%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BA%BF/12/26/%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BA%BF/image-20191226181128289.png" alt="image-20191226181128289"></li>
 </ul>
 </li>
-<li>AMBA 4.0 是最新增添到AMBA系列中的规范，增加了三个新接口 协议（Advanced eXtensible Interface）：AXI4有助于最大化性 能和能效、AXI4-Lite和AXI4-Stream是 FPGA中实现的理想选择。<img src="/2019/12/26/%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BA%BF/image-20191226181323636.png" alt="image-20191226181323636"></li>
+<li>AMBA 4.0 是最新增添到AMBA系列中的规范，增加了三个新接口 协议（Advanced eXtensible Interface）：AXI4有助于最大化性 能和能效、AXI4-Lite和AXI4-Stream是 FPGA中实现的理想选择。<img src="/2019/12/26/%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BA%BF/12/26/%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BA%BF/image-20191226181323636.png" alt="image-20191226181323636"></li>
 </ul>
 <p>特点：</p>
 <ul>
@@ -448,7 +448,7 @@
 <li>支持系统高速缓存</li>
 <li>持增强保护功能</li>
 <li>互斥访问（用于semaphore操作</li>
-<li>寄存器分片以便于高频操<br>AXI4总线结构：<br><img src="/2019/12/26/%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BA%BF/image-20191226181340500.png" alt="image-20191226181340500"><ul>
+<li>寄存器分片以便于高频操<br>AXI4总线结构：<br><img src="/2019/12/26/%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BA%BF/12/26/%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BA%BF/image-20191226181340500.png" alt="image-20191226181340500"><ul>
 <li>InfiniBand总线：是由InfiniBand行业协会推出的，该协会的主要成员 包括Compaq、Dell、HP、IBM、Intel、Microsoft和Sun等公司。</li>
 </ul>
 </li>
@@ -613,7 +613,9 @@
 
       </div>
 
-<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=298 height=60 src="//music.163.com/outchain/player?type=2&id=509038&auto=0&height=32"></iframe>
+<div id="music163">
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=300 height=370 src="//music.163.com/outchain/player?type=0&id=7760409930&auto=1&height=430"></iframe>
+</div>
 
     </div>
   </aside>
