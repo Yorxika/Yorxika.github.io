@@ -1,6 +1,125 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>【Incident Review】Debate about Leetcode NO.799</title>
+    <url>/2022/11/20/2022-11-20/</url>
+    <content><![CDATA[<h2 id="Before"><a href="#Before" class="headerlink" title="Before"></a>Before</h2><p>这文档或许可以称为一篇复盘文档吧。</p>
+<a id="more"></a>
+<h2 id="Cause"><a href="#Cause" class="headerlink" title="Cause"></a>Cause</h2><p>首先看起因。</p>
+<p><a href="https://leetcode.cn/problems/champagne-tower/" target="_blank" rel="noopener">799. 香槟塔</a></p>
+<blockquote>
+<p> 我们把玻璃杯摆成金字塔的形状，其中 第一层 有 1 个玻璃杯， 第二层 有 2 个，依次类推到第 100 层，每个玻璃杯 (250ml) 将盛有香槟。</p>
+<p>从顶层的第一个玻璃杯开始倾倒一些香槟，当顶层的杯子满了，任何溢出的香槟都会立刻等流量的流向左右两侧的玻璃杯。当左右两边的杯子也满了，就会等流量的流向它们左右两边的杯子，依次类推。（当最底层的玻璃杯满了，香槟会流到地板上）</p>
+<p>例如，在倾倒一杯香槟后，最顶层的玻璃杯满了。倾倒了两杯香槟后，第二层的两个玻璃杯各自盛放一半的香槟。在倒三杯香槟后，第二层的香槟满了 - 此时总共有三个满的玻璃杯。在倒第四杯后，第三层中间的玻璃杯盛放了一半的香槟，他两边的玻璃杯各自盛放了四分之一的香槟，如下图所示。</p>
+<p>现在当倾倒了非负整数杯香槟后，返回第 i 行 j 个玻璃杯所盛放的香槟占玻璃杯容积的比例（ i 和 j 都从0开始）。</p>
+</blockquote>
+<figure class="highlight angelscript"><table><tr><td class="code"><pre><span class="line">示例 <span class="number">1</span>:</span><br><span class="line">输入: poured(倾倒香槟总杯数) = <span class="number">1</span>, query_glass(杯子的位置数) = <span class="number">1</span>, query_row(行数) = <span class="number">1</span></span><br><span class="line">输出: <span class="number">0.00000</span></span><br><span class="line">解释: 我们在顶层（下标是（<span class="number">0</span>，<span class="number">0</span>））倒了一杯香槟后，没有溢出，因此所有在顶层以下的玻璃杯都是空的。</span><br></pre></td></tr></table></figure>
+<figure class="highlight angelscript"><table><tr><td class="code"><pre><span class="line">示例 <span class="number">2</span>:</span><br><span class="line">输入: poured(倾倒香槟总杯数) = <span class="number">2</span>, query_glass(杯子的位置数) = <span class="number">1</span>, query_row(行数) = <span class="number">1</span></span><br><span class="line">输出: <span class="number">0.50000</span></span><br><span class="line">解释: 我们在顶层（下标是（<span class="number">0</span>，<span class="number">0</span>）倒了两杯香槟后，有一杯量的香槟将从顶层溢出，位于（<span class="number">1</span>，<span class="number">0</span>）的玻璃杯和（<span class="number">1</span>，<span class="number">1</span>）的玻璃杯平分了这一杯香槟，所以每个玻璃杯有一半的香槟。</span><br></pre></td></tr></table></figure>
+<p>题目也比较简单，动规+模拟即可解决。一开始想着除了模拟外，能不能推出数学公式来解决这道题，不过后来发现是我想多了。题目是杨辉三角的变种，但公式推不出来，老实模拟就好。下面是解答。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">champagneTower</span><span class="params">(<span class="keyword">int</span> poured, <span class="keyword">int</span> query_row, <span class="keyword">int</span> query_glass)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">double</span>[][] ca = <span class="keyword">new</span> <span class="keyword">double</span>[<span class="number">102</span>][<span class="number">102</span>];</span><br><span class="line">    ca[<span class="number">0</span>][<span class="number">0</span>] = (<span class="keyword">double</span>)poured;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> l = <span class="number">0</span>; l &lt;= query_row; l++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> r = <span class="number">0</span>; r &lt;= l; r++)&#123;</span><br><span class="line">            <span class="keyword">double</span> d = (ca[l][r] - <span class="number">1.0</span>) / <span class="number">2</span>;</span><br><span class="line">            <span class="keyword">if</span>(d &gt; <span class="number">0</span>)&#123;</span><br><span class="line">                ca[l+<span class="number">1</span>][r] += d;</span><br><span class="line">                ca[l+<span class="number">1</span>][r+<span class="number">1</span>] +=d;  </span><br><span class="line">            &#125; </span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> Math.min(<span class="number">1.0</span>, ca[query_row][query_glass]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Detail"><a href="#Detail" class="headerlink" title="Detail"></a>Detail</h2><p>直接放聊天记录。</p>
+<p><img src="/2022/11/20/2022-11-20/admin/Documents/hexo/source/_posts/2022-11-20/Screenshot_2022-11-20-21-44-44-660.jpg" alt="Screenshot_2022-11-20-21-44-44-660_com.tencent.mo"></p>
+<p><img src="/2022/11/20/2022-11-20/admin/Documents/hexo/source/_posts/2022-11-20/Screenshot_2022-11-20-21-46-03-288.jpg" alt="Screenshot_2022-11-20-21-46-03-288_com.tencent.mo"></p>
+<p><img src="/2022/11/20/2022-11-20/admin/Documents/hexo/source/_posts/2022-11-20/Screenshot_2022-11-20-21-47-25-249.jpg" alt="Screenshot_2022-11-20-21-47-25-249_com.tencent.mo"></p>
+<h2 id="Result"><a href="#Result" class="headerlink" title="Result"></a>Result</h2><p>结局自然是以我被踢出群聊结束。</p>
+<h2 id="Thinking"><a href="#Thinking" class="headerlink" title="Thinking"></a>Thinking</h2><p>很多思考的内容在傍晚的椭圆机上已经思考过了，现在也不大能保证还原当时的想法。</p>
+<p>首先就是我为什么会“急了”。</p>
+<p>现在想来，不外乎是以下几点：</p>
+<ol>
+<li><p>讨厌被不熟的人说教。就有那么一种感觉“你在教我做事？”我985计算机出身，两段大厂经历，至于被一个互联网的上臭鱼烂虾指指点点？尤其是对面可能还没毕业，或者才毕业2个月的情况。你寄吧谁啊。</p>
+</li>
+<li><p>无法理解的脑回路。面向过程的算法题能扯到面对对象，aop，执行效率高，易读性好，太好为人师了。</p>
+</li>
+<li><p>面对互联网常用语“急了”没有做到很好的应对。当下互联网上的争论很多是无意义的争论，面对这种没有意义的“急了”，万能解答“典”，“典中典”就可以怼回去了，而不是先自认“急了”，在继续在原问题上争辩，没有意义。</p>
+</li>
+</ol>
+<blockquote>
+<p>网络君子六艺：典、孝、急、乐、蚌、赢</p>
+</blockquote>
+<ol>
+<li>好为人师，说教闭口不谈，实质性的内容也没谈多少，只谈谜语。OOP，AOP也没说出个所以然来。更有一种“刚学了一个概念，就出来装逼”的感觉。</li>
+</ol>
+<p>来自taisa的良言</p>
+<blockquote>
+<p>不熟的人和他来回3个回合就算我输了</p>
+</blockquote>
+<h2 id="Others"><a href="#Others" class="headerlink" title="Others"></a>Others</h2><p>写这篇复盘文档更多不是为了看这道题，或者这件事怎么怎么，更关心的是自己的思考。（虽然这里有的思考说一个月以前的了，hhhh）</p>
+<h4 id="交付价值，不是交付需求-业务"><a href="#交付价值，不是交付需求-业务" class="headerlink" title="交付价值，不是交付需求(业务)"></a>交付价值，不是交付需求(业务)</h4><p>在交付需求的时候，有自己的思考or判断吗？对于一个需求，交到研发手上，为什么要做，要怎么做好，要做成怎样，这些其实还是值得我去思考的。但是或许是由于时间的原因，导致我没有很好的去履行有关方案，仅仅是接到需求，拿到手就去做了，其实还是可以更多的去思考要怎么<strong>做的更好</strong>。</p>
+<p>这里的<strong>做的更好</strong>可以再补充一下，性能（各种耗时），交互（各种体验）。</p>
+<p>时间忙是客观因素，需求A刚提测就来了需求B，疲于奔命忙着各种需求，带来了一系列问题，比如[没成长]，[心累时间忙]等。</p>
+<p>那我在空闲之余，有完成我自己的承诺吗？现状梳理，文档沉淀，技术规划，性能or体验优化，很多事情都没有达成。</p>
+<h4 id="从理想倒推，从现实延伸"><a href="#从理想倒推，从现实延伸" class="headerlink" title="从理想倒推，从现实延伸"></a>从理想倒推，从现实延伸</h4><p>持续打磨产品，体验优化。</p>
+<p>体验竞品，学习优秀。</p>
+<p>我所负责的模块要达到一个怎样的水平，达成一个怎样的目标？</p>
+<h4 id="个人成长，未来规划"><a href="#个人成长，未来规划" class="headerlink" title="个人成长，未来规划"></a>个人成长，未来规划</h4><p>对不起，目前还没有什么规划。</p>
+<p>接下来一年能做成怎样？</p>
+<p>这里还是写一下吧。总归还是要用到的。不过也只是把文档上的内容搬了过来。</p>
+<p>技术能力:</p>
+<ol>
+<li>可拓展</li>
+<li>健壮</li>
+<li>可复用：低耦合，高内聚，热插拔，面向接口编程</li>
+<li>稳定</li>
+</ol>
+<p>业务能力：</p>
+<ol>
+<li>熟悉业务，无需多说</li>
+<li>协调推动</li>
+<li>判断力与优先级</li>
+</ol>
+<h4 id="控制情绪，坦诚清晰"><a href="#控制情绪，坦诚清晰" class="headerlink" title="控制情绪，坦诚清晰"></a>控制情绪，坦诚清晰</h4><blockquote>
+<p>心平气和，理性沟通</p>
+</blockquote>
+<p>更多的时候还是善意假设，换位思考吧。不以恶意揣测他人。</p>
+<p>想起一个badcase，在排查问题时对.remake过火了些。是的，资源包有问题，但这是<strong>从经验出发</strong>，我更想知道的是为什么会造成这个问题，是哪里出了错。</p>
+<p>更之前的badcase无疑是打低评价。不管是情绪化还是怎样，还是要从实际出发，善意假设，不以恶意揣测他人。目光放长远，从他人角度出发。</p>
+<p>心平气和，心平气和。</p>
+<h4 id="人与人之间还是要少些攻击性"><a href="#人与人之间还是要少些攻击性" class="headerlink" title="人与人之间还是要少些攻击性"></a>人与人之间还是要少些攻击性</h4><p>人与人之间还是要少些攻击性，与自己和解，与他人和解，与世界和解。</p>
+<p>有的玩笑能不开就不开，在玩笑的背后何尝又不是心酸血泪呢。</p>
+<blockquote>
+<p>我原本以为幽默就是幽默，但人微言轻的时候，幽默就成了搞笑，搞笑就容易被当成小丑。</p>
+</blockquote>
+<h4 id="不要从经验出发"><a href="#不要从经验出发" class="headerlink" title="不要从经验出发"></a>不要从经验出发</h4><p>经验或者说惯性有时还是很可怕的。在面对某一问题上时，我可以说按经验是xxx出了问题，但是这并不够，我更希望找到根本原因，哪一行代码写错了。</p>
+<p>有时经验/惯性带来的伤害也是不小的。回想起在做需求时，按照经验这个地方应该这么写（线上就是这么写的），但是写完发现这里总会造成一个抖动，经验让我选择了相信这里的代码，并没有去怀疑他，然而最终发现还是这里出了问题。</p>
+<p>另外一个经验/惯性带来的问题也是同样。历史代码里矩阵运算后乘了一个<code>scale</code>,但是经验没有告诉我在特定情况下这个<code>scale</code>总是1，而在我的场景下<code>scale</code>的值是可以变化的，进而产生了问题，经验就是这样带来了其他问题。</p>
+<h4 id="非暴力沟通"><a href="#非暴力沟通" class="headerlink" title="非暴力沟通"></a>非暴力沟通</h4><ul>
+<li>重要的事情说三点，比如三个论据，三个论点，三个观点等（最简单的结构化表达）</li>
+<li>先说结论，再说过程和原因，然后再说结论。</li>
+<li>说清楚<strong>What</strong>，<strong>How</strong>，<strong>Why</strong></li>
+</ul>
+<p>说回这里，互联网上有的争论确实是没有意义+浪费时间，典就完事了。</p>
+<h4 id="挖掘事物背后的本质"><a href="#挖掘事物背后的本质" class="headerlink" title="挖掘事物背后的本质"></a>挖掘事物背后的本质</h4><p>深入底层，多看源码，不自嗨。</p>
+<p>了解问题发生的原因<br>挖掘事物背后本质<br>寻找其他相似问题</p>
+<h4 id="持续学习"><a href="#持续学习" class="headerlink" title="持续学习"></a>持续学习</h4><p>多读书，多学习，多看源码。</p>
+]]></content>
+      <categories>
+        <category>杂谈</category>
+      </categories>
+      <tags>
+        <tag>杂谈</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>观 CyberPunk EdgeRunnes 感</title>
+    <url>/2022/10/16/2022-10-16/</url>
+    <content><![CDATA[<p>昨晚一口气把赛博朋克 边缘行者看完了，对于我这种“上了年纪”的人而言，后劲很大。</p>
+<p>David，Lucy，Rebecca，Manie，Dorio，Kiwi。</p>
+<p>潮汐退和涨</p>
+<p>月冷风和霜</p>
+<p>夜雨的狂想</p>
+<p>野花的微香</p>
+<p>伴我星夜里幻想</p>
+<p>方知不用太紧张</p>
+<p>To Be Continue 剩下的想写的时候在写吧</p>
+]]></content>
+      <categories>
+        <category>杂谈</category>
+      </categories>
+      <tags>
+        <tag>杂谈</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>与自己和解</title>
     <url>/2022/10/05/2022-10-05/</url>
     <content><![CDATA[<p>始于2022-10-05 22:21。</p>
@@ -12142,8 +12261,8 @@ e[i,j]=e[i,r−1]+e[r+1,j]+w[i,j]
       </categories>
       <tags>
         <tag>Leetcode</tag>
-        <tag>设计</tag>
         <tag>cache</tag>
+        <tag>设计</tag>
       </tags>
   </entry>
   <entry>

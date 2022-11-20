@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.9.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yorxika.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="Before这文档或许可以称为一篇复盘文档吧。">
+<meta name="keywords" content="杂谈">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【Incident Review】Debate about Leetcode NO.799">
+<meta property="og:url" content="http://yorxika.github.io/2022/11/20/2022-11-20/index.html">
+<meta property="og:site_name" content="Nameless Site">
+<meta property="og:description" content="Before这文档或许可以称为一篇复盘文档吧。">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://yorxika.github.io/2022/11/20/2022-11-20/admin/Documents/hexo/source/_posts/2022-11-20/Screenshot_2022-11-20-21-44-44-660.jpg">
+<meta property="og:image" content="http://yorxika.github.io/2022/11/20/2022-11-20/admin/Documents/hexo/source/_posts/2022-11-20/Screenshot_2022-11-20-21-46-03-288.jpg">
+<meta property="og:image" content="http://yorxika.github.io/2022/11/20/2022-11-20/admin/Documents/hexo/source/_posts/2022-11-20/Screenshot_2022-11-20-21-47-25-249.jpg">
+<meta property="og:updated_time" content="2022-11-20T15:57:12.016Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【Incident Review】Debate about Leetcode NO.799">
+<meta name="twitter:description" content="Before这文档或许可以称为一篇复盘文档吧。">
+<meta name="twitter:image" content="http://yorxika.github.io/2022/11/20/2022-11-20/admin/Documents/hexo/source/_posts/2022-11-20/Screenshot_2022-11-20-21-44-44-660.jpg">
+
+<link rel="canonical" href="http://yorxika.github.io/2022/11/20/2022-11-20/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>【Incident Review】Debate about Leetcode NO.799 | Nameless Site</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="Nameless Site" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Nameless Site</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">But one day, you will stand before its decrepit gate,without really knowing why.</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+        <li class="menu-item menu-item-links">
+
+    <a href="/links/" rel="section"><i class="fa fa-link fa-fw"></i>links</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yorxika.github.io/2022/11/20/2022-11-20/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/touxiang.jpg">
+      <meta itemprop="name" content="HMF">
+      <meta itemprop="description" content="To your valor, my sword, and our victory together.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Nameless Site">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          【Incident Review】Debate about Leetcode NO.799
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2022-11-20 21:50:02 / Modified: 23:57:12" itemprop="dateCreated datePublished" datetime="2022-11-20T21:50:02+08:00">2022-11-20</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/杂谈/" itemprop="url" rel="index"><span itemprop="name">杂谈</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>2.9k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>3 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="Before"><a href="#Before" class="headerlink" title="Before"></a>Before</h2><p>这文档或许可以称为一篇复盘文档吧。</p>
+<a id="more"></a>
+<h2 id="Cause"><a href="#Cause" class="headerlink" title="Cause"></a>Cause</h2><p>首先看起因。</p>
+<p><a href="https://leetcode.cn/problems/champagne-tower/" target="_blank" rel="noopener">799. 香槟塔</a></p>
+<blockquote>
+<p> 我们把玻璃杯摆成金字塔的形状，其中 第一层 有 1 个玻璃杯， 第二层 有 2 个，依次类推到第 100 层，每个玻璃杯 (250ml) 将盛有香槟。</p>
+<p>从顶层的第一个玻璃杯开始倾倒一些香槟，当顶层的杯子满了，任何溢出的香槟都会立刻等流量的流向左右两侧的玻璃杯。当左右两边的杯子也满了，就会等流量的流向它们左右两边的杯子，依次类推。（当最底层的玻璃杯满了，香槟会流到地板上）</p>
+<p>例如，在倾倒一杯香槟后，最顶层的玻璃杯满了。倾倒了两杯香槟后，第二层的两个玻璃杯各自盛放一半的香槟。在倒三杯香槟后，第二层的香槟满了 - 此时总共有三个满的玻璃杯。在倒第四杯后，第三层中间的玻璃杯盛放了一半的香槟，他两边的玻璃杯各自盛放了四分之一的香槟，如下图所示。</p>
+<p>现在当倾倒了非负整数杯香槟后，返回第 i 行 j 个玻璃杯所盛放的香槟占玻璃杯容积的比例（ i 和 j 都从0开始）。</p>
+</blockquote>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">示例 <span class="number">1</span>:</span><br><span class="line">输入: poured(倾倒香槟总杯数) = <span class="number">1</span>, query_glass(杯子的位置数) = <span class="number">1</span>, query_row(行数) = <span class="number">1</span></span><br><span class="line">输出: <span class="number">0.00000</span></span><br><span class="line">解释: 我们在顶层（下标是（<span class="number">0</span>，<span class="number">0</span>））倒了一杯香槟后，没有溢出，因此所有在顶层以下的玻璃杯都是空的。</span><br></pre></td></tr></table></figure>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">示例 <span class="number">2</span>:</span><br><span class="line">输入: poured(倾倒香槟总杯数) = <span class="number">2</span>, query_glass(杯子的位置数) = <span class="number">1</span>, query_row(行数) = <span class="number">1</span></span><br><span class="line">输出: <span class="number">0.50000</span></span><br><span class="line">解释: 我们在顶层（下标是（<span class="number">0</span>，<span class="number">0</span>）倒了两杯香槟后，有一杯量的香槟将从顶层溢出，位于（<span class="number">1</span>，<span class="number">0</span>）的玻璃杯和（<span class="number">1</span>，<span class="number">1</span>）的玻璃杯平分了这一杯香槟，所以每个玻璃杯有一半的香槟。</span><br></pre></td></tr></table></figure>
+<p>题目也比较简单，动规+模拟即可解决。一开始想着除了模拟外，能不能推出数学公式来解决这道题，不过后来发现是我想多了。题目是杨辉三角的变种，但公式推不出来，老实模拟就好。下面是解答。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">champagneTower</span><span class="params">(<span class="keyword">int</span> poured, <span class="keyword">int</span> query_row, <span class="keyword">int</span> query_glass)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">double</span>[][] ca = <span class="keyword">new</span> <span class="keyword">double</span>[<span class="number">102</span>][<span class="number">102</span>];</span><br><span class="line">    ca[<span class="number">0</span>][<span class="number">0</span>] = (<span class="keyword">double</span>)poured;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> l = <span class="number">0</span>; l &lt;= query_row; l++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> r = <span class="number">0</span>; r &lt;= l; r++)&#123;</span><br><span class="line">            <span class="keyword">double</span> d = (ca[l][r] - <span class="number">1.0</span>) / <span class="number">2</span>;</span><br><span class="line">            <span class="keyword">if</span>(d &gt; <span class="number">0</span>)&#123;</span><br><span class="line">                ca[l+<span class="number">1</span>][r] += d;</span><br><span class="line">                ca[l+<span class="number">1</span>][r+<span class="number">1</span>] +=d;  </span><br><span class="line">            &#125; </span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> Math.min(<span class="number">1.0</span>, ca[query_row][query_glass]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Detail"><a href="#Detail" class="headerlink" title="Detail"></a>Detail</h2><p>直接放聊天记录。</p>
+<p><img src="/2022/11/20/2022-11-20/admin/Documents/hexo/source/_posts/2022-11-20/Screenshot_2022-11-20-21-44-44-660.jpg" alt="Screenshot_2022-11-20-21-44-44-660_com.tencent.mo"></p>
+<p><img src="/2022/11/20/2022-11-20/admin/Documents/hexo/source/_posts/2022-11-20/Screenshot_2022-11-20-21-46-03-288.jpg" alt="Screenshot_2022-11-20-21-46-03-288_com.tencent.mo"></p>
+<p><img src="/2022/11/20/2022-11-20/admin/Documents/hexo/source/_posts/2022-11-20/Screenshot_2022-11-20-21-47-25-249.jpg" alt="Screenshot_2022-11-20-21-47-25-249_com.tencent.mo"></p>
+<h2 id="Result"><a href="#Result" class="headerlink" title="Result"></a>Result</h2><p>结局自然是以我被踢出群聊结束。</p>
+<h2 id="Thinking"><a href="#Thinking" class="headerlink" title="Thinking"></a>Thinking</h2><p>很多思考的内容在傍晚的椭圆机上已经思考过了，现在也不大能保证还原当时的想法。</p>
+<p>首先就是我为什么会“急了”。</p>
+<p>现在想来，不外乎是以下几点：</p>
+<ol>
+<li><p>讨厌被不熟的人说教。就有那么一种感觉“你在教我做事？”我985计算机出身，两段大厂经历，至于被一个互联网的上臭鱼烂虾指指点点？尤其是对面可能还没毕业，或者才毕业2个月的情况。你寄吧谁啊。</p>
+</li>
+<li><p>无法理解的脑回路。面向过程的算法题能扯到面对对象，aop，执行效率高，易读性好，太好为人师了。</p>
+</li>
+<li><p>面对互联网常用语“急了”没有做到很好的应对。当下互联网上的争论很多是无意义的争论，面对这种没有意义的“急了”，万能解答“典”，“典中典”就可以怼回去了，而不是先自认“急了”，在继续在原问题上争辩，没有意义。</p>
+</li>
+</ol>
+<blockquote>
+<p>网络君子六艺：典、孝、急、乐、蚌、赢</p>
+</blockquote>
+<ol>
+<li>好为人师，说教闭口不谈，实质性的内容也没谈多少，只谈谜语。OOP，AOP也没说出个所以然来。更有一种“刚学了一个概念，就出来装逼”的感觉。</li>
+</ol>
+<p>来自taisa的良言</p>
+<blockquote>
+<p>不熟的人和他来回3个回合就算我输了</p>
+</blockquote>
+<h2 id="Others"><a href="#Others" class="headerlink" title="Others"></a>Others</h2><p>写这篇复盘文档更多不是为了看这道题，或者这件事怎么怎么，更关心的是自己的思考。（虽然这里有的思考说一个月以前的了，hhhh）</p>
+<h4 id="交付价值，不是交付需求-业务"><a href="#交付价值，不是交付需求-业务" class="headerlink" title="交付价值，不是交付需求(业务)"></a>交付价值，不是交付需求(业务)</h4><p>在交付需求的时候，有自己的思考or判断吗？对于一个需求，交到研发手上，为什么要做，要怎么做好，要做成怎样，这些其实还是值得我去思考的。但是或许是由于时间的原因，导致我没有很好的去履行有关方案，仅仅是接到需求，拿到手就去做了，其实还是可以更多的去思考要怎么<strong>做的更好</strong>。</p>
+<p>这里的<strong>做的更好</strong>可以再补充一下，性能（各种耗时），交互（各种体验）。</p>
+<p>时间忙是客观因素，需求A刚提测就来了需求B，疲于奔命忙着各种需求，带来了一系列问题，比如[没成长]，[心累时间忙]等。</p>
+<p>那我在空闲之余，有完成我自己的承诺吗？现状梳理，文档沉淀，技术规划，性能or体验优化，很多事情都没有达成。</p>
+<h4 id="从理想倒推，从现实延伸"><a href="#从理想倒推，从现实延伸" class="headerlink" title="从理想倒推，从现实延伸"></a>从理想倒推，从现实延伸</h4><p>持续打磨产品，体验优化。</p>
+<p>体验竞品，学习优秀。</p>
+<p>我所负责的模块要达到一个怎样的水平，达成一个怎样的目标？</p>
+<h4 id="个人成长，未来规划"><a href="#个人成长，未来规划" class="headerlink" title="个人成长，未来规划"></a>个人成长，未来规划</h4><p>对不起，目前还没有什么规划。</p>
+<p>接下来一年能做成怎样？</p>
+<p>这里还是写一下吧。总归还是要用到的。不过也只是把文档上的内容搬了过来。</p>
+<p>技术能力:</p>
+<ol>
+<li>可拓展</li>
+<li>健壮</li>
+<li>可复用：低耦合，高内聚，热插拔，面向接口编程</li>
+<li>稳定</li>
+</ol>
+<p>业务能力：</p>
+<ol>
+<li>熟悉业务，无需多说</li>
+<li>协调推动</li>
+<li>判断力与优先级</li>
+</ol>
+<h4 id="控制情绪，坦诚清晰"><a href="#控制情绪，坦诚清晰" class="headerlink" title="控制情绪，坦诚清晰"></a>控制情绪，坦诚清晰</h4><blockquote>
+<p>心平气和，理性沟通</p>
+</blockquote>
+<p>更多的时候还是善意假设，换位思考吧。不以恶意揣测他人。</p>
+<p>想起一个badcase，在排查问题时对.remake过火了些。是的，资源包有问题，但这是<strong>从经验出发</strong>，我更想知道的是为什么会造成这个问题，是哪里出了错。</p>
+<p>更之前的badcase无疑是打低评价。不管是情绪化还是怎样，还是要从实际出发，善意假设，不以恶意揣测他人。目光放长远，从他人角度出发。</p>
+<p>心平气和，心平气和。</p>
+<h4 id="人与人之间还是要少些攻击性"><a href="#人与人之间还是要少些攻击性" class="headerlink" title="人与人之间还是要少些攻击性"></a>人与人之间还是要少些攻击性</h4><p>人与人之间还是要少些攻击性，与自己和解，与他人和解，与世界和解。</p>
+<p>有的玩笑能不开就不开，在玩笑的背后何尝又不是心酸血泪呢。</p>
+<blockquote>
+<p>我原本以为幽默就是幽默，但人微言轻的时候，幽默就成了搞笑，搞笑就容易被当成小丑。</p>
+</blockquote>
+<h4 id="不要从经验出发"><a href="#不要从经验出发" class="headerlink" title="不要从经验出发"></a>不要从经验出发</h4><p>经验或者说惯性有时还是很可怕的。在面对某一问题上时，我可以说按经验是xxx出了问题，但是这并不够，我更希望找到根本原因，哪一行代码写错了。</p>
+<p>有时经验/惯性带来的伤害也是不小的。回想起在做需求时，按照经验这个地方应该这么写（线上就是这么写的），但是写完发现这里总会造成一个抖动，经验让我选择了相信这里的代码，并没有去怀疑他，然而最终发现还是这里出了问题。</p>
+<p>另外一个经验/惯性带来的问题也是同样。历史代码里矩阵运算后乘了一个<code>scale</code>,但是经验没有告诉我在特定情况下这个<code>scale</code>总是1，而在我的场景下<code>scale</code>的值是可以变化的，进而产生了问题，经验就是这样带来了其他问题。</p>
+<h4 id="非暴力沟通"><a href="#非暴力沟通" class="headerlink" title="非暴力沟通"></a>非暴力沟通</h4><ul>
+<li>重要的事情说三点，比如三个论据，三个论点，三个观点等（最简单的结构化表达）</li>
+<li>先说结论，再说过程和原因，然后再说结论。</li>
+<li>说清楚<strong>What</strong>，<strong>How</strong>，<strong>Why</strong></li>
+</ul>
+<p>说回这里，互联网上有的争论确实是没有意义+浪费时间，典就完事了。</p>
+<h4 id="挖掘事物背后的本质"><a href="#挖掘事物背后的本质" class="headerlink" title="挖掘事物背后的本质"></a>挖掘事物背后的本质</h4><p>深入底层，多看源码，不自嗨。</p>
+<p>了解问题发生的原因<br>挖掘事物背后本质<br>寻找其他相似问题</p>
+<h4 id="持续学习"><a href="#持续学习" class="headerlink" title="持续学习"></a>持续学习</h4><p>多读书，多学习，多看源码。</p>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>Post author:  </strong>HMF
+  </li>
+  <li class="post-copyright-link">
+    <strong>Post link: </strong>
+    <a href="http://yorxika.github.io/2022/11/20/2022-11-20/" title="【Incident Review】Debate about Leetcode NO.799">http://yorxika.github.io/2022/11/20/2022-11-20/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/杂谈/" rel="tag"><i class="fa fa-tag"></i> 杂谈</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/10/16/2022-10-16/" rel="prev" title="观 CyberPunk EdgeRunnes 感">
+      <i class="fa fa-chevron-left"></i> 观 CyberPunk EdgeRunnes 感
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Before"><span class="nav-number">1.</span> <span class="nav-text">Before</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Cause"><span class="nav-number">2.</span> <span class="nav-text">Cause</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Detail"><span class="nav-number">3.</span> <span class="nav-text">Detail</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Result"><span class="nav-number">4.</span> <span class="nav-text">Result</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Thinking"><span class="nav-number">5.</span> <span class="nav-text">Thinking</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Others"><span class="nav-number">6.</span> <span class="nav-text">Others</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#交付价值，不是交付需求-业务"><span class="nav-number">6.0.1.</span> <span class="nav-text">交付价值，不是交付需求(业务)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#从理想倒推，从现实延伸"><span class="nav-number">6.0.2.</span> <span class="nav-text">从理想倒推，从现实延伸</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#个人成长，未来规划"><span class="nav-number">6.0.3.</span> <span class="nav-text">个人成长，未来规划</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#控制情绪，坦诚清晰"><span class="nav-number">6.0.4.</span> <span class="nav-text">控制情绪，坦诚清晰</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#人与人之间还是要少些攻击性"><span class="nav-number">6.0.5.</span> <span class="nav-text">人与人之间还是要少些攻击性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#不要从经验出发"><span class="nav-number">6.0.6.</span> <span class="nav-text">不要从经验出发</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#非暴力沟通"><span class="nav-number">6.0.7.</span> <span class="nav-text">非暴力沟通</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#挖掘事物背后的本质"><span class="nav-number">6.0.8.</span> <span class="nav-text">挖掘事物背后的本质</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#持续学习"><span class="nav-number">6.0.9.</span> <span class="nav-text">持续学习</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="HMF"
+      src="/images/touxiang.jpg">
+  <p class="site-author-name" itemprop="name">HMF</p>
+  <div class="site-description" itemprop="description">To your valor, my sword, and our victory together.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">246</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">25</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">67</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Yorxika" title="GitHub → https://github.com/Yorxika" rel="noopener" target="_blank"><i class="github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:huamingf@foxmail.com" title="E-Mail → mailto:huamingf@foxmail.com" rel="noopener" target="_blank"><i class="envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=298 height=60 src="//music.163.com/outchain/player?type=2&id=509038&auto=0&height=32"></iframe>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">HMF</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="Symbols count total">956k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="Reading time total">14:29</span>
+</div><script color="255,255,255" opacity="0.5" zIndex="-1" count="180" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/pisces.js"></script>
+<script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+
+
+  
+
+
+
+
+  <script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+<script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.js"></script>
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : '0635d0bc6ad58e628693',
+      clientSecret: 'a02a3a1ab4874ccb117251539125fe3a1a4d43da',
+      repo        : 'blogtalk',
+      owner       : 'Yorxika',
+      admin       : ['Yorxika'],
+      id          : md5(window.location.pathname),
+        language: '',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/miku.model.json"},"display":{"position":"right","hOffset":40,"width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7},"log":false});</script></body>
+</html>
