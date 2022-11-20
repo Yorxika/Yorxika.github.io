@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 3.9.0">
+<meta name="generator" content="Hexo 6.3.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
@@ -23,19 +23,21 @@
   </script>
 
   <meta name="description" content="来自Leetcode第111题二叉树的最小深度 给定一个二叉树，找出其最小深度。 最小深度是从根节点到最近叶子节点的最短路径上的节点数量。">
-<meta name="keywords" content="Leetcode,递归,树">
 <meta property="og:type" content="article">
 <meta property="og:title" content="二叉树的最小深度">
-<meta property="og:url" content="http://yorxika.github.io/2019/12/13/二叉树的最小深度/index.html">
+<meta property="og:url" content="http://yorxika.github.io/2019/12/13/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%9C%80%E5%B0%8F%E6%B7%B1%E5%BA%A6/index.html">
 <meta property="og:site_name" content="Nameless Site">
 <meta property="og:description" content="来自Leetcode第111题二叉树的最小深度 给定一个二叉树，找出其最小深度。 最小深度是从根节点到最近叶子节点的最短路径上的节点数量。">
-<meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-12-13T16:11:25.000Z">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2019-12-13T15:31:48.000Z">
+<meta property="article:modified_time" content="2019-12-13T16:11:25.000Z">
+<meta property="article:author" content="HMF">
+<meta property="article:tag" content="Leetcode">
+<meta property="article:tag" content="递归">
+<meta property="article:tag" content="树">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="二叉树的最小深度">
-<meta name="twitter:description" content="来自Leetcode第111题二叉树的最小深度 给定一个二叉树，找出其最小深度。 最小深度是从根节点到最近叶子节点的最短路径上的节点数量。">
 
-<link rel="canonical" href="http://yorxika.github.io/2019/12/13/二叉树的最小深度/">
+<link rel="canonical" href="http://yorxika.github.io/2019/12/13/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%9C%80%E5%B0%8F%E6%B7%B1%E5%BA%A6/">
 
 
 <script id="page-configurations">
@@ -200,7 +202,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yorxika.github.io/2019/12/13/二叉树的最小深度/">
+    <link itemprop="mainEntityOfPage" href="http://yorxika.github.io/2019/12/13/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%9C%80%E5%B0%8F%E6%B7%B1%E5%BA%A6/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/touxiang.jpg">
@@ -238,15 +240,15 @@
               </span>
               <span class="post-meta-item-text">In</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
+                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
                 </span>
                   , 
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/Leetcode/" itemprop="url" rel="index"><span itemprop="name">Leetcode</span></a>
+                  <a href="/categories/%E7%AE%97%E6%B3%95/Leetcode/" itemprop="url" rel="index"><span itemprop="name">Leetcode</span></a>
                 </span>
                   , 
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/Leetcode/树/" itemprop="url" rel="index"><span itemprop="name">树</span></a>
+                  <a href="/categories/%E7%AE%97%E6%B3%95/Leetcode/%E6%A0%91/" itemprop="url" rel="index"><span itemprop="name">树</span></a>
                 </span>
             </span>
 
@@ -277,18 +279,18 @@
       
         <p>来自Leetcode第111题二叉树的最小深度</p>
 <p>给定一个二叉树，找出其最小深度。</p>
-<p>最小深度是从根节点到最近叶子节点的最短路径上的节点数量。<br><a id="more"></a><br><strong>说明:</strong> 叶子节点是指没有子节点的节点。</p>
+<p>最小深度是从根节点到最近叶子节点的最短路径上的节点数量。<br><span id="more"></span><br><strong>说明:</strong> 叶子节点是指没有子节点的节点。</p>
 <p><strong>示例:</strong></p>
 <p>给定二叉树 <code>[3,9,20,null,null,15,7]</code>,</p>
-<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">  <span class="number">3</span></span><br><span class="line"> / \</span><br><span class="line"><span class="number">9</span>  <span class="number">20</span></span><br><span class="line">  /  \</span><br><span class="line"> <span class="number">15</span>   <span class="number">7</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight livescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">  <span class="number">3</span></span><br><span class="line"> / <span class="string">\</span></span><br><span class="line"><span class="number">9</span>  <span class="number">20</span></span><br><span class="line">  /  <span class="string">\</span></span><br><span class="line"> <span class="number">15</span>   <span class="number">7</span></span><br></pre></td></tr></table></figure>
 <p>返回它的最小深度  2.</p>
 <hr>
 <h3 id="翻车现场"><a href="#翻车现场" class="headerlink" title="翻车现场"></a>翻车现场</h3><p>最开始以为是和最大深度那题差不多的，结果忽略了一种情况，即[1,2]这种根结点只有一个叶子结点的情况，这时最小深度应该是2，因为按题目定义根结点不能作为自己的叶结点，以下是初始代码</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">minDepth</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(root == <span class="keyword">null</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">int</span> left_height = minDepth(root.left);</span><br><span class="line">        <span class="keyword">int</span> right_height = minDepth(root.right);</span><br><span class="line">        <span class="keyword">return</span> Math.min(left_height,right_height) + <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="type">int</span> <span class="title function_">minDepth</span><span class="params">(TreeNode root)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span>(root == <span class="literal">null</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">left_height</span> <span class="operator">=</span> minDepth(root.left);</span><br><span class="line">        <span class="type">int</span> <span class="variable">right_height</span> <span class="operator">=</span> minDepth(root.right);</span><br><span class="line">        <span class="keyword">return</span> Math.min(left_height,right_height) + <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="递归"><a href="#递归" class="headerlink" title="递归"></a>递归</h3><p>根据上面的分析，知道要在递归里做判断，判断是否是叶子结点,然后再进行递归</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">minDepth</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(root == <span class="keyword">null</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(root.left == <span class="keyword">null</span> &amp;&amp; root.right == <span class="keyword">null</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">int</span> minDepth = Integer.MAX_VALUE;</span><br><span class="line">    <span class="keyword">if</span>(root.left != <span class="keyword">null</span>)</span><br><span class="line">        minDepth = Math.min(minDepth,minDepth(root.left));</span><br><span class="line">    <span class="keyword">if</span>(root.right != <span class="keyword">null</span>)</span><br><span class="line">        minDepth = Math.min(minDepth,minDepth(root.right));</span><br><span class="line">    <span class="keyword">return</span> minDepth + <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="type">int</span> <span class="title function_">minDepth</span><span class="params">(TreeNode root)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span>(root == <span class="literal">null</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(root.left == <span class="literal">null</span> &amp;&amp; root.right == <span class="literal">null</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    <span class="type">int</span> <span class="variable">minDepth</span> <span class="operator">=</span> Integer.MAX_VALUE;</span><br><span class="line">    <span class="keyword">if</span>(root.left != <span class="literal">null</span>)</span><br><span class="line">        minDepth = Math.min(minDepth,minDepth(root.left));</span><br><span class="line">    <span class="keyword">if</span>(root.right != <span class="literal">null</span>)</span><br><span class="line">        minDepth = Math.min(minDepth,minDepth(root.right));</span><br><span class="line">    <span class="keyword">return</span> minDepth + <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="BFS迭代"><a href="#BFS迭代" class="headerlink" title="BFS迭代"></a>BFS迭代</h3><p>利用一个队列进行层次遍历，用一个 <code>level</code> 变量保存当前的深度,只要在 <code>for</code> 循环中判断当前是不是叶子节点，如果是的话，返回当前的 level 就可以了。此外要把<code>level</code>初始化改为<code>1</code>，因为如果只有一个根节点，它就是叶子节点，而在代码中，level 是在 <code>for</code>循环以后才<code>++</code>的，如果被提前结束的话，此时应该返回<code>1</code>。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">minDepth</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">    Queue&lt;TreeNode&gt; queue = <span class="keyword">new</span> LinkedList&lt;TreeNode&gt;();</span><br><span class="line">    List&lt;List&lt;Integer&gt;&gt; ans = <span class="keyword">new</span> LinkedList&lt;List&lt;Integer&gt;&gt;();</span><br><span class="line">    <span class="keyword">if</span>(root == <span class="keyword">null</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    queue.offer(root);</span><br><span class="line">    <span class="keyword">int</span> level = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span> (!queue.isEmpty())&#123;</span><br><span class="line">        <span class="keyword">int</span> levelNum = queue.size();  <span class="comment">//当前层元素个数</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span> ; i &lt; levelNum ; i++)&#123;</span><br><span class="line">            TreeNode tmp = queue.poll();  <span class="comment">//队列首元素出队</span></span><br><span class="line">            <span class="keyword">if</span>(tmp != <span class="keyword">null</span>) &#123;</span><br><span class="line">                <span class="keyword">if</span> (tmp.left == <span class="keyword">null</span> &amp;&amp; tmp.right == <span class="keyword">null</span>)</span><br><span class="line">                    <span class="keyword">return</span> level;</span><br><span class="line">                <span class="keyword">if</span> (tmp.left != <span class="keyword">null</span>)</span><br><span class="line">                    queue.offer(tmp.left);  <span class="comment">//节点入队尾</span></span><br><span class="line">                <span class="keyword">if</span>(tmp.right != <span class="keyword">null</span>)</span><br><span class="line">                    queue.offer(tmp.right);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        level ++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> level;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="type">int</span> <span class="title function_">minDepth</span><span class="params">(TreeNode root)</span> &#123;</span><br><span class="line">    Queue&lt;TreeNode&gt; queue = <span class="keyword">new</span> <span class="title class_">LinkedList</span>&lt;TreeNode&gt;();</span><br><span class="line">    List&lt;List&lt;Integer&gt;&gt; ans = <span class="keyword">new</span> <span class="title class_">LinkedList</span>&lt;List&lt;Integer&gt;&gt;();</span><br><span class="line">    <span class="keyword">if</span>(root == <span class="literal">null</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    queue.offer(root);</span><br><span class="line">    <span class="type">int</span> <span class="variable">level</span> <span class="operator">=</span> <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span> (!queue.isEmpty())&#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">levelNum</span> <span class="operator">=</span> queue.size();  <span class="comment">//当前层元素个数</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span> ; i &lt; levelNum ; i++)&#123;</span><br><span class="line">            <span class="type">TreeNode</span> <span class="variable">tmp</span> <span class="operator">=</span> queue.poll();  <span class="comment">//队列首元素出队</span></span><br><span class="line">            <span class="keyword">if</span>(tmp != <span class="literal">null</span>) &#123;</span><br><span class="line">                <span class="keyword">if</span> (tmp.left == <span class="literal">null</span> &amp;&amp; tmp.right == <span class="literal">null</span>)</span><br><span class="line">                    <span class="keyword">return</span> level;</span><br><span class="line">                <span class="keyword">if</span> (tmp.left != <span class="literal">null</span>)</span><br><span class="line">                    queue.offer(tmp.left);  <span class="comment">//节点入队尾</span></span><br><span class="line">                <span class="keyword">if</span>(tmp.right != <span class="literal">null</span>)</span><br><span class="line">                    queue.offer(tmp.right);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        level ++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> level;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
     </div>
 
@@ -304,7 +306,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>Post link: </strong>
-    <a href="http://yorxika.github.io/2019/12/13/二叉树的最小深度/" title="二叉树的最小深度">http://yorxika.github.io/2019/12/13/二叉树的最小深度/</a>
+    <a href="http://yorxika.github.io/2019/12/13/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%9C%80%E5%B0%8F%E6%B7%B1%E5%BA%A6/" title="二叉树的最小深度">http://yorxika.github.io/2019/12/13/二叉树的最小深度/</a>
   </li>
   <li class="post-copyright-license">
     <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.
@@ -317,8 +319,8 @@
           
           <div class="post-tags">
               <a href="/tags/Leetcode/" rel="tag"><i class="fa fa-tag"></i> Leetcode</a>
-              <a href="/tags/递归/" rel="tag"><i class="fa fa-tag"></i> 递归</a>
-              <a href="/tags/树/" rel="tag"><i class="fa fa-tag"></i> 树</a>
+              <a href="/tags/%E9%80%92%E5%BD%92/" rel="tag"><i class="fa fa-tag"></i> 递归</a>
+              <a href="/tags/%E6%A0%91/" rel="tag"><i class="fa fa-tag"></i> 树</a>
           </div>
 
         
@@ -327,7 +329,7 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2019/12/12/配置gitalk的坑/" rel="prev" title="配置gitalk的坑">
+    <a href="/2019/12/12/%E9%85%8D%E7%BD%AEgitalk%E7%9A%84%E5%9D%91/" rel="prev" title="配置gitalk的坑">
       <i class="fa fa-chevron-left"></i> 配置gitalk的坑
     </a></div>
       <div class="post-nav-item">
@@ -393,7 +395,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#翻车现场"><span class="nav-number">1.</span> <span class="nav-text">翻车现场</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#递归"><span class="nav-number">2.</span> <span class="nav-text">递归</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#BFS迭代"><span class="nav-number">3.</span> <span class="nav-text">BFS迭代</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BF%BB%E8%BD%A6%E7%8E%B0%E5%9C%BA"><span class="nav-number">1.</span> <span class="nav-text">翻车现场</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%92%E5%BD%92"><span class="nav-number">2.</span> <span class="nav-text">递归</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#BFS%E8%BF%AD%E4%BB%A3"><span class="nav-number">3.</span> <span class="nav-text">BFS迭代</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -468,12 +470,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">956k</span>
+    <span title="Symbols count total">968k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">14:29</span>
+    <span title="Reading time total">14:40</span>
 </div><script color="255,255,255" opacity="0.5" zIndex="-1" count="180" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
 
         
@@ -493,9 +495,19 @@
   <script src="/lib/anime.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
-<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
 <script src="/js/schemes/pisces.js"></script>
-<script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
 
 
 
@@ -504,7 +516,9 @@
 
 
 
-  <script src="/js/local-search.js"></script>
+  
+<script src="/js/local-search.js"></script>
+
 
 
 

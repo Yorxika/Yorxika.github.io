@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 3.9.0">
+<meta name="generator" content="Hexo 6.3.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
@@ -23,19 +23,21 @@
   </script>
 
   <meta name="description" content="来源Leetcode第41题缺失的第一个正数  给定一个未排序的整数数组，找出其中没有出现的最小的正整数。 示例 2:">
-<meta name="keywords" content="Leetcode,数组,桶排序">
 <meta property="og:type" content="article">
 <meta property="og:title" content="缺失的第一个正数">
-<meta property="og:url" content="http://yorxika.github.io/2019/10/26/缺失的第一个正数/index.html">
+<meta property="og:url" content="http://yorxika.github.io/2019/10/26/%E7%BC%BA%E5%A4%B1%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E6%AD%A3%E6%95%B0/index.html">
 <meta property="og:site_name" content="Nameless Site">
 <meta property="og:description" content="来源Leetcode第41题缺失的第一个正数  给定一个未排序的整数数组，找出其中没有出现的最小的正整数。 示例 2:">
-<meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-12-12T13:01:49.000Z">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2019-10-26T15:23:29.000Z">
+<meta property="article:modified_time" content="2019-12-12T13:01:49.000Z">
+<meta property="article:author" content="HMF">
+<meta property="article:tag" content="Leetcode">
+<meta property="article:tag" content="数组">
+<meta property="article:tag" content="桶排序">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="缺失的第一个正数">
-<meta name="twitter:description" content="来源Leetcode第41题缺失的第一个正数  给定一个未排序的整数数组，找出其中没有出现的最小的正整数。 示例 2:">
 
-<link rel="canonical" href="http://yorxika.github.io/2019/10/26/缺失的第一个正数/">
+<link rel="canonical" href="http://yorxika.github.io/2019/10/26/%E7%BC%BA%E5%A4%B1%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E6%AD%A3%E6%95%B0/">
 
 
 <script id="page-configurations">
@@ -200,7 +202,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yorxika.github.io/2019/10/26/缺失的第一个正数/">
+    <link itemprop="mainEntityOfPage" href="http://yorxika.github.io/2019/10/26/%E7%BC%BA%E5%A4%B1%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E6%AD%A3%E6%95%B0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/touxiang.jpg">
@@ -238,15 +240,15 @@
               </span>
               <span class="post-meta-item-text">In</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
+                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
                 </span>
                   , 
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/Leetcode/" itemprop="url" rel="index"><span itemprop="name">Leetcode</span></a>
+                  <a href="/categories/%E7%AE%97%E6%B3%95/Leetcode/" itemprop="url" rel="index"><span itemprop="name">Leetcode</span></a>
                 </span>
                   , 
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/Leetcode/数组/" itemprop="url" rel="index"><span itemprop="name">数组</span></a>
+                  <a href="/categories/%E7%AE%97%E6%B3%95/Leetcode/%E6%95%B0%E7%BB%84/" itemprop="url" rel="index"><span itemprop="name">数组</span></a>
                 </span>
             </span>
 
@@ -278,7 +280,7 @@
         <p>来源Leetcode第41题缺失的第一个正数</p>
 <blockquote>
 <p>给定一个未排序的整数数组，找出其中没有出现的最小的正整数。</p>
-<p>示例 2:<br><a id="more"></a><br>输入: [3,4,-1,1]<br>输出: 2</p>
+<p>示例 2:<br><span id="more"></span><br>输入: [3,4,-1,1]<br>输出: 2</p>
 </blockquote>
 <h4 id="Method-1"><a href="#Method-1" class="headerlink" title="Method 1"></a>Method 1</h4><p>emmm，这题做的时候思路混乱了，而且这题的题解很怪，先看官方的题解吧。</p>
 <p>来自题解的算法：</p>
@@ -296,14 +298,14 @@
 </ul>
 </blockquote>
 <p>总的来说，就是用数组自身来检查所求的最小正数。</p>
-<p>代码如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">firstMissingPositive</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n = nums.length;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 基本情况</span></span><br><span class="line">    <span class="keyword">int</span> contains = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++)</span><br><span class="line">      <span class="keyword">if</span> (nums[i] == <span class="number">1</span>) &#123;</span><br><span class="line">        contains++;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (contains == <span class="number">0</span>)</span><br><span class="line">      <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// nums = [1]</span></span><br><span class="line">    <span class="keyword">if</span> (n == <span class="number">1</span>)</span><br><span class="line">      <span class="keyword">return</span> <span class="number">2</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 用 1 替换负数，0，</span></span><br><span class="line">    <span class="comment">// 和大于 n 的数</span></span><br><span class="line">    <span class="comment">// 在转换以后，nums 只会包含</span></span><br><span class="line">    <span class="comment">// 正数</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++)</span><br><span class="line">      <span class="keyword">if</span> ((nums[i] &lt;= <span class="number">0</span>) || (nums[i] &gt; n))</span><br><span class="line">        nums[i] = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 使用索引和数字符号作为检查器</span></span><br><span class="line">    <span class="comment">// 例如，如果 nums[1] 是负数表示在数组中出现了数字 `1`</span></span><br><span class="line">    <span class="comment">// 如果 nums[2] 是正数 表示数字 2 没有出现</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">      <span class="keyword">int</span> a = Math.abs(nums[i]);</span><br><span class="line">      <span class="comment">// 如果发现了一个数字 a - 改变第 a 个元素的符号</span></span><br><span class="line">      <span class="comment">// 注意重复元素只需操作一次</span></span><br><span class="line">      <span class="keyword">if</span> (a == n)</span><br><span class="line">        nums[<span class="number">0</span>] = - Math.abs(nums[<span class="number">0</span>]);</span><br><span class="line">      <span class="keyword">else</span></span><br><span class="line">        nums[a] = - Math.abs(nums[a]);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 现在第一个正数的下标</span></span><br><span class="line">    <span class="comment">// 就是第一个缺失的数</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; n; i++) &#123;</span><br><span class="line">      <span class="keyword">if</span> (nums[i] &gt; <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> i;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (nums[<span class="number">0</span>] &gt; <span class="number">0</span>)</span><br><span class="line">      <span class="keyword">return</span> n;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> n + <span class="number">1</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>代码如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">  <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">firstMissingPositive</span><span class="params">(<span class="type">int</span>[] nums)</span> &#123;</span><br><span class="line">    <span class="type">int</span> <span class="variable">n</span> <span class="operator">=</span> nums.length;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 基本情况</span></span><br><span class="line">    <span class="type">int</span> <span class="variable">contains</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; n; i++)</span><br><span class="line">      <span class="keyword">if</span> (nums[i] == <span class="number">1</span>) &#123;</span><br><span class="line">        contains++;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (contains == <span class="number">0</span>)</span><br><span class="line">      <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// nums = [1]</span></span><br><span class="line">    <span class="keyword">if</span> (n == <span class="number">1</span>)</span><br><span class="line">      <span class="keyword">return</span> <span class="number">2</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 用 1 替换负数，0，</span></span><br><span class="line">    <span class="comment">// 和大于 n 的数</span></span><br><span class="line">    <span class="comment">// 在转换以后，nums 只会包含</span></span><br><span class="line">    <span class="comment">// 正数</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; n; i++)</span><br><span class="line">      <span class="keyword">if</span> ((nums[i] &lt;= <span class="number">0</span>) || (nums[i] &gt; n))</span><br><span class="line">        nums[i] = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 使用索引和数字符号作为检查器</span></span><br><span class="line">    <span class="comment">// 例如，如果 nums[1] 是负数表示在数组中出现了数字 `1`</span></span><br><span class="line">    <span class="comment">// 如果 nums[2] 是正数 表示数字 2 没有出现</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">      <span class="type">int</span> <span class="variable">a</span> <span class="operator">=</span> Math.abs(nums[i]);</span><br><span class="line">      <span class="comment">// 如果发现了一个数字 a - 改变第 a 个元素的符号</span></span><br><span class="line">      <span class="comment">// 注意重复元素只需操作一次</span></span><br><span class="line">      <span class="keyword">if</span> (a == n)</span><br><span class="line">        nums[<span class="number">0</span>] = - Math.abs(nums[<span class="number">0</span>]);</span><br><span class="line">      <span class="keyword">else</span></span><br><span class="line">        nums[a] = - Math.abs(nums[a]);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 现在第一个正数的下标</span></span><br><span class="line">    <span class="comment">// 就是第一个缺失的数</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span>; i &lt; n; i++) &#123;</span><br><span class="line">      <span class="keyword">if</span> (nums[i] &gt; <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> i;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (nums[<span class="number">0</span>] &gt; <span class="number">0</span>)</span><br><span class="line">      <span class="keyword">return</span> n;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> n + <span class="number">1</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <h4 id="桶排序"><a href="#桶排序" class="headerlink" title="桶排序"></a>桶排序</h4><p>让我们来看另一个解法：利用桶排序<br>同样是利用数组自身作为一个索引表，在做这道题的时候，我们可以明确一个事实：</p>
 <ul>
 <li>所要找的最小正数在1 - nums.length 之间</li>
 <li>否则所要找的最小正数是nums.length + 1</li>
 </ul>
 <p>利用这两个事实，我们可以将数组里的正数nums[i] 放在num[nums[i] - 1] 的位置上<br>之后遍历数组，如果nums[i] != i + 1,返回 i + 1 即可<br>否则返回 nums.length + 1</p>
-<p>代码如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">firstMissingPositive</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> len = nums.length;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len; i++) &#123;</span><br><span class="line">            <span class="keyword">while</span> (nums[i] &gt; <span class="number">0</span> &amp;&amp; nums[i] &lt;= len &amp;&amp; nums[nums[i] - <span class="number">1</span>] != nums[i]) &#123;</span><br><span class="line">                <span class="comment">// 满足在指定范围内、并且没有放在正确的位置上，才交换</span></span><br><span class="line">                <span class="comment">// 例如：数值 3 应该放在索引 2 的位置上</span></span><br><span class="line">                swap(nums, nums[i] - <span class="number">1</span>, i);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// [1, -1, 3, 4]</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (nums[i] != i + <span class="number">1</span>) &#123;</span><br><span class="line">                <span class="keyword">return</span> i + <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 都正确则返回数组长度 + 1</span></span><br><span class="line">        <span class="keyword">return</span> len + <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">swap</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> index1, <span class="keyword">int</span> index2)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (index1 == index2) &#123;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> temp = nums[index1];</span><br><span class="line">        nums[index1] = nums[index2];</span><br><span class="line">        nums[index2] = temp;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>代码如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">firstMissingPositive</span><span class="params">(<span class="type">int</span>[] nums)</span> &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">len</span> <span class="operator">=</span> nums.length;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; len; i++) &#123;</span><br><span class="line">            <span class="keyword">while</span> (nums[i] &gt; <span class="number">0</span> &amp;&amp; nums[i] &lt;= len &amp;&amp; nums[nums[i] - <span class="number">1</span>] != nums[i]) &#123;</span><br><span class="line">                <span class="comment">// 满足在指定范围内、并且没有放在正确的位置上，才交换</span></span><br><span class="line">                <span class="comment">// 例如：数值 3 应该放在索引 2 的位置上</span></span><br><span class="line">                swap(nums, nums[i] - <span class="number">1</span>, i);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// [1, -1, 3, 4]</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; len; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (nums[i] != i + <span class="number">1</span>) &#123;</span><br><span class="line">                <span class="keyword">return</span> i + <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 都正确则返回数组长度 + 1</span></span><br><span class="line">        <span class="keyword">return</span> len + <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">swap</span><span class="params">(<span class="type">int</span>[] nums, <span class="type">int</span> index1, <span class="type">int</span> index2)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (index1 == index2) &#123;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">int</span> <span class="variable">temp</span> <span class="operator">=</span> nums[index1];</span><br><span class="line">        nums[index1] = nums[index2];</span><br><span class="line">        nums[index2] = temp;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 
     </div>
 
@@ -319,7 +321,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>Post link: </strong>
-    <a href="http://yorxika.github.io/2019/10/26/缺失的第一个正数/" title="缺失的第一个正数">http://yorxika.github.io/2019/10/26/缺失的第一个正数/</a>
+    <a href="http://yorxika.github.io/2019/10/26/%E7%BC%BA%E5%A4%B1%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E6%AD%A3%E6%95%B0/" title="缺失的第一个正数">http://yorxika.github.io/2019/10/26/缺失的第一个正数/</a>
   </li>
   <li class="post-copyright-license">
     <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.
@@ -332,8 +334,8 @@
           
           <div class="post-tags">
               <a href="/tags/Leetcode/" rel="tag"><i class="fa fa-tag"></i> Leetcode</a>
-              <a href="/tags/数组/" rel="tag"><i class="fa fa-tag"></i> 数组</a>
-              <a href="/tags/桶排序/" rel="tag"><i class="fa fa-tag"></i> 桶排序</a>
+              <a href="/tags/%E6%95%B0%E7%BB%84/" rel="tag"><i class="fa fa-tag"></i> 数组</a>
+              <a href="/tags/%E6%A1%B6%E6%8E%92%E5%BA%8F/" rel="tag"><i class="fa fa-tag"></i> 桶排序</a>
           </div>
 
         
@@ -342,11 +344,11 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2019/10/26/组合总和/" rel="prev" title="组合总和">
+    <a href="/2019/10/26/%E7%BB%84%E5%90%88%E6%80%BB%E5%92%8C/" rel="prev" title="组合总和">
       <i class="fa fa-chevron-left"></i> 组合总和
     </a></div>
       <div class="post-nav-item">
-    <a href="/2019/10/28/字符串相乘/" rel="next" title="字符串相乘">
+    <a href="/2019/10/28/%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9B%B8%E4%B9%98/" rel="next" title="字符串相乘">
       字符串相乘 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
@@ -408,7 +410,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#Method-1"><span class="nav-number">1.</span> <span class="nav-text">Method 1</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#桶排序"><span class="nav-number">2.</span> <span class="nav-text">桶排序</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#Method-1"><span class="nav-number">1.</span> <span class="nav-text">Method 1</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A1%B6%E6%8E%92%E5%BA%8F"><span class="nav-number">2.</span> <span class="nav-text">桶排序</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -483,12 +485,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">956k</span>
+    <span title="Symbols count total">968k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">14:29</span>
+    <span title="Reading time total">14:40</span>
 </div><script color="255,255,255" opacity="0.5" zIndex="-1" count="180" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
 
         
@@ -508,9 +510,19 @@
   <script src="/lib/anime.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
-<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
 <script src="/js/schemes/pisces.js"></script>
-<script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
 
 
 
@@ -519,7 +531,9 @@
 
 
 
-  <script src="/js/local-search.js"></script>
+  
+<script src="/js/local-search.js"></script>
+
 
 
 

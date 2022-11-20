@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 3.9.0">
+<meta name="generator" content="Hexo 6.3.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
@@ -23,19 +23,20 @@
   </script>
 
   <meta name="description" content="来源Leetcode第162题寻找峰值 峰值元素是指其值大于左右相邻值的元素。 给定一个输入数组 nums，其中 nums[i] ≠ nums[i+1]，找到峰值元素并返回其索引。 数组可能包含多个峰值，在这种情况下，返回任何一个峰值所在位置即可。">
-<meta name="keywords" content="Leetcode,二分查找">
 <meta property="og:type" content="article">
 <meta property="og:title" content="峰值元素">
-<meta property="og:url" content="http://yorxika.github.io/2020/01/19/峰值元素/index.html">
+<meta property="og:url" content="http://yorxika.github.io/2020/01/19/%E5%B3%B0%E5%80%BC%E5%85%83%E7%B4%A0/index.html">
 <meta property="og:site_name" content="Nameless Site">
 <meta property="og:description" content="来源Leetcode第162题寻找峰值 峰值元素是指其值大于左右相邻值的元素。 给定一个输入数组 nums，其中 nums[i] ≠ nums[i+1]，找到峰值元素并返回其索引。 数组可能包含多个峰值，在这种情况下，返回任何一个峰值所在位置即可。">
-<meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2020-01-21T07:09:18.000Z">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-01-19T10:19:07.000Z">
+<meta property="article:modified_time" content="2020-01-21T07:09:18.000Z">
+<meta property="article:author" content="HMF">
+<meta property="article:tag" content="Leetcode">
+<meta property="article:tag" content="二分查找">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="峰值元素">
-<meta name="twitter:description" content="来源Leetcode第162题寻找峰值 峰值元素是指其值大于左右相邻值的元素。 给定一个输入数组 nums，其中 nums[i] ≠ nums[i+1]，找到峰值元素并返回其索引。 数组可能包含多个峰值，在这种情况下，返回任何一个峰值所在位置即可。">
 
-<link rel="canonical" href="http://yorxika.github.io/2020/01/19/峰值元素/">
+<link rel="canonical" href="http://yorxika.github.io/2020/01/19/%E5%B3%B0%E5%80%BC%E5%85%83%E7%B4%A0/">
 
 
 <script id="page-configurations">
@@ -200,7 +201,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yorxika.github.io/2020/01/19/峰值元素/">
+    <link itemprop="mainEntityOfPage" href="http://yorxika.github.io/2020/01/19/%E5%B3%B0%E5%80%BC%E5%85%83%E7%B4%A0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/touxiang.jpg">
@@ -238,15 +239,15 @@
               </span>
               <span class="post-meta-item-text">In</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
+                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
                 </span>
                   , 
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/Leetcode/" itemprop="url" rel="index"><span itemprop="name">Leetcode</span></a>
+                  <a href="/categories/%E7%AE%97%E6%B3%95/Leetcode/" itemprop="url" rel="index"><span itemprop="name">Leetcode</span></a>
                 </span>
                   , 
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/Leetcode/数组/" itemprop="url" rel="index"><span itemprop="name">数组</span></a>
+                  <a href="/categories/%E7%AE%97%E6%B3%95/Leetcode/%E6%95%B0%E7%BB%84/" itemprop="url" rel="index"><span itemprop="name">数组</span></a>
                 </span>
             </span>
 
@@ -278,19 +279,19 @@
         <p>来源Leetcode第162题寻找峰值</p>
 <p>峰值元素是指其值大于左右相邻值的元素。</p>
 <p>给定一个输入数组 <code>nums</code>，其中 <code>nums[i] ≠ nums[i+1]</code>，找到峰值元素并返回其索引。</p>
-<p>数组可能包含多个峰值，在这种情况下，返回任何一个峰值所在位置即可。<br><a id="more"></a><br>你可以假设 <code>nums[-1] = nums[n] = -∞</code>。</p>
+<p>数组可能包含多个峰值，在这种情况下，返回任何一个峰值所在位置即可。<br><span id="more"></span><br>你可以假设 <code>nums[-1] = nums[n] = -∞</code>。</p>
 <p><strong>示例 1:</strong></p>
-<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入: nums = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">1</span>]</span><br><span class="line">输出: <span class="number">2</span></span><br><span class="line">解释: <span class="number">3</span> 是峰值元素，你的函数应该返回其索引 <span class="number">2</span>。</span><br></pre></td></tr></table></figure>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">输入: nums = [1,2,3,1]</span></span><br><span class="line"><span class="section">输出: 2</span></span><br><span class="line"><span class="section">解释: 3 是峰值元素，你的函数应该返回其索引 2。</span></span><br></pre></td></tr></table></figure>
 <hr>
 <h3 id="一次扫描"><a href="#一次扫描" class="headerlink" title="一次扫描"></a>一次扫描</h3><p>因为 <code>nums[-1]</code> 看做负无穷，所以从第 <code>0</code> 个元素开始，它一定是上升的趋势，由于我们要找峰顶，所以当它第一次出现下降，下降前的值就是我们要找的了。</p>
 <p>如果它一直上升到最后一个值，又因为 <code>nums[n]</code> 看做负无穷，所以最后一个值就可以看做一个峰顶。</p>
 <p>题解的解法比我提交时的答案相对的少了很多无谓的判断及比较。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">findPeakElement</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length - <span class="number">1</span>; i++) &#123;</span><br><span class="line">        <span class="comment">//第一次下降</span></span><br><span class="line">        <span class="keyword">if</span> (nums[i] &gt; nums[i + <span class="number">1</span>]) &#123;</span><br><span class="line">            <span class="keyword">return</span> i;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//一直上升</span></span><br><span class="line">    <span class="keyword">return</span> nums.length - <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="type">int</span> <span class="title function_">findPeakElement</span><span class="params">(<span class="type">int</span>[] nums)</span> &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; nums.length - <span class="number">1</span>; i++) &#123;</span><br><span class="line">        <span class="comment">//第一次下降</span></span><br><span class="line">        <span class="keyword">if</span> (nums[i] &gt; nums[i + <span class="number">1</span>]) &#123;</span><br><span class="line">            <span class="keyword">return</span> i;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//一直上升</span></span><br><span class="line">    <span class="keyword">return</span> nums.length - <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="二分查找"><a href="#二分查找" class="headerlink" title="二分查找"></a>二分查找</h3><p>我们可以将 <em>nums</em> 数组中的任何给定序列视为交替的升序和降序序列。通过利用这一点，以及“可以返回任何一个峰作为结果”的要求，我们可以利用二分查找来找到所需的峰值元素。</p>
 <p>在简单的二分查找中，我们处理的是一个有序数列，并通过在每一步减少搜索空间来找到所需要的数字。在本例中，我们对二分查找进行一点修改。首先从数组 nums中找到中间的元素 <em>m<strong>i</strong>d</em>。若该元素恰好位于降序序列或者一个局部下降坡度中（通过将 <em>n<strong>u</strong>m**s</em>[<em>i</em>] 与右侧比较判断)，则说明峰值会在本元素的左边。于是，我们将搜索空间缩小为 <em>m<strong>i</strong>d</em> 的左边(包括其本身)，并在左侧子数组上重复上述过程。</p>
 <p>若该元素恰好位于升序序列或者一个局部上升坡度中（通过将 <em>n<strong>u</strong>m**s</em>[<em>i</em>] 与右侧比较判断)，则说明峰值会在本元素的右边。于是，我们将搜索空间缩小为 <em>m<strong>i</strong>d</em> 的右边，并在右侧子数组上重复上述过程。</p>
 <p>就这样，我们不断地缩小搜索空间，直到搜索空间中只有一个元素，该元素即为峰值元素。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">findPeakElement</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> l = <span class="number">0</span>, r = nums.length - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span> (l &lt; r) &#123;</span><br><span class="line">            <span class="keyword">int</span> mid = (l + r) / <span class="number">2</span>;</span><br><span class="line">            <span class="keyword">if</span> (nums[mid] &gt; nums[mid + <span class="number">1</span>])</span><br><span class="line">                r = mid;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                l = mid + <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> l;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">findPeakElement</span><span class="params">(<span class="type">int</span>[] nums)</span> &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">l</span> <span class="operator">=</span> <span class="number">0</span>, r = nums.length - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span> (l &lt; r) &#123;</span><br><span class="line">            <span class="type">int</span> <span class="variable">mid</span> <span class="operator">=</span> (l + r) / <span class="number">2</span>;</span><br><span class="line">            <span class="keyword">if</span> (nums[mid] &gt; nums[mid + <span class="number">1</span>])</span><br><span class="line">                r = mid;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                l = mid + <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> l;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
     </div>
 
     
@@ -305,7 +306,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>Post link: </strong>
-    <a href="http://yorxika.github.io/2020/01/19/峰值元素/" title="峰值元素">http://yorxika.github.io/2020/01/19/峰值元素/</a>
+    <a href="http://yorxika.github.io/2020/01/19/%E5%B3%B0%E5%80%BC%E5%85%83%E7%B4%A0/" title="峰值元素">http://yorxika.github.io/2020/01/19/峰值元素/</a>
   </li>
   <li class="post-copyright-license">
     <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.
@@ -318,7 +319,7 @@
           
           <div class="post-tags">
               <a href="/tags/Leetcode/" rel="tag"><i class="fa fa-tag"></i> Leetcode</a>
-              <a href="/tags/二分查找/" rel="tag"><i class="fa fa-tag"></i> 二分查找</a>
+              <a href="/tags/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/" rel="tag"><i class="fa fa-tag"></i> 二分查找</a>
           </div>
 
         
@@ -327,11 +328,11 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2020/01/17/相交链表/" rel="prev" title="相交链表">
+    <a href="/2020/01/17/%E7%9B%B8%E4%BA%A4%E9%93%BE%E8%A1%A8/" rel="prev" title="相交链表">
       <i class="fa fa-chevron-left"></i> 相交链表
     </a></div>
       <div class="post-nav-item">
-    <a href="/2020/01/21/寻找旋转数组中的最小值II/" rel="next" title="寻找旋转数组中的最小值II">
+    <a href="/2020/01/21/%E5%AF%BB%E6%89%BE%E6%97%8B%E8%BD%AC%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E6%9C%80%E5%B0%8F%E5%80%BCII/" rel="next" title="寻找旋转数组中的最小值II">
       寻找旋转数组中的最小值II <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
@@ -393,7 +394,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一次扫描"><span class="nav-number">1.</span> <span class="nav-text">一次扫描</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二分查找"><span class="nav-number">2.</span> <span class="nav-text">二分查找</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E6%AC%A1%E6%89%AB%E6%8F%8F"><span class="nav-number">1.</span> <span class="nav-text">一次扫描</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE"><span class="nav-number">2.</span> <span class="nav-text">二分查找</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -468,12 +469,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">956k</span>
+    <span title="Symbols count total">968k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">14:29</span>
+    <span title="Reading time total">14:40</span>
 </div><script color="255,255,255" opacity="0.5" zIndex="-1" count="180" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
 
         
@@ -493,9 +494,19 @@
   <script src="/lib/anime.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
-<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
 <script src="/js/schemes/pisces.js"></script>
-<script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
 
 
 
@@ -504,7 +515,9 @@
 
 
 
-  <script src="/js/local-search.js"></script>
+  
+<script src="/js/local-search.js"></script>
+
 
 
 

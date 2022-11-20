@@ -24,7 +24,7 @@ var IN_GLOBAL_SCOPE = false;
  *
  * <p>
  * For a fairly comprehensive set of languages see the
- * <a href="https://github.com/google/code-prettify#for-which-languages-does-it-work" target="_blank" rel="noopener">README</a>
+ * <a href="https://github.com/google/code-prettify#for-which-languages-does-it-work">README</a>
  * file that came with this source.  At a minimum, the lexer should work on a
  * number of languages including C and friends, Java, Python, Bash, SQL, HTML,
  * XML, CSS, Javascript, and Makefiles.  It works passably on Ruby, PHP and Awk
@@ -35,16 +35,16 @@ var IN_GLOBAL_SCOPE = false;
  * <li> include this source file in an html page via
  *   {@code <script type="text/javascript" src="/path/to/prettify.js"></script>}
  * </li><li> define style rules.  See the example page for examples.
- * </li><li> mark the {@code <pre>} and {@code <code>} tags in your source with
- *    {@code class=prettyprint.}
- *    You can also use the (html deprecated) {@code <xmp>} tag, but the pretty
+ * </li><li> mark the {@code <pre>} and {@code <code>&#125; tags in your source with
+ *    &#123;@code class=prettyprint.&#125;
+ *    You can also use the (html deprecated) &#123;@code <xmp>&#125; tag, but the pretty
  *    printer needs to do more substantial DOM manipulations to support that, so
  *    some css styles may not be preserved.
  * </xmp></code></pre></li></ol>
  * That's it.  I wanted to keep the API as simple as possible, so there's no
  * need to specify which language the code is in, but if you wish, you can add
- * another class to the {@code <pre>} or {@code <code>} element to specify the
- * language, as in {@code <pre class="prettyprint lang-java">}.  Any class that
+ * another class to the &#123;@code <pre>&#125; or &#123;@code <code>&#125; element to specify the
+ * language, as in &#123;@code <pre class="prettyprint lang-java">&#125;.  Any class that
  * starts with "lang-" followed by a file extension, specifies the file type.
  * See the "lang-*.js" files in this directory for code that implements
  * per-language file handlers.
@@ -62,7 +62,7 @@ var IN_GLOBAL_SCOPE = false;
 
 
 /**
- * {@type !{
+ * &#123;@type !&#123;
  *   'createSimpleLexer': function (Array, Array): (function (JobT)),
  *   'registerLangHandler': function (function (JobT), Array.<string>),
  *   'PR_ATTRIB_NAME': string,
@@ -81,45 +81,45 @@ var IN_GLOBAL_SCOPE = false;
  *   'PR_TYPE': string,
  *   'prettyPrintOne': function (string, string, number|boolean),
  *   'prettyPrint': function (?function, ?(HTMLElement|HTMLDocument))
- * }}
+ * &#125;&#125;
  * @const
  */
 var PR;
 
 /**
- * Split {@code prettyPrint} into multiple timeouts so as not to interfere with
+ * Split &#123;@code prettyPrint&#125; into multiple timeouts so as not to interfere with
  * UI events.
- * If set to {@code false}, {@code prettyPrint()} is synchronous.
+ * If set to &#123;@code false&#125;, &#123;@code prettyPrint()&#125; is synchronous.
  */
 var PR_SHOULD_USE_CONTINUATION = true
-if (typeof window !== 'undefined') {
+if (typeof window !== 'undefined') &#123;
   window['PR_SHOULD_USE_CONTINUATION'] = PR_SHOULD_USE_CONTINUATION;
-}
+&#125;
 
 /**
  * Pretty print a chunk of code.
- * @param {string} sourceCodeHtml The HTML to pretty print.
- * @param {string} opt_langExtension The language name to use.
+ * @param &#123;string&#125; sourceCodeHtml The HTML to pretty print.
+ * @param &#123;string&#125; opt_langExtension The language name to use.
  *     Typically, a filename extension like 'cpp' or 'java'.
- * @param {number|boolean} opt_numberLines True to number lines,
+ * @param &#123;number|boolean&#125; opt_numberLines True to number lines,
  *     or the 1-indexed number of the first line in sourceCodeHtml.
- * @return {string} code as html, but prettier
+ * @return &#123;string&#125; code as html, but prettier
  */
 var prettyPrintOne;
 /**
- * Find all the {@code <pre>} and {@code <code>} tags in the DOM with
- * {@code class=prettyprint} and prettify them.
+ * Find all the &#123;@code <pre>&#125; and &#123;@code <code>&#125; tags in the DOM with
+ * &#123;@code class=prettyprint&#125; and prettify them.
  *
- * @param {Function} opt_whenDone called when prettifying is done.
- * @param {HTMLElement|HTMLDocument} opt_root an element or document
+ * @param &#123;Function&#125; opt_whenDone called when prettifying is done.
+ * @param &#123;HTMLElement|HTMLDocument&#125; opt_root an element or document
  *   containing all the elements to pretty print.
- *   Defaults to {@code document.body}.
+ *   Defaults to &#123;@code document.body&#125;.
  */
 var prettyPrint;
 
 
-(function () {
-  var win = (typeof window !== 'undefined') ? window : {};
+(function () &#123;
+  var win = (typeof window !== 'undefined') ? window : &#123;&#125;;
   // Keyword lists for various languages.
   // We use things that coerce to strings to make them compact when minified
   // and to defeat aggressive optimizers that fold large string constants.
@@ -268,80 +268,80 @@ var prettyPrint;
    * @private
    * @const
    */
-  var REGEXP_PRECEDER_PATTERN = '(?:^^\\.?|[+-]|[!=]=?=?|\\#|%=?|&&?=?|\\(|\\*=?|[+\\-]=|->|\\/=?|::?|<<?=?|>>?>?=?|,|;|\\?|@|\\[|~|{|\\^\\^?=?|\\|\\|?=?|break|case|continue|delete|do|else|finally|instanceof|return|throw|try|typeof)\\s*';
+  var REGEXP_PRECEDER_PATTERN = '(?:^^\\.?|[+-]|[!=]=?=?|\\#|%=?|&&?=?|\\(|\\*=?|[+\\-]=|->|\\/=?|::?|<<?=?|>>?>?=?|,|;|\\?|@|\\[|~|&#123;|\\^\\^?=?|\\|\\|?=?|break|case|continue|delete|do|else|finally|instanceof|return|throw|try|typeof)\\s*';
 
 
   /**
-   * Given a group of {@link RegExp}s, returns a {@code RegExp} that globally
+   * Given a group of &#123;@link RegExp&#125;s, returns a &#123;@code RegExp&#125; that globally
    * matches the union of the sets of strings matched by the input RegExp.
    * Since it matches globally, if the input strings have a start-of-input
    * anchor (/^.../), it is ignored for the purposes of unioning.
-   * @param {Array.<regexp>} regexs non multiline, non-global regexs.
-   * @return {RegExp} a global regex.
+   * @param &#123;Array.<RegExp>&#125; regexs non multiline, non-global regexs.
+   * @return &#123;RegExp&#125; a global regex.
    */
-  function combinePrefixPatterns(regexs) {
+  function combinePrefixPatterns(regexs) &#123;
     var capturedGroupIndex = 0;
 
     var needToFoldCase = false;
     var ignoreCase = false;
-    for (var i = 0, n = regexs.length; i < n; ++i) {
+    for (var i = 0, n = regexs.length; i < n; ++i) &#123;
       var regex = regexs[i];
-      if (regex.ignoreCase) {
+      if (regex.ignoreCase) &#123;
         ignoreCase = true;
-      } else if (/[a-z]/i.test(regex.source.replace(
-                     /\\u[0-9a-f]{4}|\\x[0-9a-f]{2}|\\[^ux]/gi, ''))) {
+      &#125; else if (/[a-z]/i.test(regex.source.replace(
+                     /\\u[0-9a-f]&#123;4&#125;|\\x[0-9a-f]&#123;2&#125;|\\[^ux]/gi, ''))) &#123;
         needToFoldCase = true;
         ignoreCase = false;
         break;
-      }
-    }
+      &#125;
+    &#125;
 
-    var escapeCharToCodeUnit = {
+    var escapeCharToCodeUnit = &#123;
       'b': 8,
       't': 9,
       'n': 0xa,
       'v': 0xb,
       'f': 0xc,
       'r': 0xd
-    };
+    &#125;;
 
-    function decodeEscape(charsetPart) {
+    function decodeEscape(charsetPart) &#123;
       var cc0 = charsetPart.charCodeAt(0);
-      if (cc0 !== 92 /* \\ */) {
+      if (cc0 !== 92 /* \\ */) &#123;
         return cc0;
-      }
+      &#125;
       var c1 = charsetPart.charAt(1);
       cc0 = escapeCharToCodeUnit[c1];
-      if (cc0) {
+      if (cc0) &#123;
         return cc0;
-      } else if ('0' <= 1 2 65 c1 && <="7" ) { return parseint(charsetpart.substring(1), 8); } else if (c1="==" 'u' || 'x') parseint(charsetpart.substring(2), 16); charsetpart.charcodeat(1); function encodeescape(charcode) (charcode 0x20) 0x10 ? '\\x0' : '\\x') + charcode.tostring(16); var ch="String.fromCharCode(charCode);" (ch="==" '\\' '-' ']' '^') "\\" ch; casefoldcharset(charset) charsetparts="charSet.substring(1," charset.length - 1).match( new regexp( '\\\\u[0-9a-fa-f]{4}' '|\\\\x[0-9a-fa-f]{2}' '|\\\\[0-3][0-7]{0,2}' '|\\\\[0-7]{1,2}' '|\\\\[\\s\\s]' '|-' '|[^-\\\\]', 'g')); ranges="[];" inverse="charsetParts[0]" =="=" '^'; out="['['];" (inverse) out.push('^'); for (var i="inverse" 0, n="charsetParts.length;" n; ++i) p="charsetParts[i];" ( \\[bdsw] i.test(p)) don't muck with named groups. out.push(p); start="decodeEscape(p);" end; (i charsetparts[i 1]) end="decodeEscape(charsetParts[i" 2]); ranges.push([start, end]); the range might intersect letters, then expand it. this case handling is too simplistic. it does not deal non-latin folding. works latin source code identifiers though. (!(end> 122)) {
-            if (!(end < 65 || start > 90)) {
+      &#125; else if ('0' <= 1 2 65 c1 && <="7" ) &#123; return parseint(charsetpart.substring(1), 8); &#125; else if (c1="==" 'u' || 'x') parseint(charsetpart.substring(2), 16); charsetpart.charcodeat(1); function encodeescape(charcode) (charcode 0x20) 0x10 ? '\\x0' : '\\x') + charcode.tostring(16); var ch="String.fromCharCode(charCode);" (ch="==" '\\' '-' ']' '^') "\\" ch; casefoldcharset(charset) charsetparts="charSet.substring(1," charset.length - 1).match( new regexp( '\\\\u[0-9a-fa-f]&#123;4&#125;' '|\\\\x[0-9a-fa-f]&#123;2&#125;' '|\\\\[0-3][0-7]&#123;0,2&#125;' '|\\\\[0-7]&#123;1,2&#125;' '|\\\\[\\s\\s]' '|-' '|[^-\\\\]', 'g')); ranges="[];" inverse="charsetParts[0]" =="=" '^'; out="['['];" (inverse) out.push('^'); for (var i="inverse" 0, n="charsetParts.length;" n; ++i) p="charsetParts[i];" ( \\[bdsw] i.test(p)) don't muck with named groups. out.push(p); start="decodeEscape(p);" end; (i charsetparts[i 1]) end="decodeEscape(charsetParts[i" 2]); ranges.push([start, end]); the range might intersect letters, then expand it. this case handling is too simplistic. it does not deal non-latin folding. works latin source code identifiers though. (!(end> 122)) &#123;
+            if (!(end < 65 || start > 90)) &#123;
               ranges.push([Math.max(65, start) | 32, Math.min(end, 90) | 32]);
-            }
-            if (!(end < 97 || start > 122)) {
+            &#125;
+            if (!(end < 97 || start > 122)) &#123;
               ranges.push([Math.max(97, start) & ~32, Math.min(end, 122) & ~32]);
-            }
-          }
-        }
-      }
+            &#125;
+          &#125;
+        &#125;
+      &#125;
 
       // [[1, 10], [3, 4], [8, 12], [14, 14], [16, 16], [17, 17]]
       // -> [[1, 12], [14, 14], [16, 17]]
-      ranges.sort(function (a, b) { return (a[0] - b[0]) || (b[1]  - a[1]); });
+      ranges.sort(function (a, b) &#123; return (a[0] - b[0]) || (b[1]  - a[1]); &#125;);
       var consolidatedRanges = [];
       var lastRange = [];
-      for (var i = 0; i < ranges.length; ++i) {
+      for (var i = 0; i < ranges.length; ++i) &#123;
         var range = ranges[i];
-        if (range[0] <= lastrange[1] + 1) { range[1]); } else consolidatedranges.push(lastrange="range);" for (var i="0;" < consolidatedranges.length; ++i) var range="consolidatedRanges[i];" out.push(encodeescape(range[0])); if (range[1]> range[0]) {
-          if (range[1] + 1 > range[0]) { out.push('-'); }
+        if (range[0] <= lastrange[1] + 1) &#123; range[1]); &#125; else consolidatedranges.push(lastrange="range);" for (var i="0;" < consolidatedranges.length; ++i) var range="consolidatedRanges[i];" out.push(encodeescape(range[0])); if (range[1]> range[0]) &#123;
+          if (range[1] + 1 > range[0]) &#123; out.push('-'); &#125;
           out.push(encodeEscape(range[1]));
-        }
-      }
+        &#125;
+      &#125;
       out.push(']');
       return out.join('');
-    }
+    &#125;
 
-    function allowAnywhereFoldCaseAndRenumberGroups(regex) {
+    function allowAnywhereFoldCaseAndRenumberGroups(regex) &#123;
       // Split into character sets, escape sequences, punctuation strings
       // like ('(', '(?:', ')', '^'), and runs of characters that do not
       // include any of the above.
@@ -349,8 +349,8 @@ var prettyPrint;
           new RegExp(
               '(?:'
               + '\\[(?:[^\\x5C\\x5D]|\\\\[\\s\\S])*\\]'  // a character set
-              + '|\\\\u[A-Fa-f0-9]{4}'  // a unicode escape
-              + '|\\\\x[A-Fa-f0-9]{2}'  // a hex escape
+              + '|\\\\u[A-Fa-f0-9]&#123;4&#125;'  // a unicode escape
+              + '|\\\\x[A-Fa-f0-9]&#123;2&#125;'  // a hex escape
               + '|\\\\[0-9]+'  // a back-reference or octal escape
               + '|\\\\[^ux0-9]'  // other escape sequence
               + '|\\(\\?[:!=]'  // start of a non-capturing group
@@ -367,41 +367,41 @@ var prettyPrint;
 
       // Walk over and identify back references to build the capturedGroups
       // mapping.
-      for (var i = 0, groupIndex = 0; i < n; ++i) {
+      for (var i = 0, groupIndex = 0; i < n; ++i) &#123;
         var p = parts[i];
-        if (p === '(') {
+        if (p === '(') &#123;
           // groups are 1-indexed, so max group index is count of '('
           ++groupIndex;
-        } else if ('\\' === p.charAt(0)) {
+        &#125; else if ('\\' === p.charAt(0)) &#123;
           var decimalValue = +p.substring(1);
-          if (decimalValue) {
-            if (decimalValue <= groupindex) { capturedgroups[decimalvalue]="-1;" } else replace with an unambiguous escape sequence so that octal does not turn into a backreference to capturing group from earlier regex. parts[i]="encodeEscape(decimalValue);" renumber groups and reduce non-capturing where possible. for (var i="1;" < capturedgroups.length; ++i) if (-1="==" capturedgroups[i]) capturedgroups[i]="++capturedGroupIndex;" groupindex="0;" n; var p="parts[i];" (p="==" '(') ++groupindex; (!capturedgroups[groupindex]) ; ('\\'="==" p.charat(0)) decimalvalue="+p.substring(1);" (decimalvalue && + capturedgroups[decimalvalue]; remove any prefix anchors the output will match anywhere. ^^ really mean anchored though. ('^'="==" '^' !="=" parts[i 1]) expand letters handle mixing of case-sensitive case-insensitive patterns necessary. (regex.ignorecase needtofoldcase) ch0="p.charAt(0);" (p.length>= 2 && ch0 === '[') {
+          if (decimalValue) &#123;
+            if (decimalValue <= groupindex) &#123; capturedgroups[decimalvalue]="-1;" &#125; else replace with an unambiguous escape sequence so that octal does not turn into a backreference to capturing group from earlier regex. parts[i]="encodeEscape(decimalValue);" renumber groups and reduce non-capturing where possible. for (var i="1;" < capturedgroups.length; ++i) if (-1="==" capturedgroups[i]) capturedgroups[i]="++capturedGroupIndex;" groupindex="0;" n; var p="parts[i];" (p="==" '(') ++groupindex; (!capturedgroups[groupindex]) ; ('\\'="==" p.charat(0)) decimalvalue="+p.substring(1);" (decimalvalue && + capturedgroups[decimalvalue]; remove any prefix anchors the output will match anywhere. ^^ really mean anchored though. ('^'="==" '^' !="=" parts[i 1]) expand letters handle mixing of case-sensitive case-insensitive patterns necessary. (regex.ignorecase needtofoldcase) ch0="p.charAt(0);" (p.length>= 2 && ch0 === '[') &#123;
             parts[i] = caseFoldCharset(p);
-          } else if (ch0 !== '\\') {
+          &#125; else if (ch0 !== '\\') &#123;
             // TODO: handle letters in numeric escapes.
             parts[i] = p.replace(
                 /[a-zA-Z]/g,
-                function (ch) {
+                function (ch) &#123;
                   var cc = ch.charCodeAt(0);
                   return '[' + String.fromCharCode(cc & ~32, cc | 32) + ']';
-                });
-          }
-        }
-      }
+                &#125;);
+          &#125;
+        &#125;
+      &#125;
 
       return parts.join('');
-    }
+    &#125;
 
     var rewritten = [];
-    for (var i = 0, n = regexs.length; i < n; ++i) {
+    for (var i = 0, n = regexs.length; i < n; ++i) &#123;
       var regex = regexs[i];
-      if (regex.global || regex.multiline) { throw new Error('' + regex); }
+      if (regex.global || regex.multiline) &#123; throw new Error('' + regex); &#125;
       rewritten.push(
           '(?:' + allowAnywhereFoldCaseAndRenumberGroups(regex) + ')');
-    }
+    &#125;
 
     return new RegExp(rewritten.join('|'), ignoreCase ? 'gi' : 'g');
-  }
+  &#125;
 
 
   /**
@@ -420,36 +420,36 @@ var prettyPrint;
    * </pre>
    * <p>
    * corresponds to the HTML
-   * {@code </p><p><b>print </b>'Hello '<br>  + 'World';</p>}.</=></=></=></regexp></code></pre></string></p>
+   * &#123;@code </p><p><b>print </b>'Hello '<br>  + 'World';</p>&#125;.</=></=></=></RegExp></code></pre></string></p>
    *
    * <p>
    * It will produce the output:</p>
    * <pre>
-   * {
+   * &#123;
    *   sourceCode: "print 'Hello '\n  + 'World';",
    *   //                     1          2
    *   //           012345678901234 5678901234567
    *   spans: [0, #1, 6, #2, 14, #3, 15, #4]
-   * }
+   * &#125;
    * </pre>
    * <p>
-   * where #1 is a reference to the {@code "print "} text node above, and so
+   * where #1 is a reference to the &#123;@code "print "&#125; text node above, and so
    * on for the other text nodes.
    * </p>
    *
    * <p>
-   * The {@code} spans array is an array of pairs.  Even elements are the start
+   * The &#123;@code&#125; spans array is an array of pairs.  Even elements are the start
    * indices of substrings, and odd elements are the text nodes (or BR elements)
    * that contain the text for those substrings.
    * Substrings continue until the next index or the end of the source.
    * </p>
    *
-   * @param {Node} node an HTML DOM subtree containing source-code.
-   * @param {boolean|number} isPreformatted truthy if white-space in
+   * @param &#123;Node&#125; node an HTML DOM subtree containing source-code.
+   * @param &#123;boolean|number&#125; isPreformatted truthy if white-space in
    *    text nodes should be considered significant.
-   * @return {SourceSpansT} source code and the nodes in which they occur.
+   * @return &#123;SourceSpansT&#125; source code and the nodes in which they occur.
    */
-  function extractSourceSpans(node, isPreformatted) {
+  function extractSourceSpans(node, isPreformatted) &#123;
     var nocode = /(?:^|\s)nocode(?:\s|$)/;
 
     var chunks = [];
@@ -457,60 +457,60 @@ var prettyPrint;
     var spans = [];
     var k = 0;
 
-    function walk(node) {
+    function walk(node) &#123;
       var type = node.nodeType;
-      if (type == 1) {  // Element
-        if (nocode.test(node.className)) { return; }
-        for (var child = node.firstChild; child; child = child.nextSibling) {
+      if (type == 1) &#123;  // Element
+        if (nocode.test(node.className)) &#123; return; &#125;
+        for (var child = node.firstChild; child; child = child.nextSibling) &#123;
           walk(child);
-        }
+        &#125;
         var nodeName = node.nodeName.toLowerCase();
-        if ('br' === nodeName || 'li' === nodeName) {
+        if ('br' === nodeName || 'li' === nodeName) &#123;
           chunks[k] = '\n';
           spans[k << 1] = length++;
           spans[(k++ << 1) | 1] = node;
-        }
-      } else if (type == 3 || type == 4) {  // Text
+        &#125;
+      &#125; else if (type == 3 || type == 4) &#123;  // Text
         var text = node.nodeValue;
-        if (text.length) {
-          if (!isPreformatted) {
+        if (text.length) &#123;
+          if (!isPreformatted) &#123;
             text = text.replace(/[ \t\r\n]+/g, ' ');
-          } else {
+          &#125; else &#123;
             text = text.replace(/\r\n?/g, '\n');  // Normalize newlines.
-          }
+          &#125;
           // TODO: handle tabs here?
           chunks[k] = text;
           spans[k << 1] = length;
           length += text.length;
           spans[(k++ << 1) | 1] = node;
-        }
-      }
-    }
+        &#125;
+      &#125;
+    &#125;
 
     walk(node);
 
-    return {
+    return &#123;
       sourceCode: chunks.join('').replace(/\n$/, ''),
       spans: spans
-    };
-  }
+    &#125;;
+  &#125;
 
 
   /**
    * Apply the given language handler to sourceCode and add the resulting
    * decorations to out.
-   * @param {!Element} sourceNode
-   * @param {number} basePos the index of sourceCode within the chunk of source
+   * @param &#123;!Element&#125; sourceNode
+   * @param &#123;number&#125; basePos the index of sourceCode within the chunk of source
    *    whose decorations are already present on out.
-   * @param {string} sourceCode
-   * @param {function(JobT)} langHandler
-   * @param {DecorationsT} out
+   * @param &#123;string&#125; sourceCode
+   * @param &#123;function(JobT)&#125; langHandler
+   * @param &#123;DecorationsT&#125; out
    */
   function appendDecorations(
-      sourceNode, basePos, sourceCode, langHandler, out) {
-    if (!sourceCode) { return; }
-    /** @type {JobT} */
-    var job = {
+      sourceNode, basePos, sourceCode, langHandler, out) &#123;
+    if (!sourceCode) &#123; return; &#125;
+    /** @type &#123;JobT&#125; */
+    var job = &#123;
       sourceNode: sourceNode,
       pre: 1,
       langExtension: null,
@@ -519,10 +519,10 @@ var prettyPrint;
       spans: null,
       basePos: basePos,
       decorations: null
-    };
+    &#125;;
     langHandler(job);
     out.push.apply(out, job.decorations);
-  }
+  &#125;
 
   var notWs = /\S/;
 
@@ -531,10 +531,10 @@ var prettyPrint;
    * it contains contain only space characters, return the sole child element.
    * Otherwise returns undefined.
    * <p>
-   * This is meant to return the CODE element in {@code <pre><code ...>} when
+   * This is meant to return the CODE element in &#123;@code <pre><code ...>&#125; when
    * there is a single child element that contains all the non-space textual
    * content, but not to return anything where there are multiple child elements
-   * as in {@code <pre><code>...</code><code>...</code></pre>} or when there
+   * as in &#123;@code <pre><code>...</code><code>...</code></pre>} or when there
    * is textual content.
    */
   function childContentWrapper(element) {

@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 3.9.0">
+<meta name="generator" content="Hexo 6.3.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
@@ -23,19 +23,20 @@
   </script>
 
   <meta name="description" content="来自Leetcode第225题用队列实现栈 使用队列实现栈的下列操作：  push(x) — 元素 x 入栈 pop() — 移除栈顶元素 top() — 获取栈顶元素 empty() — 返回栈是否为空">
-<meta name="keywords" content="Leetcode,栈">
 <meta property="og:type" content="article">
 <meta property="og:title" content="用队列实现栈">
-<meta property="og:url" content="http://yorxika.github.io/2020/02/10/用队列实现栈/index.html">
+<meta property="og:url" content="http://yorxika.github.io/2020/02/10/%E7%94%A8%E9%98%9F%E5%88%97%E5%AE%9E%E7%8E%B0%E6%A0%88/index.html">
 <meta property="og:site_name" content="Nameless Site">
 <meta property="og:description" content="来自Leetcode第225题用队列实现栈 使用队列实现栈的下列操作：  push(x) — 元素 x 入栈 pop() — 移除栈顶元素 top() — 获取栈顶元素 empty() — 返回栈是否为空">
-<meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2020-02-10T14:01:52.000Z">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-02-10T13:55:22.000Z">
+<meta property="article:modified_time" content="2020-02-10T14:01:52.000Z">
+<meta property="article:author" content="HMF">
+<meta property="article:tag" content="Leetcode">
+<meta property="article:tag" content="栈">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="用队列实现栈">
-<meta name="twitter:description" content="来自Leetcode第225题用队列实现栈 使用队列实现栈的下列操作：  push(x) — 元素 x 入栈 pop() — 移除栈顶元素 top() — 获取栈顶元素 empty() — 返回栈是否为空">
 
-<link rel="canonical" href="http://yorxika.github.io/2020/02/10/用队列实现栈/">
+<link rel="canonical" href="http://yorxika.github.io/2020/02/10/%E7%94%A8%E9%98%9F%E5%88%97%E5%AE%9E%E7%8E%B0%E6%A0%88/">
 
 
 <script id="page-configurations">
@@ -200,7 +201,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yorxika.github.io/2020/02/10/用队列实现栈/">
+    <link itemprop="mainEntityOfPage" href="http://yorxika.github.io/2020/02/10/%E7%94%A8%E9%98%9F%E5%88%97%E5%AE%9E%E7%8E%B0%E6%A0%88/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/touxiang.jpg">
@@ -232,15 +233,15 @@
               </span>
               <span class="post-meta-item-text">In</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
+                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
                 </span>
                   , 
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/Leetcode/" itemprop="url" rel="index"><span itemprop="name">Leetcode</span></a>
+                  <a href="/categories/%E7%AE%97%E6%B3%95/Leetcode/" itemprop="url" rel="index"><span itemprop="name">Leetcode</span></a>
                 </span>
                   , 
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/Leetcode/数据结构设计/" itemprop="url" rel="index"><span itemprop="name">数据结构设计</span></a>
+                  <a href="/categories/%E7%AE%97%E6%B3%95/Leetcode/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E8%AE%BE%E8%AE%A1/" itemprop="url" rel="index"><span itemprop="name">数据结构设计</span></a>
                 </span>
             </span>
 
@@ -250,7 +251,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>816</span>
+              <span>886</span>
             </span>
             <span class="post-meta-item" title="Reading time">
               <span class="post-meta-item-icon">
@@ -276,7 +277,7 @@
 <li>pop() — 移除栈顶元素</li>
 <li>top() — 获取栈顶元素</li>
 <li><p>empty() — 返回栈是否为空</p>
-<a id="more"></a>
+<span id="more"></span>
 <p><strong>注意:</strong></p>
 </li>
 <li><p>你只能使用队列的基本操作— 也就是 <code>push to back</code>, <code>peek/pop from front</code>, <code>size</code>, 和 <code>is empty</code> 这些操作是合法的。</p>
@@ -286,38 +287,38 @@
 </ul>
 <hr>
 <p>用一个链表实现，压栈时就先将元素压到队列尾，然后在依次移除队列里的元素，在添加到队列尾。</p>
-<pre><code class="lang-JAVA">    class MyStack {
+<pre><code class="lang-JAVA">    class MyStack &#123;
 
         private LinkedList&lt;Integer&gt; queue = new LinkedList&lt;&gt;();
         /** Initialize your data structure here. */
-        public MyStack() {
-        }
+        public MyStack() &#123;
+        &#125;
 
         /** Push element x onto stack. */
-        public void push(int x) {
+        public void push(int x) &#123;
             queue.add(x);
             int size = queue.size();
-            while(size &gt; 1){
+            while(size &gt; 1)&#123;
                 queue.add(queue.remove());  //移动队首元素至队列尾，从而实现了后进先出
                 size--;
-            }
-        }
+            &#125;
+        &#125;
 
         /** Removes the element on top of the stack and returns that element. */
-        public int pop() {
+        public int pop() &#123;
             return queue.remove();
-        }
+        &#125;
 
         /** Get the top element. */
-        public int top() {
+        public int top() &#123;
             return queue.peek();
-        }
+        &#125;
 
         /** Returns whether the stack is empty. */
-        public boolean empty() {
+        public boolean empty() &#123;
             return queue.isEmpty();
-        }
-    }
+        &#125;
+    &#125;
 </code></pre>
 
     </div>
@@ -334,7 +335,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>Post link: </strong>
-    <a href="http://yorxika.github.io/2020/02/10/用队列实现栈/" title="用队列实现栈">http://yorxika.github.io/2020/02/10/用队列实现栈/</a>
+    <a href="http://yorxika.github.io/2020/02/10/%E7%94%A8%E9%98%9F%E5%88%97%E5%AE%9E%E7%8E%B0%E6%A0%88/" title="用队列实现栈">http://yorxika.github.io/2020/02/10/用队列实现栈/</a>
   </li>
   <li class="post-copyright-license">
     <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.
@@ -347,7 +348,7 @@
           
           <div class="post-tags">
               <a href="/tags/Leetcode/" rel="tag"><i class="fa fa-tag"></i> Leetcode</a>
-              <a href="/tags/栈/" rel="tag"><i class="fa fa-tag"></i> 栈</a>
+              <a href="/tags/%E6%A0%88/" rel="tag"><i class="fa fa-tag"></i> 栈</a>
           </div>
 
         
@@ -356,11 +357,11 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2020/02/10/矩形面积/" rel="prev" title="矩形面积">
+    <a href="/2020/02/10/%E7%9F%A9%E5%BD%A2%E9%9D%A2%E7%A7%AF/" rel="prev" title="矩形面积">
       <i class="fa fa-chevron-left"></i> 矩形面积
     </a></div>
       <div class="post-nav-item">
-    <a href="/2020/02/11/汇总区间/" rel="next" title="汇总区间">
+    <a href="/2020/02/11/%E6%B1%87%E6%80%BB%E5%8C%BA%E9%97%B4/" rel="next" title="汇总区间">
       汇总区间 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
@@ -496,12 +497,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">956k</span>
+    <span title="Symbols count total">968k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">14:29</span>
+    <span title="Reading time total">14:40</span>
 </div><script color="255,255,255" opacity="0.5" zIndex="-1" count="180" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
 
         
@@ -521,9 +522,19 @@
   <script src="/lib/anime.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
-<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
 <script src="/js/schemes/pisces.js"></script>
-<script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
 
 
 
@@ -532,7 +543,9 @@
 
 
 
-  <script src="/js/local-search.js"></script>
+  
+<script src="/js/local-search.js"></script>
+
 
 
 

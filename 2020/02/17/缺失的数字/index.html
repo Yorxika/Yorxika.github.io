@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 3.9.0">
+<meta name="generator" content="Hexo 6.3.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
@@ -23,19 +23,19 @@
   </script>
 
   <meta name="description" content="来自Leetcode第268题缺失数字 给定一个包含 0, 1, 2, ..., n 中 n 个数的序列，找出 0 .. n 中没有出现在序列中的那个数。">
-<meta name="keywords" content="位运算">
 <meta property="og:type" content="article">
 <meta property="og:title" content="缺失的数字">
-<meta property="og:url" content="http://yorxika.github.io/2020/02/17/缺失的数字/index.html">
+<meta property="og:url" content="http://yorxika.github.io/2020/02/17/%E7%BC%BA%E5%A4%B1%E7%9A%84%E6%95%B0%E5%AD%97/index.html">
 <meta property="og:site_name" content="Nameless Site">
 <meta property="og:description" content="来自Leetcode第268题缺失数字 给定一个包含 0, 1, 2, ..., n 中 n 个数的序列，找出 0 .. n 中没有出现在序列中的那个数。">
-<meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2020-02-17T07:47:07.000Z">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-02-17T07:40:07.000Z">
+<meta property="article:modified_time" content="2020-02-17T07:47:07.000Z">
+<meta property="article:author" content="HMF">
+<meta property="article:tag" content="位运算">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="缺失的数字">
-<meta name="twitter:description" content="来自Leetcode第268题缺失数字 给定一个包含 0, 1, 2, ..., n 中 n 个数的序列，找出 0 .. n 中没有出现在序列中的那个数。">
 
-<link rel="canonical" href="http://yorxika.github.io/2020/02/17/缺失的数字/">
+<link rel="canonical" href="http://yorxika.github.io/2020/02/17/%E7%BC%BA%E5%A4%B1%E7%9A%84%E6%95%B0%E5%AD%97/">
 
 
 <script id="page-configurations">
@@ -200,7 +200,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yorxika.github.io/2020/02/17/缺失的数字/">
+    <link itemprop="mainEntityOfPage" href="http://yorxika.github.io/2020/02/17/%E7%BC%BA%E5%A4%B1%E7%9A%84%E6%95%B0%E5%AD%97/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/touxiang.jpg">
@@ -232,15 +232,15 @@
               </span>
               <span class="post-meta-item-text">In</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
+                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
                 </span>
                   , 
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/Leetcode/" itemprop="url" rel="index"><span itemprop="name">Leetcode</span></a>
+                  <a href="/categories/%E7%AE%97%E6%B3%95/Leetcode/" itemprop="url" rel="index"><span itemprop="name">Leetcode</span></a>
                 </span>
                   , 
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/Leetcode/数组/" itemprop="url" rel="index"><span itemprop="name">数组</span></a>
+                  <a href="/categories/%E7%AE%97%E6%B3%95/Leetcode/%E6%95%B0%E7%BB%84/" itemprop="url" rel="index"><span itemprop="name">数组</span></a>
                 </span>
             </span>
 
@@ -270,17 +270,17 @@
 
       
         <p>来自Leetcode第268题缺失数字</p>
-<p>给定一个包含 <code>0, 1, 2, ..., n</code> 中 <em>n</em> 个数的序列，找出 0 .. <em>n</em> 中没有出现在序列中的那个数。<br><a id="more"></a><br><strong>示例 1:</strong></p>
-<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: [<span class="number">3</span>,<span class="number">0</span>,<span class="number">1</span>]</span><br><span class="line">输出: <span class="number">2</span></span><br></pre></td></tr></table></figure>
+<p>给定一个包含 <code>0, 1, 2, ..., n</code> 中 <em>n</em> 个数的序列，找出 0 .. <em>n</em> 中没有出现在序列中的那个数。<br><span id="more"></span><br><strong>示例 1:</strong></p>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">输入: [3,0,1]</span></span><br><span class="line"><span class="section">输出: 2</span></span><br></pre></td></tr></table></figure>
 <h3 id="Map"><a href="#Map" class="headerlink" title="Map"></a>Map</h3><p>利用数组标记各个数字是否出现，最后遍历数组，找到没出现的数字。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">missingNumber</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(nums.length == <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span>[] map = <span class="keyword">new</span> <span class="keyword">int</span>[nums.length + <span class="number">1</span>];</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> n : nums)</span><br><span class="line">        map[n] = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span> ; i &lt; map.length; i++)</span><br><span class="line">        <span class="keyword">if</span>(map[i] == <span class="number">0</span>)</span><br><span class="line">            <span class="keyword">return</span> i;</span><br><span class="line">    <span class="keyword">return</span> nums.length + <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="异或位运算"><a href="#异或位运算" class="headerlink" title="异或位运算"></a>异或位运算</h3><p>来自<a href="https://leetcode-cn.com/problems/missing-number/solution/que-shi-shu-zi-by-leetcode/" target="_blank" rel="noopener">官方题解</a></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="type">int</span> <span class="title function_">missingNumber</span><span class="params">(<span class="type">int</span>[] nums)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span>(nums.length == <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="type">int</span>[] map = <span class="keyword">new</span> <span class="title class_">int</span>[nums.length + <span class="number">1</span>];</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> n : nums)</span><br><span class="line">        map[n] = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span> ; i &lt; map.length; i++)</span><br><span class="line">        <span class="keyword">if</span>(map[i] == <span class="number">0</span>)</span><br><span class="line">            <span class="keyword">return</span> i;</span><br><span class="line">    <span class="keyword">return</span> nums.length + <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="异或位运算"><a href="#异或位运算" class="headerlink" title="异或位运算"></a>异或位运算</h3><p>来自<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/missing-number/solution/que-shi-shu-zi-by-leetcode/">官方题解</a></p>
 <p>我们知道数组中有 <em>n</em> 个数，并且缺失的数在 [0..n][0..<em>n</em>] 中。因此我们可以先得到 [0..n][0..<em>n</em>] 的异或值，再将结果对数组中的每一个数进行一次异或运算。未缺失的数在 [0..n][0..<em>n</em>] 和数组中各出现一次，因此异或后得到 0。而缺失的数字只在 [0..n][0..<em>n</em>] 中出现了一次，在数组中没有出现，因此最终的异或结果即为这个缺失的数字。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">missingNumber</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> missing = nums.length;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length; i++) &#123;</span><br><span class="line">            missing ^= i ^ nums[i];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> missing;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="求和公式"><a href="#求和公式" class="headerlink" title="求和公式"></a>求和公式</h3><p>我们可以用 <a href="https://baike.baidu.com/item/高斯求和" target="_blank" rel="noopener">高斯求和公式</a> 求出 [0..n][0..<em>n</em>] 的和，减去数组中所有数的和，就得到了缺失的数字。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">missingNumber</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> expectedSum = nums.length*(nums.length + <span class="number">1</span>)/<span class="number">2</span>;</span><br><span class="line">        <span class="keyword">int</span> actualSum = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> num : nums) actualSum += num;</span><br><span class="line">        <span class="keyword">return</span> expectedSum - actualSum;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="type">int</span> <span class="title function_">missingNumber</span><span class="params">(<span class="type">int</span>[] nums)</span> &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">missing</span> <span class="operator">=</span> nums.length;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; nums.length; i++) &#123;</span><br><span class="line">            missing ^= i ^ nums[i];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> missing;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="求和公式"><a href="#求和公式" class="headerlink" title="求和公式"></a>求和公式</h3><p>我们可以用 <a target="_blank" rel="noopener" href="https://baike.baidu.com/item/高斯求和">高斯求和公式</a> 求出 [0..n][0..<em>n</em>] 的和，减去数组中所有数的和，就得到了缺失的数字。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="type">int</span> <span class="title function_">missingNumber</span><span class="params">(<span class="type">int</span>[] nums)</span> &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">expectedSum</span> <span class="operator">=</span> nums.length*(nums.length + <span class="number">1</span>)/<span class="number">2</span>;</span><br><span class="line">        <span class="type">int</span> <span class="variable">actualSum</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> num : nums) actualSum += num;</span><br><span class="line">        <span class="keyword">return</span> expectedSum - actualSum;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>也可以遍历一遍数组，在把0-n这n个自然数全加起来的同时也减去nums[i]</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">missingNumber</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= nums.length; i++) &#123;</span><br><span class="line">        sum += i;</span><br><span class="line">        sum -= nums[i - <span class="number">1</span>];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> sum;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="type">int</span> <span class="title function_">missingNumber</span><span class="params">(<span class="type">int</span>[] nums)</span> &#123;</span><br><span class="line">    <span class="type">int</span> <span class="variable">sum</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span>; i &lt;= nums.length; i++) &#123;</span><br><span class="line">        sum += i;</span><br><span class="line">        sum -= nums[i - <span class="number">1</span>];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> sum;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
     </div>
 
@@ -296,7 +296,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>Post link: </strong>
-    <a href="http://yorxika.github.io/2020/02/17/缺失的数字/" title="缺失的数字">http://yorxika.github.io/2020/02/17/缺失的数字/</a>
+    <a href="http://yorxika.github.io/2020/02/17/%E7%BC%BA%E5%A4%B1%E7%9A%84%E6%95%B0%E5%AD%97/" title="缺失的数字">http://yorxika.github.io/2020/02/17/缺失的数字/</a>
   </li>
   <li class="post-copyright-license">
     <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.
@@ -308,7 +308,7 @@
       <footer class="post-footer">
           
           <div class="post-tags">
-              <a href="/tags/位运算/" rel="tag"><i class="fa fa-tag"></i> 位运算</a>
+              <a href="/tags/%E4%BD%8D%E8%BF%90%E7%AE%97/" rel="tag"><i class="fa fa-tag"></i> 位运算</a>
           </div>
 
         
@@ -317,11 +317,11 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2020/02/17/各位相加/" rel="prev" title="各位相加">
+    <a href="/2020/02/17/%E5%90%84%E4%BD%8D%E7%9B%B8%E5%8A%A0/" rel="prev" title="各位相加">
       <i class="fa fa-chevron-left"></i> 各位相加
     </a></div>
       <div class="post-nav-item">
-    <a href="/2020/02/17/K个一组翻转链表/" rel="next" title="K个一组翻转链表">
+    <a href="/2020/02/17/K%E4%B8%AA%E4%B8%80%E7%BB%84%E7%BF%BB%E8%BD%AC%E9%93%BE%E8%A1%A8/" rel="next" title="K个一组翻转链表">
       K个一组翻转链表 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
@@ -383,7 +383,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Map"><span class="nav-number">1.</span> <span class="nav-text">Map</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#异或位运算"><span class="nav-number">2.</span> <span class="nav-text">异或位运算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#求和公式"><span class="nav-number">3.</span> <span class="nav-text">求和公式</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Map"><span class="nav-number">1.</span> <span class="nav-text">Map</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%82%E6%88%96%E4%BD%8D%E8%BF%90%E7%AE%97"><span class="nav-number">2.</span> <span class="nav-text">异或位运算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B1%82%E5%92%8C%E5%85%AC%E5%BC%8F"><span class="nav-number">3.</span> <span class="nav-text">求和公式</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -458,12 +458,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">956k</span>
+    <span title="Symbols count total">968k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">14:29</span>
+    <span title="Reading time total">14:40</span>
 </div><script color="255,255,255" opacity="0.5" zIndex="-1" count="180" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
 
         
@@ -483,9 +483,19 @@
   <script src="/lib/anime.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
-<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
 <script src="/js/schemes/pisces.js"></script>
-<script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
 
 
 
@@ -494,7 +504,9 @@
 
 
 
-  <script src="/js/local-search.js"></script>
+  
+<script src="/js/local-search.js"></script>
+
 
 
 

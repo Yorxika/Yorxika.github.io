@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 3.9.0">
+<meta name="generator" content="Hexo 6.3.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
@@ -23,23 +23,24 @@
   </script>
 
   <meta name="description" content="来源Leetcode第138题复制带随机指针的链表 给定一个链表，每个节点包含一个额外增加的随机指针，该指针可以指向链表中的任何节点或空节点。 要求返回这个链表的深拷贝。">
-<meta name="keywords" content="Leetcode,链表">
 <meta property="og:type" content="article">
 <meta property="og:title" content="复制带随机指针的链表">
-<meta property="og:url" content="http://yorxika.github.io/2019/12/18/复制带随机指针的链表/index.html">
+<meta property="og:url" content="http://yorxika.github.io/2019/12/18/%E5%A4%8D%E5%88%B6%E5%B8%A6%E9%9A%8F%E6%9C%BA%E6%8C%87%E9%92%88%E7%9A%84%E9%93%BE%E8%A1%A8/index.html">
 <meta property="og:site_name" content="Nameless Site">
 <meta property="og:description" content="来源Leetcode第138题复制带随机指针的链表 给定一个链表，每个节点包含一个额外增加的随机指针，该指针可以指向链表中的任何节点或空节点。 要求返回这个链表的深拷贝。">
-<meta property="og:locale" content="en">
-<meta property="og:image" content="http://yorxika.github.io/2019/12/18/复制带随机指针的链表/1470150906153-2yxeznm.png">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/18/%E5%A4%8D%E5%88%B6%E5%B8%A6%E9%9A%8F%E6%9C%BA%E6%8C%87%E9%92%88%E7%9A%84%E9%93%BE%E8%A1%A8/1470150906153-2yxeznm.png">
 <meta property="og:image" content="https://pic.leetcode-cn.com/9bd4662fdbcb1e44f5ce208e29f3459d1adbf1e7ceb723e4bfc8ba2eff3bd186.jpg">
 <meta property="og:image" content="https://pic.leetcode-cn.com/9d18d01597f5ca7562c8dd3908082b13c27b989fcaebb37c163d6e7ced65f412.jpg">
-<meta property="og:updated_time" content="2019-12-18T05:47:41.000Z">
+<meta property="article:published_time" content="2019-12-17T16:51:34.000Z">
+<meta property="article:modified_time" content="2019-12-18T05:47:41.000Z">
+<meta property="article:author" content="HMF">
+<meta property="article:tag" content="Leetcode">
+<meta property="article:tag" content="链表">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="复制带随机指针的链表">
-<meta name="twitter:description" content="来源Leetcode第138题复制带随机指针的链表 给定一个链表，每个节点包含一个额外增加的随机指针，该指针可以指向链表中的任何节点或空节点。 要求返回这个链表的深拷贝。">
-<meta name="twitter:image" content="http://yorxika.github.io/2019/12/18/复制带随机指针的链表/1470150906153-2yxeznm.png">
+<meta name="twitter:image" content="http://yorxika.github.io/2019/12/18/%E5%A4%8D%E5%88%B6%E5%B8%A6%E9%9A%8F%E6%9C%BA%E6%8C%87%E9%92%88%E7%9A%84%E9%93%BE%E8%A1%A8/1470150906153-2yxeznm.png">
 
-<link rel="canonical" href="http://yorxika.github.io/2019/12/18/复制带随机指针的链表/">
+<link rel="canonical" href="http://yorxika.github.io/2019/12/18/%E5%A4%8D%E5%88%B6%E5%B8%A6%E9%9A%8F%E6%9C%BA%E6%8C%87%E9%92%88%E7%9A%84%E9%93%BE%E8%A1%A8/">
 
 
 <script id="page-configurations">
@@ -204,7 +205,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yorxika.github.io/2019/12/18/复制带随机指针的链表/">
+    <link itemprop="mainEntityOfPage" href="http://yorxika.github.io/2019/12/18/%E5%A4%8D%E5%88%B6%E5%B8%A6%E9%9A%8F%E6%9C%BA%E6%8C%87%E9%92%88%E7%9A%84%E9%93%BE%E8%A1%A8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/touxiang.jpg">
@@ -236,15 +237,15 @@
               </span>
               <span class="post-meta-item-text">In</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
+                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
                 </span>
                   , 
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/Leetcode/" itemprop="url" rel="index"><span itemprop="name">Leetcode</span></a>
+                  <a href="/categories/%E7%AE%97%E6%B3%95/Leetcode/" itemprop="url" rel="index"><span itemprop="name">Leetcode</span></a>
                 </span>
                   , 
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/Leetcode/链表/" itemprop="url" rel="index"><span itemprop="name">链表</span></a>
+                  <a href="/categories/%E7%AE%97%E6%B3%95/Leetcode/%E9%93%BE%E8%A1%A8/" itemprop="url" rel="index"><span itemprop="name">链表</span></a>
                 </span>
             </span>
 
@@ -254,7 +255,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>2.8k</span>
+              <span>2.9k</span>
             </span>
             <span class="post-meta-item" title="Reading time">
               <span class="post-meta-item-icon">
@@ -275,18 +276,18 @@
       
         <p>来源Leetcode第138题复制带随机指针的链表</p>
 <p>给定一个链表，每个节点包含一个额外增加的随机指针，该指针可以指向链表中的任何节点或空节点。</p>
-<p>要求返回这个链表的<strong><a href="https://baike.baidu.com/item/深拷贝/22785317?fr=aladdin" target="_blank" rel="noopener">深拷贝</a></strong>。 <a id="more"></a></p>
+<p>要求返回这个链表的<strong><a target="_blank" rel="noopener" href="https://baike.baidu.com/item/深拷贝/22785317?fr=aladdin">深拷贝</a></strong>。 <span id="more"></span></p>
 <p><strong>示例：</strong></p>
-<p><strong><img src="/2019/12/18/复制带随机指针的链表/1470150906153-2yxeznm.png" alt="img"></strong></p>
-<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">输入：</span><br><span class="line">&#123;<span class="string">"<span class="subst">$id</span>"</span>:<span class="string">"1"</span>,<span class="string">"next"</span>:&#123;<span class="string">"<span class="subst">$id</span>"</span>:<span class="string">"2"</span>,<span class="string">"next"</span>:<span class="keyword">null</span>,<span class="string">"random"</span>:&#123;<span class="string">"<span class="subst">$ref</span>"</span>:<span class="string">"2"</span>&#125;,<span class="string">"val"</span>:<span class="number">2</span>&#125;,<span class="string">"random"</span>:&#123;<span class="string">"<span class="subst">$ref</span>"</span>:<span class="string">"2"</span>&#125;,<span class="string">"val"</span>:<span class="number">1</span>&#125;</span><br><span class="line"></span><br><span class="line">解释：</span><br><span class="line">节点 <span class="number">1</span> 的值是 <span class="number">1</span>，它的下一个指针和随机指针都指向节点 <span class="number">2</span> 。</span><br><span class="line">节点 <span class="number">2</span> 的值是 <span class="number">2</span>，它的下一个指针指向 <span class="keyword">null</span>，随机指针指向它自己。</span><br></pre></td></tr></table></figure>
+<p><strong><img src="/2019/12/18/%E5%A4%8D%E5%88%B6%E5%B8%A6%E9%9A%8F%E6%9C%BA%E6%8C%87%E9%92%88%E7%9A%84%E9%93%BE%E8%A1%A8/1470150906153-2yxeznm.png" alt="img"></strong></p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">输入：</span><br><span class="line">&#123;<span class="string">&quot;<span class="subst">$id</span>&quot;</span>:<span class="string">&quot;1&quot;</span>,<span class="string">&quot;next&quot;</span>:&#123;<span class="string">&quot;<span class="subst">$id</span>&quot;</span>:<span class="string">&quot;2&quot;</span>,<span class="string">&quot;next&quot;</span>:<span class="keyword">null</span>,<span class="string">&quot;random&quot;</span>:&#123;<span class="string">&quot;<span class="subst">$ref</span>&quot;</span>:<span class="string">&quot;2&quot;</span>&#125;,<span class="string">&quot;val&quot;</span>:<span class="number">2</span>&#125;,<span class="string">&quot;random&quot;</span>:&#123;<span class="string">&quot;<span class="subst">$ref</span>&quot;</span>:<span class="string">&quot;2&quot;</span>&#125;,<span class="string">&quot;val&quot;</span>:<span class="number">1</span>&#125;</span><br><span class="line"></span><br><span class="line">解释：</span><br><span class="line">节点 <span class="number">1</span> 的值是 <span class="number">1</span>，它的下一个指针和随机指针都指向节点 <span class="number">2</span> 。</span><br><span class="line">节点 <span class="number">2</span> 的值是 <span class="number">2</span>，它的下一个指针指向 <span class="keyword">null</span>，随机指针指向它自己。</span><br></pre></td></tr></table></figure>
 <p><strong>提示：</strong></p>
 <ol>
 <li>你必须返回<strong>给定头的拷贝</strong>作为对克隆列表的引用。</li>
 </ol>
 <h3 id="哈希Map"><a href="#哈希Map" class="headerlink" title="哈希Map"></a>哈希Map</h3><p>利用一个哈希Map存储原链表结点和对应的拷贝结点，在原链表里遍历，但是要注意当原结点的随机结点为空时，不能将空结点及其拷贝放入哈希Map里。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> Node <span class="title">copyRandomList</span><span class="params">(Node head)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(head == <span class="keyword">null</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    Map&lt;Node,Node&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">    Node newHead = <span class="keyword">new</span> Node();</span><br><span class="line">    map.put(head,newHead);</span><br><span class="line">    Node p1 = newHead;</span><br><span class="line">    <span class="keyword">while</span> (head != <span class="keyword">null</span>) &#123;</span><br><span class="line">        p1.val = head.val;</span><br><span class="line">        <span class="comment">//p1.next = head.next;</span></span><br><span class="line">        <span class="keyword">if</span>(!map.containsKey(head.random) &amp;&amp; head.random != <span class="keyword">null</span>)&#123;</span><br><span class="line">            Node tmp = <span class="keyword">new</span> Node();</span><br><span class="line">            map.put(head.random,tmp);</span><br><span class="line">            p1.random = tmp;</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(head.random != <span class="keyword">null</span>)</span><br><span class="line">            p1.random = map.get(head.random);</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            p1.random = <span class="keyword">null</span>;</span><br><span class="line">        <span class="comment">//map.put(head,p1);</span></span><br><span class="line">        head = head.next;</span><br><span class="line">        <span class="keyword">if</span>(head == <span class="keyword">null</span>)</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">if</span>(!map.containsKey(head))&#123;</span><br><span class="line">            p1.next = <span class="keyword">new</span> Node();</span><br><span class="line">            map.put(head,p1.next);</span><br><span class="line">            p1 = p1.next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            p1.next = map.get(head);</span><br><span class="line">            p1 = p1.next;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> newHead;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> Node <span class="title function_">copyRandomList</span><span class="params">(Node head)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span>(head == <span class="literal">null</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">    Map&lt;Node,Node&gt; map = <span class="keyword">new</span> <span class="title class_">HashMap</span>&lt;&gt;();</span><br><span class="line">    <span class="type">Node</span> <span class="variable">newHead</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Node</span>();</span><br><span class="line">    map.put(head,newHead);</span><br><span class="line">    <span class="type">Node</span> <span class="variable">p1</span> <span class="operator">=</span> newHead;</span><br><span class="line">    <span class="keyword">while</span> (head != <span class="literal">null</span>) &#123;</span><br><span class="line">        p1.val = head.val;</span><br><span class="line">        <span class="comment">//p1.next = head.next;</span></span><br><span class="line">        <span class="keyword">if</span>(!map.containsKey(head.random) &amp;&amp; head.random != <span class="literal">null</span>)&#123;</span><br><span class="line">            <span class="type">Node</span> <span class="variable">tmp</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Node</span>();</span><br><span class="line">            map.put(head.random,tmp);</span><br><span class="line">            p1.random = tmp;</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(head.random != <span class="literal">null</span>)</span><br><span class="line">            p1.random = map.get(head.random);</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            p1.random = <span class="literal">null</span>;</span><br><span class="line">        <span class="comment">//map.put(head,p1);</span></span><br><span class="line">        head = head.next;</span><br><span class="line">        <span class="keyword">if</span>(head == <span class="literal">null</span>)</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">if</span>(!map.containsKey(head))&#123;</span><br><span class="line">            p1.next = <span class="keyword">new</span> <span class="title class_">Node</span>();</span><br><span class="line">            map.put(head,p1.next);</span><br><span class="line">            p1 = p1.next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            p1.next = map.get(head);</span><br><span class="line">            p1 = p1.next;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> newHead;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="原结点后追加新结点"><a href="#原结点后追加新结点" class="headerlink" title="原结点后追加新结点"></a>原结点后追加新结点</h3><p> <code>HashMap</code> 额外需要 <code>O(n)</code> 的空间复杂度，现在考虑不需要额外空间的方法。</p>
-<p>主要参考了<a href="https://leetcode.com/problems/copy-list-with-random-pointer/discuss/43491/A-solution-with-constant-space-complexity-O(1" target="_blank" rel="noopener">这里</a>-and-linear-time-complexity-O(N))。主要解决的问题就是我们生成节点以后，当更新它的 <code>random</code> 的时候，怎么找到之前生成的节点，前两种解法用了 <code>HashMap</code> 全部存起来，这里的话可以利用原来的链表的指针域。</p>
+<p>主要参考了<a target="_blank" rel="noopener" href="https://leetcode.com/problems/copy-list-with-random-pointer/discuss/43491/A-solution-with-constant-space-complexity-O(1">这里</a>-and-linear-time-complexity-O(N))。主要解决的问题就是我们生成节点以后，当更新它的 <code>random</code> 的时候，怎么找到之前生成的节点，前两种解法用了 <code>HashMap</code> 全部存起来，这里的话可以利用原来的链表的指针域。</p>
 <p>主要需要三步。</p>
 <ol>
 <li>生成所有的节点，并且分别插入到原有节点的后边</li>
@@ -296,8 +297,8 @@
 <p>一图胜千言，大家看一下下边的图吧。</p>
 <p><img src="https://pic.leetcode-cn.com/9bd4662fdbcb1e44f5ce208e29f3459d1adbf1e7ceb723e4bfc8ba2eff3bd186.jpg" alt="img"></p>
 <p>代码对应如下。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> Node <span class="title">copyRandomList</span><span class="params">(Node head)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (head == <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    Node l1 = head;</span><br><span class="line">    Node l2 = <span class="keyword">null</span>;</span><br><span class="line">    <span class="comment">//生成所有的节点，并且分别插入到原有节点的后边</span></span><br><span class="line">    <span class="keyword">while</span> (l1 != <span class="keyword">null</span>) &#123;</span><br><span class="line">        l2 = <span class="keyword">new</span> Node();</span><br><span class="line">        l2.val = l1.val;</span><br><span class="line">        l2.next = l1.next;</span><br><span class="line">        l1.next = l2;</span><br><span class="line">        l1 = l1.next.next;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//更新插入节点的 random</span></span><br><span class="line">    l1 = head;</span><br><span class="line">    <span class="keyword">while</span> (l1 != <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> (l1.random != <span class="keyword">null</span>) &#123;</span><br><span class="line">            l1.next.random = l1.random.next;</span><br><span class="line">        &#125;</span><br><span class="line">        l1 = l1.next.next;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    l1 = head;</span><br><span class="line">    Node l2_head = l1.next;</span><br><span class="line">    <span class="comment">//将新旧节点分离开来</span></span><br><span class="line">    <span class="keyword">while</span> (l1 != <span class="keyword">null</span>) &#123;</span><br><span class="line">        l2 = l1.next;</span><br><span class="line">        l1.next = l2.next;</span><br><span class="line">        <span class="keyword">if</span> (l2.next != <span class="keyword">null</span>) &#123;</span><br><span class="line">            l2.next = l2.next.next;</span><br><span class="line">        &#125;</span><br><span class="line">        l1 = l1.next;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> l2_head;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="利用random保存新结点"><a href="#利用random保存新结点" class="headerlink" title="利用random保存新结点"></a>利用random保存新结点</h3><p>不利用额外的空间复杂度还有一种思路，参考 <a href="https://leetcode.com/problems/copy-list-with-random-pointer/discuss/43497/2-clean-C%2B%2B-algorithms-without-using-extra-arrayhash-table.-Algorithms-are-explained-step-by-step." target="_blank" rel="noopener">这里</a>。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> Node <span class="title function_">copyRandomList</span><span class="params">(Node head)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (head == <span class="literal">null</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="type">Node</span> <span class="variable">l1</span> <span class="operator">=</span> head;</span><br><span class="line">    <span class="type">Node</span> <span class="variable">l2</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">    <span class="comment">//生成所有的节点，并且分别插入到原有节点的后边</span></span><br><span class="line">    <span class="keyword">while</span> (l1 != <span class="literal">null</span>) &#123;</span><br><span class="line">        l2 = <span class="keyword">new</span> <span class="title class_">Node</span>();</span><br><span class="line">        l2.val = l1.val;</span><br><span class="line">        l2.next = l1.next;</span><br><span class="line">        l1.next = l2;</span><br><span class="line">        l1 = l1.next.next;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//更新插入节点的 random</span></span><br><span class="line">    l1 = head;</span><br><span class="line">    <span class="keyword">while</span> (l1 != <span class="literal">null</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> (l1.random != <span class="literal">null</span>) &#123;</span><br><span class="line">            l1.next.random = l1.random.next;</span><br><span class="line">        &#125;</span><br><span class="line">        l1 = l1.next.next;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    l1 = head;</span><br><span class="line">    <span class="type">Node</span> <span class="variable">l2_head</span> <span class="operator">=</span> l1.next;</span><br><span class="line">    <span class="comment">//将新旧节点分离开来</span></span><br><span class="line">    <span class="keyword">while</span> (l1 != <span class="literal">null</span>) &#123;</span><br><span class="line">        l2 = l1.next;</span><br><span class="line">        l1.next = l2.next;</span><br><span class="line">        <span class="keyword">if</span> (l2.next != <span class="literal">null</span>) &#123;</span><br><span class="line">            l2.next = l2.next.next;</span><br><span class="line">        &#125;</span><br><span class="line">        l1 = l1.next;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> l2_head;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="利用random保存新结点"><a href="#利用random保存新结点" class="headerlink" title="利用random保存新结点"></a>利用random保存新结点</h3><p>不利用额外的空间复杂度还有一种思路，参考 <a target="_blank" rel="noopener" href="https://leetcode.com/problems/copy-list-with-random-pointer/discuss/43497/2-clean-C%2B%2B-algorithms-without-using-extra-arrayhash-table.-Algorithms-are-explained-step-by-step.">这里</a>。</p>
 <p>上一个解法利用原链表的 <code>next</code> 域把新生成的节点保存了起来。类似的，我们还可以利用原链表的 <code>random</code> 域把新生成的节点保存起来。</p>
 <p>主要还是三个步骤。</p>
 <ol>
@@ -307,7 +308,7 @@
 </ol>
 <p>一图胜千言。</p>
 <p><img src="https://pic.leetcode-cn.com/9d18d01597f5ca7562c8dd3908082b13c27b989fcaebb37c163d6e7ced65f412.jpg" alt="img"></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> Node <span class="title">copyRandomList</span><span class="params">(Node head)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (head == <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    Node l1 = head;</span><br><span class="line">    Node l2 = <span class="keyword">null</span>;</span><br><span class="line">    <span class="comment">//生成所有的节点，讲它们保存到原链表的 random 域，</span></span><br><span class="line">    <span class="comment">//同时利用新生成的节点的 next 域保存原链表的 random。</span></span><br><span class="line">    <span class="keyword">while</span> (l1 != <span class="keyword">null</span>) &#123;</span><br><span class="line">        l2 = <span class="keyword">new</span> Node();</span><br><span class="line">        l2.val = l1.val;</span><br><span class="line">        l2.next = l1.random;</span><br><span class="line">        l1.random = l2;</span><br><span class="line">        l1 = l1.next;</span><br><span class="line">    &#125;</span><br><span class="line">    l1 = head;</span><br><span class="line">    <span class="comment">//更新新生成节点的 random 指针。</span></span><br><span class="line">    <span class="keyword">while</span> (l1 != <span class="keyword">null</span>) &#123;</span><br><span class="line">        l2 = l1.random;</span><br><span class="line">        l2.random = l2.next != <span class="keyword">null</span> ? l2.next.random : <span class="keyword">null</span>;</span><br><span class="line">        l1 = l1.next;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    l1 = head;</span><br><span class="line">    Node l2_head = l1.random;</span><br><span class="line">    <span class="comment">//恢复原链表的 random 指针，同时更新新生成节点的 next 指针。</span></span><br><span class="line">    <span class="keyword">while</span> (l1 != <span class="keyword">null</span>) &#123;</span><br><span class="line">        l2 = l1.random;</span><br><span class="line">        l1.random = l2.next;</span><br><span class="line">        l2.next = l1.next != <span class="keyword">null</span> ? l1.next.random : <span class="keyword">null</span>;</span><br><span class="line">        l1 = l1.next;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> l2_head;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> Node <span class="title function_">copyRandomList</span><span class="params">(Node head)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (head == <span class="literal">null</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="type">Node</span> <span class="variable">l1</span> <span class="operator">=</span> head;</span><br><span class="line">    <span class="type">Node</span> <span class="variable">l2</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">    <span class="comment">//生成所有的节点，讲它们保存到原链表的 random 域，</span></span><br><span class="line">    <span class="comment">//同时利用新生成的节点的 next 域保存原链表的 random。</span></span><br><span class="line">    <span class="keyword">while</span> (l1 != <span class="literal">null</span>) &#123;</span><br><span class="line">        l2 = <span class="keyword">new</span> <span class="title class_">Node</span>();</span><br><span class="line">        l2.val = l1.val;</span><br><span class="line">        l2.next = l1.random;</span><br><span class="line">        l1.random = l2;</span><br><span class="line">        l1 = l1.next;</span><br><span class="line">    &#125;</span><br><span class="line">    l1 = head;</span><br><span class="line">    <span class="comment">//更新新生成节点的 random 指针。</span></span><br><span class="line">    <span class="keyword">while</span> (l1 != <span class="literal">null</span>) &#123;</span><br><span class="line">        l2 = l1.random;</span><br><span class="line">        l2.random = l2.next != <span class="literal">null</span> ? l2.next.random : <span class="literal">null</span>;</span><br><span class="line">        l1 = l1.next;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    l1 = head;</span><br><span class="line">    <span class="type">Node</span> <span class="variable">l2_head</span> <span class="operator">=</span> l1.random;</span><br><span class="line">    <span class="comment">//恢复原链表的 random 指针，同时更新新生成节点的 next 指针。</span></span><br><span class="line">    <span class="keyword">while</span> (l1 != <span class="literal">null</span>) &#123;</span><br><span class="line">        l2 = l1.random;</span><br><span class="line">        l1.random = l2.next;</span><br><span class="line">        l2.next = l1.next != <span class="literal">null</span> ? l1.next.random : <span class="literal">null</span>;</span><br><span class="line">        l1 = l1.next;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> l2_head;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
     </div>
 
@@ -323,7 +324,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>Post link: </strong>
-    <a href="http://yorxika.github.io/2019/12/18/复制带随机指针的链表/" title="复制带随机指针的链表">http://yorxika.github.io/2019/12/18/复制带随机指针的链表/</a>
+    <a href="http://yorxika.github.io/2019/12/18/%E5%A4%8D%E5%88%B6%E5%B8%A6%E9%9A%8F%E6%9C%BA%E6%8C%87%E9%92%88%E7%9A%84%E9%93%BE%E8%A1%A8/" title="复制带随机指针的链表">http://yorxika.github.io/2019/12/18/复制带随机指针的链表/</a>
   </li>
   <li class="post-copyright-license">
     <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.
@@ -336,7 +337,7 @@
           
           <div class="post-tags">
               <a href="/tags/Leetcode/" rel="tag"><i class="fa fa-tag"></i> Leetcode</a>
-              <a href="/tags/链表/" rel="tag"><i class="fa fa-tag"></i> 链表</a>
+              <a href="/tags/%E9%93%BE%E8%A1%A8/" rel="tag"><i class="fa fa-tag"></i> 链表</a>
           </div>
 
         
@@ -345,11 +346,11 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2019/12/17/路径总和II/" rel="prev" title="路径总和II">
+    <a href="/2019/12/17/%E8%B7%AF%E5%BE%84%E6%80%BB%E5%92%8CII/" rel="prev" title="路径总和II">
       <i class="fa fa-chevron-left"></i> 路径总和II
     </a></div>
       <div class="post-nav-item">
-    <a href="/2019/12/18/求根到叶子节点数字之和/" rel="next" title="求根到叶子节点数字之和">
+    <a href="/2019/12/18/%E6%B1%82%E6%A0%B9%E5%88%B0%E5%8F%B6%E5%AD%90%E8%8A%82%E7%82%B9%E6%95%B0%E5%AD%97%E4%B9%8B%E5%92%8C/" rel="next" title="求根到叶子节点数字之和">
       求根到叶子节点数字之和 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
@@ -411,7 +412,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#哈希Map"><span class="nav-number">1.</span> <span class="nav-text">哈希Map</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#原结点后追加新结点"><span class="nav-number">2.</span> <span class="nav-text">原结点后追加新结点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#利用random保存新结点"><span class="nav-number">3.</span> <span class="nav-text">利用random保存新结点</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%93%88%E5%B8%8CMap"><span class="nav-number">1.</span> <span class="nav-text">哈希Map</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8E%9F%E7%BB%93%E7%82%B9%E5%90%8E%E8%BF%BD%E5%8A%A0%E6%96%B0%E7%BB%93%E7%82%B9"><span class="nav-number">2.</span> <span class="nav-text">原结点后追加新结点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%A9%E7%94%A8random%E4%BF%9D%E5%AD%98%E6%96%B0%E7%BB%93%E7%82%B9"><span class="nav-number">3.</span> <span class="nav-text">利用random保存新结点</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -486,12 +487,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">956k</span>
+    <span title="Symbols count total">968k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">14:29</span>
+    <span title="Reading time total">14:40</span>
 </div><script color="255,255,255" opacity="0.5" zIndex="-1" count="180" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
 
         
@@ -511,9 +512,19 @@
   <script src="/lib/anime.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
-<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
 <script src="/js/schemes/pisces.js"></script>
-<script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
 
 
 
@@ -522,7 +533,9 @@
 
 
 
-  <script src="/js/local-search.js"></script>
+  
+<script src="/js/local-search.js"></script>
+
 
 
 

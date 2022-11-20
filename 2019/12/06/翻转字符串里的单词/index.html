@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 3.9.0">
+<meta name="generator" content="Hexo 6.3.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
@@ -23,19 +23,20 @@
   </script>
 
   <meta name="description" content="来源Leetcode第151题翻转字符串里的单词 给定一个字符串，逐个翻转字符串中的每个单词。">
-<meta name="keywords" content="字符串,Leetcode">
 <meta property="og:type" content="article">
 <meta property="og:title" content="翻转字符串里的单词">
-<meta property="og:url" content="http://yorxika.github.io/2019/12/06/翻转字符串里的单词/index.html">
+<meta property="og:url" content="http://yorxika.github.io/2019/12/06/%E7%BF%BB%E8%BD%AC%E5%AD%97%E7%AC%A6%E4%B8%B2%E9%87%8C%E7%9A%84%E5%8D%95%E8%AF%8D/index.html">
 <meta property="og:site_name" content="Nameless Site">
 <meta property="og:description" content="来源Leetcode第151题翻转字符串里的单词 给定一个字符串，逐个翻转字符串中的每个单词。">
-<meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-12-12T12:45:32.000Z">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2019-12-06T15:54:45.000Z">
+<meta property="article:modified_time" content="2019-12-12T12:45:32.000Z">
+<meta property="article:author" content="HMF">
+<meta property="article:tag" content="字符串">
+<meta property="article:tag" content="Leetcode">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="翻转字符串里的单词">
-<meta name="twitter:description" content="来源Leetcode第151题翻转字符串里的单词 给定一个字符串，逐个翻转字符串中的每个单词。">
 
-<link rel="canonical" href="http://yorxika.github.io/2019/12/06/翻转字符串里的单词/">
+<link rel="canonical" href="http://yorxika.github.io/2019/12/06/%E7%BF%BB%E8%BD%AC%E5%AD%97%E7%AC%A6%E4%B8%B2%E9%87%8C%E7%9A%84%E5%8D%95%E8%AF%8D/">
 
 
 <script id="page-configurations">
@@ -200,7 +201,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yorxika.github.io/2019/12/06/翻转字符串里的单词/">
+    <link itemprop="mainEntityOfPage" href="http://yorxika.github.io/2019/12/06/%E7%BF%BB%E8%BD%AC%E5%AD%97%E7%AC%A6%E4%B8%B2%E9%87%8C%E7%9A%84%E5%8D%95%E8%AF%8D/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/touxiang.jpg">
@@ -238,15 +239,15 @@
               </span>
               <span class="post-meta-item-text">In</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
+                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
                 </span>
                   , 
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/Leetcode/" itemprop="url" rel="index"><span itemprop="name">Leetcode</span></a>
+                  <a href="/categories/%E7%AE%97%E6%B3%95/Leetcode/" itemprop="url" rel="index"><span itemprop="name">Leetcode</span></a>
                 </span>
                   , 
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/Leetcode/字符串/" itemprop="url" rel="index"><span itemprop="name">字符串</span></a>
+                  <a href="/categories/%E7%AE%97%E6%B3%95/Leetcode/%E5%AD%97%E7%AC%A6%E4%B8%B2/" itemprop="url" rel="index"><span itemprop="name">字符串</span></a>
                 </span>
             </span>
 
@@ -256,7 +257,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>2k</span>
+              <span>2.2k</span>
             </span>
             <span class="post-meta-item" title="Reading time">
               <span class="post-meta-item-icon">
@@ -276,8 +277,8 @@
 
       
         <p>来源Leetcode第151题翻转字符串里的单词</p>
-<p>给定一个字符串，逐个翻转字符串中的每个单词。<br><a id="more"></a><br><strong>示例 1：</strong></p>
-<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">输入: "  hello world!  "</span></span><br><span class="line"><span class="section">输出: "world! hello"</span></span><br><span class="line"><span class="section">解释: 输入字符串可以在前面或者后面包含多余的空格，但是反转后的字符不能包括。</span></span><br></pre></td></tr></table></figure>
+<p>给定一个字符串，逐个翻转字符串中的每个单词。<br><span id="more"></span><br><strong>示例 1：</strong></p>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">输入: &quot;  hello world!  &quot;</span></span><br><span class="line"><span class="section">输出: &quot;world! hello&quot;</span></span><br><span class="line"><span class="section">解释: 输入字符串可以在前面或者后面包含多余的空格，但是反转后的字符不能包括。</span></span><br></pre></td></tr></table></figure>
 <p><strong>说明：</strong></p>
 <ul>
 <li>无空格字符构成一个单词。</li>
@@ -286,10 +287,10 @@
 </ul>
 <hr>
 <h4 id="2次遍历"><a href="#2次遍历" class="headerlink" title="2次遍历"></a>2次遍历</h4><p>第一次倒序遍历将单词缓存，接着将单词翻转加入答案字符串</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">reverseWords</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">    String ans = <span class="keyword">new</span> String();</span><br><span class="line">    String temp = <span class="keyword">new</span> String();</span><br><span class="line">    <span class="keyword">if</span>(s.equals(<span class="string">""</span>) || s.equals(<span class="string">" "</span>))</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    <span class="keyword">int</span> len = s.length();</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = len - <span class="number">1</span> ; i &gt;= <span class="number">0</span> ; i--) &#123;</span><br><span class="line">        <span class="keyword">if</span> (s.charAt(i) == <span class="string">' '</span> &amp;&amp; i &gt; <span class="number">1</span>  &amp;&amp; s.charAt(i - <span class="number">1</span>) == <span class="string">' '</span>)</span><br><span class="line">            <span class="keyword">continue</span>;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(s.charAt(i) == <span class="string">' '</span>)&#123;</span><br><span class="line">                <span class="keyword">if</span>(temp.length() == <span class="number">0</span> ||temp.charAt(<span class="number">0</span>) == <span class="string">' '</span> )</span><br><span class="line">                    <span class="keyword">continue</span>;</span><br><span class="line">                ans += reverse(temp);</span><br><span class="line">                ans += <span class="string">' '</span>;</span><br><span class="line">                temp = <span class="keyword">new</span> String();</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span>&#123;</span><br><span class="line">                temp += s.charAt(i);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(!temp.equals(<span class="string">" "</span>))&#123;</span><br><span class="line">        ans += reverse(temp);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(ans.length() &gt; <span class="number">0</span> &amp;&amp; ans.charAt(ans.length() - <span class="number">1</span>) == <span class="string">' '</span>)</span><br><span class="line">        <span class="keyword">return</span> ans.substring(<span class="number">0</span>,ans.length() - <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">reverse</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">char</span>[] array = s.toCharArray();</span><br><span class="line">    String reverse = <span class="string">""</span>;<span class="comment">//新建空字符串</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = array.length - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--)</span><br><span class="line">        reverse += array[i];</span><br><span class="line">    <span class="keyword">return</span> reverse;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> String <span class="title function_">reverseWords</span><span class="params">(String s)</span> &#123;</span><br><span class="line">    <span class="type">String</span> <span class="variable">ans</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">String</span>();</span><br><span class="line">    <span class="type">String</span> <span class="variable">temp</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">String</span>();</span><br><span class="line">    <span class="keyword">if</span>(s.equals(<span class="string">&quot;&quot;</span>) || s.equals(<span class="string">&quot; &quot;</span>))</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    <span class="type">int</span> <span class="variable">len</span> <span class="operator">=</span> s.length();</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> len - <span class="number">1</span> ; i &gt;= <span class="number">0</span> ; i--) &#123;</span><br><span class="line">        <span class="keyword">if</span> (s.charAt(i) == <span class="string">&#x27; &#x27;</span> &amp;&amp; i &gt; <span class="number">1</span>  &amp;&amp; s.charAt(i - <span class="number">1</span>) == <span class="string">&#x27; &#x27;</span>)</span><br><span class="line">            <span class="keyword">continue</span>;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(s.charAt(i) == <span class="string">&#x27; &#x27;</span>)&#123;</span><br><span class="line">                <span class="keyword">if</span>(temp.length() == <span class="number">0</span> ||temp.charAt(<span class="number">0</span>) == <span class="string">&#x27; &#x27;</span> )</span><br><span class="line">                    <span class="keyword">continue</span>;</span><br><span class="line">                ans += reverse(temp);</span><br><span class="line">                ans += <span class="string">&#x27; &#x27;</span>;</span><br><span class="line">                temp = <span class="keyword">new</span> <span class="title class_">String</span>();</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span>&#123;</span><br><span class="line">                temp += s.charAt(i);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(!temp.equals(<span class="string">&quot; &quot;</span>))&#123;</span><br><span class="line">        ans += reverse(temp);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(ans.length() &gt; <span class="number">0</span> &amp;&amp; ans.charAt(ans.length() - <span class="number">1</span>) == <span class="string">&#x27; &#x27;</span>)</span><br><span class="line">        <span class="keyword">return</span> ans.substring(<span class="number">0</span>,ans.length() - <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title function_">reverse</span><span class="params">(String s)</span> &#123;</span><br><span class="line">    <span class="type">char</span>[] array = s.toCharArray();</span><br><span class="line">    <span class="type">String</span> <span class="variable">reverse</span> <span class="operator">=</span> <span class="string">&quot;&quot;</span>;<span class="comment">//新建空字符串</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> array.length - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--)</span><br><span class="line">        reverse += array[i];</span><br><span class="line">    <span class="keyword">return</span> reverse;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h4 id="库函数"><a href="#库函数" class="headerlink" title="库函数"></a>库函数</h4><p>trim()方法：去掉字符串两端的多余空格</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">reverseWords</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">    StringBuilder ans = <span class="keyword">new</span> StringBuilder();</span><br><span class="line">    <span class="comment">//去掉s的首尾空格 然后将字符串拆分</span></span><br><span class="line">    String[] s1 = s.trim().split(<span class="string">" "</span>);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = s1.length - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--)&#123;</span><br><span class="line">        <span class="comment">//空格后面的空格会变成空字符串</span></span><br><span class="line">        <span class="keyword">if</span>(!s1[i].equals(<span class="string">""</span>)) ans.append(s1[i] + <span class="string">" "</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//去掉最后添加上的空格</span></span><br><span class="line">    ans = <span class="keyword">new</span> StringBuilder(ans.toString().trim());</span><br><span class="line">    <span class="keyword">return</span> ans.toString();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="双指针"><a href="#双指针" class="headerlink" title="双指针"></a>双指针</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">reverseWords</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">null</span> == s || s.length() == <span class="number">0</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="string">""</span>;</span><br><span class="line">        <span class="keyword">final</span> <span class="keyword">char</span>[] c = s.toCharArray();</span><br><span class="line">        <span class="keyword">final</span> <span class="keyword">int</span> len = c.length;</span><br><span class="line">        <span class="keyword">int</span> i = len - <span class="number">1</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">//去掉末尾的空格</span></span><br><span class="line">        <span class="keyword">while</span> (i &gt;= <span class="number">0</span> &amp;&amp; c[i] == <span class="string">' '</span>) i--;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> left = i + <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">int</span> right = i + <span class="number">1</span>;</span><br><span class="line">        StringBuffer sb = <span class="keyword">new</span> StringBuffer(i + <span class="number">1</span>);</span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> (; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">            <span class="keyword">if</span> (c[i] == <span class="string">' '</span>) &#123;</span><br><span class="line">                <span class="keyword">if</span> (right != left) </span><br><span class="line">                <span class="comment">//左不等于右是为了判断没有空格</span></span><br><span class="line">                sb.append(c, left, right - left).append(<span class="string">" "</span>);</span><br><span class="line">                <span class="comment">//加入单词</span></span><br><span class="line">                left = i;</span><br><span class="line">                right = i;</span><br><span class="line">                <span class="comment">//调整指针位置</span></span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            left = i;</span><br><span class="line">            <span class="comment">//往前找到不为空格的位置</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (right != left)</span><br><span class="line">            <span class="keyword">return</span> sb.append(c, left, right - left).toString();</span><br><span class="line">        <span class="keyword">return</span> sb.length() &gt; <span class="number">0</span> ? sb.substring(<span class="number">0</span>, sb.length() - <span class="number">1</span>) : <span class="string">""</span>;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> String <span class="title function_">reverseWords</span><span class="params">(String s)</span> &#123;</span><br><span class="line">    <span class="type">StringBuilder</span> <span class="variable">ans</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">StringBuilder</span>();</span><br><span class="line">    <span class="comment">//去掉s的首尾空格 然后将字符串拆分</span></span><br><span class="line">    String[] s1 = s.trim().split(<span class="string">&quot; &quot;</span>);</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> s1.length - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--)&#123;</span><br><span class="line">        <span class="comment">//空格后面的空格会变成空字符串</span></span><br><span class="line">        <span class="keyword">if</span>(!s1[i].equals(<span class="string">&quot;&quot;</span>)) ans.append(s1[i] + <span class="string">&quot; &quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//去掉最后添加上的空格</span></span><br><span class="line">    ans = <span class="keyword">new</span> <span class="title class_">StringBuilder</span>(ans.toString().trim());</span><br><span class="line">    <span class="keyword">return</span> ans.toString();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="双指针"><a href="#双指针" class="headerlink" title="双指针"></a>双指针</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> String <span class="title function_">reverseWords</span><span class="params">(String s)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="literal">null</span> == s || s.length() == <span class="number">0</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="string">&quot;&quot;</span>;</span><br><span class="line">        <span class="keyword">final</span> <span class="type">char</span>[] c = s.toCharArray();</span><br><span class="line">        <span class="keyword">final</span> <span class="type">int</span> <span class="variable">len</span> <span class="operator">=</span> c.length;</span><br><span class="line">        <span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> len - <span class="number">1</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">//去掉末尾的空格</span></span><br><span class="line">        <span class="keyword">while</span> (i &gt;= <span class="number">0</span> &amp;&amp; c[i] == <span class="string">&#x27; &#x27;</span>) i--;</span><br><span class="line"></span><br><span class="line">        <span class="type">int</span> <span class="variable">left</span> <span class="operator">=</span> i + <span class="number">1</span>;</span><br><span class="line">        <span class="type">int</span> <span class="variable">right</span> <span class="operator">=</span> i + <span class="number">1</span>;</span><br><span class="line">        <span class="type">StringBuffer</span> <span class="variable">sb</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">StringBuffer</span>(i + <span class="number">1</span>);</span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> (; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">            <span class="keyword">if</span> (c[i] == <span class="string">&#x27; &#x27;</span>) &#123;</span><br><span class="line">                <span class="keyword">if</span> (right != left) </span><br><span class="line">                <span class="comment">//左不等于右是为了判断没有空格</span></span><br><span class="line">                sb.append(c, left, right - left).append(<span class="string">&quot; &quot;</span>);</span><br><span class="line">                <span class="comment">//加入单词</span></span><br><span class="line">                left = i;</span><br><span class="line">                right = i;</span><br><span class="line">                <span class="comment">//调整指针位置</span></span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            left = i;</span><br><span class="line">            <span class="comment">//往前找到不为空格的位置</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (right != left)</span><br><span class="line">            <span class="keyword">return</span> sb.append(c, left, right - left).toString();</span><br><span class="line">        <span class="keyword">return</span> sb.length() &gt; <span class="number">0</span> ? sb.substring(<span class="number">0</span>, sb.length() - <span class="number">1</span>) : <span class="string">&quot;&quot;</span>;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
     </div>
 
     
@@ -304,7 +305,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>Post link: </strong>
-    <a href="http://yorxika.github.io/2019/12/06/翻转字符串里的单词/" title="翻转字符串里的单词">http://yorxika.github.io/2019/12/06/翻转字符串里的单词/</a>
+    <a href="http://yorxika.github.io/2019/12/06/%E7%BF%BB%E8%BD%AC%E5%AD%97%E7%AC%A6%E4%B8%B2%E9%87%8C%E7%9A%84%E5%8D%95%E8%AF%8D/" title="翻转字符串里的单词">http://yorxika.github.io/2019/12/06/翻转字符串里的单词/</a>
   </li>
   <li class="post-copyright-license">
     <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.
@@ -316,7 +317,7 @@
       <footer class="post-footer">
           
           <div class="post-tags">
-              <a href="/tags/字符串/" rel="tag"><i class="fa fa-tag"></i> 字符串</a>
+              <a href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/" rel="tag"><i class="fa fa-tag"></i> 字符串</a>
               <a href="/tags/Leetcode/" rel="tag"><i class="fa fa-tag"></i> Leetcode</a>
           </div>
 
@@ -326,11 +327,11 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2019/12/06/两数之和II/" rel="prev" title="两数之和II">
+    <a href="/2019/12/06/%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8CII/" rel="prev" title="两数之和II">
       <i class="fa fa-chevron-left"></i> 两数之和II
     </a></div>
       <div class="post-nav-item">
-    <a href="/2019/12/07/乘积最大子序列/" rel="next" title="乘积最大子序列">
+    <a href="/2019/12/07/%E4%B9%98%E7%A7%AF%E6%9C%80%E5%A4%A7%E5%AD%90%E5%BA%8F%E5%88%97/" rel="next" title="乘积最大子序列">
       乘积最大子序列 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
@@ -392,7 +393,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#2次遍历"><span class="nav-number">1.</span> <span class="nav-text">2次遍历</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#库函数"><span class="nav-number">2.</span> <span class="nav-text">库函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#双指针"><span class="nav-number">3.</span> <span class="nav-text">双指针</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#2%E6%AC%A1%E9%81%8D%E5%8E%86"><span class="nav-number">1.</span> <span class="nav-text">2次遍历</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BA%93%E5%87%BD%E6%95%B0"><span class="nav-number">2.</span> <span class="nav-text">库函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%8C%E6%8C%87%E9%92%88"><span class="nav-number">3.</span> <span class="nav-text">双指针</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -467,12 +468,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">956k</span>
+    <span title="Symbols count total">968k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">14:29</span>
+    <span title="Reading time total">14:40</span>
 </div><script color="255,255,255" opacity="0.5" zIndex="-1" count="180" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
 
         
@@ -492,9 +493,19 @@
   <script src="/lib/anime.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
-<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
 <script src="/js/schemes/pisces.js"></script>
-<script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
 
 
 
@@ -503,7 +514,9 @@
 
 
 
-  <script src="/js/local-search.js"></script>
+  
+<script src="/js/local-search.js"></script>
+
 
 
 

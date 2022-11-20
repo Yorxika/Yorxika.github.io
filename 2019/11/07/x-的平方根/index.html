@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 3.9.0">
+<meta name="generator" content="Hexo 6.3.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
@@ -23,19 +23,21 @@
   </script>
 
   <meta name="description" content="来源Leetcode第69题x的平方根  实现 int sqrt(int x) 函数。 计算并返回 x 的平方根，其中 x 是非负整数。 由于返回类型是整数，结果只保留整数的部分，小数部分将被舍去。">
-<meta name="keywords" content="Leetcode,数学,二分">
 <meta property="og:type" content="article">
 <meta property="og:title" content="x的平方根">
-<meta property="og:url" content="http://yorxika.github.io/2019/11/07/x-的平方根/index.html">
+<meta property="og:url" content="http://yorxika.github.io/2019/11/07/x-%E7%9A%84%E5%B9%B3%E6%96%B9%E6%A0%B9/index.html">
 <meta property="og:site_name" content="Nameless Site">
 <meta property="og:description" content="来源Leetcode第69题x的平方根  实现 int sqrt(int x) 函数。 计算并返回 x 的平方根，其中 x 是非负整数。 由于返回类型是整数，结果只保留整数的部分，小数部分将被舍去。">
-<meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-12-12T13:00:56.000Z">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2019-11-07T12:13:44.000Z">
+<meta property="article:modified_time" content="2019-12-12T13:00:56.000Z">
+<meta property="article:author" content="HMF">
+<meta property="article:tag" content="Leetcode">
+<meta property="article:tag" content="数学">
+<meta property="article:tag" content="二分">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="x的平方根">
-<meta name="twitter:description" content="来源Leetcode第69题x的平方根  实现 int sqrt(int x) 函数。 计算并返回 x 的平方根，其中 x 是非负整数。 由于返回类型是整数，结果只保留整数的部分，小数部分将被舍去。">
 
-<link rel="canonical" href="http://yorxika.github.io/2019/11/07/x-的平方根/">
+<link rel="canonical" href="http://yorxika.github.io/2019/11/07/x-%E7%9A%84%E5%B9%B3%E6%96%B9%E6%A0%B9/">
 
 
 <script id="page-configurations">
@@ -200,7 +202,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yorxika.github.io/2019/11/07/x-的平方根/">
+    <link itemprop="mainEntityOfPage" href="http://yorxika.github.io/2019/11/07/x-%E7%9A%84%E5%B9%B3%E6%96%B9%E6%A0%B9/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/touxiang.jpg">
@@ -238,15 +240,15 @@
               </span>
               <span class="post-meta-item-text">In</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
+                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
                 </span>
                   , 
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/Leetcode/" itemprop="url" rel="index"><span itemprop="name">Leetcode</span></a>
+                  <a href="/categories/%E7%AE%97%E6%B3%95/Leetcode/" itemprop="url" rel="index"><span itemprop="name">Leetcode</span></a>
                 </span>
                   , 
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/Leetcode/数学/" itemprop="url" rel="index"><span itemprop="name">数学</span></a>
+                  <a href="/categories/%E7%AE%97%E6%B3%95/Leetcode/%E6%95%B0%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">数学</span></a>
                 </span>
             </span>
 
@@ -279,21 +281,21 @@
 <blockquote>
 <p>实现 int sqrt(int x) 函数。</p>
 <p>计算并返回 x 的平方根，其中 x 是非负整数。</p>
-<p>由于返回类型是整数，结果只保留整数的部分，小数部分将被舍去。<a id="more"></a></p>
+<p>由于返回类型是整数，结果只保留整数的部分，小数部分将被舍去。<span id="more"></span></p>
 <p>示例 2:</p>
 <p>输入: 8<br>输出: 2</p>
 </blockquote>
-<h4 id="不正经解法"><a href="#不正经解法" class="headerlink" title="不正经解法"></a>不正经解法</h4><p>最简单的就直接调用Math.sqrt()就行了，但这很明显不符合题意。<br>代码就一句:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">return</span> (<span class="keyword">int</span>)Math.sqrt(x);</span><br></pre></td></tr></table></figure></p>
+<h4 id="不正经解法"><a href="#不正经解法" class="headerlink" title="不正经解法"></a>不正经解法</h4><p>最简单的就直接调用Math.sqrt()就行了，但这很明显不符合题意。<br>代码就一句:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">return</span> (<span class="type">int</span>)Math.sqrt(x); </span><br></pre></td></tr></table></figure></p>
 <h4 id="二分查找"><a href="#二分查找" class="headerlink" title="二分查找"></a>二分查找</h4><p>利用x/mid 来比较是否接近目标</p>
-<p>代码如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">mySqrt</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(x == <span class="number">0</span> || x == <span class="number">1</span>)    <span class="keyword">return</span> x;</span><br><span class="line">    <span class="keyword">int</span> l = <span class="number">0</span>;<span class="comment">//左边界</span></span><br><span class="line">    <span class="keyword">int</span> r = x;<span class="comment">//右边界</span></span><br><span class="line">    <span class="keyword">while</span> (l &lt;= r) &#123;</span><br><span class="line">        <span class="keyword">int</span> mid =  (r + l) / <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">int</span> s = x / mid; <span class="comment">//用来判断mid大于目标还是小于目标，或等于目标</span></span><br><span class="line">        <span class="keyword">int</span> ss = x / (mid + <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">if</span> (x / s == s) <span class="keyword">return</span> s; <span class="comment">//刚好是他的算术平方根</span></span><br><span class="line">        <span class="keyword">if</span> (s &gt; mid &amp;&amp; ss &lt; mid + <span class="number">1</span>) <span class="keyword">return</span> mid; <span class="comment">//例如6 在2的平方以及 3的平方之间  答案为2</span></span><br><span class="line">        <span class="keyword">if</span> (s &gt; mid) l = mid + <span class="number">1</span>; <span class="comment">//调整边界</span></span><br><span class="line">        <span class="keyword">if</span> (s &lt; mid) r = mid - <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>代码如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="type">int</span> <span class="title function_">mySqrt</span><span class="params">(<span class="type">int</span> x)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span>(x == <span class="number">0</span> || x == <span class="number">1</span>)    <span class="keyword">return</span> x;</span><br><span class="line">    <span class="type">int</span> <span class="variable">l</span> <span class="operator">=</span> <span class="number">0</span>;<span class="comment">//左边界</span></span><br><span class="line">    <span class="type">int</span> <span class="variable">r</span> <span class="operator">=</span> x;<span class="comment">//右边界</span></span><br><span class="line">    <span class="keyword">while</span> (l &lt;= r) &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">mid</span> <span class="operator">=</span>  (r + l) / <span class="number">2</span>;</span><br><span class="line">        <span class="type">int</span> <span class="variable">s</span> <span class="operator">=</span> x / mid; <span class="comment">//用来判断mid大于目标还是小于目标，或等于目标</span></span><br><span class="line">        <span class="type">int</span> <span class="variable">ss</span> <span class="operator">=</span> x / (mid + <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">if</span> (x / s == s) <span class="keyword">return</span> s; <span class="comment">//刚好是他的算术平方根</span></span><br><span class="line">        <span class="keyword">if</span> (s &gt; mid &amp;&amp; ss &lt; mid + <span class="number">1</span>) <span class="keyword">return</span> mid; <span class="comment">//例如6 在2的平方以及 3的平方之间  答案为2</span></span><br><span class="line">        <span class="keyword">if</span> (s &gt; mid) l = mid + <span class="number">1</span>; <span class="comment">//调整边界</span></span><br><span class="line">        <span class="keyword">if</span> (s &lt; mid) r = mid - <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>当然也有用<strong>double</strong>类型来提高精度的</p>
-<p>代码如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">mySqrt2</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">double</span> mid = (<span class="keyword">double</span>) x / <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">double</span> left = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">double</span> right = x;</span><br><span class="line">    <span class="keyword">while</span> ((<span class="keyword">int</span>)left &lt;(<span class="keyword">int</span>) right)&#123;</span><br><span class="line">        <span class="keyword">if</span>(mid * mid &gt; x)&#123;</span><br><span class="line">            right = mid;</span><br><span class="line">            mid = (<span class="keyword">double</span>) (left + right) / <span class="number">2</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">            left = mid;</span><br><span class="line">            mid = (<span class="keyword">double</span>) (left + right) / <span class="number">2</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> (<span class="keyword">int</span>)mid ;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h4 id="牛顿迭代法"><a href="#牛顿迭代法" class="headerlink" title="牛顿迭代法"></a>牛顿迭代法</h4><p>来源<a href="https://leetcode-cn.com/problems/sqrtx/solution/niu-dun-die-dai-fa-by-loafer/" target="_blank" rel="noopener">题解</a></p>
-<p>关于<a href="https://baike.baidu.com/item/%E7%89%9B%E9%A1%BF%E8%BF%AD%E4%BB%A3%E6%B3%95" target="_blank" rel="noopener">牛顿迭代法</a></p>
+<p>代码如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="type">int</span> <span class="title function_">mySqrt2</span><span class="params">(<span class="type">int</span> x)</span> &#123;</span><br><span class="line">    <span class="type">double</span> <span class="variable">mid</span> <span class="operator">=</span> (<span class="type">double</span>) x / <span class="number">2</span>;</span><br><span class="line">    <span class="type">double</span> <span class="variable">left</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">    <span class="type">double</span> <span class="variable">right</span> <span class="operator">=</span> x;</span><br><span class="line">    <span class="keyword">while</span> ((<span class="type">int</span>)left &lt;(<span class="type">int</span>) right)&#123;</span><br><span class="line">        <span class="keyword">if</span>(mid * mid &gt; x)&#123;</span><br><span class="line">            right = mid;</span><br><span class="line">            mid = (<span class="type">double</span>) (left + right) / <span class="number">2</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">            left = mid;</span><br><span class="line">            mid = (<span class="type">double</span>) (left + right) / <span class="number">2</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> (<span class="type">int</span>)mid ;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="牛顿迭代法"><a href="#牛顿迭代法" class="headerlink" title="牛顿迭代法"></a>牛顿迭代法</h4><p>来源<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/sqrtx/solution/niu-dun-die-dai-fa-by-loafer/">题解</a></p>
+<p>关于<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E7%89%9B%E9%A1%BF%E8%BF%AD%E4%BB%A3%E6%B3%95">牛顿迭代法</a></p>
 <blockquote>
 <p>这种算法的原理很简单，我们仅仅是不断用 (x, f(x))的切线来逼近方程 x^2-a=0根。根号 a 实际上就是 x^2-a=0的一个正实根，这个函数的导数是 2x。也就是说，函数上任一点 (x,f(x)) 处的切线斜率是 2x。那么，x-f(x)/(2x)就是一个比 x 更接近的近似值。代入 f(x)=x^2-af得到 x-(x^2-a)/(2x)，也就是 (x+a/x)/2。</p>
 </blockquote>
-<p>代码如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> s;</span><br><span class="line">    </span><br><span class="line"> <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">mySqrt</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">     s=x;</span><br><span class="line">     <span class="keyword">if</span>(x==<span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">return</span> ((<span class="keyword">int</span>)(sqrts(x)));</span><br><span class="line">  &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">sqrts</span><span class="params">(<span class="keyword">double</span> x)</span></span>&#123;</span><br><span class="line">      <span class="keyword">double</span> res = (x + s / x) / <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">if</span> (res == x) &#123;</span><br><span class="line">      <span class="keyword">return</span> x;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> sqrts(res);</span><br><span class="line">    &#125;</span><br><span class="line">    &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>代码如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="type">int</span> s;</span><br><span class="line">    </span><br><span class="line"> <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">mySqrt</span><span class="params">(<span class="type">int</span> x)</span> &#123;</span><br><span class="line">     s=x;</span><br><span class="line">     <span class="keyword">if</span>(x==<span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">return</span> ((<span class="type">int</span>)(sqrts(x)));</span><br><span class="line">  &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="type">double</span> <span class="title function_">sqrts</span><span class="params">(<span class="type">double</span> x)</span>&#123;</span><br><span class="line">      <span class="type">double</span> <span class="variable">res</span> <span class="operator">=</span> (x + s / x) / <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">if</span> (res == x) &#123;</span><br><span class="line">      <span class="keyword">return</span> x;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> sqrts(res);</span><br><span class="line">    &#125;</span><br><span class="line">    &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 
     </div>
 
@@ -309,7 +311,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>Post link: </strong>
-    <a href="http://yorxika.github.io/2019/11/07/x-的平方根/" title="x的平方根">http://yorxika.github.io/2019/11/07/x-的平方根/</a>
+    <a href="http://yorxika.github.io/2019/11/07/x-%E7%9A%84%E5%B9%B3%E6%96%B9%E6%A0%B9/" title="x的平方根">http://yorxika.github.io/2019/11/07/x-的平方根/</a>
   </li>
   <li class="post-copyright-license">
     <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.
@@ -322,8 +324,8 @@
           
           <div class="post-tags">
               <a href="/tags/Leetcode/" rel="tag"><i class="fa fa-tag"></i> Leetcode</a>
-              <a href="/tags/数学/" rel="tag"><i class="fa fa-tag"></i> 数学</a>
-              <a href="/tags/二分/" rel="tag"><i class="fa fa-tag"></i> 二分</a>
+              <a href="/tags/%E6%95%B0%E5%AD%A6/" rel="tag"><i class="fa fa-tag"></i> 数学</a>
+              <a href="/tags/%E4%BA%8C%E5%88%86/" rel="tag"><i class="fa fa-tag"></i> 二分</a>
           </div>
 
         
@@ -332,11 +334,11 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2019/11/06/二叉树的中序遍历/" rel="prev" title="二叉树的中序遍历">
+    <a href="/2019/11/06/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E4%B8%AD%E5%BA%8F%E9%81%8D%E5%8E%86/" rel="prev" title="二叉树的中序遍历">
       <i class="fa fa-chevron-left"></i> 二叉树的中序遍历
     </a></div>
       <div class="post-nav-item">
-    <a href="/2019/11/07/简化路径/" rel="next" title="简化路径">
+    <a href="/2019/11/07/%E7%AE%80%E5%8C%96%E8%B7%AF%E5%BE%84/" rel="next" title="简化路径">
       简化路径 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
@@ -398,7 +400,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#不正经解法"><span class="nav-number">1.</span> <span class="nav-text">不正经解法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二分查找"><span class="nav-number">2.</span> <span class="nav-text">二分查找</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#牛顿迭代法"><span class="nav-number">3.</span> <span class="nav-text">牛顿迭代法</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%8D%E6%AD%A3%E7%BB%8F%E8%A7%A3%E6%B3%95"><span class="nav-number">1.</span> <span class="nav-text">不正经解法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE"><span class="nav-number">2.</span> <span class="nav-text">二分查找</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%89%9B%E9%A1%BF%E8%BF%AD%E4%BB%A3%E6%B3%95"><span class="nav-number">3.</span> <span class="nav-text">牛顿迭代法</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -473,12 +475,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">956k</span>
+    <span title="Symbols count total">968k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">14:29</span>
+    <span title="Reading time total">14:40</span>
 </div><script color="255,255,255" opacity="0.5" zIndex="-1" count="180" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
 
         
@@ -498,9 +500,19 @@
   <script src="/lib/anime.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
-<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
 <script src="/js/schemes/pisces.js"></script>
-<script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
 
 
 
@@ -509,7 +521,9 @@
 
 
 
-  <script src="/js/local-search.js"></script>
+  
+<script src="/js/local-search.js"></script>
+
 
 
 

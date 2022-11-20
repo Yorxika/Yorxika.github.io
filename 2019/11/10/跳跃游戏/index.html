@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 3.9.0">
+<meta name="generator" content="Hexo 6.3.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
@@ -23,19 +23,22 @@
   </script>
 
   <meta name="description" content="来源Leetcode第55题跳跃游戏  给定一个非负整数数组，你最初位于数组的第一个位置。 数组中的每个元素代表你在该位置可以跳跃的最大长度。 判断你是否能够到达最后一个位置。示例 1:">
-<meta name="keywords" content="动态规划,贪心,Leetcode,回溯">
 <meta property="og:type" content="article">
 <meta property="og:title" content="跳跃游戏">
-<meta property="og:url" content="http://yorxika.github.io/2019/11/10/跳跃游戏/index.html">
+<meta property="og:url" content="http://yorxika.github.io/2019/11/10/%E8%B7%B3%E8%B7%83%E6%B8%B8%E6%88%8F/index.html">
 <meta property="og:site_name" content="Nameless Site">
 <meta property="og:description" content="来源Leetcode第55题跳跃游戏  给定一个非负整数数组，你最初位于数组的第一个位置。 数组中的每个元素代表你在该位置可以跳跃的最大长度。 判断你是否能够到达最后一个位置。示例 1:">
-<meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-12-12T12:59:44.000Z">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2019-11-10T07:10:06.000Z">
+<meta property="article:modified_time" content="2019-12-12T12:59:44.000Z">
+<meta property="article:author" content="HMF">
+<meta property="article:tag" content="动态规划">
+<meta property="article:tag" content="贪心">
+<meta property="article:tag" content="Leetcode">
+<meta property="article:tag" content="回溯">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="跳跃游戏">
-<meta name="twitter:description" content="来源Leetcode第55题跳跃游戏  给定一个非负整数数组，你最初位于数组的第一个位置。 数组中的每个元素代表你在该位置可以跳跃的最大长度。 判断你是否能够到达最后一个位置。示例 1:">
 
-<link rel="canonical" href="http://yorxika.github.io/2019/11/10/跳跃游戏/">
+<link rel="canonical" href="http://yorxika.github.io/2019/11/10/%E8%B7%B3%E8%B7%83%E6%B8%B8%E6%88%8F/">
 
 
 <script id="page-configurations">
@@ -200,7 +203,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yorxika.github.io/2019/11/10/跳跃游戏/">
+    <link itemprop="mainEntityOfPage" href="http://yorxika.github.io/2019/11/10/%E8%B7%B3%E8%B7%83%E6%B8%B8%E6%88%8F/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/touxiang.jpg">
@@ -238,15 +241,15 @@
               </span>
               <span class="post-meta-item-text">In</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
+                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
                 </span>
                   , 
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/Leetcode/" itemprop="url" rel="index"><span itemprop="name">Leetcode</span></a>
+                  <a href="/categories/%E7%AE%97%E6%B3%95/Leetcode/" itemprop="url" rel="index"><span itemprop="name">Leetcode</span></a>
                 </span>
                   , 
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/Leetcode/数组/" itemprop="url" rel="index"><span itemprop="name">数组</span></a>
+                  <a href="/categories/%E7%AE%97%E6%B3%95/Leetcode/%E6%95%B0%E7%BB%84/" itemprop="url" rel="index"><span itemprop="name">数组</span></a>
                 </span>
             </span>
 
@@ -279,13 +282,13 @@
 <blockquote>
 <p>给定一个非负整数数组，你最初位于数组的第一个位置。</p>
 <p>数组中的每个元素代表你在该位置可以跳跃的最大长度。</p>
-<p>判断你是否能够到达最后一个位置。<br>示例 1:<a id="more"></a></p>
+<p>判断你是否能够到达最后一个位置。<br>示例 1:<span id="more"></span></p>
 <p>输入: [2,3,1,1,4]<br>输出: true<br>解释: 我们可以先跳 1 步，从位置 0 到达 位置 1, 然后再从位置 1 跳 3 步到达最后一个位置。</p>
 </blockquote>
-<h4 id="回溯"><a href="#回溯" class="headerlink" title="回溯"></a>回溯</h4><p>来自<a href="https://leetcode-cn.com/problems/jump-game/solution/tiao-yue-you-xi-by-leetcode/" target="_blank" rel="noopener">题解</a></p>
+<h4 id="回溯"><a href="#回溯" class="headerlink" title="回溯"></a>回溯</h4><p>来自<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/jump-game/solution/tiao-yue-you-xi-by-leetcode/">题解</a></p>
 <p>模拟从第一个位置跳到最后位置的所有方案。从第一个位置开始，模拟所有可以跳到的位置，然后从当前位置重复上述操作，当没有办法继续跳的时候，就回溯。<br>缺点是会超时。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">canJumpFromPosition</span><span class="params">(<span class="keyword">int</span> position, <span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (position == nums.length - <span class="number">1</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> furthestJump = Math.min(position + nums[position], nums.length - <span class="number">1</span>);</span><br><span class="line">		<span class="comment">//列举所有可能的跳法</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> nextPosition = furthestJump; nextPosition &gt; position; nextPosition--) &#123;</span><br><span class="line">            <span class="keyword">if</span> (canJumpFromPosition(nextPosition, nums)) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">canJump</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> canJumpFromPosition(<span class="number">0</span>, nums);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="自顶向下的动态规划"><a href="#自顶向下的动态规划" class="headerlink" title="自顶向下的动态规划"></a>自顶向下的动态规划</h4><p>来自<a href="https://leetcode-cn.com/problems/jump-game/solution/tiao-yue-you-xi-by-leetcode/" target="_blank" rel="noopener">题解</a></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">canJumpFromPosition</span><span class="params">(<span class="type">int</span> position, <span class="type">int</span>[] nums)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (position == nums.length - <span class="number">1</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="type">int</span> <span class="variable">furthestJump</span> <span class="operator">=</span> Math.min(position + nums[position], nums.length - <span class="number">1</span>);</span><br><span class="line">		<span class="comment">//列举所有可能的跳法</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">nextPosition</span> <span class="operator">=</span> furthestJump; nextPosition &gt; position; nextPosition--) &#123;</span><br><span class="line">            <span class="keyword">if</span> (canJumpFromPosition(nextPosition, nums)) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">canJump</span><span class="params">(<span class="type">int</span>[] nums)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> canJumpFromPosition(<span class="number">0</span>, nums);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="自顶向下的动态规划"><a href="#自顶向下的动态规划" class="headerlink" title="自顶向下的动态规划"></a>自顶向下的动态规划</h4><p>来自<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/jump-game/solution/tiao-yue-you-xi-by-leetcode/">题解</a></p>
 <p>定义：能到达最后一个位置的坐标为好坐标，反之为坏坐标。<br>自顶向下的动态规划可以理解成回溯法的一种优化。我们发现当一个坐标已经被确定为好 / 坏之后，结果就不会改变了，这意味着我们可以记录这个结果，每次不用重新计算。</p>
 <p>因此，对于数组中的每个位置，我们记录当前坐标是好 / 坏，记录在数组 memo 中，定义元素取值为 GOOD ，BAD，UNKNOWN。这种方法被称为记忆化。</p>
 <p>步骤：</p>
@@ -298,16 +301,16 @@
 </li>
 <li>计算完毕后，将结果存入memo表中</li>
 </ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> [] memo; <span class="comment">// 用0，1，-1三态来定义未知，好与坏</span></span><br><span class="line"> <span class="function"><span class="keyword">public</span>  <span class="keyword">boolean</span> <span class="title">canJump</span><span class="params">(<span class="keyword">int</span> position , <span class="keyword">int</span>[] nums)</span></span>&#123;</span><br><span class="line">     <span class="comment">//如果当前位置并非位置，返回状态是否是好位置</span></span><br><span class="line">     <span class="keyword">if</span> (memo[position] != <span class="number">0</span>)</span><br><span class="line">         <span class="keyword">return</span> memo[position] == <span class="number">1</span> ? <span class="keyword">true</span> : <span class="keyword">false</span>;</span><br><span class="line"></span><br><span class="line">     <span class="keyword">int</span> furthestJump = Math.min(position + nums[position],nums.length - <span class="number">1</span>);</span><br><span class="line">     <span class="comment">//如果能到最后位置，则为好位置</span></span><br><span class="line">     <span class="keyword">for</span>(<span class="keyword">int</span> nextPosition = position + <span class="number">1</span> ; nextPosition &lt;= furthestJump ; nextPosition++)&#123;</span><br><span class="line">         <span class="keyword">if</span>(canJump(nextPosition,nums))&#123;</span><br><span class="line">             memo[position] = <span class="number">1</span>;</span><br><span class="line">             <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">         &#125;</span><br><span class="line">     &#125;</span><br><span class="line">     <span class="comment">//否则记为坏位置</span></span><br><span class="line">     memo[position] = -<span class="number">1</span>;</span><br><span class="line">     <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"> <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">canJump</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">     memo = <span class="keyword">new</span> <span class="keyword">int</span>[nums.length];</span><br><span class="line">     memo[nums.length - <span class="number">1</span>] = <span class="number">1</span>;</span><br><span class="line">     <span class="keyword">return</span> canJump(<span class="number">0</span> , nums);</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
-<h4 id="自底向上的动态规划"><a href="#自底向上的动态规划" class="headerlink" title="自底向上的动态规划"></a>自底向上的动态规划</h4><p>来自<a href="https://leetcode-cn.com/problems/jump-game/solution/tiao-yue-you-xi-by-leetcode/" target="_blank" rel="noopener">题解</a></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> [] memo; <span class="comment">// 用0，1，-1三态来定义未知，好与坏</span></span><br><span class="line"> <span class="keyword">public</span>  <span class="type">boolean</span> <span class="title function_">canJump</span><span class="params">(<span class="type">int</span> position , <span class="type">int</span>[] nums)</span>&#123;</span><br><span class="line">     <span class="comment">//如果当前位置并非位置，返回状态是否是好位置</span></span><br><span class="line">     <span class="keyword">if</span> (memo[position] != <span class="number">0</span>)</span><br><span class="line">         <span class="keyword">return</span> memo[position] == <span class="number">1</span> ? <span class="literal">true</span> : <span class="literal">false</span>;</span><br><span class="line"></span><br><span class="line">     <span class="type">int</span> <span class="variable">furthestJump</span> <span class="operator">=</span> Math.min(position + nums[position],nums.length - <span class="number">1</span>);</span><br><span class="line">     <span class="comment">//如果能到最后位置，则为好位置</span></span><br><span class="line">     <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">nextPosition</span> <span class="operator">=</span> position + <span class="number">1</span> ; nextPosition &lt;= furthestJump ; nextPosition++)&#123;</span><br><span class="line">         <span class="keyword">if</span>(canJump(nextPosition,nums))&#123;</span><br><span class="line">             memo[position] = <span class="number">1</span>;</span><br><span class="line">             <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">         &#125;</span><br><span class="line">     &#125;</span><br><span class="line">     <span class="comment">//否则记为坏位置</span></span><br><span class="line">     memo[position] = -<span class="number">1</span>;</span><br><span class="line">     <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"> <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">canJump</span><span class="params">(<span class="type">int</span>[] nums)</span> &#123;</span><br><span class="line">     memo = <span class="keyword">new</span> <span class="title class_">int</span>[nums.length];</span><br><span class="line">     memo[nums.length - <span class="number">1</span>] = <span class="number">1</span>;</span><br><span class="line">     <span class="keyword">return</span> canJump(<span class="number">0</span> , nums);</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<h4 id="自底向上的动态规划"><a href="#自底向上的动态规划" class="headerlink" title="自底向上的动态规划"></a>自底向上的动态规划</h4><p>来自<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/jump-game/solution/tiao-yue-you-xi-by-leetcode/">题解</a></p>
 <p>自底向上和自顶向下动态规划的区别就是消除了回溯，在实际使用中，自底向下的方法有更好的时间效率因为我们不再需要栈空间，可以节省很多缓存开销。更重要的事，这可以让之后更有优化的空间。回溯通常是通过反转动态规划的步骤来实现的。</p>
 <p>这是由于我们每次只会向右跳动，意味着如果我们从右边开始动态规划，每次查询右边节点的信息，都是已经计算过了的，不再需要额外的递归开销，因为我们每次在 memo 表中都可以找到结果。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">enum</span> Index &#123;</span><br><span class="line">    GOOD, BAD, UNKNOWN</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">canJump</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">        Index[] memo = <span class="keyword">new</span> Index[nums.length];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; memo.length; i++) &#123;</span><br><span class="line">            memo[i] = Index.UNKNOWN;</span><br><span class="line">        &#125;</span><br><span class="line">        memo[memo.length - <span class="number">1</span>] = Index.GOOD;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = nums.length - <span class="number">2</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">            <span class="keyword">int</span> furthestJump = Math.min(i + nums[i], nums.length - <span class="number">1</span>);</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = i + <span class="number">1</span>; j &lt;= furthestJump; j++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (memo[j] == Index.GOOD) &#123;</span><br><span class="line">                    memo[i] = Index.GOOD;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> memo[<span class="number">0</span>] == Index.GOOD;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">enum</span> <span class="title class_">Index</span> &#123;</span><br><span class="line">    GOOD, BAD, UNKNOWN</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">canJump</span><span class="params">(<span class="type">int</span>[] nums)</span> &#123;</span><br><span class="line">        Index[] memo = <span class="keyword">new</span> <span class="title class_">Index</span>[nums.length];</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; memo.length; i++) &#123;</span><br><span class="line">            memo[i] = Index.UNKNOWN;</span><br><span class="line">        &#125;</span><br><span class="line">        memo[memo.length - <span class="number">1</span>] = Index.GOOD;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> nums.length - <span class="number">2</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">            <span class="type">int</span> <span class="variable">furthestJump</span> <span class="operator">=</span> Math.min(i + nums[i], nums.length - <span class="number">1</span>);</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> i + <span class="number">1</span>; j &lt;= furthestJump; j++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (memo[j] == Index.GOOD) &#123;</span><br><span class="line">                    memo[i] = Index.GOOD;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> memo[<span class="number">0</span>] == Index.GOOD;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h4 id="自顶向下的贪心"><a href="#自顶向下的贪心" class="headerlink" title="自顶向下的贪心"></a>自顶向下的贪心</h4><p>当我们把代码改成自底向上的模式，我们会有一个重要的发现，从某个位置出发，我们只需要找到第一个标记为 GOOD 的坐标（由跳出循环的条件可得），也就是说找到最左边的那个坐标。如果我们用一个单独的变量来记录最左边的 GOOD 位置，我们就可以避免搜索整个数组，进而可以省略整个 memo 数组。</p>
 <p>从右向左迭代，对于每个节点我们检查是否存在一步跳跃可以到达 GOOD 的位置（currPosition + nums[currPosition] &gt;= leftmostGoodIndex）。如果可以到达，当前位置也标记为 GOOD ，同时，这个位置将成为新的最左边的 GOOD 位置，一直重复到数组的开头，如果第一个坐标标记为 GOOD 意味着可以从第一个位置跳到最后的位置。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">canJump</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> lastPos = nums.length - <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = nums.length - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">        <span class="keyword">if</span> (i + nums[i] &gt;= lastPos) &#123;</span><br><span class="line">            lastPos = i;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> lastPos == <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">canJump</span><span class="params">(<span class="type">int</span>[] nums)</span> &#123;</span><br><span class="line">    <span class="type">int</span> <span class="variable">lastPos</span> <span class="operator">=</span> nums.length - <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> nums.length - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">        <span class="keyword">if</span> (i + nums[i] &gt;= lastPos) &#123;</span><br><span class="line">            lastPos = i;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> lastPos == <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h4 id="自底向上的贪心"><a href="#自底向上的贪心" class="headerlink" title="自底向上的贪心"></a>自底向上的贪心</h4><p>从第0个位置出发，如果当前位置可跳跃距离为n，意味着接下来n个位置都可以作为跳跃点。<br>接下来对这n个格子都跳一次，更新能到达的最远距离，如果能到最后位置，则返回true。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">canJump</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> maxLength = <span class="number">0</span> ;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span> ; i &lt; nums.length ; i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(i &gt; maxLength) <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        maxLength = Math.max(maxLength,i + nums[i]);</span><br><span class="line">        <span class="keyword">if</span>(maxLength &gt;= nums.length - <span class="number">1</span>)</span><br><span class="line">            <span class="comment">//如果最远可到达的位置大于数组长度，则可到达</span></span><br><span class="line">            <span class="keyword">return</span>  <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">canJump</span><span class="params">(<span class="type">int</span>[] nums)</span> &#123;</span><br><span class="line">    <span class="type">int</span> <span class="variable">maxLength</span> <span class="operator">=</span> <span class="number">0</span> ;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span> ; i &lt; nums.length ; i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(i &gt; maxLength) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        maxLength = Math.max(maxLength,i + nums[i]);</span><br><span class="line">        <span class="keyword">if</span>(maxLength &gt;= nums.length - <span class="number">1</span>)</span><br><span class="line">            <span class="comment">//如果最远可到达的位置大于数组长度，则可到达</span></span><br><span class="line">            <span class="keyword">return</span>  <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
     </div>
 
@@ -323,7 +326,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>Post link: </strong>
-    <a href="http://yorxika.github.io/2019/11/10/跳跃游戏/" title="跳跃游戏">http://yorxika.github.io/2019/11/10/跳跃游戏/</a>
+    <a href="http://yorxika.github.io/2019/11/10/%E8%B7%B3%E8%B7%83%E6%B8%B8%E6%88%8F/" title="跳跃游戏">http://yorxika.github.io/2019/11/10/跳跃游戏/</a>
   </li>
   <li class="post-copyright-license">
     <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.
@@ -335,10 +338,10 @@
       <footer class="post-footer">
           
           <div class="post-tags">
-              <a href="/tags/动态规划/" rel="tag"><i class="fa fa-tag"></i> 动态规划</a>
-              <a href="/tags/贪心/" rel="tag"><i class="fa fa-tag"></i> 贪心</a>
+              <a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" rel="tag"><i class="fa fa-tag"></i> 动态规划</a>
+              <a href="/tags/%E8%B4%AA%E5%BF%83/" rel="tag"><i class="fa fa-tag"></i> 贪心</a>
               <a href="/tags/Leetcode/" rel="tag"><i class="fa fa-tag"></i> Leetcode</a>
-              <a href="/tags/回溯/" rel="tag"><i class="fa fa-tag"></i> 回溯</a>
+              <a href="/tags/%E5%9B%9E%E6%BA%AF/" rel="tag"><i class="fa fa-tag"></i> 回溯</a>
           </div>
 
         
@@ -347,11 +350,11 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2019/11/09/螺旋矩阵/" rel="prev" title="螺旋矩阵">
+    <a href="/2019/11/09/%E8%9E%BA%E6%97%8B%E7%9F%A9%E9%98%B5/" rel="prev" title="螺旋矩阵">
       <i class="fa fa-chevron-left"></i> 螺旋矩阵
     </a></div>
       <div class="post-nav-item">
-    <a href="/2019/11/10/跳跃游戏II/" rel="next" title="跳跃游戏II">
+    <a href="/2019/11/10/%E8%B7%B3%E8%B7%83%E6%B8%B8%E6%88%8FII/" rel="next" title="跳跃游戏II">
       跳跃游戏II <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
@@ -413,7 +416,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#回溯"><span class="nav-number">1.</span> <span class="nav-text">回溯</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#自顶向下的动态规划"><span class="nav-number">2.</span> <span class="nav-text">自顶向下的动态规划</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#自底向上的动态规划"><span class="nav-number">3.</span> <span class="nav-text">自底向上的动态规划</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#自顶向下的贪心"><span class="nav-number">4.</span> <span class="nav-text">自顶向下的贪心</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#自底向上的贪心"><span class="nav-number">5.</span> <span class="nav-text">自底向上的贪心</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9B%9E%E6%BA%AF"><span class="nav-number">1.</span> <span class="nav-text">回溯</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%87%AA%E9%A1%B6%E5%90%91%E4%B8%8B%E7%9A%84%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92"><span class="nav-number">2.</span> <span class="nav-text">自顶向下的动态规划</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%87%AA%E5%BA%95%E5%90%91%E4%B8%8A%E7%9A%84%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92"><span class="nav-number">3.</span> <span class="nav-text">自底向上的动态规划</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%87%AA%E9%A1%B6%E5%90%91%E4%B8%8B%E7%9A%84%E8%B4%AA%E5%BF%83"><span class="nav-number">4.</span> <span class="nav-text">自顶向下的贪心</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%87%AA%E5%BA%95%E5%90%91%E4%B8%8A%E7%9A%84%E8%B4%AA%E5%BF%83"><span class="nav-number">5.</span> <span class="nav-text">自底向上的贪心</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -488,12 +491,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">956k</span>
+    <span title="Symbols count total">968k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">14:29</span>
+    <span title="Reading time total">14:40</span>
 </div><script color="255,255,255" opacity="0.5" zIndex="-1" count="180" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
 
         
@@ -513,9 +516,19 @@
   <script src="/lib/anime.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
-<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
 <script src="/js/schemes/pisces.js"></script>
-<script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
 
 
 
@@ -524,7 +537,9 @@
 
 
 
-  <script src="/js/local-search.js"></script>
+  
+<script src="/js/local-search.js"></script>
+
 
 
 

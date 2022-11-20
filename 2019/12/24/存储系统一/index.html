@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 3.9.0">
+<meta name="generator" content="Hexo 6.3.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
@@ -22,49 +22,49 @@
     var CONFIG = {"hostname":"yorxika.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="存储系统层次结构基本存储体系存储程序                                                  —-&amp;gt; 内存1) 输入设备将程序与数据写入主存；   ^2) CPU取指令;                                           |3) CPU执行指令期间读数据；                |4) CPU写回运算结果；">
-<meta name="keywords" content="组成原理">
+  <meta name="description" content="存储系统层次结构基本存储体系存储程序                                                  —-&gt; 内存1) 输入设备将程序与数据写入主存；   ^2) CPU取指令;                                           |3) CPU执行指令期间读数据；                |4) CPU写回运算结果；">
 <meta property="og:type" content="article">
 <meta property="og:title" content="存储系统I">
-<meta property="og:url" content="http://yorxika.github.io/2019/12/24/存储系统一/index.html">
+<meta property="og:url" content="http://yorxika.github.io/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/index.html">
 <meta property="og:site_name" content="Nameless Site">
-<meta property="og:description" content="存储系统层次结构基本存储体系存储程序                                                  —-&amp;gt; 内存1) 输入设备将程序与数据写入主存；   ^2) CPU取指令;                                           |3) CPU执行指令期间读数据；                |4) CPU写回运算结果；">
-<meta property="og:locale" content="en">
-<meta property="og:image" content="http://yorxika.github.io/2019/12/24/存储系统一/image-20191224143440462.png">
-<meta property="og:image" content="http://yorxika.github.io/2019/12/24/存储系统一/image-20191227012511278.png">
-<meta property="og:image" content="http://yorxika.github.io/2019/12/24/存储系统一/image-20191224151529700.png">
-<meta property="og:image" content="http://yorxika.github.io/2019/12/24/存储系统一/image-20191224151536995.png">
-<meta property="og:image" content="http://yorxika.github.io/2019/12/24/存储系统一/image-20191224151700729.png">
-<meta property="og:image" content="http://yorxika.github.io/2019/12/24/存储系统一/image-20191224151728347.png">
-<meta property="og:image" content="http://yorxika.github.io/2019/12/24/存储系统一/image-20191224154646533.png">
-<meta property="og:image" content="http://yorxika.github.io/2019/12/24/存储系统一/image-20191224154652629.png">
-<meta property="og:image" content="http://yorxika.github.io/2019/12/24/存储系统一/image-20191224154658914.png">
-<meta property="og:image" content="http://yorxika.github.io/2019/12/24/存储系统一/image-20191224154704558.png">
-<meta property="og:image" content="http://yorxika.github.io/2019/12/24/存储系统一/image-20191224154711826.png">
-<meta property="og:image" content="http://yorxika.github.io/2019/12/24/存储系统一/image-20191224154729278.png">
-<meta property="og:image" content="http://yorxika.github.io/2019/12/24/存储系统一/image-20191224154739209.png">
-<meta property="og:image" content="http://yorxika.github.io/2019/12/24/存储系统一/image-20191224162301973.png">
-<meta property="og:image" content="http://yorxika.github.io/2019/12/24/存储系统一/image-20191224162316869.png">
-<meta property="og:image" content="http://yorxika.github.io/2019/12/24/存储系统一/image-20191224162327920.png">
-<meta property="og:image" content="http://yorxika.github.io/2019/12/24/存储系统一/image-20191224162336607.png">
-<meta property="og:image" content="http://yorxika.github.io/2019/12/24/存储系统一/image-20191224162343371.png">
-<meta property="og:image" content="http://yorxika.github.io/2019/12/24/存储系统一/image-20191224162351879.png">
-<meta property="og:image" content="http://yorxika.github.io/2019/12/24/存储系统一/image-20191224162357494.png">
-<meta property="og:image" content="http://yorxika.github.io/2019/12/24/存储系统一/image-20191224162402845.png">
-<meta property="og:image" content="http://yorxika.github.io/2019/12/24/存储系统一/image-20191224162410001.png">
-<meta property="og:image" content="http://yorxika.github.io/2019/12/24/存储系统一/image-20191224161733688.png">
-<meta property="og:image" content="http://yorxika.github.io/2019/12/24/存储系统一/image-20191227012839226.png">
-<meta property="og:image" content="http://yorxika.github.io/2019/12/24/存储系统一/image-20191227012958630.png">
-<meta property="og:image" content="http://yorxika.github.io/2019/12/24/存储系统一/image-20191227013302066.png">
-<meta property="og:image" content="http://yorxika.github.io/2019/12/24/存储系统一/image-20191224162032635.png">
-<meta property="og:image" content="http://yorxika.github.io/2019/12/24/存储系统一/3814779_1478420350406_9D7738A42D1C889AE8A3BA51F1DEF7AC.png">
-<meta property="og:updated_time" content="2019-12-26T17:34:34.000Z">
+<meta property="og:description" content="存储系统层次结构基本存储体系存储程序                                                  —-&gt; 内存1) 输入设备将程序与数据写入主存；   ^2) CPU取指令;                                           |3) CPU执行指令期间读数据；                |4) CPU写回运算结果；">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/image-20191224143440462.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/image-20191227012511278.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/image-20191224151529700.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/image-20191224151536995.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/image-20191224151700729.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/image-20191224151728347.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/image-20191224154646533.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/image-20191224154652629.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/image-20191224154658914.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/image-20191224154704558.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/image-20191224154711826.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/image-20191224154729278.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/image-20191224154739209.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/image-20191224162301973.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/image-20191224162316869.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/image-20191224162327920.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/image-20191224162336607.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/image-20191224162343371.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/image-20191224162351879.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/image-20191224162357494.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/image-20191224162402845.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/image-20191224162410001.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/image-20191224161733688.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/image-20191227012839226.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/image-20191227012958630.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/image-20191227013302066.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/image-20191224162032635.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/3814779_1478420350406_9D7738A42D1C889AE8A3BA51F1DEF7AC.png">
+<meta property="article:published_time" content="2019-12-24T06:24:30.000Z">
+<meta property="article:modified_time" content="2019-12-26T17:34:34.000Z">
+<meta property="article:author" content="HMF">
+<meta property="article:tag" content="组成原理">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="存储系统I">
-<meta name="twitter:description" content="存储系统层次结构基本存储体系存储程序                                                  —-&amp;gt; 内存1) 输入设备将程序与数据写入主存；   ^2) CPU取指令;                                           |3) CPU执行指令期间读数据；                |4) CPU写回运算结果；">
-<meta name="twitter:image" content="http://yorxika.github.io/2019/12/24/存储系统一/image-20191224143440462.png">
+<meta name="twitter:image" content="http://yorxika.github.io/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/image-20191224143440462.png">
 
-<link rel="canonical" href="http://yorxika.github.io/2019/12/24/存储系统一/">
+<link rel="canonical" href="http://yorxika.github.io/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/">
 
 
 <script id="page-configurations">
@@ -229,7 +229,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yorxika.github.io/2019/12/24/存储系统一/">
+    <link itemprop="mainEntityOfPage" href="http://yorxika.github.io/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/touxiang.jpg">
@@ -267,11 +267,11 @@
               </span>
               <span class="post-meta-item-text">In</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/学习笔记/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a>
+                  <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a>
                 </span>
                   , 
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/学习笔记/计算机组成原理/" itemprop="url" rel="index"><span itemprop="name">计算机组成原理</span></a>
+                  <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" itemprop="url" rel="index"><span itemprop="name">计算机组成原理</span></a>
                 </span>
             </span>
 
@@ -300,15 +300,15 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="存储系统层次结构"><a href="#存储系统层次结构" class="headerlink" title="存储系统层次结构"></a>存储系统层次结构</h2><h3 id="基本存储体系"><a href="#基本存储体系" class="headerlink" title="基本存储体系"></a>基本存储体系</h3><p>存储程序                                                  —-&gt; 内存<br>1) 输入设备将程序与数据写入主存；   ^<br>2) CPU取指令;                                           |<br>3) CPU执行指令期间读数据；                |<br>4) CPU写回运算结果；                            |<br>5)  输出设备输出结果；                           |<br>程序控制                                                    —-&gt; CPU<br><a id="more"></a></p>
+        <h2 id="存储系统层次结构"><a href="#存储系统层次结构" class="headerlink" title="存储系统层次结构"></a>存储系统层次结构</h2><h3 id="基本存储体系"><a href="#基本存储体系" class="headerlink" title="基本存储体系"></a>基本存储体系</h3><p>存储程序                                                  —-&gt; 内存<br>1) 输入设备将程序与数据写入主存；   ^<br>2) CPU取指令;                                           |<br>3) CPU执行指令期间读数据；                |<br>4) CPU写回运算结果；                            |<br>5)  输出设备输出结果；                           |<br>程序控制                                                    —-&gt; CPU<br><span id="more"></span></p>
 <p>主存容量不足的原因：</p>
 <ul>
 <li>存在制约主存容量的技术因素</li>
 <li>应用对主存的需求不断扩大</li>
 </ul>
-<p><img src="/2019/12/24/存储系统一/image-20191224143440462.png" alt="image-20191224143440462"></p>
+<p><img src="/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/image-20191224143440462.png" alt="image-20191224143440462"></p>
 <p>哈佛结构：是一种将指令储存和数据储存分开的存储器结构，可支持：数据和指令并行储存、指令 预取，提高处理器的执行效率；另外，指令和数据可有不同的数据宽度，如Microchip 公司的PIC16芯片的程序指令是14位宽度，而数据是8位宽度。<br>目前使用哈佛结构的：PIC系列、摩托罗拉公司的MC68系列、Zilog公司的Z8系列、 ATMEL公司的AVR系列和ARM公司的ARM9、ARM10和ARM11。</p>
-<p><img src="/2019/12/24/存储系统一/image-20191227012511278.png" alt="image-20191227012511278"></p>
+<p><img src="/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/image-20191227012511278.png" alt="image-20191227012511278"></p>
 <h3 id="存储体系层次化结构的理论基础"><a href="#存储体系层次化结构的理论基础" class="headerlink" title="存储体系层次化结构的理论基础"></a>存储体系层次化结构的理论基础</h3><p>局部性原理 </p>
 <ul>
 <li>时间局部性: <ul>
@@ -332,51 +332,51 @@
 </ul>
 </li>
 </ul>
-<p><img src="/2019/12/24/存储系统一/image-20191224151529700.png" alt="image-20191224151529700"></p>
-<p><img src="/2019/12/24/存储系统一/image-20191224151536995.png" alt="image-20191224151536995"></p>
+<p><img src="/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/image-20191224151529700.png" alt="image-20191224151529700"></p>
+<p><img src="/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/image-20191224151536995.png" alt="image-20191224151536995"></p>
 <p>边界对齐与存储地址的关系（以32位为例）</p>
 <ul>
 <li>双字长数据边界对齐的起始地址的最末三位为000(8字节整数倍；</li>
 <li>单字长边界对齐的起始地址的末二位为00(4字节整数倍)；</li>
 <li>半字长边界对齐的起始地址的最末一位为0(２字节整数倍)。</li>
 </ul>
-<p><img src="/2019/12/24/存储系统一/image-20191224151700729.png" alt="image-20191224151700729"></p>
-<p><img src="/2019/12/24/存储系统一/image-20191224151728347.png" alt="image-20191224151728347"></p>
-<h2 id="静态存储器工作原理"><a href="#静态存储器工作原理" class="headerlink" title="静态存储器工作原理"></a>静态存储器工作原理</h2><p><img src="/2019/12/24/存储系统一/image-20191224154646533.png" alt="image-20191224154646533"></p>
-<p><img src="/2019/12/24/存储系统一/image-20191224154652629.png" alt="image-20191224154652629"></p>
-<p><img src="/2019/12/24/存储系统一/image-20191224154658914.png" alt="image-20191224154658914"></p>
-<p><img src="/2019/12/24/存储系统一/image-20191224154704558.png" alt="image-20191224154704558"></p>
-<p><img src="/2019/12/24/存储系统一/image-20191224154711826.png" alt="image-20191224154711826"></p>
-<p><img src="/2019/12/24/存储系统一/image-20191224154729278.png" alt="image-20191224154729278"></p>
-<p><img src="/2019/12/24/存储系统一/image-20191224154739209.png" alt="image-20191224154739209"></p>
+<p><img src="/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/image-20191224151700729.png" alt="image-20191224151700729"></p>
+<p><img src="/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/image-20191224151728347.png" alt="image-20191224151728347"></p>
+<h2 id="静态存储器工作原理"><a href="#静态存储器工作原理" class="headerlink" title="静态存储器工作原理"></a>静态存储器工作原理</h2><p><img src="/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/image-20191224154646533.png" alt="image-20191224154646533"></p>
+<p><img src="/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/image-20191224154652629.png" alt="image-20191224154652629"></p>
+<p><img src="/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/image-20191224154658914.png" alt="image-20191224154658914"></p>
+<p><img src="/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/image-20191224154704558.png" alt="image-20191224154704558"></p>
+<p><img src="/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/image-20191224154711826.png" alt="image-20191224154711826"></p>
+<p><img src="/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/image-20191224154729278.png" alt="image-20191224154729278"></p>
+<p><img src="/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/image-20191224154739209.png" alt="image-20191224154739209"></p>
 <h2 id="动态存储器工作原理"><a href="#动态存储器工作原理" class="headerlink" title="动态存储器工作原理"></a>动态存储器工作原理</h2><p>SRAM存储单元不足：</p>
 <ul>
 <li>晶体管过多</li>
 <li>存储密度低</li>
 <li>功耗大</li>
 </ul>
-<p><img src="/2019/12/24/存储系统一/image-20191224162301973.png" alt="image-20191224162301973"></p>
-<p><img src="/2019/12/24/存储系统一/image-20191224162316869.png" alt="image-20191224162316869"></p>
-<p><img src="/2019/12/24/存储系统一/image-20191224162327920.png" alt="image-20191224162327920"></p>
-<p><img src="/2019/12/24/存储系统一/image-20191224162336607.png" alt="image-20191224162336607"></p>
-<p><img src="/2019/12/24/存储系统一/image-20191224162343371.png" alt="image-20191224162343371"></p>
-<p><img src="/2019/12/24/存储系统一/image-20191224162351879.png" alt="image-20191224162351879"></p>
-<p><img src="/2019/12/24/存储系统一/image-20191224162357494.png" alt="image-20191224162357494"></p>
-<p><img src="/2019/12/24/存储系统一/image-20191224162402845.png" alt="image-20191224162402845"></p>
-<p><img src="/2019/12/24/存储系统一/image-20191224162410001.png" alt="image-20191224162410001"></p>
-<h2 id="存储拓展"><a href="#存储拓展" class="headerlink" title="存储拓展"></a>存储拓展</h2><p><img src="/2019/12/24/存储系统一/image-20191224161733688.png" alt="image-20191224161733688"></p>
+<p><img src="/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/image-20191224162301973.png" alt="image-20191224162301973"></p>
+<p><img src="/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/image-20191224162316869.png" alt="image-20191224162316869"></p>
+<p><img src="/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/image-20191224162327920.png" alt="image-20191224162327920"></p>
+<p><img src="/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/image-20191224162336607.png" alt="image-20191224162336607"></p>
+<p><img src="/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/image-20191224162343371.png" alt="image-20191224162343371"></p>
+<p><img src="/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/image-20191224162351879.png" alt="image-20191224162351879"></p>
+<p><img src="/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/image-20191224162357494.png" alt="image-20191224162357494"></p>
+<p><img src="/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/image-20191224162402845.png" alt="image-20191224162402845"></p>
+<p><img src="/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/image-20191224162410001.png" alt="image-20191224162410001"></p>
+<h2 id="存储拓展"><a href="#存储拓展" class="headerlink" title="存储拓展"></a>存储拓展</h2><p><img src="/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/image-20191224161733688.png" alt="image-20191224161733688"></p>
 <p>位拓展举例： 用16K * 8 的存储芯片构建16K * 32的存储器</p>
 <p>所需芯片数量： 16K*32/(16K*8) = 4<br>所有存储芯片并行工作，贡献32位数据中的不同8位</p>
-<p><img src="/2019/12/24/存储系统一/image-20191227012839226.png" alt="image-20191227012839226"></p>
+<p><img src="/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/image-20191227012839226.png" alt="image-20191227012839226"></p>
 <hr>
 <p>字扩展举例:  用16K* 8 的存储芯片构建128k* 8的存储器</p>
 <p>所需芯片数量： 128K * 8/ (16K*8) = 8<br>128k存储器 -&gt; 17根地址线<br>16K的存储 -&gt; 14根地址线<br>多余的3根地址线 作为片选译码输入</p>
-<p><img src="/2019/12/24/存储系统一/image-20191227012958630.png" alt="image-20191227012958630"></p>
+<p><img src="/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/image-20191227012958630.png" alt="image-20191227012958630"></p>
 <hr>
 <p>用16K* 8 的存储芯片构建128K*  8的存储器，其中08000H~0BFFFH存储空间保留不用</p>
-<p>所需芯片数量： (128K-16k )* 8/ (16K*8) = 7<br><img src="/2019/12/24/存储系统一/image-20191227013302066.png" alt="image-20191227013302066"></p>
+<p>所需芯片数量： (128K-16k )* 8/ (16K*8) = 7<br><img src="/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/image-20191227013302066.png" alt="image-20191227013302066"></p>
 <hr>
-<p><img src="/2019/12/24/存储系统一/image-20191224162032635.png" alt="image-20191224162032635"></p>
+<p><img src="/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/image-20191224162032635.png" alt="image-20191224162032635"></p>
 <h2 id="习题"><a href="#习题" class="headerlink" title="习题"></a>习题</h2><p>字位结构为256Kｘ4位SRAM存储芯片，其地址引脚与数据引脚之和为：22</p>
 <p>256K 需要18根，4位4根</p>
 <hr>
@@ -394,7 +394,7 @@
 <p>不需要定时刷新的半导体存储器芯片是<strong>ACD</strong><br>A.SRAM    B.DRAM    C.Flash Memory    D.EPROM</p>
 <hr>
 <p>某计算机存储器按字节变址，采用小端方式存放数据。假定编译器规定int 型和 short 型长度分别为 32 位和 16 位，并且数据按边界对齐存储。某 C 语言程序段如下：</p>
-<p><img src="/2019/12/24/存储系统一/3814779_1478420350406_9D7738A42D1C889AE8A3BA51F1DEF7AC.png" alt="img"></p>
+<p><img src="/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/3814779_1478420350406_9D7738A42D1C889AE8A3BA51F1DEF7AC.png" alt="img"></p>
 <p>若record 变量的首地址为 0xC008，则地址 0xC008 中内容及 record.c 的地址是0x11 0xC00E</p>
 <hr>
 <p>计算机字长32位，主存容量为128MB，按<strong>字</strong>编址，其寻址范围为<strong>0~128M-1</strong></p>
@@ -421,7 +421,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>Post link: </strong>
-    <a href="http://yorxika.github.io/2019/12/24/存储系统一/" title="存储系统I">http://yorxika.github.io/2019/12/24/存储系统一/</a>
+    <a href="http://yorxika.github.io/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%B8%80/" title="存储系统I">http://yorxika.github.io/2019/12/24/存储系统一/</a>
   </li>
   <li class="post-copyright-license">
     <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.
@@ -433,7 +433,7 @@
       <footer class="post-footer">
           
           <div class="post-tags">
-              <a href="/tags/组成原理/" rel="tag"><i class="fa fa-tag"></i> 组成原理</a>
+              <a href="/tags/%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" rel="tag"><i class="fa fa-tag"></i> 组成原理</a>
           </div>
 
         
@@ -442,11 +442,11 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2019/12/23/运算器/" rel="prev" title="运算器">
+    <a href="/2019/12/23/%E8%BF%90%E7%AE%97%E5%99%A8/" rel="prev" title="运算器">
       <i class="fa fa-chevron-left"></i> 运算器
     </a></div>
       <div class="post-nav-item">
-    <a href="/2019/12/24/存储系统II/" rel="next" title="存储系统II">
+    <a href="/2019/12/24/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9FII/" rel="next" title="存储系统II">
       存储系统II <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
@@ -508,7 +508,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#存储系统层次结构"><span class="nav-number">1.</span> <span class="nav-text">存储系统层次结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基本存储体系"><span class="nav-number">1.1.</span> <span class="nav-text">基本存储体系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#存储体系层次化结构的理论基础"><span class="nav-number">1.2.</span> <span class="nav-text">存储体系层次化结构的理论基础</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#主存中的数据组织"><span class="nav-number">2.</span> <span class="nav-text">主存中的数据组织</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#静态存储器工作原理"><span class="nav-number">3.</span> <span class="nav-text">静态存储器工作原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#动态存储器工作原理"><span class="nav-number">4.</span> <span class="nav-text">动态存储器工作原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#存储拓展"><span class="nav-number">5.</span> <span class="nav-text">存储拓展</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#习题"><span class="nav-number">6.</span> <span class="nav-text">习题</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E5%B1%82%E6%AC%A1%E7%BB%93%E6%9E%84"><span class="nav-number">1.</span> <span class="nav-text">存储系统层次结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E5%AD%98%E5%82%A8%E4%BD%93%E7%B3%BB"><span class="nav-number">1.1.</span> <span class="nav-text">基本存储体系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AD%98%E5%82%A8%E4%BD%93%E7%B3%BB%E5%B1%82%E6%AC%A1%E5%8C%96%E7%BB%93%E6%9E%84%E7%9A%84%E7%90%86%E8%AE%BA%E5%9F%BA%E7%A1%80"><span class="nav-number">1.2.</span> <span class="nav-text">存储体系层次化结构的理论基础</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BB%E5%AD%98%E4%B8%AD%E7%9A%84%E6%95%B0%E6%8D%AE%E7%BB%84%E7%BB%87"><span class="nav-number">2.</span> <span class="nav-text">主存中的数据组织</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9D%99%E6%80%81%E5%AD%98%E5%82%A8%E5%99%A8%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86"><span class="nav-number">3.</span> <span class="nav-text">静态存储器工作原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8A%A8%E6%80%81%E5%AD%98%E5%82%A8%E5%99%A8%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86"><span class="nav-number">4.</span> <span class="nav-text">动态存储器工作原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AD%98%E5%82%A8%E6%8B%93%E5%B1%95"><span class="nav-number">5.</span> <span class="nav-text">存储拓展</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B9%A0%E9%A2%98"><span class="nav-number">6.</span> <span class="nav-text">习题</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -583,12 +583,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">956k</span>
+    <span title="Symbols count total">968k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">14:29</span>
+    <span title="Reading time total">14:40</span>
 </div><script color="255,255,255" opacity="0.5" zIndex="-1" count="180" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
 
         
@@ -608,9 +608,19 @@
   <script src="/lib/anime.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
-<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
 <script src="/js/schemes/pisces.js"></script>
-<script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
 
 
 
@@ -619,7 +629,9 @@
 
 
 
-  <script src="/js/local-search.js"></script>
+  
+<script src="/js/local-search.js"></script>
+
 
 
 

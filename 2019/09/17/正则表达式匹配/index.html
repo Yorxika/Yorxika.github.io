@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 3.9.0">
+<meta name="generator" content="Hexo 6.3.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
@@ -23,19 +23,21 @@
   </script>
 
   <meta name="description" content="来源Leetcode第10题正则表达式匹配  给你一个字符串 s 和一个字符规律 p，请你来实现一个支持’.’和’*‘的正则表达式匹配。‘.’匹配任意单个字符‘*‘匹配零个或多个前面的那一个元素所谓匹配，是要 涵盖整个字符串s的，而 不是部分字符串s 。">
-<meta name="keywords" content="动态规划,Leetcode,回溯">
 <meta property="og:type" content="article">
 <meta property="og:title" content="正则表达式匹配">
-<meta property="og:url" content="http://yorxika.github.io/2019/09/17/正则表达式匹配/index.html">
+<meta property="og:url" content="http://yorxika.github.io/2019/09/17/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%8C%B9%E9%85%8D/index.html">
 <meta property="og:site_name" content="Nameless Site">
 <meta property="og:description" content="来源Leetcode第10题正则表达式匹配  给你一个字符串 s 和一个字符规律 p，请你来实现一个支持’.’和’*‘的正则表达式匹配。‘.’匹配任意单个字符‘*‘匹配零个或多个前面的那一个元素所谓匹配，是要 涵盖整个字符串s的，而 不是部分字符串s 。">
-<meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-12-12T13:18:34.000Z">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2019-09-17T09:27:38.000Z">
+<meta property="article:modified_time" content="2019-12-12T13:18:34.000Z">
+<meta property="article:author" content="HMF">
+<meta property="article:tag" content="动态规划">
+<meta property="article:tag" content="Leetcode">
+<meta property="article:tag" content="回溯">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="正则表达式匹配">
-<meta name="twitter:description" content="来源Leetcode第10题正则表达式匹配  给你一个字符串 s 和一个字符规律 p，请你来实现一个支持’.’和’*‘的正则表达式匹配。‘.’匹配任意单个字符‘*‘匹配零个或多个前面的那一个元素所谓匹配，是要 涵盖整个字符串s的，而 不是部分字符串s 。">
 
-<link rel="canonical" href="http://yorxika.github.io/2019/09/17/正则表达式匹配/">
+<link rel="canonical" href="http://yorxika.github.io/2019/09/17/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%8C%B9%E9%85%8D/">
 
 
 <script id="page-configurations">
@@ -200,7 +202,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yorxika.github.io/2019/09/17/正则表达式匹配/">
+    <link itemprop="mainEntityOfPage" href="http://yorxika.github.io/2019/09/17/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%8C%B9%E9%85%8D/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/touxiang.jpg">
@@ -238,15 +240,15 @@
               </span>
               <span class="post-meta-item-text">In</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
+                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
                 </span>
                   , 
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/Leetcode/" itemprop="url" rel="index"><span itemprop="name">Leetcode</span></a>
+                  <a href="/categories/%E7%AE%97%E6%B3%95/Leetcode/" itemprop="url" rel="index"><span itemprop="name">Leetcode</span></a>
                 </span>
                   , 
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/Leetcode/字符串/" itemprop="url" rel="index"><span itemprop="name">字符串</span></a>
+                  <a href="/categories/%E7%AE%97%E6%B3%95/Leetcode/%E5%AD%97%E7%AC%A6%E4%B8%B2/" itemprop="url" rel="index"><span itemprop="name">字符串</span></a>
                 </span>
             </span>
 
@@ -277,11 +279,11 @@
       
         <p>来源Leetcode第10题正则表达式匹配</p>
 <blockquote>
-<p>给你一个字符串 s 和一个字符规律 p，请你来实现一个支持’.’和’*‘的正则表达式匹配。<br>‘.’匹配任意单个字符<br>‘*‘匹配零个或多个前面的那一个元素<br>所谓匹配，是要<strong> 涵盖整个字符串s</strong>的，而<strong> 不是部分字符串s </strong>。<br><a id="more"></a><br>说明:<br>s 可能为空，且只包含从 a-z 的小写字母。<br>p 可能为空，且只包含从 a-z 的小写字母，以及字符 ‘.’和’*‘。<br>示例 4:</p>
+<p>给你一个字符串 s 和一个字符规律 p，请你来实现一个支持’.’和’*‘的正则表达式匹配。<br>‘.’匹配任意单个字符<br>‘*‘匹配零个或多个前面的那一个元素<br>所谓匹配，是要<strong> 涵盖整个字符串s</strong>的，而<strong> 不是部分字符串s </strong>。<br><span id="more"></span><br>说明:<br>s 可能为空，且只包含从 a-z 的小写字母。<br>p 可能为空，且只包含从 a-z 的小写字母，以及字符 ‘.’和’*‘。<br>示例 4:</p>
 <p>输入:<br>s = “aab”<br>p = “c*a*b”<br>输出: true<br>解释: 因为’*‘表示零个或多个，这里’c’为 0 个, ‘a’ 被重复一次。因此可以匹配字符串 “aab”。</p>
 </blockquote>
-<h3 id="回溯"><a href="#回溯" class="headerlink" title="回溯"></a>回溯</h3><p>采用递归的思想，当前层匹配了就可以匹配下一层。当遇到字符’.’时可以认为直接匹配进入下一层，当遇到字符’*‘时要考虑字符’*‘前一个字符出现的次数是0次还是多次，所以在递归的时候有两个方向的递归，一个是认为前一个字符出现0次，所以直接从模式串p的第3个字符开始匹配，一个是认为出现多次，因而需要模式串第一个字符与匹配串第一个字符匹配，在来匹配匹配串后续字符。<br>代码如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isMatch</span><span class="params">(String text, String pattern)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (pattern.isEmpty()) <span class="keyword">return</span> text.isEmpty();  <span class="comment">//对应空串</span></span><br><span class="line">        <span class="keyword">boolean</span> first_match = (!text.isEmpty() &amp;&amp;</span><br><span class="line">                               (pattern.charAt(<span class="number">0</span>) == text.charAt(<span class="number">0</span>) || pattern.charAt(<span class="number">0</span>) == <span class="string">'.'</span>));  <span class="comment">//非空且第一个字符对应相等，或者p的一个字符为‘.’</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (pattern.length() &gt;= <span class="number">2</span> &amp;&amp; pattern.charAt(<span class="number">1</span>) == <span class="string">'*'</span>)&#123; <span class="comment">//p的长度为2 且第二个字符为'*'的话</span></span><br><span class="line">            <span class="keyword">return</span> (isMatch(text, pattern.substring(<span class="number">2</span>)) ||  <span class="comment">//看P第三个字符是否与s的字符匹配，可以参考例4，s=aab,p=c*a*b，因为*表示0个或多个，这里S有0个c，a被重复一次，所以是可以匹配的</span></span><br><span class="line">                    (first_match &amp;&amp; isMatch(text.substring(<span class="number">1</span>), pattern))); <span class="comment">//或者是第一个字符匹配，查看s的后续字符是否重复</span></span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> first_match &amp;&amp; isMatch(text.substring(<span class="number">1</span>), pattern.substring(<span class="number">1</span>)); <span class="comment">//进行下一个字符的匹配</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h3 id="动态规划"><a href="#动态规划" class="headerlink" title="动态规划"></a>动态规划</h3><p>可以看到回溯的话时空复杂度相当的高，因为题目拥有最优子结构，一个自然的想法是将中间结果保存起来。我们通过用dp[i,j]表示text[i:]和pattern[j:]是否能匹配，即用户dp[i][j]表示s的前i个能否被p的前j的匹配。<br>考虑转移方程：<br>1.p[j] == s[i] -&gt; dp[i][j] = dp[i-1][j-1]<br>2.if p[j] == ‘.‘ -&gt; dp[i][j] = dp[i-1][j-1]<br>3.if p[j] = ‘*‘ -&gt;<br>if p[j-1] != s[i] -&gt; dp[i][j] = dp[i][j-2]  //对应示例4，’*‘前的字符出现了0次<br>if p[j-1] == s[i] || p[j-1] == ‘.‘ -&gt; dp[i][j] = dp[i-1][j] || dp[i][j] = dp[i][j-1] || dp[i][j] = dp[i][j-2] //分别对应着若干个字符匹配、单个字符匹配、没有字符匹配<br>代码如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isMatch</span><span class="params">(String s, String p)</span> </span>&#123;</span><br><span class="line">       <span class="keyword">int</span> ls = s.length(), lp = p.length();</span><br><span class="line">        <span class="keyword">boolean</span>[][] dp = <span class="keyword">new</span> <span class="keyword">boolean</span>[ls + <span class="number">1</span>][lp + <span class="number">1</span>];</span><br><span class="line">        dp[<span class="number">0</span>][<span class="number">0</span>] = <span class="keyword">true</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">2</span>; j &lt;= lp; j++)</span><br><span class="line">            dp[<span class="number">0</span>][j] = dp[<span class="number">0</span>][j - <span class="number">2</span>] &amp;&amp; p.charAt(j - <span class="number">1</span>) == <span class="string">'*'</span>;  <span class="comment">//初始化第一列</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= ls; i++) &#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= lp; j++) &#123;</span><br><span class="line">                <span class="keyword">if</span>(p.charAt(j-<span class="number">1</span>) == <span class="string">'*'</span>)</span><br><span class="line">                    dp[i][j] = dp[i][j - <span class="number">2</span>] || dp[i - <span class="number">1</span>][j] &amp;&amp; </span><br><span class="line">                        (s.charAt(i-<span class="number">1</span>) == p.charAt(j - <span class="number">2</span>) || p.charAt(j - <span class="number">2</span>) == <span class="string">'.'</span>);</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span>(s.charAt(i-<span class="number">1</span>) == p.charAt(j-<span class="number">1</span>) || p.charAt(j-<span class="number">1</span>) == <span class="string">'.'</span>) </span><br><span class="line">                    dp[i][j] = dp[i - <span class="number">1</span>][j - <span class="number">1</span>];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> dp[ls][lp];</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="回溯"><a href="#回溯" class="headerlink" title="回溯"></a>回溯</h3><p>采用递归的思想，当前层匹配了就可以匹配下一层。当遇到字符’.’时可以认为直接匹配进入下一层，当遇到字符’*‘时要考虑字符’*‘前一个字符出现的次数是0次还是多次，所以在递归的时候有两个方向的递归，一个是认为前一个字符出现0次，所以直接从模式串p的第3个字符开始匹配，一个是认为出现多次，因而需要模式串第一个字符与匹配串第一个字符匹配，在来匹配匹配串后续字符。<br>代码如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">isMatch</span><span class="params">(String text, String pattern)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (pattern.isEmpty()) <span class="keyword">return</span> text.isEmpty();  <span class="comment">//对应空串</span></span><br><span class="line">        <span class="type">boolean</span> <span class="variable">first_match</span> <span class="operator">=</span> (!text.isEmpty() &amp;&amp;</span><br><span class="line">                               (pattern.charAt(<span class="number">0</span>) == text.charAt(<span class="number">0</span>) || pattern.charAt(<span class="number">0</span>) == <span class="string">&#x27;.&#x27;</span>));  <span class="comment">//非空且第一个字符对应相等，或者p的一个字符为‘.’</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (pattern.length() &gt;= <span class="number">2</span> &amp;&amp; pattern.charAt(<span class="number">1</span>) == <span class="string">&#x27;*&#x27;</span>)&#123; <span class="comment">//p的长度为2 且第二个字符为&#x27;*&#x27;的话</span></span><br><span class="line">            <span class="keyword">return</span> (isMatch(text, pattern.substring(<span class="number">2</span>)) ||  <span class="comment">//看P第三个字符是否与s的字符匹配，可以参考例4，s=aab,p=c*a*b，因为*表示0个或多个，这里S有0个c，a被重复一次，所以是可以匹配的</span></span><br><span class="line">                    (first_match &amp;&amp; isMatch(text.substring(<span class="number">1</span>), pattern))); <span class="comment">//或者是第一个字符匹配，查看s的后续字符是否重复</span></span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> first_match &amp;&amp; isMatch(text.substring(<span class="number">1</span>), pattern.substring(<span class="number">1</span>)); <span class="comment">//进行下一个字符的匹配</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="动态规划"><a href="#动态规划" class="headerlink" title="动态规划"></a>动态规划</h3><p>可以看到回溯的话时空复杂度相当的高，因为题目拥有最优子结构，一个自然的想法是将中间结果保存起来。我们通过用dp[i,j]表示text[i:]和pattern[j:]是否能匹配，即用户dp[i][j]表示s的前i个能否被p的前j的匹配。<br>考虑转移方程：<br>1.p[j] == s[i] -&gt; dp[i][j] = dp[i-1][j-1]<br>2.if p[j] == ‘.‘ -&gt; dp[i][j] = dp[i-1][j-1]<br>3.if p[j] = ‘*‘ -&gt;<br>if p[j-1] != s[i] -&gt; dp[i][j] = dp[i][j-2]  //对应示例4，’*‘前的字符出现了0次<br>if p[j-1] == s[i] || p[j-1] == ‘.‘ -&gt; dp[i][j] = dp[i-1][j] || dp[i][j] = dp[i][j-1] || dp[i][j] = dp[i][j-2] //分别对应着若干个字符匹配、单个字符匹配、没有字符匹配<br>代码如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">isMatch</span><span class="params">(String s, String p)</span> &#123;</span><br><span class="line">       <span class="type">int</span> <span class="variable">ls</span> <span class="operator">=</span> s.length(), lp = p.length();</span><br><span class="line">        <span class="type">boolean</span>[][] dp = <span class="keyword">new</span> <span class="title class_">boolean</span>[ls + <span class="number">1</span>][lp + <span class="number">1</span>];</span><br><span class="line">        dp[<span class="number">0</span>][<span class="number">0</span>] = <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> <span class="number">2</span>; j &lt;= lp; j++)</span><br><span class="line">            dp[<span class="number">0</span>][j] = dp[<span class="number">0</span>][j - <span class="number">2</span>] &amp;&amp; p.charAt(j - <span class="number">1</span>) == <span class="string">&#x27;*&#x27;</span>;  <span class="comment">//初始化第一列</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span>; i &lt;= ls; i++) &#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> <span class="number">1</span>; j &lt;= lp; j++) &#123;</span><br><span class="line">                <span class="keyword">if</span>(p.charAt(j-<span class="number">1</span>) == <span class="string">&#x27;*&#x27;</span>)</span><br><span class="line">                    dp[i][j] = dp[i][j - <span class="number">2</span>] || dp[i - <span class="number">1</span>][j] &amp;&amp; </span><br><span class="line">                        (s.charAt(i-<span class="number">1</span>) == p.charAt(j - <span class="number">2</span>) || p.charAt(j - <span class="number">2</span>) == <span class="string">&#x27;.&#x27;</span>);</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span>(s.charAt(i-<span class="number">1</span>) == p.charAt(j-<span class="number">1</span>) || p.charAt(j-<span class="number">1</span>) == <span class="string">&#x27;.&#x27;</span>) </span><br><span class="line">                    dp[i][j] = dp[i - <span class="number">1</span>][j - <span class="number">1</span>];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> dp[ls][lp];</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 
     </div>
 
@@ -297,7 +299,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>Post link: </strong>
-    <a href="http://yorxika.github.io/2019/09/17/正则表达式匹配/" title="正则表达式匹配">http://yorxika.github.io/2019/09/17/正则表达式匹配/</a>
+    <a href="http://yorxika.github.io/2019/09/17/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%8C%B9%E9%85%8D/" title="正则表达式匹配">http://yorxika.github.io/2019/09/17/正则表达式匹配/</a>
   </li>
   <li class="post-copyright-license">
     <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.
@@ -309,9 +311,9 @@
       <footer class="post-footer">
           
           <div class="post-tags">
-              <a href="/tags/动态规划/" rel="tag"><i class="fa fa-tag"></i> 动态规划</a>
+              <a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" rel="tag"><i class="fa fa-tag"></i> 动态规划</a>
               <a href="/tags/Leetcode/" rel="tag"><i class="fa fa-tag"></i> Leetcode</a>
-              <a href="/tags/回溯/" rel="tag"><i class="fa fa-tag"></i> 回溯</a>
+              <a href="/tags/%E5%9B%9E%E6%BA%AF/" rel="tag"><i class="fa fa-tag"></i> 回溯</a>
           </div>
 
         
@@ -320,11 +322,11 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2019/09/16/删除排序数组中的重复项II/" rel="prev" title="删除排序数组中的重复项II">
+    <a href="/2019/09/16/%E5%88%A0%E9%99%A4%E6%8E%92%E5%BA%8F%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E9%87%8D%E5%A4%8D%E9%A1%B9II/" rel="prev" title="删除排序数组中的重复项II">
       <i class="fa fa-chevron-left"></i> 删除排序数组中的重复项II
     </a></div>
       <div class="post-nav-item">
-    <a href="/2019/09/17/盛最多的水/" rel="next" title="盛最多的水">
+    <a href="/2019/09/17/%E7%9B%9B%E6%9C%80%E5%A4%9A%E7%9A%84%E6%B0%B4/" rel="next" title="盛最多的水">
       盛最多的水 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
@@ -386,7 +388,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#回溯"><span class="nav-number">1.</span> <span class="nav-text">回溯</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#动态规划"><span class="nav-number">2.</span> <span class="nav-text">动态规划</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%9E%E6%BA%AF"><span class="nav-number">1.</span> <span class="nav-text">回溯</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92"><span class="nav-number">2.</span> <span class="nav-text">动态规划</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -461,12 +463,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">956k</span>
+    <span title="Symbols count total">968k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">14:29</span>
+    <span title="Reading time total">14:40</span>
 </div><script color="255,255,255" opacity="0.5" zIndex="-1" count="180" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
 
         
@@ -486,9 +488,19 @@
   <script src="/lib/anime.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
-<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
 <script src="/js/schemes/pisces.js"></script>
-<script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
 
 
 
@@ -497,7 +509,9 @@
 
 
 
-  <script src="/js/local-search.js"></script>
+  
+<script src="/js/local-search.js"></script>
+
 
 
 

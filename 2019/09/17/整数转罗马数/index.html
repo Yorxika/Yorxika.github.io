@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 3.9.0">
+<meta name="generator" content="Hexo 6.3.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
@@ -23,19 +23,20 @@
   </script>
 
   <meta name="description" content="来源Leetcode第12题整数转罗马数字  罗马数字包含以下七种字符：I，V，X，L，C，D和M。">
-<meta name="keywords" content="贪心,Leetcode">
 <meta property="og:type" content="article">
 <meta property="og:title" content="整数转罗马数">
-<meta property="og:url" content="http://yorxika.github.io/2019/09/17/整数转罗马数/index.html">
+<meta property="og:url" content="http://yorxika.github.io/2019/09/17/%E6%95%B4%E6%95%B0%E8%BD%AC%E7%BD%97%E9%A9%AC%E6%95%B0/index.html">
 <meta property="og:site_name" content="Nameless Site">
 <meta property="og:description" content="来源Leetcode第12题整数转罗马数字  罗马数字包含以下七种字符：I，V，X，L，C，D和M。">
-<meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-12-12T13:18:58.000Z">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2019-09-17T14:36:30.000Z">
+<meta property="article:modified_time" content="2019-12-12T13:18:58.000Z">
+<meta property="article:author" content="HMF">
+<meta property="article:tag" content="贪心">
+<meta property="article:tag" content="Leetcode">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="整数转罗马数">
-<meta name="twitter:description" content="来源Leetcode第12题整数转罗马数字  罗马数字包含以下七种字符：I，V，X，L，C，D和M。">
 
-<link rel="canonical" href="http://yorxika.github.io/2019/09/17/整数转罗马数/">
+<link rel="canonical" href="http://yorxika.github.io/2019/09/17/%E6%95%B4%E6%95%B0%E8%BD%AC%E7%BD%97%E9%A9%AC%E6%95%B0/">
 
 
 <script id="page-configurations">
@@ -200,7 +201,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yorxika.github.io/2019/09/17/整数转罗马数/">
+    <link itemprop="mainEntityOfPage" href="http://yorxika.github.io/2019/09/17/%E6%95%B4%E6%95%B0%E8%BD%AC%E7%BD%97%E9%A9%AC%E6%95%B0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/touxiang.jpg">
@@ -238,15 +239,15 @@
               </span>
               <span class="post-meta-item-text">In</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
+                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
                 </span>
                   , 
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/Leetcode/" itemprop="url" rel="index"><span itemprop="name">Leetcode</span></a>
+                  <a href="/categories/%E7%AE%97%E6%B3%95/Leetcode/" itemprop="url" rel="index"><span itemprop="name">Leetcode</span></a>
                 </span>
                   , 
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/Leetcode/数学/" itemprop="url" rel="index"><span itemprop="name">数学</span></a>
+                  <a href="/categories/%E7%AE%97%E6%B3%95/Leetcode/%E6%95%B0%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">数学</span></a>
                 </span>
             </span>
 
@@ -256,7 +257,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>866</span>
+              <span>996</span>
             </span>
             <span class="post-meta-item" title="Reading time">
               <span class="post-meta-item-icon">
@@ -277,7 +278,7 @@
       
         <p>来源Leetcode第12题整数转罗马数字</p>
 <blockquote>
-<p>罗马数字包含以下七种字符：I，V，X，L，C，D和M。<br><a id="more"></a></p>
+<p>罗马数字包含以下七种字符：I，V，X，L，C，D和M。<br><span id="more"></span></p>
 <div class="table-container">
 <table>
 <thead>
@@ -328,7 +329,7 @@
 <p>例如，罗马数字2写做II，即为两个并列的1。12 写做XII，即为X+II。27写做XXVII,即为XX+V+II。<br>通常情况下，罗马数字中小的数字在大的数字的右边。但也存在特例，例如4不写做IIII，而是IV。数字1在数字5 的左边，所表示的数等于大数5减小数1得到的数值4 。同样地，数字9 表示为 IX。这个特殊的规则只适用于以下六种情况：<br>I 可以放在 V (5) 和 X (10) 的左边，来表示 4 和 9。<br>X 可以放在 L (50) 和 C (100) 的左边，来表示 40 和 90。<br>C 可以放在 D (500) 和 M (1000) 的左边，来表示 400 和 900。<br>给定一个整数，将其转为罗马数字。输入确保在 1 到 3999 的范围内。<br>示例 1:</p>
 <p>输入: 3<br>输出: “III”</p>
 </blockquote>
-<p>根据题意可知罗马数字有如下基数：1，4，5，9，10，40，50，90，100，400，500，900，1000<br>在进行转化时只用将待转换数字减去基数，并在输出的字符串上加上对应的罗马字母，直到当前基数大于剩下的待转换数字，用下一个基数进行转化。<br>代码如下：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="built_in">string</span> <span class="title">intToRoman</span><span class="params">(<span class="keyword">int</span> num)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> values[]=&#123;<span class="number">1000</span>,<span class="number">900</span>,<span class="number">500</span>,<span class="number">400</span>,<span class="number">100</span>,<span class="number">90</span>,<span class="number">50</span>,<span class="number">40</span>,<span class="number">10</span>,<span class="number">9</span>,<span class="number">5</span>,<span class="number">4</span>,<span class="number">1</span>&#125;;</span><br><span class="line">        <span class="built_in">string</span> reps[]=&#123;<span class="string">"M"</span>,<span class="string">"CM"</span>,<span class="string">"D"</span>,<span class="string">"CD"</span>,<span class="string">"C"</span>,<span class="string">"XC"</span>,<span class="string">"L"</span>,<span class="string">"XL"</span>,<span class="string">"X"</span>,<span class="string">"IX"</span>,<span class="string">"V"</span>,<span class="string">"IV"</span>,<span class="string">"I"</span>&#125;;</span><br><span class="line">        </span><br><span class="line">        <span class="built_in">string</span> res;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;<span class="number">13</span>; i++)&#123;</span><br><span class="line">            <span class="keyword">while</span>(num&gt;=values[i])&#123;</span><br><span class="line">                num -= values[i];</span><br><span class="line">                res += reps[i];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>根据题意可知罗马数字有如下基数：1，4，5，9，10，40，50，90，100，400，500，900，1000<br>在进行转化时只用将待转换数字减去基数，并在输出的字符串上加上对应的罗马字母，直到当前基数大于剩下的待转换数字，用下一个基数进行转化。<br>代码如下：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">string <span class="title">intToRoman</span><span class="params">(<span class="type">int</span> num)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> values[]=&#123;<span class="number">1000</span>,<span class="number">900</span>,<span class="number">500</span>,<span class="number">400</span>,<span class="number">100</span>,<span class="number">90</span>,<span class="number">50</span>,<span class="number">40</span>,<span class="number">10</span>,<span class="number">9</span>,<span class="number">5</span>,<span class="number">4</span>,<span class="number">1</span>&#125;;</span><br><span class="line">        string reps[]=&#123;<span class="string">&quot;M&quot;</span>,<span class="string">&quot;CM&quot;</span>,<span class="string">&quot;D&quot;</span>,<span class="string">&quot;CD&quot;</span>,<span class="string">&quot;C&quot;</span>,<span class="string">&quot;XC&quot;</span>,<span class="string">&quot;L&quot;</span>,<span class="string">&quot;XL&quot;</span>,<span class="string">&quot;X&quot;</span>,<span class="string">&quot;IX&quot;</span>,<span class="string">&quot;V&quot;</span>,<span class="string">&quot;IV&quot;</span>,<span class="string">&quot;I&quot;</span>&#125;;</span><br><span class="line">        </span><br><span class="line">        string res;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>; i&lt;<span class="number">13</span>; i++)&#123;</span><br><span class="line">            <span class="keyword">while</span>(num&gt;=values[i])&#123;</span><br><span class="line">                num -= values[i];</span><br><span class="line">                res += reps[i];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
 
     </div>
 
@@ -344,7 +345,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>Post link: </strong>
-    <a href="http://yorxika.github.io/2019/09/17/整数转罗马数/" title="整数转罗马数">http://yorxika.github.io/2019/09/17/整数转罗马数/</a>
+    <a href="http://yorxika.github.io/2019/09/17/%E6%95%B4%E6%95%B0%E8%BD%AC%E7%BD%97%E9%A9%AC%E6%95%B0/" title="整数转罗马数">http://yorxika.github.io/2019/09/17/整数转罗马数/</a>
   </li>
   <li class="post-copyright-license">
     <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.
@@ -356,7 +357,7 @@
       <footer class="post-footer">
           
           <div class="post-tags">
-              <a href="/tags/贪心/" rel="tag"><i class="fa fa-tag"></i> 贪心</a>
+              <a href="/tags/%E8%B4%AA%E5%BF%83/" rel="tag"><i class="fa fa-tag"></i> 贪心</a>
               <a href="/tags/Leetcode/" rel="tag"><i class="fa fa-tag"></i> Leetcode</a>
           </div>
 
@@ -366,11 +367,11 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2019/09/17/盛最多的水/" rel="prev" title="盛最多的水">
+    <a href="/2019/09/17/%E7%9B%9B%E6%9C%80%E5%A4%9A%E7%9A%84%E6%B0%B4/" rel="prev" title="盛最多的水">
       <i class="fa fa-chevron-left"></i> 盛最多的水
     </a></div>
       <div class="post-nav-item">
-    <a href="/2019/09/18/最长公共前缀/" rel="next" title="最长公共前缀">
+    <a href="/2019/09/18/%E6%9C%80%E9%95%BF%E5%85%AC%E5%85%B1%E5%89%8D%E7%BC%80/" rel="next" title="最长公共前缀">
       最长公共前缀 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
@@ -506,12 +507,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">956k</span>
+    <span title="Symbols count total">968k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">14:29</span>
+    <span title="Reading time total">14:40</span>
 </div><script color="255,255,255" opacity="0.5" zIndex="-1" count="180" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
 
         
@@ -531,9 +532,19 @@
   <script src="/lib/anime.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
-<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
 <script src="/js/schemes/pisces.js"></script>
-<script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
 
 
 
@@ -542,7 +553,9 @@
 
 
 
-  <script src="/js/local-search.js"></script>
+  
+<script src="/js/local-search.js"></script>
+
 
 
 

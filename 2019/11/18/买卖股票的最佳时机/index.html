@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 3.9.0">
+<meta name="generator" content="Hexo 6.3.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
@@ -23,19 +23,20 @@
   </script>
 
   <meta name="description" content="来源Leetcode第121题买卖股票的最佳时机  给定一个数组，它的第 i 个元素是一支给定股票第 i 天的价格。 如果你最多只允许完成一笔交易（即买入和卖出一支股票），设计一个算法来计算你所能获取的最大利润。 注意你不能在买入股票前卖出股票。">
-<meta name="keywords" content="动态规划,Leetcode">
 <meta property="og:type" content="article">
 <meta property="og:title" content="买卖股票的最佳时机">
-<meta property="og:url" content="http://yorxika.github.io/2019/11/18/买卖股票的最佳时机/index.html">
+<meta property="og:url" content="http://yorxika.github.io/2019/11/18/%E4%B9%B0%E5%8D%96%E8%82%A1%E7%A5%A8%E7%9A%84%E6%9C%80%E4%BD%B3%E6%97%B6%E6%9C%BA/index.html">
 <meta property="og:site_name" content="Nameless Site">
 <meta property="og:description" content="来源Leetcode第121题买卖股票的最佳时机  给定一个数组，它的第 i 个元素是一支给定股票第 i 天的价格。 如果你最多只允许完成一笔交易（即买入和卖出一支股票），设计一个算法来计算你所能获取的最大利润。 注意你不能在买入股票前卖出股票。">
-<meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-12-12T12:57:43.000Z">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2019-11-18T06:11:21.000Z">
+<meta property="article:modified_time" content="2019-12-12T12:57:43.000Z">
+<meta property="article:author" content="HMF">
+<meta property="article:tag" content="动态规划">
+<meta property="article:tag" content="Leetcode">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="买卖股票的最佳时机">
-<meta name="twitter:description" content="来源Leetcode第121题买卖股票的最佳时机  给定一个数组，它的第 i 个元素是一支给定股票第 i 天的价格。 如果你最多只允许完成一笔交易（即买入和卖出一支股票），设计一个算法来计算你所能获取的最大利润。 注意你不能在买入股票前卖出股票。">
 
-<link rel="canonical" href="http://yorxika.github.io/2019/11/18/买卖股票的最佳时机/">
+<link rel="canonical" href="http://yorxika.github.io/2019/11/18/%E4%B9%B0%E5%8D%96%E8%82%A1%E7%A5%A8%E7%9A%84%E6%9C%80%E4%BD%B3%E6%97%B6%E6%9C%BA/">
 
 
 <script id="page-configurations">
@@ -200,7 +201,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yorxika.github.io/2019/11/18/买卖股票的最佳时机/">
+    <link itemprop="mainEntityOfPage" href="http://yorxika.github.io/2019/11/18/%E4%B9%B0%E5%8D%96%E8%82%A1%E7%A5%A8%E7%9A%84%E6%9C%80%E4%BD%B3%E6%97%B6%E6%9C%BA/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/touxiang.jpg">
@@ -238,15 +239,15 @@
               </span>
               <span class="post-meta-item-text">In</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
+                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
                 </span>
                   , 
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/Leetcode/" itemprop="url" rel="index"><span itemprop="name">Leetcode</span></a>
+                  <a href="/categories/%E7%AE%97%E6%B3%95/Leetcode/" itemprop="url" rel="index"><span itemprop="name">Leetcode</span></a>
                 </span>
                   , 
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/Leetcode/数组/" itemprop="url" rel="index"><span itemprop="name">数组</span></a>
+                  <a href="/categories/%E7%AE%97%E6%B3%95/Leetcode/%E6%95%B0%E7%BB%84/" itemprop="url" rel="index"><span itemprop="name">数组</span></a>
                 </span>
             </span>
 
@@ -279,13 +280,13 @@
 <blockquote>
 <p>给定一个数组，它的第 i 个元素是一支给定股票第 i 天的价格。</p>
 <p>如果你最多只允许完成一笔交易（即买入和卖出一支股票），设计一个算法来计算你所能获取的最大利润。</p>
-<p>注意你不能在买入股票前卖出股票。<br><a id="more"></a><br>示例 1:</p>
+<p>注意你不能在买入股票前卖出股票。<br><span id="more"></span><br>示例 1:</p>
 <p>输入: [7,1,5,3,6,4]<br>输出: 5<br>解释: 在第 2 天（股票价格 = 1）的时候买入，在第 5 天（股票价格 = 6）的时候卖出，最大利润 = 6-1 = 5 。<br>     注意利润不能是 7-1 = 6, 因为卖出价格需要大于买入价格。</p>
 </blockquote>
 <hr>
-<h4 id="动态规划"><a href="#动态规划" class="headerlink" title="动态规划"></a>动态规划</h4><p>和之前做的最长连续子序和一样，首先先将价格转化为对比前一天的利润，即 dp[i] = dp[i] - dp[i-1]，接着就转化为求连续最长子序和这个问题了。<br>代码如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxProfit</span><span class="params">(<span class="keyword">int</span>[] prices)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(prices.length == <span class="number">0</span> )</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> []dp = <span class="keyword">new</span> <span class="keyword">int</span>[prices.length];</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span> ; i &lt; prices.length; i++)</span><br><span class="line">        dp[i] = prices[i] - prices[i - <span class="number">1</span>];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> thisSum = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> maxSum = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; prices.length; i++)&#123;</span><br><span class="line">        thisSum += dp[i];</span><br><span class="line">        <span class="keyword">if</span>(thisSum &lt; <span class="number">0</span>)</span><br><span class="line">            thisSum = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(thisSum &gt; maxSum)</span><br><span class="line">            maxSum = thisSum;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> maxSum;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h4 id="一次遍历"><a href="#一次遍历" class="headerlink" title="一次遍历"></a>一次遍历</h4><p>来自<a href="https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock/solution/mai-mai-gu-piao-de-zui-jia-shi-ji-by-leetcode/" target="_blank" rel="noopener">题解</a></p>
-<p>对比我自己写的，我想复杂了。<br>求最大利润的话，只用求最大价格与最小价格之间的差即可，那么可以通过一次遍历求出数组里的最大利润。<br>代码如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxProfit</span><span class="params">(<span class="keyword">int</span> prices[])</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> minprice = Integer.MAX_VALUE;</span><br><span class="line">    <span class="keyword">int</span> maxprofit = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; prices.length; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (prices[i] &lt; minprice)</span><br><span class="line">            minprice = prices[i];</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (prices[i] - minprice &gt; maxprofit)</span><br><span class="line">            maxprofit = prices[i] - minprice;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> maxprofit;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="动态规划"><a href="#动态规划" class="headerlink" title="动态规划"></a>动态规划</h4><p>和之前做的最长连续子序和一样，首先先将价格转化为对比前一天的利润，即 dp[i] = dp[i] - dp[i-1]，接着就转化为求连续最长子序和这个问题了。<br>代码如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="type">int</span> <span class="title function_">maxProfit</span><span class="params">(<span class="type">int</span>[] prices)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span>(prices.length == <span class="number">0</span> )</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="type">int</span> []dp = <span class="keyword">new</span> <span class="title class_">int</span>[prices.length];</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span> ; i &lt; prices.length; i++)</span><br><span class="line">        dp[i] = prices[i] - prices[i - <span class="number">1</span>];</span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> <span class="variable">thisSum</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">    <span class="type">int</span> <span class="variable">maxSum</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; prices.length; i++)&#123;</span><br><span class="line">        thisSum += dp[i];</span><br><span class="line">        <span class="keyword">if</span>(thisSum &lt; <span class="number">0</span>)</span><br><span class="line">            thisSum = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(thisSum &gt; maxSum)</span><br><span class="line">            maxSum = thisSum;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> maxSum;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="一次遍历"><a href="#一次遍历" class="headerlink" title="一次遍历"></a>一次遍历</h4><p>来自<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock/solution/mai-mai-gu-piao-de-zui-jia-shi-ji-by-leetcode/">题解</a></p>
+<p>对比我自己写的，我想复杂了。<br>求最大利润的话，只用求最大价格与最小价格之间的差即可，那么可以通过一次遍历求出数组里的最大利润。<br>代码如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="type">int</span> <span class="title function_">maxProfit</span><span class="params">(<span class="type">int</span> prices[])</span> &#123;</span><br><span class="line">    <span class="type">int</span> <span class="variable">minprice</span> <span class="operator">=</span> Integer.MAX_VALUE;</span><br><span class="line">    <span class="type">int</span> <span class="variable">maxprofit</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; prices.length; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (prices[i] &lt; minprice)</span><br><span class="line">            minprice = prices[i];</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (prices[i] - minprice &gt; maxprofit)</span><br><span class="line">            maxprofit = prices[i] - minprice;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> maxprofit;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 
     </div>
 
@@ -301,7 +302,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>Post link: </strong>
-    <a href="http://yorxika.github.io/2019/11/18/买卖股票的最佳时机/" title="买卖股票的最佳时机">http://yorxika.github.io/2019/11/18/买卖股票的最佳时机/</a>
+    <a href="http://yorxika.github.io/2019/11/18/%E4%B9%B0%E5%8D%96%E8%82%A1%E7%A5%A8%E7%9A%84%E6%9C%80%E4%BD%B3%E6%97%B6%E6%9C%BA/" title="买卖股票的最佳时机">http://yorxika.github.io/2019/11/18/买卖股票的最佳时机/</a>
   </li>
   <li class="post-copyright-license">
     <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.
@@ -313,7 +314,7 @@
       <footer class="post-footer">
           
           <div class="post-tags">
-              <a href="/tags/动态规划/" rel="tag"><i class="fa fa-tag"></i> 动态规划</a>
+              <a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" rel="tag"><i class="fa fa-tag"></i> 动态规划</a>
               <a href="/tags/Leetcode/" rel="tag"><i class="fa fa-tag"></i> Leetcode</a>
           </div>
 
@@ -323,11 +324,11 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2019/11/18/矩阵置零/" rel="prev" title="矩阵置零">
+    <a href="/2019/11/18/%E7%9F%A9%E9%98%B5%E7%BD%AE%E9%9B%B6/" rel="prev" title="矩阵置零">
       <i class="fa fa-chevron-left"></i> 矩阵置零
     </a></div>
       <div class="post-nav-item">
-    <a href="/2019/11/18/三角形最小路径和/" rel="next" title="三角形最小路径和">
+    <a href="/2019/11/18/%E4%B8%89%E8%A7%92%E5%BD%A2%E6%9C%80%E5%B0%8F%E8%B7%AF%E5%BE%84%E5%92%8C/" rel="next" title="三角形最小路径和">
       三角形最小路径和 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
@@ -389,7 +390,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#动态规划"><span class="nav-number">1.</span> <span class="nav-text">动态规划</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#一次遍历"><span class="nav-number">2.</span> <span class="nav-text">一次遍历</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92"><span class="nav-number">1.</span> <span class="nav-text">动态规划</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%80%E6%AC%A1%E9%81%8D%E5%8E%86"><span class="nav-number">2.</span> <span class="nav-text">一次遍历</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -464,12 +465,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">956k</span>
+    <span title="Symbols count total">968k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">14:29</span>
+    <span title="Reading time total">14:40</span>
 </div><script color="255,255,255" opacity="0.5" zIndex="-1" count="180" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
 
         
@@ -489,9 +490,19 @@
   <script src="/lib/anime.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
-<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
 <script src="/js/schemes/pisces.js"></script>
-<script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
 
 
 
@@ -500,7 +511,9 @@
 
 
 
-  <script src="/js/local-search.js"></script>
+  
+<script src="/js/local-search.js"></script>
+
 
 
 

@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 3.9.0">
+<meta name="generator" content="Hexo 6.3.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
@@ -23,21 +23,23 @@
   </script>
 
   <meta name="description" content="来源Leetcode第39题组合总和  给定一个无重复元素的数组 candidates 和一个目标数 target ，找出 candidates 中所有可以使数字和为 target 的组合。 candidates 中的数字可以无限制重复被选取。">
-<meta name="keywords" content="Leetcode,回溯,剪枝">
 <meta property="og:type" content="article">
 <meta property="og:title" content="组合总和">
-<meta property="og:url" content="http://yorxika.github.io/2019/10/26/组合总和/index.html">
+<meta property="og:url" content="http://yorxika.github.io/2019/10/26/%E7%BB%84%E5%90%88%E6%80%BB%E5%92%8C/index.html">
 <meta property="og:site_name" content="Nameless Site">
 <meta property="og:description" content="来源Leetcode第39题组合总和  给定一个无重复元素的数组 candidates 和一个目标数 target ，找出 candidates 中所有可以使数字和为 target 的组合。 candidates 中的数字可以无限制重复被选取。">
-<meta property="og:locale" content="en">
+<meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://pic.leetcode-cn.com/ade93b4f0678b2b1385ad1362ff426ce0a5a800a5b0ae07dfb65f58677374559-39-3.png">
-<meta property="og:updated_time" content="2019-12-12T13:04:53.000Z">
+<meta property="article:published_time" content="2019-10-26T11:13:07.000Z">
+<meta property="article:modified_time" content="2019-12-12T13:04:53.000Z">
+<meta property="article:author" content="HMF">
+<meta property="article:tag" content="Leetcode">
+<meta property="article:tag" content="回溯">
+<meta property="article:tag" content="剪枝">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="组合总和">
-<meta name="twitter:description" content="来源Leetcode第39题组合总和  给定一个无重复元素的数组 candidates 和一个目标数 target ，找出 candidates 中所有可以使数字和为 target 的组合。 candidates 中的数字可以无限制重复被选取。">
 <meta name="twitter:image" content="https://pic.leetcode-cn.com/ade93b4f0678b2b1385ad1362ff426ce0a5a800a5b0ae07dfb65f58677374559-39-3.png">
 
-<link rel="canonical" href="http://yorxika.github.io/2019/10/26/组合总和/">
+<link rel="canonical" href="http://yorxika.github.io/2019/10/26/%E7%BB%84%E5%90%88%E6%80%BB%E5%92%8C/">
 
 
 <script id="page-configurations">
@@ -202,7 +204,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yorxika.github.io/2019/10/26/组合总和/">
+    <link itemprop="mainEntityOfPage" href="http://yorxika.github.io/2019/10/26/%E7%BB%84%E5%90%88%E6%80%BB%E5%92%8C/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/touxiang.jpg">
@@ -240,15 +242,15 @@
               </span>
               <span class="post-meta-item-text">In</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
+                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
                 </span>
                   , 
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/Leetcode/" itemprop="url" rel="index"><span itemprop="name">Leetcode</span></a>
+                  <a href="/categories/%E7%AE%97%E6%B3%95/Leetcode/" itemprop="url" rel="index"><span itemprop="name">Leetcode</span></a>
                 </span>
                   , 
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/Leetcode/数学/" itemprop="url" rel="index"><span itemprop="name">数学</span></a>
+                  <a href="/categories/%E7%AE%97%E6%B3%95/Leetcode/%E6%95%B0%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">数学</span></a>
                 </span>
             </span>
 
@@ -280,7 +282,7 @@
         <p>来源Leetcode第39题组合总和</p>
 <blockquote>
 <p>给定一个无重复元素的数组 candidates 和一个目标数 target ，找出 candidates 中所有可以使数字和为 target 的组合。</p>
-<p>candidates 中的数字可以无限制重复被选取。<br><a id="more"></a><br>说明：</p>
+<p>candidates 中的数字可以无限制重复被选取。<br><span id="more"></span><br>说明：</p>
 <ul>
 <li>所有数字（包括 target）都是正整数。</li>
 <li>解集不能包含重复的组合。 </li>
@@ -310,8 +312,8 @@
 </ul>
 <p>总结一下：在减的过程中，得到 00 或者负数，就没有必要再走下去，所以这两种情况就分别表示成为叶子结点。此时递归结束，然后要发生回溯。</p>
 </blockquote>
-<p>代码如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> List&lt;List&lt;Integer&gt;&gt; res = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span>[] candidates;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> len;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">findCombinationSum</span><span class="params">(<span class="keyword">int</span> residue, <span class="keyword">int</span> start, Stack&lt;Integer&gt; pre)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span>(residue &lt; <span class="number">0</span>)</span><br><span class="line">			<span class="keyword">return</span>;</span><br><span class="line">        <span class="keyword">if</span> (residue == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="comment">// Java 中可变对象是引用传递，因此需要将当前 path 里的值拷贝出来</span></span><br><span class="line">            res.add(<span class="keyword">new</span> ArrayList&lt;&gt;(pre));</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 优化添加的代码2：在循环的时候做判断，尽量避免系统栈的深度</span></span><br><span class="line">        <span class="comment">// residue - candidates[i] 表示下一轮的剩余，如果下一轮的剩余都小于 0 ，就没有必要进行后面的循环了</span></span><br><span class="line">        <span class="comment">// 这一点基于原始数组是排序数组的前提，因为如果计算后面的剩余，只会越来越小</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = start; i &lt; len &amp;&amp; residue - candidates[i] &gt;= <span class="number">0</span>; i++) &#123;</span><br><span class="line">            pre.add(candidates[i]);</span><br><span class="line">            <span class="comment">// [关键]因为元素可以重复使用，这里递归传递下去的是 i 而不是 i + 1</span></span><br><span class="line">            findCombinationSum(residue - candidates[i], i, pre);</span><br><span class="line">            pre.pop();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> List&lt;List&lt;Integer&gt;&gt; combinationSum(<span class="keyword">int</span>[] candidates, <span class="keyword">int</span> target) &#123;</span><br><span class="line">        <span class="keyword">int</span> len = candidates.length;</span><br><span class="line">        <span class="keyword">if</span> (len == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> res;</span><br><span class="line">        &#125;</span><br><span class="line">        Arrays.sort(candidates);</span><br><span class="line">        <span class="keyword">this</span>.len = len;</span><br><span class="line">        <span class="keyword">this</span>.candidates = candidates;</span><br><span class="line">        findCombinationSum(target, <span class="number">0</span>, <span class="keyword">new</span> Stack&lt;&gt;());</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h3 id="栈"><a href="#栈" class="headerlink" title="栈"></a>栈</h3><p>这是没有用栈的：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> List&lt;List&lt;Integer&gt;&gt; combinationSum(<span class="keyword">int</span>[] candidates, <span class="keyword">int</span> target) &#123;</span><br><span class="line">        List&lt;List&lt;Integer&gt;&gt; res = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        Arrays.sort(candidates);</span><br><span class="line">        backtrack(candidates, target, res, <span class="number">0</span>, <span class="keyword">new</span> ArrayList&lt;Integer&gt;());</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">backtrack</span><span class="params">(<span class="keyword">int</span>[] candidates, <span class="keyword">int</span> target, List&lt;List&lt;Integer&gt;&gt; res, <span class="keyword">int</span> i, ArrayList&lt;Integer&gt; tmp_list)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (target &lt; <span class="number">0</span>) <span class="keyword">return</span>;</span><br><span class="line">        <span class="keyword">if</span> (target == <span class="number">0</span>) &#123;</span><br><span class="line">            res.add(<span class="keyword">new</span> ArrayList&lt;&gt;(tmp_list));</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> start = i; start &lt; candidates.length; start++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (target &lt; candidates[start]) <span class="keyword">break</span>;</span><br><span class="line">			<span class="comment">//从第0个元素开始进行递归</span></span><br><span class="line">            tmp_list.add(candidates[start]);</span><br><span class="line">			<span class="comment">//采用减法进行回溯</span></span><br><span class="line">            backtrack(candidates, target - candidates[start], res, start, tmp_list);</span><br><span class="line">			<span class="comment">//删去最后一个新添加的元素，然后进行下一层的回溯</span></span><br><span class="line">            tmp_list.remove(tmp_list.size() - <span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>代码如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> List&lt;List&lt;Integer&gt;&gt; res = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span>[] candidates;</span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> len;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">findCombinationSum</span><span class="params">(<span class="type">int</span> residue, <span class="type">int</span> start, Stack&lt;Integer&gt; pre)</span> &#123;</span><br><span class="line">		<span class="keyword">if</span>(residue &lt; <span class="number">0</span>)</span><br><span class="line">			<span class="keyword">return</span>;</span><br><span class="line">        <span class="keyword">if</span> (residue == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="comment">// Java 中可变对象是引用传递，因此需要将当前 path 里的值拷贝出来</span></span><br><span class="line">            res.add(<span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;(pre));</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 优化添加的代码2：在循环的时候做判断，尽量避免系统栈的深度</span></span><br><span class="line">        <span class="comment">// residue - candidates[i] 表示下一轮的剩余，如果下一轮的剩余都小于 0 ，就没有必要进行后面的循环了</span></span><br><span class="line">        <span class="comment">// 这一点基于原始数组是排序数组的前提，因为如果计算后面的剩余，只会越来越小</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> start; i &lt; len &amp;&amp; residue - candidates[i] &gt;= <span class="number">0</span>; i++) &#123;</span><br><span class="line">            pre.add(candidates[i]);</span><br><span class="line">            <span class="comment">// [关键]因为元素可以重复使用，这里递归传递下去的是 i 而不是 i + 1</span></span><br><span class="line">            findCombinationSum(residue - candidates[i], i, pre);</span><br><span class="line">            pre.pop();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> List&lt;List&lt;Integer&gt;&gt; <span class="title function_">combinationSum</span><span class="params">(<span class="type">int</span>[] candidates, <span class="type">int</span> target)</span> &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">len</span> <span class="operator">=</span> candidates.length;</span><br><span class="line">        <span class="keyword">if</span> (len == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> res;</span><br><span class="line">        &#125;</span><br><span class="line">        Arrays.sort(candidates);</span><br><span class="line">        <span class="built_in">this</span>.len = len;</span><br><span class="line">        <span class="built_in">this</span>.candidates = candidates;</span><br><span class="line">        findCombinationSum(target, <span class="number">0</span>, <span class="keyword">new</span> <span class="title class_">Stack</span>&lt;&gt;());</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="栈"><a href="#栈" class="headerlink" title="栈"></a>栈</h3><p>这是没有用栈的：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> List&lt;List&lt;Integer&gt;&gt; <span class="title function_">combinationSum</span><span class="params">(<span class="type">int</span>[] candidates, <span class="type">int</span> target)</span> &#123;</span><br><span class="line">        List&lt;List&lt;Integer&gt;&gt; res = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">        Arrays.sort(candidates);</span><br><span class="line">        backtrack(candidates, target, res, <span class="number">0</span>, <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;Integer&gt;());</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">backtrack</span><span class="params">(<span class="type">int</span>[] candidates, <span class="type">int</span> target, List&lt;List&lt;Integer&gt;&gt; res, <span class="type">int</span> i, ArrayList&lt;Integer&gt; tmp_list)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (target &lt; <span class="number">0</span>) <span class="keyword">return</span>;</span><br><span class="line">        <span class="keyword">if</span> (target == <span class="number">0</span>) &#123;</span><br><span class="line">            res.add(<span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;(tmp_list));</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">start</span> <span class="operator">=</span> i; start &lt; candidates.length; start++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (target &lt; candidates[start]) <span class="keyword">break</span>;</span><br><span class="line">			<span class="comment">//从第0个元素开始进行递归</span></span><br><span class="line">            tmp_list.add(candidates[start]);</span><br><span class="line">			<span class="comment">//采用减法进行回溯</span></span><br><span class="line">            backtrack(candidates, target - candidates[start], res, start, tmp_list);</span><br><span class="line">			<span class="comment">//删去最后一个新添加的元素，然后进行下一层的回溯</span></span><br><span class="line">            tmp_list.remove(tmp_list.size() - <span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 
     </div>
 
@@ -327,7 +329,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>Post link: </strong>
-    <a href="http://yorxika.github.io/2019/10/26/组合总和/" title="组合总和">http://yorxika.github.io/2019/10/26/组合总和/</a>
+    <a href="http://yorxika.github.io/2019/10/26/%E7%BB%84%E5%90%88%E6%80%BB%E5%92%8C/" title="组合总和">http://yorxika.github.io/2019/10/26/组合总和/</a>
   </li>
   <li class="post-copyright-license">
     <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.
@@ -340,8 +342,8 @@
           
           <div class="post-tags">
               <a href="/tags/Leetcode/" rel="tag"><i class="fa fa-tag"></i> Leetcode</a>
-              <a href="/tags/回溯/" rel="tag"><i class="fa fa-tag"></i> 回溯</a>
-              <a href="/tags/剪枝/" rel="tag"><i class="fa fa-tag"></i> 剪枝</a>
+              <a href="/tags/%E5%9B%9E%E6%BA%AF/" rel="tag"><i class="fa fa-tag"></i> 回溯</a>
+              <a href="/tags/%E5%89%AA%E6%9E%9D/" rel="tag"><i class="fa fa-tag"></i> 剪枝</a>
           </div>
 
         
@@ -350,11 +352,11 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2019/10/24/有效的数独/" rel="prev" title="有效的数独">
+    <a href="/2019/10/24/%E6%9C%89%E6%95%88%E7%9A%84%E6%95%B0%E7%8B%AC/" rel="prev" title="有效的数独">
       <i class="fa fa-chevron-left"></i> 有效的数独
     </a></div>
       <div class="post-nav-item">
-    <a href="/2019/10/26/缺失的第一个正数/" rel="next" title="缺失的第一个正数">
+    <a href="/2019/10/26/%E7%BC%BA%E5%A4%B1%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E6%AD%A3%E6%95%B0/" rel="next" title="缺失的第一个正数">
       缺失的第一个正数 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
@@ -416,7 +418,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#回溯"><span class="nav-number">1.</span> <span class="nav-text">回溯</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#栈"><span class="nav-number">2.</span> <span class="nav-text">栈</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%9E%E6%BA%AF"><span class="nav-number">1.</span> <span class="nav-text">回溯</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%88"><span class="nav-number">2.</span> <span class="nav-text">栈</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -491,12 +493,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">956k</span>
+    <span title="Symbols count total">968k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">14:29</span>
+    <span title="Reading time total">14:40</span>
 </div><script color="255,255,255" opacity="0.5" zIndex="-1" count="180" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
 
         
@@ -516,9 +518,19 @@
   <script src="/lib/anime.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
-<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
 <script src="/js/schemes/pisces.js"></script>
-<script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
 
 
 
@@ -527,7 +539,9 @@
 
 
 
-  <script src="/js/local-search.js"></script>
+  
+<script src="/js/local-search.js"></script>
+
 
 
 

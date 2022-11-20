@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 3.9.0">
+<meta name="generator" content="Hexo 6.3.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
@@ -22,22 +22,23 @@
     var CONFIG = {"hostname":"yorxika.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="来源Leetcode第229题求众数II 给定一个大小为 n 的数组，找出其中所有出现超过 ⌊ n/3 ⌋ 次的元素。">
-<meta name="keywords" content="Leetcode,投票法">
+  <meta name="description" content="来源Leetcode第229题求众数II 给定一个大小为 n 的数组，找出其中所有出现超过 ⌊ n&#x2F;3 ⌋ 次的元素。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="求众数II">
-<meta property="og:url" content="http://yorxika.github.io/2020/02/11/求众数II/index.html">
+<meta property="og:url" content="http://yorxika.github.io/2020/02/11/%E6%B1%82%E4%BC%97%E6%95%B0II/index.html">
 <meta property="og:site_name" content="Nameless Site">
-<meta property="og:description" content="来源Leetcode第229题求众数II 给定一个大小为 n 的数组，找出其中所有出现超过 ⌊ n/3 ⌋ 次的元素。">
-<meta property="og:locale" content="en">
-<meta property="og:image" content="http://yorxika.github.io/2020/02/11/求众数II/76ab0f592cceba613016d5b9c6b5eb6a5e4607dc12d50deab1de33debd4604ff.gif">
-<meta property="og:updated_time" content="2020-02-11T14:39:11.000Z">
+<meta property="og:description" content="来源Leetcode第229题求众数II 给定一个大小为 n 的数组，找出其中所有出现超过 ⌊ n&#x2F;3 ⌋ 次的元素。">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://yorxika.github.io/2020/02/11/%E6%B1%82%E4%BC%97%E6%95%B0II/76ab0f592cceba613016d5b9c6b5eb6a5e4607dc12d50deab1de33debd4604ff.gif">
+<meta property="article:published_time" content="2020-02-11T14:16:14.000Z">
+<meta property="article:modified_time" content="2020-02-11T14:39:11.000Z">
+<meta property="article:author" content="HMF">
+<meta property="article:tag" content="Leetcode">
+<meta property="article:tag" content="投票法">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="求众数II">
-<meta name="twitter:description" content="来源Leetcode第229题求众数II 给定一个大小为 n 的数组，找出其中所有出现超过 ⌊ n/3 ⌋ 次的元素。">
-<meta name="twitter:image" content="http://yorxika.github.io/2020/02/11/求众数II/76ab0f592cceba613016d5b9c6b5eb6a5e4607dc12d50deab1de33debd4604ff.gif">
+<meta name="twitter:image" content="http://yorxika.github.io/2020/02/11/%E6%B1%82%E4%BC%97%E6%95%B0II/76ab0f592cceba613016d5b9c6b5eb6a5e4607dc12d50deab1de33debd4604ff.gif">
 
-<link rel="canonical" href="http://yorxika.github.io/2020/02/11/求众数II/">
+<link rel="canonical" href="http://yorxika.github.io/2020/02/11/%E6%B1%82%E4%BC%97%E6%95%B0II/">
 
 
 <script id="page-configurations">
@@ -202,7 +203,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yorxika.github.io/2020/02/11/求众数II/">
+    <link itemprop="mainEntityOfPage" href="http://yorxika.github.io/2020/02/11/%E6%B1%82%E4%BC%97%E6%95%B0II/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/touxiang.jpg">
@@ -234,15 +235,15 @@
               </span>
               <span class="post-meta-item-text">In</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
+                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
                 </span>
                   , 
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/Leetcode/" itemprop="url" rel="index"><span itemprop="name">Leetcode</span></a>
+                  <a href="/categories/%E7%AE%97%E6%B3%95/Leetcode/" itemprop="url" rel="index"><span itemprop="name">Leetcode</span></a>
                 </span>
                   , 
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/Leetcode/数组/" itemprop="url" rel="index"><span itemprop="name">数组</span></a>
+                  <a href="/categories/%E7%AE%97%E6%B3%95/Leetcode/%E6%95%B0%E7%BB%84/" itemprop="url" rel="index"><span itemprop="name">数组</span></a>
                 </span>
             </span>
 
@@ -252,7 +253,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>1.9k</span>
+              <span>2k</span>
             </span>
             <span class="post-meta-item" title="Reading time">
               <span class="post-meta-item-icon">
@@ -272,20 +273,20 @@
 
       
         <p>来源Leetcode第229题求众数II</p>
-<p>给定一个大小为 <em>n</em> 的数组，找出其中所有出现超过 <code>⌊ n/3 ⌋</code> 次的元素。<br><a id="more"></a><br><strong>说明:</strong> 要求算法的时间复杂度为 O(n)，空间复杂度为 O(1)。</p>
+<p>给定一个大小为 <em>n</em> 的数组，找出其中所有出现超过 <code>⌊ n/3 ⌋</code> 次的元素。<br><span id="more"></span><br><strong>说明:</strong> 要求算法的时间复杂度为 O(n)，空间复杂度为 O(1)。</p>
 <p><strong>示例 1:</strong></p>
-<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: [<span class="number">3</span>,<span class="number">2</span>,<span class="number">3</span>]</span><br><span class="line">输出: [<span class="number">3</span>]</span><br></pre></td></tr></table></figure>
+<figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: <span class="comment">[3,2,3]</span></span><br><span class="line">输出: <span class="comment">[3]</span></span><br></pre></td></tr></table></figure>
 <hr>
 <h3 id="HashMap"><a href="#HashMap" class="headerlink" title="HashMap"></a>HashMap</h3><p>如果无视了题目的要求，直接无脑上HashMap，那么这题非常简单，对数组一次遍历，将其出现次数存入Map，然后在对Map做一次遍历，取出里面的众数。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> List&lt;Integer&gt; <span class="title">majorityElement</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">    List&lt;Integer&gt; ans = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">    <span class="keyword">if</span>(nums.length == <span class="number">0</span> || nums == <span class="keyword">null</span>)</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    HashMap&lt;Integer,Integer&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">    <span class="keyword">int</span> times = nums.length / <span class="number">3</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length; i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(!map.containsKey(nums[i]))&#123;</span><br><span class="line">            map.put(nums[i],<span class="number">1</span>);</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            map.put(nums[i],map.get(nums[i]) + <span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//Map.Entry&lt;Integer,Integer&gt; entry = null;</span></span><br><span class="line">    <span class="keyword">for</span>(Map.Entry&lt;Integer , Integer&gt; entry : map.entrySet())&#123;</span><br><span class="line">        <span class="keyword">if</span>(entry.getValue() &gt; times)</span><br><span class="line">            ans.add(entry.getKey());</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="摩尔投票法"><a href="#摩尔投票法" class="headerlink" title="摩尔投票法"></a>摩尔投票法</h3><p>来自<a href="https://www.cs.utexas.edu/~moore/best-ideas/mjrty/index.html" target="_blank" rel="noopener">网站</a></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> List&lt;Integer&gt; <span class="title function_">majorityElement</span><span class="params">(<span class="type">int</span>[] nums)</span> &#123;</span><br><span class="line">    List&lt;Integer&gt; ans = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">    <span class="keyword">if</span>(nums.length == <span class="number">0</span> || nums == <span class="literal">null</span>)</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    HashMap&lt;Integer,Integer&gt; map = <span class="keyword">new</span> <span class="title class_">HashMap</span>&lt;&gt;();</span><br><span class="line">    <span class="type">int</span> <span class="variable">times</span> <span class="operator">=</span> nums.length / <span class="number">3</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; nums.length; i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(!map.containsKey(nums[i]))&#123;</span><br><span class="line">            map.put(nums[i],<span class="number">1</span>);</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            map.put(nums[i],map.get(nums[i]) + <span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//Map.Entry&lt;Integer,Integer&gt; entry = null;</span></span><br><span class="line">    <span class="keyword">for</span>(Map.Entry&lt;Integer , Integer&gt; entry : map.entrySet())&#123;</span><br><span class="line">        <span class="keyword">if</span>(entry.getValue() &gt; times)</span><br><span class="line">            ans.add(entry.getKey());</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="摩尔投票法"><a href="#摩尔投票法" class="headerlink" title="摩尔投票法"></a>摩尔投票法</h3><p>来自<a target="_blank" rel="noopener" href="https://www.cs.utexas.edu/~moore/best-ideas/mjrty/index.html">网站</a></p>
 <p>选票情况为：<br>A A A C C B B C C C B C C<br>结果应该是<code>C</code></p>
 <ul>
-<li>算法执行过程<br><img src="/2020/02/11/求众数II/76ab0f592cceba613016d5b9c6b5eb6a5e4607dc12d50deab1de33debd4604ff.gif" alt="img"></li>
+<li>算法执行过程<br><img src="/2020/02/11/%E6%B1%82%E4%BC%97%E6%95%B0II/76ab0f592cceba613016d5b9c6b5eb6a5e4607dc12d50deab1de33debd4604ff.gif" alt="img"></li>
 </ul>
 <p>因为可能会产生两名。所以候选人cand<em>c<strong>a</strong>n**d</em>与计数cnt<em>c<strong>n</strong>t</em>都转成相应的数组形式cands<em>c<strong>a</strong>n<strong>d</strong>s</em>与cnts<em>c<strong>n</strong>t**s</em>，长度都为2。<br>第一阶段成对抵销时，<code>cands[0]</code>与<code>cands[1]</code>的选票不相互抵销，即如果代表将票投给了<code>cands[0]</code>，则<code>cands[1]</code>对应的<code>cnts[1]</code>的值不变化。<br>投给<code>cands[1]</code>也是同样的道理。这样就转化成摩尔投票法的原始情形了。<br>第二阶段计数时，除了要判断两个候选的票数是否超过三分之一，还需判断两个候选是否相同。</p>
 <p>至多选出m个代表，每个选票数大于n / (m + 1)，只需要将判断最后候选是否相同代码进行修改即可。</p>
-<pre><code class="lang-JAVA">    public List&lt;Integer&gt; majorityElement(int[] nums) {
+<pre><code class="lang-JAVA">    public List&lt;Integer&gt; majorityElement(int[] nums) &#123;
         List&lt;Integer&gt; ans = new ArrayList&lt;&gt;();
         if(nums.length == 0 || nums == null)
             return ans;
@@ -297,48 +298,48 @@
         int countB = 0;
 
         //遍历数组
-        for (int num : nums) {
-            if (num == candidateA) {
+        for (int num : nums) &#123;
+            if (num == candidateA) &#123;
                 countA++;//投A
                 continue;
-            }
-            if (num == candidateB) {
+            &#125;
+            if (num == candidateB) &#123;
                 countB++;//投B
                 continue;
-            }
+            &#125;
 
             //此时当前值和AB都不等，检查是否有票数减为0的情况，如果为0，则更新候选人
-            if (countA == 0) {
+            if (countA == 0) &#123;
                 candidateA = num;
                 countA++;
                 continue;
-            }
-            if (countB == 0) {
+            &#125;
+            if (countB == 0) &#123;
                 candidateB = num;
                 countB++;
                 continue;
-            }
+            &#125;
             //若此时两个候选人的票数都不为0，且当前元素不投AB，那么A,B对应的票数都要--;
             countA--;
             countB--;
-        }
+        &#125;
 
         //上一轮遍历找出了两个候选人，但是这两个候选人是否均满足票数大于N/3仍然没法确定，需要重新遍历，确定票数
         countA = 0;
         countB = 0;
-        for (int num : nums) {
+        for (int num : nums) &#123;
             if (num == candidateA)
                 countA++;
             else if (num == candidateB)
                 countB++;
-        }
+        &#125;
         if (countA &gt; nums.length / 3)
             ans.add(candidateA);
         if (countB &gt; nums.length / 3)
             ans.add(candidateB);
 
         return ans;
-    }
+    &#125;
 </code></pre>
 
     </div>
@@ -355,7 +356,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>Post link: </strong>
-    <a href="http://yorxika.github.io/2020/02/11/求众数II/" title="求众数II">http://yorxika.github.io/2020/02/11/求众数II/</a>
+    <a href="http://yorxika.github.io/2020/02/11/%E6%B1%82%E4%BC%97%E6%95%B0II/" title="求众数II">http://yorxika.github.io/2020/02/11/求众数II/</a>
   </li>
   <li class="post-copyright-license">
     <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.
@@ -368,7 +369,7 @@
           
           <div class="post-tags">
               <a href="/tags/Leetcode/" rel="tag"><i class="fa fa-tag"></i> Leetcode</a>
-              <a href="/tags/投票法/" rel="tag"><i class="fa fa-tag"></i> 投票法</a>
+              <a href="/tags/%E6%8A%95%E7%A5%A8%E6%B3%95/" rel="tag"><i class="fa fa-tag"></i> 投票法</a>
           </div>
 
         
@@ -377,11 +378,11 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2020/02/11/二的幂/" rel="prev" title="二的幂">
+    <a href="/2020/02/11/%E4%BA%8C%E7%9A%84%E5%B9%82/" rel="prev" title="二的幂">
       <i class="fa fa-chevron-left"></i> 二的幂
     </a></div>
       <div class="post-nav-item">
-    <a href="/2020/02/11/用栈实现队列/" rel="next" title="用栈实现队列">
+    <a href="/2020/02/11/%E7%94%A8%E6%A0%88%E5%AE%9E%E7%8E%B0%E9%98%9F%E5%88%97/" rel="next" title="用栈实现队列">
       用栈实现队列 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
@@ -443,7 +444,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#HashMap"><span class="nav-number">1.</span> <span class="nav-text">HashMap</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#摩尔投票法"><span class="nav-number">2.</span> <span class="nav-text">摩尔投票法</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#HashMap"><span class="nav-number">1.</span> <span class="nav-text">HashMap</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%91%A9%E5%B0%94%E6%8A%95%E7%A5%A8%E6%B3%95"><span class="nav-number">2.</span> <span class="nav-text">摩尔投票法</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -518,12 +519,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">956k</span>
+    <span title="Symbols count total">968k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">14:29</span>
+    <span title="Reading time total">14:40</span>
 </div><script color="255,255,255" opacity="0.5" zIndex="-1" count="180" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
 
         
@@ -543,9 +544,19 @@
   <script src="/lib/anime.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
-<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
 <script src="/js/schemes/pisces.js"></script>
-<script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
 
 
 
@@ -554,7 +565,9 @@
 
 
 
-  <script src="/js/local-search.js"></script>
+  
+<script src="/js/local-search.js"></script>
+
 
 
 

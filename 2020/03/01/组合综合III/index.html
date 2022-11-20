@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 3.9.0">
+<meta name="generator" content="Hexo 6.3.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
@@ -23,19 +23,19 @@
   </script>
 
   <meta name="description" content="来源Leetcode第216题组合综合III 找出所有相加之和为 n 的 k\ 个数的组合。\组合中只允许含有 1 - 9 的正整数，并且每种组合中不存在重复的数字。 说明：  所有数字都是正整数。  解集不能包含重复的组合。">
-<meta name="keywords" content="回溯">
 <meta property="og:type" content="article">
 <meta property="og:title" content="组合综合III">
-<meta property="og:url" content="http://yorxika.github.io/2020/03/01/组合综合III/index.html">
+<meta property="og:url" content="http://yorxika.github.io/2020/03/01/%E7%BB%84%E5%90%88%E7%BB%BC%E5%90%88III/index.html">
 <meta property="og:site_name" content="Nameless Site">
 <meta property="og:description" content="来源Leetcode第216题组合综合III 找出所有相加之和为 n 的 k\ 个数的组合。\组合中只允许含有 1 - 9 的正整数，并且每种组合中不存在重复的数字。 说明：  所有数字都是正整数。  解集不能包含重复的组合。">
-<meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2020-03-01T15:42:10.000Z">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-03-01T15:40:26.000Z">
+<meta property="article:modified_time" content="2020-03-01T15:42:10.000Z">
+<meta property="article:author" content="HMF">
+<meta property="article:tag" content="回溯">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="组合综合III">
-<meta name="twitter:description" content="来源Leetcode第216题组合综合III 找出所有相加之和为 n 的 k\ 个数的组合。\组合中只允许含有 1 - 9 的正整数，并且每种组合中不存在重复的数字。 说明：  所有数字都是正整数。  解集不能包含重复的组合。">
 
-<link rel="canonical" href="http://yorxika.github.io/2020/03/01/组合综合III/">
+<link rel="canonical" href="http://yorxika.github.io/2020/03/01/%E7%BB%84%E5%90%88%E7%BB%BC%E5%90%88III/">
 
 
 <script id="page-configurations">
@@ -200,7 +200,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yorxika.github.io/2020/03/01/组合综合III/">
+    <link itemprop="mainEntityOfPage" href="http://yorxika.github.io/2020/03/01/%E7%BB%84%E5%90%88%E7%BB%BC%E5%90%88III/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/touxiang.jpg">
@@ -232,15 +232,15 @@
               </span>
               <span class="post-meta-item-text">In</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
+                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
                 </span>
                   , 
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/Leetcode/" itemprop="url" rel="index"><span itemprop="name">Leetcode</span></a>
+                  <a href="/categories/%E7%AE%97%E6%B3%95/Leetcode/" itemprop="url" rel="index"><span itemprop="name">Leetcode</span></a>
                 </span>
                   , 
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/Leetcode/数组/" itemprop="url" rel="index"><span itemprop="name">数组</span></a>
+                  <a href="/categories/%E7%AE%97%E6%B3%95/Leetcode/%E6%95%B0%E7%BB%84/" itemprop="url" rel="index"><span itemprop="name">数组</span></a>
                 </span>
             </span>
 
@@ -276,13 +276,13 @@
 <li><p>所有数字都是正整数。</p>
 </li>
 <li><p>解集不能包含重复的组合。</p>
-<a id="more"></a>
+<span id="more"></span>
 <p><strong>示例 1:</strong></p>
-<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: k = <span class="number">3</span>, n = <span class="number">7</span></span><br><span class="line">输出: [[<span class="number">1</span>,<span class="number">2</span>,<span class="number">4</span>]]</span><br></pre></td></tr></table></figure>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: k = <span class="number">3</span>, n = <span class="number">7</span></span><br><span class="line">输出: <span class="string">[[1,2,4]]</span></span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 <hr>
-<h3 id="回溯"><a href="#回溯" class="headerlink" title="回溯"></a>回溯</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">List&lt;List&lt;Integer&gt;&gt; ans = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line"><span class="keyword">public</span> List&lt;List&lt;Integer&gt;&gt; combinationSum3(<span class="keyword">int</span> k, <span class="keyword">int</span> n) &#123;</span><br><span class="line">    <span class="comment">//List&lt;Integer&gt; tmp = new ArrayList&lt;&gt;();</span></span><br><span class="line">    backtrack(<span class="number">1</span>,n,k,<span class="keyword">new</span> ArrayList&lt;&gt;());</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">backtrack</span><span class="params">(<span class="keyword">int</span> start,<span class="keyword">int</span> target ,<span class="keyword">int</span> k,List&lt;Integer&gt; tmp)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(tmp.size() &gt; k || target &lt; <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    <span class="keyword">if</span>(target == <span class="number">0</span> &amp;&amp; tmp.size() == k) &#123;</span><br><span class="line">        ans.add(<span class="keyword">new</span> ArrayList&lt;&gt;(tmp));</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = start; i &lt; <span class="number">10</span>; i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(target &lt; start)</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        tmp.add(i);</span><br><span class="line">        backtrack(i+<span class="number">1</span>,target-i,k,tmp);</span><br><span class="line">        tmp.remove(tmp.size() - <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="回溯"><a href="#回溯" class="headerlink" title="回溯"></a>回溯</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">List&lt;List&lt;Integer&gt;&gt; ans = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line"><span class="keyword">public</span> List&lt;List&lt;Integer&gt;&gt; <span class="title function_">combinationSum3</span><span class="params">(<span class="type">int</span> k, <span class="type">int</span> n)</span> &#123;</span><br><span class="line">    <span class="comment">//List&lt;Integer&gt; tmp = new ArrayList&lt;&gt;();</span></span><br><span class="line">    backtrack(<span class="number">1</span>,n,k,<span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;());</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> <span class="title function_">backtrack</span><span class="params">(<span class="type">int</span> start,<span class="type">int</span> target ,<span class="type">int</span> k,List&lt;Integer&gt; tmp)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(tmp.size() &gt; k || target &lt; <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    <span class="keyword">if</span>(target == <span class="number">0</span> &amp;&amp; tmp.size() == k) &#123;</span><br><span class="line">        ans.add(<span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;(tmp));</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> start; i &lt; <span class="number">10</span>; i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(target &lt; start)</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        tmp.add(i);</span><br><span class="line">        backtrack(i+<span class="number">1</span>,target-i,k,tmp);</span><br><span class="line">        tmp.remove(tmp.size() - <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
     </div>
 
     
@@ -297,7 +297,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>Post link: </strong>
-    <a href="http://yorxika.github.io/2020/03/01/组合综合III/" title="组合综合III">http://yorxika.github.io/2020/03/01/组合综合III/</a>
+    <a href="http://yorxika.github.io/2020/03/01/%E7%BB%84%E5%90%88%E7%BB%BC%E5%90%88III/" title="组合综合III">http://yorxika.github.io/2020/03/01/组合综合III/</a>
   </li>
   <li class="post-copyright-license">
     <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.
@@ -309,7 +309,7 @@
       <footer class="post-footer">
           
           <div class="post-tags">
-              <a href="/tags/回溯/" rel="tag"><i class="fa fa-tag"></i> 回溯</a>
+              <a href="/tags/%E5%9B%9E%E6%BA%AF/" rel="tag"><i class="fa fa-tag"></i> 回溯</a>
           </div>
 
         
@@ -318,11 +318,11 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2020/03/01/“完全二叉树的结点个数”/" rel="prev" title="完全二叉树的结点个数">
+    <a href="/2020/03/01/%E2%80%9C%E5%AE%8C%E5%85%A8%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E7%BB%93%E7%82%B9%E4%B8%AA%E6%95%B0%E2%80%9D/" rel="prev" title="完全二叉树的结点个数">
       <i class="fa fa-chevron-left"></i> 完全二叉树的结点个数
     </a></div>
       <div class="post-nav-item">
-    <a href="/2020/03/02/二叉树最近的公共祖先/" rel="next" title="二叉树最近的公共祖先">
+    <a href="/2020/03/02/%E4%BA%8C%E5%8F%89%E6%A0%91%E6%9C%80%E8%BF%91%E7%9A%84%E5%85%AC%E5%85%B1%E7%A5%96%E5%85%88/" rel="next" title="二叉树最近的公共祖先">
       二叉树最近的公共祖先 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
@@ -384,7 +384,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#回溯"><span class="nav-number">1.</span> <span class="nav-text">回溯</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%9E%E6%BA%AF"><span class="nav-number">1.</span> <span class="nav-text">回溯</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -459,12 +459,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">956k</span>
+    <span title="Symbols count total">968k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">14:29</span>
+    <span title="Reading time total">14:40</span>
 </div><script color="255,255,255" opacity="0.5" zIndex="-1" count="180" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
 
         
@@ -484,9 +484,19 @@
   <script src="/lib/anime.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
-<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
 <script src="/js/schemes/pisces.js"></script>
-<script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
 
 
 
@@ -495,7 +505,9 @@
 
 
 
-  <script src="/js/local-search.js"></script>
+  
+<script src="/js/local-search.js"></script>
+
 
 
 

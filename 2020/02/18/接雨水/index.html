@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 3.9.0">
+<meta name="generator" content="Hexo 6.3.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
@@ -23,21 +23,21 @@
   </script>
 
   <meta name="description" content="来源Leetcode第42题接雨水 给定 n 个非负整数表示每个宽度为 1 的柱子的高度图，计算按此排列的柱子，下雨之后能接多少雨水。">
-<meta name="keywords" content="双指针">
 <meta property="og:type" content="article">
 <meta property="og:title" content="接雨水">
-<meta property="og:url" content="http://yorxika.github.io/2020/02/18/接雨水/index.html">
+<meta property="og:url" content="http://yorxika.github.io/2020/02/18/%E6%8E%A5%E9%9B%A8%E6%B0%B4/index.html">
 <meta property="og:site_name" content="Nameless Site">
 <meta property="og:description" content="来源Leetcode第42题接雨水 给定 n 个非负整数表示每个宽度为 1 的柱子的高度图，计算按此排列的柱子，下雨之后能接多少雨水。">
-<meta property="og:locale" content="en">
-<meta property="og:image" content="http://yorxika.github.io/2020/02/18/接雨水/rainwatertrap.png">
-<meta property="og:updated_time" content="2020-04-04T06:29:14.000Z">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://yorxika.github.io/2020/02/18/%E6%8E%A5%E9%9B%A8%E6%B0%B4/rainwatertrap.png">
+<meta property="article:published_time" content="2020-02-17T16:18:37.000Z">
+<meta property="article:modified_time" content="2020-04-04T06:29:14.000Z">
+<meta property="article:author" content="HMF">
+<meta property="article:tag" content="双指针">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="接雨水">
-<meta name="twitter:description" content="来源Leetcode第42题接雨水 给定 n 个非负整数表示每个宽度为 1 的柱子的高度图，计算按此排列的柱子，下雨之后能接多少雨水。">
-<meta name="twitter:image" content="http://yorxika.github.io/2020/02/18/接雨水/rainwatertrap.png">
+<meta name="twitter:image" content="http://yorxika.github.io/2020/02/18/%E6%8E%A5%E9%9B%A8%E6%B0%B4/rainwatertrap.png">
 
-<link rel="canonical" href="http://yorxika.github.io/2020/02/18/接雨水/">
+<link rel="canonical" href="http://yorxika.github.io/2020/02/18/%E6%8E%A5%E9%9B%A8%E6%B0%B4/">
 
 
 <script id="page-configurations">
@@ -202,7 +202,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yorxika.github.io/2020/02/18/接雨水/">
+    <link itemprop="mainEntityOfPage" href="http://yorxika.github.io/2020/02/18/%E6%8E%A5%E9%9B%A8%E6%B0%B4/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/touxiang.jpg">
@@ -240,15 +240,15 @@
               </span>
               <span class="post-meta-item-text">In</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
+                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
                 </span>
                   , 
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/Leetcode/" itemprop="url" rel="index"><span itemprop="name">Leetcode</span></a>
+                  <a href="/categories/%E7%AE%97%E6%B3%95/Leetcode/" itemprop="url" rel="index"><span itemprop="name">Leetcode</span></a>
                 </span>
                   , 
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/Leetcode/数组/" itemprop="url" rel="index"><span itemprop="name">数组</span></a>
+                  <a href="/categories/%E7%AE%97%E6%B3%95/Leetcode/%E6%95%B0%E7%BB%84/" itemprop="url" rel="index"><span itemprop="name">数组</span></a>
                 </span>
             </span>
 
@@ -278,23 +278,23 @@
 
       
         <p>来源Leetcode第42题接雨水</p>
-<p>给定 <em>n</em> 个非负整数表示每个宽度为 1 的柱子的高度图，计算按此排列的柱子，下雨之后能接多少雨水。<br><a id="more"></a><br><img src="/2020/02/18/接雨水/rainwatertrap.png" alt="img"></p>
+<p>给定 <em>n</em> 个非负整数表示每个宽度为 1 的柱子的高度图，计算按此排列的柱子，下雨之后能接多少雨水。<br><span id="more"></span><br><img src="/2020/02/18/%E6%8E%A5%E9%9B%A8%E6%B0%B4/rainwatertrap.png" alt="img"></p>
 <p>上面是由数组 [0,1,0,2,1,0,1,3,2,1,2,1] 表示的高度图，在这种情况下，可以接 6 个单位的雨水（蓝色部分表示雨水）。 <strong>感谢 Marcos</strong> 贡献此图。</p>
 <p><strong>示例:</strong></p>
-<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: [<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">2</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">3</span>,<span class="number">2</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">1</span>]</span><br><span class="line">输出: <span class="number">6</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight dns"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: [<span class="number">0,1,0,2</span>,<span class="number">1,0,1,3</span>,<span class="number">2,1,2,1</span>]</span><br><span class="line">输出: <span class="number">6</span></span><br></pre></td></tr></table></figure>
 <hr>
 <h3 id="找短板"><a href="#找短板" class="headerlink" title="找短板"></a>找短板</h3><p>对每一个要求的位置，寻找左右两边最高的列，然后取较小的，如果较小列大于当前列，就可以装水。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">trap</span><span class="params">(<span class="keyword">int</span>[] height)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(height.length == <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span> ; i &lt; height.length - <span class="number">1</span> ; i++)&#123;</span><br><span class="line">        <span class="comment">//最两端的列不用考虑，因为一定不会有水。</span></span><br><span class="line">        <span class="keyword">int</span> left_max = <span class="number">0</span>,right_max = <span class="number">0</span>;</span><br><span class="line">        <span class="comment">//找出左边最高的列</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = i - <span class="number">1</span>; j &gt;= <span class="number">0</span>; j--)</span><br><span class="line">            left_max = Math.max(left_max,height[j]);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = i + <span class="number">1</span>; j &lt; height.length; j++)</span><br><span class="line">            right_max = Math.max(right_max,height[j]);</span><br><span class="line">        <span class="keyword">int</span> min = Math.min(left_max,right_max);</span><br><span class="line">        <span class="keyword">if</span>(min &gt; height[i])</span><br><span class="line">            sum += min - height[i];  <span class="comment">//只有较小的一段大于当前列的高度才会有水</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> sum;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="动态规划"><a href="#动态规划" class="headerlink" title="动态规划"></a>动态规划</h3><p><a href="https://leetcode-cn.com/problems/trapping-rain-water/solution/xiang-xi-tong-su-de-si-lu-fen-xi-duo-jie-fa-by-w-8/" target="_blank" rel="noopener">来源</a></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="type">int</span> <span class="title function_">trap</span><span class="params">(<span class="type">int</span>[] height)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span>(height.length == <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="type">int</span> <span class="variable">sum</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span> ; i &lt; height.length - <span class="number">1</span> ; i++)&#123;</span><br><span class="line">        <span class="comment">//最两端的列不用考虑，因为一定不会有水。</span></span><br><span class="line">        <span class="type">int</span> <span class="variable">left_max</span> <span class="operator">=</span> <span class="number">0</span>,right_max = <span class="number">0</span>;</span><br><span class="line">        <span class="comment">//找出左边最高的列</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> i - <span class="number">1</span>; j &gt;= <span class="number">0</span>; j--)</span><br><span class="line">            left_max = Math.max(left_max,height[j]);</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> i + <span class="number">1</span>; j &lt; height.length; j++)</span><br><span class="line">            right_max = Math.max(right_max,height[j]);</span><br><span class="line">        <span class="type">int</span> <span class="variable">min</span> <span class="operator">=</span> Math.min(left_max,right_max);</span><br><span class="line">        <span class="keyword">if</span>(min &gt; height[i])</span><br><span class="line">            sum += min - height[i];  <span class="comment">//只有较小的一段大于当前列的高度才会有水</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> sum;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="动态规划"><a href="#动态规划" class="headerlink" title="动态规划"></a>动态规划</h3><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/trapping-rain-water/solution/xiang-xi-tong-su-de-si-lu-fen-xi-duo-jie-fa-by-w-8/">来源</a></p>
 <p>对于每一列，我们求它左边最高的墙和右边最高的墙，都是重新遍历一遍所有高度，这里我们可以优化一下。</p>
 <p>首先用两个数组，<code>max_left [i]</code>代表第 <code>i</code> 列左边最高的墙的高度，<code>max_right[i]</code> 代表第 <code>i</code> 列右边最高的墙的高度。（一定要注意下，第 i 列左（右）边最高的墙，是不包括自身的，和 leetcode 上边的讲的有些不同）</p>
 <p>对于 <code>max_left</code>我们其实可以这样求。</p>
 <p><code>max_left [i] = Max(max_left [i-1]</code>,<code>height[i-1])</code>。它前边的墙的左边的最高高度和它前边的墙的高度选一个较大的，就是当前列左边最高的墙了。</p>
 <p>对于 max_right我们可以这样求。</p>
 <p><code>max_right[i] = Max(max_right[i+1]</code>,<code>height[i+1])</code> 。它后边的墙的右边的最高高度和它后边的墙的高度选一个较大的，就是当前列右边最高的墙了。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">trap</span><span class="params">(<span class="keyword">int</span>[] height)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span>[] max_left = <span class="keyword">new</span> <span class="keyword">int</span>[height.length];</span><br><span class="line">    <span class="keyword">int</span>[] max_right = <span class="keyword">new</span> <span class="keyword">int</span>[height.length];</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; height.length - <span class="number">1</span>; i++) &#123;</span><br><span class="line">        max_left[i] = Math.max(max_left[i - <span class="number">1</span>], height[i - <span class="number">1</span>]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = height.length - <span class="number">2</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">        max_right[i] = Math.max(max_right[i + <span class="number">1</span>], height[i + <span class="number">1</span>]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; height.length - <span class="number">1</span>; i++) &#123;</span><br><span class="line">        <span class="keyword">int</span> min = Math.min(max_left[i], max_right[i]);</span><br><span class="line">        <span class="keyword">if</span> (min &gt; height[i]) &#123;</span><br><span class="line">            sum = sum + (min - height[i]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> sum;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="双指针"><a href="#双指针" class="headerlink" title="双指针"></a>双指针</h3><p><a href="https://leetcode-cn.com/problems/trapping-rain-water/solution/dong-tai-gui-hua-shuang-zhi-zhen-tu-jie-by-ml-zimi/" target="_blank" rel="noopener">来源</a></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">trap</span><span class="params">(<span class="keyword">int</span>[] height)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> max_left = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> max_right = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> left = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">int</span> right = height.length - <span class="number">2</span>; <span class="comment">// 加右指针进去</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; height.length - <span class="number">1</span>; i++) &#123;</span><br><span class="line">        <span class="comment">//从左到右更</span></span><br><span class="line">        <span class="keyword">if</span> (height[left - <span class="number">1</span>] &lt; height[right + <span class="number">1</span>]) &#123;</span><br><span class="line">            max_left = Math.max(max_left, height[left - <span class="number">1</span>]);</span><br><span class="line">            <span class="keyword">int</span> min = max_left;</span><br><span class="line">            <span class="keyword">if</span> (min &gt; height[left]) &#123;</span><br><span class="line">                sum = sum + (min - height[left]);</span><br><span class="line">            &#125;</span><br><span class="line">            left++;</span><br><span class="line">        <span class="comment">//从右到左更</span></span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            max_right = Math.max(max_right, height[right + <span class="number">1</span>]);</span><br><span class="line">            <span class="keyword">int</span> min = max_right;</span><br><span class="line">            <span class="keyword">if</span> (min &gt; height[right]) &#123;</span><br><span class="line">                sum = sum + (min - height[right]);</span><br><span class="line">            &#125;</span><br><span class="line">            right--;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> sum;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="type">int</span> <span class="title function_">trap</span><span class="params">(<span class="type">int</span>[] height)</span> &#123;</span><br><span class="line">    <span class="type">int</span> <span class="variable">sum</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">    <span class="type">int</span>[] max_left = <span class="keyword">new</span> <span class="title class_">int</span>[height.length];</span><br><span class="line">    <span class="type">int</span>[] max_right = <span class="keyword">new</span> <span class="title class_">int</span>[height.length];</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span>; i &lt; height.length - <span class="number">1</span>; i++) &#123;</span><br><span class="line">        max_left[i] = Math.max(max_left[i - <span class="number">1</span>], height[i - <span class="number">1</span>]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> height.length - <span class="number">2</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">        max_right[i] = Math.max(max_right[i + <span class="number">1</span>], height[i + <span class="number">1</span>]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span>; i &lt; height.length - <span class="number">1</span>; i++) &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">min</span> <span class="operator">=</span> Math.min(max_left[i], max_right[i]);</span><br><span class="line">        <span class="keyword">if</span> (min &gt; height[i]) &#123;</span><br><span class="line">            sum = sum + (min - height[i]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> sum;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="双指针"><a href="#双指针" class="headerlink" title="双指针"></a>双指针</h3><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/trapping-rain-water/solution/dong-tai-gui-hua-shuang-zhi-zhen-tu-jie-by-ml-zimi/">来源</a></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="type">int</span> <span class="title function_">trap</span><span class="params">(<span class="type">int</span>[] height)</span> &#123;</span><br><span class="line">    <span class="type">int</span> <span class="variable">sum</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">    <span class="type">int</span> <span class="variable">max_left</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">    <span class="type">int</span> <span class="variable">max_right</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">    <span class="type">int</span> <span class="variable">left</span> <span class="operator">=</span> <span class="number">1</span>;</span><br><span class="line">    <span class="type">int</span> <span class="variable">right</span> <span class="operator">=</span> height.length - <span class="number">2</span>; <span class="comment">// 加右指针进去</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span>; i &lt; height.length - <span class="number">1</span>; i++) &#123;</span><br><span class="line">        <span class="comment">//从左到右更</span></span><br><span class="line">        <span class="keyword">if</span> (height[left - <span class="number">1</span>] &lt; height[right + <span class="number">1</span>]) &#123;</span><br><span class="line">            max_left = Math.max(max_left, height[left - <span class="number">1</span>]);</span><br><span class="line">            <span class="type">int</span> <span class="variable">min</span> <span class="operator">=</span> max_left;</span><br><span class="line">            <span class="keyword">if</span> (min &gt; height[left]) &#123;</span><br><span class="line">                sum = sum + (min - height[left]);</span><br><span class="line">            &#125;</span><br><span class="line">            left++;</span><br><span class="line">        <span class="comment">//从右到左更</span></span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            max_right = Math.max(max_right, height[right + <span class="number">1</span>]);</span><br><span class="line">            <span class="type">int</span> <span class="variable">min</span> <span class="operator">=</span> max_right;</span><br><span class="line">            <span class="keyword">if</span> (min &gt; height[right]) &#123;</span><br><span class="line">                sum = sum + (min - height[right]);</span><br><span class="line">            &#125;</span><br><span class="line">            right--;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> sum;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="单调栈"><a href="#单调栈" class="headerlink" title="单调栈"></a>单调栈</h3><p>当遍历墙的高度的时候，如果当前高度小于栈顶的墙高度，说明这里会有积水，我们将墙的高度的下标入栈。</p>
 <p>如果当前高度大于栈顶的墙的高度，说明之前的积水到这里停下，我们可以计算下有多少积水了。计算完，就把当前的墙继续入栈，作为新的积水的墙。</p>
 <p>总体的原则就是，</p>
@@ -302,7 +302,7 @@
 <li>当前高度小于等于栈顶高度，入栈，指针后移。</li>
 <li>当前高度大于栈顶高度，出栈，计算出当前墙和栈顶的墙之间水的多少，然后计算当前的高度和新栈的高度的关系，重复第 2 步。直到当前墙的高度不大于栈顶高度或者栈空，然后把当前墙入栈，指针后移。</li>
 </ol>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">trap</span><span class="params">(<span class="keyword">int</span>[] height)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(height.length == <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    Stack&lt;Integer&gt; stack = <span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line">    <span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> popIndex;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span> ; i &lt; height.length ; ++i)&#123;</span><br><span class="line">        <span class="keyword">while</span> (!stack.isEmpty() &amp;&amp; height[stack.peek()] &lt; height[i])&#123;</span><br><span class="line">            <span class="comment">//单调栈</span></span><br><span class="line">            popIndex = stack.pop();</span><br><span class="line">            <span class="comment">//将栈顶元素相等的出栈</span></span><br><span class="line">            <span class="keyword">while</span> (!stack.isEmpty() &amp;&amp; height[stack.peek()] == height[popIndex])</span><br><span class="line">                stack.pop();</span><br><span class="line">            <span class="keyword">if</span>(!stack.isEmpty())&#123;</span><br><span class="line">                <span class="keyword">int</span> peekIndex = stack.peek();  <span class="comment">//栈顶</span></span><br><span class="line">                ans += (Math.min(height[stack.peek()],height[i]) - height[popIndex]) * (i - peekIndex - <span class="number">1</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        stack.push(i);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="type">int</span> <span class="title function_">trap</span><span class="params">(<span class="type">int</span>[] height)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span>(height.length == <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    Stack&lt;Integer&gt; stack = <span class="keyword">new</span> <span class="title class_">Stack</span>&lt;&gt;();</span><br><span class="line">    <span class="type">int</span> <span class="variable">ans</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">    <span class="type">int</span> popIndex;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span> ; i &lt; height.length ; ++i)&#123;</span><br><span class="line">        <span class="keyword">while</span> (!stack.isEmpty() &amp;&amp; height[stack.peek()] &lt; height[i])&#123;</span><br><span class="line">            <span class="comment">//单调栈</span></span><br><span class="line">            popIndex = stack.pop();</span><br><span class="line">            <span class="comment">//将栈顶元素相等的出栈</span></span><br><span class="line">            <span class="keyword">while</span> (!stack.isEmpty() &amp;&amp; height[stack.peek()] == height[popIndex])</span><br><span class="line">                stack.pop();</span><br><span class="line">            <span class="keyword">if</span>(!stack.isEmpty())&#123;</span><br><span class="line">                <span class="type">int</span> <span class="variable">peekIndex</span> <span class="operator">=</span> stack.peek();  <span class="comment">//栈顶</span></span><br><span class="line">                ans += (Math.min(height[stack.peek()],height[i]) - height[popIndex]) * (i - peekIndex - <span class="number">1</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        stack.push(i);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
     </div>
 
@@ -318,7 +318,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>Post link: </strong>
-    <a href="http://yorxika.github.io/2020/02/18/接雨水/" title="接雨水">http://yorxika.github.io/2020/02/18/接雨水/</a>
+    <a href="http://yorxika.github.io/2020/02/18/%E6%8E%A5%E9%9B%A8%E6%B0%B4/" title="接雨水">http://yorxika.github.io/2020/02/18/接雨水/</a>
   </li>
   <li class="post-copyright-license">
     <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.
@@ -330,7 +330,7 @@
       <footer class="post-footer">
           
           <div class="post-tags">
-              <a href="/tags/双指针/" rel="tag"><i class="fa fa-tag"></i> 双指针</a>
+              <a href="/tags/%E5%8F%8C%E6%8C%87%E9%92%88/" rel="tag"><i class="fa fa-tag"></i> 双指针</a>
           </div>
 
         
@@ -339,11 +339,11 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2020/02/17/K个一组翻转链表/" rel="prev" title="K个一组翻转链表">
+    <a href="/2020/02/17/K%E4%B8%AA%E4%B8%80%E7%BB%84%E7%BF%BB%E8%BD%AC%E9%93%BE%E8%A1%A8/" rel="prev" title="K个一组翻转链表">
       <i class="fa fa-chevron-left"></i> K个一组翻转链表
     </a></div>
       <div class="post-nav-item">
-    <a href="/2020/02/18/GTK入门学习/" rel="next" title="GTK入门学习">
+    <a href="/2020/02/18/GTK%E5%85%A5%E9%97%A8%E5%AD%A6%E4%B9%A0/" rel="next" title="GTK入门学习">
       GTK入门学习 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
@@ -405,7 +405,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#找短板"><span class="nav-number">1.</span> <span class="nav-text">找短板</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#动态规划"><span class="nav-number">2.</span> <span class="nav-text">动态规划</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#双指针"><span class="nav-number">3.</span> <span class="nav-text">双指针</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#单调栈"><span class="nav-number">4.</span> <span class="nav-text">单调栈</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%BE%E7%9F%AD%E6%9D%BF"><span class="nav-number">1.</span> <span class="nav-text">找短板</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92"><span class="nav-number">2.</span> <span class="nav-text">动态规划</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%8C%E6%8C%87%E9%92%88"><span class="nav-number">3.</span> <span class="nav-text">双指针</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%95%E8%B0%83%E6%A0%88"><span class="nav-number">4.</span> <span class="nav-text">单调栈</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -480,12 +480,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">956k</span>
+    <span title="Symbols count total">968k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">14:29</span>
+    <span title="Reading time total">14:40</span>
 </div><script color="255,255,255" opacity="0.5" zIndex="-1" count="180" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
 
         
@@ -505,9 +505,19 @@
   <script src="/lib/anime.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
-<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
 <script src="/js/schemes/pisces.js"></script>
-<script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
 
 
 
@@ -516,7 +526,9 @@
 
 
 
-  <script src="/js/local-search.js"></script>
+  
+<script src="/js/local-search.js"></script>
+
 
 
 

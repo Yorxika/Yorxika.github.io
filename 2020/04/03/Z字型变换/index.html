@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 3.9.0">
+<meta name="generator" content="Hexo 6.3.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
@@ -22,20 +22,20 @@
     var CONFIG = {"hostname":"yorxika.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="来自Leetcode第6题Z字型变换 将一个给定字符串根据给定的行数，以从上往下、从左到右进行 Z 字形排列。 比如输入字符串为 &amp;quot;LEETCODEISHIRING&amp;quot; 行数为 3 时，排列如下： 123L   C   I   RE T O E S I I GE   D   H   N">
-<meta name="keywords" content="字符串">
+  <meta name="description" content="来自Leetcode第6题Z字型变换 将一个给定字符串根据给定的行数，以从上往下、从左到右进行 Z 字形排列。 比如输入字符串为 &quot;LEETCODEISHIRING&quot; 行数为 3 时，排列如下： 123L   C   I   RE T O E S I I GE   D   H   N">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Z字型变换">
-<meta property="og:url" content="http://yorxika.github.io/2020/04/03/Z字型变换/index.html">
+<meta property="og:url" content="http://yorxika.github.io/2020/04/03/Z%E5%AD%97%E5%9E%8B%E5%8F%98%E6%8D%A2/index.html">
 <meta property="og:site_name" content="Nameless Site">
-<meta property="og:description" content="来自Leetcode第6题Z字型变换 将一个给定字符串根据给定的行数，以从上往下、从左到右进行 Z 字形排列。 比如输入字符串为 &amp;quot;LEETCODEISHIRING&amp;quot; 行数为 3 时，排列如下： 123L   C   I   RE T O E S I I GE   D   H   N">
-<meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2020-04-03T15:44:41.000Z">
+<meta property="og:description" content="来自Leetcode第6题Z字型变换 将一个给定字符串根据给定的行数，以从上往下、从左到右进行 Z 字形排列。 比如输入字符串为 &quot;LEETCODEISHIRING&quot; 行数为 3 时，排列如下： 123L   C   I   RE T O E S I I GE   D   H   N">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-04-03T15:31:22.000Z">
+<meta property="article:modified_time" content="2020-04-03T15:44:41.000Z">
+<meta property="article:author" content="HMF">
+<meta property="article:tag" content="字符串">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Z字型变换">
-<meta name="twitter:description" content="来自Leetcode第6题Z字型变换 将一个给定字符串根据给定的行数，以从上往下、从左到右进行 Z 字形排列。 比如输入字符串为 &amp;quot;LEETCODEISHIRING&amp;quot; 行数为 3 时，排列如下： 123L   C   I   RE T O E S I I GE   D   H   N">
 
-<link rel="canonical" href="http://yorxika.github.io/2020/04/03/Z字型变换/">
+<link rel="canonical" href="http://yorxika.github.io/2020/04/03/Z%E5%AD%97%E5%9E%8B%E5%8F%98%E6%8D%A2/">
 
 
 <script id="page-configurations">
@@ -200,7 +200,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yorxika.github.io/2020/04/03/Z字型变换/">
+    <link itemprop="mainEntityOfPage" href="http://yorxika.github.io/2020/04/03/Z%E5%AD%97%E5%9E%8B%E5%8F%98%E6%8D%A2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/touxiang.jpg">
@@ -232,15 +232,15 @@
               </span>
               <span class="post-meta-item-text">In</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
+                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
                 </span>
                   , 
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/Leetcode/" itemprop="url" rel="index"><span itemprop="name">Leetcode</span></a>
+                  <a href="/categories/%E7%AE%97%E6%B3%95/Leetcode/" itemprop="url" rel="index"><span itemprop="name">Leetcode</span></a>
                 </span>
                   , 
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/Leetcode/字符串/" itemprop="url" rel="index"><span itemprop="name">字符串</span></a>
+                  <a href="/categories/%E7%AE%97%E6%B3%95/Leetcode/%E5%AD%97%E7%AC%A6%E4%B8%B2/" itemprop="url" rel="index"><span itemprop="name">字符串</span></a>
                 </span>
             </span>
 
@@ -250,7 +250,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>781</span>
+              <span>821</span>
             </span>
             <span class="post-meta-item" title="Reading time">
               <span class="post-meta-item-icon">
@@ -272,16 +272,16 @@
         <p>来自Leetcode第6题Z字型变换</p>
 <p>将一个给定字符串根据给定的行数，以从上往下、从左到右进行 Z 字形排列。</p>
 <p>比如输入字符串为 <code>&quot;LEETCODEISHIRING&quot;</code> 行数为 3 时，排列如下：</p>
-<figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">L   C   <span class="literal">I</span>   R</span><br><span class="line">E T O E S <span class="literal">I</span> <span class="literal">I</span> G</span><br><span class="line">E   D   H   N</span><br></pre></td></tr></table></figure>
-<a id="more"></a>
+<figure class="highlight mathematica"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">L</span>   <span class="built_in">C</span>   <span class="built_in">I</span>   <span class="variable">R</span></span><br><span class="line"><span class="built_in">E</span> <span class="variable">T</span> <span class="built_in">O</span> <span class="built_in">E</span> <span class="variable">S</span> <span class="built_in">I</span> <span class="built_in">I</span> <span class="variable">G</span></span><br><span class="line"><span class="built_in">E</span>   <span class="built_in">D</span>   <span class="variable">H</span>   <span class="built_in">N</span></span><br></pre></td></tr></table></figure>
+<span id="more"></span>
 <p>之后，你的输出需要从左往右逐行读取，产生出一个新的字符串，比如：<code>&quot;LCIRETOESIIGEDHN&quot;</code>。</p>
 <p>请你实现这个将字符串进行指定行数变换的函数：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">convert</span><span class="params">(<span class="built_in">string</span> s, <span class="keyword">int</span> numRows)</span></span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">convert</span>(<span class="params"><span class="built_in">string</span> s, <span class="built_in">int</span> numRows</span>)</span>;</span><br></pre></td></tr></table></figure>
 <p><strong>示例 1:</strong></p>
-<figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: <span class="attr">s</span> = <span class="string">"LEETCODEISHIRING"</span>, <span class="attr">numRows</span> = <span class="number">3</span></span><br><span class="line">输出: <span class="string">"LCIRETOESIIGEDHN"</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: <span class="attr">s</span> = <span class="string">&quot;LEETCODEISHIRING&quot;</span>, <span class="attr">numRows</span> = <span class="number">3</span></span><br><span class="line">输出: <span class="string">&quot;LCIRETOESIIGEDHN&quot;</span></span><br></pre></td></tr></table></figure>
 <hr>
 <p>模拟从上到下的打印过程。</p>
-<pre><code class="lang-JAVA">    public String convert(String s, int numRows) {
+<pre><code class="lang-JAVA">    public String convert(String s, int numRows) &#123;
         if(numRows &lt; 2 || s == null)
             return s;
         List&lt;StringBuilder&gt; list = new ArrayList&lt;&gt;();
@@ -289,17 +289,17 @@
             list.add(new StringBuilder());
         char[] arr = s.toCharArray();
         int index = 0 , flag = -1;
-        for(int i = 0 ; i &lt; arr.length ; ++i){
+        for(int i = 0 ; i &lt; arr.length ; ++i)&#123;
             list.get(index).append(arr[i]);
             if(index == numRows - 1 || index == 0)
                 flag = -flag;
             index += flag;
-        }
+        &#125;
         StringBuilder stringBuilder = new StringBuilder();
         for(StringBuilder sb : list)
             stringBuilder.append(sb);
         return stringBuilder.toString();
-    }
+    &#125;
 </code></pre>
 
     </div>
@@ -316,7 +316,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>Post link: </strong>
-    <a href="http://yorxika.github.io/2020/04/03/Z字型变换/" title="Z字型变换">http://yorxika.github.io/2020/04/03/Z字型变换/</a>
+    <a href="http://yorxika.github.io/2020/04/03/Z%E5%AD%97%E5%9E%8B%E5%8F%98%E6%8D%A2/" title="Z字型变换">http://yorxika.github.io/2020/04/03/Z字型变换/</a>
   </li>
   <li class="post-copyright-license">
     <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.
@@ -328,7 +328,7 @@
       <footer class="post-footer">
           
           <div class="post-tags">
-              <a href="/tags/字符串/" rel="tag"><i class="fa fa-tag"></i> 字符串</a>
+              <a href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/" rel="tag"><i class="fa fa-tag"></i> 字符串</a>
           </div>
 
         
@@ -337,11 +337,11 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2020/03/31/单词的压缩编码/" rel="prev" title="单词的压缩编码">
+    <a href="/2020/03/31/%E5%8D%95%E8%AF%8D%E7%9A%84%E5%8E%8B%E7%BC%A9%E7%BC%96%E7%A0%81/" rel="prev" title="单词的压缩编码">
       <i class="fa fa-chevron-left"></i> 单词的压缩编码
     </a></div>
       <div class="post-nav-item">
-    <a href="/2020/04/05/有效括号的嵌套深度/" rel="next" title="有效括号的嵌套深度">
+    <a href="/2020/04/05/%E6%9C%89%E6%95%88%E6%8B%AC%E5%8F%B7%E7%9A%84%E5%B5%8C%E5%A5%97%E6%B7%B1%E5%BA%A6/" rel="next" title="有效括号的嵌套深度">
       有效括号的嵌套深度 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
@@ -477,12 +477,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">956k</span>
+    <span title="Symbols count total">968k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">14:29</span>
+    <span title="Reading time total">14:40</span>
 </div><script color="255,255,255" opacity="0.5" zIndex="-1" count="180" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
 
         
@@ -502,9 +502,19 @@
   <script src="/lib/anime.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
-<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
 <script src="/js/schemes/pisces.js"></script>
-<script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
 
 
 
@@ -513,7 +523,9 @@
 
 
 
-  <script src="/js/local-search.js"></script>
+  
+<script src="/js/local-search.js"></script>
+
 
 
 

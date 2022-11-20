@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 3.9.0">
+<meta name="generator" content="Hexo 6.3.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
@@ -23,35 +23,36 @@
   </script>
 
   <meta name="description" content="动态规划矩阵链乘法笔记本节给出了一个关于矩阵链相乘问题的动态规划算法。给定一个n个矩阵的矩阵链，要计算它们的乘积A1*A2*A3……An。矩阵乘法满足结合律，所以通过加括号，一个矩阵链的乘法可以按照不同的顺序进行。例如，4个矩阵的矩阵链，共有5种加括号的方式：">
-<meta name="keywords" content="动态规划,算法">
 <meta property="og:type" content="article">
 <meta property="og:title" content="动态规划习题">
-<meta property="og:url" content="http://yorxika.github.io/2019/12/02/动态规划习题/index.html">
+<meta property="og:url" content="http://yorxika.github.io/2019/12/02/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E4%B9%A0%E9%A2%98/index.html">
 <meta property="og:site_name" content="Nameless Site">
 <meta property="og:description" content="动态规划矩阵链乘法笔记本节给出了一个关于矩阵链相乘问题的动态规划算法。给定一个n个矩阵的矩阵链，要计算它们的乘积A1*A2*A3……An。矩阵乘法满足结合律，所以通过加括号，一个矩阵链的乘法可以按照不同的顺序进行。例如，4个矩阵的矩阵链，共有5种加括号的方式：">
-<meta property="og:locale" content="en">
-<meta property="og:image" content="http://yorxika.github.io/2019/12/02/动态规划习题/矩阵乘法0.png">
-<meta property="og:image" content="http://yorxika.github.io/2019/12/02/动态规划习题/矩阵乘法1.png">
-<meta property="og:image" content="http://yorxika.github.io/2019/12/02/动态规划习题/矩阵乘法2.png">
-<meta property="og:image" content="http://yorxika.github.io/2019/12/02/动态规划习题/矩阵乘法3.png">
-<meta property="og:image" content="http://yorxika.github.io/2019/12/02/动态规划习题/矩阵乘法4.png">
-<meta property="og:image" content="http://yorxika.github.io/2019/12/02/动态规划习题/二叉搜索树0.png">
-<meta property="og:image" content="http://yorxika.github.io/2019/12/02/动态规划习题/二叉搜索树1.png">
-<meta property="og:image" content="http://yorxika.github.io/2019/12/02/动态规划习题/二叉搜索树2.png">
-<meta property="og:image" content="http://yorxika.github.io/2019/12/02/动态规划习题/二叉搜索树3.png">
-<meta property="og:image" content="http://yorxika.github.io/2019/12/02/动态规划习题/二叉搜索树4.png">
-<meta property="og:image" content="http://yorxika.github.io/2019/12/02/动态规划习题/二叉搜索树5.png">
-<meta property="og:image" content="http://yorxika.github.io/2019/12/02/动态规划习题/二叉搜索树6.png">
-<meta property="og:image" content="http://yorxika.github.io/2019/12/02/动态规划习题/二叉搜索树7.png">
-<meta property="og:image" content="http://yorxika.github.io/2019/12/02/动态规划习题/二叉搜索树8.png">
-<meta property="og:image" content="http://yorxika.github.io/2019/12/02/动态规划习题/二叉搜索树9.png">
-<meta property="og:updated_time" content="2019-12-12T12:49:20.000Z">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/02/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E4%B9%A0%E9%A2%98/%E7%9F%A9%E9%98%B5%E4%B9%98%E6%B3%950.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/02/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E4%B9%A0%E9%A2%98/%E7%9F%A9%E9%98%B5%E4%B9%98%E6%B3%951.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/02/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E4%B9%A0%E9%A2%98/%E7%9F%A9%E9%98%B5%E4%B9%98%E6%B3%952.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/02/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E4%B9%A0%E9%A2%98/%E7%9F%A9%E9%98%B5%E4%B9%98%E6%B3%953.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/02/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E4%B9%A0%E9%A2%98/%E7%9F%A9%E9%98%B5%E4%B9%98%E6%B3%954.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/02/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E4%B9%A0%E9%A2%98/%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%910.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/02/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E4%B9%A0%E9%A2%98/%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%911.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/02/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E4%B9%A0%E9%A2%98/%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%912.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/02/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E4%B9%A0%E9%A2%98/%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%913.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/02/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E4%B9%A0%E9%A2%98/%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%914.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/02/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E4%B9%A0%E9%A2%98/%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%915.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/02/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E4%B9%A0%E9%A2%98/%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%916.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/02/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E4%B9%A0%E9%A2%98/%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%917.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/02/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E4%B9%A0%E9%A2%98/%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%918.png">
+<meta property="og:image" content="http://yorxika.github.io/2019/12/02/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E4%B9%A0%E9%A2%98/%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%919.png">
+<meta property="article:published_time" content="2019-12-02T08:42:59.000Z">
+<meta property="article:modified_time" content="2019-12-12T12:49:20.000Z">
+<meta property="article:author" content="HMF">
+<meta property="article:tag" content="动态规划">
+<meta property="article:tag" content="算法">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="动态规划习题">
-<meta name="twitter:description" content="动态规划矩阵链乘法笔记本节给出了一个关于矩阵链相乘问题的动态规划算法。给定一个n个矩阵的矩阵链，要计算它们的乘积A1*A2*A3……An。矩阵乘法满足结合律，所以通过加括号，一个矩阵链的乘法可以按照不同的顺序进行。例如，4个矩阵的矩阵链，共有5种加括号的方式：">
-<meta name="twitter:image" content="http://yorxika.github.io/2019/12/02/动态规划习题/矩阵乘法0.png">
+<meta name="twitter:image" content="http://yorxika.github.io/2019/12/02/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E4%B9%A0%E9%A2%98/%E7%9F%A9%E9%98%B5%E4%B9%98%E6%B3%950.png">
 
-<link rel="canonical" href="http://yorxika.github.io/2019/12/02/动态规划习题/">
+<link rel="canonical" href="http://yorxika.github.io/2019/12/02/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E4%B9%A0%E9%A2%98/">
 
 
 <script id="page-configurations">
@@ -216,7 +217,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yorxika.github.io/2019/12/02/动态规划习题/">
+    <link itemprop="mainEntityOfPage" href="http://yorxika.github.io/2019/12/02/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E4%B9%A0%E9%A2%98/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/touxiang.jpg">
@@ -254,11 +255,11 @@
               </span>
               <span class="post-meta-item-text">In</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/学习笔记/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a>
+                  <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a>
                 </span>
                   , 
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/学习笔记/算法导论/" itemprop="url" rel="index"><span itemprop="name">算法导论</span></a>
+                  <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%AE%97%E6%B3%95%E5%AF%BC%E8%AE%BA/" itemprop="url" rel="index"><span itemprop="name">算法导论</span></a>
                 </span>
             </span>
 
@@ -268,7 +269,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>3.5k</span>
+              <span>3.7k</span>
             </span>
             <span class="post-meta-item" title="Reading time">
               <span class="post-meta-item-icon">
@@ -287,14 +288,14 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="动态规划"><a href="#动态规划" class="headerlink" title="动态规划"></a>动态规划</h1><h2 id="矩阵链乘法"><a href="#矩阵链乘法" class="headerlink" title="矩阵链乘法"></a>矩阵链乘法</h2><h3 id="笔记"><a href="#笔记" class="headerlink" title="笔记"></a>笔记</h3><p>本节给出了一个关于矩阵链相乘问题的动态规划算法。给定一个n个矩阵<a1,a2,……,an>的矩阵链，要计算它们的乘积A1*A2*A3……An。矩阵乘法满足结合律，所以通过加括号，一个矩阵链的乘法可以按照不同的顺序进行。例如，4个矩阵的矩阵链，共有5种加括号的方式：<a id="more"></a></a1,a2,……,an></p>
+        <h1 id="动态规划"><a href="#动态规划" class="headerlink" title="动态规划"></a>动态规划</h1><h2 id="矩阵链乘法"><a href="#矩阵链乘法" class="headerlink" title="矩阵链乘法"></a>矩阵链乘法</h2><h3 id="笔记"><a href="#笔记" class="headerlink" title="笔记"></a>笔记</h3><p>本节给出了一个关于矩阵链相乘问题的动态规划算法。给定一个n个矩阵<A1,A2,……,An>的矩阵链，要计算它们的乘积A1*A2*A3……An。矩阵乘法满足结合律，所以通过加括号，一个矩阵链的乘法可以按照不同的顺序进行。例如，4个矩阵的矩阵链，共有5种加括号的方式：<span id="more"></span></A1,A2,……,An></p>
 <div align="center">
-<img width="200" src="/2019/12/02/动态规划习题/矩阵乘法0.png">
+<img width="200" src="/2019/12/02/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E4%B9%A0%E9%A2%98/矩阵乘法0.png">
 </div>
 
 <p>加括号的方式对矩阵链乘法的时间代价产生巨大的影响。我们先来分析两个矩阵相乘的时间代价。下面的代码给出了两个矩阵相乘的标准算法。</p>
 <div align="center">
-<img width="300" src="/2019/12/02/动态规划习题/矩阵乘法1.png">
+<img width="300" src="/2019/12/02/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E4%B9%A0%E9%A2%98/矩阵乘法1.png">
 </div>
 
 <p>两个矩阵A和B只有相容，即A的列数等于B的行数时，才能相乘。如果A是 p×q 矩阵，B是 q×r 矩阵，那么乘积C是 p×r 矩阵。分析上面的代码，矩阵乘法的时间代价主要由最内层循环的标量乘法的次数决定，一共需要做 pqr 次标量乘法。</p>
@@ -304,25 +305,25 @@
 <li>按(A1·(A2·A3))的顺序计算<br> 先计算(A2·A3)，需要做100×5×50 = 25000次标量乘法，得到的结果矩阵的维度为100×50;A1再与(A2·A3的结果相乘，需要做10×100×50 = 50000次标量乘法。总共需要做25000+50000 = 75000次标量乘法。</li>
 </ul>
 <p>可以看到，第(2)种计算顺序的时间代价是第(1)种顺序的10倍。</p>
-<p><strong>矩阵链乘法问题</strong>:给定一个n个矩阵的矩阵链，矩阵Ai的维度为 (1 ≤ i ≤ n)，求一个最优的加括号方案，使得计算矩阵A1*A2*A3……An乘积所需要的标量乘法次数最少。<br>矩阵A1的维度为p0*p1，A2的维度为p1*p2，… …。以此类推，矩阵An的维度为pn-1*pn。矩阵的维度可以构成一个n+1元的数组{p0,p1……,pn}。以这个数组作为算法输入。<br>令P(n)表示n个矩阵的矩阵链的所有加括号的方案的数量。当n =1时，由于只有一个矩阵，所以P(1) = 1。当n ≥ 2时，可以先将矩阵链划分为两个子链<a1,……ak>和<ak+1……an>，其中k = 1,2,…, n-1，对两个子链加括号又是规模更小的子问题，因此矩阵链乘法问题满足最优子结构。由此，我们可以得到</ak+1……an></a1,……ak></p>
+<p><strong>矩阵链乘法问题</strong>:给定一个n个矩阵的矩阵链，矩阵Ai的维度为 (1 ≤ i ≤ n)，求一个最优的加括号方案，使得计算矩阵A1*A2*A3……An乘积所需要的标量乘法次数最少。<br>矩阵A1的维度为p0*p1，A2的维度为p1*p2，… …。以此类推，矩阵An的维度为pn-1*pn。矩阵的维度可以构成一个n+1元的数组{p0,p1……,pn}。以这个数组作为算法输入。<br>令P(n)表示n个矩阵的矩阵链的所有加括号的方案的数量。当n =1时，由于只有一个矩阵，所以P(1) = 1。当n ≥ 2时，可以先将矩阵链划分为两个子链<A1,……Ak>和<Ak+1……An>，其中k = 1,2,…, n-1，对两个子链加括号又是规模更小的子问题，因此矩阵链乘法问题满足最优子结构。由此，我们可以得到</Ak+1……An></A1,……Ak></p>
 <div align="center">
-<img width="300" src="/2019/12/02/动态规划习题/矩阵乘法2.png">
+<img width="300" src="/2019/12/02/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E4%B9%A0%E9%A2%98/矩阵乘法2.png">
 </div>
 
 <p>易知道,P(n) = O(2^n)。显然，遍历所有加括号的方案，并不是一个明智的选择，这样的算法至少有一个指数增长的时间复杂度。现在我们用动态规划方法来求解这个问题。</p>
-<p>用m[i, j]表示计算矩阵链<a1,a2,……,an>所需标量乘法次数的最小值。如果i = j，矩阵链中只有一个矩阵，显然m[i, j] = 0。对于i &lt; j 的情况，上文提到，可以先将矩阵链划分为两个子链<ai,ai+1,……,ak>和<ak+1,ak+2,……,aj>。左子链的乘积是一个矩阵，右子链的乘积是一个矩阵。假设两个子链的最优解已知，它们分别为m[i, k]和m[k+1, j ]，并且可以知道两个子链的结果相乘需要次pi-1·pk·pj 标量乘法。于是，可以得到m[i,j] = m[i,k] + m[k + 1,j] + pi-1·pk·pj。<br>矩阵链的划分点k可以取值i, i+1,…, j-1，我们需要检查k的所有可能的取值情况，并从中找到最优解。于是有</ak+1,ak+2,……,aj></ai,ai+1,……,ak></a1,a2,……,an></p>
+<p>用m[i, j]表示计算矩阵链<A1,A2,……,An>所需标量乘法次数的最小值。如果i = j，矩阵链中只有一个矩阵，显然m[i, j] = 0。对于i &lt; j 的情况，上文提到，可以先将矩阵链划分为两个子链<Ai,Ai+1,……,Ak>和<Ak+1,Ak+2,……,Aj>。左子链的乘积是一个矩阵，右子链的乘积是一个矩阵。假设两个子链的最优解已知，它们分别为m[i, k]和m[k+1, j ]，并且可以知道两个子链的结果相乘需要次pi-1·pk·pj 标量乘法。于是，可以得到m[i,j] = m[i,k] + m[k + 1,j] + pi-1·pk·pj。<br>矩阵链的划分点k可以取值i, i+1,…, j-1，我们需要检查k的所有可能的取值情况，并从中找到最优解。于是有</Ak+1,Ak+2,……,Aj></Ai,Ai+1,……,Ak></A1,A2,……,An></p>
 <div align="center">
-<img width="400" src="/2019/12/02/动态规划习题/矩阵乘法3.png">
+<img width="400" src="/2019/12/02/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E4%B9%A0%E9%A2%98/矩阵乘法3.png">
 </div>
 
 <p>我们已经确立了问题的最优子结构，现在要合理安排子问题的求解顺序。子问题的规模是用相应的子链中矩阵的个数来度量的。我们要计算m[i, j]，只依赖于更短的子链的求解结果。因此，我们可以按照长度递增的顺序求解矩阵链乘法问题。另外，还需要在求解过程中记录下每个子问题的最优解的分割点位置k。以下是代码。</p>
 <div align="center">
-<img width="500" src="/2019/12/02/动态规划习题/矩阵乘法4.png">
+<img width="500" src="/2019/12/02/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E4%B9%A0%E9%A2%98/矩阵乘法4.png">
 </div>
 
 <h3 id="练习"><a href="#练习" class="headerlink" title="练习"></a>练习</h3><p>T15.2-1 对矩阵链<5,10,3,12,5,50,6>，求矩阵链最有括号化方案</5,10,3,12,5,50,6></p>
 <!--more-->
-<p>代码如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">static</span> String [] A = &#123;<span class="string">"A0"</span>,<span class="string">"A1"</span>,<span class="string">"A2"</span>,<span class="string">"A3"</span>,<span class="string">"A4"</span>,<span class="string">"A5"</span>,<span class="string">"A6"</span>&#125;;<span class="comment">//六个矩阵A1～A6 但是伪码是从下标1开始计算，因此在首位填充0</span></span><br><span class="line">	<span class="keyword">static</span> <span class="keyword">int</span> [] p = &#123;<span class="number">5</span>,<span class="number">10</span>,<span class="number">3</span>,<span class="number">12</span>,<span class="number">5</span>,<span class="number">50</span>,<span class="number">6</span>&#125;;  <span class="comment">//矩阵维数为p[i-1]*p[i]</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">static</span> <span class="keyword">int</span>[][] matrix_chain_order(<span class="keyword">int</span> [] p,<span class="keyword">int</span> [][] matrix,<span class="keyword">int</span> [][] brakcet,<span class="keyword">int</span> n)&#123;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++)</span><br><span class="line">			matrix[i][i] = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> len = <span class="number">2</span>; len &lt;= n; len++)&#123;</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>;i &lt;= n- len + <span class="number">1</span>;i++)&#123;</span><br><span class="line">				<span class="keyword">int</span> j = i + len - <span class="number">1</span>;</span><br><span class="line">				matrix[i][j] = Integer.MAX_VALUE; <span class="comment">//设置为无穷大</span></span><br><span class="line">				<span class="keyword">for</span>(<span class="keyword">int</span> k = i; k &lt;= j - <span class="number">1</span>; k++)&#123;</span><br><span class="line">					<span class="keyword">int</span> mulTimes = matrix[i][k] + matrix[k + <span class="number">1</span>][j] + p[i - <span class="number">1</span>]*p[k]*p[j];</span><br><span class="line">					<span class="keyword">if</span>(mulTimes &lt; matrix[i][j])&#123;</span><br><span class="line">						matrix[i][j] = mulTimes;</span><br><span class="line">						brakcet[i][j] = k;</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n ; i++)&#123;</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= n;j++)</span><br><span class="line">				System.out.print(matrix[i][j] + <span class="string">" "</span>);</span><br><span class="line">			System.out.println(<span class="string">" "</span>);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++)&#123;</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">1</span>; j&lt;= n;j++)</span><br><span class="line">				System.out.print(brakcet[i][j] + <span class="string">" "</span>);</span><br><span class="line">			System.out.println(<span class="string">" "</span>);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> brakcet;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">print_optimal_parens</span><span class="params">(<span class="keyword">int</span> [][] brakcet,<span class="keyword">int</span> i ,<span class="keyword">int</span> j)</span></span>&#123;</span><br><span class="line">		<span class="keyword">if</span>(i == j)</span><br><span class="line">			System.out.print(A[i]);</span><br><span class="line">		<span class="keyword">else</span>&#123;</span><br><span class="line">			System.out.print(<span class="string">"("</span>);</span><br><span class="line">			print_optimal_parens(brakcet,i,brakcet[i][j]);</span><br><span class="line">			print_optimal_parens(brakcet,brakcet[i][j] + <span class="number">1</span>,j);</span><br><span class="line">			System.out.print(<span class="string">")"</span>);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">int</span> [][] matrix = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">7</span>][<span class="number">7</span>];</span><br><span class="line">		<span class="keyword">int</span> [][] brakcet = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">7</span>][<span class="number">7</span>];</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span> ; i &lt;= <span class="number">6</span> ; i++)</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span> ; j&lt;= <span class="number">6</span> ;j++)</span><br><span class="line">				matrix[i][j] = Integer.MAX_VALUE;</span><br><span class="line"></span><br><span class="line">		brakcet = matrix_chain_order(p,matrix,brakcet,<span class="number">6</span>);</span><br><span class="line">		print_optimal_parens(brakcet,<span class="number">1</span>,<span class="number">6</span>);</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>代码如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Main</span> &#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">static</span> String [] A = &#123;<span class="string">&quot;A0&quot;</span>,<span class="string">&quot;A1&quot;</span>,<span class="string">&quot;A2&quot;</span>,<span class="string">&quot;A3&quot;</span>,<span class="string">&quot;A4&quot;</span>,<span class="string">&quot;A5&quot;</span>,<span class="string">&quot;A6&quot;</span>&#125;;<span class="comment">//六个矩阵A1～A6 但是伪码是从下标1开始计算，因此在首位填充0</span></span><br><span class="line">	<span class="keyword">static</span> <span class="type">int</span> [] p = &#123;<span class="number">5</span>,<span class="number">10</span>,<span class="number">3</span>,<span class="number">12</span>,<span class="number">5</span>,<span class="number">50</span>,<span class="number">6</span>&#125;;  <span class="comment">//矩阵维数为p[i-1]*p[i]</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">static</span> <span class="type">int</span>[][] matrix_chain_order(<span class="type">int</span> [] p,<span class="type">int</span> [][] matrix,<span class="type">int</span> [][] brakcet,<span class="type">int</span> n)&#123;</span><br><span class="line">		<span class="keyword">for</span>(<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span>; i &lt;= n; i++)</span><br><span class="line">			matrix[i][i] = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">for</span>(<span class="type">int</span> <span class="variable">len</span> <span class="operator">=</span> <span class="number">2</span>; len &lt;= n; len++)&#123;</span><br><span class="line">			<span class="keyword">for</span>(<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span>;i &lt;= n- len + <span class="number">1</span>;i++)&#123;</span><br><span class="line">				<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> i + len - <span class="number">1</span>;</span><br><span class="line">				matrix[i][j] = Integer.MAX_VALUE; <span class="comment">//设置为无穷大</span></span><br><span class="line">				<span class="keyword">for</span>(<span class="type">int</span> <span class="variable">k</span> <span class="operator">=</span> i; k &lt;= j - <span class="number">1</span>; k++)&#123;</span><br><span class="line">					<span class="type">int</span> <span class="variable">mulTimes</span> <span class="operator">=</span> matrix[i][k] + matrix[k + <span class="number">1</span>][j] + p[i - <span class="number">1</span>]*p[k]*p[j];</span><br><span class="line">					<span class="keyword">if</span>(mulTimes &lt; matrix[i][j])&#123;</span><br><span class="line">						matrix[i][j] = mulTimes;</span><br><span class="line">						brakcet[i][j] = k;</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">for</span>(<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span>; i &lt;= n ; i++)&#123;</span><br><span class="line">			<span class="keyword">for</span>(<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> <span class="number">1</span>; j &lt;= n;j++)</span><br><span class="line">				System.out.print(matrix[i][j] + <span class="string">&quot; &quot;</span>);</span><br><span class="line">			System.out.println(<span class="string">&quot; &quot;</span>);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">for</span>(<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span>; i &lt;= n; i++)&#123;</span><br><span class="line">			<span class="keyword">for</span>(<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> <span class="number">1</span>; j&lt;= n;j++)</span><br><span class="line">				System.out.print(brakcet[i][j] + <span class="string">&quot; &quot;</span>);</span><br><span class="line">			System.out.println(<span class="string">&quot; &quot;</span>);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> brakcet;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">print_optimal_parens</span><span class="params">(<span class="type">int</span> [][] brakcet,<span class="type">int</span> i ,<span class="type">int</span> j)</span>&#123;</span><br><span class="line">		<span class="keyword">if</span>(i == j)</span><br><span class="line">			System.out.print(A[i]);</span><br><span class="line">		<span class="keyword">else</span>&#123;</span><br><span class="line">			System.out.print(<span class="string">&quot;(&quot;</span>);</span><br><span class="line">			print_optimal_parens(brakcet,i,brakcet[i][j]);</span><br><span class="line">			print_optimal_parens(brakcet,brakcet[i][j] + <span class="number">1</span>,j);</span><br><span class="line">			System.out.print(<span class="string">&quot;)&quot;</span>);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">		<span class="type">int</span> [][] matrix = <span class="keyword">new</span> <span class="title class_">int</span>[<span class="number">7</span>][<span class="number">7</span>];</span><br><span class="line">		<span class="type">int</span> [][] brakcet = <span class="keyword">new</span> <span class="title class_">int</span>[<span class="number">7</span>][<span class="number">7</span>];</span><br><span class="line">		<span class="keyword">for</span>(<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span> ; i &lt;= <span class="number">6</span> ; i++)</span><br><span class="line">			<span class="keyword">for</span>(<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> <span class="number">0</span> ; j&lt;= <span class="number">6</span> ;j++)</span><br><span class="line">				matrix[i][j] = Integer.MAX_VALUE;</span><br><span class="line"></span><br><span class="line">		brakcet = matrix_chain_order(p,matrix,brakcet,<span class="number">6</span>);</span><br><span class="line">		print_optimal_parens(brakcet,<span class="number">1</span>,<span class="number">6</span>);</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>运行结果如下：</p>
 <blockquote>
 <p>0 150 330 405 1655 2010<br>2147483647 0 360 330 2430 1950<br>2147483647 2147483647 0 180 930 1770<br>2147483647 2147483647 2147483647 0 3000 1860<br>2147483647 2147483647 2147483647 2147483647 0 1500<br>2147483647 2147483647 2147483647 2147483647 2147483647 0 </p>
@@ -331,24 +332,24 @@
 </blockquote>
 <h2 id="最优二叉搜索树"><a href="#最优二叉搜索树" class="headerlink" title="最优二叉搜索树"></a>最优二叉搜索树</h2><h3 id="笔记-1"><a href="#笔记-1" class="headerlink" title="笔记"></a>笔记</h3><p>二叉搜索树满足如下性质：假设x xx是二叉搜索树中的一个结点。如果l ll是x xx的左子树的一个结点，那么l.key≤x.key l.key ≤ x.keyl.key≤x.key。如果r rr是x xx的右子树的一个结点，那么r.key≥x.key r.key ≥ x.keyr.key≥x.key。<br>也就是说，二叉搜索树中的任意一个结点，它的左子树中的所有结点都不大于它，它的右子树中的所有结点都不小于它。下图给出了一个二叉搜索树的例子。</p>
 <div align="center">
-<img width="200" src="/2019/12/02/动态规划习题/二叉搜索树0.png">
+<img width="200" src="/2019/12/02/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E4%B9%A0%E9%A2%98/二叉搜索树0.png">
 </div>
 
-<p><strong>最优二叉搜索树</strong>(Optimal Binary Search Tree)问题描述如下。给定一个n nn个不同关键字的已排序的序列K[1..n]=<k1,k2,…,kn>（因此k1<k2<…<kn），我们希望用这些关键字构造一个二叉搜索树。对每个关键字ki,都有一个概率pi表示其搜索概率。搜索过程中有可能遇到不在k[1..n]中的元素，因此我们还有n+1个元素的“伪关键字”序列d[0..n]=<d0,d1,d2,…,dn> ，表示搜索过程中可能遇到的所有不在K[1..n] K[1..n]K[1..n]中的元素。d0表示所有小于k1的元素；dn 表示所有大于kn 的元素；对i=1,2,…,n−1 i = 1, 2, …, n-1，di表示所有在ki到ki+1之间的元素。对每个伪关键字di，也有一个概率qi 表示对应的搜索概率。在二叉搜索树中，伪关键字di 必然出现在叶结点上，关键字ki 必然出现在非叶结点上。每次搜索要么成功（找到某个关键字ki），要么失败（找到某个伪关键字di）。关键字和伪关键字的概率满足：</k2<…<kn），我们希望用这些关键字构造一个二叉搜索树。对每个关键字ki,都有一个概率pi表示其搜索概率。搜索过程中有可能遇到不在k[1..n]中的元素，因此我们还有n+1个元素的“伪关键字”序列d[0..n]=<d0,d1,d2,…,dn></k1,k2,…,kn></p>
+<p><strong>最优二叉搜索树</strong>(Optimal Binary Search Tree)问题描述如下。给定一个n nn个不同关键字的已排序的序列K[1..n]=<k1,k2,…,kn>（因此k1<k2<…<kn），我们希望用这些关键字构造一个二叉搜索树。对每个关键字ki,都有一个概率pi表示其搜索概率。搜索过程中有可能遇到不在K[1..n]中的元素，因此我们还有n+1个元素的“伪关键字”序列D[0..n]=<d0,d1,d2,…,dn> ，表示搜索过程中可能遇到的所有不在K[1..n] K[1..n]K[1..n]中的元素。d0表示所有小于k1的元素；dn 表示所有大于kn 的元素；对i=1,2,…,n−1 i = 1, 2, …, n-1，di表示所有在ki到ki+1之间的元素。对每个伪关键字di，也有一个概率qi 表示对应的搜索概率。在二叉搜索树中，伪关键字di 必然出现在叶结点上，关键字ki 必然出现在非叶结点上。每次搜索要么成功（找到某个关键字ki），要么失败（找到某个伪关键字di）。关键字和伪关键字的概率满足：</k2<…<kn），我们希望用这些关键字构造一个二叉搜索树。对每个关键字ki,都有一个概率pi表示其搜索概率。搜索过程中有可能遇到不在K[1..n]中的元素，因此我们还有n+1个元素的“伪关键字”序列D[0..n]=<d0,d1,d2,…,dn></k1,k2,…,kn></p>
 <div align="center">
-<img width="150" src="/2019/12/02/动态规划习题/二叉搜索树1.png">
+<img width="150" src="/2019/12/02/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E4%B9%A0%E9%A2%98/二叉搜索树1.png">
 </div>
 
 <p>假定一次搜索的代价等于访问的结点数，也就是此次搜索找到的结点在二叉搜索树中的深度再加1 11。给定一棵二叉搜索树T TT，我们可以确定进行一次搜索的期望代价。</p>
 <div align="center">
-<img width="350" src="/2019/12/02/动态规划习题/二叉搜索树2.png">
+<img width="350" src="/2019/12/02/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E4%B9%A0%E9%A2%98/二叉搜索树2.png">
 </div>
 
 <p>其中depthT表示一个结点在二叉搜索树T中的深度。</p>
 <p>对于一组给定的关键字和伪关键字，以及它们对应的概率，我们希望构造一棵期望搜索代价最小的二叉搜索树，这称之为最优二叉搜索树。现在我们用动态规划方法来求解最优二叉搜索树问题。</p>
 <p>首先我们描述最优二叉搜索树问题的最优子结构：假设由关键字子序列K[i..j]=<ki,…,kj> 和伪关键字子序列D[i−1..j]=<di−1,…,dj> 构成的一棵最优二叉搜索树以kr(i≤r≤j)为根结点。那么它的左子树由子序列K[i..r−1]和D[i−1..r−1]构成，这颗左子树显然也是一棵最优二叉搜索树。同样，它的右子树由子序列K[r+1..j]和D[r..j]构成，这颗右子树显然也是一棵最优二叉搜索树。<br>这里有一个值得注意的细节—空子树。如果包含子序列K[i..j]的最优二叉搜索树以ki为根结点。根据最优子结构性质，它的左子树包含子序列K[i..i−1]，这个子序列不包含任何关键字。但请注意，左子树仍然包含一个伪关键字di−1。同理，如果选择kj为根结点，那么右子树也不包含任何关键字，而只包含一个伪关键字dj。<br>用e[i,j] 表示包含关键字子序列K[i..j]=<ki,…,kj> 的最优二叉搜索树的期望搜索代价。我们最终希望计算出e[1,n]。<br>对于j=i−1的情况，由于子树只包含伪关键字di−1 ，所以期望搜索代价为e[i,i−1]=qi−1。<br>当j≥i时，我们要遍历以ki,ki+1,…,kj作为根结点的情况，然后从中选择期望搜索代价最小的情况作为子问题的最优解。假设选择kr(i≤r≤j)作为根结点，那么子序列K[i..r−1]构成的最优二叉搜索树作为左子树，左子树的期望搜索代价为e[i,r−1]；子序列K[r+1..j]构成的最优二叉搜索树作为右子树，右子树的期望搜索代价为e[r+1,j]。<br>当一棵子树链接到一个根结点上时，子树中所有结点的深度都增加了1 ，那么这棵子树的期望搜索代价的增加值为它的所有结点的概率之和。对于一棵包含子序列K[i..j]的子树，所有结点的概率之和为</ki,…,kj></di−1,…,dj></ki,…,kj></p>
 <div align="center">
-<img width="200" src="/2019/12/02/动态规划习题/二叉搜索树3.png">
+<img width="200" src="/2019/12/02/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E4%B9%A0%E9%A2%98/二叉搜索树3.png">
 </div>
 接上文，若kr(i≤r≤j)作为包含关键字子序列K[i..j]的最优二叉搜索树的根结点，可以得到如下公式
 e[i,j]=pr+(e[i,r−1]+w[i,r−1])+(e[r+1,j]+w[r+1,j]) 
@@ -356,12 +357,12 @@ e[i,j]=pr+(e[i,r−1]+w[i,r−1])+(e[r+1,j]+w[r+1,j])
 e[i,j]=e[i,r−1]+e[r+1,j]+w[i,j]
 我们要遍历以ki,ki+1,…,kj作为根结点的情况，并选择期望搜索代价最小的情况作为子问题的最优解。于是我们可以得到下面的递归式。
 <div align="center">
-<img width="350" src="/2019/12/02/动态规划习题/二叉搜索树4.png">
+<img width="350" src="/2019/12/02/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E4%B9%A0%E9%A2%98/二叉搜索树4.png">
 </div>
 
 <p>e[i,j]给出了最优二叉搜索树子问题的期望搜索代价。我们还需要记录最优二叉搜索树子问题的根结点，用root[i,j]来记录。<br>根据上文给出的递归式，我们可以采用自下而上的动态规划方法来求解最优二叉搜索树问题。下面给出了伪代码。</p>
 <div align="center">
-<img width="500" src="/2019/12/02/动态规划习题/二叉搜索树5.png">
+<img width="500" src="/2019/12/02/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E4%B9%A0%E9%A2%98/二叉搜索树5.png">
 </div>
 
 <h3 id="练习-1"><a href="#练习-1" class="headerlink" title="练习"></a>练习</h3><p>T15.5-2:若7 77个关键字的概率如下所示，求其最优二叉搜索树的结构和代价。</p>
@@ -406,29 +407,29 @@ e[i,j]=e[i,r−1]+e[r+1,j]+w[i,j]
 </tbody>
 </table>
 </div>
-<p>代码如下:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">optimal_bst</span><span class="params">(<span class="keyword">double</span> [] p,<span class="keyword">double</span> [] q,<span class="keyword">double</span> [][] e,<span class="keyword">double</span> [][] w, <span class="keyword">int</span> [][] root)</span></span>&#123;</span><br><span class="line">		<span class="keyword">int</span> n = p.length - <span class="number">1</span>;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n+<span class="number">1</span>;i++)</span><br><span class="line">		&#123;</span><br><span class="line">			e[i][i-<span class="number">1</span>] = q[i-<span class="number">1</span>];</span><br><span class="line">			w[i][i-<span class="number">1</span>] = q[i-<span class="number">1</span>];</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> l=<span class="number">1</span>;l&lt;=n;l++)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> start = <span class="number">1</span>;start&lt;=n-l+<span class="number">1</span>;start++)</span><br><span class="line">			&#123;</span><br><span class="line">				<span class="keyword">int</span> end = start + l -<span class="number">1</span>;</span><br><span class="line">				w[start][end] = w[start][end-<span class="number">1</span>] + p[end] + q[end];</span><br><span class="line">				e[start][end] = <span class="number">1000</span>;</span><br><span class="line">				<span class="keyword">for</span>(<span class="keyword">int</span> r = start;r&lt;=end;r++)</span><br><span class="line">				&#123;</span><br><span class="line">					<span class="keyword">double</span> t = e[start][r-<span class="number">1</span>] + e[r+<span class="number">1</span>][end]  + w[start][end];</span><br><span class="line">					<span class="keyword">if</span>(t&lt;e[start][end])</span><br><span class="line">					&#123;</span><br><span class="line">						e[start][end] = t;</span><br><span class="line">						root[start][end] = r;</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">print</span><span class="params">(<span class="keyword">int</span> [][] root,<span class="keyword">int</span> a, <span class="keyword">int</span> b, <span class="keyword">int</span> p)</span></span>&#123;</span><br><span class="line">		<span class="keyword">if</span>(p == -<span class="number">1</span>)</span><br><span class="line">			System.out.println(<span class="string">"k"</span> + root[a][b] + <span class="string">"为根"</span>);</span><br><span class="line"></span><br><span class="line">		<span class="keyword">int</span> r = root[a][b];</span><br><span class="line">		<span class="comment">//左子树</span></span><br><span class="line">		<span class="keyword">if</span>(r == a)</span><br><span class="line">		&#123;</span><br><span class="line">			System.out.println(<span class="string">"d"</span> + (a - <span class="number">1</span>) + <span class="string">"是k"</span> + a + <span class="string">"d的左孩子"</span>);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">		&#123;</span><br><span class="line">			System.out.println(<span class="string">"k"</span> + root[a][r-<span class="number">1</span>] + <span class="string">"是k"</span> + r +<span class="string">"的左孩子"</span>);</span><br><span class="line">			print(root,a,r-<span class="number">1</span>,<span class="number">0</span>);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">//右子树</span></span><br><span class="line">		<span class="keyword">if</span>(r == b)</span><br><span class="line">		&#123;</span><br><span class="line">			System.out.println(<span class="string">"d"</span> + b + <span class="string">"是k"</span> + b + <span class="string">"的右孩子"</span>);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">		&#123;</span><br><span class="line">			System.out.println(<span class="string">"k"</span> + root[r+<span class="number">1</span>][b] + <span class="string">"是k"</span> + r + <span class="string">"的右孩子"</span>);</span><br><span class="line">			print(root,r+<span class="number">1</span>,b,<span class="number">0</span>);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">double</span> [] p1 = &#123;<span class="number">0</span>,<span class="number">0.04</span>,<span class="number">0.06</span>,<span class="number">0.08</span>,<span class="number">0.02</span>,<span class="number">0.10</span>,<span class="number">0.12</span>,<span class="number">0.14</span>&#125;;</span><br><span class="line">		<span class="keyword">double</span> [] q1 = &#123;<span class="number">0.06</span>,<span class="number">0.06</span>,<span class="number">0.06</span>,<span class="number">0.06</span>,<span class="number">0.05</span>,<span class="number">0.05</span>,<span class="number">0.05</span>,<span class="number">0.05</span>&#125;;</span><br><span class="line">		<span class="keyword">double</span> [] p = <span class="keyword">new</span> <span class="keyword">double</span>[<span class="number">8</span>];</span><br><span class="line">		<span class="keyword">double</span> [] q = <span class="keyword">new</span> <span class="keyword">double</span>[<span class="number">8</span>];</span><br><span class="line">		System.arraycopy(p1,<span class="number">0</span>,p,<span class="number">0</span>,<span class="number">8</span>);</span><br><span class="line">		System.arraycopy(q1,<span class="number">0</span>,q,<span class="number">0</span>,<span class="number">8</span>);</span><br><span class="line">		<span class="keyword">int</span> n = <span class="number">7</span>;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">double</span> [][] e = <span class="keyword">new</span> <span class="keyword">double</span>[n+<span class="number">2</span>][n+<span class="number">2</span>];</span><br><span class="line">		<span class="keyword">int</span> [][] root = <span class="keyword">new</span> <span class="keyword">int</span>[n + <span class="number">2</span>][n + <span class="number">2</span>];</span><br><span class="line">		<span class="keyword">double</span> [][] w = <span class="keyword">new</span> <span class="keyword">double</span>[n + <span class="number">2</span>][n + <span class="number">2</span>];</span><br><span class="line">		optimal_bst(p,q,e,w,root);</span><br><span class="line">		print(root,<span class="number">1</span>,n,-<span class="number">1</span>);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>代码如下:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Main</span> &#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">optimal_bst</span><span class="params">(<span class="type">double</span> [] p,<span class="type">double</span> [] q,<span class="type">double</span> [][] e,<span class="type">double</span> [][] w, <span class="type">int</span> [][] root)</span>&#123;</span><br><span class="line">		<span class="type">int</span> <span class="variable">n</span> <span class="operator">=</span> p.length - <span class="number">1</span>;</span><br><span class="line">		<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n+<span class="number">1</span>;i++)</span><br><span class="line">		&#123;</span><br><span class="line">			e[i][i-<span class="number">1</span>] = q[i-<span class="number">1</span>];</span><br><span class="line">			w[i][i-<span class="number">1</span>] = q[i-<span class="number">1</span>];</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">for</span>(<span class="type">int</span> l=<span class="number">1</span>;l&lt;=n;l++)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">for</span>(<span class="type">int</span> <span class="variable">start</span> <span class="operator">=</span> <span class="number">1</span>;start&lt;=n-l+<span class="number">1</span>;start++)</span><br><span class="line">			&#123;</span><br><span class="line">				<span class="type">int</span> <span class="variable">end</span> <span class="operator">=</span> start + l -<span class="number">1</span>;</span><br><span class="line">				w[start][end] = w[start][end-<span class="number">1</span>] + p[end] + q[end];</span><br><span class="line">				e[start][end] = <span class="number">1000</span>;</span><br><span class="line">				<span class="keyword">for</span>(<span class="type">int</span> <span class="variable">r</span> <span class="operator">=</span> start;r&lt;=end;r++)</span><br><span class="line">				&#123;</span><br><span class="line">					<span class="type">double</span> <span class="variable">t</span> <span class="operator">=</span> e[start][r-<span class="number">1</span>] + e[r+<span class="number">1</span>][end]  + w[start][end];</span><br><span class="line">					<span class="keyword">if</span>(t&lt;e[start][end])</span><br><span class="line">					&#123;</span><br><span class="line">						e[start][end] = t;</span><br><span class="line">						root[start][end] = r;</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">print</span><span class="params">(<span class="type">int</span> [][] root,<span class="type">int</span> a, <span class="type">int</span> b, <span class="type">int</span> p)</span>&#123;</span><br><span class="line">		<span class="keyword">if</span>(p == -<span class="number">1</span>)</span><br><span class="line">			System.out.println(<span class="string">&quot;k&quot;</span> + root[a][b] + <span class="string">&quot;为根&quot;</span>);</span><br><span class="line"></span><br><span class="line">		<span class="type">int</span> <span class="variable">r</span> <span class="operator">=</span> root[a][b];</span><br><span class="line">		<span class="comment">//左子树</span></span><br><span class="line">		<span class="keyword">if</span>(r == a)</span><br><span class="line">		&#123;</span><br><span class="line">			System.out.println(<span class="string">&quot;d&quot;</span> + (a - <span class="number">1</span>) + <span class="string">&quot;是k&quot;</span> + a + <span class="string">&quot;d的左孩子&quot;</span>);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">		&#123;</span><br><span class="line">			System.out.println(<span class="string">&quot;k&quot;</span> + root[a][r-<span class="number">1</span>] + <span class="string">&quot;是k&quot;</span> + r +<span class="string">&quot;的左孩子&quot;</span>);</span><br><span class="line">			print(root,a,r-<span class="number">1</span>,<span class="number">0</span>);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">//右子树</span></span><br><span class="line">		<span class="keyword">if</span>(r == b)</span><br><span class="line">		&#123;</span><br><span class="line">			System.out.println(<span class="string">&quot;d&quot;</span> + b + <span class="string">&quot;是k&quot;</span> + b + <span class="string">&quot;的右孩子&quot;</span>);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">		&#123;</span><br><span class="line">			System.out.println(<span class="string">&quot;k&quot;</span> + root[r+<span class="number">1</span>][b] + <span class="string">&quot;是k&quot;</span> + r + <span class="string">&quot;的右孩子&quot;</span>);</span><br><span class="line">			print(root,r+<span class="number">1</span>,b,<span class="number">0</span>);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">		<span class="type">double</span> [] p1 = &#123;<span class="number">0</span>,<span class="number">0.04</span>,<span class="number">0.06</span>,<span class="number">0.08</span>,<span class="number">0.02</span>,<span class="number">0.10</span>,<span class="number">0.12</span>,<span class="number">0.14</span>&#125;;</span><br><span class="line">		<span class="type">double</span> [] q1 = &#123;<span class="number">0.06</span>,<span class="number">0.06</span>,<span class="number">0.06</span>,<span class="number">0.06</span>,<span class="number">0.05</span>,<span class="number">0.05</span>,<span class="number">0.05</span>,<span class="number">0.05</span>&#125;;</span><br><span class="line">		<span class="type">double</span> [] p = <span class="keyword">new</span> <span class="title class_">double</span>[<span class="number">8</span>];</span><br><span class="line">		<span class="type">double</span> [] q = <span class="keyword">new</span> <span class="title class_">double</span>[<span class="number">8</span>];</span><br><span class="line">		System.arraycopy(p1,<span class="number">0</span>,p,<span class="number">0</span>,<span class="number">8</span>);</span><br><span class="line">		System.arraycopy(q1,<span class="number">0</span>,q,<span class="number">0</span>,<span class="number">8</span>);</span><br><span class="line">		<span class="type">int</span> <span class="variable">n</span> <span class="operator">=</span> <span class="number">7</span>;</span><br><span class="line"></span><br><span class="line">		<span class="type">double</span> [][] e = <span class="keyword">new</span> <span class="title class_">double</span>[n+<span class="number">2</span>][n+<span class="number">2</span>];</span><br><span class="line">		<span class="type">int</span> [][] root = <span class="keyword">new</span> <span class="title class_">int</span>[n + <span class="number">2</span>][n + <span class="number">2</span>];</span><br><span class="line">		<span class="type">double</span> [][] w = <span class="keyword">new</span> <span class="title class_">double</span>[n + <span class="number">2</span>][n + <span class="number">2</span>];</span><br><span class="line">		optimal_bst(p,q,e,w,root);</span><br><span class="line">		print(root,<span class="number">1</span>,n,-<span class="number">1</span>);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>运行结果如下：</p>
 <blockquote>
 <p>k5为根<br>k2是k5的左孩子<br>k1是k2的左孩子<br>d0是k1d的左孩子<br>d1是k1的右孩子<br>k3是k2的右孩子<br>d2是k3d的左孩子<br>k4是k3的右孩子<br>d3是k4d的左孩子<br>d4是k4的右孩子<br>k7是k5的右孩子<br>k6是k7的左孩子<br>d5是k6d的左孩子<br>d6是k6的右孩子<br>d7是k7的右孩子</p>
 </blockquote>
 <p>最优二叉搜索树如下所示。期望搜索代价为3.12。</p>
 <div align="center">
-<img width="400" src="/2019/12/02/动态规划习题/二叉搜索树6.png">
+<img width="400" src="/2019/12/02/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E4%B9%A0%E9%A2%98/二叉搜索树6.png">
 </div>
 
 <div align="center">
-<img width="500" src="/2019/12/02/动态规划习题/二叉搜索树7.png">
+<img width="500" src="/2019/12/02/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E4%B9%A0%E9%A2%98/二叉搜索树7.png">
 </div>
 
 <div align="center">
-<img width="500" src="/2019/12/02/动态规划习题/二叉搜索树8.png">
+<img width="500" src="/2019/12/02/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E4%B9%A0%E9%A2%98/二叉搜索树8.png">
 </div>
 
 <div align="center">
-<img width="500" src="/2019/12/02/动态规划习题/二叉搜索树9.png">
+<img width="500" src="/2019/12/02/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E4%B9%A0%E9%A2%98/二叉搜索树9.png">
 </div>
 
-<p>图片及部分内容来自<a href="https://blog.csdn.net/yangtzhou" target="_blank" rel="noopener">yangtzhou</a>。</p>
+<p>图片及部分内容来自<a target="_blank" rel="noopener" href="https://blog.csdn.net/yangtzhou">yangtzhou</a>。</p>
 
     </div>
 
@@ -444,7 +445,7 @@ e[i,j]=e[i,r−1]+e[r+1,j]+w[i,j]
   </li>
   <li class="post-copyright-link">
     <strong>Post link: </strong>
-    <a href="http://yorxika.github.io/2019/12/02/动态规划习题/" title="动态规划习题">http://yorxika.github.io/2019/12/02/动态规划习题/</a>
+    <a href="http://yorxika.github.io/2019/12/02/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E4%B9%A0%E9%A2%98/" title="动态规划习题">http://yorxika.github.io/2019/12/02/动态规划习题/</a>
   </li>
   <li class="post-copyright-license">
     <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.
@@ -456,8 +457,8 @@ e[i,j]=e[i,r−1]+e[r+1,j]+w[i,j]
       <footer class="post-footer">
           
           <div class="post-tags">
-              <a href="/tags/动态规划/" rel="tag"><i class="fa fa-tag"></i> 动态规划</a>
-              <a href="/tags/算法/" rel="tag"><i class="fa fa-tag"></i> 算法</a>
+              <a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" rel="tag"><i class="fa fa-tag"></i> 动态规划</a>
+              <a href="/tags/%E7%AE%97%E6%B3%95/" rel="tag"><i class="fa fa-tag"></i> 算法</a>
           </div>
 
         
@@ -466,11 +467,11 @@ e[i,j]=e[i,r−1]+e[r+1,j]+w[i,j]
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2019/12/01/LRU缓存机制/" rel="prev" title="LRU缓存机制">
+    <a href="/2019/12/01/LRU%E7%BC%93%E5%AD%98%E6%9C%BA%E5%88%B6/" rel="prev" title="LRU缓存机制">
       <i class="fa fa-chevron-left"></i> LRU缓存机制
     </a></div>
       <div class="post-nav-item">
-    <a href="/2019/12/02/进程的软中断和管道通信/" rel="next" title="Linux进程的软中断和管道通信">
+    <a href="/2019/12/02/%E8%BF%9B%E7%A8%8B%E7%9A%84%E8%BD%AF%E4%B8%AD%E6%96%AD%E5%92%8C%E7%AE%A1%E9%81%93%E9%80%9A%E4%BF%A1/" rel="next" title="Linux进程的软中断和管道通信">
       Linux进程的软中断和管道通信 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
@@ -532,7 +533,7 @@ e[i,j]=e[i,r−1]+e[r+1,j]+w[i,j]
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#动态规划"><span class="nav-number">1.</span> <span class="nav-text">动态规划</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#矩阵链乘法"><span class="nav-number">1.1.</span> <span class="nav-text">矩阵链乘法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#笔记"><span class="nav-number">1.1.1.</span> <span class="nav-text">笔记</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#练习"><span class="nav-number">1.1.2.</span> <span class="nav-text">练习</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最优二叉搜索树"><span class="nav-number">1.2.</span> <span class="nav-text">最优二叉搜索树</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#笔记-1"><span class="nav-number">1.2.1.</span> <span class="nav-text">笔记</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#练习-1"><span class="nav-number">1.2.2.</span> <span class="nav-text">练习</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92"><span class="nav-number">1.</span> <span class="nav-text">动态规划</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9F%A9%E9%98%B5%E9%93%BE%E4%B9%98%E6%B3%95"><span class="nav-number">1.1.</span> <span class="nav-text">矩阵链乘法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%94%E8%AE%B0"><span class="nav-number">1.1.1.</span> <span class="nav-text">笔记</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%83%E4%B9%A0"><span class="nav-number">1.1.2.</span> <span class="nav-text">练习</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%80%E4%BC%98%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91"><span class="nav-number">1.2.</span> <span class="nav-text">最优二叉搜索树</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%94%E8%AE%B0-1"><span class="nav-number">1.2.1.</span> <span class="nav-text">笔记</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%83%E4%B9%A0-1"><span class="nav-number">1.2.2.</span> <span class="nav-text">练习</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -607,12 +608,12 @@ e[i,j]=e[i,r−1]+e[r+1,j]+w[i,j]
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">956k</span>
+    <span title="Symbols count total">968k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">14:29</span>
+    <span title="Reading time total">14:40</span>
 </div><script color="255,255,255" opacity="0.5" zIndex="-1" count="180" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
 
         
@@ -632,9 +633,19 @@ e[i,j]=e[i,r−1]+e[r+1,j]+w[i,j]
   <script src="/lib/anime.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
-<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
 <script src="/js/schemes/pisces.js"></script>
-<script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
 
 
 
@@ -643,7 +654,9 @@ e[i,j]=e[i,r−1]+e[r+1,j]+w[i,j]
 
 
 
-  <script src="/js/local-search.js"></script>
+  
+<script src="/js/local-search.js"></script>
+
 
 
 

@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 3.9.0">
+<meta name="generator" content="Hexo 6.3.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
@@ -23,19 +23,21 @@
   </script>
 
   <meta name="description" content="来源Leetcode第53题最大子序和  给定一个整数数组 nums ，找到一个具有最大和的连续子数组（子数组最少包含一个元素），返回其最大和。 示例: 输入: [-2,1,-3,4,-1,2,1,-5,4],输出: 6解释: 连续子数组 [4,-1,2,1] 的和最大，为 6。">
-<meta name="keywords" content="动态规划,Leetcode,分治">
 <meta property="og:type" content="article">
 <meta property="og:title" content="最大子序和">
-<meta property="og:url" content="http://yorxika.github.io/2019/11/05/最大子序和/index.html">
+<meta property="og:url" content="http://yorxika.github.io/2019/11/05/%E6%9C%80%E5%A4%A7%E5%AD%90%E5%BA%8F%E5%92%8C/index.html">
 <meta property="og:site_name" content="Nameless Site">
 <meta property="og:description" content="来源Leetcode第53题最大子序和  给定一个整数数组 nums ，找到一个具有最大和的连续子数组（子数组最少包含一个元素），返回其最大和。 示例: 输入: [-2,1,-3,4,-1,2,1,-5,4],输出: 6解释: 连续子数组 [4,-1,2,1] 的和最大，为 6。">
-<meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-12-12T13:01:36.000Z">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2019-11-05T13:31:50.000Z">
+<meta property="article:modified_time" content="2019-12-12T13:01:36.000Z">
+<meta property="article:author" content="HMF">
+<meta property="article:tag" content="动态规划">
+<meta property="article:tag" content="Leetcode">
+<meta property="article:tag" content="分治">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="最大子序和">
-<meta name="twitter:description" content="来源Leetcode第53题最大子序和  给定一个整数数组 nums ，找到一个具有最大和的连续子数组（子数组最少包含一个元素），返回其最大和。 示例: 输入: [-2,1,-3,4,-1,2,1,-5,4],输出: 6解释: 连续子数组 [4,-1,2,1] 的和最大，为 6。">
 
-<link rel="canonical" href="http://yorxika.github.io/2019/11/05/最大子序和/">
+<link rel="canonical" href="http://yorxika.github.io/2019/11/05/%E6%9C%80%E5%A4%A7%E5%AD%90%E5%BA%8F%E5%92%8C/">
 
 
 <script id="page-configurations">
@@ -200,7 +202,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yorxika.github.io/2019/11/05/最大子序和/">
+    <link itemprop="mainEntityOfPage" href="http://yorxika.github.io/2019/11/05/%E6%9C%80%E5%A4%A7%E5%AD%90%E5%BA%8F%E5%92%8C/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/touxiang.jpg">
@@ -238,15 +240,15 @@
               </span>
               <span class="post-meta-item-text">In</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
+                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
                 </span>
                   , 
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/Leetcode/" itemprop="url" rel="index"><span itemprop="name">Leetcode</span></a>
+                  <a href="/categories/%E7%AE%97%E6%B3%95/Leetcode/" itemprop="url" rel="index"><span itemprop="name">Leetcode</span></a>
                 </span>
                   , 
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/Leetcode/数组/" itemprop="url" rel="index"><span itemprop="name">数组</span></a>
+                  <a href="/categories/%E7%AE%97%E6%B3%95/Leetcode/%E6%95%B0%E7%BB%84/" itemprop="url" rel="index"><span itemprop="name">数组</span></a>
                 </span>
             </span>
 
@@ -279,12 +281,12 @@
 <blockquote>
 <p>给定一个整数数组 nums ，找到一个具有最大和的连续子数组（子数组最少包含一个元素），返回其最大和。</p>
 <p>示例:</p>
-<p>输入: [-2,1,-3,4,-1,2,1,-5,4],<br>输出: 6<br>解释: 连续子数组 [4,-1,2,1] 的和最大，为 6。<a id="more"></a></p>
+<p>输入: [-2,1,-3,4,-1,2,1,-5,4],<br>输出: 6<br>解释: 连续子数组 [4,-1,2,1] 的和最大，为 6。<span id="more"></span></p>
 </blockquote>
 <p>这题上课讲过，思路是分治，分越过中点，没有越过中点，又分中点左边，中点右边，共3种情况。<br>不过写的时候忘记了，于是先采用了万能的循环遍历，在倒数第三个测试用例时TLE了，打扰了</p>
 <h4 id="普通解法"><a href="#普通解法" class="headerlink" title="普通解法"></a>普通解法</h4><p>用O(n^2)的时间，即2个循环去遍历所有子序列的情况，最终保存最大值即可，方法简单，但是会超时。<br>坑在于max值的设置，要设置成Integer.MIN_VALUE，以及第2重循环，将上一个子序列的值保留下来。<br>但是这样的效率非常低，用时62ms，击败了7.70%用户2333.</p>
 <p>代码如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxSubArray</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> len = nums.length;</span><br><span class="line">        <span class="keyword">int</span> max = Integer.MIN_VALUE ;</span><br><span class="line">        <span class="keyword">if</span>(len == <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span> ; i &lt; len ; i ++ )&#123;</span><br><span class="line">            <span class="keyword">int</span> sum = nums[i];</span><br><span class="line">            <span class="keyword">if</span>(sum &gt; max)</span><br><span class="line">                max = sum ;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = i + <span class="number">1</span> ; j &lt; len ;j++)&#123;</span><br><span class="line">                sum += nums[j];</span><br><span class="line">                <span class="keyword">if</span>(sum &gt; max)</span><br><span class="line">                    max = sum;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> max ;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">maxSubArray</span><span class="params">(<span class="type">int</span>[] nums)</span> &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">len</span> <span class="operator">=</span> nums.length;</span><br><span class="line">        <span class="type">int</span> <span class="variable">max</span> <span class="operator">=</span> Integer.MIN_VALUE ;</span><br><span class="line">        <span class="keyword">if</span>(len == <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span> ; i &lt; len ; i ++ )&#123;</span><br><span class="line">            <span class="type">int</span> <span class="variable">sum</span> <span class="operator">=</span> nums[i];</span><br><span class="line">            <span class="keyword">if</span>(sum &gt; max)</span><br><span class="line">                max = sum ;</span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> i + <span class="number">1</span> ; j &lt; len ;j++)&#123;</span><br><span class="line">                sum += nums[j];</span><br><span class="line">                <span class="keyword">if</span>(sum &gt; max)</span><br><span class="line">                    max = sum;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> max ;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h4 id="动态规划"><a href="#动态规划" class="headerlink" title="动态规划"></a>动态规划</h4><p><strong>思路</strong></p>
 <ul>
 <li>动态规划的是首先对数组进行遍历，当前最大连续子序列和为 sum，结果为 ans</li>
@@ -292,8 +294,8 @@
 <li>如果 sum &lt;= 0，则说明 sum 对结果无增益效果，需要舍弃，则 sum 直接更新为当前遍历数字</li>
 <li>每次比较 sum 和 ans的大小，将最大值置为ans，遍历结束返回结果</li>
 </ul>
-<p>[动图(<a href="https://leetcode-cn.com/problems/maximum-subarray/solution/hua-jie-suan-fa-53-zui-da-zi-xu-he-by-guanpengchn/)见" target="_blank" rel="noopener">https://leetcode-cn.com/problems/maximum-subarray/solution/hua-jie-suan-fa-53-zui-da-zi-xu-he-by-guanpengchn/)见</a><br>代码如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"> <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxSubArray</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">     <span class="keyword">int</span> ans = nums[<span class="number">0</span>];</span><br><span class="line">     <span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line">     <span class="keyword">for</span>(<span class="keyword">int</span> num: nums) &#123;</span><br><span class="line">         <span class="keyword">if</span>(sum &gt; <span class="number">0</span>) &#123;</span><br><span class="line">             sum += num;</span><br><span class="line">         &#125; <span class="keyword">else</span> &#123;</span><br><span class="line"><span class="comment">//这里包括了对sum 初始化为nums[0]</span></span><br><span class="line">             sum = num;</span><br><span class="line">         &#125;</span><br><span class="line">         ans = Math.max(ans, sum);</span><br><span class="line">     &#125;</span><br><span class="line">     <span class="keyword">return</span> ans;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure></p>
-<h4 id="分治"><a href="#分治" class="headerlink" title="分治"></a>分治</h4><p>思路见算法导论分治一节<br>数据结构与算法分析第二章P29<br>但是运行时间反而不如动态规划啊2333<br>代码来自：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxSubArray</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">      <span class="keyword">int</span> len = nums.length;</span><br><span class="line">      <span class="keyword">if</span> (len == <span class="number">0</span>) &#123;</span><br><span class="line">          <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">return</span> maxSubArraySum(nums, <span class="number">0</span>, len - <span class="number">1</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">private</span> <span class="keyword">int</span> <span class="title">maxCrossingSum</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> left, <span class="keyword">int</span> mid, <span class="keyword">int</span> right)</span> </span>&#123;</span><br><span class="line">      <span class="comment">// 一定会包含 nums[mid] 这个元素</span></span><br><span class="line">      <span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line">      <span class="keyword">int</span> leftSum = Integer.MIN_VALUE;</span><br><span class="line">      <span class="comment">// 左半边包含 nums[mid] 元素，最多可以到什么地方</span></span><br><span class="line">      <span class="comment">// 走到最边界，看看最值是什么</span></span><br><span class="line">      <span class="comment">// 计算以 mid 结尾的最大的子数组的和</span></span><br><span class="line">      <span class="keyword">for</span> (<span class="keyword">int</span> i = mid; i &gt;= left; i--) &#123;</span><br><span class="line">          sum += nums[i];</span><br><span class="line">          <span class="keyword">if</span> (sum &gt; leftSum) &#123;</span><br><span class="line">              leftSum = sum;</span><br><span class="line">          &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      sum = <span class="number">0</span>;</span><br><span class="line">      <span class="keyword">int</span> rightSum = Integer.MIN_VALUE;</span><br><span class="line">      <span class="comment">// 右半边不包含 nums[mid] 元素，最多可以到什么地方</span></span><br><span class="line">      <span class="comment">// 计算以 mid+1 开始的最大的子数组的和</span></span><br><span class="line">      <span class="keyword">for</span> (<span class="keyword">int</span> i = mid + <span class="number">1</span>; i &lt;= right; i++) &#123;</span><br><span class="line">          sum += nums[i];</span><br><span class="line">          <span class="keyword">if</span> (sum &gt; rightSum) &#123;</span><br><span class="line">              rightSum = sum;</span><br><span class="line">          &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">return</span> leftSum + rightSum;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">private</span> <span class="keyword">int</span> <span class="title">maxSubArraySum</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> left, <span class="keyword">int</span> right)</span> </span>&#123;</span><br><span class="line">      <span class="keyword">if</span> (left == right) &#123;</span><br><span class="line">          <span class="keyword">return</span> nums[left];</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">int</span> mid = (left + right) &gt;&gt;&gt; <span class="number">1</span>;</span><br><span class="line">      <span class="keyword">return</span> max3(maxSubArraySum(nums, left, mid),</span><br><span class="line">              maxSubArraySum(nums, mid + <span class="number">1</span>, right),</span><br><span class="line">              maxCrossingSum(nums, left, mid, right));</span><br><span class="line"><span class="comment">//返回左边最大或右边最大，或者跨越中点</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">private</span> <span class="keyword">int</span> <span class="title">max3</span><span class="params">(<span class="keyword">int</span> num1, <span class="keyword">int</span> num2, <span class="keyword">int</span> num3)</span> </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> Math.max(num1, Math.max(num2, num3));</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure></p>
+<p>[动图(<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/maximum-subarray/solution/hua-jie-suan-fa-53-zui-da-zi-xu-he-by-guanpengchn/)见">https://leetcode-cn.com/problems/maximum-subarray/solution/hua-jie-suan-fa-53-zui-da-zi-xu-he-by-guanpengchn/)见</a><br>代码如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"> <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">maxSubArray</span><span class="params">(<span class="type">int</span>[] nums)</span> &#123;</span><br><span class="line">     <span class="type">int</span> <span class="variable">ans</span> <span class="operator">=</span> nums[<span class="number">0</span>];</span><br><span class="line">     <span class="type">int</span> <span class="variable">sum</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">     <span class="keyword">for</span>(<span class="type">int</span> num: nums) &#123;</span><br><span class="line">         <span class="keyword">if</span>(sum &gt; <span class="number">0</span>) &#123;</span><br><span class="line">             sum += num;</span><br><span class="line">         &#125; <span class="keyword">else</span> &#123;</span><br><span class="line"><span class="comment">//这里包括了对sum 初始化为nums[0]</span></span><br><span class="line">             sum = num;</span><br><span class="line">         &#125;</span><br><span class="line">         ans = Math.max(ans, sum);</span><br><span class="line">     &#125;</span><br><span class="line">     <span class="keyword">return</span> ans;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="分治"><a href="#分治" class="headerlink" title="分治"></a>分治</h4><p>思路见算法导论分治一节<br>数据结构与算法分析第二章P29<br>但是运行时间反而不如动态规划啊2333<br>代码来自：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">  <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">maxSubArray</span><span class="params">(<span class="type">int</span>[] nums)</span> &#123;</span><br><span class="line">      <span class="type">int</span> <span class="variable">len</span> <span class="operator">=</span> nums.length;</span><br><span class="line">      <span class="keyword">if</span> (len == <span class="number">0</span>) &#123;</span><br><span class="line">          <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">return</span> maxSubArraySum(nums, <span class="number">0</span>, len - <span class="number">1</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">private</span> <span class="type">int</span> <span class="title function_">maxCrossingSum</span><span class="params">(<span class="type">int</span>[] nums, <span class="type">int</span> left, <span class="type">int</span> mid, <span class="type">int</span> right)</span> &#123;</span><br><span class="line">      <span class="comment">// 一定会包含 nums[mid] 这个元素</span></span><br><span class="line">      <span class="type">int</span> <span class="variable">sum</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">      <span class="type">int</span> <span class="variable">leftSum</span> <span class="operator">=</span> Integer.MIN_VALUE;</span><br><span class="line">      <span class="comment">// 左半边包含 nums[mid] 元素，最多可以到什么地方</span></span><br><span class="line">      <span class="comment">// 走到最边界，看看最值是什么</span></span><br><span class="line">      <span class="comment">// 计算以 mid 结尾的最大的子数组的和</span></span><br><span class="line">      <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> mid; i &gt;= left; i--) &#123;</span><br><span class="line">          sum += nums[i];</span><br><span class="line">          <span class="keyword">if</span> (sum &gt; leftSum) &#123;</span><br><span class="line">              leftSum = sum;</span><br><span class="line">          &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      sum = <span class="number">0</span>;</span><br><span class="line">      <span class="type">int</span> <span class="variable">rightSum</span> <span class="operator">=</span> Integer.MIN_VALUE;</span><br><span class="line">      <span class="comment">// 右半边不包含 nums[mid] 元素，最多可以到什么地方</span></span><br><span class="line">      <span class="comment">// 计算以 mid+1 开始的最大的子数组的和</span></span><br><span class="line">      <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> mid + <span class="number">1</span>; i &lt;= right; i++) &#123;</span><br><span class="line">          sum += nums[i];</span><br><span class="line">          <span class="keyword">if</span> (sum &gt; rightSum) &#123;</span><br><span class="line">              rightSum = sum;</span><br><span class="line">          &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">return</span> leftSum + rightSum;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">private</span> <span class="type">int</span> <span class="title function_">maxSubArraySum</span><span class="params">(<span class="type">int</span>[] nums, <span class="type">int</span> left, <span class="type">int</span> right)</span> &#123;</span><br><span class="line">      <span class="keyword">if</span> (left == right) &#123;</span><br><span class="line">          <span class="keyword">return</span> nums[left];</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="type">int</span> <span class="variable">mid</span> <span class="operator">=</span> (left + right) &gt;&gt;&gt; <span class="number">1</span>;</span><br><span class="line">      <span class="keyword">return</span> max3(maxSubArraySum(nums, left, mid),</span><br><span class="line">              maxSubArraySum(nums, mid + <span class="number">1</span>, right),</span><br><span class="line">              maxCrossingSum(nums, left, mid, right));</span><br><span class="line"><span class="comment">//返回左边最大或右边最大，或者跨越中点</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">private</span> <span class="type">int</span> <span class="title function_">max3</span><span class="params">(<span class="type">int</span> num1, <span class="type">int</span> num2, <span class="type">int</span> num3)</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> Math.max(num1, Math.max(num2, num3));</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure></p>
 
     </div>
 
@@ -309,7 +311,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>Post link: </strong>
-    <a href="http://yorxika.github.io/2019/11/05/最大子序和/" title="最大子序和">http://yorxika.github.io/2019/11/05/最大子序和/</a>
+    <a href="http://yorxika.github.io/2019/11/05/%E6%9C%80%E5%A4%A7%E5%AD%90%E5%BA%8F%E5%92%8C/" title="最大子序和">http://yorxika.github.io/2019/11/05/最大子序和/</a>
   </li>
   <li class="post-copyright-license">
     <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.
@@ -321,9 +323,9 @@
       <footer class="post-footer">
           
           <div class="post-tags">
-              <a href="/tags/动态规划/" rel="tag"><i class="fa fa-tag"></i> 动态规划</a>
+              <a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" rel="tag"><i class="fa fa-tag"></i> 动态规划</a>
               <a href="/tags/Leetcode/" rel="tag"><i class="fa fa-tag"></i> Leetcode</a>
-              <a href="/tags/分治/" rel="tag"><i class="fa fa-tag"></i> 分治</a>
+              <a href="/tags/%E5%88%86%E6%B2%BB/" rel="tag"><i class="fa fa-tag"></i> 分治</a>
           </div>
 
         
@@ -332,11 +334,11 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2019/11/04/解数独/" rel="prev" title="解数独">
+    <a href="/2019/11/04/%E8%A7%A3%E6%95%B0%E7%8B%AC/" rel="prev" title="解数独">
       <i class="fa fa-chevron-left"></i> 解数独
     </a></div>
       <div class="post-nav-item">
-    <a href="/2019/11/06/加一/" rel="next" title="加一">
+    <a href="/2019/11/06/%E5%8A%A0%E4%B8%80/" rel="next" title="加一">
       加一 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
@@ -398,7 +400,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#普通解法"><span class="nav-number">1.</span> <span class="nav-text">普通解法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#动态规划"><span class="nav-number">2.</span> <span class="nav-text">动态规划</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#分治"><span class="nav-number">3.</span> <span class="nav-text">分治</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%99%AE%E9%80%9A%E8%A7%A3%E6%B3%95"><span class="nav-number">1.</span> <span class="nav-text">普通解法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92"><span class="nav-number">2.</span> <span class="nav-text">动态规划</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%86%E6%B2%BB"><span class="nav-number">3.</span> <span class="nav-text">分治</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -473,12 +475,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">956k</span>
+    <span title="Symbols count total">968k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">14:29</span>
+    <span title="Reading time total">14:40</span>
 </div><script color="255,255,255" opacity="0.5" zIndex="-1" count="180" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
 
         
@@ -498,9 +500,19 @@
   <script src="/lib/anime.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
-<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
 <script src="/js/schemes/pisces.js"></script>
-<script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
 
 
 
@@ -509,7 +521,9 @@
 
 
 
-  <script src="/js/local-search.js"></script>
+  
+<script src="/js/local-search.js"></script>
+
 
 
 

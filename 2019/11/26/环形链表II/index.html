@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 3.9.0">
+<meta name="generator" content="Hexo 6.3.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
@@ -23,19 +23,21 @@
   </script>
 
   <meta name="description" content="来自Leetcode第142题环形链表II  给定一个链表，返回链表开始入环的第一个节点。 如果链表无环，则返回 null。 为了表示给定链表中的环，我们使用整数 pos 来表示链表尾连接到链表中的位置（索引从 0 开始）。 如果 pos 是 -1，则在该链表中没有环。 说明：不允许修改给定的链表。示例 1：">
-<meta name="keywords" content="Leetcode,链表,双指针">
 <meta property="og:type" content="article">
 <meta property="og:title" content="环形链表II">
-<meta property="og:url" content="http://yorxika.github.io/2019/11/26/环形链表II/index.html">
+<meta property="og:url" content="http://yorxika.github.io/2019/11/26/%E7%8E%AF%E5%BD%A2%E9%93%BE%E8%A1%A8II/index.html">
 <meta property="og:site_name" content="Nameless Site">
 <meta property="og:description" content="来自Leetcode第142题环形链表II  给定一个链表，返回链表开始入环的第一个节点。 如果链表无环，则返回 null。 为了表示给定链表中的环，我们使用整数 pos 来表示链表尾连接到链表中的位置（索引从 0 开始）。 如果 pos 是 -1，则在该链表中没有环。 说明：不允许修改给定的链表。示例 1：">
-<meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2020-04-10T16:24:10.000Z">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2019-11-26T15:22:14.000Z">
+<meta property="article:modified_time" content="2020-04-10T16:24:10.000Z">
+<meta property="article:author" content="HMF">
+<meta property="article:tag" content="Leetcode">
+<meta property="article:tag" content="链表">
+<meta property="article:tag" content="双指针">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="环形链表II">
-<meta name="twitter:description" content="来自Leetcode第142题环形链表II  给定一个链表，返回链表开始入环的第一个节点。 如果链表无环，则返回 null。 为了表示给定链表中的环，我们使用整数 pos 来表示链表尾连接到链表中的位置（索引从 0 开始）。 如果 pos 是 -1，则在该链表中没有环。 说明：不允许修改给定的链表。示例 1：">
 
-<link rel="canonical" href="http://yorxika.github.io/2019/11/26/环形链表II/">
+<link rel="canonical" href="http://yorxika.github.io/2019/11/26/%E7%8E%AF%E5%BD%A2%E9%93%BE%E8%A1%A8II/">
 
 
 <script id="page-configurations">
@@ -200,7 +202,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yorxika.github.io/2019/11/26/环形链表II/">
+    <link itemprop="mainEntityOfPage" href="http://yorxika.github.io/2019/11/26/%E7%8E%AF%E5%BD%A2%E9%93%BE%E8%A1%A8II/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/touxiang.jpg">
@@ -238,15 +240,15 @@
               </span>
               <span class="post-meta-item-text">In</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
+                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
                 </span>
                   , 
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/Leetcode/" itemprop="url" rel="index"><span itemprop="name">Leetcode</span></a>
+                  <a href="/categories/%E7%AE%97%E6%B3%95/Leetcode/" itemprop="url" rel="index"><span itemprop="name">Leetcode</span></a>
                 </span>
                   , 
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/Leetcode/链表/" itemprop="url" rel="index"><span itemprop="name">链表</span></a>
+                  <a href="/categories/%E7%AE%97%E6%B3%95/Leetcode/%E9%93%BE%E8%A1%A8/" itemprop="url" rel="index"><span itemprop="name">链表</span></a>
                 </span>
             </span>
 
@@ -279,11 +281,11 @@
 <blockquote>
 <p>给定一个链表，返回链表开始入环的第一个节点。 如果链表无环，则返回 null。</p>
 <p>为了表示给定链表中的环，我们使用整数 pos 来表示链表尾连接到链表中的位置（索引从 0 开始）。 如果 pos 是 -1，则在该链表中没有环。</p>
-<p>说明：不允许修改给定的链表。<br>示例 1：<br><a id="more"></a><br>输入：head = [3,2,0,-4], pos = 1<br>输出：tail connects to node index 1<br>解释：链表中有一个环，其尾部连接到第二个节点。</p>
+<p>说明：不允许修改给定的链表。<br>示例 1：<br><span id="more"></span><br>输入：head = [3,2,0,-4], pos = 1<br>输出：tail connects to node index 1<br>解释：链表中有一个环，其尾部连接到第二个节点。</p>
 </blockquote>
 <hr>
 <h4 id="哈希"><a href="#哈希" class="headerlink" title="哈希"></a>哈希</h4><p>思路同141环形链表，用一个set来判断，如果有重复的，直接返回该元素即可。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> ListNode <span class="title">detectCycle</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(head == <span class="keyword">null</span> || head.next == <span class="keyword">null</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    Set&lt;ListNode&gt; map = <span class="keyword">new</span> HashSet&lt;&gt;();</span><br><span class="line">    <span class="keyword">while</span> (head != <span class="keyword">null</span>)&#123;</span><br><span class="line">        <span class="keyword">if</span>(map.contains(head))</span><br><span class="line">            <span class="keyword">return</span> head;</span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">            map.add(head);</span><br><span class="line">            head = head.next;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> ListNode <span class="title function_">detectCycle</span><span class="params">(ListNode head)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span>(head == <span class="literal">null</span> || head.next == <span class="literal">null</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">    Set&lt;ListNode&gt; map = <span class="keyword">new</span> <span class="title class_">HashSet</span>&lt;&gt;();</span><br><span class="line">    <span class="keyword">while</span> (head != <span class="literal">null</span>)&#123;</span><br><span class="line">        <span class="keyword">if</span>(map.contains(head))</span><br><span class="line">            <span class="keyword">return</span> head;</span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">            map.add(head);</span><br><span class="line">            head = head.next;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h4 id="双指针"><a href="#双指针" class="headerlink" title="双指针"></a>双指针</h4><p>这题有个坑，和上一题不一样。<br>上一题条件宽松，在环里相遇即可，并且对初始步数无要求。<br>我在复用上一题代码时，因为初始步数的不一致，导致了最终在死循环里出不来。代码块里注释部分就是导致死循环的地方，尽管两个都能判断相遇成环，但是相遇点不一样，就为后来的找环入口算法带来了障碍。<br>或者注释部分用最开始的双指针代替也可。</p>
 <p>数学解释：</p>
 <blockquote>
@@ -293,7 +295,7 @@
 <p>还有一个约束就是走的快的那个指针比走的慢的那个指针多走的路程一定是环长度的整数倍。根据上面那个式子可以知道<code>2(x+n1*c+y)-x+n1*c+y=x+n1*c+y=n2*c</code>。</p>
 <p>所以有<code>x+y=(n2-n1)*c</code>,这意味着什么？我们解读下这个数学公式：非环部分的长度+环起点到相遇点之间的长度就是环的整数倍。这在数据结构上的意义是什么？现在我们知道两个指针都在离环起点距离是y的那个相遇点，而现在x+y是环长度的整数倍，这意味着他们从相遇点再走x距离就刚刚走了很多圈，这意味着他们如果从相遇点再走x就到了起点。<br>那怎么才能再走x步呢？答：让一个指针从头部开始走，另一个指针从相遇点走，等这两个指针相遇那就走了x步此时就是环的起点。</p>
 <p>通过上面的数学解释，在回顾最开始的代码，就知道了原因所在。最开始就异步，两个指针的步数不一致，也就破坏了后续的推导证明。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> ListNode <span class="title">detectCycle</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (head == <span class="keyword">null</span> || head.next == <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/*ListNode slow = head;</span></span><br><span class="line"><span class="comment">    ListNode fast = head.next;</span></span><br><span class="line"><span class="comment">    while (slow != fast) &#123;</span></span><br><span class="line"><span class="comment">        if (fast == null || fast.next == null) &#123;</span></span><br><span class="line"><span class="comment">            return null;</span></span><br><span class="line"><span class="comment">        &#125;</span></span><br><span class="line"><span class="comment">        slow = slow.next;</span></span><br><span class="line"><span class="comment">        fast = fast.next.next;</span></span><br><span class="line"><span class="comment">        if(fast == slow)</span></span><br><span class="line"><span class="comment">            break;</span></span><br><span class="line"><span class="comment">    &#125;*/</span></span><br><span class="line">    ListNode fast = head, slow = head;</span><br><span class="line">    <span class="keyword">while</span> (<span class="keyword">true</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> (fast == <span class="keyword">null</span> || fast.next == <span class="keyword">null</span>) <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        fast = fast.next.next;</span><br><span class="line">        slow = slow.next;</span><br><span class="line">        <span class="keyword">if</span> (fast == slow) <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//这时候已经相遇</span></span><br><span class="line">    fast = head;</span><br><span class="line">    <span class="keyword">while</span> (slow != fast)&#123;</span><br><span class="line">        slow = slow.next;</span><br><span class="line">        fast = fast.next;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> fast;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> ListNode <span class="title function_">detectCycle</span><span class="params">(ListNode head)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (head == <span class="literal">null</span> || head.next == <span class="literal">null</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/*ListNode slow = head;</span></span><br><span class="line"><span class="comment">    ListNode fast = head.next;</span></span><br><span class="line"><span class="comment">    while (slow != fast) &#123;</span></span><br><span class="line"><span class="comment">        if (fast == null || fast.next == null) &#123;</span></span><br><span class="line"><span class="comment">            return null;</span></span><br><span class="line"><span class="comment">        &#125;</span></span><br><span class="line"><span class="comment">        slow = slow.next;</span></span><br><span class="line"><span class="comment">        fast = fast.next.next;</span></span><br><span class="line"><span class="comment">        if(fast == slow)</span></span><br><span class="line"><span class="comment">            break;</span></span><br><span class="line"><span class="comment">    &#125;*/</span></span><br><span class="line">    <span class="type">ListNode</span> <span class="variable">fast</span> <span class="operator">=</span> head, slow = head;</span><br><span class="line">    <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> (fast == <span class="literal">null</span> || fast.next == <span class="literal">null</span>) <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">        fast = fast.next.next;</span><br><span class="line">        slow = slow.next;</span><br><span class="line">        <span class="keyword">if</span> (fast == slow) <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//这时候已经相遇</span></span><br><span class="line">    fast = head;</span><br><span class="line">    <span class="keyword">while</span> (slow != fast)&#123;</span><br><span class="line">        slow = slow.next;</span><br><span class="line">        fast = fast.next;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> fast;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
     </div>
 
@@ -309,7 +311,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>Post link: </strong>
-    <a href="http://yorxika.github.io/2019/11/26/环形链表II/" title="环形链表II">http://yorxika.github.io/2019/11/26/环形链表II/</a>
+    <a href="http://yorxika.github.io/2019/11/26/%E7%8E%AF%E5%BD%A2%E9%93%BE%E8%A1%A8II/" title="环形链表II">http://yorxika.github.io/2019/11/26/环形链表II/</a>
   </li>
   <li class="post-copyright-license">
     <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.
@@ -322,8 +324,8 @@
           
           <div class="post-tags">
               <a href="/tags/Leetcode/" rel="tag"><i class="fa fa-tag"></i> Leetcode</a>
-              <a href="/tags/链表/" rel="tag"><i class="fa fa-tag"></i> 链表</a>
-              <a href="/tags/双指针/" rel="tag"><i class="fa fa-tag"></i> 双指针</a>
+              <a href="/tags/%E9%93%BE%E8%A1%A8/" rel="tag"><i class="fa fa-tag"></i> 链表</a>
+              <a href="/tags/%E5%8F%8C%E6%8C%87%E9%92%88/" rel="tag"><i class="fa fa-tag"></i> 双指针</a>
           </div>
 
         
@@ -332,11 +334,11 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2019/11/26/环形链表/" rel="prev" title="环形链表">
+    <a href="/2019/11/26/%E7%8E%AF%E5%BD%A2%E9%93%BE%E8%A1%A8/" rel="prev" title="环形链表">
       <i class="fa fa-chevron-left"></i> 环形链表
     </a></div>
       <div class="post-nav-item">
-    <a href="/2019/11/27/只出现一次的数字II/" rel="next" title="只出现一次的数字II">
+    <a href="/2019/11/27/%E5%8F%AA%E5%87%BA%E7%8E%B0%E4%B8%80%E6%AC%A1%E7%9A%84%E6%95%B0%E5%AD%97II/" rel="next" title="只出现一次的数字II">
       只出现一次的数字II <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
@@ -398,7 +400,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#哈希"><span class="nav-number">1.</span> <span class="nav-text">哈希</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#双指针"><span class="nav-number">2.</span> <span class="nav-text">双指针</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%93%88%E5%B8%8C"><span class="nav-number">1.</span> <span class="nav-text">哈希</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%8C%E6%8C%87%E9%92%88"><span class="nav-number">2.</span> <span class="nav-text">双指针</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -473,12 +475,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">956k</span>
+    <span title="Symbols count total">968k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">14:29</span>
+    <span title="Reading time total">14:40</span>
 </div><script color="255,255,255" opacity="0.5" zIndex="-1" count="180" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
 
         
@@ -498,9 +500,19 @@
   <script src="/lib/anime.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
-<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
 <script src="/js/schemes/pisces.js"></script>
-<script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
 
 
 
@@ -509,7 +521,9 @@
 
 
 
-  <script src="/js/local-search.js"></script>
+  
+<script src="/js/local-search.js"></script>
+
 
 
 

@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 3.9.0">
+<meta name="generator" content="Hexo 6.3.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
@@ -23,19 +23,20 @@
   </script>
 
   <meta name="description" content="来源Leetcode第191题位1的个数  编写一个函数，输入是一个无符号整数，返回其二进制表达式中数字位数为 ‘1’ 的个数（也被称为汉明重量）。 示例 1： 输入：00000000000000000000000000001011输出：3解释：输入的二进制串 00000000000000000000000000001011 中，共有三位为 ‘1’。">
-<meta name="keywords" content="Leetcode,位运算">
 <meta property="og:type" content="article">
 <meta property="og:title" content="位1的个数">
-<meta property="og:url" content="http://yorxika.github.io/2019/12/03/位1的个数/index.html">
+<meta property="og:url" content="http://yorxika.github.io/2019/12/03/%E4%BD%8D1%E7%9A%84%E4%B8%AA%E6%95%B0/index.html">
 <meta property="og:site_name" content="Nameless Site">
 <meta property="og:description" content="来源Leetcode第191题位1的个数  编写一个函数，输入是一个无符号整数，返回其二进制表达式中数字位数为 ‘1’ 的个数（也被称为汉明重量）。 示例 1： 输入：00000000000000000000000000001011输出：3解释：输入的二进制串 00000000000000000000000000001011 中，共有三位为 ‘1’。">
-<meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-12-12T12:47:35.000Z">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2019-12-03T12:07:34.000Z">
+<meta property="article:modified_time" content="2019-12-12T12:47:35.000Z">
+<meta property="article:author" content="HMF">
+<meta property="article:tag" content="Leetcode">
+<meta property="article:tag" content="位运算">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="位1的个数">
-<meta name="twitter:description" content="来源Leetcode第191题位1的个数  编写一个函数，输入是一个无符号整数，返回其二进制表达式中数字位数为 ‘1’ 的个数（也被称为汉明重量）。 示例 1： 输入：00000000000000000000000000001011输出：3解释：输入的二进制串 00000000000000000000000000001011 中，共有三位为 ‘1’。">
 
-<link rel="canonical" href="http://yorxika.github.io/2019/12/03/位1的个数/">
+<link rel="canonical" href="http://yorxika.github.io/2019/12/03/%E4%BD%8D1%E7%9A%84%E4%B8%AA%E6%95%B0/">
 
 
 <script id="page-configurations">
@@ -200,7 +201,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yorxika.github.io/2019/12/03/位1的个数/">
+    <link itemprop="mainEntityOfPage" href="http://yorxika.github.io/2019/12/03/%E4%BD%8D1%E7%9A%84%E4%B8%AA%E6%95%B0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/touxiang.jpg">
@@ -238,15 +239,15 @@
               </span>
               <span class="post-meta-item-text">In</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
+                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
                 </span>
                   , 
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/Leetcode/" itemprop="url" rel="index"><span itemprop="name">Leetcode</span></a>
+                  <a href="/categories/%E7%AE%97%E6%B3%95/Leetcode/" itemprop="url" rel="index"><span itemprop="name">Leetcode</span></a>
                 </span>
                   , 
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/Leetcode/数学/" itemprop="url" rel="index"><span itemprop="name">数学</span></a>
+                  <a href="/categories/%E7%AE%97%E6%B3%95/Leetcode/%E6%95%B0%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">数学</span></a>
                 </span>
             </span>
 
@@ -279,7 +280,7 @@
 <blockquote>
 <p>编写一个函数，输入是一个无符号整数，返回其二进制表达式中数字位数为 ‘1’ 的个数（也被称为汉明重量）。</p>
 <p>示例 1：</p>
-<p>输入：00000000000000000000000000001011<br>输出：3<br>解释：输入的二进制串 00000000000000000000000000001011 中，共有三位为 ‘1’。<a id="more"></a></p>
+<p>输入：00000000000000000000000000001011<br>输出：3<br>解释：输入的二进制串 00000000000000000000000000001011 中，共有三位为 ‘1’。<span id="more"></span></p>
 </blockquote>
 <h4 id="公式"><a href="#公式" class="headerlink" title="公式"></a>公式</h4><ul>
 <li>1.计算出来的值i的二进制可以按每2个二进制位为一组进行分组，各组的十进制表示的就是该组的汉明重量。</li>
@@ -287,17 +288,17 @@
 <li>3.计算出来的值i的二进制可以按每8个二进制位为一组进行分组，各组的十进制表示的就是该组的汉明重量。</li>
 <li>4.i * (0x01010101)计算出汉明重量并记录在二进制的高八位，&gt;&gt;24语句则通过右移运算，将汉明重量移到最低八位，最后二进制对应的十进制数就是汉明重量。<br>算法时间复杂度是O（1）的。</li>
 </ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">hammingWeight</span><span class="params">(<span class="keyword">int</span> i)</span> </span>&#123;</span><br><span class="line">i = (i &amp; <span class="number">0x55555555</span>) + ((i &gt;&gt; <span class="number">1</span>) &amp; <span class="number">0x55555555</span>);  <span class="comment">//相邻位相加</span></span><br><span class="line">i = (i &amp; <span class="number">0x33333333</span>) + ((i &gt;&gt; <span class="number">2</span>) &amp; <span class="number">0x33333333</span>);  <span class="comment">//相邻为以2为单位相加</span></span><br><span class="line">i = (i &amp; <span class="number">0x0F0F0F0F</span>) + ((i &gt;&gt; <span class="number">4</span>) &amp; <span class="number">0x0F0F0F0F</span>);  <span class="comment">//相邻为以4为单位相加</span></span><br><span class="line">i = (i * (<span class="number">0x01010101</span>) &gt;&gt; <span class="number">24</span>);</span><br><span class="line"><span class="keyword">return</span> i;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="type">int</span> <span class="title function_">hammingWeight</span><span class="params">(<span class="type">int</span> i)</span> &#123;</span><br><span class="line">i = (i &amp; <span class="number">0x55555555</span>) + ((i &gt;&gt; <span class="number">1</span>) &amp; <span class="number">0x55555555</span>);  <span class="comment">//相邻位相加</span></span><br><span class="line">i = (i &amp; <span class="number">0x33333333</span>) + ((i &gt;&gt; <span class="number">2</span>) &amp; <span class="number">0x33333333</span>);  <span class="comment">//相邻为以2为单位相加</span></span><br><span class="line">i = (i &amp; <span class="number">0x0F0F0F0F</span>) + ((i &gt;&gt; <span class="number">4</span>) &amp; <span class="number">0x0F0F0F0F</span>);  <span class="comment">//相邻为以4为单位相加</span></span><br><span class="line">i = (i * (<span class="number">0x01010101</span>) &gt;&gt; <span class="number">24</span>);</span><br><span class="line"><span class="keyword">return</span> i;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h4 id="循环移位"><a href="#循环移位" class="headerlink" title="循环移位"></a>循环移位</h4><p>执行32次，每次与1相与，判断结果后累加</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">hammingWeight</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> bits = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> mask = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">32</span>; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> ((n &amp; mask) != <span class="number">0</span>) &#123;</span><br><span class="line">            bits++;</span><br><span class="line">        &#125;</span><br><span class="line">        mask &lt;&lt;= <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> bits;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">public <span class="type">int</span> <span class="title function_">hammingWeight</span><span class="params">(<span class="type">int</span> n)</span> &#123;</span><br><span class="line">    <span class="type">int</span> bits = <span class="number">0</span>;</span><br><span class="line">    <span class="type">int</span> mask = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">32</span>; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> ((n &amp; mask) != <span class="number">0</span>) &#123;</span><br><span class="line">            bits++;</span><br><span class="line">        &#125;</span><br><span class="line">        mask &lt;&lt;= <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> bits;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h4 id="位操作"><a href="#位操作" class="headerlink" title="位操作"></a>位操作</h4><p>来源官方题解</p>
 <blockquote>
 <p>在二进制表示中，数字 nn 中最低位的 11 总是对应 n - 1n−1 中的 00 。因此，将 nn 和 n - 1n−1 与运算总是能把 nn 中最低位的 11 变成 00 ，并保持其他位不变。</p>
 </blockquote>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">hammingWeight</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (n != <span class="number">0</span>) &#123;</span><br><span class="line">        sum++;</span><br><span class="line">        n &amp;= (n - <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> sum;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="Integet类库"><a href="#Integet类库" class="headerlink" title="Integet类库"></a>Integet类库</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">hammingWeight</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> Integer.bitCount(n);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="type">int</span> <span class="title function_">hammingWeight</span><span class="params">(<span class="type">int</span> n)</span> &#123;</span><br><span class="line">    <span class="type">int</span> <span class="variable">sum</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (n != <span class="number">0</span>) &#123;</span><br><span class="line">        sum++;</span><br><span class="line">        n &amp;= (n - <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> sum;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="Integet类库"><a href="#Integet类库" class="headerlink" title="Integet类库"></a>Integet类库</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="type">int</span> <span class="title function_">hammingWeight</span><span class="params">(<span class="type">int</span> n)</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> Integer.bitCount(n);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h4 id="lowbit公式"><a href="#lowbit公式" class="headerlink" title="lowbit公式"></a>lowbit公式</h4><p>lowbit公式： x &amp; ~x<br>作用是找出数字n中最后一个1出现的位置<br>例如n = 10。用二进制表示就是1010，而它的负数-10用二进制补码表示则为0110，<br>取&amp;后得到的结果为10，这就得到了n最后一个1出现的位置对应的数字。<br>知道lowbit公式后，这个题目就非常简单了。每次通过lowbit公式找到最后一个1对应的数，然后将它减去，直到n为0为止。统计减法操作的次数即可。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="comment">// you need to treat n as an unsigned value</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">hammingWeight</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>(n != <span class="number">0</span>) &#123;</span><br><span class="line">            ans++;</span><br><span class="line">            n -= lowbit(n);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">int</span> <span class="title">lowbit</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> x &amp; -x;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="comment">// you need to treat n as an unsigned value</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">hammingWeight</span><span class="params">(<span class="type">int</span> n)</span> &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">ans</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>(n != <span class="number">0</span>) &#123;</span><br><span class="line">            ans++;</span><br><span class="line">            n -= lowbit(n);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> <span class="title function_">lowbit</span><span class="params">(<span class="type">int</span> x)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> x &amp; -x;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
     </div>
 
     
@@ -312,7 +313,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>Post link: </strong>
-    <a href="http://yorxika.github.io/2019/12/03/位1的个数/" title="位1的个数">http://yorxika.github.io/2019/12/03/位1的个数/</a>
+    <a href="http://yorxika.github.io/2019/12/03/%E4%BD%8D1%E7%9A%84%E4%B8%AA%E6%95%B0/" title="位1的个数">http://yorxika.github.io/2019/12/03/位1的个数/</a>
   </li>
   <li class="post-copyright-license">
     <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.
@@ -325,7 +326,7 @@
           
           <div class="post-tags">
               <a href="/tags/Leetcode/" rel="tag"><i class="fa fa-tag"></i> Leetcode</a>
-              <a href="/tags/位运算/" rel="tag"><i class="fa fa-tag"></i> 位运算</a>
+              <a href="/tags/%E4%BD%8D%E8%BF%90%E7%AE%97/" rel="tag"><i class="fa fa-tag"></i> 位运算</a>
           </div>
 
         
@@ -334,11 +335,11 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2019/12/02/打家劫舍/" rel="prev" title="打家劫舍">
+    <a href="/2019/12/02/%E6%89%93%E5%AE%B6%E5%8A%AB%E8%88%8D/" rel="prev" title="打家劫舍">
       <i class="fa fa-chevron-left"></i> 打家劫舍
     </a></div>
       <div class="post-nav-item">
-    <a href="/2019/12/03/验证搜索二叉树/" rel="next" title="验证二叉搜索树">
+    <a href="/2019/12/03/%E9%AA%8C%E8%AF%81%E6%90%9C%E7%B4%A2%E4%BA%8C%E5%8F%89%E6%A0%91/" rel="next" title="验证二叉搜索树">
       验证二叉搜索树 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
@@ -400,7 +401,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#公式"><span class="nav-number">1.</span> <span class="nav-text">公式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#循环移位"><span class="nav-number">2.</span> <span class="nav-text">循环移位</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#位操作"><span class="nav-number">3.</span> <span class="nav-text">位操作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Integet类库"><span class="nav-number">4.</span> <span class="nav-text">Integet类库</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#lowbit公式"><span class="nav-number">5.</span> <span class="nav-text">lowbit公式</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%AC%E5%BC%8F"><span class="nav-number">1.</span> <span class="nav-text">公式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BE%AA%E7%8E%AF%E7%A7%BB%E4%BD%8D"><span class="nav-number">2.</span> <span class="nav-text">循环移位</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%8D%E6%93%8D%E4%BD%9C"><span class="nav-number">3.</span> <span class="nav-text">位操作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Integet%E7%B1%BB%E5%BA%93"><span class="nav-number">4.</span> <span class="nav-text">Integet类库</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#lowbit%E5%85%AC%E5%BC%8F"><span class="nav-number">5.</span> <span class="nav-text">lowbit公式</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -475,12 +476,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">956k</span>
+    <span title="Symbols count total">968k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">14:29</span>
+    <span title="Reading time total">14:40</span>
 </div><script color="255,255,255" opacity="0.5" zIndex="-1" count="180" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
 
         
@@ -500,9 +501,19 @@
   <script src="/lib/anime.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
-<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
 <script src="/js/schemes/pisces.js"></script>
-<script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
 
 
 
@@ -511,7 +522,9 @@
 
 
 
-  <script src="/js/local-search.js"></script>
+  
+<script src="/js/local-search.js"></script>
+
 
 
 

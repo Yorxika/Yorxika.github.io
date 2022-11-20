@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 3.9.0">
+<meta name="generator" content="Hexo 6.3.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
@@ -22,20 +22,20 @@
     var CONFIG = {"hostname":"yorxika.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="来自Leetcode632题最小区间 你有 k 个升序排列的整数数组。找到一个最小区间，使得 k 个列表中的每个列表至少有一个数包含在其中。 我们定义如果 b-a &amp;lt; d-c 或者在 b-a == d-c 时 a &amp;lt; c，则区间 [a,b] 比 [c,d] 小。">
-<meta name="keywords" content="堆">
+  <meta name="description" content="来自Leetcode632题最小区间 你有 k 个升序排列的整数数组。找到一个最小区间，使得 k 个列表中的每个列表至少有一个数包含在其中。 我们定义如果 b-a &lt; d-c 或者在 b-a &#x3D;&#x3D; d-c 时 a &lt; c，则区间 [a,b] 比 [c,d] 小。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="最小区间">
-<meta property="og:url" content="http://yorxika.github.io/2020/08/02/最小区间/index.html">
+<meta property="og:url" content="http://yorxika.github.io/2020/08/02/%E6%9C%80%E5%B0%8F%E5%8C%BA%E9%97%B4/index.html">
 <meta property="og:site_name" content="Nameless Site">
-<meta property="og:description" content="来自Leetcode632题最小区间 你有 k 个升序排列的整数数组。找到一个最小区间，使得 k 个列表中的每个列表至少有一个数包含在其中。 我们定义如果 b-a &amp;lt; d-c 或者在 b-a == d-c 时 a &amp;lt; c，则区间 [a,b] 比 [c,d] 小。">
-<meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2020-08-01T16:26:49.000Z">
+<meta property="og:description" content="来自Leetcode632题最小区间 你有 k 个升序排列的整数数组。找到一个最小区间，使得 k 个列表中的每个列表至少有一个数包含在其中。 我们定义如果 b-a &lt; d-c 或者在 b-a &#x3D;&#x3D; d-c 时 a &lt; c，则区间 [a,b] 比 [c,d] 小。">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-08-01T16:06:31.000Z">
+<meta property="article:modified_time" content="2020-08-01T16:26:49.000Z">
+<meta property="article:author" content="HMF">
+<meta property="article:tag" content="堆">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="最小区间">
-<meta name="twitter:description" content="来自Leetcode632题最小区间 你有 k 个升序排列的整数数组。找到一个最小区间，使得 k 个列表中的每个列表至少有一个数包含在其中。 我们定义如果 b-a &amp;lt; d-c 或者在 b-a == d-c 时 a &amp;lt; c，则区间 [a,b] 比 [c,d] 小。">
 
-<link rel="canonical" href="http://yorxika.github.io/2020/08/02/最小区间/">
+<link rel="canonical" href="http://yorxika.github.io/2020/08/02/%E6%9C%80%E5%B0%8F%E5%8C%BA%E9%97%B4/">
 
 
 <script id="page-configurations">
@@ -200,7 +200,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yorxika.github.io/2020/08/02/最小区间/">
+    <link itemprop="mainEntityOfPage" href="http://yorxika.github.io/2020/08/02/%E6%9C%80%E5%B0%8F%E5%8C%BA%E9%97%B4/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/touxiang.jpg">
@@ -232,15 +232,15 @@
               </span>
               <span class="post-meta-item-text">In</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
+                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
                 </span>
                   , 
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/Leetcode/" itemprop="url" rel="index"><span itemprop="name">Leetcode</span></a>
+                  <a href="/categories/%E7%AE%97%E6%B3%95/Leetcode/" itemprop="url" rel="index"><span itemprop="name">Leetcode</span></a>
                 </span>
                   , 
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/Leetcode/数组/" itemprop="url" rel="index"><span itemprop="name">数组</span></a>
+                  <a href="/categories/%E7%AE%97%E6%B3%95/Leetcode/%E6%95%B0%E7%BB%84/" itemprop="url" rel="index"><span itemprop="name">数组</span></a>
                 </span>
             </span>
 
@@ -271,11 +271,11 @@
       
         <p>来自Leetcode632题最小区间</p>
 <p>你有 <code>k</code> 个升序排列的整数数组。找到一个<strong>最小</strong>区间，使得 <code>k</code> 个列表中的每个列表至少有一个数包含在其中。</p>
-<p>我们定义如果 <code>b-a &lt; d-c</code> 或者在 <code>b-a == d-c</code> 时 <code>a &lt; c</code>，则区间 [a,b] 比 [c,d] 小。<br><a id="more"></a><br><strong>示例 1:</strong></p>
-<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">输入:[[<span class="number">4</span>,<span class="number">10</span>,<span class="number">15</span>,<span class="number">24</span>,<span class="number">26</span>], [<span class="number">0</span>,<span class="number">9</span>,<span class="number">12</span>,<span class="number">20</span>], [<span class="number">5</span>,<span class="number">18</span>,<span class="number">22</span>,<span class="number">30</span>]]</span><br><span class="line">输出: [<span class="number">20</span>,<span class="number">24</span>]</span><br><span class="line">解释: </span><br><span class="line">列表 <span class="number">1</span>：[<span class="number">4</span>, <span class="number">10</span>, <span class="number">15</span>, <span class="number">24</span>, <span class="number">26</span>]，<span class="number">24</span> 在区间 [<span class="number">20</span>,<span class="number">24</span>] 中。</span><br><span class="line">列表 <span class="number">2</span>：[<span class="number">0</span>, <span class="number">9</span>, <span class="number">12</span>, <span class="number">20</span>]，<span class="number">20</span> 在区间 [<span class="number">20</span>,<span class="number">24</span>] 中。</span><br><span class="line">列表 <span class="number">3</span>：[<span class="number">5</span>, <span class="number">18</span>, <span class="number">22</span>, <span class="number">30</span>]，<span class="number">22</span> 在区间 [<span class="number">20</span>,<span class="number">24</span>] 中。</span><br></pre></td></tr></table></figure>
-<h3 id="堆"><a href="#堆" class="headerlink" title="堆"></a>堆</h3><p>维护1个大根堆以及一个小根堆，注意到这k个数组是<strong>升序</strong>排列的有序数组，因而初始化时将这k个数组的首元素放进堆里；之后遍历小根堆，退出条件是小根堆的大小小于k，当小根堆的大小小于k时就不满足k个列表中的每个列表至少有一个数包含在其中。在遍历小根堆时，取出大根堆以及小根堆的元素，这样就满足了k个列表中的每个列表至少有一个数包含在这个区间中，接下来判断长度，如果长度小于已知长度，就修改答案，同时移除大小根堆的元素，加入移除元素在数组里的下一位置元素，重构堆。<br>代码如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">int</span>[] smallestRange(List&lt;List&lt;Integer&gt;&gt; nums) &#123;</span><br><span class="line">    <span class="comment">//小根堆，记录元素的二维坐标</span></span><br><span class="line">    Queue&lt;<span class="keyword">int</span> []&gt; minQueue = <span class="keyword">new</span> PriorityQueue&lt;&gt;(Comparator.comparingInt</span><br><span class="line">            (arr -&gt; nums.get(arr[<span class="number">0</span>]).get(arr[<span class="number">1</span>])));</span><br><span class="line">    <span class="comment">//大根堆，记录元素的二维坐标</span></span><br><span class="line">    Queue&lt;<span class="keyword">int</span> []&gt; maxQueue = <span class="keyword">new</span> PriorityQueue&lt;&gt;((arr1,arr2) -&gt;</span><br><span class="line">            nums.get(arr2[<span class="number">0</span>]).get(arr2[<span class="number">1</span>]) - nums.get(arr1[<span class="number">0</span>]).get(arr1[<span class="number">1</span>]));</span><br><span class="line">    <span class="keyword">int</span>[] ans = &#123;Integer.MIN_VALUE,Integer.MAX_VALUE&#125;;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span> ; i &lt; nums.size() ; ++i)&#123;</span><br><span class="line">        <span class="comment">//将每列的第一个元素都加进去</span></span><br><span class="line">        <span class="keyword">int</span>[] temp = <span class="keyword">new</span> <span class="keyword">int</span>[]&#123;i,<span class="number">0</span>&#125;;</span><br><span class="line">        minQueue.offer(temp);</span><br><span class="line">        maxQueue.offer(temp);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span> (minQueue.size() == nums.size())&#123;</span><br><span class="line">        <span class="comment">//取出小根堆堆顶元素</span></span><br><span class="line">        <span class="keyword">int</span>[] minArr = minQueue.poll();</span><br><span class="line">        <span class="comment">//取出大根堆堆顶元素</span></span><br><span class="line">        <span class="keyword">int</span>[] maxArr = maxQueue.peek();</span><br><span class="line">        <span class="comment">//此时在这两个元素至少包含所有数组的一个元素</span></span><br><span class="line">        <span class="keyword">if</span>((<span class="keyword">long</span>)nums.get(maxArr[<span class="number">0</span>]).get(maxArr[<span class="number">1</span>]) - (<span class="keyword">long</span>)nums.get(minArr[<span class="number">0</span>]).get(minArr[<span class="number">1</span>])</span><br><span class="line">        &lt; (<span class="keyword">long</span>)ans[<span class="number">1</span>] - ans[<span class="number">0</span>])&#123;</span><br><span class="line">            ans[<span class="number">0</span>] = nums.get(minArr[<span class="number">0</span>]).get(minArr[<span class="number">1</span>]);</span><br><span class="line">            ans[<span class="number">1</span>] = nums.get(maxArr[<span class="number">0</span>]).get(maxArr[<span class="number">1</span>]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//比较过后可以丢弃掉小根堆的元素，同时添加下一元素到堆里</span></span><br><span class="line">        <span class="keyword">if</span>(minArr[<span class="number">1</span>] &lt; nums.get(minArr[<span class="number">0</span>]).size() - <span class="number">1</span>)&#123;</span><br><span class="line">            <span class="keyword">int</span>[] newArr = &#123;minArr[<span class="number">0</span>],minArr[<span class="number">1</span>] + <span class="number">1</span>&#125;;</span><br><span class="line">            minQueue.offer(newArr);</span><br><span class="line">            maxQueue.remove(minArr);</span><br><span class="line">            maxQueue.offer(newArr);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>我们定义如果 <code>b-a &lt; d-c</code> 或者在 <code>b-a == d-c</code> 时 <code>a &lt; c</code>，则区间 [a,b] 比 [c,d] 小。<br><span id="more"></span><br><strong>示例 1:</strong></p>
+<figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">输入:<span class="comment">[<span class="comment">[4,10,15,24,26]</span>, <span class="comment">[0,9,12,20]</span>, <span class="comment">[5,18,22,30]</span>]</span></span><br><span class="line">输出: <span class="comment">[20,24]</span></span><br><span class="line">解释: </span><br><span class="line">列表 1：<span class="comment">[4, 10, 15, 24, 26]</span>，24 在区间 <span class="comment">[20,24]</span> 中。</span><br><span class="line">列表 2：<span class="comment">[0, 9, 12, 20]</span>，20 在区间 <span class="comment">[20,24]</span> 中。</span><br><span class="line">列表 3：<span class="comment">[5, 18, 22, 30]</span>，22 在区间 <span class="comment">[20,24]</span> 中。</span><br></pre></td></tr></table></figure>
+<h3 id="堆"><a href="#堆" class="headerlink" title="堆"></a>堆</h3><p>维护1个大根堆以及一个小根堆，注意到这k个数组是<strong>升序</strong>排列的有序数组，因而初始化时将这k个数组的首元素放进堆里；之后遍历小根堆，退出条件是小根堆的大小小于k，当小根堆的大小小于k时就不满足k个列表中的每个列表至少有一个数包含在其中。在遍历小根堆时，取出大根堆以及小根堆的元素，这样就满足了k个列表中的每个列表至少有一个数包含在这个区间中，接下来判断长度，如果长度小于已知长度，就修改答案，同时移除大小根堆的元素，加入移除元素在数组里的下一位置元素，重构堆。<br>代码如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="type">int</span>[] smallestRange(List&lt;List&lt;Integer&gt;&gt; nums) &#123;</span><br><span class="line">    <span class="comment">//小根堆，记录元素的二维坐标</span></span><br><span class="line">    Queue&lt;<span class="type">int</span> []&gt; minQueue = <span class="keyword">new</span> <span class="title class_">PriorityQueue</span>&lt;&gt;(Comparator.comparingInt</span><br><span class="line">            (arr -&gt; nums.get(arr[<span class="number">0</span>]).get(arr[<span class="number">1</span>])));</span><br><span class="line">    <span class="comment">//大根堆，记录元素的二维坐标</span></span><br><span class="line">    Queue&lt;<span class="type">int</span> []&gt; maxQueue = <span class="keyword">new</span> <span class="title class_">PriorityQueue</span>&lt;&gt;((arr1,arr2) -&gt;</span><br><span class="line">            nums.get(arr2[<span class="number">0</span>]).get(arr2[<span class="number">1</span>]) - nums.get(arr1[<span class="number">0</span>]).get(arr1[<span class="number">1</span>]));</span><br><span class="line">    <span class="type">int</span>[] ans = &#123;Integer.MIN_VALUE,Integer.MAX_VALUE&#125;;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span> ; i &lt; nums.size() ; ++i)&#123;</span><br><span class="line">        <span class="comment">//将每列的第一个元素都加进去</span></span><br><span class="line">        <span class="type">int</span>[] temp = <span class="keyword">new</span> <span class="title class_">int</span>[]&#123;i,<span class="number">0</span>&#125;;</span><br><span class="line">        minQueue.offer(temp);</span><br><span class="line">        maxQueue.offer(temp);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span> (minQueue.size() == nums.size())&#123;</span><br><span class="line">        <span class="comment">//取出小根堆堆顶元素</span></span><br><span class="line">        <span class="type">int</span>[] minArr = minQueue.poll();</span><br><span class="line">        <span class="comment">//取出大根堆堆顶元素</span></span><br><span class="line">        <span class="type">int</span>[] maxArr = maxQueue.peek();</span><br><span class="line">        <span class="comment">//此时在这两个元素至少包含所有数组的一个元素</span></span><br><span class="line">        <span class="keyword">if</span>((<span class="type">long</span>)nums.get(maxArr[<span class="number">0</span>]).get(maxArr[<span class="number">1</span>]) - (<span class="type">long</span>)nums.get(minArr[<span class="number">0</span>]).get(minArr[<span class="number">1</span>])</span><br><span class="line">        &lt; (<span class="type">long</span>)ans[<span class="number">1</span>] - ans[<span class="number">0</span>])&#123;</span><br><span class="line">            ans[<span class="number">0</span>] = nums.get(minArr[<span class="number">0</span>]).get(minArr[<span class="number">1</span>]);</span><br><span class="line">            ans[<span class="number">1</span>] = nums.get(maxArr[<span class="number">0</span>]).get(maxArr[<span class="number">1</span>]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//比较过后可以丢弃掉小根堆的元素，同时添加下一元素到堆里</span></span><br><span class="line">        <span class="keyword">if</span>(minArr[<span class="number">1</span>] &lt; nums.get(minArr[<span class="number">0</span>]).size() - <span class="number">1</span>)&#123;</span><br><span class="line">            <span class="type">int</span>[] newArr = &#123;minArr[<span class="number">0</span>],minArr[<span class="number">1</span>] + <span class="number">1</span>&#125;;</span><br><span class="line">            minQueue.offer(newArr);</span><br><span class="line">            maxQueue.remove(minArr);</span><br><span class="line">            maxQueue.offer(newArr);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>不过堆的实现还是可以看看官方题解，只用维护一下小根堆，以及一个全局最大值，对应的next数组。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span>[] smallestRange(List&lt;List&lt;Integer&gt;&gt; nums) &#123;</span><br><span class="line">        <span class="keyword">int</span> rangeLeft = <span class="number">0</span>, rangeRight = Integer.MAX_VALUE;</span><br><span class="line">        <span class="keyword">int</span> minRange = rangeRight - rangeLeft;</span><br><span class="line">        <span class="keyword">int</span> max = Integer.MIN_VALUE;</span><br><span class="line">        <span class="keyword">int</span> size = nums.size();</span><br><span class="line">        <span class="keyword">int</span>[] next = <span class="keyword">new</span> <span class="keyword">int</span>[size];</span><br><span class="line">        <span class="comment">//小根堆里维护的是k个列表的指针</span></span><br><span class="line">        PriorityQueue&lt;Integer&gt; priorityQueue = <span class="keyword">new</span> PriorityQueue&lt;Integer&gt;(<span class="keyword">new</span> Comparator&lt;Integer&gt;() &#123;</span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compare</span><span class="params">(Integer index1, Integer index2)</span> </span>&#123;</span><br><span class="line">                <span class="keyword">return</span> nums.get(index1).get(next[index1]) - nums.get(index2).get(next[index2]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; size; i++) &#123;</span><br><span class="line">            priorityQueue.offer(i);</span><br><span class="line">            max = Math.max(max, nums.get(i).get(<span class="number">0</span>));</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span> (<span class="keyword">true</span>) &#123;</span><br><span class="line">            <span class="keyword">int</span> minIndex = priorityQueue.poll();</span><br><span class="line">            <span class="keyword">int</span> curRange = max - nums.get(minIndex).get(next[minIndex]);</span><br><span class="line">            <span class="keyword">if</span> (curRange &lt; minRange) &#123;</span><br><span class="line">                minRange = curRange;</span><br><span class="line">                rangeLeft = nums.get(minIndex).get(next[minIndex]);</span><br><span class="line">                rangeRight = max;</span><br><span class="line">            &#125;</span><br><span class="line">            next[minIndex]++;</span><br><span class="line">            <span class="comment">//这里的break也是和上面是一样的意思，为了维护k个列表的堆</span></span><br><span class="line">            <span class="keyword">if</span> (next[minIndex] == nums.get(minIndex).size()) &#123;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//这里设置comparator，比较的其实是next[minIndex]里对应的数值</span></span><br><span class="line">            priorityQueue.offer(minIndex);</span><br><span class="line">            max = Math.max(max, nums.get(minIndex).get(next[minIndex]));</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="keyword">int</span>[]&#123;rangeLeft, rangeRight&#125;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span>[] smallestRange(List&lt;List&lt;Integer&gt;&gt; nums) &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">rangeLeft</span> <span class="operator">=</span> <span class="number">0</span>, rangeRight = Integer.MAX_VALUE;</span><br><span class="line">        <span class="type">int</span> <span class="variable">minRange</span> <span class="operator">=</span> rangeRight - rangeLeft;</span><br><span class="line">        <span class="type">int</span> <span class="variable">max</span> <span class="operator">=</span> Integer.MIN_VALUE;</span><br><span class="line">        <span class="type">int</span> <span class="variable">size</span> <span class="operator">=</span> nums.size();</span><br><span class="line">        <span class="type">int</span>[] next = <span class="keyword">new</span> <span class="title class_">int</span>[size];</span><br><span class="line">        <span class="comment">//小根堆里维护的是k个列表的指针</span></span><br><span class="line">        PriorityQueue&lt;Integer&gt; priorityQueue = <span class="keyword">new</span> <span class="title class_">PriorityQueue</span>&lt;Integer&gt;(<span class="keyword">new</span> <span class="title class_">Comparator</span>&lt;Integer&gt;() &#123;</span><br><span class="line">            <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">compare</span><span class="params">(Integer index1, Integer index2)</span> &#123;</span><br><span class="line">                <span class="keyword">return</span> nums.get(index1).get(next[index1]) - nums.get(index2).get(next[index2]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; size; i++) &#123;</span><br><span class="line">            priorityQueue.offer(i);</span><br><span class="line">            max = Math.max(max, nums.get(i).get(<span class="number">0</span>));</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">            <span class="type">int</span> <span class="variable">minIndex</span> <span class="operator">=</span> priorityQueue.poll();</span><br><span class="line">            <span class="type">int</span> <span class="variable">curRange</span> <span class="operator">=</span> max - nums.get(minIndex).get(next[minIndex]);</span><br><span class="line">            <span class="keyword">if</span> (curRange &lt; minRange) &#123;</span><br><span class="line">                minRange = curRange;</span><br><span class="line">                rangeLeft = nums.get(minIndex).get(next[minIndex]);</span><br><span class="line">                rangeRight = max;</span><br><span class="line">            &#125;</span><br><span class="line">            next[minIndex]++;</span><br><span class="line">            <span class="comment">//这里的break也是和上面是一样的意思，为了维护k个列表的堆</span></span><br><span class="line">            <span class="keyword">if</span> (next[minIndex] == nums.get(minIndex).size()) &#123;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//这里设置comparator，比较的其实是next[minIndex]里对应的数值</span></span><br><span class="line">            priorityQueue.offer(minIndex);</span><br><span class="line">            max = Math.max(max, nums.get(minIndex).get(next[minIndex]));</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">int</span>[]&#123;rangeLeft, rangeRight&#125;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
     </div>
 
     
@@ -290,7 +290,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>Post link: </strong>
-    <a href="http://yorxika.github.io/2020/08/02/最小区间/" title="最小区间">http://yorxika.github.io/2020/08/02/最小区间/</a>
+    <a href="http://yorxika.github.io/2020/08/02/%E6%9C%80%E5%B0%8F%E5%8C%BA%E9%97%B4/" title="最小区间">http://yorxika.github.io/2020/08/02/最小区间/</a>
   </li>
   <li class="post-copyright-license">
     <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.
@@ -302,7 +302,7 @@
       <footer class="post-footer">
           
           <div class="post-tags">
-              <a href="/tags/堆/" rel="tag"><i class="fa fa-tag"></i> 堆</a>
+              <a href="/tags/%E5%A0%86/" rel="tag"><i class="fa fa-tag"></i> 堆</a>
           </div>
 
         
@@ -311,11 +311,11 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2020/07/17/地下城游戏/" rel="prev" title="地下城游戏">
+    <a href="/2020/07/17/%E5%9C%B0%E4%B8%8B%E5%9F%8E%E6%B8%B8%E6%88%8F/" rel="prev" title="地下城游戏">
       <i class="fa fa-chevron-left"></i> 地下城游戏
     </a></div>
       <div class="post-nav-item">
-    <a href="/2020/08/02/恢复空格/" rel="next" title="恢复空格">
+    <a href="/2020/08/02/%E6%81%A2%E5%A4%8D%E7%A9%BA%E6%A0%BC/" rel="next" title="恢复空格">
       恢复空格 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
@@ -377,7 +377,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#堆"><span class="nav-number">1.</span> <span class="nav-text">堆</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A0%86"><span class="nav-number">1.</span> <span class="nav-text">堆</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -452,12 +452,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">956k</span>
+    <span title="Symbols count total">968k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">14:29</span>
+    <span title="Reading time total">14:40</span>
 </div><script color="255,255,255" opacity="0.5" zIndex="-1" count="180" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
 
         
@@ -477,9 +477,19 @@
   <script src="/lib/anime.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
-<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
 <script src="/js/schemes/pisces.js"></script>
-<script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
 
 
 
@@ -488,7 +498,9 @@
 
 
 
-  <script src="/js/local-search.js"></script>
+  
+<script src="/js/local-search.js"></script>
+
 
 
 

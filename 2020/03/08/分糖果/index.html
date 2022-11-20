@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 3.9.0">
+<meta name="generator" content="Hexo 6.3.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
@@ -22,20 +22,20 @@
     var CONFIG = {"hostname":"yorxika.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="来自Leetcode第1103题分糖果II 排排坐，分糖果。 我们买了一些糖果 candies，打算把它们分给排好队的 n = num_people 个小朋友。 给第一个小朋友 1 颗糖果，第二个小朋友 2 颗，依此类推，直到给最后一个小朋友 n 颗糖果。 然后，我们再回到队伍的起点，给第一个小朋友 n + 1 颗糖果，第二个小朋友 n + 2 颗，依此类推，直到给最后一个小朋友 2 * n 颗糖">
-<meta name="keywords" content="数学">
+  <meta name="description" content="来自Leetcode第1103题分糖果II 排排坐，分糖果。 我们买了一些糖果 candies，打算把它们分给排好队的 n &#x3D; num_people 个小朋友。 给第一个小朋友 1 颗糖果，第二个小朋友 2 颗，依此类推，直到给最后一个小朋友 n 颗糖果。 然后，我们再回到队伍的起点，给第一个小朋友 n + 1 颗糖果，第二个小朋友 n + 2 颗，依此类推，直到给最后一个小朋友 2 * n 颗糖">
 <meta property="og:type" content="article">
 <meta property="og:title" content="分糖果II">
-<meta property="og:url" content="http://yorxika.github.io/2020/03/08/分糖果/index.html">
+<meta property="og:url" content="http://yorxika.github.io/2020/03/08/%E5%88%86%E7%B3%96%E6%9E%9C/index.html">
 <meta property="og:site_name" content="Nameless Site">
-<meta property="og:description" content="来自Leetcode第1103题分糖果II 排排坐，分糖果。 我们买了一些糖果 candies，打算把它们分给排好队的 n = num_people 个小朋友。 给第一个小朋友 1 颗糖果，第二个小朋友 2 颗，依此类推，直到给最后一个小朋友 n 颗糖果。 然后，我们再回到队伍的起点，给第一个小朋友 n + 1 颗糖果，第二个小朋友 n + 2 颗，依此类推，直到给最后一个小朋友 2 * n 颗糖">
-<meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2020-03-08T07:27:15.000Z">
+<meta property="og:description" content="来自Leetcode第1103题分糖果II 排排坐，分糖果。 我们买了一些糖果 candies，打算把它们分给排好队的 n &#x3D; num_people 个小朋友。 给第一个小朋友 1 颗糖果，第二个小朋友 2 颗，依此类推，直到给最后一个小朋友 n 颗糖果。 然后，我们再回到队伍的起点，给第一个小朋友 n + 1 颗糖果，第二个小朋友 n + 2 颗，依此类推，直到给最后一个小朋友 2 * n 颗糖">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-03-08T07:16:30.000Z">
+<meta property="article:modified_time" content="2020-03-08T07:27:15.000Z">
+<meta property="article:author" content="HMF">
+<meta property="article:tag" content="数学">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="分糖果II">
-<meta name="twitter:description" content="来自Leetcode第1103题分糖果II 排排坐，分糖果。 我们买了一些糖果 candies，打算把它们分给排好队的 n = num_people 个小朋友。 给第一个小朋友 1 颗糖果，第二个小朋友 2 颗，依此类推，直到给最后一个小朋友 n 颗糖果。 然后，我们再回到队伍的起点，给第一个小朋友 n + 1 颗糖果，第二个小朋友 n + 2 颗，依此类推，直到给最后一个小朋友 2 * n 颗糖">
 
-<link rel="canonical" href="http://yorxika.github.io/2020/03/08/分糖果/">
+<link rel="canonical" href="http://yorxika.github.io/2020/03/08/%E5%88%86%E7%B3%96%E6%9E%9C/">
 
 
 <script id="page-configurations">
@@ -200,7 +200,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yorxika.github.io/2020/03/08/分糖果/">
+    <link itemprop="mainEntityOfPage" href="http://yorxika.github.io/2020/03/08/%E5%88%86%E7%B3%96%E6%9E%9C/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/touxiang.jpg">
@@ -232,15 +232,15 @@
               </span>
               <span class="post-meta-item-text">In</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
+                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
                 </span>
                   , 
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/Leetcode/" itemprop="url" rel="index"><span itemprop="name">Leetcode</span></a>
+                  <a href="/categories/%E7%AE%97%E6%B3%95/Leetcode/" itemprop="url" rel="index"><span itemprop="name">Leetcode</span></a>
                 </span>
                   , 
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/Leetcode/数学/" itemprop="url" rel="index"><span itemprop="name">数学</span></a>
+                  <a href="/categories/%E7%AE%97%E6%B3%95/Leetcode/%E6%95%B0%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">数学</span></a>
                 </span>
             </span>
 
@@ -275,14 +275,14 @@
 <p>给第一个小朋友 1 颗糖果，第二个小朋友 2 颗，依此类推，直到给最后一个小朋友 <code>n</code> 颗糖果。</p>
 <p>然后，我们再回到队伍的起点，给第一个小朋友 <code>n + 1</code> 颗糖果，第二个小朋友 <code>n + 2</code> 颗，依此类推，直到给最后一个小朋友 <code>2 * n</code> 颗糖果。</p>
 <p>重复上述过程（每次都比上一次多给出一颗糖果，当到达队伍终点后再次从队伍起点开始），直到我们分完所有的糖果。注意，就算我们手中的剩下糖果数不够（不比前一次发出的糖果多），这些糖果也会全部发给当前的小朋友。</p>
-<p>返回一个长度为 <code>num_people</code>、元素之和为 <code>candies</code> 的数组，以表示糖果的最终分发情况（即 <code>ans[i]</code> 表示第 <code>i</code> 个小朋友分到的糖果数）。<br><a id="more"></a></p>
+<p>返回一个长度为 <code>num_people</code>、元素之和为 <code>candies</code> 的数组，以表示糖果的最终分发情况（即 <code>ans[i]</code> 表示第 <code>i</code> 个小朋友分到的糖果数）。<br><span id="more"></span></p>
 <p><strong>示例 1：</strong></p>
-<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">输入：candies = <span class="number">7</span>, num_people = <span class="number">4</span></span><br><span class="line">输出：[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">1</span>]</span><br><span class="line">解释：</span><br><span class="line">第一次，ans[<span class="number">0</span>] += <span class="number">1</span>，数组变为 [<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>]。</span><br><span class="line">第二次，ans[<span class="number">1</span>] += <span class="number">2</span>，数组变为 [<span class="number">1</span>,<span class="number">2</span>,<span class="number">0</span>,<span class="number">0</span>]。</span><br><span class="line">第三次，ans[<span class="number">2</span>] += <span class="number">3</span>，数组变为 [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">0</span>]。</span><br><span class="line">第四次，ans[<span class="number">3</span>] += <span class="number">1</span>（因为此时只剩下 <span class="number">1</span> 颗糖果），最终数组变为 [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">1</span>]。</span><br></pre></td></tr></table></figure>
+<figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">输入：candies = 7, num_people = 4</span><br><span class="line">输出：<span class="comment">[1,2,3,1]</span></span><br><span class="line">解释：</span><br><span class="line">第一次，ans<span class="comment">[0]</span> += 1，数组变为 <span class="comment">[1,0,0,0]</span>。</span><br><span class="line">第二次，ans<span class="comment">[1]</span> += 2，数组变为 <span class="comment">[1,2,0,0]</span>。</span><br><span class="line">第三次，ans<span class="comment">[2]</span> += 3，数组变为 <span class="comment">[1,2,3,0]</span>。</span><br><span class="line">第四次，ans<span class="comment">[3]</span> += 1（因为此时只剩下 1 颗糖果），最终数组变为 <span class="comment">[1,2,3,1]</span>。</span><br></pre></td></tr></table></figure>
 <hr>
 <h3 id="暴力"><a href="#暴力" class="headerlink" title="暴力"></a>暴力</h3><p>不断地遍历数组，如果还有糖就一直分，直到没有糖为止。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">int</span>[] distributeCandies(<span class="keyword">int</span> candies, <span class="keyword">int</span> num_people) &#123;</span><br><span class="line">    <span class="keyword">int</span>[] ans = <span class="keyword">new</span> <span class="keyword">int</span>[num_people];</span><br><span class="line">    <span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (candies != <span class="number">0</span>) &#123;</span><br><span class="line">        ans[i % num_people] += Math.min(candies, i + <span class="number">1</span>);</span><br><span class="line">        candies -= Math.min(candies, i + <span class="number">1</span>);</span><br><span class="line">        i += <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="数学推导"><a href="#数学推导" class="headerlink" title="数学推导"></a>数学推导</h3><p>来自<a href="https://leetcode-cn.com/problems/distribute-candies-to-people/solution/xiang-xi-jie-shi-shu-xue-fang-fa-zen-yao-zuo-gao-z/" target="_blank" rel="noopener">题解</a></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">int</span>[] distributeCandies(<span class="keyword">int</span> candies, <span class="keyword">int</span> num_people) &#123;</span><br><span class="line">  <span class="keyword">int</span> n = num_people;</span><br><span class="line">  <span class="comment">// how many people received complete gifts</span></span><br><span class="line">  <span class="keyword">int</span> p = (<span class="keyword">int</span>)(Math.sqrt(<span class="number">2</span> * candies + <span class="number">0.25</span>) - <span class="number">0.5</span>);</span><br><span class="line">  <span class="keyword">int</span> remaining = (<span class="keyword">int</span>)(candies - (p + <span class="number">1</span>) * p * <span class="number">0.5</span>);</span><br><span class="line">  <span class="keyword">int</span> rows = p / n, cols = p % n;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">int</span>[] d = <span class="keyword">new</span> <span class="keyword">int</span>[n];</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; ++i) &#123;</span><br><span class="line">    <span class="comment">// complete rows</span></span><br><span class="line">    d[i] = (i + <span class="number">1</span>) * rows + (<span class="keyword">int</span>)(rows * (rows - <span class="number">1</span>) * <span class="number">0.5</span>) * n;</span><br><span class="line">    <span class="comment">// cols in the last row</span></span><br><span class="line">    <span class="keyword">if</span> (i &lt; cols) d[i] += i + <span class="number">1</span> + rows * n;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// remaining candies        </span></span><br><span class="line">  d[cols] += remaining;</span><br><span class="line">  <span class="keyword">return</span> d;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="type">int</span>[] distributeCandies(<span class="type">int</span> candies, <span class="type">int</span> num_people) &#123;</span><br><span class="line">    <span class="type">int</span>[] ans = <span class="keyword">new</span> <span class="title class_">int</span>[num_people];</span><br><span class="line">    <span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (candies != <span class="number">0</span>) &#123;</span><br><span class="line">        ans[i % num_people] += Math.min(candies, i + <span class="number">1</span>);</span><br><span class="line">        candies -= Math.min(candies, i + <span class="number">1</span>);</span><br><span class="line">        i += <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="数学推导"><a href="#数学推导" class="headerlink" title="数学推导"></a>数学推导</h3><p>来自<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/distribute-candies-to-people/solution/xiang-xi-jie-shi-shu-xue-fang-fa-zen-yao-zuo-gao-z/">题解</a></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="type">int</span>[] distributeCandies(<span class="type">int</span> candies, <span class="type">int</span> num_people) &#123;</span><br><span class="line">  <span class="type">int</span> <span class="variable">n</span> <span class="operator">=</span> num_people;</span><br><span class="line">  <span class="comment">// how many people received complete gifts</span></span><br><span class="line">  <span class="type">int</span> <span class="variable">p</span> <span class="operator">=</span> (<span class="type">int</span>)(Math.sqrt(<span class="number">2</span> * candies + <span class="number">0.25</span>) - <span class="number">0.5</span>);</span><br><span class="line">  <span class="type">int</span> <span class="variable">remaining</span> <span class="operator">=</span> (<span class="type">int</span>)(candies - (p + <span class="number">1</span>) * p * <span class="number">0.5</span>);</span><br><span class="line">  <span class="type">int</span> <span class="variable">rows</span> <span class="operator">=</span> p / n, cols = p % n;</span><br><span class="line"></span><br><span class="line">  <span class="type">int</span>[] d = <span class="keyword">new</span> <span class="title class_">int</span>[n];</span><br><span class="line">  <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; n; ++i) &#123;</span><br><span class="line">    <span class="comment">// complete rows</span></span><br><span class="line">    d[i] = (i + <span class="number">1</span>) * rows + (<span class="type">int</span>)(rows * (rows - <span class="number">1</span>) * <span class="number">0.5</span>) * n;</span><br><span class="line">    <span class="comment">// cols in the last row</span></span><br><span class="line">    <span class="keyword">if</span> (i &lt; cols) d[i] += i + <span class="number">1</span> + rows * n;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// remaining candies        </span></span><br><span class="line">  d[cols] += remaining;</span><br><span class="line">  <span class="keyword">return</span> d;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
     </div>
 
@@ -298,7 +298,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>Post link: </strong>
-    <a href="http://yorxika.github.io/2020/03/08/分糖果/" title="分糖果II">http://yorxika.github.io/2020/03/08/分糖果/</a>
+    <a href="http://yorxika.github.io/2020/03/08/%E5%88%86%E7%B3%96%E6%9E%9C/" title="分糖果II">http://yorxika.github.io/2020/03/08/分糖果/</a>
   </li>
   <li class="post-copyright-license">
     <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.
@@ -310,7 +310,7 @@
       <footer class="post-footer">
           
           <div class="post-tags">
-              <a href="/tags/数学/" rel="tag"><i class="fa fa-tag"></i> 数学</a>
+              <a href="/tags/%E6%95%B0%E5%AD%A6/" rel="tag"><i class="fa fa-tag"></i> 数学</a>
           </div>
 
         
@@ -319,11 +319,11 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2020/03/08/腐烂的橘子/" rel="prev" title="腐烂的橘子">
+    <a href="/2020/03/08/%E8%85%90%E7%83%82%E7%9A%84%E6%A9%98%E5%AD%90/" rel="prev" title="腐烂的橘子">
       <i class="fa fa-chevron-left"></i> 腐烂的橘子
     </a></div>
       <div class="post-nav-item">
-    <a href="/2020/03/08/和为s的连续整数序列/" rel="next" title="和为s的连续整数序列">
+    <a href="/2020/03/08/%E5%92%8C%E4%B8%BAs%E7%9A%84%E8%BF%9E%E7%BB%AD%E6%95%B4%E6%95%B0%E5%BA%8F%E5%88%97/" rel="next" title="和为s的连续整数序列">
       和为s的连续整数序列 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
@@ -385,7 +385,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#暴力"><span class="nav-number">1.</span> <span class="nav-text">暴力</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数学推导"><span class="nav-number">2.</span> <span class="nav-text">数学推导</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9A%B4%E5%8A%9B"><span class="nav-number">1.</span> <span class="nav-text">暴力</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E5%AD%A6%E6%8E%A8%E5%AF%BC"><span class="nav-number">2.</span> <span class="nav-text">数学推导</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -460,12 +460,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">956k</span>
+    <span title="Symbols count total">968k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">14:29</span>
+    <span title="Reading time total">14:40</span>
 </div><script color="255,255,255" opacity="0.5" zIndex="-1" count="180" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
 
         
@@ -485,9 +485,19 @@
   <script src="/lib/anime.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
-<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
 <script src="/js/schemes/pisces.js"></script>
-<script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
 
 
 
@@ -496,7 +506,9 @@
 
 
 
-  <script src="/js/local-search.js"></script>
+  
+<script src="/js/local-search.js"></script>
+
 
 
 

@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 3.9.0">
+<meta name="generator" content="Hexo 6.3.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
@@ -23,19 +23,20 @@
   </script>
 
   <meta name="description" content="来自Leetcode第144题二叉树的前序遍历  给定一个二叉树，返回它的前序遍历。  递归递归很简单，在大二上就已经学过了，按根左右的顺序即可。">
-<meta name="keywords" content="Leetcode,树">
 <meta property="og:type" content="article">
 <meta property="og:title" content="二叉树的前序遍历">
-<meta property="og:url" content="http://yorxika.github.io/2019/12/04/二叉树的前序遍历/index.html">
+<meta property="og:url" content="http://yorxika.github.io/2019/12/04/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%89%8D%E5%BA%8F%E9%81%8D%E5%8E%86/index.html">
 <meta property="og:site_name" content="Nameless Site">
 <meta property="og:description" content="来自Leetcode第144题二叉树的前序遍历  给定一个二叉树，返回它的前序遍历。  递归递归很简单，在大二上就已经学过了，按根左右的顺序即可。">
-<meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-12-12T12:46:26.000Z">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2019-12-04T15:55:18.000Z">
+<meta property="article:modified_time" content="2019-12-12T12:46:26.000Z">
+<meta property="article:author" content="HMF">
+<meta property="article:tag" content="Leetcode">
+<meta property="article:tag" content="树">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="二叉树的前序遍历">
-<meta name="twitter:description" content="来自Leetcode第144题二叉树的前序遍历  给定一个二叉树，返回它的前序遍历。  递归递归很简单，在大二上就已经学过了，按根左右的顺序即可。">
 
-<link rel="canonical" href="http://yorxika.github.io/2019/12/04/二叉树的前序遍历/">
+<link rel="canonical" href="http://yorxika.github.io/2019/12/04/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%89%8D%E5%BA%8F%E9%81%8D%E5%8E%86/">
 
 
 <script id="page-configurations">
@@ -200,7 +201,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yorxika.github.io/2019/12/04/二叉树的前序遍历/">
+    <link itemprop="mainEntityOfPage" href="http://yorxika.github.io/2019/12/04/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%89%8D%E5%BA%8F%E9%81%8D%E5%8E%86/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/touxiang.jpg">
@@ -238,15 +239,15 @@
               </span>
               <span class="post-meta-item-text">In</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
+                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
                 </span>
                   , 
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/Leetcode/" itemprop="url" rel="index"><span itemprop="name">Leetcode</span></a>
+                  <a href="/categories/%E7%AE%97%E6%B3%95/Leetcode/" itemprop="url" rel="index"><span itemprop="name">Leetcode</span></a>
                 </span>
                   , 
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/Leetcode/树/" itemprop="url" rel="index"><span itemprop="name">树</span></a>
+                  <a href="/categories/%E7%AE%97%E6%B3%95/Leetcode/%E6%A0%91/" itemprop="url" rel="index"><span itemprop="name">树</span></a>
                 </span>
             </span>
 
@@ -279,10 +280,10 @@
 <blockquote>
 <p>给定一个二叉树，返回它的<strong>前序</strong>遍历。</p>
 </blockquote>
-<h4 id="递归"><a href="#递归" class="headerlink" title="递归"></a>递归</h4><p>递归很简单，在大二上就已经学过了，按根左右的顺序即可。<a id="more"></a></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">List&lt;Integer&gt; ans = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> List&lt;Integer&gt; <span class="title">preorderTraversal</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (root == <span class="keyword">null</span>)</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    ans.add(root.val);</span><br><span class="line">    <span class="keyword">if</span> (root.left != <span class="keyword">null</span>)</span><br><span class="line">        preorderTraversal(root.left);</span><br><span class="line">    <span class="keyword">if</span> (root.right != <span class="keyword">null</span>)</span><br><span class="line">        preorderTraversal(root.right);</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="递归"><a href="#递归" class="headerlink" title="递归"></a>递归</h4><p>递归很简单，在大二上就已经学过了，按根左右的顺序即可。<span id="more"></span></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">List&lt;Integer&gt; ans = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> List&lt;Integer&gt; <span class="title function_">preorderTraversal</span><span class="params">(TreeNode root)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (root == <span class="literal">null</span>)</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    ans.add(root.val);</span><br><span class="line">    <span class="keyword">if</span> (root.left != <span class="literal">null</span>)</span><br><span class="line">        preorderTraversal(root.left);</span><br><span class="line">    <span class="keyword">if</span> (root.right != <span class="literal">null</span>)</span><br><span class="line">        preorderTraversal(root.right);</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h4 id="迭代"><a href="#迭代" class="headerlink" title="迭代"></a>迭代</h4><p>利用栈，首先根结点入栈，当栈非空，栈顶元素出栈，并且其值写入List，如果左右子树都非空，就右子树入栈再左子树出栈。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> List&lt;Integer&gt; <span class="title">preorderTraversal</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">    List&lt;Integer&gt; ans = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">    Stack&lt;TreeNode&gt; stack = <span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(root == <span class="keyword">null</span>)</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line"></span><br><span class="line">    stack.add(root);</span><br><span class="line">    <span class="keyword">while</span>(!stack.empty())&#123;</span><br><span class="line">        TreeNode temp = stack.pop();</span><br><span class="line">        ans.add(temp.val);</span><br><span class="line">        <span class="keyword">if</span>(temp.right != <span class="keyword">null</span>)</span><br><span class="line">            stack.add(temp.right);</span><br><span class="line">        <span class="keyword">if</span>(temp.left != <span class="keyword">null</span>)</span><br><span class="line">            stack.add(temp.left);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> List&lt;Integer&gt; <span class="title function_">preorderTraversal</span><span class="params">(TreeNode root)</span> &#123;</span><br><span class="line">    List&lt;Integer&gt; ans = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">    Stack&lt;TreeNode&gt; stack = <span class="keyword">new</span> <span class="title class_">Stack</span>&lt;&gt;();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(root == <span class="literal">null</span>)</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line"></span><br><span class="line">    stack.add(root);</span><br><span class="line">    <span class="keyword">while</span>(!stack.empty())&#123;</span><br><span class="line">        <span class="type">TreeNode</span> <span class="variable">temp</span> <span class="operator">=</span> stack.pop();</span><br><span class="line">        ans.add(temp.val);</span><br><span class="line">        <span class="keyword">if</span>(temp.right != <span class="literal">null</span>)</span><br><span class="line">            stack.add(temp.right);</span><br><span class="line">        <span class="keyword">if</span>(temp.left != <span class="literal">null</span>)</span><br><span class="line">            stack.add(temp.left);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h4 id="莫里斯遍历"><a href="#莫里斯遍历" class="headerlink" title="莫里斯遍历"></a>莫里斯遍历</h4><p>题解里有，好像之前也看到过，摸了咕咕咕</p>
 
     </div>
@@ -299,7 +300,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>Post link: </strong>
-    <a href="http://yorxika.github.io/2019/12/04/二叉树的前序遍历/" title="二叉树的前序遍历">http://yorxika.github.io/2019/12/04/二叉树的前序遍历/</a>
+    <a href="http://yorxika.github.io/2019/12/04/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%89%8D%E5%BA%8F%E9%81%8D%E5%8E%86/" title="二叉树的前序遍历">http://yorxika.github.io/2019/12/04/二叉树的前序遍历/</a>
   </li>
   <li class="post-copyright-license">
     <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.
@@ -312,7 +313,7 @@
           
           <div class="post-tags">
               <a href="/tags/Leetcode/" rel="tag"><i class="fa fa-tag"></i> Leetcode</a>
-              <a href="/tags/树/" rel="tag"><i class="fa fa-tag"></i> 树</a>
+              <a href="/tags/%E6%A0%91/" rel="tag"><i class="fa fa-tag"></i> 树</a>
           </div>
 
         
@@ -321,11 +322,11 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2019/12/03/验证搜索二叉树/" rel="prev" title="验证二叉搜索树">
+    <a href="/2019/12/03/%E9%AA%8C%E8%AF%81%E6%90%9C%E7%B4%A2%E4%BA%8C%E5%8F%89%E6%A0%91/" rel="prev" title="验证二叉搜索树">
       <i class="fa fa-chevron-left"></i> 验证二叉搜索树
     </a></div>
       <div class="post-nav-item">
-    <a href="/2019/12/05/二叉树的后序遍历/" rel="next" title="二叉树的后序遍历">
+    <a href="/2019/12/05/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%90%8E%E5%BA%8F%E9%81%8D%E5%8E%86/" rel="next" title="二叉树的后序遍历">
       二叉树的后序遍历 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
@@ -387,7 +388,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#递归"><span class="nav-number">1.</span> <span class="nav-text">递归</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#迭代"><span class="nav-number">2.</span> <span class="nav-text">迭代</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#莫里斯遍历"><span class="nav-number">3.</span> <span class="nav-text">莫里斯遍历</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%80%92%E5%BD%92"><span class="nav-number">1.</span> <span class="nav-text">递归</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BF%AD%E4%BB%A3"><span class="nav-number">2.</span> <span class="nav-text">迭代</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%8E%AB%E9%87%8C%E6%96%AF%E9%81%8D%E5%8E%86"><span class="nav-number">3.</span> <span class="nav-text">莫里斯遍历</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -462,12 +463,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">956k</span>
+    <span title="Symbols count total">968k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">14:29</span>
+    <span title="Reading time total">14:40</span>
 </div><script color="255,255,255" opacity="0.5" zIndex="-1" count="180" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
 
         
@@ -487,9 +488,19 @@
   <script src="/lib/anime.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
-<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
 <script src="/js/schemes/pisces.js"></script>
-<script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
 
 
 
@@ -498,7 +509,9 @@
 
 
 
-  <script src="/js/local-search.js"></script>
+  
+<script src="/js/local-search.js"></script>
+
 
 
 

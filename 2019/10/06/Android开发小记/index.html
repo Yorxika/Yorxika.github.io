@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 3.9.0">
+<meta name="generator" content="Hexo 6.3.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
@@ -23,19 +23,20 @@
   </script>
 
   <meta name="description" content="做了几天的软工作业，今天终于磨出了点东西了虽然我负责的是比较水的出题模块，但是还是出现了许多智障操作。我巴不得每一个类型写一个方法出来最后记一下今天遇到的几个坑">
-<meta name="keywords" content="杂谈,Android">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android开发小记">
-<meta property="og:url" content="http://yorxika.github.io/2019/10/06/Android开发小记/index.html">
+<meta property="og:url" content="http://yorxika.github.io/2019/10/06/Android%E5%BC%80%E5%8F%91%E5%B0%8F%E8%AE%B0/index.html">
 <meta property="og:site_name" content="Nameless Site">
 <meta property="og:description" content="做了几天的软工作业，今天终于磨出了点东西了虽然我负责的是比较水的出题模块，但是还是出现了许多智障操作。我巴不得每一个类型写一个方法出来最后记一下今天遇到的几个坑">
-<meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2020-03-08T18:37:26.000Z">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2019-10-05T16:21:26.000Z">
+<meta property="article:modified_time" content="2020-03-08T18:37:26.000Z">
+<meta property="article:author" content="HMF">
+<meta property="article:tag" content="杂谈">
+<meta property="article:tag" content="Android">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Android开发小记">
-<meta name="twitter:description" content="做了几天的软工作业，今天终于磨出了点东西了虽然我负责的是比较水的出题模块，但是还是出现了许多智障操作。我巴不得每一个类型写一个方法出来最后记一下今天遇到的几个坑">
 
-<link rel="canonical" href="http://yorxika.github.io/2019/10/06/Android开发小记/">
+<link rel="canonical" href="http://yorxika.github.io/2019/10/06/Android%E5%BC%80%E5%8F%91%E5%B0%8F%E8%AE%B0/">
 
 
 <script id="page-configurations">
@@ -200,7 +201,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yorxika.github.io/2019/10/06/Android开发小记/">
+    <link itemprop="mainEntityOfPage" href="http://yorxika.github.io/2019/10/06/Android%E5%BC%80%E5%8F%91%E5%B0%8F%E8%AE%B0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/touxiang.jpg">
@@ -238,7 +239,7 @@
               </span>
               <span class="post-meta-item-text">In</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/杂谈/" itemprop="url" rel="index"><span itemprop="name">杂谈</span></a>
+                  <a href="/categories/%E6%9D%82%E8%B0%88/" itemprop="url" rel="index"><span itemprop="name">杂谈</span></a>
                 </span>
             </span>
 
@@ -268,18 +269,15 @@
 
       
         <p>做了几天的软工作业，今天终于磨出了点东西了<br>虽然我负责的是比较水的出题模块，但是还是出现了许多智障操作。<br>我巴不得每一个类型写一个方法出来<br>最后记一下今天遇到的几个坑</p>
-<a id="more"></a>
+<span id="more"></span>
 <ul>
 <li>空指针异常</li>
 <li>空栈异常</li>
 <li>除数为0异常</li>
 </ul>
-<p>空指针异常的出错代码为：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">StatOfType E = <span class="keyword">new</span> StatOfType();</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">47</span>; i++) &#123;</span><br><span class="line">            </span><br><span class="line">            E.setNum(<span class="number">10</span>);</span><br><span class="line">            E.setTypeId(i+<span class="number">1</span>);</span><br><span class="line">            typeList.add(E);</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure></p>
-<p>折磨了我一个下午之后，终于经过坤滨的提示找到了问题所在。<br>由于对象E是在循环外实例的，导致List里其实共享的是最后一个对象E的地址，于是List 在作为参数传参时，输出的都是最后一次修改的结果。<br>其次，由于对象E(StatOfType)类型初始时设置的id是0，这样在传参时，子函数在调用LitePal的find方法时会出错，返回一个空的List，所以也会导致空指针异常。</p>
-<p>空栈异常的出错代码为：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">aAns = (<span class="keyword">int</span>)CalExpression.executeExpression(aProblem);</span><br></pre></td></tr></table></figure></p>
-<p>原因是因为 aProblem 的 Num1 没有增加String.Valueof()，这个方法，导致计算时出现了空栈异常。</p>
-<p>除法异常的出错代码为：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> Integer <span class="title">GetRandomNum</span><span class="params">(<span class="keyword">int</span> min,<span class="keyword">int</span> max)</span></span>&#123;</span><br><span class="line">        Random random = <span class="keyword">new</span> Random();</span><br><span class="line">        <span class="comment">//return random.nextInt(max) % (max - min + 1) + min;</span></span><br><span class="line">        <span class="keyword">return</span> random.nextInt(max - min + <span class="number">1</span>) + min;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
-<p>除法异常出错的原因在于注释的那一句 <code>Javareturn random.nextInt(max) % (max - min + 1) + min;</code><br>max - min +1 存在可能为0的情况？但也不对，emmm反正就是这个改了就可以了<br>Random的nextInt()这个函数里对参数有要求&gt;=0。</p>
+<p>空指针异常的出错代码为：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">StatOfType</span> <span class="variable">E</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">StatOfType</span>();</span><br><span class="line"><span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; <span class="number">47</span>; i++) &#123;</span><br><span class="line">            </span><br><span class="line">            E.setNum(<span class="number">10</span>);</span><br><span class="line">            E.setTypeId(i+<span class="number">1</span>);</span><br><span class="line">            typeList.add(E);</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure><br>折磨了我一个下午之后，终于经过坤滨的提示找到了问题所在。<br>由于对象E是在循环外实例的，导致List里其实共享的是最后一个对象E的地址，于是List 在作为参数传参时，输出的都是最后一次修改的结果。<br>其次，由于对象E(StatOfType)类型初始时设置的id是0，这样在传参时，子函数在调用LitePal的find方法时会出错，返回一个空的List，所以也会导致空指针异常。</p>
+<p>空栈异常的出错代码为：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">aAns = (<span class="type">int</span>)CalExpression.executeExpression(aProblem);</span><br></pre></td></tr></table></figure><br>原因是因为 aProblem 的 Num1 没有增加String.Valueof()，这个方法，导致计算时出现了空栈异常。</p>
+<p>除法异常的出错代码为：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> Integer <span class="title function_">GetRandomNum</span><span class="params">(<span class="type">int</span> min,<span class="type">int</span> max)</span>&#123;</span><br><span class="line">        <span class="type">Random</span> <span class="variable">random</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Random</span>();</span><br><span class="line">        <span class="comment">//return random.nextInt(max) % (max - min + 1) + min;</span></span><br><span class="line">        <span class="keyword">return</span> random.nextInt(max - min + <span class="number">1</span>) + min;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure><br>除法异常出错的原因在于注释的那一句 <code>Javareturn random.nextInt(max) % (max - min + 1) + min;</code><br>max - min +1 存在可能为0的情况？但也不对，emmm反正就是这个改了就可以了<br>Random的nextInt()这个函数里对参数有要求&gt;=0。</p>
 
     </div>
 
@@ -295,7 +293,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>Post link: </strong>
-    <a href="http://yorxika.github.io/2019/10/06/Android开发小记/" title="Android开发小记">http://yorxika.github.io/2019/10/06/Android开发小记/</a>
+    <a href="http://yorxika.github.io/2019/10/06/Android%E5%BC%80%E5%8F%91%E5%B0%8F%E8%AE%B0/" title="Android开发小记">http://yorxika.github.io/2019/10/06/Android开发小记/</a>
   </li>
   <li class="post-copyright-license">
     <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.
@@ -307,7 +305,7 @@
       <footer class="post-footer">
           
           <div class="post-tags">
-              <a href="/tags/杂谈/" rel="tag"><i class="fa fa-tag"></i> 杂谈</a>
+              <a href="/tags/%E6%9D%82%E8%B0%88/" rel="tag"><i class="fa fa-tag"></i> 杂谈</a>
               <a href="/tags/Android/" rel="tag"><i class="fa fa-tag"></i> Android</a>
           </div>
 
@@ -317,11 +315,11 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2019/09/30/删除排序数组中的重复项/" rel="prev" title="删除排序数组中的重复项">
+    <a href="/2019/09/30/%E5%88%A0%E9%99%A4%E6%8E%92%E5%BA%8F%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E9%87%8D%E5%A4%8D%E9%A1%B9/" rel="prev" title="删除排序数组中的重复项">
       <i class="fa fa-chevron-left"></i> 删除排序数组中的重复项
     </a></div>
       <div class="post-nav-item">
-    <a href="/2019/10/07/移除元素/" rel="next" title="移除元素">
+    <a href="/2019/10/07/%E7%A7%BB%E9%99%A4%E5%85%83%E7%B4%A0/" rel="next" title="移除元素">
       移除元素 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
@@ -457,12 +455,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">956k</span>
+    <span title="Symbols count total">968k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">14:29</span>
+    <span title="Reading time total">14:40</span>
 </div><script color="255,255,255" opacity="0.5" zIndex="-1" count="180" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
 
         
@@ -482,9 +480,19 @@
   <script src="/lib/anime.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
-<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
 <script src="/js/schemes/pisces.js"></script>
-<script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
 
 
 
@@ -493,7 +501,9 @@
 
 
 
-  <script src="/js/local-search.js"></script>
+  
+<script src="/js/local-search.js"></script>
+
 
 
 

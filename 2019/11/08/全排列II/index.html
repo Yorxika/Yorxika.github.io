@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 3.9.0">
+<meta name="generator" content="Hexo 6.3.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
@@ -23,19 +23,20 @@
   </script>
 
   <meta name="description" content="来源Leetcode第47题全排列II  给定一个可包含重复数字的序列，返回所有不重复的全排列。 示例: 输入: [1,1,2]">
-<meta name="keywords" content="Leetcode,回溯">
 <meta property="og:type" content="article">
 <meta property="og:title" content="全排列II">
-<meta property="og:url" content="http://yorxika.github.io/2019/11/08/全排列II/index.html">
+<meta property="og:url" content="http://yorxika.github.io/2019/11/08/%E5%85%A8%E6%8E%92%E5%88%97II/index.html">
 <meta property="og:site_name" content="Nameless Site">
 <meta property="og:description" content="来源Leetcode第47题全排列II  给定一个可包含重复数字的序列，返回所有不重复的全排列。 示例: 输入: [1,1,2]">
-<meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-12-12T13:00:43.000Z">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2019-11-08T12:08:03.000Z">
+<meta property="article:modified_time" content="2019-12-12T13:00:43.000Z">
+<meta property="article:author" content="HMF">
+<meta property="article:tag" content="Leetcode">
+<meta property="article:tag" content="回溯">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="全排列II">
-<meta name="twitter:description" content="来源Leetcode第47题全排列II  给定一个可包含重复数字的序列，返回所有不重复的全排列。 示例: 输入: [1,1,2]">
 
-<link rel="canonical" href="http://yorxika.github.io/2019/11/08/全排列II/">
+<link rel="canonical" href="http://yorxika.github.io/2019/11/08/%E5%85%A8%E6%8E%92%E5%88%97II/">
 
 
 <script id="page-configurations">
@@ -200,7 +201,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yorxika.github.io/2019/11/08/全排列II/">
+    <link itemprop="mainEntityOfPage" href="http://yorxika.github.io/2019/11/08/%E5%85%A8%E6%8E%92%E5%88%97II/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/touxiang.jpg">
@@ -238,15 +239,15 @@
               </span>
               <span class="post-meta-item-text">In</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
+                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
                 </span>
                   , 
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/Leetcode/" itemprop="url" rel="index"><span itemprop="name">Leetcode</span></a>
+                  <a href="/categories/%E7%AE%97%E6%B3%95/Leetcode/" itemprop="url" rel="index"><span itemprop="name">Leetcode</span></a>
                 </span>
                   , 
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/Leetcode/数组/" itemprop="url" rel="index"><span itemprop="name">数组</span></a>
+                  <a href="/categories/%E7%AE%97%E6%B3%95/Leetcode/%E6%95%B0%E7%BB%84/" itemprop="url" rel="index"><span itemprop="name">数组</span></a>
                 </span>
             </span>
 
@@ -279,11 +280,11 @@
 <blockquote>
 <p>给定一个可包含重复数字的序列，返回所有不重复的全排列。</p>
 <p>示例:</p>
-<p>输入: [1,1,2]<a id="more"></a><br>输出:<br>[<br>  [1,1,2],<br>  [1,2,1],<br>  [2,1,1]<br>]</p>
+<p>输入: [1,1,2]<span id="more"></span><br>输出:<br>[<br>  [1,1,2],<br>  [1,2,1],<br>  [2,1,1]<br>]</p>
 </blockquote>
 <h4 id="错误的回溯"><a href="#错误的回溯" class="headerlink" title="错误的回溯"></a>错误的回溯</h4><p>这题最开始做的时候是11天前，估计是对应着<strong>全排列</strong>那道题吧，按着那道题的代码改了，有重复的输出正确，没重复的反而输出错误了，emm磨蹭了很久，今天也没找到问题所在，摸了。</p>
-<p>错误的代码如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">List&lt;List&lt;Integer&gt;&gt; ans = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">boolean</span>[] used;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> List&lt;List&lt;Integer&gt;&gt; permuteUnique(<span class="keyword">int</span>[] nums) &#123;</span><br><span class="line">    Arrays.sort(nums);</span><br><span class="line">    used = <span class="keyword">new</span> <span class="keyword">boolean</span>[nums.length];</span><br><span class="line">    nextPer(nums,<span class="number">0</span>);</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">nextPer</span><span class="params">(<span class="keyword">int</span>[] arr,<span class="keyword">int</span> start)</span></span>&#123;</span><br><span class="line">    <span class="comment">//当start==arr.length-1时，说明子序列的长度为1，就不用再往下分子序列了</span></span><br><span class="line">    <span class="keyword">if</span>(start==arr.length-<span class="number">1</span>)&#123;</span><br><span class="line">        List&lt;Integer&gt; temp_ans = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span> ; i &lt; arr.length ; i++)&#123;</span><br><span class="line">            temp_ans.add(arr[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//System.out.println(temp_ans);</span></span><br><span class="line">        ans.add(temp_ans);</span><br><span class="line">        <span class="keyword">return</span> ;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=start;i&lt;arr.length;i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(!used[i]) &#123;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (i &gt; <span class="number">0</span> &amp;&amp; arr[i] == arr[i - <span class="number">1</span>] &amp;&amp; !used[i - <span class="number">1</span>]) &#123;</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            used[i] = <span class="keyword">true</span>;</span><br><span class="line"></span><br><span class="line">            <span class="comment">//start代表的是每一个子序列的第一个位置，我们每一层递归的任务都只有一个：</span></span><br><span class="line">            <span class="comment">//枚举该层子序列第一个位置可以取的值</span></span><br><span class="line">            <span class="keyword">int</span> temp = arr[start];</span><br><span class="line">            arr[start] = arr[i];</span><br><span class="line">            arr[i] = temp;</span><br><span class="line"></span><br><span class="line">            <span class="comment">//该层递归的子序列第一个位置已经确定了，所以又可以往下再分</span></span><br><span class="line">            nextPer(arr, start + <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">            <span class="comment">//把第该层子序列第一个位置的值换成另外一个值，所以要交换回来</span></span><br><span class="line">            temp = arr[start];</span><br><span class="line">            arr[start] = arr[i];</span><br><span class="line">            arr[i] = temp;</span><br><span class="line"></span><br><span class="line">            used[i] = <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h4 id="回溯-剪枝"><a href="#回溯-剪枝" class="headerlink" title="回溯 + 剪枝"></a>回溯 + 剪枝</h4><p>来源<a href="https://leetcode-cn.com/problems/permutations-ii/solution/hui-su-suan-fa-python-dai-ma-java-dai-ma-by-liwe-2/" target="_blank" rel="noopener">题解</a></p>
+<p>错误的代码如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">List&lt;List&lt;Integer&gt;&gt; ans = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line"><span class="keyword">private</span> <span class="type">boolean</span>[] used;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> List&lt;List&lt;Integer&gt;&gt; <span class="title function_">permuteUnique</span><span class="params">(<span class="type">int</span>[] nums)</span> &#123;</span><br><span class="line">    Arrays.sort(nums);</span><br><span class="line">    used = <span class="keyword">new</span> <span class="title class_">boolean</span>[nums.length];</span><br><span class="line">    nextPer(nums,<span class="number">0</span>);</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">nextPer</span><span class="params">(<span class="type">int</span>[] arr,<span class="type">int</span> start)</span>&#123;</span><br><span class="line">    <span class="comment">//当start==arr.length-1时，说明子序列的长度为1，就不用再往下分子序列了</span></span><br><span class="line">    <span class="keyword">if</span>(start==arr.length-<span class="number">1</span>)&#123;</span><br><span class="line">        List&lt;Integer&gt; temp_ans = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span> ; i &lt; arr.length ; i++)&#123;</span><br><span class="line">            temp_ans.add(arr[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//System.out.println(temp_ans);</span></span><br><span class="line">        ans.add(temp_ans);</span><br><span class="line">        <span class="keyword">return</span> ;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=start;i&lt;arr.length;i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(!used[i]) &#123;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (i &gt; <span class="number">0</span> &amp;&amp; arr[i] == arr[i - <span class="number">1</span>] &amp;&amp; !used[i - <span class="number">1</span>]) &#123;</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            used[i] = <span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line">            <span class="comment">//start代表的是每一个子序列的第一个位置，我们每一层递归的任务都只有一个：</span></span><br><span class="line">            <span class="comment">//枚举该层子序列第一个位置可以取的值</span></span><br><span class="line">            <span class="type">int</span> <span class="variable">temp</span> <span class="operator">=</span> arr[start];</span><br><span class="line">            arr[start] = arr[i];</span><br><span class="line">            arr[i] = temp;</span><br><span class="line"></span><br><span class="line">            <span class="comment">//该层递归的子序列第一个位置已经确定了，所以又可以往下再分</span></span><br><span class="line">            nextPer(arr, start + <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">            <span class="comment">//把第该层子序列第一个位置的值换成另外一个值，所以要交换回来</span></span><br><span class="line">            temp = arr[start];</span><br><span class="line">            arr[start] = arr[i];</span><br><span class="line">            arr[i] = temp;</span><br><span class="line"></span><br><span class="line">            used[i] = <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="回溯-剪枝"><a href="#回溯-剪枝" class="headerlink" title="回溯 + 剪枝"></a>回溯 + 剪枝</h4><p>来源<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/permutations-ii/solution/hui-su-suan-fa-python-dai-ma-java-dai-ma-by-liwe-2/">题解</a></p>
 <blockquote>
 <p>我们归纳出“剪枝”要满足的条件:</p>
 <ul>
@@ -292,7 +293,7 @@
 <li>3、“同一层”前一个分支已经选出的数在“当前分支”还未被使用(标在下图③处)</li>
 </ul>
 </blockquote>
-<p>代码如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> List&lt;List&lt;Integer&gt;&gt; res = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">boolean</span>[] used;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">findPermuteUnique</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> depth, Stack&lt;Integer&gt; stack)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (depth == nums.length) &#123;</span><br><span class="line">            res.add(<span class="keyword">new</span> ArrayList&lt;&gt;(stack));</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (!used[i]) &#123;</span><br><span class="line">                <span class="comment">// 修改 2：因为排序以后重复的数一定不会出现在开始，故 i &gt; 0</span></span><br><span class="line">                <span class="comment">// 和之前的数相等，并且之前的数还未使用过，只有出现这种情况，才会出现相同分支</span></span><br><span class="line">                <span class="comment">// 这种情况跳过即可</span></span><br><span class="line">                <span class="keyword">if</span> (i &gt; <span class="number">0</span> &amp;&amp; nums[i] == nums[i - <span class="number">1</span>] &amp;&amp; !used[i - <span class="number">1</span>]) &#123;</span><br><span class="line">                    <span class="keyword">continue</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                used[i] = <span class="keyword">true</span>;</span><br><span class="line">                stack.add(nums[i]);</span><br><span class="line">                findPermuteUnique(nums, depth + <span class="number">1</span>, stack);</span><br><span class="line">                stack.pop();</span><br><span class="line">                used[i] = <span class="keyword">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> List&lt;List&lt;Integer&gt;&gt; permuteUnique(<span class="keyword">int</span>[] nums) &#123;</span><br><span class="line">        <span class="keyword">int</span> len = nums.length;</span><br><span class="line">        <span class="keyword">if</span> (len == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> res;</span><br><span class="line">        &#125;</span><br><span class="line">        Arrays.sort(nums);</span><br><span class="line"></span><br><span class="line">        used = <span class="keyword">new</span> <span class="keyword">boolean</span>[len];</span><br><span class="line">        findPermuteUnique(nums, <span class="number">0</span>, <span class="keyword">new</span> Stack&lt;&gt;());</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>代码如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> List&lt;List&lt;Integer&gt;&gt; res = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">    <span class="keyword">private</span> <span class="type">boolean</span>[] used;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">findPermuteUnique</span><span class="params">(<span class="type">int</span>[] nums, <span class="type">int</span> depth, Stack&lt;Integer&gt; stack)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (depth == nums.length) &#123;</span><br><span class="line">            res.add(<span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;(stack));</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; nums.length; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (!used[i]) &#123;</span><br><span class="line">                <span class="comment">// 修改 2：因为排序以后重复的数一定不会出现在开始，故 i &gt; 0</span></span><br><span class="line">                <span class="comment">// 和之前的数相等，并且之前的数还未使用过，只有出现这种情况，才会出现相同分支</span></span><br><span class="line">                <span class="comment">// 这种情况跳过即可</span></span><br><span class="line">                <span class="keyword">if</span> (i &gt; <span class="number">0</span> &amp;&amp; nums[i] == nums[i - <span class="number">1</span>] &amp;&amp; !used[i - <span class="number">1</span>]) &#123;</span><br><span class="line">                    <span class="keyword">continue</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                used[i] = <span class="literal">true</span>;</span><br><span class="line">                stack.add(nums[i]);</span><br><span class="line">                findPermuteUnique(nums, depth + <span class="number">1</span>, stack);</span><br><span class="line">                stack.pop();</span><br><span class="line">                used[i] = <span class="literal">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> List&lt;List&lt;Integer&gt;&gt; <span class="title function_">permuteUnique</span><span class="params">(<span class="type">int</span>[] nums)</span> &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">len</span> <span class="operator">=</span> nums.length;</span><br><span class="line">        <span class="keyword">if</span> (len == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> res;</span><br><span class="line">        &#125;</span><br><span class="line">        Arrays.sort(nums);</span><br><span class="line"></span><br><span class="line">        used = <span class="keyword">new</span> <span class="title class_">boolean</span>[len];</span><br><span class="line">        findPermuteUnique(nums, <span class="number">0</span>, <span class="keyword">new</span> <span class="title class_">Stack</span>&lt;&gt;());</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 
     </div>
 
@@ -308,7 +309,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>Post link: </strong>
-    <a href="http://yorxika.github.io/2019/11/08/全排列II/" title="全排列II">http://yorxika.github.io/2019/11/08/全排列II/</a>
+    <a href="http://yorxika.github.io/2019/11/08/%E5%85%A8%E6%8E%92%E5%88%97II/" title="全排列II">http://yorxika.github.io/2019/11/08/全排列II/</a>
   </li>
   <li class="post-copyright-license">
     <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.
@@ -321,7 +322,7 @@
           
           <div class="post-tags">
               <a href="/tags/Leetcode/" rel="tag"><i class="fa fa-tag"></i> Leetcode</a>
-              <a href="/tags/回溯/" rel="tag"><i class="fa fa-tag"></i> 回溯</a>
+              <a href="/tags/%E5%9B%9E%E6%BA%AF/" rel="tag"><i class="fa fa-tag"></i> 回溯</a>
           </div>
 
         
@@ -330,11 +331,11 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2019/11/08/第K个排列/" rel="prev" title="第K个排列">
+    <a href="/2019/11/08/%E7%AC%ACK%E4%B8%AA%E6%8E%92%E5%88%97/" rel="prev" title="第K个排列">
       <i class="fa fa-chevron-left"></i> 第K个排列
     </a></div>
       <div class="post-nav-item">
-    <a href="/2019/11/08/单词搜索/" rel="next" title="单词搜索">
+    <a href="/2019/11/08/%E5%8D%95%E8%AF%8D%E6%90%9C%E7%B4%A2/" rel="next" title="单词搜索">
       单词搜索 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
@@ -396,7 +397,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#错误的回溯"><span class="nav-number">1.</span> <span class="nav-text">错误的回溯</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#回溯-剪枝"><span class="nav-number">2.</span> <span class="nav-text">回溯 + 剪枝</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%94%99%E8%AF%AF%E7%9A%84%E5%9B%9E%E6%BA%AF"><span class="nav-number">1.</span> <span class="nav-text">错误的回溯</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9B%9E%E6%BA%AF-%E5%89%AA%E6%9E%9D"><span class="nav-number">2.</span> <span class="nav-text">回溯 + 剪枝</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -471,12 +472,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">956k</span>
+    <span title="Symbols count total">968k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">14:29</span>
+    <span title="Reading time total">14:40</span>
 </div><script color="255,255,255" opacity="0.5" zIndex="-1" count="180" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
 
         
@@ -496,9 +497,19 @@
   <script src="/lib/anime.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
-<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
 <script src="/js/schemes/pisces.js"></script>
-<script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
 
 
 
@@ -507,7 +518,9 @@
 
 
 
-  <script src="/js/local-search.js"></script>
+  
+<script src="/js/local-search.js"></script>
+
 
 
 

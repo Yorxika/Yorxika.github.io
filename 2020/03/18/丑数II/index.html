@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 3.9.0">
+<meta name="generator" content="Hexo 6.3.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
@@ -23,19 +23,20 @@
   </script>
 
   <meta name="description" content="来自Leetcode第264题丑数II 编写一个程序，找出第 n 个丑数。 丑数就是只包含质因数 2, 3, 5 的正整数。">
-<meta name="keywords" content="堆,三指针">
 <meta property="og:type" content="article">
 <meta property="og:title" content="丑数II">
-<meta property="og:url" content="http://yorxika.github.io/2020/03/18/丑数II/index.html">
+<meta property="og:url" content="http://yorxika.github.io/2020/03/18/%E4%B8%91%E6%95%B0II/index.html">
 <meta property="og:site_name" content="Nameless Site">
 <meta property="og:description" content="来自Leetcode第264题丑数II 编写一个程序，找出第 n 个丑数。 丑数就是只包含质因数 2, 3, 5 的正整数。">
-<meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2020-03-18T00:54:18.000Z">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-03-18T00:34:16.000Z">
+<meta property="article:modified_time" content="2020-03-18T00:54:18.000Z">
+<meta property="article:author" content="HMF">
+<meta property="article:tag" content="堆">
+<meta property="article:tag" content="三指针">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="丑数II">
-<meta name="twitter:description" content="来自Leetcode第264题丑数II 编写一个程序，找出第 n 个丑数。 丑数就是只包含质因数 2, 3, 5 的正整数。">
 
-<link rel="canonical" href="http://yorxika.github.io/2020/03/18/丑数II/">
+<link rel="canonical" href="http://yorxika.github.io/2020/03/18/%E4%B8%91%E6%95%B0II/">
 
 
 <script id="page-configurations">
@@ -200,7 +201,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yorxika.github.io/2020/03/18/丑数II/">
+    <link itemprop="mainEntityOfPage" href="http://yorxika.github.io/2020/03/18/%E4%B8%91%E6%95%B0II/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/touxiang.jpg">
@@ -232,15 +233,15 @@
               </span>
               <span class="post-meta-item-text">In</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
+                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
                 </span>
                   , 
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/Leetcode/" itemprop="url" rel="index"><span itemprop="name">Leetcode</span></a>
+                  <a href="/categories/%E7%AE%97%E6%B3%95/Leetcode/" itemprop="url" rel="index"><span itemprop="name">Leetcode</span></a>
                 </span>
                   , 
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/Leetcode/数学/" itemprop="url" rel="index"><span itemprop="name">数学</span></a>
+                  <a href="/categories/%E7%AE%97%E6%B3%95/Leetcode/%E6%95%B0%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">数学</span></a>
                 </span>
             </span>
 
@@ -271,10 +272,10 @@
       
         <p>来自Leetcode第264题丑数II</p>
 <p>编写一个程序，找出第 <code>n</code> 个丑数。</p>
-<p>丑数就是只包含质因数 <code>2, 3, 5</code> 的<strong>正整数</strong>。<br><a id="more"></a><br><strong>示例:</strong></p>
-<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入: n = <span class="number">10</span></span><br><span class="line">输出: <span class="number">12</span></span><br><span class="line">解释: <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">8</span>, <span class="number">9</span>, <span class="number">10</span>, <span class="number">12</span> 是前 <span class="number">10</span> 个丑数。</span><br></pre></td></tr></table></figure>
+<p>丑数就是只包含质因数 <code>2, 3, 5</code> 的<strong>正整数</strong>。<br><span id="more"></span><br><strong>示例:</strong></p>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">输入: n = 10</span></span><br><span class="line"><span class="section">输出: 12</span></span><br><span class="line"><span class="section">解释: 1, 2, 3, 4, 5, 6, 8, 9, 10, 12 是前 10 个丑数。</span></span><br></pre></td></tr></table></figure>
 <hr>
-<h3 id="堆"><a href="#堆" class="headerlink" title="堆"></a>堆</h3><p>来自<a href="https://leetcode-cn.com/problems/ugly-number-ii/solution/chou-shu-ii-by-leetcode/" target="_blank" rel="noopener">官方题解</a></p>
+<h3 id="堆"><a href="#堆" class="headerlink" title="堆"></a>堆</h3><p>来自<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/ugly-number-ii/solution/chou-shu-ii-by-leetcode/">官方题解</a></p>
 <p>从堆中包含一个数字开始：1，去计算下一个丑数。将 1 从堆中弹出然后将三个数字添加到堆中：1 * 2，1 * 3和 1 * 5。</p>
 <p>现在堆中最小的数字是 2。为了计算下一个丑数，要将 2 从堆中弹出然后添加三个数字：2×2, 2×3，和 2×5。</p>
 <p>重复该步骤计算所有丑数。在每个步骤中，弹出堆中最小的丑数 k<em>k</em>，并在堆中添加三个丑数：<em>k</em>×2, k<em>×3，和 k</em>×5。</p>
@@ -289,10 +290,10 @@
 </li>
 <li>返回在数组中预先计算好的丑数。</li>
 </ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Ugly</span> </span>&#123;</span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">int</span>[] nums = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">1690</span>];</span><br><span class="line">  Ugly() &#123;</span><br><span class="line">    HashSet&lt;Long&gt; seen = <span class="keyword">new</span> HashSet();</span><br><span class="line">    PriorityQueue&lt;Long&gt; heap = <span class="keyword">new</span> PriorityQueue&lt;Long&gt;();</span><br><span class="line">    seen.add(<span class="number">1L</span>);</span><br><span class="line">    heap.add(<span class="number">1L</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">long</span> currUgly, newUgly;</span><br><span class="line">    <span class="keyword">int</span>[] primes = <span class="keyword">new</span> <span class="keyword">int</span>[]&#123;<span class="number">2</span>, <span class="number">3</span>, <span class="number">5</span>&#125;;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">1690</span>; ++i) &#123;</span><br><span class="line">      currUgly = heap.poll();</span><br><span class="line">      nums[i] = (<span class="keyword">int</span>)currUgly;</span><br><span class="line">      <span class="keyword">for</span>(<span class="keyword">int</span> j : primes) &#123;</span><br><span class="line">        newUgly = currUgly * j;</span><br><span class="line">        <span class="keyword">if</span> (!seen.contains(newUgly)) &#123;</span><br><span class="line">          seen.add(newUgly);</span><br><span class="line">          heap.add(newUgly);</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">static</span> Ugly u = <span class="keyword">new</span> Ugly();</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">nthUglyNumber</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> u.nums[n - <span class="number">1</span>];</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Ugly</span> &#123;</span><br><span class="line">  <span class="keyword">public</span> <span class="type">int</span>[] nums = <span class="keyword">new</span> <span class="title class_">int</span>[<span class="number">1690</span>];</span><br><span class="line">  Ugly() &#123;</span><br><span class="line">    HashSet&lt;Long&gt; seen = <span class="keyword">new</span> <span class="title class_">HashSet</span>();</span><br><span class="line">    PriorityQueue&lt;Long&gt; heap = <span class="keyword">new</span> <span class="title class_">PriorityQueue</span>&lt;Long&gt;();</span><br><span class="line">    seen.add(<span class="number">1L</span>);</span><br><span class="line">    heap.add(<span class="number">1L</span>);</span><br><span class="line"></span><br><span class="line">    <span class="type">long</span> currUgly, newUgly;</span><br><span class="line">    <span class="type">int</span>[] primes = <span class="keyword">new</span> <span class="title class_">int</span>[]&#123;<span class="number">2</span>, <span class="number">3</span>, <span class="number">5</span>&#125;;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; <span class="number">1690</span>; ++i) &#123;</span><br><span class="line">      currUgly = heap.poll();</span><br><span class="line">      nums[i] = (<span class="type">int</span>)currUgly;</span><br><span class="line">      <span class="keyword">for</span>(<span class="type">int</span> j : primes) &#123;</span><br><span class="line">        newUgly = currUgly * j;</span><br><span class="line">        <span class="keyword">if</span> (!seen.contains(newUgly)) &#123;</span><br><span class="line">          seen.add(newUgly);</span><br><span class="line">          heap.add(newUgly);</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">static</span> <span class="type">Ugly</span> <span class="variable">u</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Ugly</span>();</span><br><span class="line">  <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">nthUglyNumber</span><span class="params">(<span class="type">int</span> n)</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> u.nums[n - <span class="number">1</span>];</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="三指针"><a href="#三指针" class="headerlink" title="三指针"></a>三指针</h3><p>从数组中只包含一个丑数数字 1 开始，使用三个指针 i_2<em>i</em>2, i_3<em>i</em>3 和 i_5<em>i</em>5，标记所指向丑数要乘以的因子。</p>
 <p>算法很简单：在 $2 \times \textrm{nums}[i_2]，3 \times \textrm{nums}[i_3] 和 5 \times \textrm{nums}[i_5]$ 选出最小的丑数并添加到数组中。并将该丑数对应的因子指针往前走一步。重复该步骤直到计算完 1690 个丑数。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Ugly</span> </span>&#123;</span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">int</span>[] nums = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">1690</span>];</span><br><span class="line">  Ugly() &#123;</span><br><span class="line">    nums[<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">int</span> ugly, i2 = <span class="number">0</span>, i3 = <span class="number">0</span>, i5 = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; <span class="number">1690</span>; ++i) &#123;</span><br><span class="line">      ugly = Math.min(Math.min(nums[i2] * <span class="number">2</span>, nums[i3] * <span class="number">3</span>), nums[i5] * <span class="number">5</span>);</span><br><span class="line">      nums[i] = ugly;</span><br><span class="line"></span><br><span class="line">      <span class="keyword">if</span> (ugly == nums[i2] * <span class="number">2</span>) ++i2;</span><br><span class="line">      <span class="keyword">if</span> (ugly == nums[i3] * <span class="number">3</span>) ++i3;</span><br><span class="line">      <span class="keyword">if</span> (ugly == nums[i5] * <span class="number">5</span>) ++i5;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">static</span> Ugly u = <span class="keyword">new</span> Ugly();</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">nthUglyNumber</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> u.nums[n - <span class="number">1</span>];</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Ugly</span> &#123;</span><br><span class="line">  <span class="keyword">public</span> <span class="type">int</span>[] nums = <span class="keyword">new</span> <span class="title class_">int</span>[<span class="number">1690</span>];</span><br><span class="line">  Ugly() &#123;</span><br><span class="line">    nums[<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">    <span class="type">int</span> ugly, i2 = <span class="number">0</span>, i3 = <span class="number">0</span>, i5 = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span>; i &lt; <span class="number">1690</span>; ++i) &#123;</span><br><span class="line">      ugly = Math.min(Math.min(nums[i2] * <span class="number">2</span>, nums[i3] * <span class="number">3</span>), nums[i5] * <span class="number">5</span>);</span><br><span class="line">      nums[i] = ugly;</span><br><span class="line"></span><br><span class="line">      <span class="keyword">if</span> (ugly == nums[i2] * <span class="number">2</span>) ++i2;</span><br><span class="line">      <span class="keyword">if</span> (ugly == nums[i3] * <span class="number">3</span>) ++i3;</span><br><span class="line">      <span class="keyword">if</span> (ugly == nums[i5] * <span class="number">5</span>) ++i5;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">static</span> <span class="type">Ugly</span> <span class="variable">u</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Ugly</span>();</span><br><span class="line">  <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">nthUglyNumber</span><span class="params">(<span class="type">int</span> n)</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> u.nums[n - <span class="number">1</span>];</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
     </div>
 
     
@@ -307,7 +308,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>Post link: </strong>
-    <a href="http://yorxika.github.io/2020/03/18/丑数II/" title="丑数II">http://yorxika.github.io/2020/03/18/丑数II/</a>
+    <a href="http://yorxika.github.io/2020/03/18/%E4%B8%91%E6%95%B0II/" title="丑数II">http://yorxika.github.io/2020/03/18/丑数II/</a>
   </li>
   <li class="post-copyright-license">
     <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.
@@ -319,8 +320,8 @@
       <footer class="post-footer">
           
           <div class="post-tags">
-              <a href="/tags/堆/" rel="tag"><i class="fa fa-tag"></i> 堆</a>
-              <a href="/tags/三指针/" rel="tag"><i class="fa fa-tag"></i> 三指针</a>
+              <a href="/tags/%E5%A0%86/" rel="tag"><i class="fa fa-tag"></i> 堆</a>
+              <a href="/tags/%E4%B8%89%E6%8C%87%E9%92%88/" rel="tag"><i class="fa fa-tag"></i> 三指针</a>
           </div>
 
         
@@ -329,11 +330,11 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2020/03/16/JAVA笔记整理/" rel="prev" title="笔记整理">
+    <a href="/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/" rel="prev" title="笔记整理">
       <i class="fa fa-chevron-left"></i> 笔记整理
     </a></div>
       <div class="post-nav-item">
-    <a href="/2020/03/20/面试相关/" rel="next" title="面试相关">
+    <a href="/2020/03/20/%E9%9D%A2%E8%AF%95%E7%9B%B8%E5%85%B3/" rel="next" title="面试相关">
       面试相关 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
@@ -395,7 +396,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#堆"><span class="nav-number">1.</span> <span class="nav-text">堆</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三指针"><span class="nav-number">2.</span> <span class="nav-text">三指针</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A0%86"><span class="nav-number">1.</span> <span class="nav-text">堆</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E6%8C%87%E9%92%88"><span class="nav-number">2.</span> <span class="nav-text">三指针</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -470,12 +471,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">956k</span>
+    <span title="Symbols count total">968k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">14:29</span>
+    <span title="Reading time total">14:40</span>
 </div><script color="255,255,255" opacity="0.5" zIndex="-1" count="180" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
 
         
@@ -495,9 +496,19 @@
   <script src="/lib/anime.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
-<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
 <script src="/js/schemes/pisces.js"></script>
-<script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
 
 
 
@@ -506,7 +517,9 @@
 
 
 
-  <script src="/js/local-search.js"></script>
+  
+<script src="/js/local-search.js"></script>
+
 
 
 

@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 3.9.0">
+<meta name="generator" content="Hexo 6.3.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
@@ -23,17 +23,18 @@
   </script>
 
   <meta name="description" content="来源POJ第1700题Crossing River Description A group of N people wishes to go across a river with only one boat, which can at most carry two persons. Therefore some sort of shuttle arrangement must be arrang">
-<meta name="keywords" content="POJ,贪心">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Crossing River">
 <meta property="og:url" content="http://yorxika.github.io/2019/12/14/Crossing-River/index.html">
 <meta property="og:site_name" content="Nameless Site">
 <meta property="og:description" content="来源POJ第1700题Crossing River Description A group of N people wishes to go across a river with only one boat, which can at most carry two persons. Therefore some sort of shuttle arrangement must be arrang">
-<meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-12-14T16:01:05.000Z">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2019-12-14T15:56:22.000Z">
+<meta property="article:modified_time" content="2019-12-14T16:01:05.000Z">
+<meta property="article:author" content="HMF">
+<meta property="article:tag" content="POJ">
+<meta property="article:tag" content="贪心">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Crossing River">
-<meta name="twitter:description" content="来源POJ第1700题Crossing River Description A group of N people wishes to go across a river with only one boat, which can at most carry two persons. Therefore some sort of shuttle arrangement must be arrang">
 
 <link rel="canonical" href="http://yorxika.github.io/2019/12/14/Crossing-River/">
 
@@ -238,15 +239,15 @@
               </span>
               <span class="post-meta-item-text">In</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
+                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
                 </span>
                   , 
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/POJ/" itemprop="url" rel="index"><span itemprop="name">POJ</span></a>
+                  <a href="/categories/%E7%AE%97%E6%B3%95/POJ/" itemprop="url" rel="index"><span itemprop="name">POJ</span></a>
                 </span>
                   , 
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/POJ/数组/" itemprop="url" rel="index"><span itemprop="name">数组</span></a>
+                  <a href="/categories/%E7%AE%97%E6%B3%95/POJ/%E6%95%B0%E7%BB%84/" itemprop="url" rel="index"><span itemprop="name">数组</span></a>
                 </span>
             </span>
 
@@ -277,7 +278,7 @@
       
         <p>来源POJ第1700题Crossing River</p>
 <p><strong>Description</strong></p>
-<p>A group of N people wishes to go across a river with only one boat, which can at most carry two persons. Therefore some sort of shuttle arrangement must be arranged in order to row the boat back and forth so that all people may cross.<a id="more"></a> Each person has a different rowing speed; the speed of a couple is determined by the speed of the slower one. Your job is to determine a strategy that minimizes the time for these people to get across.</p>
+<p>A group of N people wishes to go across a river with only one boat, which can at most carry two persons. Therefore some sort of shuttle arrangement must be arranged in order to row the boat back and forth so that all people may cross.<span id="more"></span> Each person has a different rowing speed; the speed of a couple is determined by the speed of the slower one. Your job is to determine a strategy that minimizes the time for these people to get across.</p>
 <p><strong>Input</strong></p>
 <p>The first line of the input contains a single integer T (1 &lt;= T &lt;= 20), the number of test cases. Then T cases follow. The first line of each case contains N, and the second line contains N integers giving the time for each people to cross the river. Each case is preceded by a blank line. There won’t be more than 1000 people and nobody takes more than 100 seconds to cross.</p>
 <p><strong>Output</strong></p>
@@ -285,9 +286,9 @@
 <p>Sample Input</p>
 <figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span></span><br><span class="line"><span class="number">4</span></span><br><span class="line"><span class="symbol">1 </span><span class="number">2</span> <span class="number">5</span> <span class="number">10</span></span><br></pre></td></tr></table></figure>
 <p>Sample Output</p>
-<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">17</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">17</span><br></pre></td></tr></table></figure>
 <p>思路比较简单，分情况讨论，1个人过河，时长取最短的，2个人，时长取nums[1]，3个人取nums[0] + nums[1] + nums[2],当人数增加到4个人以上时要讨论，最快的(即所用时间nums[0])和次快的过河,然后最快的将船划回来,再次慢的和最慢的过河,然后次快的将船划回来.即所需时间为:nums[0]+2<em>nums[1]+nums[n-1],最快的和最慢的过河,然后最快的将船划回来,再最快的和次慢的过河,然后最快的将船划回来.即所需时间为:2</em>nums[0]+nums[n-2]+nums[n-1]这样就将过河所需时间最大的两个人送过了河,而对于剩下的人,采用同样的处理方式,接下来做的就是判断怎样用的时间最少.</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.*;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//public static int[] nums;</span></span><br><span class="line">	<span class="comment">//public static long mid;</span></span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		Scanner in = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">		<span class="keyword">int</span> all = in.nextInt(), len, ans = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">while</span> (all &gt; <span class="number">0</span>) &#123;</span><br><span class="line">			ans = <span class="number">0</span>;</span><br><span class="line">			len = in.nextInt();</span><br><span class="line">			<span class="keyword">int</span>[] nums = <span class="keyword">new</span> <span class="keyword">int</span>[len];</span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len; i++)</span><br><span class="line">				nums[i] = in.nextInt();</span><br><span class="line">			Arrays.sort(nums);</span><br><span class="line">			<span class="keyword">int</span> times = len;</span><br><span class="line">			<span class="keyword">while</span>(times &gt; <span class="number">0</span>) &#123;</span><br><span class="line">				<span class="keyword">if</span> (times == <span class="number">1</span>) &#123;  <span class="comment">//特殊情况1</span></span><br><span class="line">					ans += nums[<span class="number">0</span>];</span><br><span class="line">					<span class="keyword">break</span>;</span><br><span class="line">				&#125; <span class="keyword">else</span> <span class="keyword">if</span> (times == <span class="number">2</span>) &#123;  <span class="comment">//特殊情况2</span></span><br><span class="line">					ans += nums[<span class="number">1</span>];</span><br><span class="line">					<span class="keyword">break</span>;</span><br><span class="line">				&#125; <span class="keyword">else</span> <span class="keyword">if</span> (times == <span class="number">3</span>) &#123;  <span class="comment">//特殊情况3</span></span><br><span class="line">					<span class="comment">//0 2 过河，0回来，0 1 过河</span></span><br><span class="line">					ans += nums[<span class="number">0</span>] + nums[<span class="number">1</span>] + nums[<span class="number">2</span>];</span><br><span class="line">					<span class="keyword">break</span>;</span><br><span class="line">				&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">					ans += Math.min(<span class="number">2</span> * nums[<span class="number">1</span>] + nums[<span class="number">0</span>] + nums[times - <span class="number">1</span>], nums[times - <span class="number">1</span>] + <span class="number">2</span> * nums[<span class="number">0</span>] + nums[times - <span class="number">2</span>]);</span><br><span class="line">					times -= <span class="number">2</span>;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">			System.out.println(ans);</span><br><span class="line">			all--;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.*;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Main</span> &#123;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//public static int[] nums;</span></span><br><span class="line">	<span class="comment">//public static long mid;</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">		<span class="type">Scanner</span> <span class="variable">in</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Scanner</span>(System.in);</span><br><span class="line">		<span class="type">int</span> <span class="variable">all</span> <span class="operator">=</span> in.nextInt(), len, ans = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">while</span> (all &gt; <span class="number">0</span>) &#123;</span><br><span class="line">			ans = <span class="number">0</span>;</span><br><span class="line">			len = in.nextInt();</span><br><span class="line">			<span class="type">int</span>[] nums = <span class="keyword">new</span> <span class="title class_">int</span>[len];</span><br><span class="line">			<span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; len; i++)</span><br><span class="line">				nums[i] = in.nextInt();</span><br><span class="line">			Arrays.sort(nums);</span><br><span class="line">			<span class="type">int</span> <span class="variable">times</span> <span class="operator">=</span> len;</span><br><span class="line">			<span class="keyword">while</span>(times &gt; <span class="number">0</span>) &#123;</span><br><span class="line">				<span class="keyword">if</span> (times == <span class="number">1</span>) &#123;  <span class="comment">//特殊情况1</span></span><br><span class="line">					ans += nums[<span class="number">0</span>];</span><br><span class="line">					<span class="keyword">break</span>;</span><br><span class="line">				&#125; <span class="keyword">else</span> <span class="keyword">if</span> (times == <span class="number">2</span>) &#123;  <span class="comment">//特殊情况2</span></span><br><span class="line">					ans += nums[<span class="number">1</span>];</span><br><span class="line">					<span class="keyword">break</span>;</span><br><span class="line">				&#125; <span class="keyword">else</span> <span class="keyword">if</span> (times == <span class="number">3</span>) &#123;  <span class="comment">//特殊情况3</span></span><br><span class="line">					<span class="comment">//0 2 过河，0回来，0 1 过河</span></span><br><span class="line">					ans += nums[<span class="number">0</span>] + nums[<span class="number">1</span>] + nums[<span class="number">2</span>];</span><br><span class="line">					<span class="keyword">break</span>;</span><br><span class="line">				&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">					ans += Math.min(<span class="number">2</span> * nums[<span class="number">1</span>] + nums[<span class="number">0</span>] + nums[times - <span class="number">1</span>], nums[times - <span class="number">1</span>] + <span class="number">2</span> * nums[<span class="number">0</span>] + nums[times - <span class="number">2</span>]);</span><br><span class="line">					times -= <span class="number">2</span>;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">			System.out.println(ans);</span><br><span class="line">			all--;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
     </div>
 
@@ -316,7 +317,7 @@
           
           <div class="post-tags">
               <a href="/tags/POJ/" rel="tag"><i class="fa fa-tag"></i> POJ</a>
-              <a href="/tags/贪心/" rel="tag"><i class="fa fa-tag"></i> 贪心</a>
+              <a href="/tags/%E8%B4%AA%E5%BF%83/" rel="tag"><i class="fa fa-tag"></i> 贪心</a>
           </div>
 
         
@@ -329,7 +330,7 @@
       <i class="fa fa-chevron-left"></i> Median
     </a></div>
       <div class="post-nav-item">
-    <a href="/2019/12/17/printf缓冲区问题/" rel="next" title="printf缓冲区问题">
+    <a href="/2019/12/17/printf%E7%BC%93%E5%86%B2%E5%8C%BA%E9%97%AE%E9%A2%98/" rel="next" title="printf缓冲区问题">
       printf缓冲区问题 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
@@ -465,12 +466,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">956k</span>
+    <span title="Symbols count total">968k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">14:29</span>
+    <span title="Reading time total">14:40</span>
 </div><script color="255,255,255" opacity="0.5" zIndex="-1" count="180" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
 
         
@@ -490,9 +491,19 @@
   <script src="/lib/anime.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
-<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
 <script src="/js/schemes/pisces.js"></script>
-<script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
 
 
 
@@ -501,7 +512,9 @@
 
 
 
-  <script src="/js/local-search.js"></script>
+  
+<script src="/js/local-search.js"></script>
+
 
 
 

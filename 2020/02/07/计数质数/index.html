@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 3.9.0">
+<meta name="generator" content="Hexo 6.3.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
@@ -23,21 +23,22 @@
   </script>
 
   <meta name="description" content="来自Leetcode第204题计数质数 统计所有小于非负整数 n 的质数的数量。">
-<meta name="keywords" content="Leetcode,数学">
 <meta property="og:type" content="article">
 <meta property="og:title" content="计数质数">
-<meta property="og:url" content="http://yorxika.github.io/2020/02/07/计数质数/index.html">
+<meta property="og:url" content="http://yorxika.github.io/2020/02/07/%E8%AE%A1%E6%95%B0%E8%B4%A8%E6%95%B0/index.html">
 <meta property="og:site_name" content="Nameless Site">
 <meta property="og:description" content="来自Leetcode第204题计数质数 统计所有小于非负整数 n 的质数的数量。">
-<meta property="og:locale" content="en">
-<meta property="og:image" content="http://yorxika.github.io/2020/02/07/计数质数/23d348bef930ca4bb73f749500f664ccffc5e41467aac0ba9787025392ca207b-1.gif">
-<meta property="og:updated_time" content="2020-02-07T15:36:26.000Z">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://yorxika.github.io/2020/02/07/%E8%AE%A1%E6%95%B0%E8%B4%A8%E6%95%B0/23d348bef930ca4bb73f749500f664ccffc5e41467aac0ba9787025392ca207b-1.gif">
+<meta property="article:published_time" content="2020-02-07T15:31:23.000Z">
+<meta property="article:modified_time" content="2020-02-07T15:36:26.000Z">
+<meta property="article:author" content="HMF">
+<meta property="article:tag" content="Leetcode">
+<meta property="article:tag" content="数学">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="计数质数">
-<meta name="twitter:description" content="来自Leetcode第204题计数质数 统计所有小于非负整数 n 的质数的数量。">
-<meta name="twitter:image" content="http://yorxika.github.io/2020/02/07/计数质数/23d348bef930ca4bb73f749500f664ccffc5e41467aac0ba9787025392ca207b-1.gif">
+<meta name="twitter:image" content="http://yorxika.github.io/2020/02/07/%E8%AE%A1%E6%95%B0%E8%B4%A8%E6%95%B0/23d348bef930ca4bb73f749500f664ccffc5e41467aac0ba9787025392ca207b-1.gif">
 
-<link rel="canonical" href="http://yorxika.github.io/2020/02/07/计数质数/">
+<link rel="canonical" href="http://yorxika.github.io/2020/02/07/%E8%AE%A1%E6%95%B0%E8%B4%A8%E6%95%B0/">
 
 
 <script id="page-configurations">
@@ -202,7 +203,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yorxika.github.io/2020/02/07/计数质数/">
+    <link itemprop="mainEntityOfPage" href="http://yorxika.github.io/2020/02/07/%E8%AE%A1%E6%95%B0%E8%B4%A8%E6%95%B0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/touxiang.jpg">
@@ -234,15 +235,15 @@
               </span>
               <span class="post-meta-item-text">In</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
+                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
                 </span>
                   , 
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/Leetcode/" itemprop="url" rel="index"><span itemprop="name">Leetcode</span></a>
+                  <a href="/categories/%E7%AE%97%E6%B3%95/Leetcode/" itemprop="url" rel="index"><span itemprop="name">Leetcode</span></a>
                 </span>
                   , 
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/Leetcode/数学/" itemprop="url" rel="index"><span itemprop="name">数学</span></a>
+                  <a href="/categories/%E7%AE%97%E6%B3%95/Leetcode/%E6%95%B0%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">数学</span></a>
                 </span>
             </span>
 
@@ -272,25 +273,25 @@
 
       
         <p>来自Leetcode第204题计数质数</p>
-<p>统计所有小于非负整数 <em>n</em> 的质数的数量。<br><a id="more"></a><br><strong>示例:</strong></p>
-<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入: <span class="number">10</span></span><br><span class="line">输出: <span class="number">4</span></span><br><span class="line">解释: 小于 <span class="number">10</span> 的质数一共有 <span class="number">4</span> 个, 它们是 <span class="number">2</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">7</span> 。</span><br></pre></td></tr></table></figure>
+<p>统计所有小于非负整数 <em>n</em> 的质数的数量。<br><span id="more"></span><br><strong>示例:</strong></p>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">输入: 10</span></span><br><span class="line"><span class="section">输出: 4</span></span><br><span class="line"><span class="section">解释: 小于 10 的质数一共有 4 个, 它们是 2, 3, 5, 7 。</span></span><br></pre></td></tr></table></figure>
 <hr>
-<h3 id="筛选"><a href="#筛选" class="headerlink" title="筛选"></a>筛选</h3><p>来自<a href="https://leetcode-cn.com/problems/count-primes/solution/ru-he-gao-xiao-pan-ding-shai-xuan-su-shu-by-labula/" target="_blank" rel="noopener">labuladong</a></p>
+<h3 id="筛选"><a href="#筛选" class="headerlink" title="筛选"></a>筛选</h3><p>来自<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/count-primes/solution/ru-he-gao-xiao-pan-ding-shai-xuan-su-shu-by-labula/">labuladong</a></p>
 <p>首先从 2 开始，我们知道 2 是一个素数，那么 2 × 2 = 4, 3 × 2 = 6, 4 × 2 = 8… 都不可能是素数了。</p>
 <p>然后我们发现 3 也是素数，那么 3 × 2 = 6, 3 × 3 = 9, 3 × 4 = 12… 也都不可能是素数了。</p>
 <p>看到这里，你是否有点明白这个排除法的逻辑了呢？先看我们的第一版代码：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">countPrimes</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">boolean</span>[] isPrim = <span class="keyword">new</span> <span class="keyword">boolean</span>[n];</span><br><span class="line">    <span class="comment">// 将数组都初始化为 true</span></span><br><span class="line">    Arrays.fill(isPrim, <span class="keyword">true</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i &lt; n; i++) </span><br><span class="line">        <span class="keyword">if</span> (isPrim[i]) </span><br><span class="line">            <span class="comment">// i 的倍数不可能是素数了</span></span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">2</span> * i; j &lt; n; j += i) </span><br><span class="line">                    isPrim[j] = <span class="keyword">false</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i &lt; n; i++)</span><br><span class="line">        <span class="keyword">if</span> (isPrim[i]) count++;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> count;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><img src="/2020/02/07/计数质数/23d348bef930ca4bb73f749500f664ccffc5e41467aac0ba9787025392ca207b-1.gif" alt="1.gif"></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">countPrimes</span><span class="params">(<span class="type">int</span> n)</span> &#123;</span><br><span class="line">    <span class="type">boolean</span>[] isPrim = <span class="keyword">new</span> <span class="title class_">boolean</span>[n];</span><br><span class="line">    <span class="comment">// 将数组都初始化为 true</span></span><br><span class="line">    Arrays.fill(isPrim, <span class="literal">true</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">2</span>; i &lt; n; i++) </span><br><span class="line">        <span class="keyword">if</span> (isPrim[i]) </span><br><span class="line">            <span class="comment">// i 的倍数不可能是素数了</span></span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> <span class="number">2</span> * i; j &lt; n; j += i) </span><br><span class="line">                    isPrim[j] = <span class="literal">false</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="type">int</span> <span class="variable">count</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">2</span>; i &lt; n; i++)</span><br><span class="line">        <span class="keyword">if</span> (isPrim[i]) count++;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> count;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="/2020/02/07/%E8%AE%A1%E6%95%B0%E8%B4%A8%E6%95%B0/23d348bef930ca4bb73f749500f664ccffc5e41467aac0ba9787025392ca207b-1.gif" alt="1.gif"></p>
 <p>首先，回想刚才判断一个数是否是素数的 <code>isPrime</code> 函数，由于因子的对称性，其中的 for 循环只需要遍历 <code>[2,sqrt(n)]</code> 就够了。这里也是类似的，我们外层的 for 循环也只需要遍历到 <code>sqrt(n)</code>：</p>
-<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (int <span class="built_in">i</span> = <span class="number">2</span>; <span class="built_in">i</span> * <span class="built_in">i</span> &lt; n; <span class="built_in">i</span>++) </span><br><span class="line">    <span class="keyword">if</span> (isPrim[<span class="built_in">i</span>]) </span><br><span class="line">        ...</span><br></pre></td></tr></table></figure>
+<figure class="highlight abnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">for (int i <span class="operator">=</span> <span class="number">2</span><span class="comment">; i * i &lt; n; i++) </span></span><br><span class="line">    if (isPrim[i]) </span><br><span class="line">        ...</span><br></pre></td></tr></table></figure>
 <p>除此之外，很难注意到内层的 for 循环也可以优化。我们之前的做法是：</p>
-<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (int <span class="built_in">j</span> = <span class="number">2</span> * <span class="built_in">i</span>; <span class="built_in">j</span> &lt; n; <span class="built_in">j</span> += <span class="built_in">i</span>) </span><br><span class="line">    isPrim[<span class="built_in">j</span>] = <span class="built_in">false</span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight abnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">for (int j <span class="operator">=</span> <span class="number">2</span> * i<span class="comment">; j &lt; n; j += i) </span></span><br><span class="line">    isPrim[j] <span class="operator">=</span> false<span class="comment">;</span></span><br></pre></td></tr></table></figure>
 <p>这样可以把 <code>i</code> 的整数倍都标记为 <code>false</code>，但是仍然存在计算冗余。</p>
 <p>比如 <code>n = 25</code>，<code>i = 4</code> 时算法会标记 4 × 2 = 8，4 × 3 = 12 等等数字，但是这两个数字已经被 <code>i = 2</code> 和 <code>i = 3</code> 的 2 × 4 和 3 × 4 标记了。</p>
 <p>我们可以稍微优化一下，让 <code>j</code> 从 <code>i</code> 的平方开始遍历，而不是从 <code>2 * i</code> 开始：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> j = i * i; j &lt; n; j += i) </span><br><span class="line">    isPrim[j] = <span class="keyword">false</span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> i * i; j &lt; n; j += i) </span><br><span class="line">    isPrim[j] = <span class="literal">false</span>;</span><br></pre></td></tr></table></figure>
 <p>这样，素数计数的算法就高效实现了，其实这个算法有一个名字，叫做 Sieve of Eratosthenes。看下完整的最终代码：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">countPrimes</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">boolean</span>[] isPrim = <span class="keyword">new</span> <span class="keyword">boolean</span>[n];</span><br><span class="line">    Arrays.fill(isPrim, <span class="keyword">true</span>);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i * i &lt; n; i++) </span><br><span class="line">        <span class="keyword">if</span> (isPrim[i]) </span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = i * i; j &lt; n; j += i) </span><br><span class="line">                isPrim[j] = <span class="keyword">false</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i &lt; n; i++)</span><br><span class="line">        <span class="keyword">if</span> (isPrim[i]) count++;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> count;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">countPrimes</span><span class="params">(<span class="type">int</span> n)</span> &#123;</span><br><span class="line">    <span class="type">boolean</span>[] isPrim = <span class="keyword">new</span> <span class="title class_">boolean</span>[n];</span><br><span class="line">    Arrays.fill(isPrim, <span class="literal">true</span>);</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">2</span>; i * i &lt; n; i++) </span><br><span class="line">        <span class="keyword">if</span> (isPrim[i]) </span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> i * i; j &lt; n; j += i) </span><br><span class="line">                isPrim[j] = <span class="literal">false</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="type">int</span> <span class="variable">count</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">2</span>; i &lt; n; i++)</span><br><span class="line">        <span class="keyword">if</span> (isPrim[i]) count++;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> count;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
     </div>
 
@@ -306,7 +307,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>Post link: </strong>
-    <a href="http://yorxika.github.io/2020/02/07/计数质数/" title="计数质数">http://yorxika.github.io/2020/02/07/计数质数/</a>
+    <a href="http://yorxika.github.io/2020/02/07/%E8%AE%A1%E6%95%B0%E8%B4%A8%E6%95%B0/" title="计数质数">http://yorxika.github.io/2020/02/07/计数质数/</a>
   </li>
   <li class="post-copyright-license">
     <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.
@@ -319,7 +320,7 @@
           
           <div class="post-tags">
               <a href="/tags/Leetcode/" rel="tag"><i class="fa fa-tag"></i> Leetcode</a>
-              <a href="/tags/数学/" rel="tag"><i class="fa fa-tag"></i> 数学</a>
+              <a href="/tags/%E6%95%B0%E5%AD%A6/" rel="tag"><i class="fa fa-tag"></i> 数学</a>
           </div>
 
         
@@ -328,11 +329,11 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2020/02/07/快乐书/" rel="prev" title="快乐数">
+    <a href="/2020/02/07/%E5%BF%AB%E4%B9%90%E4%B9%A6/" rel="prev" title="快乐数">
       <i class="fa fa-chevron-left"></i> 快乐数
     </a></div>
       <div class="post-nav-item">
-    <a href="/2020/02/08/同构字符串/" rel="next" title="同构字符串">
+    <a href="/2020/02/08/%E5%90%8C%E6%9E%84%E5%AD%97%E7%AC%A6%E4%B8%B2/" rel="next" title="同构字符串">
       同构字符串 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
@@ -394,7 +395,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#筛选"><span class="nav-number">1.</span> <span class="nav-text">筛选</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AD%9B%E9%80%89"><span class="nav-number">1.</span> <span class="nav-text">筛选</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -469,12 +470,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">956k</span>
+    <span title="Symbols count total">968k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">14:29</span>
+    <span title="Reading time total">14:40</span>
 </div><script color="255,255,255" opacity="0.5" zIndex="-1" count="180" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
 
         
@@ -494,9 +495,19 @@
   <script src="/lib/anime.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
-<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
 <script src="/js/schemes/pisces.js"></script>
-<script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
 
 
 
@@ -505,7 +516,9 @@
 
 
 
-  <script src="/js/local-search.js"></script>
+  
+<script src="/js/local-search.js"></script>
+
 
 
 

@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 3.9.0">
+<meta name="generator" content="Hexo 6.3.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
@@ -23,19 +23,20 @@
   </script>
 
   <meta name="description" content="来源Leetcode第11题盛最多的水  给定 n 个非负整数 a1，a2，…，an，每个数代表坐标中的一个点 (i, ai) 。在坐标内画 n 条垂直线，垂直线 i 的两个端点分别为 (i, ai) 和 (i, 0)。找出其中的两条线，使得它们与 x 轴共同构成的容器可以容纳最多的水。说明：你不能倾斜容器，且 n 的值至少为 2。示例:">
-<meta name="keywords" content="Leetcode,双指针">
 <meta property="og:type" content="article">
 <meta property="og:title" content="盛最多的水">
-<meta property="og:url" content="http://yorxika.github.io/2019/09/17/盛最多的水/index.html">
+<meta property="og:url" content="http://yorxika.github.io/2019/09/17/%E7%9B%9B%E6%9C%80%E5%A4%9A%E7%9A%84%E6%B0%B4/index.html">
 <meta property="og:site_name" content="Nameless Site">
 <meta property="og:description" content="来源Leetcode第11题盛最多的水  给定 n 个非负整数 a1，a2，…，an，每个数代表坐标中的一个点 (i, ai) 。在坐标内画 n 条垂直线，垂直线 i 的两个端点分别为 (i, ai) 和 (i, 0)。找出其中的两条线，使得它们与 x 轴共同构成的容器可以容纳最多的水。说明：你不能倾斜容器，且 n 的值至少为 2。示例:">
-<meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-12-12T13:19:55.000Z">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2019-09-17T11:50:16.000Z">
+<meta property="article:modified_time" content="2019-12-12T13:19:55.000Z">
+<meta property="article:author" content="HMF">
+<meta property="article:tag" content="Leetcode">
+<meta property="article:tag" content="双指针">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="盛最多的水">
-<meta name="twitter:description" content="来源Leetcode第11题盛最多的水  给定 n 个非负整数 a1，a2，…，an，每个数代表坐标中的一个点 (i, ai) 。在坐标内画 n 条垂直线，垂直线 i 的两个端点分别为 (i, ai) 和 (i, 0)。找出其中的两条线，使得它们与 x 轴共同构成的容器可以容纳最多的水。说明：你不能倾斜容器，且 n 的值至少为 2。示例:">
 
-<link rel="canonical" href="http://yorxika.github.io/2019/09/17/盛最多的水/">
+<link rel="canonical" href="http://yorxika.github.io/2019/09/17/%E7%9B%9B%E6%9C%80%E5%A4%9A%E7%9A%84%E6%B0%B4/">
 
 
 <script id="page-configurations">
@@ -200,7 +201,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yorxika.github.io/2019/09/17/盛最多的水/">
+    <link itemprop="mainEntityOfPage" href="http://yorxika.github.io/2019/09/17/%E7%9B%9B%E6%9C%80%E5%A4%9A%E7%9A%84%E6%B0%B4/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/touxiang.jpg">
@@ -238,15 +239,15 @@
               </span>
               <span class="post-meta-item-text">In</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
+                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
                 </span>
                   , 
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/Leetcode/" itemprop="url" rel="index"><span itemprop="name">Leetcode</span></a>
+                  <a href="/categories/%E7%AE%97%E6%B3%95/Leetcode/" itemprop="url" rel="index"><span itemprop="name">Leetcode</span></a>
                 </span>
                   , 
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/Leetcode/数组/" itemprop="url" rel="index"><span itemprop="name">数组</span></a>
+                  <a href="/categories/%E7%AE%97%E6%B3%95/Leetcode/%E6%95%B0%E7%BB%84/" itemprop="url" rel="index"><span itemprop="name">数组</span></a>
                 </span>
             </span>
 
@@ -278,10 +279,10 @@
         <p>来源Leetcode第11题盛最多的水</p>
 <blockquote>
 <p>给定 n 个非负整数 a1，a2，…，an，每个数代表坐标中的一个点 (i, ai) 。在坐标内画 n 条垂直线，垂直线 i 的两个端点分别为 (i, ai) 和 (i, 0)。找出其中的两条线，使得它们与 x 轴共同构成的容器可以容纳最多的水。<br>说明：你不能倾斜容器，且 n 的值至少为 2。<br>示例:</p>
-<a id="more"></a>
+<span id="more"></span>
 <p>输入: [1,8,6,2,5,4,8,3,7]<br>输出: 49</p>
 </blockquote>
-<p>用暴力法遍历时遇到了TLE的问题，重新考虑题目，不妨将两个指针设置在头和尾，取头尾指针中较小的*两指针之间的距离得到其之间的面积，因为面积是以较小的指针高度为准，所以移动较小的指针即可，直到两指针相遇。<br>严谨证明链接：<a href="https://leetcode-cn.com/problems/container-with-most-water/solution/shuang-zhi-zhen-fa-zheng-que-xing-zheng-ming-by-r3/" target="_blank" rel="noopener">双指针法正确性证明</a><br>代码如下：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">maxArea</span><span class="params">(<span class="keyword">int</span>* height, <span class="keyword">int</span> heightSize)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> maxsize = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> start = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> end = heightSize<span class="number">-1</span>;</span><br><span class="line">    <span class="keyword">int</span> temp;</span><br><span class="line">    <span class="keyword">for</span>(;start!=end;)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(height[start]&lt;height[end])</span><br><span class="line">        &#123;</span><br><span class="line">            temp = (end - start)*(height[start]);</span><br><span class="line">            start++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            temp = (end - start)*(height[end]);</span><br><span class="line">            end--;</span><br><span class="line">        &#125;</span><br><span class="line">        maxsize = (maxsize &gt; temp?maxsize:temp);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> maxsize;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>用暴力法遍历时遇到了TLE的问题，重新考虑题目，不妨将两个指针设置在头和尾，取头尾指针中较小的*两指针之间的距离得到其之间的面积，因为面积是以较小的指针高度为准，所以移动较小的指针即可，直到两指针相遇。<br>严谨证明链接：<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/container-with-most-water/solution/shuang-zhi-zhen-fa-zheng-que-xing-zheng-ming-by-r3/">双指针法正确性证明</a><br>代码如下：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">maxArea</span><span class="params">(<span class="type">int</span>* height, <span class="type">int</span> heightSize)</span>&#123;</span><br><span class="line">    <span class="type">int</span> maxsize = <span class="number">0</span>;</span><br><span class="line">    <span class="type">int</span> start = <span class="number">0</span>;</span><br><span class="line">    <span class="type">int</span> end = heightSize<span class="number">-1</span>;</span><br><span class="line">    <span class="type">int</span> temp;</span><br><span class="line">    <span class="keyword">for</span>(;start!=end;)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(height[start]&lt;height[end])</span><br><span class="line">        &#123;</span><br><span class="line">            temp = (end - start)*(height[start]);</span><br><span class="line">            start++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            temp = (end - start)*(height[end]);</span><br><span class="line">            end--;</span><br><span class="line">        &#125;</span><br><span class="line">        maxsize = (maxsize &gt; temp?maxsize:temp);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> maxsize;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 
     </div>
 
@@ -297,7 +298,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>Post link: </strong>
-    <a href="http://yorxika.github.io/2019/09/17/盛最多的水/" title="盛最多的水">http://yorxika.github.io/2019/09/17/盛最多的水/</a>
+    <a href="http://yorxika.github.io/2019/09/17/%E7%9B%9B%E6%9C%80%E5%A4%9A%E7%9A%84%E6%B0%B4/" title="盛最多的水">http://yorxika.github.io/2019/09/17/盛最多的水/</a>
   </li>
   <li class="post-copyright-license">
     <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.
@@ -310,7 +311,7 @@
           
           <div class="post-tags">
               <a href="/tags/Leetcode/" rel="tag"><i class="fa fa-tag"></i> Leetcode</a>
-              <a href="/tags/双指针/" rel="tag"><i class="fa fa-tag"></i> 双指针</a>
+              <a href="/tags/%E5%8F%8C%E6%8C%87%E9%92%88/" rel="tag"><i class="fa fa-tag"></i> 双指针</a>
           </div>
 
         
@@ -319,11 +320,11 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2019/09/17/正则表达式匹配/" rel="prev" title="正则表达式匹配">
+    <a href="/2019/09/17/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%8C%B9%E9%85%8D/" rel="prev" title="正则表达式匹配">
       <i class="fa fa-chevron-left"></i> 正则表达式匹配
     </a></div>
       <div class="post-nav-item">
-    <a href="/2019/09/17/整数转罗马数/" rel="next" title="整数转罗马数">
+    <a href="/2019/09/17/%E6%95%B4%E6%95%B0%E8%BD%AC%E7%BD%97%E9%A9%AC%E6%95%B0/" rel="next" title="整数转罗马数">
       整数转罗马数 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
@@ -459,12 +460,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">956k</span>
+    <span title="Symbols count total">968k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">14:29</span>
+    <span title="Reading time total">14:40</span>
 </div><script color="255,255,255" opacity="0.5" zIndex="-1" count="180" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
 
         
@@ -484,9 +485,19 @@
   <script src="/lib/anime.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
-<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
 <script src="/js/schemes/pisces.js"></script>
-<script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
 
 
 
@@ -495,7 +506,9 @@
 
 
 
-  <script src="/js/local-search.js"></script>
+  
+<script src="/js/local-search.js"></script>
+
 
 
 

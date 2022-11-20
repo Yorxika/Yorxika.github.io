@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 3.9.0">
+<meta name="generator" content="Hexo 6.3.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
@@ -23,19 +23,20 @@
   </script>
 
   <meta name="description" content="来自Leetcode第73题矩阵置零  给定一个 m x n 的矩阵，如果一个元素为 0，则将其所在行和列的所有元素都设为 0。请使用原地算法。  统计行列最开始是遍历写的，就不放上来了，统计需要置零的行与列，最后再统一置零">
-<meta name="keywords" content="Leetcode,数组">
 <meta property="og:type" content="article">
 <meta property="og:title" content="矩阵置零">
-<meta property="og:url" content="http://yorxika.github.io/2019/11/18/矩阵置零/index.html">
+<meta property="og:url" content="http://yorxika.github.io/2019/11/18/%E7%9F%A9%E9%98%B5%E7%BD%AE%E9%9B%B6/index.html">
 <meta property="og:site_name" content="Nameless Site">
 <meta property="og:description" content="来自Leetcode第73题矩阵置零  给定一个 m x n 的矩阵，如果一个元素为 0，则将其所在行和列的所有元素都设为 0。请使用原地算法。  统计行列最开始是遍历写的，就不放上来了，统计需要置零的行与列，最后再统一置零">
-<meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-12-12T12:57:10.000Z">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2019-11-18T02:40:44.000Z">
+<meta property="article:modified_time" content="2019-12-12T12:57:10.000Z">
+<meta property="article:author" content="HMF">
+<meta property="article:tag" content="Leetcode">
+<meta property="article:tag" content="数组">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="矩阵置零">
-<meta name="twitter:description" content="来自Leetcode第73题矩阵置零  给定一个 m x n 的矩阵，如果一个元素为 0，则将其所在行和列的所有元素都设为 0。请使用原地算法。  统计行列最开始是遍历写的，就不放上来了，统计需要置零的行与列，最后再统一置零">
 
-<link rel="canonical" href="http://yorxika.github.io/2019/11/18/矩阵置零/">
+<link rel="canonical" href="http://yorxika.github.io/2019/11/18/%E7%9F%A9%E9%98%B5%E7%BD%AE%E9%9B%B6/">
 
 
 <script id="page-configurations">
@@ -200,7 +201,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yorxika.github.io/2019/11/18/矩阵置零/">
+    <link itemprop="mainEntityOfPage" href="http://yorxika.github.io/2019/11/18/%E7%9F%A9%E9%98%B5%E7%BD%AE%E9%9B%B6/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/touxiang.jpg">
@@ -238,15 +239,15 @@
               </span>
               <span class="post-meta-item-text">In</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
+                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
                 </span>
                   , 
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/Leetcode/" itemprop="url" rel="index"><span itemprop="name">Leetcode</span></a>
+                  <a href="/categories/%E7%AE%97%E6%B3%95/Leetcode/" itemprop="url" rel="index"><span itemprop="name">Leetcode</span></a>
                 </span>
                   , 
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/Leetcode/数组/" itemprop="url" rel="index"><span itemprop="name">数组</span></a>
+                  <a href="/categories/%E7%AE%97%E6%B3%95/Leetcode/%E6%95%B0%E7%BB%84/" itemprop="url" rel="index"><span itemprop="name">数组</span></a>
                 </span>
             </span>
 
@@ -279,9 +280,9 @@
 <blockquote>
 <p>给定一个 m x n 的矩阵，如果一个元素为 0，则将其所在行和列的所有元素都设为 0。请使用原地算法。</p>
 </blockquote>
-<h4 id="统计行列"><a href="#统计行列" class="headerlink" title="统计行列"></a>统计行列</h4><p>最开始是遍历写的，就不放上来了，统计需要置零的行与列，最后再统一置零<a id="more"></a></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setZeroes</span><span class="params">(<span class="keyword">int</span>[][] matrix)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> R = matrix.length;</span><br><span class="line">    <span class="keyword">int</span> C = matrix[<span class="number">0</span>].length;</span><br><span class="line">    List&lt;Integer&gt; rows = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">    List&lt;Integer&gt; cols = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 标记要设为零的行和列</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; R; i++) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; C; j++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (matrix[i][j] == <span class="number">0</span>) &#123;</span><br><span class="line">                rows.add(i);</span><br><span class="line">                cols.add(j);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 再次遍历数组，并使用行和列集更新元素。</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; R; i++) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; C; j++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (rows.contains(i) || cols.contains(j)) &#123;</span><br><span class="line">                matrix[i][j] = <span class="number">0</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">		</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="0-1-空间复杂度"><a href="#0-1-空间复杂度" class="headerlink" title="0(1)空间复杂度"></a>0(1)空间复杂度</h4><p>来源<a href="https://leetcode-cn.com/problems/set-matrix-zeroes/solution/ju-zhen-zhi-ling-by-leetcode/" target="_blank" rel="noopener">题解</a></p>
+<h4 id="统计行列"><a href="#统计行列" class="headerlink" title="统计行列"></a>统计行列</h4><p>最开始是遍历写的，就不放上来了，统计需要置零的行与列，最后再统一置零<span id="more"></span></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setZeroes</span><span class="params">(<span class="type">int</span>[][] matrix)</span> &#123;</span><br><span class="line">    <span class="type">int</span> <span class="variable">R</span> <span class="operator">=</span> matrix.length;</span><br><span class="line">    <span class="type">int</span> <span class="variable">C</span> <span class="operator">=</span> matrix[<span class="number">0</span>].length;</span><br><span class="line">    List&lt;Integer&gt; rows = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">    List&lt;Integer&gt; cols = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 标记要设为零的行和列</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; R; i++) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> <span class="number">0</span>; j &lt; C; j++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (matrix[i][j] == <span class="number">0</span>) &#123;</span><br><span class="line">                rows.add(i);</span><br><span class="line">                cols.add(j);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 再次遍历数组，并使用行和列集更新元素。</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; R; i++) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> <span class="number">0</span>; j &lt; C; j++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (rows.contains(i) || cols.contains(j)) &#123;</span><br><span class="line">                matrix[i][j] = <span class="number">0</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">		</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="0-1-空间复杂度"><a href="#0-1-空间复杂度" class="headerlink" title="0(1)空间复杂度"></a>0(1)空间复杂度</h4><p>来源<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/set-matrix-zeroes/solution/ju-zhen-zhi-ling-by-leetcode/">题解</a></p>
 <p>算法:</p>
 <ul>
 <li>遍历整个矩阵，如果 cell[i][j] == 0 就将第 i 行和第 j 列的第一个元素标记。</li>
@@ -290,8 +291,8 @@
 <li>然后我们检查是否 cell[0][0] == 0 ，如果是则赋值第一行的元素为零。</li>
 <li>然后检查第一列是否被标记，如果是则赋值第一列的元素为零。</li>
 </ul>
-<h4 id="其他思路"><a href="#其他思路" class="headerlink" title="其他思路"></a>其他思路</h4><p>来源<a href="https://leetcode-cn.com/problems/set-matrix-zeroes/solution/javaji-bai-100ti-jie-by-chiyuxing-2/" target="_blank" rel="noopener">题解</a></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setZeroes</span><span class="params">(<span class="keyword">int</span>[][] matrix)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (matrix == <span class="keyword">null</span> || matrix.length == <span class="number">0</span> || matrix[<span class="number">0</span>].length == <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 前一行为0标志</span></span><br><span class="line">    <span class="keyword">boolean</span> isLastRowZero = <span class="keyword">false</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; matrix.length; i ++) &#123;</span><br><span class="line">        <span class="comment">// 当前行为0标志</span></span><br><span class="line">        <span class="keyword">boolean</span> isCurrRowZero = <span class="keyword">false</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; matrix[<span class="number">0</span>].length; j ++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (matrix[i][j] == <span class="number">0</span>) &#123;</span><br><span class="line">                isCurrRowZero = <span class="keyword">true</span>;</span><br><span class="line">                <span class="comment">// 纵向上一个值不是零，说明纵向第一次出现零，需要把纵向前面的值都置为零</span></span><br><span class="line">                <span class="keyword">if</span> (i &gt; <span class="number">0</span> &amp;&amp; matrix[i - <span class="number">1</span>][j] != <span class="number">0</span>) &#123;</span><br><span class="line">                    <span class="keyword">for</span> (<span class="keyword">int</span> k = <span class="number">0</span>; k &lt; i; k ++) &#123;</span><br><span class="line">                        matrix[k][j] = <span class="number">0</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">// 纵向上一个值如果为零，则把纵向的零延伸到此行</span></span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (i &gt; <span class="number">0</span> &amp;&amp; matrix[i - <span class="number">1</span>][j] == <span class="number">0</span>)&#123;</span><br><span class="line">                matrix[i][j] = <span class="number">0</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">            <span class="comment">// 如果上一行为零标志为真,则上一行这个位置置为零（纵向为零的判断在上面处理过，所以到这里才可以设置为0）</span></span><br><span class="line">            <span class="keyword">if</span> (isLastRowZero) &#123;</span><br><span class="line">                matrix[i - <span class="number">1</span>][j] = <span class="number">0</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        isLastRowZero = isCurrRowZero;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 处理最后一行为零的情况</span></span><br><span class="line">    <span class="keyword">if</span> (isLastRowZero) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; matrix[<span class="number">0</span>].length; i ++) &#123;</span><br><span class="line">            matrix[matrix.length - <span class="number">1</span>][i] = <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="其他思路"><a href="#其他思路" class="headerlink" title="其他思路"></a>其他思路</h4><p>来源<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/set-matrix-zeroes/solution/javaji-bai-100ti-jie-by-chiyuxing-2/">题解</a></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setZeroes</span><span class="params">(<span class="type">int</span>[][] matrix)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (matrix == <span class="literal">null</span> || matrix.length == <span class="number">0</span> || matrix[<span class="number">0</span>].length == <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 前一行为0标志</span></span><br><span class="line">    <span class="type">boolean</span> <span class="variable">isLastRowZero</span> <span class="operator">=</span> <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; matrix.length; i ++) &#123;</span><br><span class="line">        <span class="comment">// 当前行为0标志</span></span><br><span class="line">        <span class="type">boolean</span> <span class="variable">isCurrRowZero</span> <span class="operator">=</span> <span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> <span class="number">0</span>; j &lt; matrix[<span class="number">0</span>].length; j ++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (matrix[i][j] == <span class="number">0</span>) &#123;</span><br><span class="line">                isCurrRowZero = <span class="literal">true</span>;</span><br><span class="line">                <span class="comment">// 纵向上一个值不是零，说明纵向第一次出现零，需要把纵向前面的值都置为零</span></span><br><span class="line">                <span class="keyword">if</span> (i &gt; <span class="number">0</span> &amp;&amp; matrix[i - <span class="number">1</span>][j] != <span class="number">0</span>) &#123;</span><br><span class="line">                    <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">k</span> <span class="operator">=</span> <span class="number">0</span>; k &lt; i; k ++) &#123;</span><br><span class="line">                        matrix[k][j] = <span class="number">0</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">// 纵向上一个值如果为零，则把纵向的零延伸到此行</span></span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (i &gt; <span class="number">0</span> &amp;&amp; matrix[i - <span class="number">1</span>][j] == <span class="number">0</span>)&#123;</span><br><span class="line">                matrix[i][j] = <span class="number">0</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">            <span class="comment">// 如果上一行为零标志为真,则上一行这个位置置为零（纵向为零的判断在上面处理过，所以到这里才可以设置为0）</span></span><br><span class="line">            <span class="keyword">if</span> (isLastRowZero) &#123;</span><br><span class="line">                matrix[i - <span class="number">1</span>][j] = <span class="number">0</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        isLastRowZero = isCurrRowZero;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 处理最后一行为零的情况</span></span><br><span class="line">    <span class="keyword">if</span> (isLastRowZero) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; matrix[<span class="number">0</span>].length; i ++) &#123;</span><br><span class="line">            matrix[matrix.length - <span class="number">1</span>][i] = <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
     </div>
 
@@ -307,7 +308,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>Post link: </strong>
-    <a href="http://yorxika.github.io/2019/11/18/矩阵置零/" title="矩阵置零">http://yorxika.github.io/2019/11/18/矩阵置零/</a>
+    <a href="http://yorxika.github.io/2019/11/18/%E7%9F%A9%E9%98%B5%E7%BD%AE%E9%9B%B6/" title="矩阵置零">http://yorxika.github.io/2019/11/18/矩阵置零/</a>
   </li>
   <li class="post-copyright-license">
     <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.
@@ -320,7 +321,7 @@
           
           <div class="post-tags">
               <a href="/tags/Leetcode/" rel="tag"><i class="fa fa-tag"></i> Leetcode</a>
-              <a href="/tags/数组/" rel="tag"><i class="fa fa-tag"></i> 数组</a>
+              <a href="/tags/%E6%95%B0%E7%BB%84/" rel="tag"><i class="fa fa-tag"></i> 数组</a>
           </div>
 
         
@@ -329,11 +330,11 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2019/11/16/爬楼梯/" rel="prev" title="爬楼梯">
+    <a href="/2019/11/16/%E7%88%AC%E6%A5%BC%E6%A2%AF/" rel="prev" title="爬楼梯">
       <i class="fa fa-chevron-left"></i> 爬楼梯
     </a></div>
       <div class="post-nav-item">
-    <a href="/2019/11/18/买卖股票的最佳时机/" rel="next" title="买卖股票的最佳时机">
+    <a href="/2019/11/18/%E4%B9%B0%E5%8D%96%E8%82%A1%E7%A5%A8%E7%9A%84%E6%9C%80%E4%BD%B3%E6%97%B6%E6%9C%BA/" rel="next" title="买卖股票的最佳时机">
       买卖股票的最佳时机 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
@@ -395,7 +396,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#统计行列"><span class="nav-number">1.</span> <span class="nav-text">统计行列</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#0-1-空间复杂度"><span class="nav-number">2.</span> <span class="nav-text">0(1)空间复杂度</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#其他思路"><span class="nav-number">3.</span> <span class="nav-text">其他思路</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BB%9F%E8%AE%A1%E8%A1%8C%E5%88%97"><span class="nav-number">1.</span> <span class="nav-text">统计行列</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#0-1-%E7%A9%BA%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6"><span class="nav-number">2.</span> <span class="nav-text">0(1)空间复杂度</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%B6%E4%BB%96%E6%80%9D%E8%B7%AF"><span class="nav-number">3.</span> <span class="nav-text">其他思路</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -470,12 +471,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">956k</span>
+    <span title="Symbols count total">968k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">14:29</span>
+    <span title="Reading time total">14:40</span>
 </div><script color="255,255,255" opacity="0.5" zIndex="-1" count="180" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
 
         
@@ -495,9 +496,19 @@
   <script src="/lib/anime.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
-<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
 <script src="/js/schemes/pisces.js"></script>
-<script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
 
 
 
@@ -506,7 +517,9 @@
 
 
 
-  <script src="/js/local-search.js"></script>
+  
+<script src="/js/local-search.js"></script>
+
 
 
 
