@@ -19,7 +19,7 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"yorxika.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","width":270,"display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"yorxika.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","width":298,"display":"always","padding":5,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
   <meta name="description" content="JAVA堆和栈的区别栈内存:栈内存首先是一片内存区域，存储的都是局部变量，凡是定义在方法中的都是局部变量（方法外的是全局变量），for循环内部定义的也是局部变量，是先加载函数才能进行局部变量的定义，所以方法先进栈，然后再定义变量，变量有自己的作用域，一旦离开作用域，变量就会被释放。栈内存的更新速度很快，因为局部变量的生命周期都很短。">
@@ -29,70 +29,70 @@
 <meta property="og:site_name" content="Nameless Site">
 <meta property="og:description" content="JAVA堆和栈的区别栈内存:栈内存首先是一片内存区域，存储的都是局部变量，凡是定义在方法中的都是局部变量（方法外的是全局变量），for循环内部定义的也是局部变量，是先加载函数才能进行局部变量的定义，所以方法先进栈，然后再定义变量，变量有自己的作用域，一旦离开作用域，变量就会被释放。栈内存的更新速度很快，因为局部变量的生命周期都很短。">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://yorxika.github.io/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/image-20200324095521916.png">
-<meta property="og:image" content="http://yorxika.github.io/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/image-20200324100444414.png">
-<meta property="og:image" content="http://yorxika.github.io/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/image-20200324100456084.png">
-<meta property="og:image" content="http://yorxika.github.io/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/1184092-20190220113622746-1879492177.png">
-<meta property="og:image" content="http://yorxika.github.io/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/20160421004103005.png">
-<meta property="og:image" content="http://yorxika.github.io/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/20160421004203974.png">
-<meta property="og:image" content="http://yorxika.github.io/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/20160421004522335.png">
-<meta property="og:image" content="http://yorxika.github.io/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/20160421004605951.png">
-<meta property="og:image" content="http://yorxika.github.io/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/20160421004733383.png">
-<meta property="og:image" content="http://yorxika.github.io/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/20160421004936555.png">
-<meta property="og:image" content="http://yorxika.github.io/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/2018092713195033.png">
-<meta property="og:image" content="http://yorxika.github.io/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/TIM%E6%88%AA%E5%9B%BE20200401215950.jpg">
+<meta property="og:image" content="http://yorxika.github.io/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/image-20200324095521916.png">
+<meta property="og:image" content="http://yorxika.github.io/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/image-20200324100444414.png">
+<meta property="og:image" content="http://yorxika.github.io/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/image-20200324100456084.png">
+<meta property="og:image" content="http://yorxika.github.io/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/1184092-20190220113622746-1879492177.png">
+<meta property="og:image" content="http://yorxika.github.io/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/20160421004103005.png">
+<meta property="og:image" content="http://yorxika.github.io/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/20160421004203974.png">
+<meta property="og:image" content="http://yorxika.github.io/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/20160421004522335.png">
+<meta property="og:image" content="http://yorxika.github.io/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/20160421004605951.png">
+<meta property="og:image" content="http://yorxika.github.io/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/20160421004733383.png">
+<meta property="og:image" content="http://yorxika.github.io/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/20160421004936555.png">
+<meta property="og:image" content="http://yorxika.github.io/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/2018092713195033.png">
+<meta property="og:image" content="http://yorxika.github.io/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/TIM%E6%88%AA%E5%9B%BE20200401215950.jpg">
 <meta property="og:image" content="https://camo.githubusercontent.com/a66819fd82c6adfa69b368edf3c52b1fa9cdc89d/68747470733a2f2f6d792d626c6f672d746f2d7573652e6f73732d636e2d6265696a696e672e616c6979756e63732e636f6d2f323031392d332f4a564de8bf90e8a18ce697b6e695b0e68daee58cbae59f9f2e706e67">
-<meta property="og:image" content="http://yorxika.github.io/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/5714666-390c861ed043ef94.webp">
-<meta property="og:image" content="http://yorxika.github.io/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/5714666-42b7250449160dc2.webp">
-<meta property="og:image" content="http://yorxika.github.io/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/5714666-cce9ccf139acf1a4.webp">
-<meta property="og:image" content="http://yorxika.github.io/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/20200321025739906.png">
-<meta property="og:image" content="http://yorxika.github.io/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/300854081661499.jpg">
-<meta property="og:image" content="http://yorxika.github.io/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/5982616-aad63782162c9ae5.webp">
-<meta property="og:image" content="http://yorxika.github.io/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/20180322204213875">
-<meta property="og:image" content="http://yorxika.github.io/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/1024555-20170521150621182-1289355418.png">
-<meta property="og:image" content="http://yorxika.github.io/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/20140810102151522.png">
-<meta property="og:image" content="http://yorxika.github.io/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/12239817-57bb34bbf201853d.webp">
-<meta property="og:image" content="http://yorxika.github.io/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/7508328-dea3e88fded20350.webp">
-<meta property="og:image" content="http://yorxika.github.io/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/1688279-0424d62f50035b43.webp">
-<meta property="og:image" content="http://yorxika.github.io/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/1688279-e34d09c9351c7084.webp">
-<meta property="og:image" content="http://yorxika.github.io/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/1688279-e513845a80659860.webp">
-<meta property="og:image" content="http://yorxika.github.io/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/1688279-020ad51ed5443cce.webp">
-<meta property="og:image" content="http://yorxika.github.io/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/2083810-82ee9f1ceb9c6b95.webp">
-<meta property="og:image" content="http://yorxika.github.io/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/2083810-e496916704fa4dfa.webp">
-<meta property="og:image" content="http://yorxika.github.io/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/944365-2b5dc928ab334440.png">
-<meta property="og:image" content="http://yorxika.github.io/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/20180429164552531.jfif">
-<meta property="og:image" content="http://yorxika.github.io/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/20190610223539273.jpg">
-<meta property="og:image" content="http://yorxika.github.io/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/20190610223705714.png">
-<meta property="og:image" content="http://yorxika.github.io/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/12359382-84191a7b9aee861e.webp">
-<meta property="og:image" content="http://yorxika.github.io/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/1674835-cbec07958657c4a8.webp">
-<meta property="og:image" content="http://yorxika.github.io/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/1674835-7e2417de609e171e.webp">
-<meta property="og:image" content="http://yorxika.github.io/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/1674835-dcef4bb069cc5d6f.webp">
-<meta property="og:image" content="http://yorxika.github.io/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/1674835-7cf53bd4d1af899b.webp">
-<meta property="og:image" content="http://yorxika.github.io/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/20180307161324186">
-<meta property="og:image" content="http://yorxika.github.io/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/20161129184124711">
-<meta property="og:image" content="http://yorxika.github.io/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/20180818235134804.png">
-<meta property="og:image" content="http://yorxika.github.io/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/20180710175536508.png">
-<meta property="og:image" content="http://yorxika.github.io/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/20180710175548750.png">
-<meta property="og:image" content="http://yorxika.github.io/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/2snzFs9.gif">
-<meta property="og:image" content="http://yorxika.github.io/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/1260476-20171116160813812-635766483.png">
-<meta property="og:image" content="http://yorxika.github.io/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/3971776-9550b64ff16dbb0b.webp">
-<meta property="og:image" content="http://yorxika.github.io/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/555379-20160210231313448-2027205313.png">
-<meta property="og:image" content="http://yorxika.github.io/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/20190314090627135.png">
+<meta property="og:image" content="http://yorxika.github.io/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/5714666-390c861ed043ef94.webp">
+<meta property="og:image" content="http://yorxika.github.io/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/5714666-42b7250449160dc2.webp">
+<meta property="og:image" content="http://yorxika.github.io/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/5714666-cce9ccf139acf1a4.webp">
+<meta property="og:image" content="http://yorxika.github.io/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/20200321025739906.png">
+<meta property="og:image" content="http://yorxika.github.io/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/300854081661499.jpg">
+<meta property="og:image" content="http://yorxika.github.io/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/5982616-aad63782162c9ae5.webp">
+<meta property="og:image" content="http://yorxika.github.io/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/20180322204213875">
+<meta property="og:image" content="http://yorxika.github.io/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/1024555-20170521150621182-1289355418.png">
+<meta property="og:image" content="http://yorxika.github.io/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/20140810102151522.png">
+<meta property="og:image" content="http://yorxika.github.io/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/12239817-57bb34bbf201853d.webp">
+<meta property="og:image" content="http://yorxika.github.io/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/7508328-dea3e88fded20350.webp">
+<meta property="og:image" content="http://yorxika.github.io/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/1688279-0424d62f50035b43.webp">
+<meta property="og:image" content="http://yorxika.github.io/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/1688279-e34d09c9351c7084.webp">
+<meta property="og:image" content="http://yorxika.github.io/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/1688279-e513845a80659860.webp">
+<meta property="og:image" content="http://yorxika.github.io/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/1688279-020ad51ed5443cce.webp">
+<meta property="og:image" content="http://yorxika.github.io/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/2083810-82ee9f1ceb9c6b95.webp">
+<meta property="og:image" content="http://yorxika.github.io/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/2083810-e496916704fa4dfa.webp">
+<meta property="og:image" content="http://yorxika.github.io/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/944365-2b5dc928ab334440.png">
+<meta property="og:image" content="http://yorxika.github.io/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/20180429164552531.jfif">
+<meta property="og:image" content="http://yorxika.github.io/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/20190610223539273.jpg">
+<meta property="og:image" content="http://yorxika.github.io/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/20190610223705714.png">
+<meta property="og:image" content="http://yorxika.github.io/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/12359382-84191a7b9aee861e.webp">
+<meta property="og:image" content="http://yorxika.github.io/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/1674835-cbec07958657c4a8.webp">
+<meta property="og:image" content="http://yorxika.github.io/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/1674835-7e2417de609e171e.webp">
+<meta property="og:image" content="http://yorxika.github.io/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/1674835-dcef4bb069cc5d6f.webp">
+<meta property="og:image" content="http://yorxika.github.io/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/1674835-7cf53bd4d1af899b.webp">
+<meta property="og:image" content="http://yorxika.github.io/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/20180307161324186">
+<meta property="og:image" content="http://yorxika.github.io/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/20161129184124711">
+<meta property="og:image" content="http://yorxika.github.io/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/20180818235134804.png">
+<meta property="og:image" content="http://yorxika.github.io/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/20180710175536508.png">
+<meta property="og:image" content="http://yorxika.github.io/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/20180710175548750.png">
+<meta property="og:image" content="http://yorxika.github.io/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/2snzFs9.gif">
+<meta property="og:image" content="http://yorxika.github.io/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/1260476-20171116160813812-635766483.png">
+<meta property="og:image" content="http://yorxika.github.io/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/3971776-9550b64ff16dbb0b.webp">
+<meta property="og:image" content="http://yorxika.github.io/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/555379-20160210231313448-2027205313.png">
+<meta property="og:image" content="http://yorxika.github.io/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/20190314090627135.png">
 <meta property="og:image" content="https://camo.githubusercontent.com/c6bda910351aff0fc39247088fde335ab5bbf3c8/68747470733a2f2f6d792d626c6f672d746f2d7573652e6f73732d636e2d6265696a696e672e616c6979756e63732e636f6d2f323031392d31312f2545352539302538342545372541372538442545372542442539312545372542422539432545382541462542372545362542312538322545372539342541382545352538382542302545372539412538342545352538442538462545382541452541452e6a7067">
-<meta property="og:image" content="http://yorxika.github.io/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/20190527231438974.png">
-<meta property="og:image" content="http://yorxika.github.io/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/20171104153250986">
-<meta property="og:image" content="http://yorxika.github.io/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/20171104150653809">
-<meta property="og:image" content="http://yorxika.github.io/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/20171104145803969">
-<meta property="og:image" content="http://yorxika.github.io/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/20171104143925766">
-<meta property="og:image" content="http://yorxika.github.io/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/20171104153228649">
-<meta property="og:image" content="http://yorxika.github.io/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/20171104155233026">
-<meta property="og:image" content="http://yorxika.github.io/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/20171104155825300">
+<meta property="og:image" content="http://yorxika.github.io/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/20190527231438974.png">
+<meta property="og:image" content="http://yorxika.github.io/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/20171104153250986">
+<meta property="og:image" content="http://yorxika.github.io/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/20171104150653809">
+<meta property="og:image" content="http://yorxika.github.io/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/20171104145803969">
+<meta property="og:image" content="http://yorxika.github.io/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/20171104143925766">
+<meta property="og:image" content="http://yorxika.github.io/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/20171104153228649">
+<meta property="og:image" content="http://yorxika.github.io/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/20171104155233026">
+<meta property="og:image" content="http://yorxika.github.io/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/20171104155825300">
 <meta property="article:published_time" content="2020-03-16T12:04:37.000Z">
 <meta property="article:modified_time" content="2020-09-27T06:48:50.000Z">
 <meta property="article:author" content="HMF">
 <meta property="article:tag" content="JAVA">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://yorxika.github.io/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/image-20200324095521916.png">
+<meta name="twitter:image" content="http://yorxika.github.io/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/image-20200324095521916.png">
 
 <link rel="canonical" href="http://yorxika.github.io/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/">
 
@@ -388,10 +388,10 @@
 <hr>
 <h3 id="Java-的GC-什么时候回收垃圾"><a href="#Java-的GC-什么时候回收垃圾" class="headerlink" title="Java 的GC 什么时候回收垃圾"></a>Java 的GC 什么时候回收垃圾</h3><p>在面试中经常会碰到这样一个问题：如何判断一个对象已经死去？<br>很容易想到的一个答案是：对一个对象添加引用计数器。每当有地方引用它时，计数器值加1；当引用失效时，计数器值减1.而当计数器的值为0 时这个对象就不会再被使用，判断为已死。是不是简单又直观。然而，很遗憾。这种做法是错误的！为什么是错的呢？事实上，用引用计数法确实在大部分情况下是一个不错的解决方案，而在实际的应用中也有不少案例，但它却无法解决对象之间的循环引用问题。比如对象A 中有一个字段指向了对象B，而对象B 中也有一个字段指向了对象A，而事实上他们俩都不再使用，但计数器的值永远都不可能为0，也就不会被回收，然后就发生了内存泄露。<br>所以，正确的做法应该是怎样呢？<br>在Java，C#等语言中，比较主流的判定一个对象已死的方法是：可达性分析(Reachability Analysis).<br>所有生成的对象都是一个称为”GC Roots”的根的子树。从GC Roots 开始向下搜索，搜索所经过的路径称为引用链(Reference Chain)，当一个对象到GC Roots 没有任何引用链可以到达时，就称这个对象是不可达的（不可引用的），也就是可以被GC 回收了。<br>无论是引用计数器还是可达性分析，判定对象是否存活都与引用有关！那么，如何定义对象的引用呢？<br>我们希望给出这样一类描述：当内存空间还够时，能够保存在内存中；如果进行了垃圾回收之后内存空间仍旧非常紧张，则可以抛弃这些对象。所以根据不同的需求，给出如下四种引用，根据引用类型的不同，GC 回收时也会有不同的操作：<br>1)强引用(Strong Reference):Object obj = new Object();只要强引用还存在，GC 永远不会回收掉被引用的对象。<br>2)软引用(Soft Reference)：描述一些还有用但非必需的对象。在系统将会发生内存溢出之前，会把这些对象列入回收范围进行二次回收（即系统将会发生内存溢出了，才会对他们进行回收。）<br>弱引用(Weak Reference):程度比软引用还要弱一些。这些对象只能生存到下次GC 之前。当GC 工作时，无论内存是否足够都会将其回收（即只要进行GC，就会对他们进行回收。）<br>虚引用(Phantom Reference):一个对象是否存在虚引用，完全不会对其生存时间构成影响。<br>关于方法区中需要回收的是一些废弃的常量和无用的类。<br>1.废弃的常量的回收。这里看引用计数就可以了。没有对象引用该常量就可以放心的回收了。<br>2.无用的类的回收。什么是无用的类呢？<br>A.该类所有的实例都已经被回收。也就是Java 堆中不存在该类的任何实例；<br>B.加载该类的ClassLoader 已经被回收；<br>C.该类对应的java.lang.Class 对象没有任何地方被引用，无法在任何地方通过反射访问该类的方法。<br>总而言之:<br>对于堆中的对象，主要用可达性分析判断一个对象是否还存在引用，如果该对象没有任何引用就应该被回收。而根据我们实际对引用的不同需求，又分成了4 中引用，每种引用的回收机制也是不同的。<br>对于方法区中的常量和类，当一个常量没有任何对象引用它，它就可以被回收了。而对于类，如果可以判定它为无用类，就可以被回收了。</p>
 <h4 id="新生代与复制算法"><a href="#新生代与复制算法" class="headerlink" title="新生代与复制算法"></a>新生代与复制算法</h4><p>目前大部分JVM的GC对于新生代都采取Copying算法，因为新生代中每次垃圾回收都要回收大部分对象，即要复制的操作比较少，但通常并不是按照1：1来划分新生代。一般将新生代划分为一块较大的Eden空间和两个较小的Survivor空间(From Space, To Space)，每次使用Eden空间和其中的一块Survivor空间，当进行回收时，将该两块空间中还存活的对象复制到另一块Survivor空间中。</p>
-<p><img src="/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/image-20200324095521916.png" alt="image-20200324095521916"></p>
+<p><img src="/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/image-20200324095521916.png" alt="image-20200324095521916"></p>
 <p>复制算法</p>
 <p>为了解决效率问题，“复制”收集算法出现了。它可以将内存分为大小相同的两块，每次使用其中的一块。当这一块的内存使用完后，就将还存活的对象复制到另一块去，然后再把使用的空间一次清理掉。这样就使每次的内存回收都是对内存区间的一半进行回收。</p>
-<p><img src="/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/image-20200324100444414.png" alt="image-20200324100444414"></p>
+<p><img src="/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/image-20200324100444414.png" alt="image-20200324100444414"></p>
 <h4 id="老年代与标记复制算法"><a href="#老年代与标记复制算法" class="headerlink" title="老年代与标记复制算法"></a>老年代与标记复制算法</h4><p>而老年代因为每次只回收少量对象，因而采用Mark-Compact算法。</p>
 <ol>
 <li>JAVA虚拟机提到过的处于方法区的永生代(Permanet Generation)，它用来存储class类，常量，方法描述等。对永生代的回收主要包括废弃常量和无用的类。</li>
@@ -403,11 +403,11 @@
 </ol>
 <p>标记-整理算法</p>
 <p>根据老年代的特点提出的一种标记算法，标记过程仍然与“标记-清除”算法一样，但后续步骤不是直接对可回收对象回收，而是让所有存活的对象向一端移动，然后直接清理掉端边界以外的内存。</p>
-<p><img src="/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/image-20200324100456084.png" alt="image-20200324100456084"></p>
+<p><img src="/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/image-20200324100456084.png" alt="image-20200324100456084"></p>
 <hr>
 <h3 id="HashMap的底层数据结构，局限性与线程安全"><a href="#HashMap的底层数据结构，局限性与线程安全" class="headerlink" title="HashMap的底层数据结构，局限性与线程安全"></a>HashMap的底层数据结构，局限性与线程安全</h3><h4 id="HashMap数据结构"><a href="#HashMap数据结构" class="headerlink" title="HashMap数据结构"></a>HashMap数据结构</h4><p>哈希表结构（链表散列：数组+链表）实现，结合数组和链表的优点。当链表长度超过8时，链表转换为红黑树。</p>
 <p> transient Node<K,V>[] table;</K,V></p>
-<p><img src="/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/1184092-20190220113622746-1879492177.png" alt="img"></p>
+<p><img src="/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/1184092-20190220113622746-1879492177.png" alt="img"></p>
 <h4 id="HashMap的工作原理"><a href="#HashMap的工作原理" class="headerlink" title="HashMap的工作原理"></a>HashMap的工作原理</h4><p>A：HashMap底层是hash数组和单向链表实现，数组中的每个元素都是链表，由Node内部类（实现Map.Entry<k,V>接口）实现，HashMap通过put&amp;get方法存储和获取。</k,V></p>
 <p><strong>存储对象时，将K/V键值对传给put（）方法；</strong></p>
 <p>①、调用hash（K）方法计算K的hash值，然后结合数组长度，计算得数组下标；</p>
@@ -490,7 +490,7 @@
 <li><a target="_blank" rel="noopener" href="https://blog.csdn.net/sinat_38259539/article/details/71799078">Java 基础之—反射（非常重要）</a></li>
 </ul>
 <hr>
-<h3 id="IO"><a href="#IO" class="headerlink" title="IO"></a>IO</h3><p><img src="/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/20160421004103005.png" alt="img"></p>
+<h3 id="IO"><a href="#IO" class="headerlink" title="IO"></a>IO</h3><p><img src="/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/20160421004103005.png" alt="img"></p>
 <p>在整个Java.io包中最重要的就是5个类和一个接口。5个类指的是File、OutputStream、InputStream、Writer、Reader；一个接口指的是Serializable.掌握了这些IO的核心操作那么对于Java中的IO体系也就有了一个初步的认识了</p>
 <p>Java I/O主要包括如下几个层次，包含三个部分：</p>
 <p> <strong>1.流式部分</strong>――IO的主体部分；</p>
@@ -510,7 +510,7 @@
 <li><p>RandomAccessFile（随机文件操作）：一个独立的类，直接继承至Object.它的功能丰富，<strong>可以从文件的任意位置进行存取（输入输出）操作</strong>。</p>
 </li>
 </ol>
-<p><img src="/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/20160421004203974.png" alt="img"></p>
+<p><img src="/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/20160421004203974.png" alt="img"></p>
 <p>流：代表任何有能力产出数据的数据源对象或者是有能力接受数据的接收端对象<Thinking in java></Thinking></p>
 <p>流的本质:数据传输，根据数据传输特性将流抽象为各种类，方便更直观的进行数据操作。 </p>
 <p><strong>流的作用：为数据源和目的地建立一个输送通道。</strong></p>
@@ -527,10 +527,10 @@
 <p>根据数据的输入、输出方向的不同对而将流分为输入流和输出流。</p>
 <p><strong>1) 输入流</strong></p>
 <p>   程序从输入流读取数据源。数据源包括外界(键盘、文件、网络…)，即是将数据源读入到程序的通信通道</p>
-<p>   <img src="/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/20160421004522335.png" alt="img"></p>
+<p>   <img src="/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/20160421004522335.png" alt="img"></p>
 <p>2) 输出流</p>
 <p>  程序向输出流写入数据。将程序中的数据输出到外界（显示器、打印机、文件、网络…）的通信通道。</p>
-<p>  <img src="/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/20160421004605951.png" alt="img"></p>
+<p>  <img src="/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/20160421004605951.png" alt="img"></p>
 <p>​     </p>
 <p>采用数据流的目的就是使得输出输入独立于设备。</p>
 <p>输入流( Input  Stream )不关心数据源来自何种设备（键盘，文件，网络）。<br>输出流( Output Stream )不关心数据的目的是何种设备（键盘，文件，网络）。</p>
@@ -541,7 +541,7 @@
 <p>3、只读或只写，每个流只能是输入流或输出流的一种，不能同时具备两个功能，输入流只能进行读操作，对输出流只能进行写操作。在一个数据传输通道中，如果既要写入数据，又要读取数据，则要分别提供两个流。</p>
 <p>IO流对象</p>
 <p><strong>1.输入字节流InputStream</strong></p>
-<p> <img src="/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/20160421004733383.png" alt="img"></p>
+<p> <img src="/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/20160421004733383.png" alt="img"></p>
 <p>IO 中输入字节流的继承图可见上图，可以看出：</p>
 <ol>
 <li><p>InputStream是所有的输入字节流的父类，它是一个抽象类。</p>
@@ -557,7 +557,7 @@
 <p>流结束的判断：方法read()的返回值为-1时；readLine()的返回值为null时。</p>
 <p><strong>其它方法</strong><br>   long skip(long?n)：在输入流中跳过n个字节，并返回实际跳过的字节数。<br>   int available() ：返回在不发生阻塞的情况下，可读取的字节数。<br>   void close() ：关闭输入流，释放和这个流相关的系统资源。<br>   voidmark(int?readlimit) ：在输入流的当前位置放置一个标记，如果读取的字节数多于readlimit设置的值，则流忽略这个标记。<br>   void reset() ：返回到上一个标记。<br>   booleanmarkSupported() ：测试当前流是否支持mark和reset方法。如果支持，返回true，否则返回false。</p>
 <p>输出字节流OutputStream</p>
-<p><img src="/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/20160421004936555.png" alt="img"></p>
+<p><img src="/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/20160421004936555.png" alt="img"></p>
 <p>IO 中输出字节流的继承图可见上图，可以看出：</p>
 <ol>
 <li><p>OutputStream是所有的输出字节流的父类，它是一个抽象类。</p>
@@ -578,7 +578,7 @@
 <li>线程不能直接读写主内存中的变量，所有操作均在工作内存中完成。</li>
 </ul>
 <p>线程，主内存，工作内存的交互关系如图。</p>
-<p><img src="/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/2018092713195033.png" alt="在这里插入图片描述"></p>
+<p><img src="/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/2018092713195033.png" alt="在这里插入图片描述"></p>
 <p>内存间的交互操作有很多，和volatile有关的操作为：</p>
 <ul>
 <li>read（读取）：作用于主内存变量，把一个变量值从主内存传输到线程的工作内存中，以便随后的load动作使用</li>
@@ -635,7 +635,7 @@
 <p>在 Java 中，JVM 可以理解的代码就叫做<code>字节码</code>（即扩展名为 <code>.class</code> 的文件），它不面向任何特定的处理器，只面向虚拟机。Java 语言通过字节码的方式，在一定程度上解决了传统解释型语言执行效率低的问题，同时又保留了解释型语言可移植的特点。所以 Java 程序运行时比较高效，而且，由于字节码并不针对一种特定的机器，因此，Java 程序无须重新编译便可在多种不同操作系统的计算机上运行。</p>
 </blockquote>
 <p><strong>Java 程序从源代码到运行一般有下面 3 步：</strong></p>
-<p><img src="/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/TIM截图20200401215950.jpg" alt="TIM截图20200401215950"></p>
+<p><img src="/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/TIM截图20200401215950.jpg" alt="TIM截图20200401215950"></p>
 <p>我们需要格外注意的是 .class-&gt;机器码 这一步。在这一步 JVM 类加载器首先加载字节码文件，然后通过解释器逐行解释执行，这种方式的执行速度会相对比较慢。而且，有些方法和代码块是经常需要被调用的(也就是所谓的热点代码)，所以后面引进了 JIT 编译器，而 JIT 属于运行时编译。当 JIT 编译器完成第一次编译后，其会将字节码对应的机器码保存下来，下次可以直接使用。而我们知道，机器码的运行效率肯定是高于 Java 解释器的。这也解释了我们为什么经常会说 Java 是编译与解释共存的语言。</p>
 <p>HotSpot 采用了惰性评估(Lazy Evaluation)的做法，根据二八定律，消耗大部分系统资源的只有那一小部分的代码（热点代码），而这也就是 JIT 所需要编译的部分。JVM 会根据代码每次被执行的情况收集信息并相应地做出一些优化，因此执行的次数越多，它的速度就越快。JDK 9 引入了一种新的编译模式 AOT(Ahead of Time Compilation)，它是直接将字节码编译成机器码，这样就避免了 JIT 预热等各方面的开销。JDK 支持分层编译和 AOT 协作使用。但是 ，AOT 编译器的编译质量是肯定比不上 JIT 编译器的。</p>
 <p><strong>总结：</strong></p>
@@ -822,7 +822,7 @@
 <li>Java 编译器会在生成指令系列时在适当的位置会插入内存屏障指令来禁止特定类型的处理器重排序。</li>
 <li>JMM 会针对编译器制定 volatile 重排序规则表。</li>
 </ul>
-<p><img src="/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/5714666-390c861ed043ef94.webp" alt="img"></p>
+<p><img src="/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/5714666-390c861ed043ef94.webp" alt="img"></p>
 <p>volatile 重排序规则表</p>
 <ul>
 <li>“ NO “ 表示禁止重排序。<ul>
@@ -866,11 +866,11 @@
 </tbody>
 </table>
 </div>
-<p><img src="/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/5714666-42b7250449160dc2.webp" alt="img"></p>
+<p><img src="/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/5714666-42b7250449160dc2.webp" alt="img"></p>
 <p>volatile 写插入内存屏障</p>
-<p><img src="/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/5714666-cce9ccf139acf1a4.webp" alt="img"></p>
+<p><img src="/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/5714666-cce9ccf139acf1a4.webp" alt="img"></p>
 <p>volatile 读插入内存屏障</p>
-<h4 id="为什么num-多线程不安全？"><a href="#为什么num-多线程不安全？" class="headerlink" title="为什么num++多线程不安全？"></a>为什么num++多线程不安全？</h4><p>原因如图<br><img src="/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/20200321025739906.png" alt="在这里插入图片描述"><br>一个num++操作java来写是一句，但执行时候汇编成字节码是4句：从主内存取到工作内存、压栈、加操作、放回主内存。</p>
+<h4 id="为什么num-多线程不安全？"><a href="#为什么num-多线程不安全？" class="headerlink" title="为什么num++多线程不安全？"></a>为什么num++多线程不安全？</h4><p>原因如图<br><img src="/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/20200321025739906.png" alt="在这里插入图片描述"><br>一个num++操作java来写是一句，但执行时候汇编成字节码是4句：从主内存取到工作内存、压栈、加操作、放回主内存。</p>
 <hr>
 <h3 id="线程池"><a href="#线程池" class="headerlink" title="线程池"></a>线程池</h3><h4 id="为什么要用线程池"><a href="#为什么要用线程池" class="headerlink" title="为什么要用线程池?"></a>为什么要用线程池?</h4><p>线程池提供了一种限制和管理资源（包括执行一个任务）。 每个线程池还维护一些基本统计信息，例如已完成任务的数量。</p>
 <p>这里借用《Java 并发编程的艺术》提到的来说一下使用线程池的好处：</p>
@@ -1009,7 +1009,7 @@
 <h3 id="Java-为什么能跨平台，实现一次编写，多处运行？"><a href="#Java-为什么能跨平台，实现一次编写，多处运行？" class="headerlink" title="Java 为什么能跨平台，实现一次编写，多处运行？"></a><strong>Java 为什么能跨平台，实现一次编写，多处运行？</strong></h3><p>Java 能够跨平台运行的核心在于 JVM 。不是 Java 能够跨平台，而是它的 jvm 能够跨平台。我们知道，不同的操作系统向上的 API 肯定是不同的，那么如果我们想要写一段代码调用系统的声音设备，就需要针对不同系统的 API 写出不同的代码来完成动作。</p>
 <p>而 Java 引入了字节码的概念，jvm 只能认识字节码，并将它们解释到系统的 API 调用。针对不同的系统有不同的 jvm 实现，有 Linux 版本的 jvm 实现，也有 Windows 版本的 jvm 实现，但是同一段代码在编译后的字节码是一样的。引用上面的例子，在 Java API 层面，我们调用系统声音设备的代码是唯一的，和系统无关，编译生成的字节码也是唯一的。但是同一段字节码，在不同的 jvm 实现上会映射到不同系统的 API 调用，从而实现代码的不加修改即可跨平台运行。</p>
 <hr>
-<h3 id="jvm-的内容模型"><a href="#jvm-的内容模型" class="headerlink" title="jvm 的内容模型"></a>jvm 的内容模型</h3><p><img src="/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/300854081661499.jpg" alt="img"></p>
+<h3 id="jvm-的内容模型"><a href="#jvm-的内容模型" class="headerlink" title="jvm 的内容模型"></a>jvm 的内容模型</h3><p><img src="/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/300854081661499.jpg" alt="img"></p>
 <p><strong>其实JVM内部不仅仅只有栈和堆</strong><br><strong>包括 程序计数器 、 Java 虚拟机栈 、本地方法栈、Java 堆、方法区等</strong></p>
 <p><strong>1. 程序计数器</strong></p>
 <p>线程私有，较小的内存空间，如果线程正在执行的是一个Java 方法，这个计数器记录的是正在执行的虚拟机字节码指令的地址；如果正在执行的是Natvie 方法，这个计数器值则为空（Undefined）。此内存区域是唯一一个在Java 虚拟机规范中没有规定任何OutOfMemoryError 情况的区域。</p>
@@ -1065,7 +1065,7 @@
 <p>2、链接：其中解析步骤是可以选择的 （a）检查：检查载入的class文件数据的正确性 （b）准备：给类的静态变量分配存储空间 （c）解析：将符号引用转成直接引用</p>
 <p>3、初始化：对静态变量，静态代码块执行初始化工作</p>
 <p>双亲委派模式要求<strong>除了顶层的启动类加载器外，其余的类加载器都应当有自己的父类加载器</strong>，请注意双亲委派模式中的父子关系并非通常所说的类继承关系，而是<strong>采用组合关系来复用父类加载器的相关代码</strong>，类加载器间的关系如下：</p>
-<p><img src="/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/5982616-aad63782162c9ae5.webp" alt="img"></p>
+<p><img src="/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/5982616-aad63782162c9ae5.webp" alt="img"></p>
 <p>双亲委派模式是在Java 1.2后引入的，其工作原理的是，如果一个类加载器收到了类加载请求，它并不会自己先去加载，而是把这个请求委托给父类的加载器去执行，如果父类加载器还存在其父类加载器，则进一步向上委托，依次递归，请求最终将到达顶层的启动类加载器，如果父类加载器可以完成类加载任务，就<strong>成功返回</strong>，倘若父类加载器无法完成此加载任务，<strong>子加载器才会尝试自己去加载</strong>，这就是双亲委派模式</p>
 <p>双亲委派模式优势</p>
 <ul>
@@ -1088,7 +1088,7 @@
 <hr>
 <h3 id="回调和观察者的区别"><a href="#回调和观察者的区别" class="headerlink" title="回调和观察者的区别"></a>回调和观察者的区别</h3><p>观察者模式定义了一种一对多的依赖关系，让多个观察者对象同时监听某一个主题对象。观察者模式完美的将观察者和被观察的对象分离开，一个对象的状态发生变化时，所有依赖于它的对象都得到通知并自动刷新。<br>回调函数其实也算是一种观察者模式的实现方式，回调函数实现的观察者和被观察者往往是一对一的依赖关系。<br>所以最明显的区别是观察者模式是一种设计思路，而回调函数式一种具体的实现方式；另一明显区别是一对多还是多对多的依赖关系方面。</p>
 <hr>
-<h3 id="MVP和MVC模式差别"><a href="#MVP和MVC模式差别" class="headerlink" title="MVP和MVC模式差别"></a>MVP和MVC模式差别</h3><p><img src="/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/20180322204213875" alt="img"></p>
+<h3 id="MVP和MVC模式差别"><a href="#MVP和MVC模式差别" class="headerlink" title="MVP和MVC模式差别"></a>MVP和MVC模式差别</h3><p><img src="/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/20180322204213875" alt="img"></p>
 <p>MVC</p>
 <p>View：布局的xml文件，或者纯Java写的布局，可以把页面显示的逻辑直接放在View中。</p>
 <p>Model：数据处理层，可以直接和View进行交互。</p>
@@ -1342,7 +1342,7 @@
 <h3 id="copyonwritelist的原理"><a href="#copyonwritelist的原理" class="headerlink" title="copyonwritelist的原理"></a>copyonwritelist的原理</h3><p><strong>CopyOnWriteArrayList</strong>是Java并发包中提供的一个并发容器，它是个<strong>线程安全且读操作无锁的ArrayList</strong>，写操作则通过创建底层数组的新副本来实现，是一种<strong>读写分离</strong>的并发策略，我们也可以称这种容器为”写时复制器”，Java并发包中类似的容器还有CopyOnWriteSet。</p>
 <p>　我们都知道，集合框架中的ArrayList是非线程安全的，Vector虽是线程安全的，但由于简单粗暴的锁同步机制，性能较差。而CopyOnWriteArrayList则提供了另一种不同的并发处理策略（当然是针对特定的并发场景）。</p>
 <p>　　很多时候，我们的系统应对的都是<strong>读多写少</strong>的并发场景。CopyOnWriteArrayList容器允许并发读，读操作是无锁的，性能较高。至于写操作，比如向容器中添加一个元素，<strong>则首先将当前容器复制一份，然后在新副本上执行写操作，结束之后再将原容器的引用指向新容器。</strong></p>
-<p><img src="/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/1024555-20170521150621182-1289355418.png" alt="img"></p>
+<p><img src="/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/1024555-20170521150621182-1289355418.png" alt="img"></p>
 <p>　　<strong>优缺点分析</strong></p>
 <p>　　了解了CopyOnWriteArrayList的实现原理，分析它的优缺点及使用场景就很容易了。</p>
 <p>　　<strong>优点：</strong></p>
@@ -1365,7 +1365,7 @@
 <li>stopped-&gt;用户看不到当前界面,也无法与用户进行交互 完全被覆盖.</li>
 <li>killed-&gt;当前界面被销毁，等待这系统被回收</li>
 </ol>
-<p><img src="/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/20140810102151522.png" alt="4个的状态"></p>
+<p><img src="/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/20140810102151522.png" alt="4个的状态"></p>
 <p>由上图我们得知：<br>Starting ——–&gt;Running 所执行的生命周期顺序 onCreate()-&gt;onstart()-&gt;onResume()</p>
 <blockquote>
 <p>当前称为活动状态（Running），此activity所处于任务栈的top中，可以与用户进行交互。</p>
@@ -1389,7 +1389,7 @@
 <p>注：还有一种情况由于系统内存不足可能在Paused状态中直接被系统杀死达到killed状态。</p>
 <p>activity的<strong>生命周期</strong></p>
 <p><strong>oncreate()-&gt;onstart()-&gt;onResume()-&gt;onRestart()-&gt;onPouse()-&gt;onStop()-&gt;onDestory()</strong></p>
-<p><img src="/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/12239817-57bb34bbf201853d.webp" alt="img"></p>
+<p><img src="/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/12239817-57bb34bbf201853d.webp" alt="img"></p>
 <p>onCreate():<br>当我们点击activity的时候，系统会调用activity的oncreate()方法，在这个方法中我们会初始化当前布局setContentLayout（）方法。<br>onStart():<br>onCreate()方法完成后，此时activity进入onStart()方法,当前activity是用户可见状态，但没有焦点，与用户不能交互，一般可在当前方法做一些动画的初始化操作。<br>onResume():<br>onStart()方法完成之后，此时activity进入onResume()方法中，当前activity状态属于运行状态 (Running)，可与用户进行交互。<br>onPause()<br>当另外一个activity覆盖当前的acitivty时，此时当前activity会进入到onPause()方法中，当前activity是可见的，但不能与用户交互状态。<br>onStop()<br>onPouse()方法完成之后，此时activity进入onStop()方法，此时activity对用户是不可见的，在系统内存紧张的情况下，有可能会被系统进行回收。所以一般在当前方法可做资源回收。<br>onDestory()<br>onStop()方法完成之后，此时activity进入到onDestory()方法中，结束当前activity。<br>onRestart()<br>onRestart()方法在用户按下home()之后，再次进入到当前activity的时候调用。调用顺序onPouse()-&gt;onStop()-&gt;onRestart()-&gt;onStart()-&gt;onResume().</p>
 <p><strong>onSaveInstanceState(Bundle outState):</strong></p>
 <blockquote>
@@ -1413,16 +1413,16 @@
 <p>片段必须始终嵌入在 Activity 中，其生命周期直接受宿主 Activity 生命周期的影响。 例如，当 Activity 暂停时，其中的所有片段也会暂停；当 Activity 被销毁时，所有片段也会被销毁。</p>
 <p>当您将片段作为 Activity 布局的一部分添加时，它存在于 Activity 视图层次结构的某个 ViewGroup 内部，并且片段会定义其自己的视图布局。您可以通过在 Activity 的布局文件中声明片段，将其作为 `` 元素插入您的 Activity 布局中，即静态添加。或者通过将其添加到某个现有 ViewGroup，利用应用代码进行动态插入。不过，片段并非必须成为 Activity 布局的一部分；您还可以将没有自己 UI 的片段用作 Activity 的不可见工作线程。</p>
 <p>下图是文档中给出的一个Fragment分别对应手机与平板间不同情况的处理图：</p>
-<p><img src="/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/7508328-dea3e88fded20350.webp" alt="img"></p>
+<p><img src="/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/7508328-dea3e88fded20350.webp" alt="img"></p>
 <p>Fragment 生命周期</p>
-<p><img src="/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/1688279-0424d62f50035b43.webp" alt="img"></p>
+<p><img src="/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/1688279-0424d62f50035b43.webp" alt="img"></p>
 <p>可以看到 Fragment 的生命周期和 Activity 很相似，只是多了一下几个方法：<br><strong>onAttach()</strong> 在Fragment 和 Activity 建立关联是调用（Activity 传递到此方法内）<br><strong>onCreateView()</strong> 当Fragment 创建视图时调用<br><strong>onActivityCreated()</strong> 在相关联的 Activity 的 onCreate() 方法已返回时调用。<br><strong>onDestroyView()</strong> 当Fragment中的视图被移除时调用<br><strong>onDetach()</strong> 当Fragment 和 Activity 取消关联时调用。</p>
 <p>可以看下几种操作情况下Fragment 的生命周期变化</p>
-<p><img src="/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/1688279-e34d09c9351c7084.webp" alt="img"></p>
+<p><img src="/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/1688279-e34d09c9351c7084.webp" alt="img"></p>
 <p>管理 Fragment 生命周期和 Activity 生命周期很相似，同时 Activity 的生命周期对 Fragment 的生命周期也有一定的影响，如下图所示</p>
-<p><img src="/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/1688279-e513845a80659860.webp" alt="img"></p>
+<p><img src="/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/1688279-e513845a80659860.webp" alt="img"></p>
 <p>用下图（<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/184f0c8857d6">来源</a>）来表示 Activity 和 Fragment 的生命周期变化的先后过程是:</p>
-<p><img src="/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/1688279-020ad51ed5443cce.webp" alt="img"></p>
+<p><img src="/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/1688279-020ad51ed5443cce.webp" alt="img"></p>
 <p>Activity 和 Fragment 生命周期执行过程</p>
 <p>Fragment 生命周期与 Activity 生命周期的一个关键区别就在于，Fragment 的生命周期方法是由托管Activity而不是操作系统调用的。Activity 中生命周期方法都是 protected，而 Fragment 都是 public，也能印证了这一点，因为 Activity 需要调用 Fragment 那些方法并管理它。</p>
 <p><strong>加载 Fragment</strong></p>
@@ -1454,9 +1454,9 @@
 </ul>
 <hr>
 <h3 id="Activity中View的生命周期方法回调"><a href="#Activity中View的生命周期方法回调" class="headerlink" title="Activity中View的生命周期方法回调"></a>Activity中View的生命周期方法回调</h3><p>Activity有生命周期，同样的，View从添加到界面到从界面中移除也有一个生命周期，在<a target="_blank" rel="noopener" href="https://link.jianshu.com/?t=https://developer.android.google.cn/reference/android/view/View.html">官方文档</a>中介绍了自定义View需要重写的一些方法，可以认为这些方法就是View的生命周期方法。</p>
-<p><img src="/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/2083810-82ee9f1ceb9c6b95.webp" alt="img"></p>
+<p><img src="/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/2083810-82ee9f1ceb9c6b95.webp" alt="img"></p>
 <p>从Activity启动到退出，这个View 的过程是这样的。</p>
-<p><img src="/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/2083810-e496916704fa4dfa.webp" alt="img"></p>
+<p><img src="/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/2083810-e496916704fa4dfa.webp" alt="img"></p>
 <p><strong>在Activity的onCreate()方法中调用setContentView方法，Activity显示到界面时的View的回调</strong></p>
 <ol>
 <li>构造方法，这是肯定的，View也是一个Java类。</li>
@@ -1578,10 +1578,10 @@
 <p>ldpi（value &lt;= 120 dpi)<br> mdpi（120 dpi &lt; value &lt;= 160 dpi）<br> hdpi（160 dpi &lt; value &lt;= 240 dpi）<br> xhdpi（240 dpi &lt; value &lt;= 320 dpi）<br> xxhdpi（320 dpi &lt; value &lt;= 480 dpi）<br> xxxhdpi（480 dpi &lt; value &lt;= 640 dpi）</p>
 </blockquote>
 <p>现在知道了dp能够在不同dpi设备上对应不同px，相当于中间转换层，我们只需要将view长宽单位设置为合适的dp，就无需关注设备之间密度差异，系统会帮我们完成dp-px转换。</p>
-<p><img src="/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/944365-2b5dc928ab334440.png" alt="img"></p>
+<p><img src="/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/944365-2b5dc928ab334440.png" alt="img"></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">float</span> <span class="variable">scale</span> <span class="operator">=</span> mContext.getResources().getDisplayMetrics().density;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">float</span> <span class="variable">scaledDensity</span> <span class="operator">=</span> mContext.mContext.getResources().getDisplayMetrics().scaledDensity;</span><br><span class="line"> </span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * dp转成px</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> dipValue</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="type">int</span> <span class="title function_">dip2px</span><span class="params">(<span class="type">float</span> dipValue)</span> &#123;</span><br><span class="line">	<span class="keyword">return</span> (<span class="type">int</span>) (dipValue * scale + <span class="number">0.5f</span>);</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * px转成dp</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> pxValue</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="type">int</span> <span class="title function_">px2dip</span><span class="params">(<span class="type">float</span> pxValue)</span> &#123;</span><br><span class="line">	<span class="keyword">return</span> (<span class="type">int</span>) (pxValue / scale + <span class="number">0.5f</span>);</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * sp转成px</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> spValue</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> type</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="type">float</span> <span class="title function_">sp2px</span><span class="params">(<span class="type">float</span> spValue, <span class="type">int</span> type)</span> &#123;</span><br><span class="line">	<span class="keyword">switch</span> (type) &#123;</span><br><span class="line">	<span class="keyword">case</span> CHINESE:</span><br><span class="line">		<span class="keyword">return</span> spValue * scaledDensity;</span><br><span class="line">	<span class="keyword">case</span> NUMBER_OR_CHARACTER:</span><br><span class="line">		<span class="keyword">return</span> spValue * scaledDensity * <span class="number">10.0f</span> / <span class="number">18.0f</span>;</span><br><span class="line">	<span class="keyword">default</span>:</span><br><span class="line">		<span class="keyword">return</span> spValue * scaledDensity;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <hr>
-<h3 id="点击应用图标以后的流程"><a href="#点击应用图标以后的流程" class="headerlink" title="点击应用图标以后的流程"></a>点击应用图标以后的流程</h3><p><img src="/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/20180429164552531.jfif" alt="这里写图片描述"></p>
+<h3 id="点击应用图标以后的流程"><a href="#点击应用图标以后的流程" class="headerlink" title="点击应用图标以后的流程"></a>点击应用图标以后的流程</h3><p><img src="/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/20180429164552531.jfif" alt="这里写图片描述"></p>
 <p><strong>Instrumentation</strong>: 监控应用与系统相关的交互行为。<br><strong>ActivityManagerService（AMS）</strong>：组件管理调度中心，什么都不干，但是什么都管。<br><strong>ActivityStarter</strong>：Activity启动的控制器，处理Intent与Flag对Activity启动的影响，具体说来有：1 寻找符合启动条件的Activity，如果有多个，让用户选择；2 校验启动参数的合法性；3 返回int参数，代表Activity是否启动成功。<br><strong>ActivityStackSupervisior</strong>：这个类的作用你从它的名字就可以看出来，它用来管理任务栈。<br><strong>ActivityStack</strong>：用来管理任务栈里的Activity。<br><strong>ActivityThread</strong>：在Android中它就代表了Android的主线程，注意是代表而不是说它就是一个Thread类，它是创建完新进程之后（肯定是在<br>一个线程中啊），main函数被加载，然后执行一个loop的循环使当前线程进入消息循环，并且作为主线程。<br><strong>ApplicationThread</strong>：最终干活的人，是ActivityThread的内部类，也是一个Binder对象。在此处它是作为IApplicationThread对象的server端等待client端的请求然后进行处理，最大的client就是AMS.Activity、Service、BroadcastReceiver的启动、切换、调度等各种操作都在这个类里完成。</p>
 <p>注意：这里单独提一下ActivityStackSupervisior，这是高版本才有的类，它用来管理多个ActivityStack，早期的版本只有一个ActivityStack对应着手机屏幕，后来高版本支持多屏以后，就有了多个ActivityStack，于是就引入了ActivityStackSupervisior用来管理多个ActivityStack。</p>
 <p>整个流程主要涉及四个进程：</p>
@@ -1598,8 +1598,8 @@
 <li>Zygote接收到新进程创建请求后fork出新进程。</li>
 <li>在新进程里创建ActivityThread对象，新创建的进程就是应用的主线程，在主线程里开启Looper消息循环，开始处理创建Activity。ActivityThread利用ClassLoader去加载Activity、创建Activity实例，并回调Activity的onCreate()方法。这样便完成了Activity的启动。</li>
 </ol>
-<p><img src="/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/20190610223539273.jpg" alt="img"></p>
-<p><img src="/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/20190610223705714.png" alt="img"></p>
+<p><img src="/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/20190610223539273.jpg" alt="img"></p>
+<p><img src="/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/20190610223705714.png" alt="img"></p>
 <p>Launcher：Launcher通知AMS要启动activity。<br>startActivitySafely-&gt;startActivity-&gt;Instrumentation.execStartActivity()(AMP.startActivity)-&gt;AMS.startActivity<br>AMS:PMS的resoveIntent验证要启动activity是否匹配。<br>如果匹配，通过ApplicationThread发消息给Launcher所在的主线程，暂停当前Activity(Launcher);<br>暂停完，在该activity还不可见时，通知AMS，根据要启动的Activity配置ActivityStack。然后判断要启动的Activity进程是否存在?<br>存在：发送消息LAUNCH_ACTIVITY给需要启动的Activity主线程，执行handleLaunchActivity<br>不存在：通过socket向zygote请求创建进程。进程启动后，ActivityThread.attach<br>判断Application是否存在，若不存在，通过LoadApk.makeApplication创建一个。在主线程中通过thread.attach方法来关联ApplicationThread。<br>在通过ActivityStackSupervisor来获取当前需要显示的ActivityStack。<br>继续通过ApplicationThread来发送消息给主线程的Handler来启动Activity（handleLaunchActivity）。<br>handleLauchActivity：调用了performLauchActivity，里边Instrumentation生成了新的activity对象，继续调用activity生命周期。</p>
 <hr>
 <h3 id="AMS"><a href="#AMS" class="headerlink" title="AMS"></a>AMS</h3><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/ganchuanpu/p/8384471.html">https://www.cnblogs.com/ganchuanpu/p/8384471.html</a></p>
@@ -1623,7 +1623,7 @@
 <p><code>WebView.loadData()</code>和<code>WebView.loadDataWithBaseURL()</code>是表示加载某一段代码，其中，<code>WebView.loadDataWithBaseURL()</code>兼容性更好，适用场景更多，因此，我着重介绍一下这个方法。</p>
 <p><code>WebView.loadDataWithBaseURL(String baseUrl, String data, String mimeType, String encoding, String historyUrl))</code>的五个参数：<code>baseUrl</code>表示基础的网页，<code>data</code>表示要加载的内容，<code>mimeType</code>表示加载网页的类型，<code>encoding</code>表示编码格式，<code>historyUrl</code>表示可用历史记录，可以为<code>null</code>值。<br>举个例子：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">String</span> <span class="variable">body</span> <span class="operator">=</span> <span class="string">&quot;示例：这里有个img标签，地址是相对路径&lt;img src=&#x27;/uploads/allimg/130923/1FP02V7-0.png&#x27; /&gt;&quot;</span>;</span><br><span class="line">webView.loadDataWithBaseURL(<span class="string">&quot;http://www.jcodecraeer.com&quot;</span>, body, <span class="string">&quot;text/html&quot;</span>, <span class="string">&quot;utf-8&quot;</span>,<span class="literal">null</span>);</span><br></pre></td></tr></table></figure>
-<p><img src="/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/12359382-84191a7b9aee861e.webp" alt="img"></p>
+<p><img src="/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/12359382-84191a7b9aee861e.webp" alt="img"></p>
 <p>WebView的生命周期一般跟随Activity：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">onResume</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="built_in">super</span>.onResume();</span><br><span class="line">    <span class="comment">//恢复webview的状态（不靠谱）</span></span><br><span class="line">    webView.resumeTimers();</span><br><span class="line">    <span class="comment">//激活webView的状态，能正常加载网页</span></span><br><span class="line">    webView.onResume();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">onPause</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="built_in">super</span>.onPause();</span><br><span class="line">    <span class="comment">//当页面被失去焦点被切换到后台不可见状态，需要执行onPause</span></span><br><span class="line">    <span class="comment">//通过onPause动作通知内核暂停所有的动作，比如DOM的解析、plugin的执行、JavaScript执行。</span></span><br><span class="line">    webView.onPause();</span><br><span class="line"></span><br><span class="line">    <span class="comment">//当应用程序(存在webview)被切换到后台时，这个方法不仅仅针对当前的webview而是全局的全应用程序的webview</span></span><br><span class="line">    <span class="comment">//它会暂停所有webview的layout，parsing，javascripttimer。降低CPU功耗。（不靠谱）</span></span><br><span class="line">    webView.pauseTimers();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//在关闭了Activity时，如果Webview的音乐或视频，还在播放。就必须销毁Webview</span></span><br><span class="line"><span class="comment">//但是注意：webview调用destory时,webview仍绑定在Activity上</span></span><br><span class="line"><span class="comment">//这是由于自定义webview构建时传入了该Activity的context对象</span></span><br><span class="line"><span class="comment">//因此需要先从父容器中移除webview,然后再销毁webview:</span></span><br><span class="line"><span class="type">ViewGroup</span> <span class="variable">parent</span> <span class="operator">=</span> findViewById(R.id.container);</span><br><span class="line">parent.removeView(webView);</span><br><span class="line">webView.destroy();</span><br></pre></td></tr></table></figure>
 <p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/3e0136c9e748">https://www.jianshu.com/p/3e0136c9e748</a></p>
@@ -1636,13 +1636,13 @@
 <p>例如：</p>
 <p>若我有一个Activity名为A1, 上面有一个按钮可跳转到A1。那么如果我点击按钮，便会新启一个Activity A1叠在刚才的A1之上，再点击，又会再新启一个在它之上……</p>
 <p>点back键会依照栈顺序依次退出。</p>
-<p><img src="/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/1674835-cbec07958657c4a8.webp" alt="img"></p>
+<p><img src="/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/1674835-cbec07958657c4a8.webp" alt="img"></p>
 <h4 id="singleTop"><a href="#singleTop" class="headerlink" title="singleTop"></a>singleTop</h4><p>可以有多个实例，但是不允许多个相同Activity叠加。即，如果Activity在栈顶的时候，启动相同的Activity，不会创建新的实例，而会调用其onNewIntent方法。不过当FirstActivity并未处于栈顶时，若再启动FirstActivity还是会创建新的实例。</p>
 <p>例如：</p>
 <p>若我有两个Activity名为B1,B2,两个Activity内容功能完全相同，都有两个按钮可以跳到B1或者B2，唯一不同的是B1为standard，B2为singleTop。</p>
 <p>若我意图打开的顺序为B1-&gt;B2-&gt;B2，则实际打开的顺序为B1-&gt;B2（后一次意图打开B2，实际只调用了前一个的onNewIntent方法）</p>
 <p>若我意图打开的顺序为B1-&gt;B2-&gt;B1-&gt;B2，则实际打开的顺序与意图的一致，为B1-&gt;B2-&gt;B1-&gt;B2。</p>
-<p><img src="/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/1674835-7e2417de609e171e.webp" alt="img"></p>
+<p><img src="/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/1674835-7e2417de609e171e.webp" alt="img"></p>
 <h4 id="singleTask"><a href="#singleTask" class="headerlink" title="singleTask"></a>singleTask</h4><p>使用 single Top模式可以很好地解决重复创建栈顶活动的问题，但是如你在上一节所看到的，如果该活动并没有处于栈顶的位置，还是可能会创建多个活动实例的。那么有没有什么办法可以让某个活动在整个应用程序的上下文中只存在一个实例呢?这就要借助 singleTask模式来实现了。当活动的启动模式指定为 singleTask，每次启动该活动时系统首先会在返回栈中检查是否存在该活动的实例，如果发现已经存在则直接使用该实例，并把在这个活动之上的所有活动统统出栈，如果没有发现就会创建一个新的活动实例。</p>
 <p>只有一个实例。在同一个应用程序中启动他的时候，若Activity不存在，则会在当前task创建一个新的实例，若存在，则会把task中在其之上的其它Activity destory掉并调用它的onNewIntent方法。</p>
 <p>如果是在别的应用程序中启动它，则会新建一个task，并在该task中启动这个Activity，singleTask允许别的Activity与其在一个task中共存，也就是说，如果我在这个singleTask的实例中再打开新的Activity，这个新的Activity还是会在singleTask的实例的task中。</p>
@@ -1654,17 +1654,17 @@
 <p>若是别的应用程序打开C2，则会新启一个task。</p>
 <p>如别的应用Other中有一个activity，taskId为200，从它打开C2，则C2的taskIdI不会为200，例如C2的taskId为201，那么再从C2打开C1、C3，则C2、C3的taskId仍为201。</p>
 <p>注意：如果此时你点击home，然后再打开Other，发现这时显示的肯定会是Other应用中的内容，而不会是我们应用中的C1 C2 C3中的其中一个。</p>
-<p><img src="/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/1674835-dcef4bb069cc5d6f.webp" alt="img"></p>
+<p><img src="/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/1674835-dcef4bb069cc5d6f.webp" alt="img"></p>
 <h4 id="singleInstance"><a href="#singleInstance" class="headerlink" title="singleInstance"></a>singleInstance</h4><p>singleInstance模式算是4种启动模式中最复杂的一个了，不同于以上三种模式，该模式下活动会启用一个新的返回栈来管理这个活动(其实如果singleTask模式指定了不同的taskAffinity，也会启动一个新的返回栈)。</p>
 <p>那么这样做有什么意义呢?想象以下场景，假设我们的程序中有一个活动是允许其他程序调用的，如果我们想实现其他程序和我们的程序可以共享这个活动的实例，应该如何实现呢?使用前面3种启动模式肯定是做不到的，因为每个应用程序都会有自己的返回栈，同一个活动在不同的返回栈中入栈时必然是创建了新的实例。而使用singlelnstance模式就可以解决这个问题，在这种模式下会有一个单独的返回栈来管理这个活动，不管是哪个应用程序来访问这个活动，都共用的同一个返回栈，也就解决了共享活动实例的问题。</p>
 <p>只有一个实例，并且这个实例独立运行在一个task中，这个task只有这个实例，不允许有别的Activity存在。</p>
 <p>例如：</p>
 <p>程序有三个ActivityD1,D2,D3，三个Activity可互相启动，其中D2为singleInstance模式。那么程序从D1开始运行，假设D1的taskId为200，那么从D1启动D2时，D2会新启动一个task，即D2与D1不在一个task中运行。假设D2的taskId为201，再从D2启动D3时，D3的taskId为200，也就是说它被压到了D1启动的任务栈中。</p>
 <p>若是在别的应用程序打开D2，假设Other的taskId为200，打开D2，D2会新建一个task运行，假设它的taskId为201，那么如果这时再从D2启动D1或者D3，则又会再创建一个task，因此，若操作步骤为other-&gt;D2-&gt;D1，这过程就涉及到了3个task了。</p>
-<p><img src="/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/1674835-7cf53bd4d1af899b.webp" alt="img"></p>
+<p><img src="/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/1674835-7cf53bd4d1af899b.webp" alt="img"></p>
 <hr>
 <h3 id="触摸事件分发机制"><a href="#触摸事件分发机制" class="headerlink" title="触摸事件分发机制"></a>触摸事件分发机制</h3><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_43652500/article/details/100186032">见【Android】 触摸事件分发机制</a></p>
-<p><img src="/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/20180307161324186" alt="img"></p>
+<p><img src="/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/20180307161324186" alt="img"></p>
 <p>手机屏幕我们可以称为一个窗口，也就是一个window，在android中这个window类是一个抽象类，它规定了一些管理窗口的方法，但是具体实现是由它的唯一实现类phonewindow去实现的，这样phonewindow就是整个屏幕的实际“掌控者”，而phonewindow又是通过它的内部类decorview去对view进行管理；</p>
 <p>接下来进行流程分析，我们就以点击事件为例：</p>
 <p>当用户点击了屏幕，首先Activity先监测到，事件先传递到Activity中，Activity通过它的dispatchTouchEvent将事件分发到phoneWindow，phonewindow则会调用superdispatchTouchEvent方法的内部是调用了其内部类DecorView的superdispatchTouchEvent，而DecorView又会调用dispatchTouchEvent去进行事件分发，如果不拦截事件，那么就会继续下传到rootview，rootview中的操作是一样的，同样在dispatchTouchEvent内部调用onInterceptTouchEvent去判断是否拦截，不拦截就会把事件分发给下一个viewgroupA，拦截就直接在onTouchEvent返回true，viewgroupA中做的判断也是一样，最后事件传递到view1，view1是最底层控件，不会有onInterceptTouchEvent，它的选择就只有处理后不处理，处理就在onTouchEvent进行处理并返回true，不处理的话事件也不会被销毁，view1这时会把事件回传，经过上述流程后回传给activity，如果Activity还不处理，那么这个事件才会被销毁；</p>
@@ -1687,7 +1687,7 @@
 <p>​    <strong><em>(1).</em>在新启动的线程中发送消息</strong></p>
 <p>​           <strong>(2).在主线程中获取，处理消息。</strong></p>
 <p>解释：(1) 当应用程序启动时，Android首先会开启一个主线程 (也就是UI线程) ， 主线程为管理界面中的UI控件， 进行事件分发， 比如说， 你要是点击一个 Button ，Android会分发事件到Button上，来响应你的操作。 主线程（UI线程）就是android程序从启动运行到最后的程序。</p>
-<p><img src="/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/20161129184124711" alt="img"></p>
+<p><img src="/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/20161129184124711" alt="img"></p>
 <p>(2) 如果此时需要一个耗时的操作，例如: 联网读取数据，或者读取本地较大的一个文件的时候，你不能把这些操作放在主线程中，如果你放在主线程中的话，界面会出现假死现象， 如果5秒钟还没有完成的话，会收到Android系统的一个错误提示 “强制关闭”。</p>
 <p>(3)这个时候我们需要把这些耗时的操作，放在一个子线程中，因为子线程涉及到UI更新，Android主线程是线程不安全的， 也就是说，更新UI只能在主线程中更新，子线程中操作是危险的。</p>
 <p>(4)这个时候，Handler就出现了。来解决这个复杂的问题 ，由于Handler运行在主线程中(UI线程中)， 它与子线程可以通过Message对象来传递数据， 这个时候，Handler就承担着接受子线程传过来的(子线程用sendMessage()方法传递)Message对象(里面包含数据) ， 把这些消息放入主线程队列中，配合主线程进行更新UI。</p>
@@ -1713,7 +1713,7 @@
 <p>示例：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">HandlerActivity</span> <span class="keyword">extends</span> <span class="title class_">AppCompatActivity</span> &#123;</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">private</span> <span class="type">Handler</span> <span class="variable">handler</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Handler</span>() &#123;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">handleMessage</span><span class="params">(Message msg)</span> &#123;</span><br><span class="line">            <span class="built_in">super</span>.handleMessage(msg);</span><br><span class="line">            tv.setText(<span class="string">&quot;msg.arg1:&quot;</span>+msg.arg1+<span class="string">&quot;--msg.arg2:&quot;</span>+msg.arg2);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="keyword">private</span> TextView tv;</span><br><span class="line"> </span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">onCreate</span><span class="params">(Bundle savedInstanceState)</span> &#123;</span><br><span class="line">        <span class="built_in">super</span>.onCreate(savedInstanceState);</span><br><span class="line">        setContentView(R.layout.activity_handler);</span><br><span class="line">        initView();</span><br><span class="line">        <span class="keyword">new</span> <span class="title class_">Thread</span>(<span class="keyword">new</span> <span class="title class_">Runnable</span>() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">run</span><span class="params">()</span> &#123;</span><br><span class="line">                <span class="type">Message</span> <span class="variable">msg</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Message</span>();<span class="comment">//实例化消息对象</span></span><br><span class="line">                msg.arg1 = <span class="number">99</span>;<span class="comment">//携带参数</span></span><br><span class="line">                msg.arg2 = <span class="number">100</span>;<span class="comment">//携带参数</span></span><br><span class="line">                <span class="type">Object</span> <span class="variable">str</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Object</span>();<span class="comment">//实例化对象</span></span><br><span class="line">                msg.obj = str; <span class="comment">//携带参数为实体类对象</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        &#125;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">initView</span><span class="params">()</span> &#123;</span><br><span class="line">        tv = (TextView) findViewById(R.id.tv);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><strong>handler运行机制：</strong></p>
-<p><strong><img src="/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/20180818235134804.png" alt="img"></strong> </p>
+<p><strong><img src="/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/20180818235134804.png" alt="img"></strong> </p>
 <p> Handler机制也可叫异步消息机制，它主要由4个部分组成：<strong>Message,Handler,MessageQueue,Looper</strong>,在上面图中我们已经有了大致印象,接下来我们对4个成员进行着重的了解：</p>
 <p><strong>1.Message</strong><br>  Message是在线程之间传递的消息，它可以在内部携带少量的信息，用于在不同线程之间交换数据。使用Message的arg1和arg2便可携带int数据，使用obj便可携带Object类型数据。</p>
 <p><strong>2.Handler</strong><br>  Handler顾名思义就是处理者的意思，它只要用于在子线程发送消息对象Message,在UI线程处理消息对象Message，在子线程调用sendMessage方法发送消息对象Message，而发送的消息经过一系列地辗转之后最终会被传递到Handler的handleMessage方法中,最终在handleMessage方法中消息对象Message被处理。</p>
@@ -1747,7 +1747,7 @@
 <hr>
 <h3 id="Intent显示跳转与隐式跳转"><a href="#Intent显示跳转与隐式跳转" class="headerlink" title="Intent显示跳转与隐式跳转"></a>Intent显示跳转与隐式跳转</h3><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/sinat_22949049/article/details/80064261">https://blog.csdn.net/sinat_22949049/article/details/80064261</a></p>
 <hr>
-<h3 id="apk编译-apk安装过程"><a href="#apk编译-apk安装过程" class="headerlink" title="apk编译,apk安装过程"></a>apk编译,apk安装过程</h3><p><img src="/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/20180710175536508.png" alt="这里写图片描述"></p>
+<h3 id="apk编译-apk安装过程"><a href="#apk编译-apk安装过程" class="headerlink" title="apk编译,apk安装过程"></a>apk编译,apk安装过程</h3><p><img src="/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/20180710175536508.png" alt="这里写图片描述"></p>
 <ol>
 <li>Android通过<code>AAPT工具</code>将.xml资源文件编译成R.java的二进制文件，除了assets、raw目录下的文件；</li>
 <li>将java文件编译成.class文件；</li>
@@ -1757,7 +1757,7 @@
 <li><code>apkSinger</code>对apk签名；</li>
 <li><code>zipalign</code>对签名后的apk进行优化</li>
 </ol>
-<p><img src="/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/20180710175548750.png" alt="这里写图片描述"></p>
+<p><img src="/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/20180710175548750.png" alt="这里写图片描述"></p>
 <p>Android 安装的apk文件实际上是以.zip结尾的压缩文件，解压后的文件内容如上图所示</p>
 <ul>
 <li>AndroidManifest.xml对应源代码中的AndroidManifest.xml, 但这里是编译过的，文件内容已经不同了；</li>
@@ -1888,8 +1888,8 @@
 </ol>
 <p>HTTP 协议采用明文传输信息，存在信息窃听、信息篡改和信息劫持的风险，而协议 TLS/SSL 具有身份验证、信息加密和完整性校验的功能，可以避免此类问题。<br>TLS/SSL 全称安全传输层协议 Transport Layer Security, 是介于 TCP 和 HTTP 之间的一层安全协议，不影响原有的 TCP 协议和 HTTP 协议，所以使用 HTTPS 基本上不需要对 HTTP 页面进行太多的改造。</p>
 <p>HTTPS 协议的主要功能基本都依赖于 TLS/SSL 协议，本节分析安全协议的实现原理。</p>
-<p>TLS/SSL 的功能实现主要依赖于三类基本算法：散列函数 Hash、对称加密和非对称加密，其利用非对称加密实现身份认证和密钥协商，对称加密算法采用协商的密钥对数据加密，基于散列函数验证信息的完整性。<img src="/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/2snzFs9.gif" alt="img"></p>
-<p><img src="/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/1260476-20171116160813812-635766483.png" alt="img"></p>
+<p>TLS/SSL 的功能实现主要依赖于三类基本算法：散列函数 Hash、对称加密和非对称加密，其利用非对称加密实现身份认证和密钥协商，对称加密算法采用协商的密钥对数据加密，基于散列函数验证信息的完整性。<img src="/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/2snzFs9.gif" alt="img"></p>
+<p><img src="/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/1260476-20171116160813812-635766483.png" alt="img"></p>
 <ul>
 <li>在使用HTTPS是需要保证服务端配置正确了对应的安全证书</li>
 <li>客户端发送请求到服务端</li>
@@ -1909,7 +1909,7 @@
 </ul>
 <p>详细说明：送端发送数据时，生成一个随机seq=x，然后每一片按照数据大小分配seq。数据到达接收端后接收端放入缓存，并发送一个ack=x的包，表示对方已经收到了数据。发送端收到了ack包后，删除缓冲区对应的数据。时间到后，定时任务检查是否需要重传数据。</p>
 <hr>
-<h3 id="TIME-WAIT状态处在哪一方以及为什么需要它"><a href="#TIME-WAIT状态处在哪一方以及为什么需要它" class="headerlink" title="TIME_WAIT状态处在哪一方以及为什么需要它"></a>TIME_WAIT状态处在哪一方以及为什么需要它</h3><p><img src="/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/3971776-9550b64ff16dbb0b.webp" alt="img"></p>
+<h3 id="TIME-WAIT状态处在哪一方以及为什么需要它"><a href="#TIME-WAIT状态处在哪一方以及为什么需要它" class="headerlink" title="TIME_WAIT状态处在哪一方以及为什么需要它"></a>TIME_WAIT状态处在哪一方以及为什么需要它</h3><p><img src="/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/3971776-9550b64ff16dbb0b.webp" alt="img"></p>
 <p>在TCP连接中四次挥手关闭连接时，主动关闭连接的一方（上图中时Client）会在发送最后一条ACK报文后维持一段时长2MSL（MSL指的是数据包在网络中的最大生存时间）的等待时间后才会真正关闭连接到CLOSED状态，该时间段内主动关闭方的状态为TIME_WAIT。即在TIME_WAIT状态时，定义这个连接的四元组（源/目的IP、源/目的端口）不能被使用。</p>
 <p>为实现TCP连接的可靠释放</p>
 <ol>
@@ -1923,7 +1923,7 @@
 <p>可设置套接字选项为SO_REUSEADDR，该选项的意思是，告诉操作系统，如果端口忙，但占用该端口TCP连接处于TIME_WAIT状态，并且套接字选项为SO_REUSEADDR，则该端口可被重用。如果TCP连接处于其他状态，依然返回端口被占用。该选项对服务程序重启非常有用。</p>
 <hr>
 <h3 id="HTTPs的握手过程"><a href="#HTTPs的握手过程" class="headerlink" title="HTTPs的握手过程"></a>HTTPs的握手过程</h3><p><a target="_blank" rel="noopener" href="https://razeencheng.com/post/ssl-handshake-detail">https://razeencheng.com/post/ssl-handshake-detail</a></p>
-<p><img src="/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/555379-20160210231313448-2027205313.png" alt="img"></p>
+<p><img src="/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/555379-20160210231313448-2027205313.png" alt="img"></p>
 <ol>
 <li><p>客户端发起HTTPS请求</p>
 </li>
@@ -1982,7 +1982,7 @@
 <p>常见的对称加密算法：DES，AES，3DES等等。</p>
 <p>而非对称加密是指使用一对非对称密钥，即公钥和私钥，公钥可以随意发布，但私钥只有自己知道。发送密文的一方使用对方的公钥进行加密处理，对方接收到加密信息后，使用自己的私钥进行解密。</p>
 <p>非对称加密算法需要两个密钥：公开密钥（publickey）和私有密钥（privatekey）。公开密钥与私有密钥是一对，如果用公开密钥对数据进行加密，只有用对应的私有密钥才能解密；如果用私有密钥对数据进行加密，那么只有用对应的公开密钥才能解密。因为加密和解密使用的是两个不同的密钥，所以这种算法叫作非对称加密算法。</p>
-<p><img src="/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/20190314090627135.png" alt="img"></p>
+<p><img src="/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/20190314090627135.png" alt="img"></p>
 <p>由于非对称加密的方式不需要发送用来解密的私钥，所以可以保证安全性；但是和对称加密比起来，它非常的慢，所以我们还是要用对称加密来传送消息，但对称加密所使用的密钥我们可以通过非对称加密的方式发送出去。<br>但是此时交换的两个公钥不一定正确</p>
 <p>常见的非对称加密算法：RSA，ECC</p>
 <hr>
@@ -2013,7 +2013,7 @@
 </ul>
 <hr>
 <h3 id="select-poll-epoll"><a href="#select-poll-epoll" class="headerlink" title="select poll epoll"></a>select poll epoll</h3><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/nanxiaotao/article/details/90612404">https://blog.csdn.net/nanxiaotao/article/details/90612404</a></p>
-<p><img src="/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/20190527231438974.png" alt="img"></p>
+<p><img src="/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/20190527231438974.png" alt="img"></p>
 <p><strong><em>\</em>select——&gt;**</strong></p>
 <p><strong><em>\</em>原理概述：**</strong></p>
 <p>select 的核心功能是调用tcp文件系统的poll函数，不停的查询，如果没有想要的数据，主动执行一次调度（防止一直占用cpu），直到有一个连接有想要的消息为止。从这里可以看出select的执行方式基本就是不同的调用poll,直到有需要的消息为止。</p>
@@ -2156,7 +2156,7 @@
 <p>我们先来了解一下，什么是物理内存，什么又是虚拟内存？<br><strong>1.物理内存</strong>：指通过物理内存条而获得的内存空间，主要作用是在计算机运行时为操作系统和各种程序提供临时储存。<br><strong>2.虚拟内存</strong>：对内存架构(内存、缓存、硬盘)进行管理(<strong>内存管理</strong>系统)的一种手段。简单理解就是在硬盘上划分出一块区域作为内存使用。</p>
 <p>2.1 对于用户：<br>计算机主要面向的是对操作系统等计算机知识几乎没有了解的普通大众，他们大多是不了解什么主存外存的，所以为了<strong>方便用户的使用</strong>，就有必要使得程序不管是位于内存架构的哪个层次，对于用户来说都是一样的。<strong>虚拟内存就是让内存管理实现媒介透明的手段</strong>。</p>
 <p>2.2 对于主存：<br>众所周知，一个程序要想运行，就必须加载到物理主存(内存)中，但是<strong>物理主存的容量是非常有限的</strong>，我们当然可以选择购买更大的物理主存，可是很费钱，那么还有没有什么办法可以在不明显增加成本的基础上扩大内存容量的呢？<br>虚拟内存就可以做到，它的手段就是<strong>将物理主存扩大到便宜、容量大的磁盘上，即将磁盘空间也看作是主存空间的一部分</strong>。</p>
-<p><img src="/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/20171104153250986" alt="这里写图片描述"></p>
+<p><img src="/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/20171104153250986" alt="这里写图片描述"></p>
 <p><strong>用户程序可以存放在主存，也可以部分存放在主存、部分存放在磁盘</strong>，那么程序发出的地址到底是在哪里是由操作系统的内存管理模块负责的。</p>
 <p>虚拟内存让用户“感觉”内存容量大大增加了，内存速度也加快了，就像魔法师一样，让观众觉得小箱子能够“装下”一只巨大的雄狮。</p>
 <p><strong>二、内存管理——分页内存管理</strong></p>
@@ -2164,26 +2164,26 @@
 <p>内存管理的方法有许多种，固定加载地址的、固定分区的、非固定分区的和<strong>交换内存管理</strong>，其中只有第一种固定加载地址的内存管理适用于单道编程，其余三种则适合<strong>多道编程</strong>。与此同时，它们的共同实现机制是——<strong>基址和极限</strong>。</p>
 <p><strong>2.交换内存管理中的机制——基址和极限</strong></p>
 <p>交换内存管理是这些方法中最灵活的。它使用的基址和极限机制实际上就是“<strong>将程序发出的虚拟地址加上基址得到物理地址</strong>”。</p>
-<p>见下图：<br><img src="/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/20171104150653809" alt="这里写图片描述"></p>
+<p>见下图：<br><img src="/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/20171104150653809" alt="这里写图片描述"></p>
 <p><strong>3.交换内存管理的两大问题</strong></p>
 <p>3.1 空间浪费：程序不断的执行并释放的过程中，造成了内存空间中的可用空间不连续就，难以加以应用，这种现象也称为“外部碎片化”。<br>见下图：</p>
-<p><img src="/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/20171104145803969" alt="这里写图片描述"></p>
+<p><img src="/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/20171104145803969" alt="这里写图片描述"></p>
 <p>3.2 程序大小受限<br>当程序需要更多的内存空间时，需要将其全部从物理内存中“倒出”到磁盘上，再在内存中找到更大的一片区域去存放增长了的程序，这样使得<strong>程序的增长效率低下</strong>。同时，一个程序的大小还不能超过物理内存空间的大小。</p>
 <p><strong>4. 解决方法——分页内存管理</strong></p>
 <p>4.1 分页内存管理<br><strong>将虚拟内存空间和物理内存空间皆划分成大小相同的页面</strong>，例如4KB、8KB和16KB等。并将<strong>页作为内存空间的最小分配单位</strong>，一个程序的一个页面(虚拟页面)可以存放在任何一个物理页面中。</p>
-<p>一个程序发出的虚拟地址由<strong>虚拟页面号</strong>和<strong>页内偏移值</strong>两部分组成，组成见下：<br><img src="/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/20171104143925766" alt="这里写图片描述"></p>
+<p>一个程序发出的虚拟地址由<strong>虚拟页面号</strong>和<strong>页内偏移值</strong>两部分组成，组成见下：<br><img src="/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/20171104143925766" alt="这里写图片描述"></p>
 <p><strong>4.2 分页内存管理是如何解决交换内存管理中的两个问题的？</strong></p>
 <p>1.空间浪费：通过将内存空间划分成大小一样的页面，并且将其作为内存分配的基本单位，这样就避免了大量外部碎片的积累，让内存空间得到有效利用。</p>
 <p>2.程序受限：分页内存管理下，允许一个进程的部分虚拟页面存放在物理压面(物理内存)中，另一部分存放在磁盘上，等到需要使用时再将其从磁盘中加载到物理内存中。也就是说，<strong>当程序需要额外的空间时，只需要对其分配新的页即可</strong>，这样做使得程序的增长效率较高。</p>
 <p>4.3 虚拟地址-&gt;物理地址的转化(地址翻译)</p>
-<p><img src="/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/20171104153228649" alt="这里写图片描述"><br>翻译工作则是交给<strong>MMU(内存管理单元</strong>)，它只对虚拟地址的<strong>页面号进行翻译</strong>，而<strong>不处理页内偏移值</strong>。</p>
+<p><img src="/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/20171104153228649" alt="这里写图片描述"><br>翻译工作则是交给<strong>MMU(内存管理单元</strong>)，它只对虚拟地址的<strong>页面号进行翻译</strong>，而<strong>不处理页内偏移值</strong>。</p>
 <p>MMU为每一个程序都配备了一个页表，里面<strong>存放的是虚拟页面到物理页面的映射</strong>，如果MMU接收到了程序发出的虚拟地址，在查找相对应的物理页面号时，<strong>没有找到</strong>，那么将会通过<strong>缺页中断</strong>来将需要的虚拟页面从磁盘中加载到物理内存的页面中。</p>
-<p><img src="/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/20171104155233026" alt="这里写图片描述"></p>
+<p><img src="/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/20171104155233026" alt="这里写图片描述"></p>
 <p>并且随着虚拟页面的进出内存，<strong>页表的内容也是不断地变化</strong>的。</p>
 <p>4.4 页表中的具体信息<br>MMU为每一个程序配备的页表除了有虚拟地址到物理地址的映射(虚拟页面号到物理页面号)，还有其他的<strong>与页面的管理活动有关的信息</strong>，因为mmu要依赖页表来进行与页面相关的管理活动。</p>
 <p>例如，页表如何知道需要的虚拟页面是否在物理页面中？那么<strong>页表中就有一项信息记录的是该虚拟页面是否在当前的物理页面中——在内存否</strong>。<br>再说，有一些虚拟页面是受到保护的，对它的读、写和执行操作是有限制的，记录该页面的保护信息的则是——保护标识区。<br>等等。</p>
 <p>可以参考下图中，页表中存储的具体内容：</p>
-<p><img src="/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/20171104155825300" alt="这里写图片描述"></p>
+<p><img src="/2020/03/16/JAVA%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/20171104155825300" alt="这里写图片描述"></p>
 <hr>
 <h3 id="进程调度算法"><a href="#进程调度算法" class="headerlink" title="进程调度算法"></a>进程调度算法</h3><p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/673c9e4817a8">https://www.jianshu.com/p/673c9e4817a8</a></p>
 <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/u011080472/article/details/51217754">https://blog.csdn.net/u011080472/article/details/51217754</a></p>
@@ -2456,7 +2456,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">246</span>
+          <span class="site-state-item-count">248</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -2469,7 +2469,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">67</span>
+        <span class="site-state-item-count">68</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -2508,7 +2508,7 @@
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2022</span>
+  <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="user"></i>
   </span>
@@ -2517,12 +2517,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">968k</span>
+    <span title="Symbols count total">975k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">14:40</span>
+    <span title="Reading time total">14:46</span>
 </div><script color="255,255,255" opacity="0.5" zIndex="-1" count="180" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
 
         
