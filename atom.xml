@@ -6,7 +6,7 @@
   <link href="http://yorxika.github.io/atom.xml" rel="self"/>
   
   <link href="http://yorxika.github.io/"/>
-  <updated>2023-06-24T17:50:45.876Z</updated>
+  <updated>2023-06-24T17:48:58.300Z</updated>
   <id>http://yorxika.github.io/</id>
   
   <author>
@@ -15,52 +15,6 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
-  
-  <entry>
-    <title>Sat Jun 24 2023 08:00:00 GMT+0800 (GMT+08:00)</title>
-    <link href="http://yorxika.github.io/2023/06/25/2023-06-24/"/>
-    <id>http://yorxika.github.io/2023/06/25/2023-06-24/</id>
-    <published>2023-06-24T17:49:28.000Z</published>
-    <updated>2023-06-24T17:50:45.876Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="日寄"><a href="#日寄" class="headerlink" title="日寄"></a>日寄</h2><span id="more"></span><p>船到桥头自然直还是桥到船头变林夕？</p>]]></content>
-    
-    
-    <summary type="html">&lt;h2 id=&quot;日寄&quot;&gt;&lt;a href=&quot;#日寄&quot; class=&quot;headerlink&quot; title=&quot;日寄&quot;&gt;&lt;/a&gt;日寄&lt;/h2&gt;</summary>
-    
-    
-    
-    <category term="杂谈" scheme="http://yorxika.github.io/categories/%E6%9D%82%E8%B0%88/"/>
-    
-    
-    <category term="杂谈" scheme="http://yorxika.github.io/tags/%E6%9D%82%E8%B0%88/"/>
-    
-    <category term="日寄" scheme="http://yorxika.github.io/tags/%E6%97%A5%E5%AF%84/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>立黄昏</title>
-    <link href="http://yorxika.github.io/2023/05/03/2023-05-03/"/>
-    <id>http://yorxika.github.io/2023/05/03/2023-05-03/</id>
-    <published>2023-05-02T19:18:03.000Z</published>
-    <updated>2023-05-02T19:47:31.648Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="Shall-we-talk"><a href="#Shall-we-talk" class="headerlink" title="Shall we talk"></a>Shall we talk</h3><p>频繁打开qq微信，却没有人给你发消息。打开微信点开却犹豫，是小丑？</p><span id="more"></span><p>和解一直以来是萦绕于脑内的一个词，在人生的每个阶段，做了很多错事，有恃无恐，一而再再二三的伤害。</p><ol><li><p>沉默的两个句号，很伤心。</p></li><li><p>换位思考，想想他人。</p></li><li><p>你又做错事了。</p></li><li><p>回应。</p></li></ol><p>红酥手。黄滕酒。满城春色宫墙柳。东风恶。欢情薄。一怀愁绪，几年离索。错错错。</p><p>春如旧。人空瘦。泪痕红浥鲛绡透。桃花落。闲池阁。山盟虽在，锦书难托。莫莫莫。</p><p>世情薄，人情恶，雨送黄昏花易落。晓风干，泪痕残。欲笺心事，独语斜阑。难难难。</p><p>人成各，今非昨，病魂常似秋千索。角声寒，夜阑珊。怕人寻问，咽泪装欢。瞒瞒瞒。</p><p>人间万事消磨尽，只有清香似旧时。</p><p>伤心桥下春波绿，曾是惊鸿照影来。</p><p>城南小陌又逢春，只见梅花不见人。</p><p>玉骨久成泉下土，墨痕犹鏁壁间尘。</p><p>不堪幽梦太匆匆。</p>]]></content>
-    
-    
-    <summary type="html">&lt;h3 id=&quot;Shall-we-talk&quot;&gt;&lt;a href=&quot;#Shall-we-talk&quot; class=&quot;headerlink&quot; title=&quot;Shall we talk&quot;&gt;&lt;/a&gt;Shall we talk&lt;/h3&gt;&lt;p&gt;频繁打开qq微信，却没有人给你发消息。打开微信点开却犹豫，是小丑？&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="杂谈" scheme="http://yorxika.github.io/categories/%E6%9D%82%E8%B0%88/"/>
-    
-    
-    <category term="杂谈" scheme="http://yorxika.github.io/tags/%E6%9D%82%E8%B0%88/"/>
-    
-    <category term="日寄" scheme="http://yorxika.github.io/tags/%E6%97%A5%E5%AF%84/"/>
-    
-  </entry>
   
   <entry>
     <title>23-04-02</title>
@@ -2799,6 +2753,59 @@
     <category term="Leetcode" scheme="http://yorxika.github.io/tags/Leetcode/"/>
     
     <category term="二叉树" scheme="http://yorxika.github.io/tags/%E4%BA%8C%E5%8F%89%E6%A0%91/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>算法导论考试理论部分</title>
+    <link href="http://yorxika.github.io/2020/01/07/%E7%AE%97%E6%B3%95%E5%AF%BC%E8%AE%BA%E8%80%83%E8%AF%95%E7%90%86%E8%AE%BA%E9%83%A8%E5%88%86/"/>
+    <id>http://yorxika.github.io/2020/01/07/%E7%AE%97%E6%B3%95%E5%AF%BC%E8%AE%BA%E8%80%83%E8%AF%95%E7%90%86%E8%AE%BA%E9%83%A8%E5%88%86/</id>
+    <published>2020-01-07T13:16:30.000Z</published>
+    <updated>2020-01-07T13:31:00.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>算法的基本概念和性质：</p><p>算法就是任何良定义（well-defined）的计<br>算过程，该过程取某个值或值的集合作为输入（input），并<br>产生某个值或者值的集合作为输出（output）。<br>   —— 算法就是把输入转换成输出的计算步骤。<br>   —— 在计算机科学中，算法是使用计算机解一类问题的精确、有效方法的代名词；<br>   算法是一组有穷的规则，它规定了解决某一特定类型问题 的一系列运算。 （选自《计算机算法基础》） </p><hr><p>渐近表示：O、Ω、Θ记号的定义和相关性质及其证明。 </p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;算法的基本概念和性质：&lt;/p&gt;
+&lt;p&gt;算法就是任何良定义（well-defined）的计&lt;br&gt;算过程，该过程取某个值或值的集合作为输入（input），并&lt;br&gt;产生某个值或者值的集合作为输出（output）。&lt;br&gt;   —— 算法就是把输入转换成输出的计算步骤。&lt;br&gt;</summary>
+      
+    
+    
+    
+    <category term="学习笔记" scheme="http://yorxika.github.io/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    
+    <category term="算法导论" scheme="http://yorxika.github.io/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%AE%97%E6%B3%95%E5%AF%BC%E8%AE%BA/"/>
+    
+    
+    <category term="算法" scheme="http://yorxika.github.io/tags/%E7%AE%97%E6%B3%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>主存管理</title>
+    <link href="http://yorxika.github.io/2020/01/05/%E4%B8%BB%E5%AD%98%E7%AE%A1%E7%90%86/"/>
+    <id>http://yorxika.github.io/2020/01/05/%E4%B8%BB%E5%AD%98%E7%AE%A1%E7%90%86/</id>
+    <published>2020-01-05T00:43:48.000Z</published>
+    <updated>2020-01-05T01:20:04.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="主存管理概述"><a href="#主存管理概述" class="headerlink" title="主存管理概述"></a>主存管理概述</h2><h3 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h3><blockquote><p>现代操作系统将主存区分为物理主存和逻辑主存2类。<br>物理主存是共享的物质基础。<br><span id="more"></span></p></blockquote><h3 id="主存共享方式—分片共享"><a href="#主存共享方式—分片共享" class="headerlink" title="主存共享方式—分片共享"></a>主存共享方式—分片共享</h3><ul><li>大小不等的区域<br>① 分区存储管理<br>② 段式存储管理</li><li>大小相等的区域<br>页式存储管理</li><li>二者结合<br>段页式存储管理</li></ul><p>现代操作系统的主存管理必须实现主存分配、主存保护、虚拟主存等功能，即：</p><ol><li>将逻辑地址映射为物理主存地址</li><li>在多用户之间分配物理主存</li><li>对各用户区的信息提供保护措施</li><li>扩充逻辑主存区</li></ol><h3 id="程序的逻辑组织"><a href="#程序的逻辑组织" class="headerlink" title="程序的逻辑组织"></a>程序的逻辑组织</h3><p>一维地址结构</p><ul><li>一个程序是一个连续、线性的地址结构；</li><li>确定线性地址空间中的指令地址或操作数地址只需要一个信息。</li></ul><p>二维地址结构 </p><ul><li>一个程序由若干个分段组成，每个分段是一个连续的地址区； </li><li>确定线性地址空间中的指令地址或操作数地址需要两个 信息，一是该信息所在的分段，另一个是该信息在段内的偏移量。</li></ul><p><img src="/2020/01/05/%E4%B8%BB%E5%AD%98%E7%AE%A1%E7%90%86/01/05/%E4%B8%BB%E5%AD%98%E7%AE%A1%E7%90%86/image-20200105085223070.png" alt="image-20200105085223070"></p><h2 id="主存管理功能"><a href="#主存管理功能" class="headerlink" title="主存管理功能"></a>主存管理功能</h2><h3 id="几个概念"><a href="#几个概念" class="headerlink" title="几个概念"></a>几个概念</h3><ul><li>物理地址 (绝对地址、实地址)<br>物理地址是计算机主存单元的真实地址，又称为绝对地址或实地址。</li><li>主存空间<br>物理地址的集合所对应的空间组成了主存空间。</li><li>逻辑地址 (相对地址、虚地址)<br>用户的程序地址 (指令地址或操作数地址)均为逻辑地址。 </li><li>程序地址空间<br>用户程序所有的逻辑地址集合对应的空间。</li></ul><h3 id="主存管理功能-1"><a href="#主存管理功能-1" class="headerlink" title="主存管理功能"></a>主存管理功能</h3><ul><li>地址映射——实现逻辑地址到物理主存地址的映射</li><li>主存分配 ——在多用户之间分配物理主存</li><li>存储保护——对各用户区的信息提供保护措施</li><li>主存扩充/虚拟主存——扩充逻辑主存区</li></ul><h4 id="地址映射"><a href="#地址映射" class="headerlink" title="地址映射"></a>地址映射</h4><p>什么是地址映射 ：将程序地址空间中使用的逻辑地址变换成主存中的物理地 址的过程，称为地址映射。</p><p>地址映射的时机和类别<br>① 编程或编译时确定地址映射关系<br>在程序编写或程序编译时确定虚、实地址之间的对应关系，结果是一 个不能浮动的程序模块。<br>② 在程序装入时确定地址映射关系<br>在程序装入过程中随即进行的地址变换方式称为静态地址映射<br>在这种情况下，一个已开始执行的程序是无法在主存中移动的；同时，如果该程序因某种原因暂时放在辅存，若再调入主存时，还必须把它放回到主存的同一位置上。<br><img src="/2020/01/05/%E4%B8%BB%E5%AD%98%E7%AE%A1%E7%90%86/01/05/%E4%B8%BB%E5%AD%98%E7%AE%A1%E7%90%86/image-20200105091248853.png" alt="image-20200105091248853"><br>③ 在程序运行时确定地址映射关系 在程序执行期间，随着每条指令和数据的访问自动地连续 地进行地址映射，这种地址变换方式称为动态地址映射。<br>经过动态重定位的程序，可以不经过任何改变而装入主存单元。<br>可满足以下目标：</p><ol><li>具有给用户程序分配一个主存区域的能力</li><li>在改变系统设备时，具有不需要重新编程和重新编辑的能力</li><li>具有在任何时刻，在主存可用空间中重新分配一个程序的能力</li><li>对于一个用户程序，具有以间断方式分配主存的能力</li><li>具有只装入用户程序的部分代码即可投入运行的能力</li></ol><p><img src="/2020/01/05/%E4%B8%BB%E5%AD%98%E7%AE%A1%E7%90%86/01/05/%E4%B8%BB%E5%AD%98%E7%AE%A1%E7%90%86/image-20200105091228936.png" alt="image-20200105091228936"></p><div class="table-container"><table><thead><tr><th>静态地址映射</th><th>动态地址映射</th></tr></thead><tbody><tr><td>在程序装入过程中进行地址映射</td><td>在程序执行期间进行地址映射</td></tr><tr><td>需软件(重定位装入程序)</td><td>需硬件地址变换机构(重定位寄存器)</td></tr><tr><td>需花费较多CPU时间</td><td>地址变换快</td></tr><tr><td>不灵活</td><td>灵活</td></tr></tbody></table></div><h3 id="主存分配"><a href="#主存分配" class="headerlink" title="主存分配"></a>主存分配</h3><p>构造分配用的数据结构<br>主存资源信息块：等待队列；空闲区队列；主存分配程序</p><p>制定策略<br>① 分配策略 —— 在众多个请求者中选择一个请求者的原则<br>② 放置策略 —— 在可用资源中，选择一个空闲区的原则<br>③ 调入策略 —— 决定信息装入主存的时机<br>预调策略：预先将信息调入主存<br>请调策略：当需要信息时，将信息调入主存<br>④ 淘汰策略 —— 在主存中没有可用的空闲区 (对某一程序 而言)时，决定哪些信息从主存中移走，即确定淘汰已占用的内存区的原则。</p><h3 id="主存分配-1"><a href="#主存分配-1" class="headerlink" title="主存分配"></a>主存分配</h3><p>构造分配用的数据结构<br>主存资源信息块：等待队列；空闲区队列；主存分配程序</p><p>制定策略<br>① 分配策略 —— 在众多个请求者中选择一个请求者的原则<br>② 放置策略 —— 在可用资源中，选择一个空闲区的原则<br>③ 调入策略 —— 决定信息装入主存的时机<br>预调策略：预先将信息调入主存<br>请调策略：当需要信息时，将信息调入主存<br>④ 淘汰策略 —— 在主存中没有可用的空闲区 (对某一程序 而言)时，决定哪些信息从主存中移走，即确定淘汰已占 用的内存区的原则。</p><p>实施主存分配与回收</p><h3 id="主存扩充"><a href="#主存扩充" class="headerlink" title="主存扩充"></a>主存扩充</h3><p>可行性 局部性特征</p><p>实现方法</p><ul><li>程序的全部代码和数据存放在辅存中；</li><li>将程序当前执行所涉及的那部分程序代码放入主存中；</li><li>程序执行时，当所需信息不在主存，由操作系统和硬件相配合来完成主存从辅存中调入信息，程序继续执行。</li></ul><p>虚拟存储器：由操作系统和硬件相配合来完成主存和辅存之间的信息的动态调度。这样的计算机系统好像为用户提供了一个其存储容量比实际主存大得多的存储器，这个存储器称为虚拟存储器<br>虚拟存储器的核心</p><ul><li>逻辑地址与物理地址分开</li><li>存储空间与虚地址空间分开</li><li>提供地址变换机构 </li></ul><p>实现虚拟存储器的物质基础</p><ul><li>有相当容量的辅存： 足以存放应用程序的虚地址空间</li><li>有一定容量的主存： 存放进入主存的多进程的信息</li><li>地址变换机构</li></ul><h3 id="存储保护"><a href="#存储保护" class="headerlink" title="存储保护"></a>存储保护</h3><p>什么是存储保护 ：在多用户环境中，主存储器按区分配给各用户程序使用。 为了互不影响，必须由硬件 (软件配合)保证各用户程序只 能在给定的存储区域内活动，这种措施叫做存储保护。</p><p>实现方法</p><ol><li>界地址保护<ol><li>上下界防护  物理地址<br><img src="/2020/01/05/%E4%B8%BB%E5%AD%98%E7%AE%A1%E7%90%86/01/05/%E4%B8%BB%E5%AD%98%E7%AE%A1%E7%90%86/image-20200105091048112.png" alt="image-20200105091048112"></li><li>基地址、限长防护 逻辑地址<br><img src="/2020/01/05/%E4%B8%BB%E5%AD%98%E7%AE%A1%E7%90%86/01/05/%E4%B8%BB%E5%AD%98%E7%AE%A1%E7%90%86/image-20200105091157055.png" alt="image-20200105091157055"></li></ol></li><li>存储键保护</li></ol><h2 id="分区存储管理"><a href="#分区存储管理" class="headerlink" title="分区存储管理"></a>分区存储管理</h2><h3 id="动态分区分配"><a href="#动态分区分配" class="headerlink" title="动态分区分配"></a>动态分区分配</h3><p>什么是动态分区分配：在处理程序的过程中，建立分区，依用户请求的大小分配分区。</p><p>分区分配数据结构<br>① 主存资源信息块 (M_RIB)<br>② 分区描述器 (PD)<br>flag： 为 0  —— 空闲区<br>     为 1  —— 已分配区<br>size： 分区大小<br>next：空闲区——自由主存队列中的勾链字<br>     已分配区——此项为零</p><p>M_RIB</p><div class="table-container"><table><thead><tr><th>等待队列头指针</th></tr></thead><tbody><tr><td>空闲区队列头指针</td></tr><tr><td>主存分配程序入口地址</td></tr></tbody></table></div><p>PD</p><div class="table-container"><table><thead><tr><th>分配标志</th><th>flag</th></tr></thead><tbody><tr><td>大小</td><td>size</td></tr><tr><td>勾链字</td><td>next</td></tr></tbody></table></div><p><img src="/2020/01/05/%E4%B8%BB%E5%AD%98%E7%AE%A1%E7%90%86/01/05/%E4%B8%BB%E5%AD%98%E7%AE%A1%E7%90%86/image-20200105091701189.png" alt="image-20200105091701189"></p><h3 id="分区的分配与回收"><a href="#分区的分配与回收" class="headerlink" title="分区的分配与回收"></a>分区的分配与回收</h3><p>分区分配思路<br>① 寻找空闲块<br>依申请者所要求的主存区的大小，分区分配程序在自由主存队列中找一个满足用户需要的空闲块；<br>② 若找到了所需的空闲区，有两种情况<br>ⅰ 空闲区与要求的大小相等，将该空闲区分配并从队列中摘除；<br>ⅱ 空闲区大于所要求的的大小，将空闲区分为两部分：一 部分成为已分配区，建立已分配区的描述器；剩下部分 仍为空闲区。返回所分配区域的首址；<br>③ 否则，告之不能满足要求。</p><p>分区回收思路<br>① 检查释放分区 (即为回收分区)在主存中的邻接情况<br>若上、下邻接空闲区，则合并，成为一个连续的空闲区<br>② 若回收分区不与任何空闲区相邻接<br>建立一个新的空闲区，并加入到空闲区队列中。</p>]]></content>
+    
+    
+    <summary type="html">&lt;h2 id=&quot;主存管理概述&quot;&gt;&lt;a href=&quot;#主存管理概述&quot; class=&quot;headerlink&quot; title=&quot;主存管理概述&quot;&gt;&lt;/a&gt;主存管理概述&lt;/h2&gt;&lt;h3 id=&quot;引言&quot;&gt;&lt;a href=&quot;#引言&quot; class=&quot;headerlink&quot; title=&quot;引言&quot;&gt;&lt;/a&gt;引言&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;现代操作系统将主存区分为物理主存和逻辑主存2类。&lt;br&gt;物理主存是共享的物质基础。&lt;br&gt;&lt;/p&gt;&lt;/blockquote&gt;</summary>
+    
+    
+    
+    <category term="学习笔记" scheme="http://yorxika.github.io/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    
+    <category term="操作系统" scheme="http://yorxika.github.io/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
+    
+    
+    <category term="操作系统" scheme="http://yorxika.github.io/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
+    
+    <category term="内存" scheme="http://yorxika.github.io/tags/%E5%86%85%E5%AD%98/"/>
     
   </entry>
   
